@@ -1,3 +1,11 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+blog:
+    resource: "@BlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+my_orleans:
+    resource: "@MyOrleansBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+
