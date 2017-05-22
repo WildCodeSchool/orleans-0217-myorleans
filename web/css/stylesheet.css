@@ -23,10 +23,6 @@ nav li {
     border-right: solid #7a7a7a 1px;
 }
 
-nav li .last-li {
-    border-right: none;
-}
-
 nav .dropdown-button {
     color: #7a7a7a;
 }
@@ -40,6 +36,9 @@ nav .dropdown-button {
 /* ------------------------------ BODY --------------------------------*/
 /* --------------------------------------------------------------------*/
 
+.body-container-margin {
+    margin-top: 50px;
+}
 
 
 /* --------------------------------------------------------------------*/
@@ -65,8 +64,13 @@ nav .dropdown-button {
 .p-footer {
     color: #444444;
     font-size: 16px;
+
+}
+
+.align-icon {
     display: inline-flex;
     vertical-align: middle;
+    padding-right: 10px;
 }
 
 /* --------------------------------------------------------------------*/
@@ -79,6 +83,10 @@ nav .dropdown-button {
 
 .ml-padding-right {
     padding-right: 10px;
+}
+
+.row-ml {
+    margin-bottom: 0;
 }
 
 
