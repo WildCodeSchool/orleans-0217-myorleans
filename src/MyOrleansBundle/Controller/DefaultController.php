@@ -14,4 +14,12 @@ class DefaultController extends Controller
     {
         return $this->render('MyOrleansBundle:Default:index.html.twig');
     }
+
+    /**
+     * @Route("/agence", name="agence")
+     */
+    public function agencyAction()
+    {
+        return $this->render('MyOrleansBundle:Default:agence.html.twig');
+    }
 }

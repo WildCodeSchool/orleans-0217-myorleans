@@ -1,0 +1,117 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}" media="screen,projection"/>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo">
+                        <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
+                    </a>
+                    <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i
+                                class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#">Nos biens</a></li>
+                        <li><a href="#">Nos services</a></li>
+                        <li><a href="#">Parcours immobiliers</a></li>
+                        <li><a href="#">Notre agence</a></li>
+                        <li><a href="#">L'immobilier pratique</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                    <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
+                        <li><a href="#">Nos biens</a></li>
+                        <li><a href="#">Nos services</a></li>
+                        <li><a href="#">Votre parcours immobilier</a></li>
+                        <li><a href="#">L'agence</a></li>
+                        <li><a href="#">L'immobilier pratique</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>w
+    </div>
+    <div class="container-fluid body-container-margin">
+
+        {% block content %}
+            <video class="responsive-video" controls>
+                <source src="movie.mp4" type="video/mp4">
+            </video>
+
+        {% endblock %}
+    </div>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Suivez-nous</h5>
+                    <span><i class="large material-icons social-footer">insert_chart</i></span>
+                    <span><i class="large material-icons social-footer">insert_chart</i></span>
+                    <span><i class="large material-icons social-footer">insert_chart</i></span>
+                </div>
+                <div class="col l5 offset-l1 s12 footer-right-side">
+                    <h5 class="white-text">Contactez-nous</h5>
+                    <p class="p-footer"><span><i class="small material-icons align-icon">phone</i></span>02 38 75 94 47
+                    </p>
+                    <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13, rue
+                        Bannier 45000 Orléans</p>
+                    <p class="p-footer"><span><i class="small material-icons align-icon">email</i></span><a href="#!">agence@my-orleans.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row row-ml">
+                    <div class="col s2">
+                        <p>© 2017 My-Orléans</p>
+                    </div>
+                    <div class="col s8 center">
+                        <p><a class="grey-text text-lighten-4 ml-padding-right" href="#!">Mentions légales</a>
+                            <a class="grey-text text-lighten-4" href="#!">Frais et honoraires de gestion</a></p>
+                    </div>
+                    <div class="col s2">
+                        <p><a class="grey-text text-lighten-4" href="#!">Wild Code School</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset("js/script.js") }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.carousel').carousel();
+        });
+
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+
+        // Script JS pour l'autocomplétion
+
+        $('input.autocomplete').autocomplete({
+            data: {
+                "Apple": null,
+                "Microsoft": null,
+                "Google": 'http://placehold.it/250x250'
+            },
+            limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+            onAutocomplete: function (val) {
+                // Callback function when value is autcompleted.
+            },
+            minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+        });
+
+    </script>
+
+{% endblock %}
