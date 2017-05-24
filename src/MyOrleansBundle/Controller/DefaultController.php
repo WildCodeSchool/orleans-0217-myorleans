@@ -14,4 +14,13 @@ class DefaultController extends Controller
     {
         return $this->render('MyOrleansBundle:Default:index.html.twig');
     }
+
+    /**
+     * @Route("/nos-biens", name="nosBiens")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function nosbiensAction()
+    {
+        return $this->render('MyOrleansBundle::nosbiens.html.twig');
+    }
 }

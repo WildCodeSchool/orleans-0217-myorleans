@@ -19,9 +19,9 @@ nav ul a {
     color: #7a7a7a;
 }
 
-nav li {
+/*nav li {
     border-right: solid #7a7a7a 1px;
-}
+}*/
 
 nav .dropdown-button {
     color: #7a7a7a;
@@ -35,18 +35,116 @@ nav .dropdown-button {
 /* --------------------------------------------------------------------*/
 /* ------------------------------ BODY --------------------------------*/
 /* --------------------------------------------------------------------*/
+body {
+    font-family: Helvetica;
+}
 
 .body-container-margin {
-    margin-top: 50px;
+    margin: 50px 20px 0 20px;
 }
+
+.btn, .btn-large {
+    background-color: #b7d64a;
+}
+
+.btn:hover, .btn-large:hover, .btn:visited, .btn-large:visited, .btn:focus, .btn-large:focus {
+    background-color: #a5c143;
+}
+
+::-webkit-input-placeholder {
+    color: #b7d64a;
+    opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
+}
+
+/*:-moz-placeholder { !* Firefox 18- *!
+    color: #b7d64a;
+    opacity: 0.9 !important;
+}
+
+::-moz-placeholder {  !* Firefox 19+ *!
+    color: #b7d64a;
+    opacity: 0.9 !important;
+}
+
+:-ms-input-placeholder {
+    color: #b7d64a;
+}*/
+
+:-moz-placeholder { /* Firefox 18- */
+    color: black;
+    opacity: 0.3 !important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: black;
+    opacity: 0.3 !important;
+}
+
+:-ms-input-placeholder {
+    color: black;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #a5c143;
+}
+
+/*.select-wrapper input.select-dropdown {
+    color: #b7d64a;
+}*/
+
+.select-wrapper input.select-dropdown {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.margin-neg {
+    margin-bottom: 0;
+}
+
+
+    /* ------------------------ Page Nos Biens ----------------------------*/
+
+.page-nosbiens h1 {
+    font-size:36px;
+    margin-bottom: 5px;
+}
+
+.page-nosbiens h2 {
+    font-size:26px;
+    color: #858585;
+}
+
+.moteur-recherche {
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    margin-top: -10px;
+    padding: 0 10px 10px 10px;
+}
+
+
+
+
 
 
 /* --------------------------------------------------------------------*/
 /* ------------------------------ FOOTER ------------------------------*/
 /* --------------------------------------------------------------------*/
 
+.pre-footer {
+    margin-bottom: -7px;
+}
+
+.skyline {
+    width: 100%;
+}
+
 .page-footer {
-    background-color: #939597;
+    /*
+    background-color : #939597;
+    */
+    background-color: black;
+
+    /*    background-image: url('../img/toit_Orleans2-01.svg');
+        background-size: cover;*/
 }
 
 .footer-right-side {
@@ -77,8 +175,8 @@ nav .dropdown-button {
 /* ------------------------ MENTIONS LEGALES --------------------------*/
 /* --------------------------------------------------------------------*/
 
-.footer-copyright {
-    background-color: black;
+.page-footer .footer-copyright {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .ml-padding-right {

@@ -1,0 +1,88 @@
+{% extends "MyOrleansBundle:Default:index.html.twig" %}
+
+
+{% block content %}
+    <div class="page-nosbiens">
+        <div class="moteur-recherche">
+            <div class="row">
+                <div class="col s12">
+                    <h1>Votre recherche</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m3">
+                    <h2>Localisation</h2>
+                    <div class="input-field">
+                        <input placeholder="Ville" id="champ-ville" type="text" class="validate">
+                        <input placeholder="Quartier" id="champ-quartier" type="text" class="validate">
+                    </div>
+                </div>
+                <div class="col s12 m3">
+                    <div class="row margin-neg">
+                        <h2>Votre bien</h2>
+                        <div class="input-field">
+                            <select class="typeBien">
+                                <option value="" disabled selected>Type</option>
+                                <option id="T1" value="1">T1</option>
+                                <option id="T2" value="2">T2</option>
+                                <option id="T3" value="3">T3</option>
+                                <option id="T4" value="4">T4 et +</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <input placeholder="Surface min" id="champ-surface-min" type="text" class="validate">
+                        </div>
+                        <div class="col s6">
+                            <input placeholder="Surface max" id="champ-surface-max" type="text" class="validate">
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m3">
+                    <h2 class="white-text">Votre bien</h2>
+                    <div class="input-field">
+                        <select class="choixChb">
+                            <option value="" disabled selected>Nb. Chambre(s)</option>
+                            <option id="chb1" value="1">1 champbre</option>
+                            <option id="chb2" value="2">2 chambres</option>
+                            <option id="chb3" value="3">3 chambres</option>
+                            <option id="chb4" value="4">4 chambres et plus</option>
+                        </select>
+                        <select class="choixPiece">
+                            <option value="" disabled selected>Nb. Pièce(s)</option>
+                            <option id="piece1" value="1">1 pièce</option>
+                            <option id="piece2" value="2">2 pièces</option>
+                            <option id="piece3" value="3">3 pièces</option>
+                            <option id="piece4" value="4">4 pièces</option>
+                            <option id="piece5" value="5">5 pièces et plus</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col s12 m3">
+                    <div class="row margin-neg">
+                        <h2>Investissement</h2>
+                        <select class="objectif">
+                            <option value="" disabled selected>Objectif</option>
+                            <option id="invest" value="1">Investir</option>
+                            <option id="ResPrinc" value="2">Acheter en résidence principale</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <input placeholder="Budget min" id="champ-budget-min" type="text" class="validate">
+                        </div>
+                        <div class="col s6">
+                            <input placeholder="Budget max" id="champ-budget-max" type="text" class="validate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row center">
+                <button class="btn waves-effect waves-light" type="submit" value="Rechercher">Rechercher</button>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

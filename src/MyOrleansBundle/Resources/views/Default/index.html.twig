@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends "::base.html.twig" %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -34,7 +34,7 @@
     </nav>
 </div>
 
-<div class="container body-container-margin">
+<div class="body-container-margin">
 
     {% block content %}
     <p>
@@ -105,6 +105,10 @@
         Lorem ipsum <br/>
     </p>
     {% endblock %}
+</div>
+
+<div class="pre-footer">
+    <img class="skyline" src="{{ asset('img/toits_Orleans_resized.png') }}" alt="toits d'Orléans"/>
 </div>
 
 <footer class="page-footer">
