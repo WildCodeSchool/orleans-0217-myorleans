@@ -99,7 +99,7 @@ nav .dropdown-button {
 /* --------------------------------------------------------------------*/
 
 .cover{
-    background-image: url("../img/cover.jpg");
+    background-image: url("../img/cover2.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -107,13 +107,29 @@ nav .dropdown-button {
 }
 
 .formSearch{
-    background-color: rgba(255,255,255, 0.9);
-    margin: 0 auto !important;
-    width: 100%;
-    margin-top : 150px !important;
+    background-color: rgba(255,255,255, 0.94);
+    margin-top : 250px !important;
+}
+
+.centerFormSearch{
+    margin: 0 auto;
+    float: none;
 }
 
 .agencyHome{
-    background-color: #444444;
+    background-color: #212121;
     color:white;
+}
+.modal-trigger {
+    color: #757575;
+}
+
+.modal-trigger i{
+    color: #8bc34a;
+    font-size: 20px;
+}
+
+.buttonNewsletter {
+    position: absolute;
+    margin: 0 auto;
 }
