@@ -99,7 +99,7 @@ nav .dropdown-button {
 /* --------------------------------------------------------------------*/
 
 .cover{
-    background-image: url("../img/cover2.jpg");
+    background:rgba(0,0,0,0) url("../img/cover2.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -132,4 +132,66 @@ nav .dropdown-button {
 .buttonNewsletter {
     position: absolute;
     margin: 0 auto;
+}
+
+.downButton {
+    margin-top: 90px;
+}
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ L'AGENCE --------------------------*/
+/* --------------------------------------------------------------------*/
+
+
+.blockStaff{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+}
+
+
+.blockStaff .imgStaff img{
+    display: block;
+    opacity: 1;
+    filter: grayscale(0%);
+    transition: all .25s ease;
+    height: auto;
+    width: 100%;
+}
+
+.blockStaff:hover .imgStaff img{
+    display: block;
+    opacity: 0.75;
+    filter: grayscale(100%);
+}
+
+.blockStaff .infoStaff{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: .5em;
+    background: #000;
+    background: rgba(0, 0, 0, .75);
+    color: #fff;
+    opacity: 0;
+}
+
+.blockStaff:hover .infoStaff {
+    opacity: 1;
+    transition: all 0.15s ease 0s;
+}
+
+.socialStaff a{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    bottom: 40px;
+    font-size: 30px;
+    color: white;
+}
+.socialStaff a.mail{
+    margin-left: 40px;
 }
