@@ -1,8 +1,8 @@
-{% extends "MyOrleansBundle:Default:index.html.twig" %}
+{% extends "MyOrleansBundle:Default:layout.html.twig" %}
 
 
 {% block content %}
-    <div class="page-nosbiens">
+    <div class="page-nosbiens body-container-margin">
         <div class="moteur-recherche">
             <div class="row">
                 <div class="col s12">
@@ -80,6 +80,264 @@
             </div>
             <div class="row center">
                 <button class="btn waves-effect waves-light" type="submit" value="Rechercher">Rechercher</button>
+            </div>
+        </div>
+
+        <div class="row carte-et-liste">
+            <div class="col m6 hide-on-small-only carte">
+                <div id="map"></div>
+                <script>
+                    function initMap() {
+                        var uluru = {lat: 47.9088035, lng: 1.8913519999999835};
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 15,
+                            center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map
+                        });
+                    }
+                </script>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
+                </script>
+
+            </div>
+            <div class="col s12 m6 liste-biens">
+                <div class="row">
+                    <div class="col s12 offset-m1 m10">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="{{ asset('img/res_dunois.jpg') }}">
+                            </div>
+                            <div class="card-content">
+                                <div class="row grille-infos">
+                                    <div class="col s8 grille-gauche">
+                                        <div class="row nom-residence">
+                                            <h4>Nom Résidence</h4>
+                                            <p>Le Beau Dunois</p>
+                                        </div>
+                                        <div class="row annee-nbPiece">
+                                            <div class="col s6 annee-residence">
+                                                <h4>Année</h4>
+                                                <p>4è Trimestre 2017</p>
+                                            </div>
+                                            <div class="col s6">
+                                                <h4>Nombre de pièces</h4>
+                                                <p>Du T1 au T5</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s4">
+                                        <h4>Prix</h4>
+                                        <p>A partir de 90 000€</p>
+                                        <br/>
+                                        <h4>Disponibilité</h4>
+                                        <p>5 logements</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action center">
+                                <a href="#">Découvrir la résidence</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 offset-m1 m10">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="{{ asset('img/res_mypark.jpg') }}">
+                            </div>
+                            <div class="card-content">
+                                <div class="row grille-infos">
+                                    <div class="col s8 grille-gauche">
+                                        <div class="row nom-residence">
+                                            <h4>Nom Résidence</h4>
+                                            <p>1my Park</p>
+                                        </div>
+                                        <div class="row annee-nbPiece">
+                                            <div class="col s6 annee-residence">
+                                                <h4>Année</h4>
+                                                <p>4è Trimestre 2017</p>
+                                            </div>
+                                            <div class="col s6">
+                                                <h4>Nombre de pièces</h4>
+                                                <p>Du T1 au T5</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s4">
+                                        <h4>Prix</h4>
+                                        <p>A partir de 90 000€</p>
+                                        <br/>
+                                        <h4>Disponibilité</h4>
+                                        <p>5 logements</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action center">
+                                <a href="#">Découvrir la résidence</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 offset-m1 m10">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="{{ asset('img/res_terrasses_paradis.jpg') }}">
+                            </div>
+                            <div class="card-content">
+                                <div class="row grille-infos">
+                                    <div class="col s8 grille-gauche">
+                                        <div class="row nom-residence">
+                                            <h4>Nom Résidence</h4>
+                                            <p>Les Terrasses du Paradis</p>
+                                        </div>
+                                        <div class="row annee-nbPiece">
+                                            <div class="col s6 annee-residence">
+                                                <h4>Année</h4>
+                                                <p>4è Trimestre 2017</p>
+                                            </div>
+                                            <div class="col s6">
+                                                <h4>Nombre de pièces</h4>
+                                                <p>Du T1 au T5</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s4">
+                                        <h4>Prix</h4>
+                                        <p>A partir de 90 000€</p>
+                                        <br/>
+                                        <h4>Disponibilité</h4>
+                                        <p>5 logements</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action center">
+                                <a href="#">Découvrir la résidence</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {#<div class="carousel carousel-slider">
+                    <a class="carousel-item" href="#one!">
+
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img src="{{ asset('img/res_dunois.jpg') }}">
+                                        <span class="card-title">Le Beau Dunois</span>
+                                    </div>
+                                    <div class="card-content">
+                                        <p>I am a very simple card. I am good at containing small bits of information.
+                                            I am convenient because I require little markup to use effectively.</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="#">Découvrir la résidence</a>
+                                    </div>
+                                </div>
+
+                    </a>
+                    <a class="carousel-item" href="#two!">
+
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img src="{{ asset('img/res_mypark.jpg') }}">
+                                        <span class="card-title">My Park</span>
+                                    </div>
+                                    <div class="card-content">
+                                        <p>I am a very simple card. I am good at containing small bits of information.
+                                            I am convenient because I require little markup to use effectively.</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="#">Découvrir la résidence</a>
+                                    </div>
+                                </div>
+
+                    </a>
+                    <a class="carousel-item" href="#three!">
+
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img src="{{ asset('img/res_terrasses_paradis.jpg') }}">
+                                        <span class="card-title">Les Terrasses du Paradis</span>
+                                    </div>
+                                    <div class="card-content">
+                                        <p>I am a very simple card. I am good at containing small bits of information.
+                                            I am convenient because I require little markup to use effectively.</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="#">Découvrir la résidence</a>
+                                    </div>
+                                </div>
+
+                    </a>
+                </div>#}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s4 bordure-titre">
+                <p class="white-text">Investissez en loi Pinel</p>
+            </div>
+            <div class="col s4 center alignement-titre">
+                <h2>Investissez en toute sérénité</h2>
+            </div>
+            <div class="col s4 bordure-titre">
+                <p class="white-text">Acheter un bien immobilier</p>
+            </div>
+        </div>
+
+        <div class="row proposition-services">
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ asset('img/article-immo.jpg') }}">
+                    </div>
+                    <div class="card-content">
+                        <h4>Location et gestion locative</h4>
+                        <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                            lorem ipsum lorem ipsum lorem ipsum.</p>
+                    </div>
+                    <div class="card-action center">
+                        <a href="#">Découvrez les services</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ asset('img/article-immo.jpg') }}">
+                    </div>
+                    <div class="card-content">
+                        <h4>Pack Sérénité</h4>
+                        <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                            lorem ipsum lorem ipsum lorem ipsum.</p>
+                    </div>
+                    <div class="card-action center">
+                        <a href="#">Découvrez les autres packs</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Titre de l'article</h4>
+                        <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                            lorem ipsum lorem ipsum lorem ipsum.</p>
+                    </div>
+                    <div class="card-image">
+                        <img src="{{ asset('img/article-immo.jpg') }}">
+                    </div>
+                    <div class="card-action center">
+                        <a href="#">Lire l'article</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

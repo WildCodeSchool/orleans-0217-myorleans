@@ -1,0 +1,87 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}"  media="screen,projection"/>
+{% endblock %}
+
+{% block body %}
+
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">
+                <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise" />
+            </a>
+            <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Nos biens</a></li>
+                <li><a href="#">Nos services</a></li>
+                <li><a href="#">Parcours immobiliers</a></li>
+                <li><a href="#">Notre agence</a></li>
+                <li><a href="#">L'immobilier pratique</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+            <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
+                <li><a href="#">Nos biens</a></li>
+                <li><a href="#">Nos services</a></li>
+                <li><a href="#">Votre parcours immobilier</a></li>
+                <li><a href="#">L'agence</a></li>
+                <li><a href="#">L'immobilier pratique</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+{% block content %}
+
+{% endblock %}
+
+
+<div class="pre-footer">
+    <img class="skyline" src="{{ asset('img/toits_Orleans_resized_v3.png') }}" alt="toits d'Orléans"/>
+</div>
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Suivez-nous</h5>
+                <span><i class="large material-icons social-footer">insert_chart</i></span>
+                <span><i class="large material-icons social-footer">insert_chart</i></span>
+                <span><i class="large material-icons social-footer">insert_chart</i></span>
+            </div>
+            <div class="col l5 offset-l1 s12 footer-right-side">
+                <h5 class="white-text">Contactez-nous</h5>
+                <p class="p-footer"><span><i class="small material-icons align-icon">phone</i></span>02 38 75 94 47</p>
+                <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13, rue Bannier 45000 Orléans</p>
+                <p class="p-footer"><span><i class="small material-icons align-icon">email</i></span><a href="#!">agence@my-orleans.com</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row row-ml">
+                <div class="col s2">
+                    <p>© 2017 My-Orléans</p>
+                </div>
+                <div class="col s8 center">
+                    <p><a class="grey-text text-lighten-4 ml-padding-right" href="#!">Mentions légales</a>
+                    <a class="grey-text text-lighten-4" href="#!">Frais et honoraires de gestion</a></p>
+                </div>
+                <div class="col s2">
+                    <p><a class="grey-text text-lighten-4" href="#!">Wild Code School</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+{% endblock %}

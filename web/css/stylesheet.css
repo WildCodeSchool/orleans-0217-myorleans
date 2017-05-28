@@ -56,20 +56,6 @@ body {
     opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
 }
 
-/*:-moz-placeholder { !* Firefox 18- *!
-    color: #b7d64a;
-    opacity: 0.9 !important;
-}
-
-::-moz-placeholder {  !* Firefox 19+ *!
-    color: #b7d64a;
-    opacity: 0.9 !important;
-}
-
-:-ms-input-placeholder {
-    color: #b7d64a;
-}*/
-
 :-moz-placeholder { /* Firefox 18- */
     color: black;
     opacity: 0.3 !important;
@@ -87,10 +73,6 @@ body {
 .dropdown-content li > a, .dropdown-content li > span {
     color: #a5c143;
 }
-
-/*.select-wrapper input.select-dropdown {
-    color: #b7d64a;
-}*/
 
 .select-wrapper input.select-dropdown {
     color: rgba(0, 0, 0, 0.3);
@@ -113,12 +95,93 @@ body {
     color: #858585;
 }
 
+.page-nosbiens .alignement-titre h2 {
+    padding-top: 12px;
+}
+
+.page-nosbiens .liste-biens h4 {
+    font-size:22px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.page-nosbiens .proposition-services h4 {
+    font-size:22px;
+    font-weight: 600;
+}
+
+.card .card-content p {
+    font-size: 18px;
+    color: #858585;
+}
+
+.bordure-titre {
+    border-bottom: solid 4px #a5c143;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+    color: #a5c143;
+    font-size: 18px;
+}
+
 .moteur-recherche {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
     margin-top: -10px;
     padding: 0 10px 10px 10px;
 }
+
+#map {
+    width: 100%;
+    height: 750px;
+    background-color: white;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    margin-top: 20px;
+    margin-left: -10px;
+}
+
+.liste-biens {
+    margin-top: 12px;
+    max-height: 760px;
+    overflow-y: scroll;
+}
+
+/*--- Alignemant des informations des residences---*/
+
+.row .annee-nbPiece h4 {
+    margin-top: -1px;
+}
+
+.liste-biens .card .card-content {
+    padding: 10px 0;
+}
+
+.row .grille-infos {
+    margin-bottom: 0;
+}
+
+.row .nom-residence {
+    padding-bottom: 20px;
+}
+
+.col .annee-residence {
+    padding-left: 2px;
+}
+
+/*--- Creation des lignes entre les informations des residences ---*/
+
+.nom-residence {
+    border-bottom: solid 1px #e5e5e5;
+}
+
+.annee-residence, .grille-gauche {
+    border-right: solid 1px #e5e5e5;
+}
+
+/* --- Mise en forme des articles du bas e page ---*/
+
+
+
 
 
 
