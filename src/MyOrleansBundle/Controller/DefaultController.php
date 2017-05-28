@@ -14,4 +14,20 @@ class DefaultController extends Controller
     {
         return $this->render('MyOrleansBundle:Default:index.html.twig');
     }
+
+    /**
+     * @Route("/residences")
+     */
+    public function residence()
+    {
+        return $this->render('MyOrleansBundle::residence.html.twig');
+    }
+
+    /**
+     * @Route("/appartement")
+     */
+    public function appartement()
+    {
+        return $this->render('MyOrleansBundle::appartement.html.twig');
+    }
 }
