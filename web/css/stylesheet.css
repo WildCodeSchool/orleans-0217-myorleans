@@ -116,10 +116,15 @@ nav .dropdown-button {
     float: none;
 }
 
+
+/* ==========================================================================
+.agencyHome
+========================================================================== */
 .agencyHome{
     background-color: #212121;
     color:white;
 }
+
 .modal-trigger {
     color: #757575;
 }
@@ -142,6 +147,18 @@ nav .dropdown-button {
 /* ------------------------ L'AGENCE --------------------------*/
 /* --------------------------------------------------------------------*/
 
+.agencyVideo{
+    margin-top: 50px;
+}
+
+
+#myIframe{
+    position:relative;
+    top:0;
+    left:0;
+    width:100%;
+    height:500px;
+}
 
 .blockStaff{
     position: relative;
@@ -195,3 +212,4 @@ nav .dropdown-button {
 .socialStaff a.mail{
     margin-left: 40px;
 }
+
