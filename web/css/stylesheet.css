@@ -107,8 +107,9 @@ nav .dropdown-button {
 }
 
 .formSearch{
-    background-color: rgba(255,255,255, 0.94);
+    background-color: rgba(0,0,0, 0.7);
     margin-top : 250px !important;
+    position: relative;
 }
 
 .centerFormSearch{
