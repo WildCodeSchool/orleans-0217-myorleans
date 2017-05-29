@@ -44,6 +44,76 @@ nav .dropdown-button {
     margin-top: 50px;
 }
 
+/* ---------------------------IMMO PRATIQUE---------------------------------------*/
+
+
+.immobilier{
+    color: grey;
+    text-align: center;
+}
+
+.blocki{
+}
+
+
+
+.navy{
+    margin-bottom: 20px;
+}
+
+.block-gris{
+    background-color:grey;
+}
+
+.texte-blanc{
+    color:white;
+}
+/* ------------------------------------------------------------------*/
+
+
+/* ---------------------------NOS SERVICES----------------------------*/
+
+
+.fancy {
+    overflow: hidden;
+    text-align: center;
+    color: grey;
+}
+
+.fancy span {
+    position: relative;
+}
+
+.fancy span:before,
+.fancy span:after {
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid white;
+    border-top: 5px solid lightgreen;
+    width: 400px;
+    height: 7px;
+    top: 50%;
+    margin-top: -4px;
+}
+
+.fancy span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.fancy span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.packs{
+
+    background-color: #939597;
+}
+
+
+/* ------------------------------------------------------------------*/
+
 
 /* --------------------------------------------------------------------*/
 /* ------------------------------ FOOTER ------------------------------*/
@@ -93,6 +163,95 @@ nav .dropdown-button {
     margin-bottom: 0;
 }
 
+/* --------------------------------------------------------------------*/
+/* ------------------------ PAGE RESIDENCE --------------------------*/
+/* --------------------------------------------------------------------*/
+
+.offre-residence td {
+    border: 1px solid black;
+}
+
+.lieu-residence{
+    color: rgb(192,192,192);
+}
+
+.subtab-residence{
+    color: rgb(192,192,192);
+}
+
+.undervideo-residence{
+    padding-top: 30px;
+}
+
+.icon-residence{
+    width: 2em;
+    height: 2em;
+}
+
+.citation-residence{
+    background-color: rgb(68,68,68);
+    color: white;
+    text-align: center;
+    font-style: italic;
+    font-size: 2em;
+    padding: 20px;
+}
+
+.pinel-residence{
+    text-align: right;
+}
+
+.consulter-residence{
+    color: rgb(192,192,192);
+}
+
+.content-residence{
+    padding-top: 20px;
+}
+
+.accordeon-residence{
+    padding-bottom: 30px;
+}
+
+.btn-residence{
+    background-color: rgb(189,217,90);
+}
+
+#map {
+    height: 100%;
+}
+/* --------------------------------------------------------------------*/
+/* ------------------------ FIN PAGE RESIDENCE --------------------------*/
+/* --------------------------------------------------------------------*/
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ PAGE APPARTEMENT --------------------------*/
+/* --------------------------------------------------------------------*/
+.content-appartement{
+    padding-top: 20px;
+}
+
+.info-apt{
+    position:absolute;
+    top:80px;
+    left:500px;
+    width:200px;
+    height:200px;
+    z-index:2;
+    border: solid black 1px;
+}
+
+.appart-neuf{
+    position:absolute;
+    top:125px;
+    left:300px;
+    width:800px;
+    height:500px;
+    z-index:1;
+}
+/* --------------------------------------------------------------------*/
+/* ------------------------ FIN PAGE APPARTEMENT --------------------------*/
+/* --------------------------------------------------------------------*/
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ ACCUEIL --------------------------*/
@@ -219,4 +378,5 @@ nav .dropdown-button {
 .socialStaff a.mail{
     margin-left: 40px;
 }
+
 

@@ -24,11 +24,43 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/nosservices")
+     */
+    public function nosservices()
+    {
+        return $this->render('MyOrleansBundle:Default:nosservices.html.twig');
+    }
+
+    /**
+     * @Route("/immopratique")
+     */
+    public function immopratique()
+    {
+        return $this->render('MyOrleansBundle:Default:immopratique.html.twig');
+    }
+
+    /**
      * @Route("/agence", name="agence")
      */
     public function agencyAction()
     {
         return $this->render('MyOrleansBundle:Default:agence.html.twig');
+    }
+
+    /**
+     * @Route("/residences")
+     */
+    public function residence()
+    {
+        return $this->render('MyOrleansBundle::residence.html.twig');
+    }
+
+    /**
+     * @Route("/appartement")
+     */
+    public function appartement()
+    {
+        return $this->render('MyOrleansBundle::appartement.html.twig');
     }
 
 }
