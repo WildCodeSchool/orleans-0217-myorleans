@@ -1,4 +1,4 @@
-{% extends 'MyOrleansBundle:Default:index.html.twig' %}
+{% extends 'MyOrleansBundle:Default:layout.html.twig' %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -10,10 +10,13 @@
         <div class="container">
             <div class="row">
                 <div class="undervideo-residence">
-                    <div class="col s12">
+                    <div class="col l6 s12">
                         <h1>Le Pryvé</h1>
                     </div>
-                    <div class="row">
+                    <div class="col l6 s12">
+                        <a href="#" class="demande-doc">Demander la documentation</a>
+                    </div>
+{#                    <div class="row">
                         <div class="col l6 s12">
                             <img class="appart-neuf" src="{{ asset('img/apt-neuf.jpg') }}" alt="photo-appart"/>
                         <div class="row">
@@ -27,7 +30,7 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div>#}
                     <div class="row">
                         <div class="col s12"
                             <img class="plan" src="{{ asset('img/plan.jpg') }}" alt="plan"/>
@@ -67,6 +70,9 @@
                     <h3 class="consulter-residence">Consulte nos biens disponibles</h3>
                 </div>
             </div>
+        <div class="col l6 s12">
+            <a href="#" class="demande-doc">Demander la documentation</a>
+        </div>
         </div>
     </div>
 
