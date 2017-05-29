@@ -16,7 +16,15 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/nos-biens", name="nosBiens")
+     */
+    public function nosBiensAction()
+    {
+        return $this->render('MyOrleansBundle:Default:nos-biens.html.twig');
+    }
 
+
+    /**
      * @Route("/nosservices", name="nosservices")
      */
     public function nosservices()
@@ -38,6 +46,22 @@ class DefaultController extends Controller
     public function agencyAction()
     {
         return $this->render('MyOrleansBundle:Default:agence.html.twig');
+    }
+
+    /**
+     * @Route("/residences")
+     */
+    public function residence()
+    {
+        return $this->render('MyOrleansBundle::residence.html.twig');
+    }
+
+    /**
+     * @Route("/appartement")
+     */
+    public function appartement()
+    {
+        return $this->render('MyOrleansBundle::appartement.html.twig');
     }
 
 }

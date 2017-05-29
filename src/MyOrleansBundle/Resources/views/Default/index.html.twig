@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'MyOrleansBundle:Default:layout.html.twig' %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -127,9 +127,7 @@
         </div>
         <div class="row">
             <h1>Témoignages</h1>
-
         </div>
-
 
         <div class="row agencyHome">
             <div class="col s12">
@@ -152,7 +150,6 @@
                     </a>
                 </div>
             </div>
-
 
             <!-- Modal Trigger -->
             <div class="row">
@@ -294,6 +291,7 @@
     {{ parent() }}
 
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+
 
     <script>
         $(document).ready(function () {
