@@ -3,6 +3,8 @@ my_orleans:
     type:     annotation
     prefix:   /site
 
+
+
 blog:
     resource: "@BlogBundle/Controller/"
     type:     annotation

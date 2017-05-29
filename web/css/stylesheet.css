@@ -23,9 +23,9 @@ nav ul a {
     color: #7a7a7a;
 }
 
-nav li {
+/*nav li {
     border-right: solid #7a7a7a 1px;
-}
+}*/
 
 nav .dropdown-button {
     color: #7a7a7a;
@@ -39,60 +39,308 @@ nav .dropdown-button {
 /* --------------------------------------------------------------------*/
 /* ------------------------------ BODY --------------------------------*/
 /* --------------------------------------------------------------------*/
+body {
+    font-family: Helvetica;
+}
 
 .body-container-margin {
-    margin-top: 50px;
+    margin: 50px 20px 0 20px;
 }
 
-
-/* --------------------------------------------------------------------*/
-/* ------------------------------ FOOTER ------------------------------*/
-/* --------------------------------------------------------------------*/
-
-.page-footer {
-    background-color: #939597;
+.btn, .btn-large {
+    background-color: #b7d64a;
 }
 
-.footer-right-side {
-    border-left: solid #7a7a7a 1px;
+.btn:hover, .btn-large:hover, .btn:visited, .btn-large:visited, .btn:focus, .btn-large:focus {
+    background-color: #a5c143;
 }
 
-.footer-right-side a {
-    color: lightgrey;
+::-webkit-input-placeholder {
+    color: #b7d64a;
+    opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
 }
 
-.social-footer {
-    color: white;
+:-moz-placeholder { /* Firefox 18- */
+    color: black;
+    opacity: 0.3 !important;
 }
 
-.p-footer {
-    color: #444444;
-    font-size: 16px;
-
+::-moz-placeholder {  /* Firefox 19+ */
+    color: black;
+    opacity: 0.3 !important;
 }
 
-.align-icon {
-    display: inline-flex;
-    vertical-align: middle;
-    padding-right: 10px;
+:-ms-input-placeholder {
+    color: black;
 }
 
-/* --------------------------------------------------------------------*/
-/* ------------------------ MENTIONS LEGALES --------------------------*/
-/* --------------------------------------------------------------------*/
-
-.footer-copyright {
-    background-color: black;
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #a5c143;
 }
 
-.ml-padding-right {
-    padding-right: 10px;
+.select-wrapper input.select-dropdown {
+    color: rgba(0, 0, 0, 0.3);
 }
 
-.row-ml {
+.margin-neg {
     margin-bottom: 0;
 }
 
+
+/* ------------------------ Page Nos Biens ----------------------------*/
+
+.page-nosbiens h1 {
+    font-size:36px;
+    margin-bottom: 5px;
+}
+
+.page-nosbiens h2 {
+    font-size:26px;
+    color: #858585;
+}
+
+.page-nosbiens .alignement-titre h2 {
+    padding-top: 12px;
+}
+
+.page-nosbiens .liste-biens h4 {
+    font-size:22px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.page-nosbiens .proposition-services h4 {
+    font-size:22px;
+    font-weight: 600;
+}
+
+.card .card-content p {
+    font-size: 18px;
+    color: #858585;
+}
+
+.bordure-titre {
+    border-bottom: solid 4px #a5c143;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+    color: #a5c143;
+    font-size: 18px;
+}
+
+.moteur-recherche {
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    margin-top: -10px;
+    padding: 0 10px 10px 10px;
+}
+
+#map {
+    width: 100%;
+    height: 750px;
+    background-color: white;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    margin-top: 20px;
+    margin-left: -10px;
+}
+
+.liste-biens {
+    margin-top: 12px;
+    max-height: 760px;
+    overflow-y: scroll;
+}
+
+/*--- Alignemant des informations des residences---*/
+
+.row .annee-nbPiece h4 {
+    margin-top: -1px;
+}
+
+.liste-biens .card .card-content {
+    padding: 10px 0;
+}
+
+.row .grille-infos {
+    margin-bottom: 0;
+}
+
+.row .nom-residence {
+    padding-bottom: 20px;
+}
+
+.col .annee-residence {
+    padding-left: 2px;
+}
+
+/*--- Creation des lignes entre les informations des residences ---*/
+
+.nom-residence {
+    border-bottom: solid 1px #e5e5e5;
+}
+
+.annee-residence, .grille-gauche {
+    border-right: solid 1px #e5e5e5;
+}
+
+/* --- Mise en forme des articles du bas e page ---*/
+
+/* ---------------------------IMMO PRATIQUE---------------------------------------*/
+
+
+.immobilier{
+    color: grey;
+    text-align: center;
+}
+
+.blocki{
+}
+
+
+
+.navy{
+    margin-bottom: 20px;
+}
+
+.block-gris{
+    background-color:grey;
+}
+
+.texte-blanc{
+    color:white;
+}
+/* ------------------------------------------------------------------*/
+
+
+/* ---------------------------NOS SERVICES----------------------------*/
+
+
+.fancy {
+    overflow: hidden;
+    text-align: center;
+    color: grey;
+}
+
+.fancy span {
+    position: relative;
+}
+
+.fancy span:before,
+.fancy span:after {
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid white;
+    border-top: 5px solid lightgreen;
+    width: 400px;
+    height: 7px;
+    top: 50%;
+    margin-top: -4px;
+}
+
+.fancy span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.fancy span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.packs{
+
+    background-color: #939597;
+}
+
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ PAGE RESIDENCE --------------------------*/
+/* --------------------------------------------------------------------*/
+
+.offre-residence td {
+    border: 1px solid black;
+}
+
+.lieu-residence{
+    color: rgb(192,192,192);
+}
+
+.subtab-residence{
+    color: rgb(192,192,192);
+}
+
+.undervideo-residence{
+    padding-top: 30px;
+}
+
+.icon-residence{
+    width: 2em;
+    height: 2em;
+}
+
+.citation-residence{
+    background-color: rgb(68,68,68);
+    color: white;
+    text-align: center;
+    font-style: italic;
+    font-size: 2em;
+    padding: 20px;
+}
+
+.pinel-residence{
+    text-align: right;
+}
+
+.consulter-residence{
+    color: rgb(192,192,192);
+}
+
+.content-residence{
+    padding-top: 20px;
+}
+
+.accordeon-residence{
+    padding-bottom: 30px;
+}
+
+.btn-residence{
+    background-color: rgb(189,217,90);
+}
+
+#map {
+    height: 100%;
+}
+/* --------------------------------------------------------------------*/
+/* ------------------------ FIN PAGE RESIDENCE --------------------------*/
+/* --------------------------------------------------------------------*/
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ PAGE APPARTEMENT --------------------------*/
+/* --------------------------------------------------------------------*/
+.content-appartement{
+    padding-top: 20px;
+}
+
+.info-apt{
+    position:absolute;
+    top:80px;
+    left:500px;
+    width:200px;
+    height:200px;
+    z-index:2;
+    border: solid black 1px;
+}
+
+.appart-neuf{
+    position:absolute;
+    top:125px;
+    left:300px;
+    width:800px;
+    height:500px;
+    z-index:1;
+}
+/* --------------------------------------------------------------------*/
+/* ------------------------ FIN PAGE APPARTEMENT --------------------------*/
+/* --------------------------------------------------------------------*/
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ ACCUEIL --------------------------*/
@@ -136,7 +384,7 @@ nav .dropdown-button {
 }
 
 .buttonNewsletter {
-    position: absolute;
+    margin-bottom: -55px;
 }
 
 .downButton {
@@ -220,4 +468,67 @@ nav .dropdown-button {
 .socialStaff a.mail{
     margin-left: 40px;
 }
+
+/* --------------------------------------------------------------------*/
+/* ------------------------------ FOOTER ------------------------------*/
+/* --------------------------------------------------------------------*/
+
+.pre-footer {
+    margin-bottom: -7px;
+}
+
+.skyline {
+    width: 100%;
+}
+
+.page-footer {
+    /*
+    background-color : #939597;
+    */
+    background-color: black;
+
+    /*    background-image: url('../img/toit_Orleans2-01.svg');
+        background-size: cover;*/
+}
+
+.footer-right-side {
+    border-left: solid #7a7a7a 1px;
+}
+
+.footer-right-side a {
+    color: lightgrey;
+}
+
+.social-footer {
+    color: white;
+}
+
+.p-footer {
+    color: #444444;
+    font-size: 16px;
+
+}
+
+.align-icon {
+    display: inline-flex;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ MENTIONS LEGALES --------------------------*/
+/* --------------------------------------------------------------------*/
+
+.page-footer .footer-copyright {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ml-padding-right {
+    padding-right: 10px;
+}
+
+.row-ml {
+    margin-bottom: 0;
+}
+
 

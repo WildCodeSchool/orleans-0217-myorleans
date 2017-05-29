@@ -1,0 +1,205 @@
+{% extends 'MyOrleansBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <!--grande image-->
+    <div class="row">
+        <div class="col s12 l12 m6">
+
+        <div class="head">
+            <img src="{{ asset('img/conseil2.jpg') }}" class="responsive-img"  alt="logo de l'entreprise" />
+        </div>
+
+                  <form>
+                     <div class="input-field">
+                        <input id="search" type="search" required placeholder="rechercher un mot clé">
+                          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                           <i class="material-icons">close</i>
+                    </div>
+                </form>
+           </div>
+    </div>
+
+  <div class="row">
+    <div class="col s12 l12 m12">
+
+        <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
+            ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
+            an quaedam altiora meditantis iam Galli secreta susceperint scripta,
+            qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
+            petit exindeque per protectores retractus artissime tenebatur.</p>
+    </div>
+  </div>
+
+    <!--barre de recherche-->
+
+
+    <nav class="navy">
+        <div class="nav-wrapper">
+            <ul class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light btn" href="#conseils">Fiches conseils</a></li>
+                <li><a class="waves-effect waves-light btn" href="#thematiques">Dossiers thématiques</a></li>
+                <li><a class="waves-effect waves-light btn" href="#actu-immo">Actualités immobilières</a></li>
+            </ul>
+        </div>
+    </nav>
+<!--fin barre de recherche-->
+
+    <!--premier block-->
+    <h2 class="subtitle fancy" id="conseils"><span>Nos fiches conseils</span></h2></a>
+    <div class="row">
+        <div class="col s12 m6 l6">
+            <div data-aos="fade-up-right">
+                <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
+                    ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
+                    an quaedam altiora meditantis iam Galli secreta susceperint scripta,
+                    qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
+                    petit exindeque per protectores retractus artissime tenebatur.</p>
+                <a href="#">Demander la documentation</a>
+            </div>
+        </div>
+
+        <div class="col s12 m6 l6">
+            <div data-aos="fade-up-left">
+                <img src="{{ asset('img/conseil3.jpg') }}" class="responsive-img" alt="image fiche conseil" />
+            </div>
+        </div>
+    </div>
+
+
+    <!--fin premier block-->
+
+    <!--deuxième block-->
+
+    <div class="row">
+        <div class="col s12 m6 l6">
+            <div data-aos="fade-up-left">
+                <img src="{{ asset('img/conseil4.jpg') }}" class="responsive-img" alt="image fiche conseil" />
+            </div>
+        </div>
+
+        <div class="col s12 m6 l6">
+            <div data-aos="fade-up-right">
+                <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
+                    ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
+                    an quaedam altiora meditantis iam Galli secreta susceperint scripta,
+                    qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
+                    petit exindeque per protectores retractus artissime tenebatur.</p>
+                <a href="#">Demander la documentation</a>
+            </div>
+        </div>
+    </div>
+
+    <!--fin deuxième block-->
+
+
+        <!--troisième block-->
+     <h2 class="subtitle fancy" id="thematiques"><span>Dossiers thématiques</span></h2></a>
+        <div class="block-gris">
+        <div class="row">
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-right">
+
+                    <p class="texte-blanc">Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
+                        ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
+                        an quaedam altiora meditantis iam Galli secreta susceperint scripta,
+                        qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
+                        petit exindeque per protectores retractus artissime tenebatur.</p>
+                    <a href="#">Demander la documentation</a>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-left">
+                    <img src="{{ asset('img/conseil5.jpg') }}" class="responsive-img" alt="image fiche conseil" />
+                </div>
+            </div>
+        </div>
+
+        <!--fin troisime block-->
+
+        <!--quatrième block-->
+
+        <div class="row">
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-left">
+                    <img src="{{ asset('img/conseil6.jpg') }}" class="responsive-img" alt="image fiche conseil" />
+                </div>
+            </div>
+
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-right">
+                    <p class="texte-blanc">Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
+                        ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
+                        an quaedam altiora meditantis iam Galli secreta susceperint scripta,
+                        qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
+                        petit exindeque per protectores retractus artissime tenebatur.</p>
+                    <a href="#">Demander la documentation</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <!--fin quatrième block-->
+
+        <!--cinquième block-->
+     <h2 class="subtitle fancy" id="actu-immo"><span>Actualités immobilières</span></h2></a>
+        <div class="row">
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-right">
+                    <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
+                        ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
+                        an quaedam altiora meditantis iam Galli secreta susceperint scripta,
+                        qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
+                        petit exindeque per protectores retractus artissime tenebatur.</p>
+                    <a href="#">Demander la documentation</a>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-left">
+                    <img src="{{ asset('img/conseil7.jpg') }}" class="responsive-img" alt="image fiche conseil"  />
+                </div>
+            </div>
+        </div>
+
+
+        <!--fin cinquième block-->
+
+        <!--sixième block-->
+
+        <div class="row">
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-left">
+                    <img src="{{ asset('img/conseil8.jpg') }}" class="responsive-img" alt="image fiche conseil" />
+                </div>
+            </div>
+
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-right">
+                    <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
+                        ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
+                        an quaedam altiora meditantis iam Galli secreta susceperint scripta,
+                        qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
+                        petit exindeque per protectores retractus artissime tenebatur.</p>
+                    <a href="#">Demander la documentation</a>
+                </div>
+            </div>
+        </div>
+
+        <!--fin sixième block-->
+</div>
+</div>
+    {% block javascripts %}
+
+        {{ parent() }}
+        <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
+        <script>
+            AOS.init();
+        </script>
+    {% endblock %}
+
+
+
+{% endblock %}
