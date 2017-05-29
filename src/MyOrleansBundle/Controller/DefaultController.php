@@ -23,8 +23,9 @@ class DefaultController extends Controller
         return $this->render('MyOrleansBundle:Default:nos-biens.html.twig');
     }
 
+
     /**
-     * @Route("/nosservices")
+     * @Route("/nosservices", name="nosservices")
      */
     public function nosservices()
     {
@@ -32,7 +33,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/immopratique")
+     * @Route("/immopratique", name="immopratique")
      */
     public function immopratique()
     {
