@@ -136,11 +136,18 @@ nav .dropdown-button {
 
 .buttonNewsletter {
     position: absolute;
-    margin: 0 auto;
 }
 
 .downButton {
     margin-top: 90px;
+}
+
+.carousel{
+    height: 600px;
+}
+.carousel .carousel-item{
+    height: 400px;
+    width: 400px;
 }
 
 /* --------------------------------------------------------------------*/
