@@ -41,6 +41,76 @@ nav .dropdown-button {
 /* --------------------------------------------------------------------*/
 
 
+/* ---------------------------IMMO PRATIQUE---------------------------------------*/
+
+
+.immobilier{
+    color: grey;
+    text-align: center;
+}
+
+.blocki{
+}
+
+
+
+.navy{
+    margin-bottom: 20px;
+}
+
+.block-gris{
+    background-color:grey;
+}
+
+.texte-blanc{
+    color:white;
+}
+/* ------------------------------------------------------------------*/
+
+
+/* ---------------------------NOS SERVICES----------------------------*/
+
+
+.fancy {
+    overflow: hidden;
+    text-align: center;
+    color: grey;
+}
+
+.fancy span {
+    position: relative;
+}
+
+.fancy span:before,
+.fancy span:after {
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid white;
+    border-top: 5px solid lightgreen;
+    width: 400px;
+    height: 7px;
+    top: 50%;
+    margin-top: -4px;
+}
+
+.fancy span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.fancy span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.packs{
+
+    background-color: #939597;
+}
+
+
+/* ------------------------------------------------------------------*/
+
 
 /* --------------------------------------------------------------------*/
 /* ------------------------------ FOOTER ------------------------------*/
