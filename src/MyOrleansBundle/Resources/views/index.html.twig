@@ -1,11 +1,9 @@
-<<<<<<< HEAD
-{% extends 'MyOrleansBundle:Default:layout.html.twig' %}
+
+{% extends '::base.html.twig' %}
 
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}" media="screen,projection"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 {% endblock %}
 
 {% block body %}
@@ -154,7 +152,7 @@
 
             <!-- Modal Trigger -->
             <div class="row">
-                <div class="col s10 center">
+                <div class="col s10">
                     <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
                        href="#modal1">
                         <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
@@ -248,6 +246,10 @@
     {% endblock %}
 
 
+    <div class="pre-footer">
+        <img class="skyline" src="{{ asset('img/toits_Orleans_resized_v3.png') }}" alt="toits d'Orléans"/>
+    </div>
+
     <footer class="page-footer">
         <div class="container">
             <div class="row">
@@ -259,12 +261,9 @@
                 </div>
                 <div class="col l5 offset-l1 s12 footer-right-side">
                     <h5 class="white-text">Contactez-nous</h5>
-                    <p class="p-footer"><span><i class="small material-icons align-icon">phone</i></span>02 38 75 94 47
-                    </p>
-                    <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13, rue
-                        Bannier 45000 Orléans</p>
-                    <p class="p-footer"><span><i class="small material-icons align-icon">email</i></span><a href="#!">agence@my-orleans.com</a>
-                    </p>
+                    <p class="p-footer"><span><i class="small material-icons align-icon">phone</i></span>02 38 75 94 47</p>
+                    <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13, rue Bannier 45000 Orléans</p>
+                    <p class="p-footer"><span><i class="small material-icons align-icon">email</i></span><a href="#!">agence@my-orleans.com</a></p>
                 </div>
             </div>
         </div>
