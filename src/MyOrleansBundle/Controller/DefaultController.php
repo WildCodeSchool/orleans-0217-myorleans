@@ -12,7 +12,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MyOrleansBundle:Default:index.html.twig');
+        return $this->render('MyOrleansBundle::index.html.twig');
     }
 
     /**
@@ -20,7 +20,7 @@ class DefaultController extends Controller
      */
     public function nosBiensAction()
     {
-        return $this->render('MyOrleansBundle:Default:nos-biens.html.twig');
+        return $this->render('MyOrleansBundle::nosbiens.html.twig');
     }
 
 
@@ -29,7 +29,7 @@ class DefaultController extends Controller
      */
     public function nosservices()
     {
-        return $this->render('MyOrleansBundle:Default:nosservices.html.twig');
+        return $this->render('MyOrleansBundle::nosservices.html.twig');
     }
 
     /**
@@ -37,7 +37,7 @@ class DefaultController extends Controller
      */
     public function immopratique()
     {
-        return $this->render('MyOrleansBundle:Default:immopratique.html.twig');
+        return $this->render('MyOrleansBundle::immopratique.html.twig');
     }
 
     /**
@@ -45,7 +45,7 @@ class DefaultController extends Controller
      */
     public function agencyAction()
     {
-        return $this->render('MyOrleansBundle:Default:agence.html.twig');
+        return $this->render('MyOrleansBundle::agence.html.twig');
     }
 
     /**
