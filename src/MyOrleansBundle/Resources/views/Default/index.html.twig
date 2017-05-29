@@ -12,25 +12,25 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">
+                    <a href="{{ path("home") }}" class="brand-logo">
                         <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
                     </a>
                     <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i
                                 class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="#">Nos biens</a></li>
-                        <li><a href="#">Nos services</a></li>
+                        <li><a href="{{ path("nosservices") }}">Nos services</a></li>
                         <li><a href="#">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
-                        <li><a href="#">L'immobilier pratique</a></li>
+                        <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
                         <li><a href="#">Blog</a></li>
                     </ul>
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
                         <li><a href="#">Nos biens</a></li>
-                        <li><a href="#">Nos services</a></li>
+                        <li><a href="{{ path("nosservices") }}">Nos services</a></li>
                         <li><a href="#">Votre parcours immobilier</a></li>
-                        <li><a href="#">L'agence</a></li>
-                        <li><a href="#">L'immobilier pratique</a></li>
+                        <li><a href="{{ path("agence") }}">L'agence</a></li>
+                        <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
                         <li><a href="#">Blog</a></li>
                     </ul>
                 </div>
@@ -291,12 +291,9 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset("js/script.js") }}"></script>
-
     {{ parent() }}
-<<<<<<< HEAD
+
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-=======
 
     <script>
         $(document).ready(function () {
@@ -327,6 +324,4 @@
             });
         });
     </script>
->>>>>>> cf4c473a5df86cd5696f419d65f1790f2ad053d2
-
 {% endblock %}
