@@ -1,3 +1,7 @@
+html, body{
+    height:100%;
+}
+
 /* --------------------------------------------------------------------*/
 /* ------------------------- NAVBAR -----------------------------------*/
 /* --------------------------------------------------------------------*/
@@ -7,7 +11,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
 }
 
 nav {
-    background-color: rgba(248, 248, 248, 1);
+    background-color: rgba(248, 248, 248, 0.7);
     padding: 10px 20px;
 }
 
@@ -89,4 +93,130 @@ nav .dropdown-button {
     margin-bottom: 0;
 }
 
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ ACCUEIL --------------------------*/
+/* --------------------------------------------------------------------*/
+
+.cover{
+    background:rgba(0,0,0,0) url("../img/cover2.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.formSearch{
+    background-color: rgba(255,255,255, 0.94);
+    margin-top : 250px !important;
+}
+
+.centerFormSearch{
+    margin: 0 auto;
+    float: none;
+}
+
+
+/* ==========================================================================
+.agencyHome
+========================================================================== */
+.agencyHome{
+    background-color: #212121;
+    color:white;
+}
+
+.modal-trigger {
+    color: #757575;
+}
+
+.modal-trigger i{
+    color: #8bc34a;
+    font-size: 20px;
+}
+
+.buttonNewsletter {
+    position: absolute;
+}
+
+.downButton {
+    margin-top: 90px;
+}
+
+.carousel{
+    height: 600px;
+}
+.carousel .carousel-item{
+    height: 400px;
+    width: 400px;
+}
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ L'AGENCE --------------------------*/
+/* --------------------------------------------------------------------*/
+
+.agencyVideo{
+    margin-top: 50px;
+}
+
+
+#myIframe{
+    position:relative;
+    top:0;
+    left:0;
+    width:100%;
+    height:500px;
+}
+
+.blockStaff{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+}
+
+
+.blockStaff .imgStaff img{
+    display: block;
+    opacity: 1;
+    filter: grayscale(0%);
+    transition: all .25s ease;
+    height: auto;
+    width: 100%;
+}
+
+.blockStaff:hover .imgStaff img{
+    display: block;
+    opacity: 0.75;
+    filter: grayscale(100%);
+}
+
+.blockStaff .infoStaff{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: .5em;
+    background: #000;
+    background: rgba(0, 0, 0, .75);
+    color: #fff;
+    opacity: 0;
+}
+
+.blockStaff:hover .infoStaff {
+    opacity: 1;
+    transition: all 0.15s ease 0s;
+}
+
+.socialStaff a{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    bottom: 40px;
+    font-size: 30px;
+    color: white;
+}
+.socialStaff a.mail{
+    margin-left: 40px;
+}
 

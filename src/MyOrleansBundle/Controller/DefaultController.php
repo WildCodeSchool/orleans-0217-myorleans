@@ -8,10 +8,27 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function indexAction()
     {
         return $this->render('MyOrleansBundle:Default:index.html.twig');
     }
+
+    /**
+     * @Route("/nos-biens", name="nosBiens")
+     */
+    public function nosBiensAction()
+    {
+        return $this->render('MyOrleansBundle:Default:nos-biens.html.twig');
+    }
+
+    /**
+     * @Route("/agence", name="agence")
+     */
+    public function agencyAction()
+    {
+        return $this->render('MyOrleansBundle:Default:agence.html.twig');
+    }
+
 }
