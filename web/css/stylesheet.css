@@ -135,7 +135,7 @@ nav .dropdown-button {
 }
 
 .buttonNewsletter {
-    position: absolute;
+    margin-bottom: -55px;
 }
 
 .downButton {
