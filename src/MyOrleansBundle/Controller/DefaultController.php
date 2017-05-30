@@ -20,7 +20,7 @@ class DefaultController extends Controller
      */
     public function nosBiensAction()
     {
-        return $this->render('MyOrleansBundle::nos-biens.html.twig');
+        return $this->render('MyOrleansBundle::nosbiens.html.twig');
     }
 
 
@@ -62,6 +62,14 @@ class DefaultController extends Controller
     public function appartement()
     {
         return $this->render('MyOrleansBundle::appartement.html.twig');
+    }
+
+    /**
+     * @Route("/admin")
+     */
+    public function admin()
+    {
+        return $this->render('MyOrleansBundle::admin.html.twig');
     }
 
 }

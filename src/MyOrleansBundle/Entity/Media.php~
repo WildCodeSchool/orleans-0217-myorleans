@@ -1,0 +1,142 @@
+<?php
+
+namespace MyOrleansBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Media
+ *
+ * @ORM\Table(name="media")
+ * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\MediaRepository")
+ */
+class Media
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=45, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="page", type="string", length=45, nullable=true)
+     */
+    private $page;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lien", type="string", length=45, nullable=true)
+     */
+    private $lien;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Appartement")
+     */
+    private $appartement;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Residence")
+     */
+    private $residence;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Evenement", inversedBy="medias")
+     */
+    private $evenement;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Media
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set page
+     *
+     * @param string $page
+     *
+     * @return Media
+     */
+    public function setPage($page)
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    /**
+     * Get page
+     *
+     * @return string
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
+     * Set lien
+     *
+     * @param string $lien
+     *
+     * @return Media
+     */
+    public function setLien($lien)
+    {
+        $this->lien = $lien;
+
+        return $this;
+    }
+
+    /**
+     * Get lien
+     *
+     * @return string
+     */
+    public function getLien()
+    {
+        return $this->lien;
+    }
+}
