@@ -42,7 +42,7 @@
 
 {% block content %}
 
-{% endblock %}
+{% endblock content %}
 
 
 <div class="pre-footer">
@@ -84,9 +84,11 @@
     </div>
 </footer>
 
-{% endblock %}
+{% endblock body%}
+
 
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-{% endblock %}
+{% endblock javascripts%}
+
