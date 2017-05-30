@@ -16,7 +16,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/nos-biens", name="nosBiens")
+     * @Route("/nos-biens", name="nosbiens")
      */
     public function nosBiensAction()
     {
