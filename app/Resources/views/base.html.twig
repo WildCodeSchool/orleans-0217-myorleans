@@ -25,12 +25,13 @@
 
 <body>
 
-{% block body %}{% endblock %}
+{% block body %}{% endblock body %}
 
 {% block javascripts %}
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/materialize.js') }}"></script>
 {% endblock %}
+
 </body>
 </html>

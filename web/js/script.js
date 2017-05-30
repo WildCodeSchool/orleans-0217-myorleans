@@ -1,16 +1,22 @@
 // initialisation des select de Materialize
 
-
 $(document).ready(function () {
     $('.parallax').parallax();
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('select').material_select();
-    $('.carousel').carousel(); //carousel init
 
     $('.modal').modal();
     // Script JS pour l'autocomplétion
+
+    $('.carousel').carousel({
+        indicators: true,
+        dist: 0,
+        shift: 20,
+        duration: 100
+    });
+
     $('input.autocomplete').autocomplete({
         data: {
             "Orleans": null,
@@ -26,6 +32,6 @@ $(document).ready(function() {
             // Callback function when value is autcompleted.
         },
         minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+
     });
 });
-
