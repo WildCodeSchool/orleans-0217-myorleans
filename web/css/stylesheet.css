@@ -11,7 +11,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
 }
 
 nav {
-    background-color: rgba(248, 248, 248, 0.7);
+    background-color: rgba(248, 248, 248, 0.9);
     padding: 10px 20px;
 }
 
@@ -366,8 +366,154 @@ body {
 }*/
 
 
+
+
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ ACCUEIL BIS --------------------------*/
+/* --------------------------------------------------------------------*/
+
+
 /* ==========================================================================
-.agencyHome
+ACCUEIL - EFFET PARALLAX  ========================================================================== */
+
+.parallax-container {
+    min-height: 380px;
+    height:auto;
+    position: relative;
+}
+
+
+.parallax-window{
+    position: relative;
+    top: 0;
+}
+/* ==========================================================================
+ FIN ACCUEIL - EFFET PARALLAX  ========================================================================== */
+
+
+/* ==========================================================================
+ ACCUEIL - BLOC TEMOIGNAGES ========================================================================== */
+
+
+.h3-testimonial {
+    font-size: 30px;
+    color: white;
+    margin-bottom: 30px;
+    margin-top: 80px;
+}
+.box_overlay {
+    background-color: rgba(0,0,0,.8);
+    padding: 25px 25px 25px 225px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    position: relative;
+    text-align: left;
+}
+
+.box_overlay, .pic h4 {
+    font-size: 14px;
+    color: #fff;
+}
+
+.pic {
+    left: 25px;
+    top: 25px;
+    width: 190px;
+    height: 80px;
+}
+
+.pic, .pic h4 {
+    position: absolute;
+}
+.pic h4 {
+    left: 95px;
+    top: 18px;
+}
+
+figure{
+    margin: 0;
+}
+.pic figure {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.pic figure img {
+    height: auto;
+}
+
+.pic h4 small {
+    display: block;
+    color: #fff;
+    margin-top: 3px;
+}
+
+
+.owl-theme .owl-nav{
+    display: none;
+}
+
+
+.comment {
+    border-left: 1px solid rgba(255,255,255,.5);
+    padding-left: 25px;
+}
+
+.formSearch{
+    background-color: rgba(255,255,255, 0.9);
+    margin-top: 300px;
+    position: relative;
+}
+
+
+.downButton {
+    margin-top: 50px;
+}
+.mosaic_container{
+    position: relative;
+}
+
+.owl-theme .owl-dots{
+    margin-top : 20px;
+}
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #a5c143;
+}
+
+@media screen and (max-width: 767px ){
+    .pic,.pic h4 {
+        position:static;
+    }
+
+    .box_overlay {
+        padding:25px;
+        text-align:center;
+    }
+    .pic {
+        margin-bottom:25px;
+        width: 100%;
+        display: block;
+    }
+    .pic figure {
+        margin:auto;
+    }
+    .comment {
+        border-left: none;
+        padding-left: 0;
+        padding-top: 30px;
+    }
+    
+}
+
+/* ==========================================================================
+FIN ACCUEIL - BLOC TEMOIGNAGES
+========================================================================== */
+
+/* ==========================================================================
+ACCUEIL - BLOC AGENCE
 ========================================================================== */
 .agencyHome{
     background-color: #212121;
@@ -387,51 +533,26 @@ body {
     margin-bottom: -55px;
 }
 
-.carousel{
-    height: 600px;
-}
-.carousel .carousel-item{
-    height: 400px;
-    width: 400px;
+.carouselAgence{
+    background-color: #E6E6E6;
 }
 
-
-/* --------------------------------------------------------------------*/
-/* ------------------------ ACCUEIL BIS --------------------------*/
-/* --------------------------------------------------------------------*/
-
-.parallax-container {
-    height: 600px;
-    min-height: 550px;
+.carouselAgence .carousel{
+    height: 550px;
 }
 
-.parallax-window{
-    position: relative;
-    top: 0;
+.carouselAgence .carousel a{
+    color : white;
+
+}
+.carouselAgence .carousel .carousel-item{
+    height: 350px;
+    width: 350px;
 }
 
-.parallax-testimonial{
-    background: black;
-}
-
-.formSearch{
-    background-color: rgba(255,255,255, 0.9);
-    margin-top: 300px;
-    position: relative;
-}
-
-
-.centerFormSearch{
-    margin: 0 auto;
-    float: none;
-}
-
-.downButton {
-    margin-top: 50px;
-}
-.mosaic_container{
-    position: relative;
-}
+/* ==========================================================================
+FIN ACCUEIL - BLOC AGENCE
+========================================================================== */
 
 
 

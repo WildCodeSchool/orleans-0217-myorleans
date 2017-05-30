@@ -2,9 +2,13 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <!-- Basic stylesheet -->
+   <link rel="stylesheet" href="{{ asset('owlcarousel/assets/animate.css') }}">
+   <link rel="stylesheet" href="{{ asset('owlcarousel/assets/owl.carousel.css') }}">
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/owl.theme.default.css') }}">
     <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}"  media="screen,projection"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
 {% endblock %}
 
 {% block body %}
@@ -88,5 +92,7 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset('owlcarousel/owl.carousel.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <!-- Include js plugin -->
 {% endblock %}
