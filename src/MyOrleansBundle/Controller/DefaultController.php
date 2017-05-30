@@ -59,7 +59,7 @@ class DefaultController extends Controller
     /**
      * @Route("/appartement")
      */
-    public function appartement()
+    public function flat()
     {
         return $this->render('MyOrleansBundle::appartement.html.twig');
     }

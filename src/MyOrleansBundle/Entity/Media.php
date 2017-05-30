@@ -43,9 +43,9 @@ class Media
     private $lien;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Appartement")
+     * @ORM\ManyToMany(targetEntity="Flat")
      */
-    private $appartement;
+    private $flat;
 
     /**
      * @ORM\ManyToMany(targetEntity="Residence")
@@ -144,43 +144,10 @@ class Media
      */
     public function __construct()
     {
-        $this->appartement = new \Doctrine\Common\Collections\ArrayCollection();
         $this->residence = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->flat = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add appartement
-     *
-     * @param \MyOrleansBundle\Entity\Appartement $appartement
-     *
-     * @return Media
-     */
-    public function addAppartement(\MyOrleansBundle\Entity\Appartement $appartement)
-    {
-        $this->appartement[] = $appartement;
-
-        return $this;
-    }
-
-    /**
-     * Remove appartement
-     *
-     * @param \MyOrleansBundle\Entity\Appartement $appartement
-     */
-    public function removeAppartement(\MyOrleansBundle\Entity\Appartement $appartement)
-    {
-        $this->appartement->removeElement($appartement);
-    }
-
-    /**
-     * Get appartement
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAppartement()
-    {
-        return $this->appartement;
-    }
 
     /**
      * Add residence
@@ -238,5 +205,39 @@ class Media
     public function getEvenement()
     {
         return $this->evenement;
+    }
+
+    /**
+     * Add flat
+     *
+     * @param \MyOrleansBundle\Entity\Flat $flat
+     *
+     * @return Media
+     */
+    public function addFlat(\MyOrleansBundle\Entity\Flat $flat)
+    {
+        $this->flat[] = $flat;
+
+        return $this;
+    }
+
+    /**
+     * Remove flat
+     *
+     * @param \MyOrleansBundle\Entity\Flat $flat
+     */
+    public function removeFlat(\MyOrleansBundle\Entity\Flat $flat)
+    {
+        $this->flat->removeElement($flat);
+    }
+
+    /**
+     * Get flat
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFlat()
+    {
+        return $this->flat;
     }
 }

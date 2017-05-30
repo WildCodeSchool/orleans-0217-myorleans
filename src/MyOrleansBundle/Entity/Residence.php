@@ -146,9 +146,9 @@ class Residence
     private $media;
 
     /**
-     * @ORM\OneToMany(targetEntity="Appartement", mappedBy="residence")
+     * @ORM\OneToMany(targetEntity="Flat", mappedBy="residence")
      */
-    private $appartements;
+    private $flats;
 
 
     /**
@@ -611,37 +611,38 @@ class Residence
         return $this->media;
     }
 
+
     /**
-     * Add appartement
+     * Add flat
      *
-     * @param \MyOrleansBundle\Entity\Appartement $appartement
+     * @param \MyOrleansBundle\Entity\Flat $flat
      *
      * @return Residence
      */
-    public function addAppartement(\MyOrleansBundle\Entity\Appartement $appartement)
+    public function addFlat(\MyOrleansBundle\Entity\Flat $flat)
     {
-        $this->appartements[] = $appartement;
+        $this->flats[] = $flat;
 
         return $this;
     }
 
     /**
-     * Remove appartement
+     * Remove flat
      *
-     * @param \MyOrleansBundle\Entity\Appartement $appartement
+     * @param \MyOrleansBundle\Entity\Flat $flat
      */
-    public function removeAppartement(\MyOrleansBundle\Entity\Appartement $appartement)
+    public function removeFlat(\MyOrleansBundle\Entity\Flat $flat)
     {
-        $this->appartements->removeElement($appartement);
+        $this->flats->removeElement($flat);
     }
 
     /**
-     * Get appartements
+     * Get flats
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAppartements()
+    public function getFlats()
     {
-        return $this->appartements;
+        return $this->flats;
     }
 }
