@@ -245,38 +245,4 @@ class Media
     {
         return $this->flat;
     }
-
-    /**
-     * Add categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     *
-     * @return Media
-     */
-    public function addCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
-    {
-        $this->categorie_prestas[] = $categoriePresta;
-
-        return $this;
-    }
-
-    /**
-     * Remove categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     */
-    public function removeCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
-    {
-        $this->categorie_prestas->removeElement($categoriePresta);
-    }
-
-    /**
-     * Get categoriePrestas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCategoriePrestas()
-    {
-        return $this->categorie_prestas;
-    }
 }
