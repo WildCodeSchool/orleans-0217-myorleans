@@ -326,8 +326,8 @@ body {
 }
 
 .icon-residence{
-    width: 2em;
-    height: 2em;
+    width: 2.5em;
+    height: 2.5em;
 }
 
 .citation-residence{
@@ -377,22 +377,27 @@ body {
 }
 
 .info-apt{
-    position:absolute;
+/*    position:absolute;
     top:80px;
     left:500px;
     width:200px;
     height:200px;
-    z-index:2;
+    z-index:2;*/
     border: solid black 1px;
 }
 
 .appart-neuf{
-    position:absolute;
+/*    position:absolute;
     top:125px;
     left:300px;
     width:800px;
     height:500px;
-    z-index:1;
+    z-index:1;*/
+}
+
+.icon-apt{
+    width: 2.5em;
+    height: 2.5em;
 }
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE APPARTEMENT --------------------------*/

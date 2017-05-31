@@ -17,31 +17,33 @@
                         <a href="#" class="demande-doc">Demander la documentation</a>
                     </div>
                     <div class="row">
-                        <div class="col l6 s12">
+                        <div class="col l6 s12" data-aos="fade-right">
                             <img class="appart-neuf" src="{{ asset('img/apt-neuf.jpg') }}" alt="photo-appart"/>
-                        <div class="row">
-                            <div class="col l6 s12">
-                                <p class="info-apt">
-                                    St Pryvé St Mesmin<br/>
-                                    Appartement Neuf<br/>
-                                    (Ref PRY13) Type2<br/>
-                                    37 m2<br/>
-                                    137 200 €
-                                </p>
-                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col s12">
-                            <img class="plan" src="{{ asset('img/plan.jpg') }}" alt="plan"/>
+                        <div class="col l6 s12" data-aos="fade-left">
+                            <p class="info-apt">
+                            <h3>St Pryvé St Mesmin</h3>
+                            <h3>Appartement Neuf</h3>
+                            <h3>(Ref PRY13) Type2</h3>
+                            <h3>37 m2</h3>
+                            <h3>137 200 €</h3>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col s12">
+                    <img class="plan" src="{{ asset('img/plan.jpg') }}" alt="plan"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
                     <img class="notation" src="{{ asset('img/notation.jpg') }}" alt="notation"/>
                 </div>
+            <div class="row">
                 <div class="col l6 s12">
                     <h2>La Residence</h2>
                     <p>
@@ -55,39 +57,47 @@
                 </div>
                 <div class="col l6 s12">
                     <h2>Les Prestations</h2>
-                    <img class="icon-residence" src="{{ asset('icons/Wheelchair_Accessible.png') }}"
+                    <img class="icon-residence" src="{{ asset('img/icons/Wheelchair_Accessible.png') }}"
                          alt="acces handicape"/>
-                    <p></p>Accessibiité</p>
+                    <p>Accessibiité</p>
                     <img class="icon-residence" src="{{ asset('img/icons/shopping-cart.png') }}"
                          alt="commerces"/>Commerces<br/>
                     <img class="icon-residence" src="{{ asset('img/icons/smoking_not_allowed.png') }}" alt="non fumeur"/>Non
                     Fumeur<br/>
                 </div>
                 <div>
-                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                    <i class="fa fa-compass" aria-hidden="true"></i>
-                    <i class="fa fa-university" aria-hidden="true"></i>
-                    <i class="fa fa-fire" aria-hidden="true"></i>
-                    <i class="fa fa-car" aria-hidden="true"></i>
-                    <i class="fa fa-th-large" aria-hidden="true"></i>
-
-
-
-
-
+                    <img class="icon-apt" src="{{ asset('img/icons/agenda.png') }}" alt="date de livraison">
+                    <img class="icon-apt" src="{{ asset('img/icons/boussole.png') }}" alt="exposition séjour">
+                    <img class="icon-apt" src="{{ asset('img/icons/chauffage.png') }}" alt="type de chauffage">
+                    <img class="icon-apt" src="{{ asset('img/icons/finance.png') }}" alt="éligibilité loi pinel">
+                    <img class="icon-apt" src="{{ asset('img/icons/floor.png') }}" alt="type de revetement">
+                    <img class="icon-apt" src="{{ asset('img/icons/menuiserie.png') }}" alt="type de menuiseries">
+                    <img class="icon-apt" src="{{ asset('img/icons/Parking.png') }}" alt="nombre de stationnement voiture">
+                    <img class="icon-apt" src="{{ asset('img/icons/room.png') }}" alt="nombre de pièces">
+                    <img class="icon-apt" src="{{ asset('img/icons/surface.png') }}" alt="surfaces">
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col l12">
-                    <h3>Nombre de logements disponibles : 30</h3>
-                    <h3 class="consulter-residence">Consulte nos biens disponibles</h3>
-                </div>
-            </div>
-            <div class="col l6 s12">
-                <a href="#" class="demande-doc">Demander la documentation</a>
+        <div class="row">
+            <div class="col l12">
+                <h3>Nombre de logements disponibles : 30</h3>
+                <h3 class="consulter-residence">Consulte nos biens disponibles</h3>
             </div>
         </div>
+        <div class="col l6 s12">
+            <a href="#" class="demande-doc">Demander la documentation</a>
+        </div>
     </div>
+    </div>
+
+
+    {% block javascripts %}
+
+        {{ parent() }}
+        <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
+        <script>
+            AOS.init();
+        </script>
+    {% endblock %}
 
 {% endblock %}
