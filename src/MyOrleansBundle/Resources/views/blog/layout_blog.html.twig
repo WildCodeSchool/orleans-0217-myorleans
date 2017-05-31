@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- Basic stylesheet -->
+    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/owl.carousel.css') }}">
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/owl.theme.default.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/stylesheet_blog.css') }}" media="screen,projection"/>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container-fluid">
+
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo"><img src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#">Premier achat</a></li>
+                    <li><a href="#">Défiscalisation</a></li>
+                    <li><a href="#">Investissement</a></li>
+                    <li><a href="#">Démarches</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+
+    {% block content %}
+
+    {% endblock content %}
+
+
+</div>
+{% endblock body %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('owlcarousel/owl.carousel.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script_blog.js') }}"></script>
+
+{% endblock javascripts %}
