@@ -1,8 +1,7 @@
 html, body {
     height: 100%;
-    width:100%;
+    width: 100%;
 }
-
 
 /* --------------------------------------------------------------------*/
 /* ------------------------- NAVBAR -----------------------------------*/
@@ -103,7 +102,7 @@ body {
 /* --------------------------------------------------------------------*!
 !* ------------------------ ACCUEIL --------------------------*!
 !* --------------------------------------------------------------------*/
-#siteWrapper header {
+/*#siteWrapper header {
     position: absolute;
     top: inherit;
     bottom: 0;
@@ -117,9 +116,8 @@ body {
     width: 100%;
     top: 0;
     left: 0;
-    z-index:2;
-}
 
+}
 
 .cover {
     background: rgba(0, 0, 0, 0) url("../img/cover2.jpg");
@@ -127,6 +125,46 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}*/
+
+#GrandeIntro {
+    height: 100%;
+    background: url("../img/cover2.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.pictoParcours{
+    margin-top: 150px;
+}
+
+.pictoParcours a i {
+    font-size: 400px;
+    color: grey ;
+    -webkit-transition:color 250ms ease-out;
+    -moz-transition:color 250ms ease-out;
+    transition:color 250ms ease-out;
+}
+.pictoParcours a:hover i {
+    font-size: 400px;
+    color: #a5ca2a ;
+}
+
+#siteWrapper {
+    margin-top: -80px;
+}
+
+#siteWrapper header {
+    height: 80px;
+}
+
+#siteWrapper header.fixed {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 .fancy {
@@ -162,7 +200,6 @@ body {
     margin-left: 15px;
 }
 
-
 /* ==========================================================================
 ACCUEIL - EFFET PARALLAX  ========================================================================== */
 
@@ -181,10 +218,8 @@ ACCUEIL - EFFET PARALLAX  ======================================================
     filter: blur(4px) brightness(0.5);
 }
 
-
 /* ==========================================================================
  FIN ACCUEIL - EFFET PARALLAX  ========================================================================== */
-
 
 .row .grille-infos {
     margin-bottom: 0;
@@ -209,9 +244,13 @@ ACCUEIL - EFFET PARALLAX  ======================================================
 }
 
 .liste-biens h4 {
-    font-size:20px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 0;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+    color: #b7d64a;
+    font-size: 18px;
 }
 
 /* ==========================================================================
@@ -290,7 +329,6 @@ figure {
     position: relative;
     padding: 15px !important;
 }
-
 
 @media screen and (min-height: 480px) {
     .formButton {
@@ -372,7 +410,7 @@ ACCUEIL - BLOC AGENCE
 }
 
 .carouselAgence {
-    background-color: #E6E6E6;
+    background-color: #808080;
 }
 
 .carouselAgence .carousel {
@@ -390,9 +428,41 @@ ACCUEIL - BLOC AGENCE
 
 }
 
+@media screen and (max-width:767px ){
+    .carouselAgence .carousel {
+        height: 400px;
+    }
+
+    .carouselAgence .carousel .carousel-item {
+        height: 150px;
+        width: 150px;
+    }
+
+    .buttonNewsletter{
+        font-size: 14px;
+    }
+}
+
 /* ==========================================================================
 FIN ACCUEIL - BLOC AGENCE
-=======
+=======*/
+
+
+
+.section-title {
+    font-size: 34px;
+    text-align: center;
+}
+
+.section-title::after {
+    content: "";
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 8px;
+    margin: 20px auto;
+    background-color: #a5ca2a;
+}
 
 
 /* --------------------------------------------------------------------*/

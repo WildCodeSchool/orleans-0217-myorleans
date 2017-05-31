@@ -282,7 +282,7 @@ body {
     content: "";
     position: absolute;
     border-bottom: 1px solid white;
-    border-top: 5px solid lightgreen;
+    border-top: 5px solid #a5ca2a;
     width: 400px;
     height: 7px;
     top: 50%;
@@ -630,10 +630,19 @@ FIN ACCUEIL - BLOC AGENCE
     height:500px;
 }
 
-.count{
+.countTitle{
     font-size: 150px;
 }
 
+.countTitle::after {
+    content: "";
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 8px;
+    margin: 20px auto;
+    background-color: #a5ca2a;
+}
 .countBlock{
     border-left: 1px solid grey;
     border-right: 1px solid grey;
@@ -643,6 +652,11 @@ FIN ACCUEIL - BLOC AGENCE
     margin-top: 50px;
     margin-bottom: 50px;
 
+}
+
+
+.equipeRow{
+    padding-top: 50px;
 }
 .blockStaff{
     position: relative;
@@ -656,9 +670,11 @@ FIN ACCUEIL - BLOC AGENCE
     display: block;
     opacity: 1;
     filter: grayscale(0%);
-    transition: all .25s ease;
     height: 300px;
     width: 300px;
+    -webkit-transition:color 250ms ease-out;
+    -moz-transition:color 250ms ease-out;
+    transition:color 250ms ease-out;
 }
 
 @media screen and (min-width:320px){
@@ -693,7 +709,7 @@ FIN ACCUEIL - BLOC AGENCE
     transition: all 0.15s ease 0s;
 }
 
-.socialStaff a{
+/*.socialStaff a{
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -707,10 +723,16 @@ transition:color 250ms ease-out;
     border-radius: 50%;
 }
 
-
 .socialStaff a:hover{
     color: #A5CA2A;
 
+}*/
+
+.socialStaff i{
+    background-color: white;
+    border-radius: 50%;
+    font-size: 30px;
+    padding: 5px;
 }
 
 .socialStaff a.mail{
@@ -718,10 +740,35 @@ transition:color 250ms ease-out;
     color : #A5CA2A;
 }
 
-
-
 .infoStaff h3{
+    font-size: 25px;
+}
+
+.infoStaff h4{
     font-size: 20px;
+}
+
+.infoStaff h4::after {
+    content: "";
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 8px;
+    margin: 20px auto;
+    background-color: #a5ca2a;
+}
+
+
+.partenaires{
+    background-color: #f7f7f7;
+}
+
+.partenaires a img{
+    margin: auto;
+    max-height: 100%;
+    max-width: 80%;
+    opacity: .65;
+    filter: grayscale(1);
 }
 
 
