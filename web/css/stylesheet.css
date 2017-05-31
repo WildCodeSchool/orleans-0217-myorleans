@@ -561,7 +561,7 @@ figure{
         padding-left: 0;
         padding-top: 30px;
     }
-    
+
 }
 
 /* ==========================================================================
@@ -630,6 +630,20 @@ FIN ACCUEIL - BLOC AGENCE
     height:500px;
 }
 
+.count{
+    font-size: 150px;
+}
+
+.countBlock{
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+}
+
+.countRow{
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
 .blockStaff{
     position: relative;
     display: inline-block;
@@ -643,9 +657,17 @@ FIN ACCUEIL - BLOC AGENCE
     opacity: 1;
     filter: grayscale(0%);
     transition: all .25s ease;
-    height: auto;
-    width: 100%;
+    height: 300px;
+    width: 300px;
 }
+
+@media screen and (min-width:320px){
+    .blockStaff .imgStaff img{
+        height: 300px;
+        width: 300px;
+    }
+}
+
 
 .blockStaff:hover .imgStaff img{
     display: block;
@@ -678,10 +700,30 @@ FIN ACCUEIL - BLOC AGENCE
     bottom: 40px;
     font-size: 30px;
     color: white;
+    -webkit-transition:color 250ms ease-out;
+-moz-transition:color 250ms ease-out;
+transition:color 250ms ease-out;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50%;
 }
+
+
+.socialStaff a:hover{
+    color: #A5CA2A;
+
+}
+
 .socialStaff a.mail{
     margin-left: 40px;
+    color : #A5CA2A;
 }
+
+
+
+.infoStaff h3{
+    font-size: 20px;
+}
+
 
 /* --------------------------------------------------------------------*/
 /* ------------------------------ FOOTER ------------------------------*/

@@ -12,7 +12,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MyOrleansBundle::index-bis.html.twig');
+        return $this->render('MyOrleansBundle::index-bis-bis.html.twig');
     }
 
     /**
