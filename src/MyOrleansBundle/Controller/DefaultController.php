@@ -12,20 +12,33 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MyOrleansBundle::index.html.twig');
+
+        return $this->render('MyOrleansBundle::index-bis-bis.html.twig');
+
     }
 
     /**
-     * @Route("/nos-biens", name="nosBiens")
+     * @Route("/nos-biens", name="nosbiens")
      */
     public function nosBiensAction()
     {
         return $this->render('MyOrleansBundle::nosbiens.html.twig');
     }
 
+    /*-----      Page bien alternative         -----*/
 
     /**
-     * @Route("/nosservices", name="nosservices")
+     * @Route("/nos-biens-bis")
+     */
+    public function nosBiensBisAction()
+    {
+        return $this->render('MyOrleansBundle::nosbiens_bis.html.twig');
+    }
+
+    /*-----------------------------------------------*/
+
+    /**
+     * @Route("/nos-services", name="nosservices")
      */
     public function nosservices()
     {
@@ -59,9 +72,17 @@ class DefaultController extends Controller
     /**
      * @Route("/appartement")
      */
-    public function appartement()
+    public function flat()
     {
         return $this->render('MyOrleansBundle::appartement.html.twig');
+    }
+
+    /**
+     * @Route("/admin")
+     */
+    public function admin()
+    {
+        return $this->render('MyOrleansBundle::admin.html.twig');
     }
 
 }

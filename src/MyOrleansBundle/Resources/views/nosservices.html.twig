@@ -1,32 +1,23 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block content %}
-
-
-
-    <div class="breadcrumb">
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
-    </div>
-
-    <div class="container">
-
     <h2 class="subtitle fancy"><span>Nos services</span></h2>
+
+<div class="container">
+
     <!--premier block-->
 
     <div class="row">
         <div class="col s12 m6 l6">
           <div data-aos="fade-up-right">
-              <div class="boxi">
             <h3>Location</h3>
             <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
                 ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
                 an quaedam altiora meditantis iam Galli secreta susceperint scripta,
                 qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                 petit exindeque per protectores retractus artissime tenebatur.</p>
-              <a href="#slide-out">Demander la documentation</a>
-            </div>
+              <a href="#">Demander la documentation</a>
         </div>
-
         </div>
 
         <div class="col s12 m6 l6">
@@ -40,140 +31,71 @@
 
     <!--fin premier block-->
 
-    <!--formulaire de contact-->
-
-        <ul id="slide-out" class="side-nav">
-            <li><div class="userView">
-                    <div class="row">
-
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name">Nom</label>
-                        </div>
-
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input id="last_name" type="text" class="validate">
-                            <label for="first_name">Prénom</label>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">phone</i>
-                                <input id="icon_telephone" type="tel" class="validate">
-                                <label for="icon_telephone">Téléphone</label>
-                            </div>
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="material-icons prefix">email</i>
-                                        <input id="email" type="email" class="validate">
-                                        <label for="email" data-error="wrong" data-success="right">Email</label>
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">error</i>
-                                <select>
-                                    <option value="" disabled selected>Objet?</option>
-                                    <option value="1">Gestion locative</option>
-                                    <option value="2">Vente</option>
-                                    <option value="3">Pack services</option>
-                                    <option value="4">Autres</option>
-                                </select>
-
-                            </div>
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <i class="material-icons prefix">mode_edit</i>
-                                            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                            <label for="icon_prefix2">Votre message</label>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row">
-                                <div class="col s12">
-                                    <button class="btn waves-effect waves-light btn-large center-align" type="submit" name="action">Envoyer
-                                        <i class="material-icons right">send</i>
-                                    </button>
-                                </div>
-                            </div>
-        </ul>
-
-
-
-
-
-        <!--fin formulaire de contact-->
-
     <!--deuxième block-->
 
     <div class="row">
         <div class="col s12 m6 l6">
-
-            <div data-aos="fade-up-right">
+            <div data-aos="fade-up-left">
               <div class="video-container">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/OFE0Z6r--7E" frameborder="0" allowfullscreen></iframe>
             </div>
             </div>
         </div>
 
-
         <div class="col s12 m6 l6">
-            <div data-aos="fade-up-left">
-                <div class="boxi">
+            <div data-aos="fade-up-right">
                 <h3>Gestion immobilière</h3>
                 <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
                     ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
                     an quaedam altiora meditantis iam Galli secreta susceperint scripta,
                     qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                     petit exindeque per protectores retractus artissime tenebatur.</p>
-                <a href="#modal4">Demander la documentation</a>
+                <a href="#">Demander la documentation</a>
             </div>
         </div>
-    </div>
     </div>
 
     <!--fin deuxième block-->
 
+    <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
+
+    <!-- Tap Target Structure -->
+    <div class="tap-target" data-activates="menu">
+        <div class="tap-target-content">
+            <h5>Title</h5>
+            <p>A bunch of text</p>
+        </div>
+    </div>
 
 
-
-
-    <!--les packs-->
+    <!--troisième block-->
     <h2 class="subtitle fancy"><span>Nos packs</span></h2>
-    <div class="">
+<div class="packs">
             <div class="row">
                     <div class="col m6 s12 l4">
                         <div class="card">
                             <div class="card-image">
-                                <div data-aos="flip-left">
                                 <img src="{{ asset('img/pack4.jpg') }}" alt="logo de l'entreprise" />
 
                                 <span class="card-title">Pack Sérénité</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal1"><i class="material-icons">add</i></a>
+                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                             </div>
                             <div class="card-content">
                                 <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
                             </div>
-                        </div>
                         </div>
                     </div>
 
                 <div class="col m6 s12 l4">
                     <div class="card">
                         <div class="card-image">
-                            <div data-aos="flip-right">
                             <img src="{{ asset('img/pack5.jpg') }}" alt="logo de l'entreprise" />
 
                             <span class="card-title">Pack Confiance</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal2"><i class="material-icons">add</i></a>                            </div>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        </div>
                         <div class="card-content">
                             <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -181,82 +103,27 @@
                 <div class="col m6 s12 l4">
                     <div class="card">
                         <div class="card-image">
-                            <div data-aos="flip-left">
-
                             <img src="{{ asset('img/pack6.jpg') }}" alt="logo de l'entreprise" />
 
                             <span class="card-title">Pack VIP</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal3"><i class="material-icons">add</i></a>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                         </div>
                         <div class="card-content">
                             <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
                         </div>
-                    </div>
                     </div>
                 </div>
 
                 </div>
 </div>
 
-<!--fin packs-->
-
-    <!-- Modal pack A -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Pack Sérénité</h4>
-            <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                an quaedam altiora meditantis iam Galli secreta susceperint scripta,</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-light btn">Fermer</a>
-        </div>
-    </div>
-
-    <!--fin modal-->
-
-    <!-- Modal pack B -->
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <h4>Pack Confiance</h4>
-            <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                an quaedam altiora meditantis iam Galli secreta susceperint scripta,</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-light btn">Fermer</a>
-        </div>
-    </div>
-
-    <!--fin modal-->
-
-    <!-- Modal pack C -->
-    <div id="modal3" class="modal">
-        <div class="modal-content">
-            <h4>Pack VIP</h4>
-            <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                an quaedam altiora meditantis iam Galli secreta susceperint scripta,</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-light btn">Fermer</a>
-        </div>
-    </div>
-
-    <!--fin modal-->
-
-
-
-
     <!--fin troisième block-->
 
 <!--quatrième block-->
       <div class="row">
           <h2 class="subtitle fancy"><span>Nos derniers témoignages</span></h2>
-          <div data-aos="fade-up-right">
-          <div class="col s12 m6 l6">
 
-              <div class="boxi">
+          <div class="col s12 m6 l6">
               <h3>Vente</h3>
               <p>Iamque non umbratis fallaciis res agebatur,
                   sed qua palatium est extra muros, armatis omne circumdedit.
@@ -267,16 +134,11 @@
                   peremptum Constantini filium accepimus Crispum.</p>
 
               <div class="auteur">
-                  <p>M Franck Bertrand, Client depuis 2014</p>
+                  <p>M John Doe, Client depuis 2017</p>
               </div>
           </div>
-          </div>
-          </div>
 
-          <div data-aos="fade-up-left">
-             <div class="col s12 m6 l6">
-
-              <div class="boxi">
+          <div class="col s12 m6 l6">
               <h3>Location</h3>
               <p>Iamque non umbratis fallaciis res agebatur,
                   sed qua palatium est extra muros, armatis omne circumdedit.
@@ -287,115 +149,23 @@
                   peremptum Constantini filium accepimus Crispum.</p>
 
               <div class="auteur">
-                  <p>Mme Martine Rolland, Cliente depuis 2016</p>
+                  <p>M John Doe, Client depuis 2017</p>
               </div>
-          </div>
-          </div>
+
           </div>
       </div>
 
-        <!-- Formulaire -->
-        <div id="modal4" class="modal bottom-sheet">
-            <div class="modal-content">
-                <div class="row">
-                    <form class="col s12">
-                        <div class="row">
-
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="last_name" type="text" class="validate">
-                                <label for="last_name">Nom</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="last_name" type="text" class="validate">
-                                <label for="first_name">Prénom</label>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">phone</i>
-                                <input id="icon_telephone" type="tel" class="validate">
-                                <label for="icon_telephone">Téléphone</label>
-                            </div>
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <i class="material-icons prefix">email</i>
-                                        <input id="email" type="email" class="validate">
-                                        <label for="email" data-error="wrong" data-success="right">Email</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">error</i>
-                            <select>
-                                <option value="" disabled selected>Quel est l'objet du message?</option>
-                                <option value="1">Gestion locative</option>
-                                <option value="2">Vente</option>
-                                <option value="3">Autres</option>
-                            </select>
-
-                        </div>
-                        <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="material-icons prefix">mode_edit</i>
-                                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                        <label for="icon_prefix2">Votre message</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="row">
-                            <div class="col s12">
-                        <button class="btn waves-effect waves-light btn-large center-align" type="submit" name="action">Envoyer
-                            <i class="material-icons right">send</i>
-                        </button>
-                        </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-        <!--fin formulaire-->
-
 </div>
 
-
-
-    {% block javascripts %}
+   {% block javascripts %}
 
        {{ parent() }}
        <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
        <script>
            AOS.init();
+           $('.tap-target').tapTarget('open');
+           $('.tap-target').tapTarget('close');
 
-           $('.button-collapse').sideNav({
-                   edge: 'right', // Choose the horizontal origin
-               menuWidth: 600,
-               draggable: true, // Choose whether you can drag to open on touch screens
-               }
-           );
-
-           $('.modal').modal({
-                   dismissible: true, // Modal can be dismissed by clicking outside of the modal
-                   opacity: .5, // Opacity of modal background
-                   inDuration: 300, // Transition in duration
-                   outDuration: 200, // Transition out duration
-                   startingTop: '4%', // Starting top style attribute
-                   endingTop: '10%', // Ending top style attribute
-                   ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-
-                       console.log(modal, trigger);
-                   },
-
-               }
-           );
        </script>
        {% endblock %}
 {% endblock %}
