@@ -192,27 +192,22 @@ body {
     text-align: center;
 }
 
-.blocki{
+.block-1{
+    position:absolute;
+    margin-left: 500px;
 }
 
 
-
-.navy{
-    margin-bottom: 20px;
-}
-
-.block-gris{
-    background-color:grey;
-}
-
-.texte-blanc{
-    color:white;
-}
 /* ------------------------------------------------------------------*/
 
 
 /* ---------------------------NOS SERVICES----------------------------*/
 
+
+.card-title{
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
 
 .fancy {
     overflow: hidden;
@@ -229,7 +224,7 @@ body {
     content: "";
     position: absolute;
     border-bottom: 1px solid white;
-    border-top: 5px solid lightgreen;
+    border-top: 5px solid #b7d64a;
     width: 400px;
     height: 7px;
     top: 50%;
@@ -248,9 +243,69 @@ body {
 
 .packs{
 
-    background-color: #939597;
+    background-color: rgb(68,68,68);
 }
 
+.boxi {
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    margin-top: -10px;
+    padding: 0 10px 10px 10px;
+}
+
+.boxi1 {
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    margin-top: -10px;
+    padding: 0 10px 10px 10px;
+    position: absolute;
+}
+
+.barre-recherche{
+    margin-top: 22px;
+    position: absolute;
+    bottom: 200px;
+    width: 95%;
+    left: 25px;
+}
+
+.nav-recherche{
+    border-radius: 25px;
+    width: 40%;
+}
+
+.header-image{
+    width: 200%;
+    margin-top: 22px;
+}
+
+.btn-large{
+    display: block;
+    margin : auto;
+}
+
+.breadcrumb {
+    /*centering*/
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+    background-color: #b7d64a;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-top: 25px;
+    position: fixed;
+    margin-left: 1150px;
+    padding: 10px;
+
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color:white;
+}
+
+#slide-out{
+    border-radius: 25px;
+
+}
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ PAGE RESIDENCE --------------------------*/
@@ -306,9 +361,9 @@ body {
     background-color: rgb(189,217,90);
 }
 
-#map {
+/*#map {
     height: 100%;
-}
+}*/
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE RESIDENCE --------------------------*/
 /* --------------------------------------------------------------------*/
