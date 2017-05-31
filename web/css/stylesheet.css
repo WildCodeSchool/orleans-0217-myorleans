@@ -729,12 +729,22 @@ FIN ACCUEIL - BLOC AGENCE
     padding-right: 10px;
 }
 
-.social-button {
-    height: 60px;
-    width: 60px;
+.social-btn {
+    height: 65px;
+    width: 65px;
     border-radius: 50px;
     background-color: white;
     margin: 15px 50px 0 0;
+}
+
+.icon-social {
+    margin-top: 10px;
+    margin-left: 13px;
+}
+
+.fb-social {
+    margin-top: 11px;
+    margin-left: 17px;
 }
 
 /* --------------------------------------------------------------------*/
