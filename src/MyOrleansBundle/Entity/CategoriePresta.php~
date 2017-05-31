@@ -21,6 +21,16 @@ class CategoriePresta
      */
     private $id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Media", inversedBy="categorie_prestas")
+     */
+    private $media;
+
+    /**
+     * @ORM\OneToMany(targetEntity="TypePresta", mappedBy="categorie_presta")
+     */
+    private $type_prestas;
+
 
     /**
      * Get id
@@ -32,4 +42,3 @@ class CategoriePresta
         return $this->id;
     }
 }
-

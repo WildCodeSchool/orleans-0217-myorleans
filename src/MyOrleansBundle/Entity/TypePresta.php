@@ -43,9 +43,14 @@ class TypePresta
     private $ordreAffichage;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Media", inversedBy="categorie_prestas")
+     * @ORM\ManyToOne(targetEntity="CategoriePresta", inversedBy="type_prestas")
      */
-    private $media;
+    private $categorie_presta;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Presta", mappedBy="type_presta")
+     */
+    private $prestas;
 
 
     /**
@@ -128,5 +133,70 @@ class TypePresta
     public function getOrdreAffichage()
     {
         return $this->ordreAffichage;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->prestas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set categoriePresta
+     *
+     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
+     *
+     * @return TypePresta
+     */
+    public function setCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta = null)
+    {
+        $this->categorie_presta = $categoriePresta;
+
+        return $this;
+    }
+
+    /**
+     * Get categoriePresta
+     *
+     * @return \MyOrleansBundle\Entity\CategoriePresta
+     */
+    public function getCategoriePresta()
+    {
+        return $this->categorie_presta;
+    }
+
+    /**
+     * Add presta
+     *
+     * @param \MyOrleansBundle\Entity\Presta $presta
+     *
+     * @return TypePresta
+     */
+    public function addPresta(\MyOrleansBundle\Entity\Presta $presta)
+    {
+        $this->prestas[] = $presta;
+
+        return $this;
+    }
+
+    /**
+     * Remove presta
+     *
+     * @param \MyOrleansBundle\Entity\Presta $presta
+     */
+    public function removePresta(\MyOrleansBundle\Entity\Presta $presta)
+    {
+        $this->prestas->removeElement($presta);
+    }
+
+    /**
+     * Get prestas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPrestas()
+    {
+        return $this->prestas;
     }
 }

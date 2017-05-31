@@ -28,6 +28,21 @@ class Presta
      */
     private $value;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="TypePresta", inversedBy="prestas")
+     */
+    private $type_presta;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Flat", inversedBy="prestas")
+     */
+    private $flat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Residence", inversedBy="prestas")
+     */
+    private $residence;
+
 
     /**
      * Get id
@@ -63,4 +78,3 @@ class Presta
         return $this->value;
     }
 }
-

@@ -80,6 +80,11 @@ class Flat
      */
     private $media;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Presta", mappedBy="flat")
+     */
+    private $prestas;
+
 
     /**
      * Get id

@@ -57,6 +57,11 @@ class Media
      */
     private $evenement;
 
+    /**
+     * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="media")
+     */
+    private $categorie_prestas;
+
 
     /**
      * Get id

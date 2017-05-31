@@ -78,27 +78,6 @@ class Residence
     private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="prestation_1", type="string", length=45, nullable=true)
-     */
-    private $prestation1;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prestation_2", type="string", length=45, nullable=true)
-     */
-    private $prestation2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prestation_3", type="string", length=45, nullable=true)
-     */
-    private $prestation3;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="nb_total_logements", type="integer", nullable=true)
@@ -149,6 +128,11 @@ class Residence
      * @ORM\OneToMany(targetEntity="Flat", mappedBy="residence")
      */
     private $flats;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Presta", mappedBy="residence")
+     */
+    private $prestas;
 
 
     /**
@@ -351,78 +335,6 @@ class Residence
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set prestation1
-     *
-     * @param string $prestation1
-     *
-     * @return Residence
-     */
-    public function setPrestation1($prestation1)
-    {
-        $this->prestation1 = $prestation1;
-
-        return $this;
-    }
-
-    /**
-     * Get prestation1
-     *
-     * @return string
-     */
-    public function getPrestation1()
-    {
-        return $this->prestation1;
-    }
-
-    /**
-     * Set prestation2
-     *
-     * @param string $prestation2
-     *
-     * @return Residence
-     */
-    public function setPrestation2($prestation2)
-    {
-        $this->prestation2 = $prestation2;
-
-        return $this;
-    }
-
-    /**
-     * Get prestation2
-     *
-     * @return string
-     */
-    public function getPrestation2()
-    {
-        return $this->prestation2;
-    }
-
-    /**
-     * Set prestation3
-     *
-     * @param string $prestation3
-     *
-     * @return Residence
-     */
-    public function setPrestation3($prestation3)
-    {
-        $this->prestation3 = $prestation3;
-
-        return $this;
-    }
-
-    /**
-     * Get prestation3
-     *
-     * @return string
-     */
-    public function getPrestation3()
-    {
-        return $this->prestation3;
     }
 
     /**

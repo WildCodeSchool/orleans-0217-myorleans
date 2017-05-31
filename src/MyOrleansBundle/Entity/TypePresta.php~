@@ -42,6 +42,16 @@ class TypePresta
      */
     private $ordreAffichage;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="CategoriePresta", inversedBy="type_prestas")
+     */
+    private $categorie_presta;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Presta", mappedBy="type_presta")
+     */
+    private $prestas;
+
 
     /**
      * Get id
@@ -125,4 +135,3 @@ class TypePresta
         return $this->ordreAffichage;
     }
 }
-
