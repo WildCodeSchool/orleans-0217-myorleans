@@ -132,6 +132,10 @@ body {
     font-weight: 600;
 }
 
+.page-bosbiens .liste-biens .card .card-image {
+    height: 200px;
+}
+
 .card .card-content p {
     font-size: 16px;
     color: #858585;
@@ -162,15 +166,14 @@ body {
 }
 
 .carte {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-left: -15px;
     position: fixed;
     top: 280px;
-    right: 0;
 }
 
 #map {
-    width: 100%;
+    width: 95%;
     height: 580px;
     background-color: white;
     box-shadow: 1px 1px 10px #c2c2c2;
