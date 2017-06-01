@@ -4,7 +4,6 @@
 
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}"  media="screen,projection"/>
-    <link rel="stylesheet" href="{{ asset('css/style_nosbiens.css') }}"  media="screen,projection"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -13,76 +12,81 @@
 {% block content %}
     <div class="page-nosbiens body-container-margin">
         <div class="moteur-recherche">
-{#            <div class="row">
-                <div class="col s12">
-                    <h1>Votre recherche</h1>
-                </div>
-            </div>#}
-            <div class="row">
+            <div class="row no-margin-bottom">
                 <div class="col s12 m3">
-                    <h2>Localisation</h2>
-                    <div class="input-field">
-                        <input placeholder="Ville" id="champ-ville" type="text" class="validate">
-                        <input placeholder="Quartier" id="champ-quartier" type="text" class="validate">
+                    <h2 class="titre-recherche">Localisation</h2>
+                    <div class="row no-margin-bottom">
+                        <div class="col s6">
+                            <input placeholder="Ville" id="champ-ville" type="text" class="validate">
+                        </div>
+                        <div class="col s6">
+                            <input placeholder="Quartier" id="champ-quartier" type="text" class="validate">
+                        </div>
                     </div>
                 </div>
                 <div class="col s12 m3">
-                    <div class="row margin-neg">
-                        <h2>Votre bien</h2>
-                        <div class="input-field">
-                            <select class="typeBien">
-                                <option value="" disabled selected>Type</option>
-                                <option id="T1" value="1">T1</option>
-                                <option id="T2" value="2">T2</option>
-                                <option id="T3" value="3">T3</option>
-                                <option id="T4" value="4">T4 et +</option>
+                    <div class="row no-margin-bottom">
+                        <h2 class="titre-recherche">Votre bien</h2>
+                        <div class="row no-margin-bottom">
+                            <div class="col s6">
+                                <select class="typeBien">
+                                    <option value="" disabled selected>Type</option>
+                                    <option id="T1" value="1">T1</option>
+                                    <option id="T2" value="2">T2</option>
+                                    <option id="T3" value="3">T3</option>
+                                    <option id="T4" value="4">T4 et +</option>
+                                </select>
+                            </div>
+                            <div class="col s3">
+                                <input placeholder="Surface min" id="champ-surface-min" type="text" class="validate">
+                            </div>
+                            <div class="col s3">
+                                <input placeholder="Surface max" id="champ-surface-max" type="text" class="validate">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m3">
+                    <div class="row no-margin-bottom">
+                        <h2 class="white-text titre-recherche">Votre bien</h2>
+                        <div class="col s6">
+                            <select class="choixChb">
+                                <option value="" disabled selected>Nb. Chambre(s)</option>
+                                <option id="chb1" value="1">1 champbre</option>
+                                <option id="chb2" value="2">2 chambres</option>
+                                <option id="chb3" value="3">3 chambres</option>
+                                <option id="chb4" value="4">4 chambres et plus</option>
+                            </select>
+                        </div>
+                        <div class="col s6">
+                            <select class="choixPiece">
+                                <option value="" disabled selected>Nb. Pièce(s)</option>
+                                <option id="piece1" value="1">1 pièce</option>
+                                <option id="piece2" value="2">2 pièces</option>
+                                <option id="piece3" value="3">3 pièces</option>
+                                <option id="piece4" value="4">4 pièces</option>
+                                <option id="piece5" value="5">5 pièces et plus</option>
                             </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col s6">
-                            <input placeholder="Surface min" id="champ-surface-min" type="text" class="validate">
-                        </div>
-                        <div class="col s6">
-                            <input placeholder="Surface max" id="champ-surface-max" type="text" class="validate">
-                        </div>
-                    </div>
                 </div>
                 <div class="col s12 m3">
-                    <h2 class="white-text">Votre bien</h2>
-                    <div class="input-field">
-                        <select class="choixChb">
-                            <option value="" disabled selected>Nb. Chambre(s)</option>
-                            <option id="chb1" value="1">1 champbre</option>
-                            <option id="chb2" value="2">2 chambres</option>
-                            <option id="chb3" value="3">3 chambres</option>
-                            <option id="chb4" value="4">4 chambres et plus</option>
-                        </select>
-                        <select class="choixPiece">
-                            <option value="" disabled selected>Nb. Pièce(s)</option>
-                            <option id="piece1" value="1">1 pièce</option>
-                            <option id="piece2" value="2">2 pièces</option>
-                            <option id="piece3" value="3">3 pièces</option>
-                            <option id="piece4" value="4">4 pièces</option>
-                            <option id="piece5" value="5">5 pièces et plus</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col s12 m3">
-                    <div class="row margin-neg">
-                        <h2>Investissement</h2>
-                        <select class="objectif">
-                            <option value="" disabled selected>Objectif</option>
-                            <option id="invest" value="1">Investir</option>
-                            <option id="ResPrinc" value="2">Acheter en résidence principale</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <div class="col s6">
-                            <input placeholder="Budget min" id="champ-budget-min" type="text" class="validate">
-                        </div>
-                        <div class="col s6">
-                            <input placeholder="Budget max" id="champ-budget-max" type="text" class="validate">
+                    <div class="row no-margin-bottom">
+                        <h2 class="titre-recherche">Investissement</h2>
+                        <div class="row no-margin-bottom">
+                            <div class="col s6">
+                                <select class="objectif">
+                                    <option value="" disabled selected>Objectif</option>
+                                    <option id="invest" value="1">Investir</option>
+                                    <option id="ResPrinc" value="2">Acheter en résidence principale</option>
+                                </select>
+                            </div>
+                            <div class="col s3">
+                                <input placeholder="Budget min" id="champ-budget-min" type="text" class="validate">
+                            </div>
+                            <div class="col s3">
+                                <input placeholder="Budget max" id="champ-budget-max" type="text" class="validate">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,30 +96,11 @@
             </div>
         </div>
 
-        <div class="row carte-et-liste">
-            <div class="col m6 hide-on-small-only carte">
-                <div id="map"></div>
-                <script>
-                    function initMap() {
-                        var uluru = {lat: 47.9088035, lng: 1.8913519999999835};
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 15,
-                            center: uluru
-                        });
-                        var marker = new google.maps.Marker({
-                            position: uluru,
-                            map: map
-                        });
-                    }
-                </script>
-                <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
-                </script>
+        <div class="row carte-liste-articles">
 
-            </div>
-            <div class="col s12 m6 liste-biens">
+            <div class="col s12 m7 liste-biens articles">
                 <div class="row">
-                    <div class="col s12 offset-m1 m10">
+                    <div class="col s12 m11">
                         <div class="card">
                             <div class="card-image">
                                 <img src="{{ asset('img/res_dunois.jpg') }}">
@@ -155,7 +140,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col s12 offset-m1 m10">
+                    <div class="col s12 m11">
                         <div class="card">
                             <div class="card-image">
                                 <img src="{{ asset('img/res_mypark.jpg') }}">
@@ -195,7 +180,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col s12 offset-m1 m10">
+                    <div class="col s12 m11">
                         <div class="card">
                             <div class="card-image">
                                 <img src="{{ asset('img/res_terrasses_paradis.jpg') }}">
@@ -234,119 +219,89 @@
                     </div>
                 </div>
 
-                {#<div class="carousel carousel-slider">
-                    <a class="carousel-item" href="#one!">
-
-                                <div class="card">
-                                    <div class="card-image">
-                                        <img src="{{ asset('img/res_dunois.jpg') }}">
-                                        <span class="card-title">Le Beau Dunois</span>
-                                    </div>
-                                    <div class="card-content">
-                                        <p>I am a very simple card. I am good at containing small bits of information.
-                                            I am convenient because I require little markup to use effectively.</p>
-                                    </div>
-                                    <div class="card-action">
-                                        <a href="#">Découvrir la résidence</a>
-                                    </div>
-                                </div>
-
-                    </a>
-                    <a class="carousel-item" href="#two!">
-
-                                <div class="card">
-                                    <div class="card-image">
-                                        <img src="{{ asset('img/res_mypark.jpg') }}">
-                                        <span class="card-title">My Park</span>
-                                    </div>
-                                    <div class="card-content">
-                                        <p>I am a very simple card. I am good at containing small bits of information.
-                                            I am convenient because I require little markup to use effectively.</p>
-                                    </div>
-                                    <div class="card-action">
-                                        <a href="#">Découvrir la résidence</a>
-                                    </div>
-                                </div>
-
-                    </a>
-                    <a class="carousel-item" href="#three!">
-
-                                <div class="card">
-                                    <div class="card-image">
-                                        <img src="{{ asset('img/res_terrasses_paradis.jpg') }}">
-                                        <span class="card-title">Les Terrasses du Paradis</span>
-                                    </div>
-                                    <div class="card-content">
-                                        <p>I am a very simple card. I am good at containing small bits of information.
-                                            I am convenient because I require little markup to use effectively.</p>
-                                    </div>
-                                    <div class="card-action">
-                                        <a href="#">Découvrir la résidence</a>
-                                    </div>
-                                </div>
-
-                    </a>
-                </div>#}
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s4 bordure-titre">
-                <p class="white-text">Investissez en loi Pinel</p>
-            </div>
-            <div class="col s4 center alignement-titre">
-                <h2>Investissez en toute sérénité</h2>
-            </div>
-            <div class="col s4 bordure-titre">
-                <p class="white-text">Acheter un bien immobilier</p>
-            </div>
-        </div>
-
-        <div class="row proposition-services">
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{{ asset('img/article-immo.jpg') }}">
+                <div class="row">
+                    <div class="col s3 bordure-titre">
+                        <p class="white-text">Investissez en loi Pinel</p>
                     </div>
-                    <div class="card-content">
-                        <h4>Location et gestion locative</h4>
-                        <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-                            lorem ipsum lorem ipsum lorem ipsum.</p>
+                    <div class="col s4 center alignement-titre">
+                        <h2>Investissez en toute sérénité</h2>
                     </div>
-                    <div class="card-action center">
-                        <a href="#">Découvrez les services</a>
+                    <div class="col s4 bordure-titre">
+                        <p class="white-text">Acheter un bien immobilier</p>
+                    </div>
+                </div>
+                <div class="row proposition-services">
+                    <div class="col s11">
+                        <div class="card medium">
+                            <div class="card-image">
+                                <img src="{{ asset('img/article-immo.jpg') }}">
+                            </div>
+                            <div class="card-content">
+                                <h4>Location et gestion locative</h4>
+                                <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                                    lorem ipsum lorem ipsum lorem ipsum.</p>
+                            </div>
+                            <div class="card-action center">
+                                <a href="#">Découvrez les services</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s11">
+                        <div class="card medium">
+                            <div class="card-image">
+                                <img src="{{ asset('img/article-immo.jpg') }}">
+                            </div>
+                            <div class="card-content">
+                                <h4>Pack Sérénité</h4>
+                                <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                                    lorem ipsum lorem ipsum lorem ipsum.</p>
+                            </div>
+                            <div class="card-action center">
+                                <a href="#">Découvrez les autres packs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s11">
+                        <div class="card medium">
+                            <div class="card-content">
+                                <h4>Titre de l'article</h4>
+                                <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                                    lorem ipsum lorem ipsum lorem ipsum.</p>
+                            </div>
+                            <div class="card-image">
+                                <img src="{{ asset('img/article-immo.jpg') }}">
+                            </div>
+                            <div class="card-action center">
+                                <a href="#">Lire l'article</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{{ asset('img/article-immo.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <h4>Pack Sérénité</h4>
-                        <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-                            lorem ipsum lorem ipsum lorem ipsum.</p>
-                    </div>
-                    <div class="card-action center">
-                        <a href="#">Découvrez les autres packs</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-content">
-                        <h4>Titre de l'article</h4>
-                        <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-                            lorem ipsum lorem ipsum lorem ipsum.</p>
-                    </div>
-                    <div class="card-image">
-                        <img src="{{ asset('img/article-immo.jpg') }}">
-                    </div>
-                    <div class="card-action center">
-                        <a href="#">Lire l'article</a>
-                    </div>
-                </div>
+
+            <div class="col m5 hide-on-small-only carte">
+                <div id="map"></div>
+                <script>
+                    function initMap() {
+                        var uluru = {lat: 47.9088035, lng: 1.8913519999999835};
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 15,
+                            center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map
+                        });
+                    }
+                </script>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
+                </script>
+
             </div>
         </div>
     </div>
