@@ -103,45 +103,53 @@
             </div>
         </div>
 
+        {#------------ Remplacement de la barre de recherche par un accordéon sur ecran a partir de 992px -------------#}
+
         <div class="moteur-recherche-small-screen hide-on-large-only">
-            <ul class="collapsible" data-collapsible="accordion">
+            <ul class="collapsible" data-collapsible="expandable">
                 <li>
                     <div class="collapsible-header active"><i class="material-icons">person_pin</i>Votre recherche</div>
                     <div class="collapsible-body">
                         <span>
                             <div class="row no-margin-top no-margin-bottom">
-                                <select class="typeBien">
-                                    <option value="" disabled selected>Type</option>
-                                    <option id="T1" value="1">T1</option>
-                                    <option id="T2" value="2">T2</option>
-                                    <option id="T3" value="3">T3</option>
-                                    <option id="T4" value="4">T4 et +</option>
-                                </select>
+                                <div class="col s12 m6">
+                                    <input placeholder="Ville" id="champ-ville" type="text" class="validate">
+                                </div>
+                                <div class="col s12 m6">
+                                    <input placeholder="Quartier" id="champ-quartier" type="text" class="validate">
+                                </div>
                             </div>
                             <div class="row no-margin-top no-margin-bottom">
-                                <div class="col s6 no-padding-left">
+                                <div class="col s12 m6">
+                                    <select class="typeBien">
+                                        <option value="" disabled selected>Type de bien</option>
+                                        <option id="T1" value="1">T1</option>
+                                        <option id="T2" value="2">T2</option>
+                                        <option id="T3" value="3">T3</option>
+                                        <option id="T4" value="4">T4 et +</option>
+                                    </select>
+                                </div>
+                                <div class="col s6 m3 no-padding-left">
                                     <input placeholder="Surface min" id="champ-surface-min" type="text" class="validate">
                                 </div>
-                                <div class="col s6 no-padding-right">
+                                <div class="col s6 m3 no-padding-right">
                                     <input placeholder="Surface max" id="champ-surface-max" type="text" class="validate">
                                 </div>
                             </div>
-                            <div class="row no-margin-top">
-                                <select class="choixChb">
-                                    <option value="" disabled selected>Nb. Chambre(s)</option>
-                                    <option id="chb1" value="1">1 champbre</option>
-                                    <option id="chb2" value="2">2 chambres</option>
-                                    <option id="chb3" value="3">3 chambres</option>
-                                    <option id="chb4" value="4">4 chambres et plus</option>
-                                </select>
-                                <select class="choixPiece">
-                                    <option value="" disabled selected>Nb. Pièce(s)</option>
-                                    <option id="piece1" value="1">1 pièce</option>
-                                    <option id="piece2" value="2">2 pièces</option>
-                                    <option id="piece3" value="3">3 pièces</option>
-                                    <option id="piece4" value="4">4 pièces</option>
-                                    <option id="piece5" value="5">5 pièces et plus</option>
-                                </select>
+                            <div class="row no-margin-top no-margin-bottom">
+                                <div class="col s12 m6">
+                                    <select class="objectif">
+                                        <option value="" disabled selected>Objectif</option>
+                                        <option id="invest" value="1">Investir</option>
+                                        <option id="ResPrinc" value="2">Acheter en résidence principale</option>
+                                    </select>
+                                </div>
+                                <div class="col s6 m3 no-padding-left">
+                                    <input placeholder="Budget min" id="champ-budget-min" type="text" class="validate">
+                                </div>
+                                <div class="col s6 m3 no-padding-right">
+                                    <input placeholder="Budget max" id="champ-budget-max" type="text" class="validate">
+                                </div>
                             </div>
                         </span>
                     </div>
@@ -150,32 +158,25 @@
                     <div class="collapsible-header"><i class="material-icons">place</i>+ de critères</div>
                     <div class="collapsible-body">
                         <span>
-                            <div class="row">
-                                <div class="input-field">
-                                    <input placeholder="Ville" id="champ-ville" type="text" class="validate">
-                                    <input placeholder="Quartier" id="champ-quartier" type="text" class="validate">
-                                </div>
-                            </div>
-                        </span>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">whatshot</i>Investissement</div>
-                    <div class="collapsible-body">
-                        <span>
                             <div class="row no-margin-top">
-                                <select class="objectif">
-                                    <option value="" disabled selected>Objectif</option>
-                                    <option id="invest" value="1">Investir</option>
-                                    <option id="ResPrinc" value="2">Acheter en résidence principale</option>
-                                </select>
-                            </div>
-                            <div class="row no-margin-top">
-                                <div class="col s6 no-padding-left">
-                                    <input placeholder="Budget min" id="champ-budget-min" type="text" class="validate">
+                                <div class="col s12 m6">
+                                    <select class="choixChb">
+                                        <option value="" disabled selected>Nb. Chambre(s)</option>
+                                        <option id="chb1" value="1">1 champbre</option>
+                                        <option id="chb2" value="2">2 chambres</option>
+                                        <option id="chb3" value="3">3 chambres</option>
+                                        <option id="chb4" value="4">4 chambres et plus</option>
+                                    </select>
                                 </div>
-                                <div class="col s6 no-padding-right">
-                                    <input placeholder="Budget max" id="champ-budget-max" type="text" class="validate">
+                                <div class="col s12 m6">
+                                    <select class="choixPiece">
+                                        <option value="" disabled selected>Nb. Pièce(s)</option>
+                                        <option id="piece1" value="1">1 pièce</option>
+                                        <option id="piece2" value="2">2 pièces</option>
+                                        <option id="piece3" value="3">3 pièces</option>
+                                        <option id="piece4" value="4">4 pièces</option>
+                                        <option id="piece5" value="5">5 pièces et plus</option>
+                                    </select>
                                 </div>
                             </div>
                         </span>
@@ -204,7 +205,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="row grille-infos">
-                                    <div class="col s8 grille-gauche">
+                                    <div class="col s7 grille-gauche">
                                         <div class="row nom-residence">
                                             <h4>Nom Résidence</h4>
                                             <p>Le Beau Dunois</p>
@@ -220,7 +221,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col s4">
+                                    <div class="col s5">
                                         <h4>Prix</h4>
                                         <p>A partir de 90 000€</p>
                                         <br/>

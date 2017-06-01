@@ -60,18 +60,18 @@ body {
 }
 
 ::-webkit-input-placeholder {
-    color: #b7d64a;
+    color: #444444;
     opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
 }
 
 :-moz-placeholder { /* Firefox 18- */
     color: black;
-    opacity: 0.3 !important;
+    opacity: 0.5 !important;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
     color: black;
-    opacity: 0.3 !important;
+    opacity: 0.5 !important;
 }
 
 :-ms-input-placeholder {
@@ -83,7 +83,7 @@ body {
 }
 
 .select-wrapper input.select-dropdown {
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(44, 44, 44, 0.6);
 }
 
 .no-margin-bottom {
@@ -896,9 +896,12 @@ transition:color 250ms ease-out;
 /* ------------------------------------------------- MEDIA QUERIES --------------------------------------------------*/
 /* ------------------------------------------------------------------------------------------------------------------*/
 
-@media screen and (max-width:320px){
-    .blockStaff .imgStaff img{
-        height: 300px;
-        width: 300px;
+@media screen and (max-width:992px){
+    .moteur-recherche-small-screen {
+        margin-top: 40px;
+    }
+
+    .liste-biens {
+        margin-top: 0;
     }
 }
