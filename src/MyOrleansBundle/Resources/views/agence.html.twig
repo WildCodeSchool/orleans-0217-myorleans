@@ -71,7 +71,7 @@
                     <div class="col l4 s12">
                         <div class="blockStaff">
                             <div class="imgStaff">
-                                <img src="{{ asset('img/equipe/Fabien.jpeg') }}" alt="">
+                                <img src="{{ asset('img/equipe/Charles.jpeg') }}" alt="">
                             </div>
                             <div class="infoStaff">
                                 <h3>Fabien Durand</h3>
@@ -89,7 +89,7 @@
                     <div class=" col s12 l4">
                         <div class="blockStaff">
                             <div class="imgStaff">
-                                <img src="{{ asset('img/equipe/Albane.jpeg') }}" alt="">
+                                <img src="{{ asset('img/equipe/Emilie.jpeg') }}" alt="">
                             </div>
                             <div class="infoStaff">
                                 <h3>Albane Pothain</h3>
@@ -109,7 +109,7 @@
                     <div class="col l4 s12">
                         <div class="blockStaff">
                             <div class="imgStaff">
-                                <img src="{{ asset('img/equipe/Fabien.jpeg') }}" alt="">
+                                <img src="{{ asset('img/equipe/Mica.jpeg') }}" alt="">
                             </div>
                             <div class="infoStaff">
                                 <h3>Fabien Durand</h3>
@@ -127,7 +127,7 @@
                     <div class=" col s12 l4">
                         <div class="blockStaff">
                             <div class="imgStaff">
-                                <img src="{{ asset('img/equipe/Albane.jpeg') }}" alt="">
+                                <img src="{{ asset('img/logo_myorleans.png') }}" alt="">
                             </div>
                             <div class="infoStaff">
                                 <h3>Albane Pothain</h3>
@@ -148,12 +148,43 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row center">
             <h2 class="fancy"><span>Nos événements</span></h2>
-            <div class="col s6">
+            <div class="col s12 l12 ">
+                <section class="timeline">
+                    <ol>
+                        <li>
+                            <div>
+                                <time>1934</time> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <time>1934</time> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <time>1937</time> Proin quam velit, efficitur vel neque vitae, rhoncus commodo mi. Suspendisse finibus mauris et bibendum molestie. Aenean ex augue, varius et pulvinar in, pretium non nisi.
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <time>1940</time> Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
+                            </div>
+                        </li>
+                        <li></li>
+                    </ol>
 
-            </div>
-            <div class="col s6">
+                    <div class="arrows">
+                        <button class="arrow arrow__prev disabled btn-floating btn-large waves-effect waves-light light-green" disabled>
+                            <i class="medium material-icons">keyboard_arrow_left</i>
+                        </button>
+                        <button class="arrow arrow__next  btn-floating btn-large waves-effect waves-light light-green">
+                            <i class="medium material-icons">keyboard_arrow_right</i>
+                        </button>
+                    </div>
+                </section>
 
             </div>
         </div>
@@ -217,6 +248,7 @@
         {% block javascripts %}
             {{ parent() }}
             <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
+            <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
 
         {% endblock %}
     {% endblock %}
