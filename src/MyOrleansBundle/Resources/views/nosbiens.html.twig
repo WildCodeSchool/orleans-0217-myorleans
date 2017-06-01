@@ -9,11 +9,18 @@
 
 {% endblock stylesheets %}
 
+{% block navbar %}
+    <div class="navbar-nosbiens">
+        {{ parent() }}
+    </div>
+{% endblock navbar %}
+
 {% block content %}
     <div class="page-nosbiens body-container-margin">
-        <div class="moteur-recherche">
+
+        <div class="moteur-recherche hide-on-med-and-down">
             <div class="row no-margin-bottom">
-                <div class="col s12 m3">
+                <div class="col s12 m6 l3">
                     <h2 class="titre-recherche">Localisation</h2>
                     <div class="row no-margin-bottom">
                         <div class="col s6">
@@ -24,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m3">
+                <div class="col s12 m6 l3">
                     <div class="row no-margin-bottom">
                         <h2 class="titre-recherche">Votre bien</h2>
                         <div class="row no-margin-bottom">
@@ -46,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m3">
+                <div class="col s12 m6 l3">
                     <div class="row no-margin-bottom">
                         <h2 class="white-text titre-recherche">Votre bien</h2>
                         <div class="col s6">
@@ -70,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m3">
+                <div class="col s12 m6 l3">
                     <div class="row no-margin-bottom">
                         <h2 class="titre-recherche">Investissement</h2>
                         <div class="row no-margin-bottom">
@@ -96,12 +103,102 @@
             </div>
         </div>
 
+        <div class="moteur-recherche-small-screen hide-on-large-only">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header active"><i class="material-icons">person_pin</i>Votre recherche</div>
+                    <div class="collapsible-body">
+                        <span>
+                            <div class="row no-margin-top no-margin-bottom">
+                                <select class="typeBien">
+                                    <option value="" disabled selected>Type</option>
+                                    <option id="T1" value="1">T1</option>
+                                    <option id="T2" value="2">T2</option>
+                                    <option id="T3" value="3">T3</option>
+                                    <option id="T4" value="4">T4 et +</option>
+                                </select>
+                            </div>
+                            <div class="row no-margin-top no-margin-bottom">
+                                <div class="col s6 no-padding-left">
+                                    <input placeholder="Surface min" id="champ-surface-min" type="text" class="validate">
+                                </div>
+                                <div class="col s6 no-padding-right">
+                                    <input placeholder="Surface max" id="champ-surface-max" type="text" class="validate">
+                                </div>
+                            </div>
+                            <div class="row no-margin-top">
+                                <select class="choixChb">
+                                    <option value="" disabled selected>Nb. Chambre(s)</option>
+                                    <option id="chb1" value="1">1 champbre</option>
+                                    <option id="chb2" value="2">2 chambres</option>
+                                    <option id="chb3" value="3">3 chambres</option>
+                                    <option id="chb4" value="4">4 chambres et plus</option>
+                                </select>
+                                <select class="choixPiece">
+                                    <option value="" disabled selected>Nb. Pièce(s)</option>
+                                    <option id="piece1" value="1">1 pièce</option>
+                                    <option id="piece2" value="2">2 pièces</option>
+                                    <option id="piece3" value="3">3 pièces</option>
+                                    <option id="piece4" value="4">4 pièces</option>
+                                    <option id="piece5" value="5">5 pièces et plus</option>
+                                </select>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>+ de critères</div>
+                    <div class="collapsible-body">
+                        <span>
+                            <div class="row">
+                                <div class="input-field">
+                                    <input placeholder="Ville" id="champ-ville" type="text" class="validate">
+                                    <input placeholder="Quartier" id="champ-quartier" type="text" class="validate">
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">whatshot</i>Investissement</div>
+                    <div class="collapsible-body">
+                        <span>
+                            <div class="row no-margin-top">
+                                <select class="objectif">
+                                    <option value="" disabled selected>Objectif</option>
+                                    <option id="invest" value="1">Investir</option>
+                                    <option id="ResPrinc" value="2">Acheter en résidence principale</option>
+                                </select>
+                            </div>
+                            <div class="row no-margin-top">
+                                <div class="col s6 no-padding-left">
+                                    <input placeholder="Budget min" id="champ-budget-min" type="text" class="validate">
+                                </div>
+                                <div class="col s6 no-padding-right">
+                                    <input placeholder="Budget max" id="champ-budget-max" type="text" class="validate">
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+            <div class="row center no-margin-top btn-recherche-nosbiens">
+                <button class="btn waves-effect waves-light" type="submit" value="Rechercher">Rechercher</button>
+            </div>
+        </div>
+
         <div class="row carte-liste-articles">
 
-            <div class="col s12 m7 liste-biens articles">
+
+            <div class="col s12 l7 xl8 liste-biens articles">
+
+                <div class="row center no-margin-bottom">
+                    <p>16 résidences correspondent à votre recherche</p>
+                </div>
+
                 <div class="row">
-                    <div class="col s12 m11">
-                        <div class="card">
+                    <div class="col s12 xl6">
+                        <div class="card large">
                             <div class="card-image">
                                 <img src="{{ asset('img/res_dunois.jpg') }}">
                             </div>
@@ -118,7 +215,7 @@
                                                 <p>4è Trimestre 2017</p>
                                             </div>
                                             <div class="col s6">
-                                                <h4>Nombre de pièces</h4>
+                                                <h4>Nb. pièces</h4>
                                                 <p>Du T1 au T5</p>
                                             </div>
                                         </div>
@@ -137,11 +234,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 m11">
-                        <div class="card">
+                    <div class="col s12 xl6">
+                        <div class="card large">
                             <div class="card-image">
                                 <img src="{{ asset('img/res_mypark.jpg') }}">
                             </div>
@@ -150,7 +244,7 @@
                                     <div class="col s8 grille-gauche">
                                         <div class="row nom-residence">
                                             <h4>Nom Résidence</h4>
-                                            <p>1my Park</p>
+                                            <p>My Park</p>
                                         </div>
                                         <div class="row annee-nbPiece">
                                             <div class="col s6 annee-residence">
@@ -158,7 +252,7 @@
                                                 <p>4è Trimestre 2017</p>
                                             </div>
                                             <div class="col s6">
-                                                <h4>Nombre de pièces</h4>
+                                                <h4>Nb. pièces</h4>
                                                 <p>Du T1 au T5</p>
                                             </div>
                                         </div>
@@ -177,11 +271,12 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="row">
-                    <div class="col s12 m11">
-                        <div class="card">
+                    <div class="col s12 xl6">
+                        <div class="card large">
                             <div class="card-image">
                                 <img src="{{ asset('img/res_terrasses_paradis.jpg') }}">
                             </div>
@@ -198,7 +293,44 @@
                                                 <p>4è Trimestre 2017</p>
                                             </div>
                                             <div class="col s6">
-                                                <h4>Nombre de pièces</h4>
+                                                <h4>Nb. pièces</h4>
+                                                <p>Du T1 au T5</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s4">
+                                        <h4>Prix</h4>
+                                        <p>A partir de 90 000€</p>
+                                        <br/>
+                                        <h4>Disponibilité</h4>
+                                        <p>5 logements</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action center">
+                                <a href="#">Découvrir la résidence</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 xl6">
+                        <div class="card large">
+                            <div class="card-image">
+                                <img src="{{ asset('img/res_dunois.jpg') }}">
+                            </div>
+                            <div class="card-content">
+                                <div class="row grille-infos">
+                                    <div class="col s8 grille-gauche">
+                                        <div class="row nom-residence">
+                                            <h4>Nom Résidence</h4>
+                                            <p>Les Terrasses du Paradis</p>
+                                        </div>
+                                        <div class="row annee-nbPiece">
+                                            <div class="col s6 annee-residence">
+                                                <h4>Année</h4>
+                                                <p>4è Trimestre 2017</p>
+                                            </div>
+                                            <div class="col s6">
+                                                <h4>Nb. pièces</h4>
                                                 <p>Du T1 au T5</p>
                                             </div>
                                         </div>
@@ -220,7 +352,162 @@
                 </div>
 
                 <div class="row">
-                    <div class="col s3 bordure-titre">
+                    <div class="col s12 xl6">
+                        <div class="card large">
+                            <div class="card-image">
+                                <img src="{{ asset('img/res_mypark.jpg') }}">
+                            </div>
+                            <div class="card-content">
+                                <div class="row grille-infos">
+                                    <div class="col s8 grille-gauche">
+                                        <div class="row nom-residence">
+                                            <h4>Nom Résidence</h4>
+                                            <p>Les Terrasses du Paradis</p>
+                                        </div>
+                                        <div class="row annee-nbPiece">
+                                            <div class="col s6 annee-residence">
+                                                <h4>Année</h4>
+                                                <p>4è Trimestre 2017</p>
+                                            </div>
+                                            <div class="col s6">
+                                                <h4>Nb. pièces</h4>
+                                                <p>Du T1 au T5</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s4">
+                                        <h4>Prix</h4>
+                                        <p>A partir de 90 000€</p>
+                                        <br/>
+                                        <h4>Disponibilité</h4>
+                                        <p>5 logements</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action center">
+                                <a href="#">Découvrir la résidence</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 xl6">
+                        <div class="card large">
+                            <div class="card-image">
+                                <img src="{{ asset('img/res_terrasses_paradis.jpg') }}">
+                            </div>
+                            <div class="card-content">
+                                <div class="row grille-infos">
+                                    <div class="col s8 grille-gauche">
+                                        <div class="row nom-residence">
+                                            <h4>Nom Résidence</h4>
+                                            <p>Les Terrasses du Paradis</p>
+                                        </div>
+                                        <div class="row annee-nbPiece">
+                                            <div class="col s6 annee-residence">
+                                                <h4>Année</h4>
+                                                <p>4è Trimestre 2017</p>
+                                            </div>
+                                            <div class="col s6">
+                                                <h4>Nb. pièces</h4>
+                                                <p>Du T1 au T5</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s4">
+                                        <h4>Prix</h4>
+                                        <p>A partir de 90 000€</p>
+                                        <br/>
+                                        <h4>Disponibilité</h4>
+                                        <p>5 logements</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action center">
+                                <a href="#">Découvrir la résidence</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 xl6">
+                            <div class="card large">
+                                <div class="card-image">
+                                    <img src="{{ asset('img/res_mypark.jpg') }}">
+                                </div>
+                                <div class="card-content">
+                                    <div class="row grille-infos">
+                                        <div class="col s8 grille-gauche">
+                                            <div class="row nom-residence">
+                                                <h4>Nom Résidence</h4>
+                                                <p>Le Beau Dunois</p>
+                                            </div>
+                                            <div class="row annee-nbPiece">
+                                                <div class="col s6 annee-residence">
+                                                    <h4>Année</h4>
+                                                    <p>4è Trimestre 2017</p>
+                                                </div>
+                                                <div class="col s6">
+                                                    <h4>Nb. pièces</h4>
+                                                    <p>Du T1 au T5</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s4">
+                                            <h4>Prix</h4>
+                                            <p>A partir de 90 000€</p>
+                                            <br/>
+                                            <h4>Disponibilité</h4>
+                                            <p>5 logements</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-action center">
+                                    <a href="#">Découvrir la résidence</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 xl6">
+                            <div class="card large">
+                                <div class="card-image">
+                                    <img src="{{ asset('img/res_dunois.jpg') }}">
+                                </div>
+                                <div class="card-content">
+                                    <div class="row grille-infos">
+                                        <div class="col s8 grille-gauche">
+                                            <div class="row nom-residence">
+                                                <h4>Nom Résidence</h4>
+                                                <p>1my Park</p>
+                                            </div>
+                                            <div class="row annee-nbPiece">
+                                                <div class="col s6 annee-residence">
+                                                    <h4>Année</h4>
+                                                    <p>4è Trimestre 2017</p>
+                                                </div>
+                                                <div class="col s6">
+                                                    <h4>Nb. pièces</h4>
+                                                    <p>Du T1 au T5</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s4">
+                                            <h4>Prix</h4>
+                                            <p>A partir de 90 000€</p>
+                                            <br/>
+                                            <h4>Disponibilité</h4>
+                                            <p>5 logements</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-action center">
+                                    <a href="#">Découvrir la résidence</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s4 bordure-titre">
                         <p class="white-text">Investissez en loi Pinel</p>
                     </div>
                     <div class="col s4 center alignement-titre">
@@ -231,7 +518,7 @@
                     </div>
                 </div>
                 <div class="row proposition-services">
-                    <div class="col s11">
+                    <div class="col s12 offset-m1 m10">
                         <div class="card medium">
                             <div class="card-image">
                                 <img src="{{ asset('img/article-immo.jpg') }}">
@@ -248,7 +535,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s11">
+                    <div class="col s12 offset-m1 m10">
                         <div class="card medium">
                             <div class="card-image">
                                 <img src="{{ asset('img/article-immo.jpg') }}">
@@ -265,7 +552,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s11">
+                    <div class="col s12 offset-m1 m10">
                         <div class="card medium">
                             <div class="card-content">
                                 <h4>Titre de l'article</h4>
@@ -283,13 +570,13 @@
                 </div>
             </div>
 
-            <div class="col offset-m7 m5 hide-on-small-only carte">
+            <div class="col offset-l7 l6 offset-xl8 xl5 hide-on-small-only carte">
                 <div id="map"></div>
                 <script>
                     function initMap() {
                         var uluru = {lat: 47.9088035, lng: 1.8913519999999835};
                         var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 15,
+                            zoom: 13,
                             center: uluru
                         });
                         var marker = new google.maps.Marker({
@@ -307,4 +594,8 @@
     </div>
 
 
-{% endblock %}
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock footer %}

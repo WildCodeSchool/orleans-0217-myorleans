@@ -10,6 +10,8 @@
 {% block body %}
 
 <div class="container-fluid">
+
+{% block navbar %}
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
@@ -38,12 +40,17 @@
         </nav>
     </div>
 
+{% endblock navbar %}
+
 
 
 {% block content %}
 
 {% endblock %}
 
+
+
+{% block footer %}
 
 <div class="pre-footer">
     <img class="skyline" src="{{ asset('img/toits_Orleans_resized_v3.png') }}" alt="toits d'Orléans"/>
@@ -83,6 +90,8 @@
         </div>
     </div>
 </footer>
+
+{% endblock footer %}
 
 {% endblock body%}
 

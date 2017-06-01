@@ -15,6 +15,10 @@ nav {
     padding: 10px 20px;
 }
 
+.navbar-nosbiens nav {
+    background-color: rgba(248, 248, 248, 1);
+}
+
 nav .brand-logo {
     color: #7a7a7a;
 }
@@ -44,7 +48,7 @@ body {
 }
 
 .body-container-margin {
-    margin: 30px 20px 0 20px;
+    margin: 23px 20px 0 20px;
 }
 
 .btn, .btn-large {
@@ -122,22 +126,27 @@ body {
 }
 
 .page-nosbiens .liste-biens h4 {
-    font-size:20px;
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 0;
 }
 
+.page-nosbiens p {
+    font-size: 20px;
+    color: #444444;
+}
+
 .page-nosbiens .proposition-services h4 {
-    font-size:22px;
+    font-size: 22px;
     font-weight: 600;
 }
 
-.page-bosbiens .liste-biens .card .card-image {
-    height: 200px;
+.liste-biens .card.large {
+    height: 580px;
 }
 
 .card .card-content p {
-    font-size: 16px;
+    font-size: 14px;
     color: #858585;
 }
 
@@ -167,14 +176,16 @@ body {
 
 .carte {
     margin-top: 15px;
-    margin-left: -15px;
+    /*
+    margin-left: 0;
+    */
     position: fixed;
-    top: 280px;
+    top: 270px;
 }
 
 #map {
-    width: 95%;
-    height: 580px;
+    width: 75%;
+    height: 570px;
     background-color: white;
     box-shadow: 1px 1px 10px #c2c2c2;
 
@@ -881,3 +892,13 @@ transition:color 250ms ease-out;
 }
 
 
+/* ------------------------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------------- MEDIA QUERIES --------------------------------------------------*/
+/* ------------------------------------------------------------------------------------------------------------------*/
+
+@media screen and (max-width:320px){
+    .blockStaff .imgStaff img{
+        height: 300px;
+        width: 300px;
+    }
+}
