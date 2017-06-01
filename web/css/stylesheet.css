@@ -1012,13 +1012,7 @@ transition:color 250ms ease-out;
 }
 
 .page-footer {
-    /*
-    background-color : #939597;
-    */
-    background-color: black;
-
-    /*    background-image: url('../img/toit_Orleans2-01.svg');
-        background-size: cover;*/
+    background-color: #c8cacc;
 }
 
 .footer-right-side {
@@ -1058,7 +1052,7 @@ transition:color 250ms ease-out;
 /* --------------------------------------------------------------------*/
 
 .page-footer .footer-copyright {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .ml-padding-right {
