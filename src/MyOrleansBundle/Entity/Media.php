@@ -64,6 +64,28 @@ class Media
 
 
     /**
+     * @ORM\OneToOne(targetEntity="Partenaire")
+     */
+    private $partenaire;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="Service")
+     */
+    private $service;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="Pack")
+     */
+    private $pack;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", inversedBy="medias")
+     */
+    private $article;
+
+    /**
      * Get id
      *
      * @return int
@@ -278,5 +300,111 @@ class Media
     public function getCategoriePrestas()
     {
         return $this->categorie_prestas;
+    }
+
+    /**
+     * Set partenaire
+     *
+     * @param \MyOrleansBundle\Entity\Partenaire $partenaire
+     *
+     * @return Media
+     */
+    public function setPartenaire(\MyOrleansBundle\Entity\Partenaire $partenaire = null)
+    {
+        $this->partenaire = $partenaire;
+
+        return $this;
+    }
+
+    /**
+     * Get partenaire
+     *
+     * @return \MyOrleansBundle\Entity\Partenaire
+     */
+    public function getPartenaire()
+    {
+        return $this->partenaire;
+    }
+
+    /**
+     * Set service
+     *
+     * @param \MyOrleansBundle\Entity\Service $service
+     *
+     * @return Media
+     */
+    public function setService(\MyOrleansBundle\Entity\Service $service = null)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return \MyOrleansBundle\Entity\Service
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+     * Set pack
+     *
+     * @param \MyOrleansBundle\Entity\Pack $pack
+     *
+     * @return Media
+     */
+    public function setPack(\MyOrleansBundle\Entity\Pack $pack = null)
+    {
+        $this->pack = $pack;
+
+        return $this;
+    }
+
+    /**
+     * Get pack
+     *
+     * @return \MyOrleansBundle\Entity\Pack
+     */
+    public function getPack()
+    {
+        return $this->pack;
+    }
+
+    /**
+     * Add article
+     *
+     * @param \MyOrleansBundle\Entity\Article $article
+     *
+     * @return Media
+     */
+    public function addArticle(\MyOrleansBundle\Entity\Article $article)
+    {
+        $this->article[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \MyOrleansBundle\Entity\Article $article
+     */
+    public function removeArticle(\MyOrleansBundle\Entity\Article $article)
+    {
+        $this->article->removeElement($article);
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticle()
+    {
+        return $this->article;
     }
 }

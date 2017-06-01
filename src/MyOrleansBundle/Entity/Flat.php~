@@ -328,4 +328,38 @@ class Flat
     {
         return $this->media;
     }
+
+    /**
+     * Add presta
+     *
+     * @param \MyOrleansBundle\Entity\Presta $presta
+     *
+     * @return Flat
+     */
+    public function addPresta(\MyOrleansBundle\Entity\Presta $presta)
+    {
+        $this->prestas[] = $presta;
+
+        return $this;
+    }
+
+    /**
+     * Remove presta
+     *
+     * @param \MyOrleansBundle\Entity\Presta $presta
+     */
+    public function removePresta(\MyOrleansBundle\Entity\Presta $presta)
+    {
+        $this->prestas->removeElement($presta);
+    }
+
+    /**
+     * Get prestas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPrestas()
+    {
+        return $this->prestas;
+    }
 }
