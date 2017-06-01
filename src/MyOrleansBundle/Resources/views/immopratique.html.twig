@@ -1,24 +1,35 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block content %}
-<div class="container">
-    <!--grande image-->
-    <div class="row">
-        <div class="col s12 l12 m6">
 
-        <div class="head">
-            <img src="{{ asset('img/conseil2.jpg') }}" class="responsive-img"  alt="logo de l'entreprise" />
+<div class="header-image">
+
+    <img src="{{ asset('img/coverjbh.jpg') }}" class="responsive-img" alt="image fiche conseil" />
+</div>
+
+
+        <div class="col s12 l12 m12">
+    <div class="barre-recherche">
+        <div class="hide-on-small-only">
+        <div class="nav-wrapper">
+            <nav class="nav-recherche">
+            <form>
+                <div class="input-field">
+                    <input id="search" type="search" required placeholder="Vous recherchez un thème précis?">
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+            </nav>
+        </div>
         </div>
 
-                  <form>
-                     <div class="input-field">
-                        <input id="search" type="search" required placeholder="rechercher un mot clé">
-                          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                           <i class="material-icons">close</i>
-                    </div>
-                </form>
-           </div>
     </div>
+    </div>
+
+
+<div class="container">
+    <!--grande image-->
 
   <div class="row">
     <div class="col s12 l12 m12">
@@ -33,7 +44,7 @@
 
     <!--barre de recherche-->
 
-
+    <div class="hide-on-small-only hide-on-med-only">
     <nav class="navy">
         <div class="nav-wrapper">
             <ul class="right hide-on-med-and-down">
@@ -43,6 +54,7 @@
             </ul>
         </div>
     </nav>
+    </div>
 <!--fin barre de recherche-->
 
     <!--premier block-->
@@ -50,13 +62,15 @@
     <div class="row">
         <div class="col s12 m6 l6">
             <div data-aos="fade-up-right">
+                <div class="boxi">
                 <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
                     ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
                     an quaedam altiora meditantis iam Galli secreta susceperint scripta,
                     qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                     petit exindeque per protectores retractus artissime tenebatur.</p>
-                <a href="#">Demander la documentation</a>
+                <a href="#modal4">Demander la documentation</a>
             </div>
+        </div>
         </div>
 
         <div class="col s12 m6 l6">
@@ -73,20 +87,22 @@
 
     <div class="row">
         <div class="col s12 m6 l6">
-            <div data-aos="fade-up-left">
+            <div data-aos="fade-up-right">
                 <img src="{{ asset('img/conseil4.jpg') }}" class="responsive-img" alt="image fiche conseil" />
             </div>
         </div>
 
         <div class="col s12 m6 l6">
-            <div data-aos="fade-up-right">
+            <div data-aos="fade-up-left">
+                <div class="boxi">
                 <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
                     ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
                     an quaedam altiora meditantis iam Galli secreta susceperint scripta,
                     qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                     petit exindeque per protectores retractus artissime tenebatur.</p>
-                <a href="#">Demander la documentation</a>
+                <a href="#modal4">Demander la documentation</a>
             </div>
+        </div>
         </div>
     </div>
 
@@ -94,19 +110,21 @@
 
 
         <!--troisième block-->
+
+
      <h2 class="subtitle fancy" id="thematiques"><span>Dossiers thématiques</span></h2></a>
-        <div class="block-gris">
         <div class="row">
             <div class="col s12 m6 l6">
                 <div data-aos="fade-up-right">
-
-                    <p class="texte-blanc">Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
+                    <div class="boxi">
+                    <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
                         ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
                         an quaedam altiora meditantis iam Galli secreta susceperint scripta,
                         qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                         petit exindeque per protectores retractus artissime tenebatur.</p>
-                    <a href="#">Demander la documentation</a>
+                    <a href="#modal4">Demander la documentation</a>
                 </div>
+            </div>
             </div>
 
             <div class="col s12 m6 l6">
@@ -122,23 +140,25 @@
 
         <div class="row">
             <div class="col s12 m6 l6">
-                <div data-aos="fade-up-left">
+                <div data-aos="fade-up-right">
                     <img src="{{ asset('img/conseil6.jpg') }}" class="responsive-img" alt="image fiche conseil" />
                 </div>
             </div>
 
             <div class="col s12 m6 l6">
-                <div data-aos="fade-up-right">
-                    <p class="texte-blanc">Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
+                <div data-aos="fade-up-left">
+                    <div class="boxi">
+                    <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
                         ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
                         an quaedam altiora meditantis iam Galli secreta susceperint scripta,
                         qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                         petit exindeque per protectores retractus artissime tenebatur.</p>
-                    <a href="#">Demander la documentation</a>
+                    <a href="#modal4">Demander la documentation</a>
                 </div>
             </div>
+            </div>
         </div>
-        </div>
+
 
 
         <!--fin quatrième block-->
@@ -148,12 +168,14 @@
         <div class="row">
             <div class="col s12 m6 l6">
                 <div data-aos="fade-up-right">
+                    <div class="boxi">
                     <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
                         ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
                         an quaedam altiora meditantis iam Galli secreta susceperint scripta,
                         qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                         petit exindeque per protectores retractus artissime tenebatur.</p>
-                    <a href="#">Demander la documentation</a>
+                    <a href="#modal4">Demander la documentation</a>
+                </div>
                 </div>
             </div>
 
@@ -171,32 +193,117 @@
 
         <div class="row">
             <div class="col s12 m6 l6">
-                <div data-aos="fade-up-left">
+                <div data-aos="fade-up-right">
                     <img src="{{ asset('img/conseil8.jpg') }}" class="responsive-img" alt="image fiche conseil" />
                 </div>
             </div>
 
             <div class="col s12 m6 l6">
-                <div data-aos="fade-up-right">
+                <div data-aos="fade-up-left">
+                    <div class="boxi">
                     <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
                         ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
                         an quaedam altiora meditantis iam Galli secreta susceperint scripta,
                         qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                         petit exindeque per protectores retractus artissime tenebatur.</p>
-                    <a href="#">Demander la documentation</a>
+                    <a href="#modal4">Demander la documentation</a>
                 </div>
+            </div>
             </div>
         </div>
 
         <!--fin sixième block-->
+
+    <!-- Formulaire -->
+    <div id="modal4" class="modal bottom-sheet">
+        <div class="modal-content">
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name">Nom</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="last_name" type="text" class="validate">
+                            <label for="first_name">Prénom</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="icon_telephone" type="tel" class="validate">
+                            <label for="icon_telephone">Téléphone</label>
+                        </div>
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">email</i>
+                                    <input id="email" type="email" class="validate">
+                                    <label for="email" data-error="wrong" data-success="right">Email</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">error</i>
+                        <select>
+                            <option value="" disabled selected>Quel est l'objet du message?</option>
+                            <option value="1">Gestion locative</option>
+                            <option value="2">Vente</option>
+                            <option value="3">Autres</option>
+                        </select>
+
+                    </div>
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                    <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                                    <label for="icon_prefix2">Votre message</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="btn waves-effect waves-light btn-large center-align" type="submit" name="action">Envoyer
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
 </div>
-</div>
+
     {% block javascripts %}
 
         {{ parent() }}
         <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
         <script>
             AOS.init();
+
+            $('.modal').modal({
+                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                    opacity: .5, // Opacity of modal background
+                    inDuration: 300, // Transition in duration
+                    outDuration: 200, // Transition out duration
+                    startingTop: '4%', // Starting top style attribute
+                    endingTop: '10%', // Ending top style attribute
+                    ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+
+                        console.log(modal, trigger);
+                    },
+
+                }
+            );
         </script>
     {% endblock %}
 
