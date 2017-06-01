@@ -24,7 +24,7 @@ class DefaultController extends Controller
     {
         return $this->render('MyOrleansBundle::nosbiens.html.twig');
     }
-    
+
 
     /*-----------------------------------------------*/
 
