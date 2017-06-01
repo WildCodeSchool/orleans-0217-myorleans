@@ -36,7 +36,7 @@ class Partenaire
     private $url;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media")
+     * @ORM\OneToOne(targetEntity="Media", inversedBy="partenaire")
      */
     private $media;
 

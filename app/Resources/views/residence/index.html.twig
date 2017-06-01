@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Residences list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Codepostal</th>
+                <th>Ville</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Datelivraison</th>
+                <th>Description</th>
+                <th>Nbtotallogements</th>
+                <th>Notetransports</th>
+                <th>Notecommerces</th>
+                <th>Noteservices</th>
+                <th>Noteesthetisme</th>
+                <th>Favoris</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for residence in residences %}
+            <tr>
+                <td><a href="{{ path('residence_show', { 'id': residence.id }) }}">{{ residence.id }}</a></td>
+                <td>{{ residence.nom }}</td>
+                <td>{{ residence.adresse }}</td>
+                <td>{{ residence.codePostal }}</td>
+                <td>{{ residence.ville }}</td>
+                <td>{{ residence.latitude }}</td>
+                <td>{{ residence.longitude }}</td>
+                <td>{% if residence.dateLivraison %}{{ residence.dateLivraison|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ residence.description }}</td>
+                <td>{{ residence.nbTotalLogements }}</td>
+                <td>{{ residence.noteTransports }}</td>
+                <td>{{ residence.noteCommerces }}</td>
+                <td>{{ residence.noteServices }}</td>
+                <td>{{ residence.noteEsthetisme }}</td>
+                <td>{{ residence.favoris }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('residence_show', { 'id': residence.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('residence_edit', { 'id': residence.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('residence_new') }}">Create a new residence</a>
+        </li>
+    </ul>
+{% endblock %}

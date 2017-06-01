@@ -64,19 +64,19 @@ class Media
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Partenaire")
+     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media")
      */
     private $partenaire;
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Service")
+     * @ORM\OneToOne(targetEntity="Service", mappedBy="media")
      */
     private $service;
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Pack")
+     * @ORM\OneToOne(targetEntity="Pack", mappedBy="media")
      */
     private $pack;
 
