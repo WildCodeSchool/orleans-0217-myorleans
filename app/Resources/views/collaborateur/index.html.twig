@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Collaborateurs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Fonction</th>
+                <th>Bio</th>
+                <th>Lientwiter</th>
+                <th>Lienlinkedin</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collaborateur in collaborateurs %}
+            <tr>
+                <td><a href="{{ path('collaborateur_show', { 'id': collaborateur.id }) }}">{{ collaborateur.id }}</a></td>
+                <td>{{ collaborateur.nom }}</td>
+                <td>{{ collaborateur.prenom }}</td>
+                <td>{{ collaborateur.fonction }}</td>
+                <td>{{ collaborateur.bio }}</td>
+                <td>{{ collaborateur.lienTwiter }}</td>
+                <td>{{ collaborateur.lienLinkedin }}</td>
+                <td>{{ collaborateur.email }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('collaborateur_show', { 'id': collaborateur.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('collaborateur_edit', { 'id': collaborateur.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('collaborateur_new') }}">Create a new collaborateur</a>
+        </li>
+    </ul>
+{% endblock %}

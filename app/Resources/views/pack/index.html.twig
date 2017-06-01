@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Packs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pack in packs %}
+            <tr>
+                <td><a href="{{ path('pack_show', { 'id': pack.id }) }}">{{ pack.id }}</a></td>
+                <td>{{ pack.nom }}</td>
+                <td>{{ pack.description }}</td>
+                <td>{{ pack.prix }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pack_show', { 'id': pack.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pack_edit', { 'id': pack.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pack_new') }}">Create a new pack</a>
+        </li>
+    </ul>
+{% endblock %}
