@@ -8,7 +8,7 @@
 {% block content %}
     <div class="content-appartement">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row center">
                 <div class="col s12">
                     <h1>Le Pryvé</h1>
                 </div>
@@ -16,7 +16,7 @@
                     <a href="#" class="demande-doc">Demander la documentation</a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row center">
                 <div class="col s12 m6 l6">
                     <div data-aos="fade-right">
                         <img src="{{ asset('img/apt-neuf.jpg') }}" class="photo-apt" alt="photo-appart"/>
@@ -34,13 +34,13 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row center">
                 <div class="col s12">
                     <img class="plan" src="{{ asset('img/plan.jpg') }}" alt="plan"/>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row center">
                 <div class="col s12">
                     <img class="notation" src="{{ asset('img/notation.jpg') }}" alt="notation"/>
                 </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="col l6 s12">
                     <h2>Les Prestations</h2>
-                    <img class="icon-residence" src="{{ asset('icons/Wheelchair_Accessible.png') }}"
+                    <img class="icon-residence" src="{{ asset('img/icons/Wheelchair_Accessible.png') }}"
                          alt="acces handicape"/>
                     <p></p>Accessibiité</p>
                     <img class="icon-residence" src="{{ asset('img/icons/shopping-cart.png') }}"
@@ -67,15 +67,18 @@
                     Fumeur<br/>
                 </div>
                 <div>
-                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                    <i class="fa fa-compass" aria-hidden="true"></i>
-                    <i class="fa fa-university" aria-hidden="true"></i>
-                    <i class="fa fa-fire" aria-hidden="true"></i>
-                    <i class="fa fa-car" aria-hidden="true"></i>
-                    <i class="fa fa-th-large" aria-hidden="true"></i>
+                    <img class="icon-apt" src="{{ asset('img/incons/agenda.png') }}" alt="date de livraison">
+                    <img class="icon-apt" src="{{ asset('img/incons/boussole.png') }}" alt="exposition séjour">
+                    <img class="icon-apt" src="{{ asset('img/incons/chauffage.png') }}" alt="type de chauffage">
+                    <img class="icon-apt" src="{{ asset('img/incons/finance.png') }}" alt="éligibilité loi pinel">
+                    <img class="icon-apt" src="{{ asset('img/incons/floor.png') }}" alt="revetement">
+                    <img class="icon-apt" src="{{ asset('img/incons/menuiserie.png') }}" alt="type de menuiseries">
+                    <img class="icon-apt" src="{{ asset('img/incons/Parking.png') }}" alt="stationnement voiture">
+                    <img class="icon-apt" src="{{ asset('img/incons/room.png') }}" alt="nombre de pièces">
+                    <img class="icon-apt" src="{{ asset('img/incons/surface.png') }}" alt="surfaces">
                 </div>
             </div>
-            <div class="row">
+            <div class="row center">
                 <div class="col l12">
                     <h3>Nombre de logements disponibles : 30</h3>
                     <h3 class="consulter-residence">Consulte nos biens disponibles</h3>
