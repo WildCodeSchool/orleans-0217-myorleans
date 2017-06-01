@@ -1,4 +1,4 @@
-/app/config/parameters.yml
+
 /build/
 /phpunit.xml
 /var/*
@@ -16,3 +16,4 @@
 /web/bundles/
 /.idea/
 composer.json
+/app/config/parameters.yml

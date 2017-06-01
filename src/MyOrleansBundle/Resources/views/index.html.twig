@@ -2,12 +2,31 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}" media="screen,projection"/>
+    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/owl.carousel.css') }}">
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/owl.theme.default.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style_accueil.css') }}" media="screen,projection"/>
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid cover">
-        <div class="navbar-fixed">
+
+
+
+    <div id="GrandeIntro">
+        <div class="row center">
+            <div class="col s12 l6 pictoParcours">
+                <a href=""><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+            <div class="col s12 l6 pictoParcours">
+                <a href=""><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="siteWrapper">
+    <header>
+        <div id="headerTop"></div>
+        <div class="navbar" id="Grandenavigation">
             <nav>
                 <div class="nav-wrapper">
                     <a href="{{ path("home") }}" class="brand-logo">
@@ -16,7 +35,7 @@
                     <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i
                                 class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="{{ path("nosBiens") }}">Nos biens</a></li>
+                        <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nosservices") }}">Nos services</a></li>
                         <li><a href="#">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
@@ -24,224 +43,325 @@
                         <li><a href="#">Blog</a></li>
                     </ul>
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
-                        <li><a href="#">Nos biens</a></li>
+                        <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nosservices") }}">Nos services</a></li>
-                        <li><a href="#">Votre parcours immobilier</a></li>
-                        <li><a href="{{ path("agence") }}">L'agence</a></li>
+                        <li><a href="#">Parcours immobiliers</a></li>
+                        <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
                         <li><a href="#">Blog</a></li>
                     </ul>
                 </div>
             </nav>
         </div>
-        <div class="row centerFormSearch ">
-            <div class="col s12 l8 offset-l2 formSearch z-depth-1">
-                <div class="row">
-                    <div class="input-field col s4 offset-s1">
-                        <input type="text" id="autocomplete-input" class="autocomplete">
-                        <label for="autocomplete-input">Localisation</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <select>
-                            <option value="" disabled selected>Sélectionnez le type du bien</option>
-                            <option value="1">Maison</option>
-                            <option value="2">Appartement</option>
-                        </select>
-                        <label>Type</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="formButton col s6 col l4 offset-l1">
-                        <a class="waves-effect waves-light btn-large light-green">Je souhaite investir</a>
-                    </div>
-                    <div class="formButton col s6 col l6">
-                        <a class="waves-effect waves-light btn-large light-green">Je recherche une résidence
-                            Principale</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row center downButton floating-arrow">
-            <div class="col s12">
-                <a class="btn btn-floating btn-flat white pulse"><i class="light-green-text fa fa-chevron-down"
-                                                                    aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
+    </header>
 
     {% block content %}
-        <div class="row">
-            <div class="col s12">
-                <h1>Nos biens phares</h1>
 
+        <section id="content">
+            <div>
                 <div class="row">
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="{{ asset('img/lepryve.jpeg') }}">
-                                <span class="card-title">Résidence Le Pryvé</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i
-                                            class="material-icons">add</i></a>
+                    <div class="col s12 l10 offset-l1 formSearch z-depth-3">
+                        <div class="row">
+                            <div class="input-field col s4 offset-s1">
+                                <input type="text" id="autocomplete-input" class="autocomplete">
+                                <label for="autocomplete-input">Localisation</label>
                             </div>
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information. I am
-                                    convenient because I require little markup to use effectively.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="{{ asset('img/villasaintmarc.jpeg') }}">
-                                <span class="card-title">Villa Saint-Marc</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i
-                                            class="material-icons">add</i></a>
-                            </div>
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information. I am
-                                    convenient because I require little markup to use effectively.</p>
+                            <div class="input-field col s6">
+                                <select>
+                                    <option value="" disabled selected>Sélectionnez le type du bien</option>
+                                    <option value="1">Maison</option>
+                                    <option value="2">Appartement</option>
+                                </select>
+                                <label>Type</label>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="{{ asset('img/leflores.jpeg') }}">
-                                <span class="card-title">Le Florès </span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i
-                                            class="material-icons">add</i></a>
+                        <div class="row center">
+                            <div class="formButton col s12 m12 l4 offset-l1">
+                                <a class="waves-effect waves-light btn-large light-green">Je souhaite investir</a>
                             </div>
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information. I am
-                                    convenient because I require little markup to use effectively.</p>
+                            <div class="formButton col s12 m12 l6">
+                                <a class="waves-effect waves-light btn-large light-green">Je recherche une résidence
+                                    Principale</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
         </div>
-        <div class="row">
-            <h1>Témoignages</h1>
-        </div>
+        <div class="container-fluid">
+            <div class="section white">
+                <div class="row container">
 
-        <div class="row agencyHome">
-            <div class="col s12">
-                <p>"Lorem ipsum njnanjndajnjznanjanjanj nanoanoanoan odaojdaoij </p>
-                <div class="carousel">
-                    <a class="carousel-item" href="#one!"><img src="{{ asset('img/equipe/Fabien.jpeg') }}">
-                        <p>Fabien Durand<br>Fondateur</p>
-                    </a>
-                    <a class="carousel-item" href="#two!"><img src="{{ asset('img/equipe/Emilie.jpeg') }}">
-                        <p>Fabien Durand<br>Fondateur</p></a>
-                    </a>
-                    <a class="carousel-item" href="#three!"><img src="{{ asset('img/equipe/Charles.jpeg') }}">
-                        <p>Fabien Durand<br>Fondateur</p></a>
-                    </a>
-                    <a class="carousel-item" href="#four!"><img src="{{ asset('img/equipe/Albane.jpeg') }}">
-                        <p>Fabien Durand<br>Fondateur</p></a>
-                    </a>
-                    <a class="carousel-item" href="#five!"><img src="{{ asset('img/equipe/Mica.jpeg') }}">
-                        <p>Fabien Durand<br>Fondateur</p></a>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Modal Trigger -->
-            <div class="row">
-                <div class="col s10">
-                    <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
-                       href="#modal1">
-                        <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
-                    </a>
-                </div>
-            </div>
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal modal-fixed-footer">
-                <div class="modal-content black-text">
-                    <h4>Pour recevoir nos actualités, nos derniers événements, inscrivez-vous à notre newsletter : </h4>
-
-                    <div class="row">
-                        <form class="col s12">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="first_name" type="text" class="validate">
-                                    <label for="first_name">Nom </label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="last_name" type="text" class="validate">
-                                    <label for="last_name">Prénom</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12">
-                                    <div class="input-field inline">
-                                        <input id="email" type="email" class="validate">
-                                        <label for="email" data-error="wrong" data-success="right">Email</label>
+                    <div class="col s12 l12 liste-biens">
+                        <h2 class="subtitle fancy header">
+                            <span>Nos biens phares</span>
+                        </h2>
+                        <div class="row">
+                            <div class="col s12 l6">
+                                <div class="card mosaic-container">
+                                    <div class="card-image">
+                                        <img src="{{ asset('img/res_dunois.jpg') }}">
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="row grille-infos">
+                                            <div class="col s8 grille-gauche">
+                                                <div class="row nom-residence">
+                                                    <h4>Nom Résidence</h4>
+                                                    <p>Le Beau Dunois</p>
+                                                </div>
+                                                <div class="row annee-nbPiece">
+                                                    <div class="col s6 annee-residence">
+                                                        <h4>Année</h4>
+                                                        <p>4è Trimestre 2017</p>
+                                                    </div>
+                                                    <div class="col s6">
+                                                        <h4>Nombre de pièces</h4>
+                                                        <p>Du T1 au T5</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col s4">
+                                                <h4>Prix</h4>
+                                                <p>A partir de 90 000€</p>
+                                                <br/>
+                                                <h4>Disponibilité</h4>
+                                                <p>5 logements</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-action center">
+                                        <a href="#">Découvrir la résidence</a>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+
+                            <div class="col s12 l6">
+                                <div class="col s12 l12">
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img src="{{ asset('img/leflores.jpeg') }}" class="responsive-img">
+                                            <span class="card-title">Le Flores</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 l12">
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img src="{{ asset('img/villasaintmarc.jpeg') }}" class="responsive-img">
+                                            <span class="card-title">Le Flores</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Je m'inscris</a>
                 </div>
             </div>
-        </div>
+            <div class="row parallax-container">
+                <div class="parallax parallax-testimonial">
+                    <img src="{{ asset('img/apt-neuf.jpg') }}">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <h3 class="h3-testimonial center-align section-title"> Ce que les clients pensent de nous</h3>
+                        <div class="col m8 offset-m2 col s12">
+                            <div class="owl-carousel owl-theme owl-responsive-1000 owl-loaded">
 
-        <div class="row">
-            <div class="col s6">
-                <h1>L'actualité</h1>
-                <div class="card small">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ asset('img/lepryve.jpeg') }}">
+                                <div class="item cloned">
+                                    <div>
+                                        <div class="box_overlay">
+                                            <div class="pic">
+                                                <figure>
+                                                    <img src="{{ asset('img/equipe/Fabien.jpeg') }}" alt=""
+                                                         class="circle responsive-img">
+                                                </figure>
+                                                <h4>Fabien
+                                                    <small>30 Mai 2017</small>
+                                                </h4>
+                                            </div>
+                                            <div class="comment">
+                                                "Mea ad postea meliore fuisset. Timeam repudiare id eum, ex paulo dictas
+                                                elaboraret
+                                                sed,
+                                                mel cu unum nostrud. No nam indoctum accommodare, vix ei discere civibus
+                                                philosophia.
+                                                Vis ea dicant diceret ocurreret."
+                                            </div>
+                                        </div><!-- End box_overlay -->
+                                    </div>
+                                </div>
+                                <div class="item cloned">
+                                    <div>
+                                        <div class="box_overlay">
+                                            <div class="pic">
+                                                <figure>
+                                                    <img src="{{ asset('img/equipe/Albane.jpeg') }}" alt=""
+                                                         class="circle responsive-img">
+                                                </figure>
+                                                <h4>Albane
+                                                    <small>30 Mai 2017</small>
+                                                </h4>
+                                            </div>
+                                            <div class="comment">
+                                                "Mea ad postea meliore fuisset. Timeam repudiare id eum, ex paulo dictas
+                                                elaboraret
+                                                sed,
+                                                mel cu unum nostrud. No nam indoctum accommodare, vix ei discere civibus
+                                                philosophia.
+                                                Vis ea dicant diceret ocurreret."
+                                            </div>
+                                        </div><!-- End box_overlay -->
+                                    </div>
+                                </div>
+                                <div class="item cloned">
+                                    <div>
+                                        <div class="box_overlay">
+                                            <div class="pic">
+                                                <figure>
+                                                    <img src="{{ asset('img/equipe/Emilie.jpeg') }}" alt=""
+                                                         class="circle">
+                                                </figure>
+                                                <h4>Emilie
+                                                    <small>30 Mai 2017</small>
+                                                </h4>
+                                            </div>
+                                            <div class="comment">
+                                                "Mea ad postea meliore fuisset. Timeam repudiare id eum, ex paulo dictas
+                                                elaboraret
+                                                sed,
+                                                mel cu unum nostrud. No nam indoctum accommodare, vix ei discere civibus
+                                                philosophia.
+                                                Vis ea dicant diceret ocurreret."
+                                            </div>
+                                        </div><!-- End box_overlay -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-content">
+                </div>
+            </div>
+
+            <div class="row carouselAgence">
+                <div class="col s12 m10 l10 offset-l1">
+                    <h3 class="white-text section-title">"Lorem ipsum njnanjndajnjznanjanjanj nanoanoanoan odaojdaoij </h3>
+                    <div class="carousel">
+                        <a class="carousel-item" href="#one!"><img src="{{ asset('img/equipe/Fabien.jpeg') }}">
+                            <p>Fabien Durand<br>Fondateur</p>
+                        </a>
+                        <a class="carousel-item" href="#two!"><img src="{{ asset('img/equipe/Emilie.jpeg') }}">
+                            <p>Fabien Durand<br>Fondateur</p></a>
+
+                        <a class="carousel-item" href="#three!"><img src="{{ asset('img/equipe/Charles.jpeg') }}">
+                            <p>Fabien Durand<br>Fondateur</p></a>
+
+                        <a class="carousel-item" href="#four!"><img src="{{ asset('img/equipe/Albane.jpeg') }}">
+                            <p>Fabien Durand<br>Fondateur</p></a>
+
+                        <a class="carousel-item" href="#five!"><img src="{{ asset('img/equipe/Mica.jpeg') }}">
+                            <p>Fabien Durand<br>Fondateur</p></a>
+
+                    </div>
+                </div>
+
+                <!-- Modal Trigger -->
+                <div class="row">
+                    <div class="col s12 center">
+                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
+                           href="#modal1">
+                            <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
+                        </a>
+                    </div>
+                </div>
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal modal-fixed-footer">
+                    <div class="modal-content black-text">
+                       <h2 class="section-title"> Inscrivez-vous !</h2>
+
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="first_name" type="text" class="validate">
+                                        <label for="first_name">Nom </label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="last_name" type="text" class="validate">
+                                        <label for="last_name">Prénom</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="input-field inline">
+                                            <input id="email" type="email" class="validate">
+                                            <label for="email" data-error="wrong" data-success="right">Email</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Je
+                            m'inscris</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col s12 l6">
+                    <h2 class="section-title">L'actualité</h2>
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{ asset('img/lepryve.jpeg') }}">
+                        </div>
+                        <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Titre de l'actualité<i
                                     class="material-icons right">more_vert</i></span>
-                        <p>26.06.2017</p>
-                        <p class="truncate">Iamque lituis cladium concrepantibus internarum non celate ut antea turbidum
-                            saeviebat
-                            ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
-                            sollemniter inquirente nec</p>
-                    </div>
-                    <div class="card-reveal">
+                            <p>26.06.2017</p>
+                            <p class="truncate">Iamque lituis cladium concrepantibus internarum non celate ut antea
+                                turbidum
+                                saeviebat
+                                ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
+                                sollemniter inquirente nec</p>
+                        </div>
+                        <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Titre de l'actualité<i
                                     class="material-icons right">close</i></span>
-                        <p>Iamque lituis cladium concrepantibus internarum non celate ut antea turbidum saeviebat
-                            ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
-                            sollemniter inquirente nec</p>
+                            <p>Iamque lituis cladium concrepantibus internarum non celate ut antea turbidum saeviebat
+                                ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
+                                sollemniter inquirente nec</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col s6">
-                <h1>Nos événements</h1>
-                <div class="card small">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ asset('img/lepryve.jpeg') }}">
-                    </div>
-                    <div class="card-content">
+                <div class="col s12 l6">
+                    <h2 class="section-title">Nos événements</h2>
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{ asset('img/event1.jpeg') }}">
+                        </div>
+                        <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Card Title<i
                                     class="material-icons right">more_vert</i></span>
-                        <p>26.06.2017</p>
-                    </div>
-                    <div class="card-reveal">
+                            <p>26.06.2017</p>
+                        </div>
+                        <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Card Title<i
                                     class="material-icons right">close</i></span>
-                        <p>Iamque lituis cladium concrepantibus internarum non celate ut antea turbidum saeviebat
-                            ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
-                            sollemniter inquirente nec</p>
+                            <p>Iamque lituis cladium concrepantibus internarum non celate ut antea turbidum saeviebat
+                                ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
+                                sollemniter inquirente nec</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     {% endblock %}
 
 
@@ -260,9 +380,12 @@
                 </div>
                 <div class="col l5 offset-l1 s12 footer-right-side">
                     <h5 class="white-text">Contactez-nous</h5>
-                    <p class="p-footer"><span><i class="small material-icons align-icon">phone</i></span>02 38 75 94 47</p>
-                    <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13, rue Bannier 45000 Orléans</p>
-                    <p class="p-footer"><span><i class="small material-icons align-icon">email</i></span><a href="#!">agence@my-orleans.com</a></p>
+                    <p class="p-footer"><span><i class="small material-icons align-icon">phone</i></span>02 38
+                        75 94 47</p>
+                    <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13,
+                        rue Bannier 45000 Orléans</p>
+                    <p class="p-footer"><span><i class="small material-icons align-icon">email</i></span><a
+                                href="#!">agence@my-orleans.com</a></p>
                 </div>
             </div>
         </div>
@@ -286,39 +409,11 @@
 
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript" src="{{ asset("js/carousel-testimonial.js") }}"></script>
+        <script type="text/javascript" src="{{ asset('owlcarousel/owl.carousel.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
 
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-
-
-    <script>
-        $(document).ready(function () {
-            $('.carousel').carousel();
-        });
-
-        $(document).ready(function () {
-            $('select').material_select();
-            $('.modal').modal();
-
-            // Script JS pour l'autocomplétion
-
-            $('input.autocomplete').autocomplete({
-                data: {
-                    "Orleans": null,
-                    "Olivet": null,
-                    "Saint-Jean-de-Braye": null,
-                    "Saint-Jean-de-la-Ruelle": null,
-                    "Saint-Jean-le-Blanc": null,
-                    "Saint-Hilaire-Saint-Mesmin": null,
-
-                },
-                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                onAutocomplete: function (val) {
-                    // Callback function when value is autcompleted.
-                },
-                minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-            });
-        });
-    </script>
-{% endblock %}
+    {% endblock %}
