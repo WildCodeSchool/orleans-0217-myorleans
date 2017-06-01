@@ -3,17 +3,13 @@
 /* -----SCRIPT JS POUR L'INCREMENTATION DES CHIFFRES - PAGE L'AGENCE -----*/
 /* --------------------------------------------------------------------*/
 
-$(document).ready(function() {
-    $('.count').each(function () {
-        $(this).prop('Counter',0).animate({
-            Counter: $(this).text()
-        }, {
-            duration: 4000,
-            easing: 'swing',
-            step: function (now) {
-                $(this).text(Math.ceil(now));
-            }
-        });
+$('.count').each(function () {
+    var $this = $(this);
+    jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+        duration: 4000,
+        easing: 'swing',
+        step: function (i) {
+            $this.text(Math.ceil(i));
+        }
     });
 });
-

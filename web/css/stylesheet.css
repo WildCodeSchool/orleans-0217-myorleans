@@ -687,8 +687,16 @@ FIN ACCUEIL - BLOC AGENCE
     height:500px;
 }
 
+
+
+@media only screen and (max-width:980px) {
+    .countTitle{
+        font-size: 150px;
+    }
+}
+
 .countTitle{
-    font-size: 150px;
+    font-size: 25px;
 }
 
 .countTitle::after {
@@ -815,10 +823,10 @@ transition:color 250ms ease-out;
 }
 
 
-.partenaires{
-    background-color: #f7f7f7;
+.partenaires {
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
-
 .partenaires a img{
     margin: auto;
     max-height: 100%;
