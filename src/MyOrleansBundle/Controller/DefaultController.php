@@ -24,16 +24,7 @@ class DefaultController extends Controller
     {
         return $this->render('MyOrleansBundle::nosbiens.html.twig');
     }
-
-    /*-----      Page bien alternative         -----*/
-
-    /**
-     * @Route("/nos-biens-bis")
-     */
-    public function nosBiensBisAction()
-    {
-        return $this->render('MyOrleansBundle::nosbiens_bis.html.twig');
-    }
+    
 
     /*-----------------------------------------------*/
 
