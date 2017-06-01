@@ -786,10 +786,9 @@ transition:color 250ms ease-out;
 }*/
 
 .socialStaff i{
-    background-color: white;
-    border-radius: 50%;
     font-size: 30px;
     padding: 5px;
+    color:black;
 }
 
 .socialStaff a.mail{
