@@ -10,7 +10,7 @@
 
     <div class="container">
 
-        <h2 class="subtitle fancy"><span>Nos services</span></h2>
+        <h2><span>Nos services</span></h2>
         <!--premier block-->
 
         <div class="row">
@@ -23,7 +23,9 @@
                             an quaedam altiora meditantis iam Galli secreta susceperint scripta,
                             qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                             petit exindeque per protectores retractus artissime tenebatur.</p>
-                        <a href="#">Demander la documentation</a>
+                        <div class="center">
+                            <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la documentation</a>
+                        </div>
                     </div>
                 </div>
 
@@ -133,128 +135,87 @@
                             an quaedam altiora meditantis iam Galli secreta susceperint scripta,
                             qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                             petit exindeque per protectores retractus artissime tenebatur.</p>
-                        <a href="#modal4">Demander la documentation</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--fin deuxième block-->
-
-
-
-
-
-        <!--les packs-->
-        <h2 class="subtitle fancy"><span>Nos packs</span></h2>
-        <div class="">
-            <div class="row">
-                <div class="col m6 s12 l4">
-                    <div class="card">
-                        <div class="card-image">
-                            <div data-aos="flip-left">
-                                <img src="{{ asset('img/pack4.jpg') }}" alt="logo de l'entreprise" />
-
-                                <span class="card-title">Pack Sérénité</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal1"><i class="material-icons">add</i></a>
-                            </div>
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                            </div>
+                        <div class="center">
+                            <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la documentation</a>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="col m6 s12 l4">
-                    <div class="card">
-                        <div class="card-image">
-                            <div data-aos="flip-right">
-                                <img src="{{ asset('img/pack5.jpg') }}" alt="logo de l'entreprise" />
+        <!--fin prenmier container et fin block-->
+    </div>
 
-                                <span class="card-title">Pack Confiance</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal2"><i class="material-icons">add</i></a>                            </div>
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+
+
+<!-- debut container fluid -->
+    <!--les packs-->
+    <div class="bloc-color container-fluid">
+        <div class="row">
+            <div class="col offset-s2 s8">
+                <h2><span>Nos packs</span></h2>
+                <div class="row">
+                    <div class="col m6 s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <div data-aos="flip-left">
+                                    <img src="{{ asset('img/pack4.jpg') }}" alt="logo de l'entreprise" />
+
+                                    <span class="card-title">Pack Sérénité</span>
+                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal1"><i class="material-icons">message</i></a>
+                                </div>
+                                <div class="card-content">
+                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col m6 s12 l4">
-                    <div class="card">
-                        <div class="card-image">
-                            <div data-aos="flip-left">
+                    <div class="col m6 s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <div data-aos="flip-right">
+                                    <img src="{{ asset('img/pack5.jpg') }}" alt="logo de l'entreprise" />
 
-                                <img src="{{ asset('img/pack6.jpg') }}" alt="logo de l'entreprise" />
-
-                                <span class="card-title">Pack VIP</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal3"><i class="material-icons">add</i></a>
-                            </div>
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                    <span class="card-title">Pack Confiance</span>
+                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal2"><i class="material-icons">message</i></a>                            </div>
+                                <div class="card-content">
+                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col m6 s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <div data-aos="flip-left">
+
+                                    <img src="{{ asset('img/pack6.jpg') }}" alt="logo de l'entreprise" />
+
+                                    <span class="card-title">Pack VIP</span>
+                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal3"><i class="material-icons">message</i></a>
+                                </div>
+                                <div class="card-content">
+                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
             </div>
         </div>
 
-        <!--fin packs-->
+    </div>
 
-        <!-- Modal pack A -->
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <h4>Pack Sérénité</h4>
-                <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                    ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                    an quaedam altiora meditantis iam Galli secreta susceperint scripta,</p>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-light btn">Fermer</a>
-            </div>
-        </div>
+    <!--fin packs-->
 
-        <!--fin modal-->
-
-        <!-- Modal pack B -->
-        <div id="modal2" class="modal">
-            <div class="modal-content">
-                <h4>Pack Confiance</h4>
-                <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                    ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                    an quaedam altiora meditantis iam Galli secreta susceperint scripta,</p>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-light btn">Fermer</a>
-            </div>
-        </div>
-
-        <!--fin modal-->
-
-        <!-- Modal pack C -->
-        <div id="modal3" class="modal">
-            <div class="modal-content">
-                <h4>Pack VIP</h4>
-                <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                    ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                    an quaedam altiora meditantis iam Galli secreta susceperint scripta,</p>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-light btn">Fermer</a>
-            </div>
-        </div>
-
-        <!--fin modal-->
-
-
-
-
-        <!--fin troisième block-->
-
+    <!--fin troisième block-->
+    <div class="container">
         <!--quatrième block-->
         <div class="row">
-            <h2 class="subtitle fancy"><span>Nos derniers témoignages</span></h2>
+            <h2><span>Nos derniers témoignages</span></h2>
             <div data-aos="fade-up-right">
                 <div class="col s12 m6 l6">
 
@@ -366,8 +327,8 @@
         </div>
         <!--fin formulaire-->
 
-    </div>
 
+    </div>
 
 
     {% block javascripts %}

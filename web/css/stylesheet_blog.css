@@ -1,0 +1,128 @@
+/*-------------------------------------------------------------*/
+/*-------------       OUTILS PRATIQUES        -----------------*/
+/*-------------------------------------------------------------*/
+
+
+
+/*-------------------------------------------------------------*/
+/*-----------------       GENERAL        ----------------------*/
+/*-------------------------------------------------------------*/
+
+h1 {
+    font-size: 110px;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 40px;
+    margin-top: 0;
+    color: #c6c6c6;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 22px;
+    color: white;
+}
+
+p {
+    font-size:16px;
+}
+
+.header-blog p {
+    padding-top: 30px;
+    font-size: 24px;
+}
+
+.margin-top-container {
+    margin-top: 80px;
+}
+
+/*-------------------------------------------------------------*/
+/*-----------------       NAVBAR        -----------------------*/
+/*-------------------------------------------------------------*/
+
+nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 100px;
+}
+
+nav {
+    background-color: #fbfbfb;
+    padding: 10px 20px;
+}
+
+/*nav .brand-logo {
+    color: #7a7a7a;
+}*/
+
+nav ul a {
+    color: black;
+}
+
+nav .dropdown-button {
+    color: #7a7a7a;
+}
+
+.logo {
+    height: 70px;
+    margin-top: 7px;
+}
+
+/*-------------------------------------------------------------*/
+/*-----------------       HEADER        -----------------------*/
+/*-------------------------------------------------------------*/
+
+
+.header-blog {
+
+}
+
+/*-------------------------------------------------------------*/
+/*------------       BARRE RECHERCHE        -------------------*/
+/*-------------------------------------------------------------*/
+
+.barre-recherche {
+    background-color: #474747;
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
+
+.btn, .btn-large {
+    background-color: #b7d64a;
+ }
+
+.btn:hover, .btn-large:hover, .btn:visited, .btn-large:visited, .btn:focus, .btn-large:focus {
+    background-color: #a5c143;
+}
+
+::-webkit-input-placeholder {
+    color: #b7d64a;
+    opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: black;
+    opacity: 0.3 !important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: black;
+    opacity: 0.3 !important;
+}
+
+:-ms-input-placeholder {
+    color: black;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #a5c143;
+}
+
+.select-wrapper input.select-dropdown {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+

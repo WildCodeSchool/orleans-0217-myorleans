@@ -2,14 +2,15 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}"  media="screen,projection"/>
+    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}" media="screen,projection"/>
 {% endblock %}
 
 {% block content %}
     <div class="content-residence">
         <div class="video-container">
-            <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
-{#            <iframe width="560" height="315" src="https://www.youtube.com/embed/IjwUPnvKezE" frameborder="0" allowfullscreen></iframe>#}
+            <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0"
+                    allowfullscreen></iframe>
+            {#            <iframe width="560" height="315" src="https://www.youtube.com/embed/IjwUPnvKezE" frameborder="0" allowfullscreen></iframe>#}
         </div>
         <div class="container">
             <div class="row">
@@ -20,16 +21,27 @@
                     </div>
                     <div class="col l6 s12">
                         <table class="offre-residence">
-                            <tr> <td><strong>Offre</strong><br/><span class="subtab-residence">2017</span></td>  <td><strong>Prix</strong><br/><span class="subtab-residence">à partir de 90 000 €</span></td> </tr>
-                            <tr> <td><strong>Date de livraison</strong><br/><span class="subtab-residence">1er semèstre 2018</span></td>  <td><strong>Nb. Pièces</strong><br/><span class="subtab-residence">du T1 au T5</span></td> </tr>
+                            <tr>
+                                <td><strong>Offre</strong><br/><span class="subtab-residence">2017</span></td>
+                                <td><strong>Prix</strong><br/><span class="subtab-residence">à partir de 90 000 €</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date de livraison</strong><br/><span class="subtab-residence">1er semèstre 2018</span>
+                                </td>
+                                <td><strong>Nb. Pièces</strong><br/><span class="subtab-residence">du T1 au T5</span>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row center">
                 <div class="col s12">
-                    <img class="notation" src="{{ asset('img/notation.jpg') }}"  alt="notation"/>
+                    <img class="notation" src="{{ asset('img/notation.jpg') }}" alt="notation"/>
                 </div>
+            </div>
+            <div class="row justify">
                 <div class="col l6 s12">
                     <h2>La Residence</h2>
                     <p>
@@ -43,9 +55,11 @@
                 </div>
                 <div class="col l6 s12">
                     <h2>Les Prestations</h2>
-                    <img class="icon-residence" src="{{ asset('img/Wheelchair_Accessible.png') }}"  alt="acces handicape"/>Accessibiité<br/>
-                    <img class="icon-residence" src="{{ asset('img/shopping-cart.png') }}"  alt="commerces"/>Commerces<br/>
-                    <img class="icon-residence" src="{{ asset('img/smoking_not_allowed.png') }}"  alt="non fumeur"/>Non Fumeur<br/>
+                    <img class="icon-residence" src="{{ asset('img/icons/Wheelchair_Accessible.png') }}"
+                         alt="acces handicape"/>Accessibiité<br/>
+                    <img class="icon-residence" src="{{ asset('img/icons/shopping-cart.png') }}" alt="commerces"/>Commerces<br/>
+                    <img class="icon-residence" src="{{ asset('img/icons/smoking_not_allowed.png') }}"
+                         alt="non fumeur"/>Non Fumeur<br/>
                 </div>
             </div>
             <div class="row">
@@ -69,8 +83,8 @@
                     </script>
                 </div>
             </div>
-
-
+        </div>
+        <div class="container-fluid">
             <div class="row">
                 <div class="col s12">
                     <div class="citation-residence">
@@ -83,11 +97,12 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="container">
             <div class="row">
                 <div class="col l12">
                     <h3>Nombre de logements disponibles : 30</h3>
-                    <h3 class="consulter-residence">Consulte nos biens disponibles</h3>
+                    <h3 class="consulter-residence">Consultez nos biens disponibles</h3>
                 </div>
             </div>
             <div class="row">
@@ -298,6 +313,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 

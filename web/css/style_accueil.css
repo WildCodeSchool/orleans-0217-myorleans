@@ -3,6 +3,63 @@ html, body {
     width: 100%;
 }
 
+h1 {
+    font-size: 22px;
+    text-align: center;
+}
+
+h1::after, h3::after {
+    content: "";
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 8px;
+    margin: 20px auto;
+    background-color: #a5ca2a;
+}
+
+h2 {
+    overflow: hidden;
+    text-align: center;
+    color: grey;
+    font-size: 36px;
+}
+
+h2 span {
+    position: relative;
+}
+
+h2 span:before,
+h2 span:after {
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid white;
+    border-top: 5px solid #a5ca2a;
+    width: 400px;
+    height: 7px;
+    top: 50%;
+    margin-top: -4px;
+}
+
+h2 span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+h2 span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+h3 {
+    font-size: 28px;
+    text-align: center;
+}
+
+p {
+  font-size: 16px;
+}
+
 /* --------------------------------------------------------------------*/
 /* ------------------------- NAVBAR -----------------------------------*/
 /* --------------------------------------------------------------------*/
@@ -22,6 +79,7 @@ nav .brand-logo {
 
 nav ul a {
     color: #7a7a7a;
+    font-size: 16px;
 }
 
 /*nav li {
@@ -167,39 +225,6 @@ body {
     z-index: 1000;
 }
 
-.fancy {
-    overflow: hidden;
-    text-align: center;
-    color: grey;
-    font-size: 40px;
-}
-
-.fancy span {
-    position: relative;
-}
-
-.fancy span:before,
-.fancy span:after {
-    content: "";
-    position: absolute;
-    border-bottom: 1px solid white;
-    border-top: 5px solid #a5ca2a;
-    width: 400px;
-    height: 7px;
-    top: 50%;
-    margin-top: -4px;
-}
-
-.fancy span:before {
-    right: 100%;
-    margin-right: 15px;
-}
-
-.fancy span:after {
-    left: 100%;
-    margin-left: 15px;
-}
-
 /* ==========================================================================
 ACCUEIL - EFFET PARALLAX  ========================================================================== */
 
@@ -257,7 +282,6 @@ ACCUEIL - EFFET PARALLAX  ======================================================
  ACCUEIL - BLOC TEMOIGNAGES ========================================================================== */
 
 .h3-testimonial {
-    font-size: 30px;
     color: white;
     margin-bottom: 30px;
     margin-top: 80px;
@@ -410,7 +434,7 @@ ACCUEIL - BLOC AGENCE
 }
 
 .carouselAgence {
-    background-color: #808080;
+    background-color: #f9f9f9;
 }
 
 .carouselAgence .carousel {
@@ -450,7 +474,7 @@ FIN ACCUEIL - BLOC AGENCE
 
 
 .section-title {
-    font-size: 34px;
+    font-size: 28px;
     text-align: center;
 }
 
@@ -478,13 +502,7 @@ FIN ACCUEIL - BLOC AGENCE
 }
 
 .page-footer {
-    /*
-    background-color : #939597;
-    */
-    background-color: black;
-
-    /*    background-image: url('../img/toit_Orleans2-01.svg');
-        background-size: cover;*/
+    background-color: #c8cacc;
 }
 
 .footer-right-side {
@@ -492,7 +510,7 @@ FIN ACCUEIL - BLOC AGENCE
 }
 
 .footer-right-side a {
-    color: lightgrey;
+    color: #444444;
 }
 
 .social-footer {
@@ -502,7 +520,11 @@ FIN ACCUEIL - BLOC AGENCE
 .p-footer {
     color: #444444;
     font-size: 16px;
+}
 
+.p-footer-phone {
+    color: #444444;
+    font-size: 28px;
 }
 
 .align-icon {
@@ -511,12 +533,24 @@ FIN ACCUEIL - BLOC AGENCE
     padding-right: 10px;
 }
 
-.social-button {
-    height: 60px;
-    width: 60px;
+.social-btn {
+    height: 65px;
+    width: 65px;
     border-radius: 50px;
     background-color: white;
     margin: 15px 50px 0 0;
+}
+
+.icon-social {
+    margin-top: 10px;
+    margin-left: 13px;
+    color: #c8cacc;
+}
+
+.fb-social {
+    margin-top: 11px;
+    margin-left: 17px;
+    color: #c8cacc;
 }
 
 /* --------------------------------------------------------------------*/
@@ -524,7 +558,7 @@ FIN ACCUEIL - BLOC AGENCE
 /* --------------------------------------------------------------------*/
 
 .page-footer .footer-copyright {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .ml-padding-right {
@@ -534,5 +568,4 @@ FIN ACCUEIL - BLOC AGENCE
 .row-ml {
     margin-bottom: 0;
 }
-
 
