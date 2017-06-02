@@ -1051,7 +1051,7 @@ transition:color 250ms ease-out;
 }
 
 .footer-right-side a {
-    color: lightgrey;
+    color: #444444;
 }
 
 .social-footer {
@@ -1061,7 +1061,11 @@ transition:color 250ms ease-out;
 .p-footer {
     color: #444444;
     font-size: 16px;
+}
 
+.p-footer-phone {
+    color: #444444;
+    font-size: 28px;
 }
 
 .align-icon {
