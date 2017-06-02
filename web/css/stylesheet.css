@@ -3,7 +3,7 @@ html, body{
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 22px;
     text-align: center;
 }
 
@@ -21,6 +21,9 @@ h2 {
     overflow: hidden;
     text-align: center;
     color: grey;
+    font-size: 36px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 h2 span {
@@ -61,6 +64,10 @@ h4 {
 
 p {
     font-size: 16px;
+}
+
+.bloc-color {
+    background-color: #f9f9f9;
 }
 
 /* --------------------------------------------------------------------*/
@@ -284,6 +291,20 @@ body {
     position:absolute;
     margin-left: 500px;
 }
+.nav-immo-pratique .btn, .btn-large, .btn-flat {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.lien-article {
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    padding: 16px 24px 0 24px;
+}
+
+.lien-article a {
+    color: #b7d64a;
+    font-size: 20px;
+}
 
 
 /* ------------------------------------------------------------------*/
@@ -297,38 +318,6 @@ body {
     width: 100%;
 }
 
-/*.fancy {
-    overflow: hidden;
-    text-align: center;
-    color: grey;
-}
-
-.fancy span {
-    position: relative;
-}
-
-.fancy span:before,
-.fancy span:after {
-    content: "";
-    position: absolute;
-    border-bottom: 1px solid white;
-    border-top: 5px solid #a5ca2a;
-    width: 400px;
-    height: 7px;
-    top: 50%;
-    margin-top: -4px;
-}
-
-.fancy span:before {
-    right: 100%;
-    margin-right: 15px;
-}
-
-.fancy span:after {
-    left: 100%;
-    margin-left: 15px;
-}*/
-
 .packs{
 
     background-color: rgb(68,68,68);
@@ -337,20 +326,11 @@ body {
 .boxi {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
-    margin-top: -10px;
-    padding: 0 10px 10px 10px;
+    padding: 10px 20px 20px 20px;
+    background-color: white;
 }
 
-
-.boxi1 {
-    border-radius: 2px;
-    box-shadow: 1px 1px 10px #c2c2c2;
-    margin-top: -10px;
-    padding: 0 10px 10px 10px;
-    position: absolute;
-}
-
-.barre-recherche{
+.barre-recherche {
     margin-top: 22px;
     position: absolute;
     bottom: 10px;
@@ -387,11 +367,7 @@ body {
     background-color: #b7d64a;
     overflow: hidden;
     border-radius: 5px;
-    /*
-    margin-top: 25px;
-    */
     position: fixed;
-/*    margin-left: 1200px;*/
     top: 140px;
     right: 20px;
     padding: 10px;
