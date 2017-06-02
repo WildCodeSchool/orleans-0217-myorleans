@@ -439,16 +439,28 @@ body {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
     background-color: white;
-/*    margin-top: -10px;*/
-    padding: 0 10px 10px 10px;
+    margin-top: 40px;
+    padding: 10px 10px 10px 30px;
+    margin-left: -400px;
+    width: 600px;
 }
+
 .icon-apt{
     width: 2.5em;
     height: 2.5em;
 }
+
+.photoinfo-apt{
+    padding: 100px;
+}
 /*.photo-apt{
     width: ;
 }*/
+
+.prestations{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 
 /* --------------------------------------------------------------------*/
