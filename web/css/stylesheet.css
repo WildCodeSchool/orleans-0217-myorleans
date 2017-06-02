@@ -281,6 +281,9 @@ body {
 
 /* ---------------------------IMMO PRATIQUE---------------------------------------*/
 
+.img-immo-pratique {
+    max-height: 700px;
+}
 
 .immobilier{
     color: grey;
@@ -304,6 +307,16 @@ body {
 .lien-article a {
     color: #b7d64a;
     font-size: 20px;
+}
+
+.barre-recherche {
+    position: absolute;
+    padding: 0 10px;
+    background-color: white;
+    width: 600px;
+    border-radius: 10px;
+    bottom: 20%;
+    left: 38%;
 }
 
 
@@ -330,22 +343,6 @@ body {
     background-color: white;
 }
 
-.barre-recherche {
-    margin-top: 22px;
-    position: absolute;
-    bottom: 10px;
-    width: 95%;
-    left: 100px;
-
-}
-
-.nav-recherche{
-    border-radius: 25px;
-    width: 50%;
-    margin-left: 400px;
-    margin-top: 500px;
-}
-
 .side-nav{
     background-color: rgba(255, 255, 255, 0.9);
     padding-bottom: 50px;
@@ -353,7 +350,6 @@ body {
 
 .header-image{
     position: relative;
-    margin-top: 22px;
 }
 
 .btn-large{
@@ -713,7 +709,7 @@ FIN ACCUEIL - BLOC AGENCE
 
 
 
-@media only screen and (max-width:980px) {
+/*@media only screen and (max-width:980px) {*/
     .countTitle{
         font-size: 150px;
     }
@@ -730,7 +726,7 @@ FIN ACCUEIL - BLOC AGENCE
     width: 50px;
     height: 8px;
     margin: 20px auto;
-    background-color: #a5ca2a;
+    background-color: #b7d64a;
 }
 .countBlock{
     border-left: 1px solid grey;
@@ -873,7 +869,7 @@ transition:color 250ms ease-out;
 .timeline ol {
     font-size: 0;
     width: 100vw;
-    padding: 250px 0;
+    padding: 400px 0;
     transition: all 1s;
 }
 
@@ -881,9 +877,9 @@ transition:color 250ms ease-out;
     position: relative;
     display: inline-block;
     list-style-type: none;
-    width: 180px;
+    width: 220px;
     height: 3px;
-    background:grey;
+    background: #c8cacc;
 }
 
 .timeline ol li:last-child {
@@ -904,10 +900,12 @@ transition:color 250ms ease-out;
     height: 12px;
     transform: translateY(-50%);
     border-radius: 50%;
-    background: #F45B69;
+    background: #b7d64a;
 }
 
 .timeline ol li div {
+    border-radius: 0 0 2px 2px;
+    background-color: white;
     position: absolute;
     left: calc(100% + 7px);
     width: 280px;
@@ -915,7 +913,7 @@ transition:color 250ms ease-out;
     font-size: 1rem;
     white-space: normal;
     color: black;
-    border: 1px solid black;
+    border: 1px solid #c8cacc;
 }
 
 .timeline ol li div::before {
