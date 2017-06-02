@@ -1,14 +1,7 @@
 my_orleans:
     resource: "@MyOrleansBundle/Controller/"
     type:     annotation
-    prefix:   /site
-
-
-
-blog:
-    resource: "@BlogBundle/Controller/"
-    type:     annotation
-    prefix:   /blog
+    prefix:   /
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
