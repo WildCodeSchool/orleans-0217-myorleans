@@ -298,6 +298,7 @@ body {
     padding: 0 10px 10px 10px;
 }
 
+
 .boxi1 {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
@@ -309,7 +310,7 @@ body {
 .barre-recherche{
     margin-top: 22px;
     position: absolute;
-    bottom: 200px;
+    bottom: 10px;
     width: 95%;
     left: 25px;
 }
@@ -317,6 +318,13 @@ body {
 .nav-recherche{
     border-radius: 25px;
     width: 40%;
+    margin-left: 400px;
+    margin-top: 500px;
+}
+
+.side-nav{
+    background-color: rgba(255, 255, 255, 0.9);
+    padding-bottom: 50px;
 }
 
 .header-image{
@@ -337,7 +345,7 @@ body {
     border-radius: 5px;
     margin-top: 25px;
     position: fixed;
-    margin-left: 1150px;
+    margin-left: 1200px;
     padding: 10px;
 
 }
@@ -348,7 +356,7 @@ body {
 }
 
 #slide-out{
-    border-radius: 25px;
+    border-radius: 15px;
 
 }
 
@@ -679,8 +687,16 @@ FIN ACCUEIL - BLOC AGENCE
     height:500px;
 }
 
+
+
+@media only screen and (max-width:980px) {
+    .countTitle{
+        font-size: 150px;
+    }
+}
+
 .countTitle{
-    font-size: 150px;
+    font-size: 25px;
 }
 
 .countTitle::after {
@@ -807,10 +823,10 @@ transition:color 250ms ease-out;
 }
 
 
-.partenaires{
-    background-color: #f7f7f7;
+.partenaires {
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
-
 .partenaires a img{
     margin: auto;
     max-height: 100%;
@@ -997,6 +1013,16 @@ transition:color 250ms ease-out;
     .timeline .arrows {
         display: none;
     }
+}
+
+
+.fnaimRow div img{
+    width: 40%;
+    height: 30%;
+    display: inline;
+}
+.fnaimRow div img:last-child{
+    margin: auto;
 }
 
 /* --------------------------------------------------------------------*/
