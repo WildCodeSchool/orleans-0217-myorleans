@@ -312,12 +312,13 @@ body {
     position: absolute;
     bottom: 10px;
     width: 95%;
-    left: 25px;
+    left: 100px;
+
 }
 
 .nav-recherche{
     border-radius: 25px;
-    width: 40%;
+    width: 50%;
     margin-left: 400px;
     margin-top: 500px;
 }
@@ -328,7 +329,7 @@ body {
 }
 
 .header-image{
-
+    position: relative;
     margin-top: 22px;
 }
 
@@ -343,9 +344,13 @@ body {
     background-color: #b7d64a;
     overflow: hidden;
     border-radius: 5px;
+    /*
     margin-top: 25px;
+    */
     position: fixed;
-    margin-left: 1200px;
+/*    margin-left: 1200px;*/
+    top: 140px;
+    right: 20px;
     padding: 10px;
 
 }
