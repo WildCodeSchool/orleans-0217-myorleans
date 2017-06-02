@@ -277,6 +277,10 @@ body {
     border-right: solid 1px #e5e5e5;
 }
 
+.undervideo-residence h1 {
+    font-size: 50px;
+}
+
 /* --- Mise en forme des articles du bas e page ---*/
 
 /* ---------------------------IMMO PRATIQUE---------------------------------------*/
