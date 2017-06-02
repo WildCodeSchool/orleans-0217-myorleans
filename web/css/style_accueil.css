@@ -478,13 +478,7 @@ FIN ACCUEIL - BLOC AGENCE
 }
 
 .page-footer {
-    /*
-    background-color : #939597;
-    */
-    background-color: black;
-
-    /*    background-image: url('../img/toit_Orleans2-01.svg');
-        background-size: cover;*/
+    background-color: #c8cacc;
 }
 
 .footer-right-side {
@@ -524,7 +518,7 @@ FIN ACCUEIL - BLOC AGENCE
 /* --------------------------------------------------------------------*/
 
 .page-footer .footer-copyright {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .ml-padding-right {
@@ -534,5 +528,4 @@ FIN ACCUEIL - BLOC AGENCE
 .row-ml {
     margin-bottom: 0;
 }
-
 
