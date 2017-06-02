@@ -15,6 +15,10 @@ nav {
     padding: 10px 20px;
 }
 
+.navbar-nosbiens nav {
+    background-color: rgba(248, 248, 248, 1);
+}
+
 nav .brand-logo {
     color: #7a7a7a;
 }
@@ -44,7 +48,7 @@ body {
 }
 
 .body-container-margin {
-    margin: 50px 20px 0 20px;
+    margin: 23px 20px 0 20px;
 }
 
 .btn, .btn-large {
@@ -56,18 +60,18 @@ body {
 }
 
 ::-webkit-input-placeholder {
-    color: #b7d64a;
+    color: #444444;
     opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
 }
 
 :-moz-placeholder { /* Firefox 18- */
     color: black;
-    opacity: 0.3 !important;
+    opacity: 0.5 !important;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
     color: black;
-    opacity: 0.3 !important;
+    opacity: 0.5 !important;
 }
 
 :-ms-input-placeholder {
@@ -79,7 +83,7 @@ body {
 }
 
 .select-wrapper input.select-dropdown {
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(44, 44, 44, 0.6);
 }
 
 .no-margin-bottom {
@@ -122,18 +126,27 @@ body {
 }
 
 .page-nosbiens .liste-biens h4 {
-    font-size:20px;
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 0;
 }
 
+.page-nosbiens p {
+    font-size: 20px;
+    color: #444444;
+}
+
 .page-nosbiens .proposition-services h4 {
-    font-size:22px;
+    font-size: 22px;
     font-weight: 600;
 }
 
+.liste-biens .card.large {
+    height: 580px;
+}
+
 .card .card-content p {
-    font-size: 16px;
+    font-size: 14px;
     color: #858585;
 }
 
@@ -147,61 +160,40 @@ body {
 }
 
 .moteur-recherche {
+    background-color: white;
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
-    padding: 5px 20px;
+    padding: 5px 10px;
+    position: fixed;
+    width: 98%;
+    z-index: 99999;
 }
 
-.icon-up {
-    margin-top: -60px;
-    background-color: #b7d64a;
+.titre-recherche {
+    margin-bottom: 5px;
+    padding-left: 10px;
 }
 
-
+.carte {
+    margin-top: 15px;
+    /*
+    margin-left: 0;
+    */
+    position: fixed;
+    top: 270px;
+}
 
 #map {
-    width: 100%;
-    height: 370px;
+    width: 75%;
+    height: 570px;
     background-color: white;
     box-shadow: 1px 1px 10px #c2c2c2;
+
 }
 
-.liste-biens .carousel {
-    height: 350px;
+.liste-biens {
+    margin-top: 190px;
 }
-
-.liste-biens .carousel-item {
-    height: 300px;
-    width: 600px;
-}
-
-.card.horizontal {
-    display: flex;
-    width: 600px;
-}
-
-.card.horizontal .card-image {
-    max-width: 65%;
-}
-
-.liste-biens .carousel .indicators {
-    bottom: -15px;
-}
-
-.liste-biens .carousel .indicators .indicator-item {
-    height: 14px;
-    width: 14px;
-    list-style-type: circle;
-    background-color: #b7d64a;
-}
-
-.liste-biens .carousel .indicators .indicator-item.active {
-    height: 14px;
-    width: 14px;
-    list-style-type: circle;
-    background-color: #e0fa87;
-}
-
 
 /*--- Alignemant des informations des residences---*/
 
@@ -796,7 +788,7 @@ transition:color 250ms ease-out;
 .socialStaff i{
     font-size: 30px;
     padding: 5px;
-    color:black;
+    color:white;
 }
 
 .socialStaff a.mail{
@@ -836,6 +828,185 @@ transition:color 250ms ease-out;
 }
 
 
+/**************************   TIMELINE   **************************/
+
+/* TIMELINE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline {
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.timeline ol {
+    font-size: 0;
+    width: 100vw;
+    padding: 250px 0;
+    transition: all 1s;
+}
+
+.timeline ol li {
+    position: relative;
+    display: inline-block;
+    list-style-type: none;
+    width: 180px;
+    height: 3px;
+    background:grey;
+}
+
+.timeline ol li:last-child {
+    width: 280px;
+}
+
+.timeline ol li:not(:first-child) {
+    margin-left: 14px;
+}
+
+.timeline ol li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 1px);
+    bottom: 0;
+    width: 12px;
+    height: 12px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #F45B69;
+}
+
+.timeline ol li div {
+    position: absolute;
+    left: calc(100% + 7px);
+    width: 280px;
+    padding: 15px;
+    font-size: 1rem;
+    white-space: normal;
+    color: black;
+    border: 1px solid black;
+}
+
+.timeline ol li div::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.timeline ol li:nth-child(odd) div {
+    top: -16px;
+    transform: translateY(-100%);
+}
+
+.timeline ol li:nth-child(odd) div::before {
+    top: 100%;
+    border-width: 8px 8px 0 0;
+    border-color: white transparent transparent transparent;
+}
+
+.timeline ol li:nth-child(even) div {
+    top: calc(100% + 16px);
+}
+
+.timeline ol li:nth-child(even) div::before {
+    top: -8px;
+    border-width: 8px 0 0 8px;
+    border-color: transparent transparent transparent white;
+}
+
+.timeline time {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+
+/* TIMELINE ARROWS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline .arrows {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.timeline .arrows .arrow__prev {
+    margin-right: 20px;
+}
+
+.timeline .disabled {
+    opacity: .5;
+}
+
+.timeline .arrows img {
+    width: 45px;
+    height: 45px;
+}
+
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@media screen and (max-width: 599px) {
+    .timeline ol,
+    .timeline ol li {
+        width: auto;
+    }
+
+    .timeline ol {
+        padding: 0;
+        transform: none !important;
+    }
+
+    .timeline ol li {
+        display: block;
+        height: auto;
+        background: transparent;
+    }
+
+    .timeline ol li:first-child {
+        margin-top: 25px;
+    }
+
+    .timeline ol li:not(:first-child) {
+        margin-left: auto;
+    }
+
+    .timeline ol li div {
+        width: 94%;
+        height: auto !important;
+        margin: 0 auto 25px;
+    }
+
+    .timeline ol li div {
+        position: static;
+    }
+
+    .timeline ol li:nth-child(odd) div {
+        transform: none;
+    }
+
+    .timeline ol li:nth-child(odd) div::before,
+    .timeline ol li:nth-child(even) div::before {
+        left: 50%;
+        top: 100%;
+        transform: translateX(-50%);
+        border: none;
+        border-left: 1px solid white;
+        height: 25px;
+    }
+
+    .timeline ol li:last-child,
+    .timeline ol li:nth-last-child(2) div::before,
+    .timeline ol li:not(:last-child)::after,
+    .timeline .arrows {
+        display: none;
+    }
+}
+
 /* --------------------------------------------------------------------*/
 /* ------------------------------ FOOTER ------------------------------*/
 /* --------------------------------------------------------------------*/
@@ -849,13 +1020,7 @@ transition:color 250ms ease-out;
 }
 
 .page-footer {
-    /*
-    background-color : #939597;
-    */
-    background-color: black;
-
-    /*    background-image: url('../img/toit_Orleans2-01.svg');
-        background-size: cover;*/
+    background-color: #c8cacc;
 }
 
 .footer-right-side {
@@ -895,7 +1060,7 @@ transition:color 250ms ease-out;
 /* --------------------------------------------------------------------*/
 
 .page-footer .footer-copyright {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .ml-padding-right {
@@ -907,3 +1072,16 @@ transition:color 250ms ease-out;
 }
 
 
+/* ------------------------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------------- MEDIA QUERIES --------------------------------------------------*/
+/* ------------------------------------------------------------------------------------------------------------------*/
+
+@media screen and (max-width:992px){
+    .moteur-recherche-small-screen {
+        margin-top: 40px;
+    }
+
+    .liste-biens {
+        margin-top: 0;
+    }
+}
