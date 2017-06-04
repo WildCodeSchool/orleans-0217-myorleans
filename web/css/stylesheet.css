@@ -13,6 +13,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
 nav {
     background-color: rgba(248, 248, 248, 0.9);
     padding: 10px 20px;
+    box-shadow: none;
 }
 
 .navbar-nosbiens nav {

@@ -71,6 +71,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
 nav {
     background-color: rgba(248, 248, 248, 0.9);
     padding: 10px 20px;
+    box-shadow: none;
 }
 
 nav .brand-logo {
@@ -160,52 +161,41 @@ body {
 /* --------------------------------------------------------------------*!
 !* ------------------------ ACCUEIL --------------------------*!
 !* --------------------------------------------------------------------*/
-/*#siteWrapper header {
-    position: absolute;
-    top: inherit;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-
-#siteWrapper header.fixed {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-
-}
-
-.cover {
-    background: rgba(0, 0, 0, 0) url("../img/cover2.jpg");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}*/
 
 #GrandeIntro {
     height: 100%;
     background: url("../img/cover2.jpg") no-repeat;
     background-size: cover;
     background-position: center;
+    background-color: rgba(0,0,0,0.7);
+}
 
+.logoIntro img{
+    margin-top: 90px;
+    width: 300px;
+    height: auto;
+    padding-bottom: 50px;
+    border-bottom: 5px solid #a5ca2a;
 }
 
 .pictoParcours{
-    margin-top: 150px;
+    margin-top: 20px;
+    padding-bottom: 20px;
 }
 
 .pictoParcours a i {
-    font-size: 400px;
-    color: grey ;
+    font-size: 250px;
+    color: #C8CACC ;
     -webkit-transition:color 250ms ease-out;
     -moz-transition:color 250ms ease-out;
     transition:color 250ms ease-out;
+    background-color: rgba(255,255,255, .95);
+    padding: 5px;
+    height: 290px;
+    width: 290px;
+    border-radius: 50%;
 }
 .pictoParcours a:hover i {
-    font-size: 400px;
     color: #a5ca2a ;
 }
 
@@ -349,7 +339,7 @@ figure {
 
 .formSearch {
     background-color: rgba(255, 255, 255, 0.9);
-    margin-top: 50px;
+    margin-top: 130px;
     position: relative;
     padding: 15px !important;
 }
@@ -443,34 +433,25 @@ ACCUEIL - BLOC AGENCE
 
 .carouselAgence .carousel a {
     color: white;
-
 }
 
 .carouselAgence .carousel .carousel-item {
-    height: 350px;
-    width: 350px;
-
+    height: 250px;
+    width: 250px;
 }
 
-@media screen and (max-width:767px ){
-    .carouselAgence .carousel {
-        height: 400px;
-    }
-
-    .carouselAgence .carousel .carousel-item {
-        height: 150px;
-        width: 150px;
-    }
-
-    .buttonNewsletter{
-        font-size: 14px;
-    }
+.carousel .carousel-item p{
+    color: #444444;
+    font-size: 16px;
+}
+.carousel .carousel-item p span{
+    color: #a5c143;
+    font-size: 13px;
 }
 
 /* ==========================================================================
 FIN ACCUEIL - BLOC AGENCE
 =======*/
-
 
 
 .section-title {
@@ -486,6 +467,14 @@ FIN ACCUEIL - BLOC AGENCE
     height: 8px;
     margin: 20px auto;
     background-color: #a5ca2a;
+}
+
+
+/* --------------------------------------------------------------------*/
+/* ------------------------------ BLOC ACTU EVENT ---------------------*/
+/* --------------------------------------------------------------------*/
+.card .card-content .card-title i{
+   color: #a5c143;
 }
 
 
@@ -569,3 +558,71 @@ FIN ACCUEIL - BLOC AGENCE
     margin-bottom: 0;
 }
 
+/* --------------------------------------------------------------------*/
+/* ------------------------ MEDIAS QUERIES --------------------------*/
+/* --------------------------------------------------------------------*/
+
+
+@media (max-width: 767px){
+
+    h3 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .logoIntro img{
+        margin-top: 60px;
+        width: 150px;
+        height: auto;
+        padding-bottom: 30px;
+        border-bottom: 5px solid #a5ca2a;
+    }
+
+    .pictoParcours a i {
+        font-size: 100px;
+        height: 110px;
+        width: 110px;
+        border-radius: 50%;
+    }
+
+    .formButton a{
+        font-size: 10px;
+        width: auto;
+    }
+
+    .liste-biens h4 {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+    .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+        color: #b7d64a;
+        font-size: 14px;
+        margin-right: inherit;
+    }
+
+    .buttonNewsletter{
+        font-size: 9px;
+        height: 100%;
+    }
+    .modal-trigger i {
+        font-size: 10px;
+    }
+
+    .carouselAgence .carousel {
+        height: 400px;
+    }
+
+    .carouselAgence .carousel .carousel-item {
+        height: 150px;
+        width: 150px;
+    }
+
+    .carousel .carousel-item p{
+        color: #444444;
+    }
+    .carousel .carousel-item p span{
+        color: #a5c143;
+        font-size: 13px;
+    }
+}
