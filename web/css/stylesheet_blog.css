@@ -70,6 +70,10 @@ p {
     margin-top: 80px;
 }
 
+.titre-grid-articles {
+    margin-bottom: -50px;
+}
+
 /*-------------------------------------------------------------*/
 /*-----------------       NAVBAR        -----------------------*/
 /*-------------------------------------------------------------*/
@@ -166,26 +170,27 @@ nav .dropdown-button {
     float: left;
     width: 600px;
     height: 400px;
-    margin-right: 20px;
+    margin: 0 10px;
 }
 .last {
     margin-right: 0;
 }
+
 .caption {
     background: #000;
-    opacity: 0.7;
+    opacity: 0.6;
     width: 100%;
     box-sizing: border-box;
-    padding: 5%;
+    padding: 2%;
     color: #fff;
-    transition: min-height 1s ease;
     position: absolute;
-    bottom: 0;
-    min-height: 40px;
-
+    bottom: -25%;
+    min-height: 30px;
 }
+
 .box:hover .caption {
     min-height: 100%;
+    bottom: -30%;
 }
 
 
@@ -193,33 +198,35 @@ nav .dropdown-button {
 /*--------------       EFFET GRID FLEX        -----------------*/
 /*-------------------------------------------------------------*/
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.flexgrid {
+.flexrow {
+    display: -webkit-flex;
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: column;
     justify-content: space-around;
-    background-color: #eee;
-
-    .box{
-        text-align: center;
-        transition: .3s;
-        max-width: 20%;
-        padding: 8em 0;
-        background-color: #ccc;
-        min-width: 10%;
-
-        &:hover{
-             transition: .5s;
-             max-width: 40% !important;
-             background: #333;
-             flex-grow: 2;
-             cursor: pointer;
-             color: #fff;
-         }
-    }
 }
+
+.flexcol {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.box {
+    text-align: center;
+    transition: .3s;
+    max-width: 30%;
+    padding: 8em 0;
+    min-width: 10%;
+}
+
+.box:hover{
+     transition: .5s;
+     max-width: 40% !important;
+     flex-grow: 1.5;
+     cursor: pointer;
+}
+
+/*.img-grid-articles {
+    max-height: 450px;
+}*/
