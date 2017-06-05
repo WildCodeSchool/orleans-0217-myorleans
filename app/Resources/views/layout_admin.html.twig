@@ -2,90 +2,88 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link href="{{ asset('assets-admin/css/style_admin.css') }}" rel="stylesheet"/>
     <!-- Bootstrap core CSS     -->
-    <link href="{{ asset('css/admin_css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets-admin/css/bootstrap.min.css') }}" rel="stylesheet"/>
 
     <!--  Material Dashboard CSS    -->
-    <link href="{{ asset('css/admin_css/material-dashboard.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets-admin/css/material-dashboard.css') }}" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{ asset('css/admin_css/demo.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets-admin/css/demo.css') }}" rel="stylesheet"/>
 {% endblock %}
 
-    {% block body %}
-        <div class="container-flui">
-            {% block navbar %}
-            <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
-                <!--
-                    Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
-                    Tip 2: you can also add an image using data-image tag
-                -->
+    {% block body %}
+        <div class="wrapper">
+
+            {% block navbar %}
+            <div class="sidebar" data-image="{{ asset('img/unnamed3.jpg') }}">
 
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
+                    <a href="#" class="simple-text">
+                        <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"
+                             height="80px"/><br>
                     </a>
                 </div>
 
                 <div class="sidebar-wrapper">
-                    <ul class="nav">
+                    <ul class="nav ">
                         <li class="active">
-                            <a href="dashboard.html">
+                            <a href="#">
                                 <i class="material-icons">dashboard</i>
-                                <p>Dashboard</p>
+                                <p>Accueil</p>
                             </a>
                         </li>
                         <li>
-                            <a href="user.html">
-                                <i class="material-icons">person</i>
-                                <p>User Profile</p>
+                            <a href="{{ path("article_index") }}">
+                                <p>Articles</p>
                             </a>
                         </li>
                         <li>
-                            <a href="table.html">
-                                <i class="material-icons">content_paste</i>
-                                <p>Table List</p>
+                            <a href="#">
+                                <p>Événements</p>
                             </a>
                         </li>
                         <li>
-                            <a href="typography.html">
-                                <i class="material-icons">library_books</i>
-                                <p>Typography</p>
+                            <a href="#">
+                                <p>Partenaires</p>
                             </a>
                         </li>
                         <li>
-                            <a href="icons.html">
-                                <i class="material-icons">bubble_chart</i>
+                            <a href="#">
+
                                 <p>Icons</p>
                             </a>
                         </li>
                         <li>
-                            <a href="maps.html">
-                                <i class="material-icons">location_on</i>
+                            <a href="#">
                                 <p>Maps</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="notifications.html">
-                                <i class="material-icons text-gray">notifications</i>
-                                <p>Notifications</p>
-                            </a>
-                        </li>
-                        <li class="active-pro">
-                            <a href="upgrade.html">
-                                <i class="material-icons">unarchive</i>
-                                <p>Upgrade to PRO</p>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-            {% enblock %}
+            <div class="main-panel">
+                <nav class="navbar navbar-transparent navbar-absolute">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
 
-            {% block content %}
+                        </div>
+                    </div>
+                </nav>
+                {% endblock %}
 
-            {% endblock %}
+                {% block content %}
+
+                {% endblock %}
+            </div>
         </div>
     {% endblock %}
 

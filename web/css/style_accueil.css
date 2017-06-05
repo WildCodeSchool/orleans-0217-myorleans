@@ -648,4 +648,29 @@ FIN ACCUEIL - BLOC AGENCE
         color: #a5c143;
         font-size: 13px;
     }
+
+    .social-btn {
+        height: 45px;
+        width: 45px;
+        border-radius: 50px;
+        margin: 15px 50px 0 0;
+    }
+
+    .social-btn{
+        font-size: 12px;
+    }
+
+    .icon-social {
+        margin-top: 4px;
+        margin-left: 8px;
+    }
+
+    .fb-social {
+        margin-top: 6px;
+        margin-left: 11px;
+    }
+
+    .footer-copyright p{
+        font-size: 12px;
+    }
 }
