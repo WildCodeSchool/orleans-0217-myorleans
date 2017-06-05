@@ -53,7 +53,7 @@ h3 span:after {
 }
 
 h4 {
-    font-size: 22px;
+    font-size: 28px;
     color: #86a911;
 }
 
@@ -61,17 +61,65 @@ p {
     font-size:16px;
 }
 
+a {
+    color: #86a911;
+    font-size: 16px;
+}
+
 .header-blog p {
     padding-top: 30px;
     font-size: 24px;
 }
 
+/*----------------------------------------------------*/
+
+
+.article-blog h1 {
+    color: #444444;
+    font-size: 40px;
+}
+
+.article-blog h2 {
+    color: #444444;
+    font-size: 28px;
+}
+
+.article-blog h3 {
+    font-size: 22px;
+}
+
+.article-blog p {
+    text-align: justify;
+}
+
+/*----------------------------------------------------*/
+
 .margin-top-container {
     margin-top: 80px;
 }
 
+.margin-top-container-article {
+    margin-top: 40px;
+}
+
 .titre-grid-articles {
     margin-bottom: -50px;
+}
+
+.lien-article {
+    margin-top: 15px;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
+}
+
+.separe {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(85, 126, 2, 0.75), rgba(0, 0, 0, 0));
+    border: 0 none;
+    color: #557e02;
+    height: 1px;
+    margin: 40px 0;
 }
 
 /*-------------------------------------------------------------*/
@@ -118,9 +166,6 @@ nav .dropdown-button {
 /*-------------------------------------------------------------*/
 
 .barre-recherche {
-    /*
-    background-color: #474747;
-    */
     background-color: #eeffb2;
     padding-top: 50px;
     padding-bottom: 60px;
@@ -184,8 +229,7 @@ nav .dropdown-button {
 }
 
 .caption {
-    background: #000;
-    opacity: 0.6;
+    background: rgba(0, 0, 0, 0.6);
     width: 100%;
     box-sizing: border-box;
     padding: 2%;
@@ -313,6 +357,36 @@ nav .dropdown-button {
     margin-bottom: 0;
 }
 
+/* --------------------------------------------------------------------*/
+/* ------------------------   PAGE ARTICLE  --------------------------*/
+/* --------------------------------------------------------------------*/
+
+.barre-recherche-article {
+    background-color: #ffffff;
+    padding: 20px 0 0 0;
+    margin-bottom: 0;
+}
+
+.titre-article {
+    padding-top: 30px;
+}
+
+.img-article {
+    width: 100%;
+    margin-top: 0;
+}
+
+.img-corps-article {
+    float: right;
+    width: 500px;
+    margin: 0 0 0 20px;
+}
+
+.tags {
+}
+
+
+
 
 /* --------------------------------------------------------------------*/
 /* ------------------------   MEDIA QUERIES  --------------------------*/
@@ -333,8 +407,7 @@ nav .dropdown-button {
     }
 
     .caption {
-        background: #000;
-        opacity: 0.6;
+        background: rgba(0, 0, 0, 0.6);
         width: 100%;
         box-sizing: border-box;
         padding: 2%;
