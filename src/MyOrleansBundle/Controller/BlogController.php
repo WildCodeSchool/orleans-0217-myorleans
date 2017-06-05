@@ -24,4 +24,13 @@ class BlogController extends Controller
         return $this->render('MyOrleansBundle:blog:blog_home.html.twig');
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/blog/article", name="")
+     */
+    public function afficherArticleAction()
+    {
+        return $this->render('MyOrleansBundle:blog:blog_article.html.twig');
+    }
+
 }
