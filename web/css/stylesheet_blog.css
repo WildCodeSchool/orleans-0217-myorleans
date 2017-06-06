@@ -86,6 +86,13 @@ a {
 
 .article-blog h3 {
     font-size: 22px;
+    text-align: left;
+}
+
+.article-blog h4 {
+    font-size: 18px;
+    color: black;
+    text-align: left;
 }
 
 .article-blog p {
@@ -275,6 +282,80 @@ nav .dropdown-button {
 .final-row-grid {
     margin-bottom: 170px;
 }
+
+
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ CONTENU SUGGERE ---------------------------*/
+/* --------------------------------------------------------------------*/
+
+
+/*---     Modification padding card content     ---*/
+
+
+/*--- Alignemant des informations des residences---*/
+
+.row .annee-nbPiece h4 {
+    margin-top: -1px;
+}
+
+.suggestion-contenu .card .card-content {
+    padding: 5px 20px;
+}
+
+.row .grille-infos {
+    margin-bottom: 0;
+}
+
+.row .nom-residence {
+    padding-bottom: 10px;
+}
+
+.col .annee-residence {
+    padding-left: 2px;
+}
+
+.col .left-content {
+    padding-left: 20px;
+}
+
+
+/*--- Creation des lignes entre les informations des residences ---*/
+
+.nom-residence {
+    border-bottom: solid 1px #e5e5e5;
+}
+
+.annee-residence, .grille-gauche {
+    border-right: solid 1px #e5e5e5;
+}
+
+
+/*!*--- Ajustement de l'effet rollover pour le contenu suggere ---*!
+
+.box-article {
+    position: relative;
+    text-align: center;
+    !*
+    width: 500px;
+    *!
+}
+
+.box-article .caption {
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2%;
+    color: #fff;
+    position: absolute;
+    bottom: 2%;
+    min-height: 30px;
+}
+
+.box-article:hover .caption {
+    min-height: 99%;
+    bottom: 2%;
+}*/
 
 
 /* --------------------------------------------------------------------*/
