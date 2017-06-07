@@ -5,12 +5,12 @@
 <!--premier slide-->
 
     <div class="breadcrumb">
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
+        <a href="#" data-activates="slide-out" class="button-collapse pulse"><i class="material-icons">message</i></a>
     </div>
 
     <div class="container">
 
-        <h2><span>Nos services</span></h2>
+        <h2 class="subtitle fancy"><span>Nos services</span></h2>
         <!--premier block-->
 
         <div class="row">
@@ -24,7 +24,7 @@
                             qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                             petit exindeque per protectores retractus artissime tenebatur.</p>
                         <div class="center">
-                            <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la documentation</a>
+                            <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light btn"><i class="material-icons">message</i> Demander la documentation</a>
                         </div>
                     </div>
                 </div>
@@ -41,72 +41,6 @@
         </div>
 
         <!--fin premier block-->
-
-
-        <!--formulaire de contact-->
-
-        <ul id="slide-out" class="side-nav">
-            <li><div class="userView">
-                    <h3 align="center">Contactez nous !</h3>
-                    <div class="row">
-
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name">Nom</label>
-                        </div>
-
-                        <div class="input-field col s6">
-
-                            <input id="last_name" type="text" class="validate">
-                            <label for="first_name">Prénom</label>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">phone</i>
-                                <input id="icon_telephone" type="tel" class="validate">
-                                <label for="icon_telephone">Téléphone</label>
-                            </div>
-                            <form class="col s6">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="material-icons prefix">email</i>
-                                        <input id="email" type="email" class="validate">
-                                        <label for="email" data-error="wrong" data-success="right">Email</label>
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">error</i>
-                                <select>
-                                    <option value="" disabled selected>Objet?</option>
-                                    <option value="1">Gestion locative</option>
-                                    <option value="2">Vente</option>
-                                    <option value="3">Pack services</option>
-                                    <option value="4">Autres</option>
-                                </select>
-
-                            </div>
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <i class="material-icons prefix">mode_edit</i>
-                                            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                            <label for="icon_prefix2">Votre message</label>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row">
-                                <div class="col s12">
-                                    <button class="btn waves-effect waves-light btn-large center-align" type="submit" name="action">Envoyer
-                                        <i class="material-icons right">send</i>
-                                    </button>
-                                </div>
-                            </div>
-        </ul>
-
 
 
 
@@ -136,7 +70,7 @@
                             qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
                             petit exindeque per protectores retractus artissime tenebatur.</p>
                         <div class="center">
-                            <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la documentation</a>
+                            <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light btn"><i class="material-icons">message</i> Demander la documentation</a>
                         </div>
                     </div>
                 </div>
@@ -153,7 +87,7 @@
     <div class="bloc-color container-fluid">
         <div class="row">
             <div class="col offset-s2 s8">
-                <h2><span>Nos packs</span></h2>
+                <h2 class="subtitle fancy"><span>Nos packs</span></h2>
                 <div class="row">
                     <div class="col m6 s12 l4">
                         <div class="card">
@@ -162,7 +96,7 @@
                                     <img src="{{ asset('img/pack4.jpg') }}" alt="logo de l'entreprise" />
 
                                     <span class="card-title">Pack Sérénité</span>
-                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal1"><i class="material-icons">message</i></a>
+                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green button-collapse" data-activates="slide-out" href="#"><i class="material-icons">message</i></a>
                                 </div>
                                 <div class="card-content">
                                     <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
@@ -178,7 +112,7 @@
                                     <img src="{{ asset('img/pack5.jpg') }}" alt="logo de l'entreprise" />
 
                                     <span class="card-title">Pack Confiance</span>
-                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal2"><i class="material-icons">message</i></a>                            </div>
+                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green button-collapse" data-activates="slide-out" href="#"><i class="material-icons">message</i></a>                            </div>
                                 <div class="card-content">
                                     <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
                                 </div>
@@ -194,7 +128,7 @@
                                     <img src="{{ asset('img/pack6.jpg') }}" alt="logo de l'entreprise" />
 
                                     <span class="card-title">Pack VIP</span>
-                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green" href="#modal3"><i class="material-icons">message</i></a>
+                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green button-collapse" data-activates="slide-out" href="#"><i class="material-icons">message</i></a>
                                 </div>
                                 <div class="card-content">
                                     <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
@@ -215,7 +149,7 @@
     <div class="container">
         <!--quatrième block-->
         <div class="row">
-            <h2><span>Nos derniers témoignages</span></h2>
+            <h2 class="subtitle fancy"><span>Nos derniers témoignages</span></h2>
             <div data-aos="fade-up-right">
                 <div class="col s12 m6 l6">
 
@@ -258,47 +192,52 @@
         </div>
 
         <!-- Formulaire -->
-        <div id="modal4" class="modal bottom-sheet">
-            <div class="modal-content">
+
+        <!--fin formulaire-->
+
+
+    </div>
+
+    <ul id="slide-out" class="side-nav">
+        <li><div class="userView">
+                <h3 align="center">Contactez nous !</h3>
+                <h4 align="center">02 38 75 94 47</h4>
                 <div class="row">
-                    <form class="col s12">
-                        <div class="row">
 
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="last_name" type="text" class="validate">
-                                <label for="last_name">Nom</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="last_name" type="text" class="validate">
-                                <label for="first_name">Prénom</label>
-                            </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Nom</label>
+                    </div>
 
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">phone</i>
-                                <input id="icon_telephone" type="tel" class="validate">
-                                <label for="icon_telephone">Téléphone</label>
-                            </div>
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <i class="material-icons prefix">email</i>
-                                        <input id="email" type="email" class="validate">
-                                        <label for="email" data-error="wrong" data-success="right">Email</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="input-field col s6">
+
+                        <input id="last_name" type="text" class="validate">
+                        <label for="first_name">Prénom</label>
+                    </div>
+                    <div class="row">
                         <div class="input-field col s6">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="icon_telephone" type="tel" class="validate">
+                            <label for="icon_telephone">Téléphone</label>
+                        </div>
+                        <form class="col s6">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">email</i>
+                                    <input id="email" type="email" class="validate">
+                                    <label for="email" data-error="wrong" data-success="right">Email</label>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="input-field col s12">
                             <i class="material-icons prefix">error</i>
                             <select>
-                                <option value="" disabled selected>Quel est l'objet du message?</option>
+                                <option value="" disabled selected>Objet?</option>
                                 <option value="1">Gestion locative</option>
                                 <option value="2">Vente</option>
-                                <option value="3">Autres</option>
+                                <option value="3">Pack services</option>
+                                <option value="4">Autres</option>
                             </select>
 
                         </div>
@@ -320,15 +259,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-        <!--fin formulaire-->
-
-
-    </div>
+    </ul>
 
 
     {% block javascripts %}
@@ -341,20 +272,14 @@
                     edge: 'right', // Choose the horizontal origin
                     menuWidth: 600,
                     draggable: true, // Choose whether you can drag to open on touch screens
+                    closeOnClick: true
                 }
+
+
+
             );
-            $('.modal').modal({
-                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-                    opacity: .5, // Opacity of modal background
-                    inDuration: 300, // Transition in duration
-                    outDuration: 200, // Transition out duration
-                    startingTop: '4%', // Starting top style attribute
-                    endingTop: '10%', // Ending top style attribute
-                    ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-                        console.log(modal, trigger);
-                    },
-                }
-            );
+
         </script>
     {% endblock %}
 {% endblock %}
+
