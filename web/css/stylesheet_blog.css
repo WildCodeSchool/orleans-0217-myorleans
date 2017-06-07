@@ -11,18 +11,19 @@
 h1 {
     font-size: 40px;
     margin-top: 0;
-    color: #c6c6c6;
+    margin-bottom: 50px;
 }
 
 h2 {
     font-size: 110px;
     margin-bottom: 0;
+    margin-top: 120px;
 }
 
 h3 {
     overflow: hidden;
     text-align: center;
-    color: #86a911;
+    color: #EF562D;
     font-size: 36px;
     padding-top: 30px;
     padding-bottom: 30px;
@@ -36,7 +37,7 @@ h3 span:before,
 h3 span:after {
     content: "";
     position: absolute;
-    border-top: 3px solid #444444;
+    border-top: 2px solid #bebebe;
     width: 400px;
     height: 7px;
     top: 50%;
@@ -54,7 +55,7 @@ h3 span:after {
 
 h4 {
     font-size: 28px;
-    color: #86a911;
+    color: #444444;
 }
 
 p {
@@ -62,7 +63,7 @@ p {
 }
 
 a {
-    color: #86a911;
+    color: #EF562D;
     font-size: 16px;
 }
 
@@ -71,21 +72,25 @@ a {
     font-size: 24px;
 }
 
+.card.large {
+    height: 410px;
+}
+
 /*----------------------------------------------------*/
 
 
 .article-blog h1 {
-    color: #444444;
     font-size: 40px;
+    margin-bottom: 20px;
 }
 
 .article-blog h2 {
-    color: #444444;
     font-size: 28px;
+    margin: 10px 0;
 }
 
-.article-blog h3 {
-    font-size: 22px;
+.article-blog h3, .suggestion-contenu h3 {
+    font-size: 24px;
     text-align: left;
 }
 
@@ -93,6 +98,7 @@ a {
     font-size: 18px;
     color: black;
     text-align: left;
+
 }
 
 .article-blog p {
@@ -102,15 +108,11 @@ a {
 /*----------------------------------------------------*/
 
 .margin-top-container {
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 .margin-top-container-article {
     margin-top: 40px;
-}
-
-.titre-grid-articles {
-    margin-bottom: -50px;
 }
 
 .lien-article {
@@ -122,9 +124,9 @@ a {
 }
 
 .separe {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(85, 126, 2, 0.75), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(239, 86, 45, 0.75), rgba(0, 0, 0, 0));
     border: 0 none;
-    color: #557e02;
+    color: #ef562d;
     height: 1px;
     margin: 40px 0;
 }
@@ -138,7 +140,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
 }
 
 nav {
-    background-color: #fbfbfb;
+    background-color: #ffffff;
     padding: 10px 20px;
 }
 
@@ -147,7 +149,13 @@ nav {
 }*/
 
 nav ul a {
-    color: black;
+    font-size: 20px;
+    color: #444444;
+}
+
+nav ul a:hover, nav ul a:active {
+    border-bottom: solid 5px #EF562D;
+    background-color: white;
 }
 
 nav .dropdown-button {
@@ -165,7 +173,19 @@ nav .dropdown-button {
 
 
 .header-blog {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .4);
+    color: #ffffff;
+}
 
+.parallax-container {
+    height: 600px;
+    position: relative;
 }
 
 /*-------------------------------------------------------------*/
@@ -173,51 +193,44 @@ nav .dropdown-button {
 /*-------------------------------------------------------------*/
 
 .barre-recherche {
-    background-color: #eeffb2;
-    padding-top: 50px;
-    padding-bottom: 60px;
+    padding: 5px 0;
 }
 
 .btn, .btn-large {
-    /*
-    background-color: #b7d64a;
-    */
     background-color: white;
-    color: #86a911;
+    color: #EF562D;
  }
 
 .btn:hover, .btn-large:hover, .btn:visited, .btn-large:visited, .btn:focus, .btn-large:focus {
-    /*
-    background-color: #b7d64a;
-    */
-    background-color: #86a911;
+    color: #EF562D;
+    background-color: white;
 }
 
 ::-webkit-input-placeholder {
-    color: #86a911;
+    color: #EF562D;
     opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
 }
 
 :-moz-placeholder { /* Firefox 18- */
-    color: black;
+    color: #EF562D;
     opacity: 0.3 !important;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-    color: black;
+    color: #EF562D;
     opacity: 0.3 !important;
 }
 
 :-ms-input-placeholder {
-    color: black;
+    color: #EF562D;
 }
 
 .dropdown-content li > a, .dropdown-content li > span {
-    color: #86a911;
+    color: #444444;
 }
 
 .select-wrapper input.select-dropdown {
-    color: #86a911;
+    color: #EF562D;
 }
 
 
@@ -226,29 +239,71 @@ nav .dropdown-button {
 /*------------       SLIDE OVER EFFECT        -----------------*/
 /*-------------------------------------------------------------*/
 
-
-.box {
+.blockArticle{
     position: relative;
-    float: left;
-    width: 600px;
-    height: 400px;
-    margin: 0 10px;
+    overflow: hidden;
+    margin: 0 0 10px 0;
 }
 
-.caption {
-    background: rgba(0, 0, 0, 0.6);
+
+.blockArticle .imgArticle img{
+    display: block;
     width: 100%;
-    box-sizing: border-box;
-    padding: 2%;
-    color: #fff;
-    position: absolute;
-    bottom: -9%;
-    min-height: 30px;
+    opacity: 1;
+    filter: grayscale(0%);
+    -webkit-transition:color 250ms ease-out;
+    -moz-transition:color 250ms ease-out;
+    transition:color 250ms ease-out;
 }
 
-.box:hover .caption {
-    min-height: 98%;
-    bottom: -27%;
+.blockArticle:hover .imgArticle img{
+    display: block;
+    opacity: 0.75;
+    filter: grayscale(100%);
+}
+
+.blockArticle .titreArticle{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: .5em;
+    background: #000;
+    background: rgba(0, 0, 0, .5);
+    color: #fff;
+    opacity: 1;
+}
+
+.blockArticle:hover .titreArticle {
+    opacity: 0;
+}
+
+.blockArticle .infoArticle{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: .5em;
+    background: #000;
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+    opacity: 0;
+}
+
+.blockArticle:hover .infoArticle {
+    opacity: 1;
+    transition: all 0.15s ease 0s;
+}
+
+.infoArticle h4::after {
+    content: "";
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 8px;
+    margin: 20px auto;
+    background-color: #EF562D;
 }
 
 
@@ -256,10 +311,9 @@ nav .dropdown-button {
 /*--------------       EFFET GRID FLEX        -----------------*/
 /*-------------------------------------------------------------*/
 
-.flexcol {
-    display: -webkit-flex;
+/*.flexcol {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
 }
@@ -274,14 +328,14 @@ nav .dropdown-button {
 
 .flexbox:hover{
      transition: .3s;
-     max-width: 40% !important;
+     max-width: 40%;
      flex-grow: 1.5;
      cursor: pointer;
 }
 
 .final-row-grid {
     margin-bottom: 170px;
-}
+}*/
 
 
 
@@ -290,33 +344,26 @@ nav .dropdown-button {
 /* --------------------------------------------------------------------*/
 
 
-/*---     Modification padding card content     ---*/
-
 
 /*--- Alignemant des informations des residences---*/
-
-.row .annee-nbPiece h4 {
-    margin-top: -1px;
-}
 
 .suggestion-contenu .card .card-content {
     padding: 5px 20px;
 }
 
-.row .grille-infos {
-    margin-bottom: 0;
+
+.suggestion-contenu .card .card-content h4 {
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.row .nom-residence {
-    padding-bottom: 10px;
+.suggestion-contenu .card .card-content p {
+    font-size: 16px;
 }
 
-.col .annee-residence {
-    padding-left: 2px;
-}
-
-.col .left-content {
+.col.right-content {
     padding-left: 20px;
+    border-left: solid 1px #fefefe;
 }
 
 
@@ -330,32 +377,6 @@ nav .dropdown-button {
     border-right: solid 1px #e5e5e5;
 }
 
-
-/*!*--- Ajustement de l'effet rollover pour le contenu suggere ---*!
-
-.box-article {
-    position: relative;
-    text-align: center;
-    !*
-    width: 500px;
-    *!
-}
-
-.box-article .caption {
-    background: rgba(0, 0, 0, 0.6);
-    width: 100%;
-    box-sizing: border-box;
-    padding: 2%;
-    color: #fff;
-    position: absolute;
-    bottom: 2%;
-    min-height: 30px;
-}
-
-.box-article:hover .caption {
-    min-height: 99%;
-    bottom: 2%;
-}*/
 
 
 /* --------------------------------------------------------------------*/
@@ -371,7 +392,7 @@ nav .dropdown-button {
 }
 
 .page-footer {
-    background-color: #a5ca2a;
+    background-color: #ee491d;
 }
 
 .footer-right-side {
@@ -379,7 +400,7 @@ nav .dropdown-button {
 }
 
 .footer-right-side a {
-    color: #444444;
+    color: #ffffff;
 }
 
 .social-footer {
@@ -387,12 +408,12 @@ nav .dropdown-button {
 }
 
 .p-footer {
-    color: #444444;
+    color: #ffffff;
     font-size: 16px;
 }
 
 .p-footer-phone {
-    color: #444444;
+    color: #ffffff;
     font-size: 28px;
 }
 
@@ -413,13 +434,19 @@ nav .dropdown-button {
 .icon-social {
     margin-top: 10px;
     margin-left: 13px;
-    color: #b7d64a;
+    /*
+    color: rgba(239, 86, 45, .6);
+    */
+    color: #ee491d;
 }
 
 .fb-social {
     margin-top: 11px;
     margin-left: 17px;
-    color: #b7d64a;
+    /*
+    color: rgba(239, 86, 45, .6);
+    */
+    color: #ee491d;
 }
 
 /* --------------------------------------------------------------------*/
@@ -460,7 +487,11 @@ nav .dropdown-button {
 .img-corps-article {
     float: right;
     width: 500px;
-    margin: 0 0 0 20px;
+    margin: 20px;
+}
+
+.text-suggestion-article {
+    padding-bottom: 15px;
 }
 
 .tags {
@@ -473,33 +504,3 @@ nav .dropdown-button {
 /* ------------------------   MEDIA QUERIES  --------------------------*/
 /* --------------------------------------------------------------------*/
 
-@media screen and (max-width: 992px) {
-
-    .titre-grid-articles {
-        margin-bottom: 0;
-    }
-
-    .box {
-        position: relative;
-        float: left;
-        max-width: 420px;
-        max-height: none;
-        margin: 0;
-    }
-
-    .caption {
-        background: rgba(0, 0, 0, 0.6);
-        width: 100%;
-        box-sizing: border-box;
-        padding: 2%;
-        color: #fff;
-        position: absolute;
-        bottom: 17%;
-        min-height: 30px;
-    }
-
-    .box:hover .caption {
-        min-height: 84%;
-        bottom: 17%;
-    }
-}

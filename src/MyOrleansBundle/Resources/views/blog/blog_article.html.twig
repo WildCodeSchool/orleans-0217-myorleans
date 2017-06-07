@@ -6,6 +6,7 @@
 <div class="container-fluid margin-top-container-article">
 
     <div class="row barre-recherche-article">
+
         <div class="col s6 offset-m3 m3">
             <div class="input-field col s12 center">
                 <select>
@@ -19,6 +20,29 @@
         <div class="col s6 m3 center">
             <a class="waves-effect waves-light btn-large btn-newsletter"><i class="material-icons left">mode_edit</i>je m'abonne à la newsletter</a>
         </div>
+
+        {#<ul class="collapsible popout" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">filter_drama</i>Rechercher un thème</div>
+                <div class="collapsible-body">
+                    <span>
+                        <div class="col s6 offset-m3 m3">
+                            <div class="input-field col s12 center">
+                                <select>
+                                    <option value="" disabled selected>Thèmes</option>
+                                    <option value="1">Loi Pinel</option>
+                                    <option value="2">Défiscalisation</option>
+                                    <option value="3">Premier achat</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col s6 m3 center">
+                            <a class="waves-effect waves-light btn-large btn-newsletter"><i class="material-icons left">mode_edit</i>je m'abonne à la newsletter</a>
+                        </div>
+                    </span>
+                </div>
+            </li>
+        </ul>#}
     </div>
 
     <div class="row no-margin-bottom">
@@ -33,11 +57,9 @@
                 <span class="tags">
                    <div class="chip">
                         Loi Pinel
-                        <i class="close material-icons">close</i>
                     </div>
                     <div class="chip">
                         Investissement
-                        <i class="close material-icons">close</i>
                     </div>
                 </span>
             </h1>
@@ -56,14 +78,12 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
                 illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
                 odit officiis quisquam repellat!
-                <br/>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
                 illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
                 odit officiis quisquam repellat!
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
                 illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
                 odit officiis quisquam repellat!
-                <br/>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
                 illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
                 odit officiis quisquam repellat!
@@ -80,14 +100,12 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
                 illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
                 odit officiis quisquam repellat!
-                <br/>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
                 illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
                 odit officiis quisquam repellat!
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
                 illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
                 odit officiis quisquam repellat!
-                <br/>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
                 illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
                 odit officiis quisquam repellat!
@@ -99,6 +117,10 @@
 
         <hr class="separe">
 
+    </div>
+
+    <div class="container-fluid">
+
         <div class="row suggestion-contenu">
             <div class="col s12 l4">
                 <h3>L'opportunité du moment</h3>
@@ -107,32 +129,14 @@
                         <img src="{{ asset('img/res_dunois.jpg') }}">
                     </div>
                     <div class="card-content">
-                        <div class="row grille-infos">
-                            <div class="col s8 grille-gauche">
-                                <div class="row nom-residence">
-                                    <h4>Nom Résidence</h4>
-                                    <p>My Park</p>
-                                </div>
-                                <div class="row annee-nbPiece">
-                                    <div class="col s6 annee-residence">
-                                        <h4>Année</h4>
-                                        <p>4è trim 2017</p>
-                                    </div>
-                                    <div class="col s6">
-                                        <h4>Nb. pièces</h4>
-                                        <p>Du T1 au T5</p>
-                                    </div>
-                                </div>
+                        <div class="row no-margin-bottom">
+                            <div class="col s8">
+                                <h4>Nom Résidence</h4>
+                                <p>My Park</p>
                             </div>
-                            <div class="col s4 left-content">
-                                <div class="row">
-                                    <h4>Prix</h4>
-                                    <p>Dès 90 000€</p>
-                                </div>
-                                <div class="row">
-                                    <h4>Disponibilité</h4>
-                                    <p>5 logements</p>
-                                </div>
+                            <div class="col s4 right-content">
+                                <h4>Prix</h4>
+                                <p>Dès 90 000€</p>
                             </div>
                         </div>
                     </div>
@@ -143,58 +147,67 @@
             </div>
 
             <div class="col s12 l4">
-                <h3>Sur le même sujet</h3>
-                <div class="card large">
-                    <div class="card-image">
-                        <img src="{{ asset('img/blog/blog12.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <h4>Titre article</h4>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                        <div class="chip">
-                            Loi Pinel
-                            <i class="close material-icons">close</i>
+                <div class="suggestion-article">
+                    <h3>Sur le même sujet</h3>
+                    <div class="blockArticle center">
+                        <div class="imgArticle">
+                            <img class="responsive-img" src="{{ asset('img/blog/blog16.jpg') }}" alt="">
                         </div>
-                        <div class="chip">
-                            Investissement
-                            <i class="close material-icons">close</i>
+                        <div class="titreArticle">
+                            <h4 class="white-text">Titre article</h4>
                         </div>
-                    </div>
-                    <div class="card-action center">
-                        <a href="#">Lire l'article</a>
+                        <div class="infoArticle">
+                            <h4 class="white-text">Titre article</h4>
+                            <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                            <div class="chip">
+                                Loi Pinel
+                                <i class="close material-icons">close</i>
+                            </div>
+                            <div class="chip">
+                                Investissement
+                                <i class="close material-icons">close</i>
+                            </div>
+                            <div class="row lien-article">
+                                <a href="#">LIRE L'ARTICLE</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col s12 l4">
-                <h3 class="white-text">Sur le même sujet</h3>
-                <div class="card large">
-                    <div class="card-image">
-                        <img src="{{ asset('img/blog/blog13.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <h4>Titre article</h4>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                        <div class="chip">
-                            Loi Pinel
-                            <i class="close material-icons">close</i>
+                <div class="suggestion-article">
+                    <h3 class="white-text">Sur le même sujet</h3>
+                    <div class="blockArticle center">
+                        <div class="imgArticle">
+                            <img class="responsive-img" src="{{ asset('img/blog/blog17.jpg') }}" alt="">
                         </div>
-                        <div class="chip">
-                            Investissement
-                            <i class="close material-icons">close</i>
+                        <div class="titreArticle">
+                            <h4 class="white-text">Titre article</h4>
                         </div>
-                    </div>
-                    <div class="card-action center">
-                        <a href="#">Lire l'article</a>
+                        <div class="infoArticle">
+                            <h4 class="white-text">Titre article</h4>
+                            <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                            <div class="chip">
+                                Loi Pinel
+                                <i class="close material-icons">close</i>
+                            </div>
+                            <div class="chip">
+                                Investissement
+                                <i class="close material-icons">close</i>
+                            </div>
+                            <div class="row lien-article">
+                                <a href="#">LIRE L'ARTICLE</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-
-
-
 
 </div>
 
