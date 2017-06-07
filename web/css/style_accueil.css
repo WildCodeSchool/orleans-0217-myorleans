@@ -84,7 +84,7 @@ nav ul a {
 }
 
 nav ul a:hover {
-    border-bottom: 5px solid  #a5ca2a;;
+    border-bottom: 5px solid  #a5ca2a;
      background: inherit;
 }
 /*nav li {
@@ -582,6 +582,65 @@ FIN ACCUEIL - BLOC AGENCE
 }
 
 /* --------------------------------------------------------------------*/
+/* ------------------------ BACK TO TOP --------------------------*/
+/* --------------------------------------------------------------------*/
+
+#back-top {
+    position: fixed;
+    bottom: 30px;
+    z-index: 99;
+}
+
+#back-top a {
+    position: fixed;
+    right: 20px;
+    bottom: 15px;
+    width: 108px;
+    display: block;
+    text-align: center;
+    font: 11px/100% Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #bbb;
+
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+#back-top a:hover {
+    color: #000;
+}
+
+/* arrow icon (span tag) */
+#back-top span {
+    width: 108px;
+    height: 108px;
+    display: block;
+    margin-bottom: 7px;
+    background: #ddd url(up-arrow.png) no-repeat center center;
+
+    /* rounded corners */
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+#back-top a:hover span {
+    background-color: #777;
+}
+
+#back-top a img{
+    height: 20%;
+    width: 20%;
+
+}
+
+/* --------------------------------------------------------------------*/
 /* ------------------------ MEDIAS QUERIES --------------------------*/
 /* --------------------------------------------------------------------*/
 
@@ -647,5 +706,30 @@ FIN ACCUEIL - BLOC AGENCE
     .carousel .carousel-item p span{
         color: #a5c143;
         font-size: 13px;
+    }
+
+    .social-btn {
+        height: 45px;
+        width: 45px;
+        border-radius: 50px;
+        margin: 15px 50px 0 0;
+    }
+
+    .social-btn{
+        font-size: 12px;
+    }
+
+    .icon-social {
+        margin-top: 4px;
+        margin-left: 8px;
+    }
+
+    .fb-social {
+        margin-top: 6px;
+        margin-left: 11px;
+    }
+
+    .footer-copyright p{
+        font-size: 12px;
     }
 }
