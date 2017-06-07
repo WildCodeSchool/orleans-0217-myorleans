@@ -60,6 +60,8 @@ body {
     background-color: #a5c143;
 }
 
+
+
 ::-webkit-input-placeholder {
     color: #444444;
     opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
@@ -243,6 +245,9 @@ body {
     margin-left: 500px;
 }
 
+.nav-wrapper{
+    border-radius: 20px;
+}
 
 /* ------------------------------------------------------------------*/
 
@@ -311,9 +316,10 @@ body {
 .barre-recherche{
     margin-top: 22px;
     position: absolute;
-    bottom: 10px;
+    bottom: 200px;
     width: 95%;
     left: 25px;
+    background-color: rgb(255, 255, 255, 0.8);
 }
 
 .nav-recherche{
@@ -331,6 +337,17 @@ body {
 .header-image{
 
     margin-top: 22px;
+    height: 500px;
+    position: relative;
+}
+
+.bloc-color{
+    bottom: 50px;
+
+}
+
+.input-field{
+    border-radius: 20px;
 }
 
 .btn-large{
@@ -360,6 +377,11 @@ body {
     border-radius: 15px;
 
 }
+
+.fiches-conseils{
+    margin-top: 50px;
+}
+
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ PAGE RESIDENCE --------------------------*/
