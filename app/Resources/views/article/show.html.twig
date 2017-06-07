@@ -45,9 +45,10 @@
                                     <a href="{{ path('article_edit', { 'id': article.id }) }}"><i
                                                 class="material-icons">build</i>Éditer cet article</a>
                                 </li>
+
                                 <li>
                                     {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete" class="pull-right">
+                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
                                     {{ form_end(delete_form) }}
                                 </li>
                             </ul>
