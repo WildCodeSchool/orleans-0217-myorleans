@@ -15,8 +15,16 @@
                         <span>Le Pryvé</span>
                     </h2>
                 </div>
-                <div class="center">
-                    <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la documentation</a>
+                <div class="row">
+                    <div class="col offset-l1 l5 s10">
+                        <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la
+                            documentation</a>
+                    </div>
+
+                    <div class="col offset-l1 l5 s10">
+                        <i class="material-icons print">print</i>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,7 +35,7 @@
                 <img src="{{ asset('img/apt-neuf.jpg') }}" class="photo-apt" alt="photo-appart"/>
             </div>
         </div>
-        <div data-aos="fade-left" class="col offset-l1 s10 m5">
+        <div data-aos="fade-left" class="col s10 m5">
             <div class="info-apt">
                 <h3>St Pryvé St Mesmin</h3>
                 <h3>Appartement Neuf</h3>
@@ -48,9 +56,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col offset-l1 l10">
+        <div class="col offset-l1 l10 center">
             <div class="row">
-                <div class="col l6 s12">
+                <div class="col offset-l1 l5 s10">
                     <h3>La Residence</h3>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -61,17 +69,22 @@
                         sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
                 </div>
-                <div class="col l4 s12">
+                <div class="col l5 s10">
                     <h3>Les Prestations</h3>
-                    <img class="icon-residence" src="{{ asset('img/icons/Wheelchair_Accessible.png') }}"
-                         alt="acces handicape"/>Accessibiité<br/>
-                    <img class="icon-residence" src="{{ asset('img/icons/shopping-cart.png') }}"
-                         alt="commerces"/>Commerces<br/>
-                    <img class="icon-residence" src="{{ asset('img/icons/smoking_not_allowed.png') }}"
-                         alt="non fumeur"/>Non Fumeur<br/>
-                    <img class="icon-residence" src="{{ asset('img/icons/finance.png') }}"
-                         alt="éligibilité loi pinel"/>Eligible Loi Pinel
-
+                    <div class="row icon-left">
+                        <div class="col offset-l1 l5">
+                            <img class="icon-residence" src="{{ asset('img/icons/Wheelchair_Accessible.png') }}"
+                                 alt="acces handicape"/>Accessibiité<br/>
+                            <img class="icon-residence" src="{{ asset('img/icons/shopping-cart.png') }}"
+                                 alt="commerces"/>Commerces<br/>
+                        </div>
+                        <div class="col l5">
+                            <img class="icon-residence" src="{{ asset('img/icons/smoking_not_allowed.png') }}"
+                                 alt="non fumeur"/>Non Fumeur<br/>
+                            <img class="icon-residence" src="{{ asset('img/icons/finance.png') }}"
+                                 alt="éligibilité loi pinel"/>Eligible Loi Pinel
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -141,8 +154,8 @@
             </div>
         </div>
     </div>
-    <div class="col l6 s12">
-        <a href="#" class="demande-doc">Demander la documentation</a>
+    <div>
+        <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la documentation</a>
     </div>
 
 
