@@ -1,0 +1,14 @@
+.sidebar .nav li.active a{
+    background-color: #8BC34A;
+}
+i{
+    color:#8BC34A;
+}
+
+.content a{
+    color:#8BC34A;
+}
+
+.content a:hover{
+    color:grey;
+}
