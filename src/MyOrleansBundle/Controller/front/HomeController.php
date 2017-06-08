@@ -2,19 +2,48 @@
 
 namespace MyOrleansBundle\Controller\front;
 
+use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Form\SimpleSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $residence = new Residence();
+        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType', $residence);
+        $simpleSearch->handleRequest($request);
 
+        if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
 
-        return $this->render('MyOrleansBundle::index.html.twig');
+            $data = $simpleSearch->getData();
+            $ville = $data['ville'];
+/*            $type = $data['type'];*/
+            $residences = $em -> getRepository(Residence::class)->searchByVille($ville);
+/*            $types = $em -> getRepository(Flat::class)->searchByType($type);*/
+
+            if($residence == null){
+                $residence = $em -> getRepository(Residence::class)->findAll();
+            }
+
+            return $this->render('MyOrleansBundle::nos-biens.html.twig',[
+                'residences' => $residences
+            ]);
+
+        } else {
+
+            return $this->render('MyOrleansBundle::index.html.twig', [
+                'simpleSearch' => $simpleSearch->createView()
+            ]);
+
+        }
+
 
     }
 
@@ -23,7 +52,13 @@ class HomeController extends Controller
      */
     public function nosBiensAction()
     {
-        return $this->render('MyOrleansBundle::nosbiens.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $residences = $em -> getRepository(Residence::class)->findAll();
+
+        return $this->render('MyOrleansBundle::nosbiens.html.twig', [
+            'residences' => $residences
+        ]);
     }
 
 
@@ -76,5 +111,8 @@ class HomeController extends Controller
     {
         return $this->render('MyOrleansBundle::admin.html.twig');
     }
+
+
+
 
 }

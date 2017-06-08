@@ -66,7 +66,7 @@ class Residence
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_livraison", type="date", nullable=true)
+     * @ORM\Column(name="date_livraison", type="string", nullable=true)
      */
     private $dateLivraison;
 

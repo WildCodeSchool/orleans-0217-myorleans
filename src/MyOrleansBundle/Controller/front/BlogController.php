@@ -6,7 +6,7 @@
  * Time: 11:32
  */
 
-namespace MyOrleansBundle\Controller\admin;
+namespace MyOrleansBundle\Controller\front;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

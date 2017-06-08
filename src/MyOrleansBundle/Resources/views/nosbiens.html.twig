@@ -198,13 +198,13 @@
                 </div>
 
                 <div class="row">
-                    <div class="col s12 xl6">
 
                         {% for residence in residences %}
 
+                    <div class="col s12 xl6">
                         <div class="card large">
                             <div class="card-image">
-                                <img src="{{ asset('{{ residence.media }}') }}">
+                                <img src="{{ asset('img/dun{{ residence.media }}') }}">
                             </div>
                             <div class="card-content">
                                 <div class="row grille-infos">
@@ -216,20 +216,20 @@
                                         <div class="row annee-nbPiece">
                                             <div class="col s6 annee-residence">
                                                 <h4>Livraison</h4>
-                                                <p>{{ residence.date_livraison }}</p>
+                                                <p>{{ residence.dateLivraison }}</p>
                                             </div>
                                             <div class="col s6">
                                                 <h4>Nb. pièces</h4>
-                                                <p>Du {{ min(residence.flat.type) }} au {{ max(residence.flat.type) }}</p>
+                                                <p>Du T1 au T5</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col s5">
                                         <h4>Prix</h4>
-                                        <p>A partir de {{ min(residence.flat.prix) }}</p>
+                                        <p>A partir de 90 000€</p>
                                         <br/>
                                         <h4>Disponibilité</h4>
-                                        <p>{{ residence.flat|length) }} logements</p>
+                                        <p>5 logements</p>
                                     </div>
                                 </div>
                             </div>
@@ -237,10 +237,10 @@
                                 <a href="#">Découvrir la résidence</a>
                             </div>
                         </div>
+                    </div>
 
                         {% endfor %}
 
-                    </div>
 
                 </div>
 
