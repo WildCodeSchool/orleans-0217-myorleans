@@ -22,6 +22,8 @@ class HomeController extends Controller
      */
     public function nosBiensAction()
     {
+
+
         return $this->render('MyOrleansBundle::nosbiens.html.twig');
     }
 
