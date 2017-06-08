@@ -6,7 +6,7 @@
  * Time: 10:15
  */
 
-namespace MyOrleansBundle\Controller;
+namespace MyOrleansBundle\Controller\admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
