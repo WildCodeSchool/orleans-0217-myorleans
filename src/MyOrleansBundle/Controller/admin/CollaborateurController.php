@@ -1,6 +1,6 @@
 <?php
 
-namespace MyOrleansBundle\Controller;
+namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Collaborateur;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
