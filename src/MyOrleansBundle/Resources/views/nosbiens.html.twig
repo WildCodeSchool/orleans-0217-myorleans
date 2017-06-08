@@ -194,39 +194,42 @@
             <div class="col s12 l7 xl8 liste-biens articles">
 
                 <div class="row center no-margin-bottom">
-                    <h1 class="section-title">16 résidences correspondent à votre recherche</h1>
+                    <h1 class="section-title">{{ residences|length }} résidence(s) correspondent à votre recherche</h1>
                 </div>
 
                 <div class="row">
                     <div class="col s12 xl6">
+
+                        {% for residence in residences %}
+
                         <div class="card large">
                             <div class="card-image">
-                                <img src="{{ asset('img/res_dunois.jpg') }}">
+                                <img src="{{ asset('{{ residence.media }}') }}">
                             </div>
                             <div class="card-content">
                                 <div class="row grille-infos">
                                     <div class="col s7 grille-gauche">
                                         <div class="row nom-residence">
-                                            <h4>Nom Résidence</h4>
-                                            <p>Le Beau Dunois</p>
+                                            <h4>Résidence</h4>
+                                            <p>{{ residence.nom }}</p>
                                         </div>
                                         <div class="row annee-nbPiece">
                                             <div class="col s6 annee-residence">
-                                                <h4>Année</h4>
-                                                <p>4è Trimestre 2017</p>
+                                                <h4>Livraison</h4>
+                                                <p>{{ residence.date_livraison }}</p>
                                             </div>
                                             <div class="col s6">
                                                 <h4>Nb. pièces</h4>
-                                                <p>Du T1 au T5</p>
+                                                <p>Du {{ min(residence.flat.type) }} au {{ max(residence.flat.type) }}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col s5">
                                         <h4>Prix</h4>
-                                        <p>A partir de 90 000€</p>
+                                        <p>A partir de {{ min(residence.flat.prix) }}</p>
                                         <br/>
                                         <h4>Disponibilité</h4>
-                                        <p>5 logements</p>
+                                        <p>{{ residence.flat|length) }} logements</p>
                                     </div>
                                 </div>
                             </div>
@@ -234,8 +237,14 @@
                                 <a href="#">Découvrir la résidence</a>
                             </div>
                         </div>
+
+                        {% endfor %}
+
                     </div>
-                    <div class="col s12 xl6">
+
+                </div>
+
+{#                    <div class="col s12 xl6">
                         <div class="card large">
                             <div class="card-image">
                                 <img src="{{ asset('img/res_mypark.jpg') }}">
@@ -505,7 +514,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div>#}
 
                 <div class="row">
                     <div class="col s4 bordure-titre">

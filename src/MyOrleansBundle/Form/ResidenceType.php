@@ -13,7 +13,10 @@ class ResidenceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')->add('adresse')->add('codePostal')->add('ville')->add('latitude')->add('longitude')->add('dateLivraison')->add('description')->add('nbTotalLogements')->add('noteTransports')->add('noteCommerces')->add('noteServices')->add('noteEsthetisme')->add('favoris')->add('media');
+        $builder->add('nom')->add('adresse')->add('codePostal')->add('ville')
+            ->add('latitude')->add('longitude')->add('dateLivraison')->add('description')
+            ->add('nbTotalLogements')->add('noteTransports')->add('noteCommerces')
+            ->add('noteServices')->add('noteEsthetisme')->add('favoris')->add('media');
     }
     
     /**

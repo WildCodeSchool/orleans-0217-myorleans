@@ -13,6 +13,7 @@ class HomeController extends Controller
     public function indexAction()
     {
 
+
         return $this->render('MyOrleansBundle::index.html.twig');
 
     }
@@ -22,8 +23,6 @@ class HomeController extends Controller
      */
     public function nosBiensAction()
     {
-
-
         return $this->render('MyOrleansBundle::nosbiens.html.twig');
     }
 
