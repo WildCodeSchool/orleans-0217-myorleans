@@ -1,6 +1,6 @@
 <?php
 
-namespace MyOrleansBundle\Controller;
+namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
