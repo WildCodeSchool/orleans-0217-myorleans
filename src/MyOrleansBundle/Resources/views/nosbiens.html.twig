@@ -190,11 +190,10 @@
 
         <div class="row carte-liste-articles">
 
-
-            <div class="col s12 l7 xl8 liste-biens articles">
+            <div class="col s12 l7 xl8 liste-biens">
 
                 <div class="row center no-margin-bottom">
-                    <h1 class="section-title">{{ residences|length }} résidence(s) correspondent à votre recherche</h1>
+                    <h1 class="section-title">{{ message }}</h1>
                 </div>
 
                 <div class="row">
@@ -204,14 +203,14 @@
                     <div class="col s12 xl6">
                         <div class="card large">
                             <div class="card-image">
-                                <img src="{{ asset('img/dun{{ residence.media }}') }}">
+                                <img src="{{ asset('img/'~residence.media ) }}">
                             </div>
                             <div class="card-content">
                                 <div class="row grille-infos">
                                     <div class="col s7 grille-gauche">
                                         <div class="row nom-residence">
-                                            <h4>Résidence</h4>
-                                            <p>{{ residence.nom }}</p>
+                                            <h4>{{ residence.nom }}</h4>
+                                            <p>à {{ residence.ville }}</p>
                                         </div>
                                         <div class="row annee-nbPiece">
                                             <div class="col s6 annee-residence">
@@ -241,292 +240,13 @@
 
                         {% endfor %}
 
-
                 </div>
 
-{#                    <div class="col s12 xl6">
-                        <div class="card large">
-                            <div class="card-image">
-                                <img src="{{ asset('img/res_mypark.jpg') }}">
-                            </div>
-                            <div class="card-content">
-                                <div class="row grille-infos">
-                                    <div class="col s8 grille-gauche">
-                                        <div class="row nom-residence">
-                                            <h4>Nom Résidence</h4>
-                                            <p>My Park</p>
-                                        </div>
-                                        <div class="row annee-nbPiece">
-                                            <div class="col s6 annee-residence">
-                                                <h4>Année</h4>
-                                                <p>4è Trimestre 2017</p>
-                                            </div>
-                                            <div class="col s6">
-                                                <h4>Nb. pièces</h4>
-                                                <p>Du T1 au T5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col s4">
-                                        <h4>Prix</h4>
-                                        <p>A partir de 90 000€</p>
-                                        <br/>
-                                        <h4>Disponibilité</h4>
-                                        <p>5 logements</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-action center">
-                                <a href="#">Découvrir la résidence</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
 
                 <div class="row">
-                    <div class="col s12 xl6">
-                        <div class="card large">
-                            <div class="card-image">
-                                <img src="{{ asset('img/res_terrasses_paradis.jpg') }}">
-                            </div>
-                            <div class="card-content">
-                                <div class="row grille-infos">
-                                    <div class="col s8 grille-gauche">
-                                        <div class="row nom-residence">
-                                            <h4>Nom Résidence</h4>
-                                            <p>Les Terrasses du Paradis</p>
-                                        </div>
-                                        <div class="row annee-nbPiece">
-                                            <div class="col s6 annee-residence">
-                                                <h4>Année</h4>
-                                                <p>4è Trimestre 2017</p>
-                                            </div>
-                                            <div class="col s6">
-                                                <h4>Nb. pièces</h4>
-                                                <p>Du T1 au T5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col s4">
-                                        <h4>Prix</h4>
-                                        <p>A partir de 90 000€</p>
-                                        <br/>
-                                        <h4>Disponibilité</h4>
-                                        <p>5 logements</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-action center">
-                                <a href="#">Découvrir la résidence</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 xl6">
-                        <div class="card large">
-                            <div class="card-image">
-                                <img src="{{ asset('img/res_dunois.jpg') }}">
-                            </div>
-                            <div class="card-content">
-                                <div class="row grille-infos">
-                                    <div class="col s8 grille-gauche">
-                                        <div class="row nom-residence">
-                                            <h4>Nom Résidence</h4>
-                                            <p>Les Terrasses du Paradis</p>
-                                        </div>
-                                        <div class="row annee-nbPiece">
-                                            <div class="col s6 annee-residence">
-                                                <h4>Année</h4>
-                                                <p>4è Trimestre 2017</p>
-                                            </div>
-                                            <div class="col s6">
-                                                <h4>Nb. pièces</h4>
-                                                <p>Du T1 au T5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col s4">
-                                        <h4>Prix</h4>
-                                        <p>A partir de 90 000€</p>
-                                        <br/>
-                                        <h4>Disponibilité</h4>
-                                        <p>5 logements</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-action center">
-                                <a href="#">Découvrir la résidence</a>
-                            </div>
-                        </div>
-                    </div>
+                    <h2><span>Investissez en toute sérénité</span></h2>
                 </div>
 
-                <div class="row">
-                    <div class="col s12 xl6">
-                        <div class="card large">
-                            <div class="card-image">
-                                <img src="{{ asset('img/res_mypark.jpg') }}">
-                            </div>
-                            <div class="card-content">
-                                <div class="row grille-infos">
-                                    <div class="col s8 grille-gauche">
-                                        <div class="row nom-residence">
-                                            <h4>Nom Résidence</h4>
-                                            <p>Les Terrasses du Paradis</p>
-                                        </div>
-                                        <div class="row annee-nbPiece">
-                                            <div class="col s6 annee-residence">
-                                                <h4>Année</h4>
-                                                <p>4è Trimestre 2017</p>
-                                            </div>
-                                            <div class="col s6">
-                                                <h4>Nb. pièces</h4>
-                                                <p>Du T1 au T5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col s4">
-                                        <h4>Prix</h4>
-                                        <p>A partir de 90 000€</p>
-                                        <br/>
-                                        <h4>Disponibilité</h4>
-                                        <p>5 logements</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-action center">
-                                <a href="#">Découvrir la résidence</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 xl6">
-                        <div class="card large">
-                            <div class="card-image">
-                                <img src="{{ asset('img/res_terrasses_paradis.jpg') }}">
-                            </div>
-                            <div class="card-content">
-                                <div class="row grille-infos">
-                                    <div class="col s8 grille-gauche">
-                                        <div class="row nom-residence">
-                                            <h4>Nom Résidence</h4>
-                                            <p>Les Terrasses du Paradis</p>
-                                        </div>
-                                        <div class="row annee-nbPiece">
-                                            <div class="col s6 annee-residence">
-                                                <h4>Année</h4>
-                                                <p>4è Trimestre 2017</p>
-                                            </div>
-                                            <div class="col s6">
-                                                <h4>Nb. pièces</h4>
-                                                <p>Du T1 au T5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col s4">
-                                        <h4>Prix</h4>
-                                        <p>A partir de 90 000€</p>
-                                        <br/>
-                                        <h4>Disponibilité</h4>
-                                        <p>5 logements</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-action center">
-                                <a href="#">Découvrir la résidence</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col s12 xl6">
-                            <div class="card large">
-                                <div class="card-image">
-                                    <img src="{{ asset('img/res_mypark.jpg') }}">
-                                </div>
-                                <div class="card-content">
-                                    <div class="row grille-infos">
-                                        <div class="col s8 grille-gauche">
-                                            <div class="row nom-residence">
-                                                <h4>Nom Résidence</h4>
-                                                <p>Le Beau Dunois</p>
-                                            </div>
-                                            <div class="row annee-nbPiece">
-                                                <div class="col s6 annee-residence">
-                                                    <h4>Année</h4>
-                                                    <p>4è Trimestre 2017</p>
-                                                </div>
-                                                <div class="col s6">
-                                                    <h4>Nb. pièces</h4>
-                                                    <p>Du T1 au T5</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col s4">
-                                            <h4>Prix</h4>
-                                            <p>A partir de 90 000€</p>
-                                            <br/>
-                                            <h4>Disponibilité</h4>
-                                            <p>5 logements</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-action center">
-                                    <a href="#">Découvrir la résidence</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 xl6">
-                            <div class="card large">
-                                <div class="card-image">
-                                    <img src="{{ asset('img/res_dunois.jpg') }}">
-                                </div>
-                                <div class="card-content">
-                                    <div class="row grille-infos">
-                                        <div class="col s8 grille-gauche">
-                                            <div class="row nom-residence">
-                                                <h4>Nom Résidence</h4>
-                                                <p>1my Park</p>
-                                            </div>
-                                            <div class="row annee-nbPiece">
-                                                <div class="col s6 annee-residence">
-                                                    <h4>Année</h4>
-                                                    <p>4è Trimestre 2017</p>
-                                                </div>
-                                                <div class="col s6">
-                                                    <h4>Nb. pièces</h4>
-                                                    <p>Du T1 au T5</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col s4">
-                                            <h4>Prix</h4>
-                                            <p>A partir de 90 000€</p>
-                                            <br/>
-                                            <h4>Disponibilité</h4>
-                                            <p>5 logements</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-action center">
-                                    <a href="#">Découvrir la résidence</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>#}
-
-                <div class="row">
-                    <div class="col s4 bordure-titre">
-                        <p class="white-text">Investissez en loi Pinel</p>
-                    </div>
-                    <div class="col s4 center alignement-titre">
-                        <h2>Investissez en toute sérénité</h2>
-                    </div>
-                    <div class="col s4 bordure-titre">
-                        <p class="white-text">Acheter un bien immobilier</p>
-                    </div>
-                </div>
                 <div class="row proposition-services">
                     <div class="col s12 offset-m1 m10">
                         <div class="card medium">
@@ -584,16 +304,41 @@
                 <div id="map"></div>
                 <script>
                     function initMap() {
-                        var uluru = {lat: 47.9088035, lng: 1.8913519999999835};
-                        var map = new google.maps.Map(document.getElementById('map'), {
+
+                         var uluru = {lat: 48.862725, lng: 2.287592000000018};
+                         var map = new google.maps.Map(document.getElementById('map'), {
+                         zoom: 4,
+                         center: uluru
+                         });
+                         var marker = new google.maps.Marker({
+                         position: uluru,
+                         map: map
+                         });
+
+                       /* var map = new google.maps.Map(document.getElementById('map'), {
                             zoom: 13,
-                            center: uluru
+                            center: new google.maps.LatLng(47.9088143, 1.8913615000000163),
+/!*
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+*!/
                         });
-                        var marker = new google.maps.Marker({
-                            position: uluru,
-                            map: map
-                        });
+
+                        var markers = locations.map(function(location, i) {
+                            return new google.maps.Marker({
+                                position: location,
+                                label: labels[i % labels.length]
+                            });
+                        });*/
+
                     }
+
+                    /*var locations = [
+                            { lat:
+
+                            lng:
+
+                    ];*/
+
                 </script>
                 <script async defer
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">

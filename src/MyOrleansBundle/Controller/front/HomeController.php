@@ -22,18 +22,20 @@ class HomeController extends Controller
 
         if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
 
-            $data = $simpleSearch->getData();
-            $ville = $data['ville'];
-/*            $type = $data['type'];*/
-            $residences = $em -> getRepository(Residence::class)->searchByVille($ville);
+/*            $type = $residence->getFlats()->getType();*/
+            $ville = $residence->getVille();
+            $residences = $em -> getRepository(Residence::class)->findByVille($ville);
 /*            $types = $em -> getRepository(Flat::class)->searchByType($type);*/
+            $message = count($residences)." résidence(s) correspondent à votre recherche";
 
-            if($residence == null){
-                $residence = $em -> getRepository(Residence::class)->findAll();
+            if(empty($residences)) {
+                $residences = $em -> getRepository(Residence::class)->findAll();
+                $message = "Aucune résidence ne correspond à votre recherche. Découvrez les biens suggérés.";
             }
 
-            return $this->render('MyOrleansBundle::nos-biens.html.twig',[
-                'residences' => $residences
+            return $this->render('MyOrleansBundle::nosbiens.html.twig',[
+                'residences' => $residences,
+                'message' => $message
             ]);
 
         } else {
@@ -53,11 +55,16 @@ class HomeController extends Controller
     public function nosBiensAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $residences = $em -> getRepository(Residence::class)->findAll();
 
+        $message = "Découvrez les biens suggérés";
+
+        var_dump($residences[0]);
+        die();
+
         return $this->render('MyOrleansBundle::nosbiens.html.twig', [
-            'residences' => $residences
+            'residences' => $residences,
+            'message' => $message
         ]);
     }
 
