@@ -19,6 +19,7 @@ use MyOrleansBundle\Entity\Flat;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class SimpleSearchType extends AbstractType
@@ -33,6 +34,8 @@ class SimpleSearchType extends AbstractType
                 'attr'=> ['id'=>'autocomplete-input', 'class'=>'autocomplete']
 
             ])
+            ->add('investBtn', SubmitType::class)
+            ->add('resPrincipaleBtn', SubmitType::class)
 /*            ->add('type', EntityType::class, [
                 'class'=>Flat::class,
                 'choice_label'=>'type',

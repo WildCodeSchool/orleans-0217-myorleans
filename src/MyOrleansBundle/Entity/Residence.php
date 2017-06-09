@@ -498,6 +498,7 @@ class Residence
      */
     public function addMedia(\MyOrleansBundle\Entity\Media $medium)
     {
+        $medium->addResidence($this);
         $this->media[] = $medium;
 
         return $this;

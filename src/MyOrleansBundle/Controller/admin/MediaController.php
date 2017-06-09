@@ -39,7 +39,7 @@ class MediaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $medium = new Medium();
+        $medium = new Media();
         $form = $this->createForm('MyOrleansBundle\Form\MediaType', $medium);
         $form->handleRequest($request);
 

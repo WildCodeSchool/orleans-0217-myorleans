@@ -15,13 +15,51 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
+                                            null,
+                                            ['action' => $this->generateUrl('nosbiens')]);
+
+        return $this->render('MyOrleansBundle::index.html.twig', [
+            'simpleSearch' => $simpleSearch->createView()
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/nos-biens", name="nosbiens")
+     */
+    public function nosBiensAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
         $residence = new Residence();
-        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType', $residence);
+        $residences = $em->getRepository(Residence::class)->findAll();
+        $message = "Découvrez les biens suggérés";
+        
+        // TMP
+        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
+                                            $residences,
+                                            ['action' => $this->generateUrl('nosbiens')]);
         $simpleSearch->handleRequest($request);
 
         if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
 
+            // Envoi de contenu different en fonction du bouton clique : investisseur ou residence principale
+            if ($simpleSearch->get('resPrincipaleBtn')->isClicked()) {
+                $titreContenuSuggere = "Devenez propriétaire en toute sérénité";
+                $titreServiceSuggere = "Parcours Immobilier";
+                $texteServiceSuggere = "Not the same lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                                        lorem ipsum lorem ipsum lorem ipsum lorem ipsum.";
+            }
+
+            if ($simpleSearch->get('investBtn')->isClicked()) {
+                $titreContenuSuggere = "Investissez en toute sérénité";
+                $titreServiceSuggere = "Location et Gestion locative";
+                $texteServiceSuggere = "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                                        lorem ipsum lorem ipsum lorem ipsum lorem ipsum.";
+            }
+
+            // Prise en compte des filtres du moteur de recherche
 /*            $type = $residence->getFlats()->getType();*/
             $ville = $residence->getVille();
             $residences = $em -> getRepository(Residence::class)->findByVille($ville);
@@ -35,36 +73,26 @@ class HomeController extends Controller
 
             return $this->render('MyOrleansBundle::nosbiens.html.twig',[
                 'residences' => $residences,
-                'message' => $message
-            ]);
-
-        } else {
-
-            return $this->render('MyOrleansBundle::index.html.twig', [
-                'simpleSearch' => $simpleSearch->createView()
+                'message' => $message,
+                'titreContenuSuggere' => $titreContenuSuggere,
+                'titreServiceSuggere' => $titreServiceSuggere,
+                'texteServiceSuggere' => $texteServiceSuggere,
             ]);
 
         }
+        // TMP
 
-
-    }
-
-    /**
-     * @Route("/nos-biens", name="nosbiens")
-     */
-    public function nosBiensAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $residences = $em -> getRepository(Residence::class)->findAll();
-
-        $message = "Découvrez les biens suggérés";
-
-        var_dump($residences[0]);
-        die();
+        $titreContenuSuggere = "Devenez propriétaire en toute sérénité";
+        $titreServiceSuggere = "Parcours Immobilier";
+        $texteServiceSuggere = "Not the same lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                                        lorem ipsum lorem ipsum lorem ipsum lorem ipsum.";
 
         return $this->render('MyOrleansBundle::nosbiens.html.twig', [
             'residences' => $residences,
-            'message' => $message
+            'message' => $message,
+            'titreContenuSuggere' => $titreContenuSuggere,
+            'titreServiceSuggere' => $titreServiceSuggere,
+            'texteServiceSuggere' => $texteServiceSuggere
         ]);
     }
 
@@ -93,6 +121,14 @@ class HomeController extends Controller
     public function agencyAction()
     {
         return $this->render('MyOrleansBundle::agence.html.twig');
+    }
+
+    /**
+     * @Route("/parcours-immobilier", name="parcoursimmo")
+     */
+    public function parcoursImmoAction()
+    {
+        return $this->render('MyOrleansBundle::parcoursimmo.html.twig');
     }
 
     /**

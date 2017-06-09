@@ -203,7 +203,10 @@
                     <div class="col s12 xl6">
                         <div class="card large">
                             <div class="card-image">
-                                <img src="{{ asset('img/'~residence.media ) }}">
+                                <img src="{{ asset('img/res_dunois.jpg' ) }}">
+{#
+                                <img src="{{ asset('img/'~residence.media.type['image'] ) }}">
+#}
                             </div>
                             <div class="card-content">
                                 <div class="row grille-infos">
@@ -244,7 +247,7 @@
 
 
                 <div class="row">
-                    <h2><span>Investissez en toute sérénité</span></h2>
+                    <h2><span>{{ titreContenuSuggere }}</span></h2>
                 </div>
 
                 <div class="row proposition-services">
@@ -254,16 +257,16 @@
                                 <img src="{{ asset('img/article-immo.jpg') }}">
                             </div>
                             <div class="card-content">
-                                <h4>Location et gestion locative</h4>
-                                <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-                                    lorem ipsum lorem ipsum lorem ipsum.</p>
+                                <h4>{{ titreServiceSuggere }}</h4>
+                                <p>{{ texteServiceSuggere }}</p>
                             </div>
                             <div class="card-action center">
-                                <a href="#">Découvrez les services</a>
+                                <a href="{{ path("nosservices") }}">Découvrez les services</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col s12 offset-m1 m10">
                         <div class="card medium">

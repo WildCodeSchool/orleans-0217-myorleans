@@ -88,7 +88,7 @@ class ResidenceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('residence_edit', array('id' => $residence->getId()));
+            return $this->redirectToRoute('residence_index');
         }
 
         return $this->render('residence/edit.html.twig', array(
