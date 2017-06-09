@@ -40,6 +40,7 @@ class HomeController extends Controller
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
                                             $residences,
                                             ['action' => $this->generateUrl('nosbiens')]);
+
         $simpleSearch->handleRequest($request);
 
         if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
@@ -61,6 +62,7 @@ class HomeController extends Controller
 
             // Prise en compte des filtres du moteur de recherche
 /*            $type = $residence->getFlats()->getType();*/
+
             $ville = $residence->getVille();
             $residences = $em -> getRepository(Residence::class)->findByVille($ville);
 /*            $types = $em -> getRepository(Flat::class)->searchByType($type);*/
@@ -77,23 +79,29 @@ class HomeController extends Controller
                 'titreContenuSuggere' => $titreContenuSuggere,
                 'titreServiceSuggere' => $titreServiceSuggere,
                 'texteServiceSuggere' => $texteServiceSuggere,
+
+
             ]);
 
-        }
-        // TMP
+        } else {
 
-        $titreContenuSuggere = "Devenez propriétaire en toute sérénité";
-        $titreServiceSuggere = "Parcours Immobilier";
-        $texteServiceSuggere = "Not the same lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            $titreContenuSuggere = "Devenez propriétaire en toute sérénité";
+            $titreServiceSuggere = "Parcours Immobilier";
+            $texteServiceSuggere = "Not the same lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                                         lorem ipsum lorem ipsum lorem ipsum lorem ipsum.";
 
-        return $this->render('MyOrleansBundle::nosbiens.html.twig', [
-            'residences' => $residences,
-            'message' => $message,
-            'titreContenuSuggere' => $titreContenuSuggere,
-            'titreServiceSuggere' => $titreServiceSuggere,
-            'texteServiceSuggere' => $texteServiceSuggere
-        ]);
+            return $this->render('MyOrleansBundle::nosbiens.html.twig', [
+                'residences' => $residences,
+                'message' => $message,
+                'titreContenuSuggere' => $titreContenuSuggere,
+                'titreServiceSuggere' => $titreServiceSuggere,
+                'texteServiceSuggere' => $texteServiceSuggere
+            ]);
+
+
+        }
+
+
     }
 
 
