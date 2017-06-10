@@ -1,53 +1,73 @@
-{% extends 'base.html.twig' %}
+{% extends '::layout_admin.html.twig' %}
 
-{% block body %}
-    <h1>Evenements list</h1>
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Adresse</th>
-                <th>Codepostal</th>
-                <th>Ville</th>
-                <th>Date</th>
-                <th>Heuredebut</th>
-                <th>Heurefin</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for evenement in evenements %}
-            <tr>
-                <td><a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
-                <td>{{ evenement.nom }}</td>
-                <td>{{ evenement.adresse }}</td>
-                <td>{{ evenement.codePostal }}</td>
-                <td>{{ evenement.ville }}</td>
-                <td>{% if evenement.date %}{{ evenement.date|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i:s') }}{% endif %}</td>
-                <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('H:i:s') }}{% endif %}</td>
-                <td>{{ evenement.description }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Liste de vos événements</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <thead class="text">
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Adresse</th>
+                                <th>Codepostal</th>
+                                <th>Ville</th>
+                                <th>Date</th>
+                                <th>Heuredebut</th>
+                                <th>Heurefin</th>
+                                <th>Description</th>
+                                <th>Aperçu</th>
+                                <th>Éditer</th>
+                                </thead>
+                                <tbody>
 
-    <ul>
-        <li>
-            <a href="{{ path('evenement_new') }}">Create a new evenement</a>
-        </li>
-    </ul>
+                                {% for evenement in evenements %}
+
+                                    <tr>
+                                        <td>
+                                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a>
+                                        </td>
+                                        <td>{{ evenement.nom }}</td>
+                                        <td>{{ evenement.adresse }}</td>
+                                        <td>{{ evenement.codePostal }}</td>
+                                        <td>{{ evenement.ville }}</td>
+                                        <td>{% if evenement.date %}{{ evenement.date|date('Y-m-d') }}{% endif %}</td>
+                                        <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i:s') }}{% endif %}</td>
+                                        <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('H:i:s') }}{% endif %}</td>
+                                        <td>{{ evenement.description }}</td>
+                                        <td>
+                                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}"><i
+                                                        class="material-icons">remove_red_eye</i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}"><i
+                                                        class="material-icons">build</i></a>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <hr>
+                            <ul>
+                                <li>
+
+                                    <a href="{{ path('evenement_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
+                                        événement</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
