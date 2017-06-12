@@ -6,6 +6,7 @@ use MyOrleansBundle\Entity\Flat;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Flat controller.
@@ -60,6 +61,27 @@ class FlatController extends Controller
     /**
      * Finds and displays a flat entity.
      *
+     * @Route("/pdf", name="flat_pdf")
+     * @Method("GET")
+     */
+    public function pdfAction()
+    {
+        $pageUrl = $this->generateUrl('appartement_pdf', [], true); // use absolute path!
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+            )
+        );
+    }
+
+
+    /**
+     * Finds and displays a flat entity.
+     *
      * @Route("/{id}", name="flat_show")
      * @Method("GET")
      */
@@ -72,6 +94,7 @@ class FlatController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
 
     /**
      * Displays a form to edit an existing flat entity.

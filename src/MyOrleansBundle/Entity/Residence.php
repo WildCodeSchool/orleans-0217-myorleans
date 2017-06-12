@@ -125,7 +125,7 @@ class Residence
     private $media;
 
     /**
-     * @ORM\OneToMany(targetEntity="Flat", mappedBy="residence")
+     * @ORM\OneToMany(targetEntity="Flat", mappedBy="residence", fetch="EAGER")
      */
     private $flats;
 
