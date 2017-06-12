@@ -125,12 +125,12 @@ class Residence
     private $media;
 
     /**
-     * @ORM\OneToMany(targetEntity="Flat", mappedBy="residence")
+     * @ORM\OneToMany(targetEntity="Flat", mappedBy="residence", cascade={"all"}, fetch="EAGER")
      */
     private $flats;
 
     /**
-     * @ORM\OneToMany(targetEntity="Presta", mappedBy="residence")
+     * @ORM\OneToMany(targetEntity="Presta", mappedBy="residence", cascade={"all"}, fetch="EAGER")
      */
     private $prestas;
 

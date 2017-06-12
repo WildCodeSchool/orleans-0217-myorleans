@@ -74,7 +74,10 @@
                         {{ form_start(simpleSearch) }}
                         <div class="row">
                             <div class="input-field col s4 offset-s1">
-                                {{ form_widget(simpleSearch) }}
+                                {{ form_widget(simpleSearch.ville) }}
+                            </div>
+                            <div class="input-field col s4 offset-s1">
+                                {{ form_widget(simpleSearch.type) }}
                             </div>
                         </div>
                         <div class="row center">

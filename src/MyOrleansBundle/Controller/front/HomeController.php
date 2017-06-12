@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Form\SimpleSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -33,12 +34,11 @@ class HomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $residence = new Residence();
-        $residences = $em->getRepository(Residence::class)->findAll();
-        $message = "Découvrez les biens suggérés";
+        $flat = new Flat();
         
         // TMP
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
-                                            $residences,
+                                            null,
                                             ['action' => $this->generateUrl('nosbiens')]);
 
         $simpleSearch->handleRequest($request);
@@ -61,9 +61,10 @@ class HomeController extends Controller
             }
 
             // Prise en compte des filtres du moteur de recherche
-/*            $type = $residence->getFlats()->getType();*/
+            $data = $simpleSearch->getData();
+            $ville = $data['ville'];
+            $type = $data['type'];
 
-            $ville = $residence->getVille();
             $residences = $em -> getRepository(Residence::class)->findByVille($ville);
 /*            $types = $em -> getRepository(Flat::class)->searchByType($type);*/
             $message = count($residences)." résidence(s) correspondent à votre recherche";
@@ -84,6 +85,9 @@ class HomeController extends Controller
             ]);
 
         } else {
+
+            $residences = $em->getRepository(Residence::class)->findAll();
+            $message = "Découvrez les biens suggérés";
 
             $titreContenuSuggere = "Devenez propriétaire en toute sérénité";
             $titreServiceSuggere = "Parcours Immobilier";

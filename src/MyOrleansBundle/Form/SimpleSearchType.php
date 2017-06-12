@@ -15,12 +15,11 @@
 namespace MyOrleansBundle\Form;
 
 
-use MyOrleansBundle\Entity\Flat;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SimpleSearchType extends AbstractType
 {
@@ -31,17 +30,29 @@ class SimpleSearchType extends AbstractType
             ->add('ville', SearchType::class, [
                 'required'=>false,
                 'label'=>'Localisation',
-                'attr'=> ['id'=>'autocomplete-input', 'class'=>'autocomplete']
+                'attr'=> ['id'=>'autocomplete-input', 'class'=>'autocomplete', 'autocomplete' => 'off']
 
             ])
-            ->add('investBtn', SubmitType::class)
-            ->add('resPrincipaleBtn', SubmitType::class)
-/*            ->add('type', EntityType::class, [
-                'class'=>Flat::class,
-                'choice_label'=>'type',
+            ->add('type', ChoiceType::class, [
+                'label'=>'Type',
                 'required'=>false,
-                'attr'=> ['placeholder'=>'Sélectionnez le type du bien']
-            ])*/
+                'placeholder'=>'Sélectionnez le type du bien',
+                'choices' => array(
+                    'T1' => 'T1',
+                    'T2' => 'T2',
+                    'T3' => 'T3',
+                    'T4+' => 'T4+',
+                )
+            ])
+            ->add('investBtn', SubmitType::class, [
+                'label' => 'Je souhaite investir',
+                'attr' => ['class' => 'waves-effect waves-light btn-large light-green']
+            ])
+            ->add('resPrincipaleBtn', SubmitType::class, [
+                'label' => 'Je recherche une résidence principale',
+                'attr' => ['class' => 'waves-effect waves-light btn-large light-green']
+            ])
+
             ->getForm();
     }
 }
