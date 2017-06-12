@@ -5,8 +5,10 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\Flat;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Flat controller.
@@ -59,14 +61,14 @@ class FlatController extends Controller
     }
 
     /**
-     * Finds and displays a flat entity.
-     *
-     * @Route("/pdf", name="flat_pdf")
+     * Retrun a pdf file from à flat.
+     * @return Response
+     * @Route("/pdf/{id}", name="flat_pdf")
      * @Method("GET")
      */
-    public function pdfAction()
+    public function pdfAction($id)
     {
-        $pageUrl = $this->generateUrl('appartement_pdf', [], true); // use absolute path!
+        $pageUrl = $this->generateUrl('flat_show', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
 
         return new Response(
             $this->get('knp_snappy.pdf')->getOutput($pageUrl),
@@ -76,7 +78,33 @@ class FlatController extends Controller
                 'Content-Disposition'   => 'attachment; filename="file.pdf"'
             )
         );
+
+/*        $pageUrl = $this->generateUrl('appartement_pdf', [], true); // use absolute path!
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+            )
+        );*/
+
+/*        $snappy = $this->get('knp_snappy.pdf');
+        $filename = 'appartementPDF';
+
+        $pageUrl = $this->generateUrl('homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL);
+
+        return new Response(
+            $snappy->getOutput($pageUrl),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
+            )
+        );*/
     }
+
 
 
     /**
