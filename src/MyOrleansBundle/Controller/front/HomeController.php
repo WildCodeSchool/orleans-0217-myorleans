@@ -2,6 +2,10 @@
 
 namespace MyOrleansBundle\Controller\front;
 
+use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\Pack;
+use MyOrleansBundle\Entity\Service;
+use MyOrleansBundle\Entity\Temoignage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -33,7 +37,16 @@ class HomeController extends Controller
      */
     public function nosservices()
     {
-        return $this->render('MyOrleansBundle::nosservices.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $services = $em->getRepository(Service::class)->findAll();
+        $packs = $em->getRepository(Pack::class)->findAll();
+        $temoignages =$em->getRepository(Temoignage::class)->findAll();
+        return $this->render('MyOrleansBundle::nosservices.html.twig',[
+            'services'=>$services,
+            'packs'=>$packs,
+            'temoignages'=>$temoignages
+        ]);
+
     }
 
     /**
@@ -41,7 +54,13 @@ class HomeController extends Controller
      */
     public function immopratique()
     {
-        return $this->render('MyOrleansBundle::immopratique.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $articles = $em->getRepository(Article::class)->findAll();
+
+        return $this->render('MyOrleansBundle::immopratique.html.twig',[
+
+        'articles'=>$articles
+        ]);
     }
 
     /**

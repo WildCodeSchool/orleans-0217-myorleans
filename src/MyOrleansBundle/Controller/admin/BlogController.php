@@ -17,7 +17,7 @@ class BlogController extends Controller
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/blog", name="home-blog")
+     * @Route("/blog", name="home_blog")
      */
     public function indexAction()
     {

@@ -8,7 +8,7 @@
 
 
     <div class="header-image">
-        <img src="{{ asset('img/conseilimmo.jpg') }}" class="img-immo-pratique" alt="image fiche conseil" />
+        <img src="{{ asset('img/conseilimmo.jpg') }}" style="width: 100%" alt="image fiche conseil" />
     </div>
 
 
@@ -50,18 +50,17 @@
 <!--fin barre de recherche-->
 
     <!--premier block-->
+    {% for article in articles %}
+    {% if article.id is odd %}
     <div class="fiches-conseils">
-    <h2 class="subtitle fancy" id="conseils"><span>Nos fiches conseils</span></h2>
+    <h2 class="subtitle fancy" id="conseils"><span>{{ article.type }}</span></h2>
     <div class="row">
+
         <div class="col s12 m6 l6">
             <div data-aos="fade-up-right">
                 <div class="boxi">
-                    <h4>Lorem ipsum lorem ipsum</h4>
-                    <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                    ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                    an quaedam altiora meditantis iam Galli secreta susceperint scripta,
-                    qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
-                    petit exindeque per protectores retractus artissime tenebatur.</p>
+                    <h4>{{ article.titre }}</h4>
+                    <p>{{ article.text }}</p>
                     <div class="center">
                         <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger la fiche</a>
                     </div>
@@ -81,7 +80,7 @@
     <!--fin premier block-->
 
     <!--deuxième block-->
-
+    {% elseif article.id is even  %}
     <div class="row">
         <div class="col s12 m6 l6">
             <div data-aos="fade-up-right">
@@ -92,12 +91,8 @@
         <div class="col s12 m6 l6">
             <div data-aos="fade-up-left">
                 <div class="boxi">
-                    <h4>Lorem ipsum lorem ipsum</h4>
-                    <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                        ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                        an quaedam altiora meditantis iam Galli secreta susceperint scripta,
-                        qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
-                        petit exindeque per protectores retractus artissime tenebatur.</p>
+                    <h4>{{ article.titre }}</h4>
+                    <p>{{ article.text }}</p>
                     <div class="center">
                         <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger la fiche</a>
                     </div>
@@ -105,7 +100,10 @@
             </div>
         </div>
     </div>
+    {% endif %}
+    {% endfor %}
 </div>
+
 
     <!--fin deuxième block-->
     <!-- fin premier container -->
@@ -319,8 +317,6 @@
                     draggable: true, // Choose whether you can drag to open on touch screens
                 closeOnClick: true
                 }
-
-
 
             );
         </script>
