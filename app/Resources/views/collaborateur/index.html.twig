@@ -1,5 +1,6 @@
 {% extends '::layout_admin.html.twig' %}
 
+<<<<<<< HEAD
 {% block body %}
     <h1>Collaborateurs list</h1>
 
@@ -48,4 +49,74 @@
             <a href="{{ path('collaborateur_new') }}">Create a new collaborateur</a>
         </li>
     </ul>
+=======
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Liste des membres de l'agence</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <thead class="text">
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Fonction</th>
+                                <th>Bio</th>
+                                <th>Lientwiter</th>
+                                <th>Lienlinkedin</th>
+                                <th>Email</th>
+                                <th>Aperçu</th>
+                                <th>Éditer</th>
+                                </thead>
+                                <tbody>
+
+                                {% for collaborateur in collaborateurs %}
+
+                                    <tr>
+                                        <td>
+                                            <a href="{{ path('collaborateur_show', { 'id': collaborateur.id }) }}">{{ collaborateur.id }}</a>
+                                        </td>
+                                        <td>{{ collaborateur.nom }}</td>
+                                        <td>{{ collaborateur.prenom }}</td>
+                                        <td>{{ collaborateur.fonction }}</td>
+                                        <td>{{ collaborateur.bio }}</td>
+                                        <td>{{ collaborateur.lienTwiter }}</td>
+                                        <td>{{ collaborateur.lienLinkedin }}</td>
+                                        <td>{{ collaborateur.email }}</td>
+                                        <td>
+                                            <a href="{{ path('collaborateur_show', { 'id': collaborateur.id }) }}"><i
+                                                        class="material-icons">remove_red_eye</i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('collaborateur_edit', { 'id': collaborateur.id }) }}"><i
+                                                        class="material-icons">build</i></a>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <hr>
+                            <ul>
+                                <li>
+
+                                    <a href="{{ path('collaborateur_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
+                                        membre</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+>>>>>>> sprint3
 {% endblock %}
