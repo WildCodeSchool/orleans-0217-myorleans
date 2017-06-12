@@ -29,12 +29,10 @@ class SimpleSearchType extends AbstractType
             ->setMethod('GET')
             ->add('ville', SearchType::class, [
                 'required'=>false,
-                'label'=>'Localisation',
                 'attr'=> ['id'=>'autocomplete-input', 'class'=>'autocomplete', 'autocomplete' => 'off']
 
             ])
             ->add('type', ChoiceType::class, [
-                'label'=>'Type',
                 'required'=>false,
                 'placeholder'=>'Sélectionnez le type du bien',
                 'choices' => array(
