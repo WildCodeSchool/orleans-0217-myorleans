@@ -10,4 +10,13 @@ namespace MyOrleansBundle\Repository;
  */
 class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findAllLimit()
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->setMaxResults(3);
+        return $qb->getQuery()->getResult();
+
+    }
+
 }

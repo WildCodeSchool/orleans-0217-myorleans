@@ -44,13 +44,6 @@ class HomeController extends Controller
         return $this->render('MyOrleansBundle::immopratique.html.twig');
     }
 
-    /**
-     * @Route("/agence", name="agence")
-     */
-    public function agencyAction()
-    {
-        return $this->render('MyOrleansBundle::agence.html.twig');
-    }
 
     /**
      * @Route("/residences")
