@@ -381,7 +381,7 @@ body {
 }
 
 .nav-recherche{
-    border-radius: 25px;
+
     width: 40%;
     margin-left: 400px;
     margin-top: 500px;
@@ -395,8 +395,8 @@ body {
 .header-image{
 
     margin-top: 22px;
-    height: 500px;
-    position: relative;
+
+
 }
 
 .bloc-color{
@@ -431,10 +431,7 @@ body {
     color:white;
 }
 
-#slide-out{
-    border-radius: 15px;
 
-}
 
 .fiches-conseils{
     margin-top: 50px;
