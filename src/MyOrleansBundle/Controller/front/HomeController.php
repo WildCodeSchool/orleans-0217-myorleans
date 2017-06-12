@@ -29,9 +29,9 @@ class HomeController extends Controller
         if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
             $data = $simpleSearch->getData();
             $ville = $data['ville'];
-            $type = $data['type'];
+
             $residences = $em -> getRepository(Residence::class)->searchByVille($ville);
-            $types = $em -> getRepository(Flat::class)->searchByType($type);
+
 
             if($residence == null){
                 $residence = $em -> getRepository(Residence::class)->findAll();
