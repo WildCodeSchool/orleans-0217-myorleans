@@ -203,10 +203,11 @@
                     <div class="col s12 xl6">
                         <div class="card large">
                             <div class="card-image">
-                                <img src="{{ asset('img/res_dunois.jpg' ) }}">
-{#
-                                <img src="{{ asset('img/'~residence.media.type['image'] ) }}">
-#}
+
+                                {% for medium in residence.media if medium.type == 'image' %}
+                                <img src="{{ asset('img/'~medium.lien) }}">
+                                {% endfor %}
+
                             </div>
                             <div class="card-content">
                                 <div class="row grille-infos">
@@ -306,6 +307,7 @@
             <div class="col offset-l7 l6 offset-xl8 xl5 hide-on-small-only carte">
                 <div id="map"></div>
                 <script>
+
                     function initMap() {
 
                          var uluru = {lat: 48.862725, lng: 2.287592000000018};

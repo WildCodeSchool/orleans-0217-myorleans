@@ -24,8 +24,7 @@ class NosBiensController extends Controller
     public function nosBiensAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $residence = new Residence();
-        $flat = new Flat();
+
 
         // TMP
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
@@ -67,6 +66,7 @@ class NosBiensController extends Controller
 
             return $this->render('MyOrleansBundle::nosbiens.html.twig',[
                 'residences' => $residences,
+                'villes' => $villes,
                 'message' => $message,
                 'titreContenuSuggere' => $titreContenuSuggere,
                 'titreServiceSuggere' => $titreServiceSuggere,
