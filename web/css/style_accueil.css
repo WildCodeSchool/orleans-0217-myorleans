@@ -667,7 +667,7 @@ FIN ACCUEIL - BLOC AGENCE
         border-radius: 50%;
     }
 
-    .formButton a{
+    .formButton input{
         font-size: 10px;
         width: auto;
     }

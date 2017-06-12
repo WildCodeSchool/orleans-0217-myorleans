@@ -50,6 +50,13 @@ class Residence
     private $ville;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="quartier", type="string", length=45, nullable=true)
+     */
+    private $quartier;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="latitude", type="float", nullable=true)
@@ -133,6 +140,9 @@ class Residence
      * @ORM\OneToMany(targetEntity="Presta", mappedBy="residence")
      */
     private $prestas;
+
+
+
 
 
     /**
@@ -229,6 +239,22 @@ class Residence
         $this->ville = $ville;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuartier()
+    {
+        return $this->quartier;
+    }
+
+    /**
+     * @param string $quartier
+     */
+    public function setQuartier($quartier)
+    {
+        $this->quartier = $quartier;
     }
 
     /**
