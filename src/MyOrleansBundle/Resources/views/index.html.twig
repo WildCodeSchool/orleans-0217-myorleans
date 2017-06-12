@@ -504,14 +504,13 @@
                     });
                 });
 
-{#
-                var data = {{ villes | split(':null,') }};
-#}
+
 
                 $('input.autocomplete').autocomplete({
                     data: {
-                        "Orleans": null,
-                        "Saint-Jean-de-Braye": null
+                        {% for ville in villes %}
+                            "{{ ville }}" : null,
+                        {% endfor %}
                     },
                     limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
                     onAutocomplete: function (val) {

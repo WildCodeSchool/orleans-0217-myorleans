@@ -10,4 +10,16 @@ namespace MyOrleansBundle\Repository;
  */
 class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function simpleSearch($ville, $type)
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.ville LIKE :ville')
+            ->setParameter('ville', '%'.$ville.'%')
+            ->join('r.flats', 'f')
+            ->andWhere('f.type = :type')
+            ->setParameter('type', $type);
+        return $qb->getQuery()->getResult();
+    }
+
+
 }

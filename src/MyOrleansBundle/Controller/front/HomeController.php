@@ -22,7 +22,7 @@ class HomeController extends Controller
         $residences = $em->getRepository(Residence::class)->findAll();
         $villes = "";
         foreach ($residences as $residence) {
-            $villes .= $residence->getVille().", ";
+            $villes[] = $residence->getVille();
         }
         // Fin recuperation des villes
 

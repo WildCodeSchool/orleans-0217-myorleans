@@ -184,6 +184,8 @@ body {
 
 .page-nosbiens h2 {
     font-size:20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     color: #858585;
 }
 
@@ -228,7 +230,7 @@ body {
 .carte {
     margin-top: 15px;
     position: fixed;
-    top: 270px;
+    top: 280px;
 }
 
 #map {
@@ -240,7 +242,7 @@ body {
 }
 
 .liste-biens {
-    margin-top: 250px;
+    margin-top: 200px;
 }
 
 /*--- Alignemant des informations des residences---*/

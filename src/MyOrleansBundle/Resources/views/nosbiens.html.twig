@@ -310,39 +310,39 @@
 
                     function initMap() {
 
-                         var uluru = {lat: 48.862725, lng: 2.287592000000018};
-                         var map = new google.maps.Map(document.getElementById('map'), {
-                         zoom: 4,
-                         center: uluru
-                         });
-                         var marker = new google.maps.Marker({
-                         position: uluru,
-                         map: map
-                         });
+                        var count = 0;
+                        var locations = [
+                            {% for residence in residences %}
+                                ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}, count],
+                                count = count + 1
+                            {% endfor %}
+                        ];
 
-                       /* var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 13,
-                            center: new google.maps.LatLng(47.9088143, 1.8913615000000163),
-/!*
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 12,
+                            center: new google.maps.LatLng(47.902964, 1.909251),
                             mapTypeId: google.maps.MapTypeId.ROADMAP
-*!/
                         });
 
-                        var markers = locations.map(function(location, i) {
-                            return new google.maps.Marker({
-                                position: location,
-                                label: labels[i % labels.length]
+                        var infowindow = new google.maps.InfoWindow();
+
+                        var marker, i;
+
+                        for (i = 0; i < locations.length; i++) {
+                            marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                map: map
                             });
-                        });*/
+
+                            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                return function() {
+                                    infowindow.setContent(locations[i][0]);
+                                    infowindow.open(map, marker);
+                                }
+                            })(marker, i));
+                        }
 
                     }
-
-                    /*var locations = [
-                            { lat:
-
-                            lng:
-
-                    ];*/
 
                 </script>
                 <script async defer

@@ -55,7 +55,7 @@ class NosBiensController extends Controller
             $ville = $data['ville'];
             $type = $data['type'];
 
-            $residences = $em -> getRepository(Residence::class)->findByVille($ville);
+            $residences = $em -> getRepository(Residence::class)->simpleSearch($ville, $type);
             /*            $types = $em -> getRepository(Flat::class)->searchByType($type);*/
             $message = count($residences)." résidence(s) correspondent à votre recherche";
 
@@ -66,7 +66,6 @@ class NosBiensController extends Controller
 
             return $this->render('MyOrleansBundle::nosbiens.html.twig',[
                 'residences' => $residences,
-                'villes' => $villes,
                 'message' => $message,
                 'titreContenuSuggere' => $titreContenuSuggere,
                 'titreServiceSuggere' => $titreServiceSuggere,
