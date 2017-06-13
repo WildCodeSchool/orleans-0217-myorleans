@@ -78,31 +78,6 @@ class FlatController extends Controller
                 'Content-Disposition'   => 'attachment; filename="file.pdf"'
             )
         );
-
-/*        $pageUrl = $this->generateUrl('appartement_pdf', [], true); // use absolute path!
-
-        return new Response(
-            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="file.pdf"'
-            )
-        );*/
-
-/*        $snappy = $this->get('knp_snappy.pdf');
-        $filename = 'appartementPDF';
-
-        $pageUrl = $this->generateUrl('homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL);
-
-        return new Response(
-            $snappy->getOutput($pageUrl),
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
-            )
-        );*/
     }
 
 
