@@ -248,7 +248,11 @@
 
 
                 <div class="row">
-                    <h2><span>{{ titreContenuSuggere }}</span></h2>
+                    {% if objectif == 'investir' %}
+                    <h2><span>Investissez en toute sérénité</span></h2>
+                    {% elseif objectif == 'residence' %}
+                    <h2><span>Devenez propriétaire</span></h2>
+                    {% endif %}
                 </div>
 
                 <div class="row proposition-services">
@@ -258,16 +262,29 @@
                                 <img src="{{ asset('img/article-immo.jpg') }}">
                             </div>
                             <div class="card-content">
-                                <h4>{{ titreServiceSuggere }}</h4>
-                                <p>{{ texteServiceSuggere }}</p>
+                                {% if objectif == 'investir' %}
+                                <h4>Nos services de Location et Gestion locative</h4>
+                                <p>Not the same lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                                    lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
+                                {% elseif objectif == 'residence' %}
+                                <h4>Les parcours immobiliers</h4>
+                                <p>Not the same lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                                    lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
+                                {% endif %}
                             </div>
                             <div class="card-action center">
+                                {% if objectif == 'investir' %}
                                 <a href="{{ path("nosservices") }}">Découvrez les services</a>
+                                {% elseif objectif == 'residence' %}
+                                <a href="{{ path("parcoursimmo") }}">Découvrez les parcours</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
 
+                {# Affichage d'un lien vers les packs dans le parcours Investisseur #}
+                {% if objectif == 'investir' %}
                 <div class="row">
                     <div class="col s12 offset-m1 m10">
                         <div class="card medium">
@@ -285,15 +302,22 @@
                         </div>
                     </div>
                 </div>
+                {% elseif objectif == 'residence' %}
+
+                {% endif %}
+                {# Fin affichage packs #}
+
                 <div class="row">
                     <div class="col s12 offset-m1 m10">
                         <div class="card medium">
                             <div class="card-content">
-                                <h4>Titre de l'article</h4>
-                                <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-                                    lorem ipsum lorem ipsum lorem ipsum.</p>
+                                <h4>{{ article.titre }}</h4>
+                                <p>{{ article.text | truncate(20) }}</p>
                             </div>
                             <div class="card-image">
+                                {#{% for media in article.medias if media.type == 'image' %}
+                                    <img src="{{ asset('img/'~media.lien) }}">
+                                {% endfor %}#}
                                 <img src="{{ asset('img/article-immo.jpg') }}">
                             </div>
                             <div class="card-action center">
@@ -313,9 +337,9 @@
                         var count = 0;
                         var locations = [
                             {% for residence in residences %}
-                                ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}, count],
-                                count = count + 1
+                                ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}],
                             {% endfor %}
+
                         ];
 
                         var map = new google.maps.Map(document.getElementById('map'), {
@@ -326,7 +350,7 @@
 
                         var infowindow = new google.maps.InfoWindow();
 
-                        var marker;
+                        var marker, i;
 
                         for (i = 0; i < locations.length; i++) {
                             marker = new google.maps.Marker({

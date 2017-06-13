@@ -50,7 +50,7 @@ class Article
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="Media", mappedBy="article", cascade={"all"}, fetch="EAGER")
      */
     private $medias;
 

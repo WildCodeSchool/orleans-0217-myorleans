@@ -10,4 +10,17 @@ namespace MyOrleansBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function articleByTag($tag)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->where('a.')
+            ->join('a.tag', 't')
+            ->where('t.nom LIKE :tag')
+            ->setParameter('tag', $tag);
+
+        return $qb->getQuery()->getResult();
+    }
+
+
 }

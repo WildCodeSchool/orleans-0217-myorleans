@@ -12,19 +12,19 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 {
     public function simpleSearch($ville, $type)
     {
-        if (!$type) {
-            $qb = $this->createQueryBuilder('r')
-                ->where('r.ville LIKE :ville')
+        $qb = $this->createQueryBuilder('r');
+
+        if (!empty($ville)) {
+            $qb->andWhere('r.ville LIKE :ville')
                 ->setParameter('ville', '%'.$ville.'%');
-            return $qb->getQuery()->getResult();
         }
 
-        $qb = $this->createQueryBuilder('r')
-            ->where('r.ville LIKE :ville')
-            ->setParameter('ville', '%'.$ville.'%')
-            ->join('r.flats', 'f')
-            ->andWhere('f.type = :type')
-            ->setParameter('type', $type);
+        if (!empty($type)) {
+            $qb->andWhere('f.type = :type')
+                ->setParameter('type', $type)
+                ->join('r.flats', 'f');
+        }
+
         return $qb->getQuery()->getResult();
     }
 }
