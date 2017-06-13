@@ -214,7 +214,7 @@ body {
 .moteur-recherche {
     background-color: white;
     border-radius: 2px;
-    box-shadow: 1px 1px 10px #c2c2c2;
+    box-shadow: 1px 1px 3px #c2c2c2;
     padding: 5px 10px;
     position: fixed;
     width: 98%;
