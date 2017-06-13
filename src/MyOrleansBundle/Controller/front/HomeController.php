@@ -4,11 +4,15 @@ namespace MyOrleansBundle\Controller\front;
 
 
 use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\CategoriePresta;
+use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Pack;
+use MyOrleansBundle\Entity\Presta;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
 
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\TypePresta;
 use MyOrleansBundle\Form\SimpleSearchType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -104,7 +108,17 @@ class HomeController extends Controller
      */
     public function residence()
     {
-        return $this->render('MyOrleansBundle::residence.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $residences = $em->getRepository(Residence::class)->findAll();
+        $prestas = $em->getRepository(Presta::class)->findAll();
+        $typePrestas = $em->getRepository(TypePresta::class)->findAll();
+        $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();
+        return $this->render('MyOrleansBundle::residences.html.twig',[
+            'residences'=>$residences,
+            'prestas'=>$prestas,
+            'typePrestas'=>$typePrestas,
+            'categoriePrestas'=>$categoriePrestas,
+        ]);
     }
 
     /**
@@ -112,7 +126,19 @@ class HomeController extends Controller
      */
     public function flat()
     {
-        return $this->render('MyOrleansBundle::appartement.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $flats = $em->getRepository(Flat::class)->findAll();
+        $residences = $em->getRepository(Residence::class)->findAll();
+        $prestas = $em->getRepository(Presta::class)->findAll();
+        $typePrestas = $em->getRepository(TypePresta::class)->findAll();
+        $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();
+        return $this->render('MyOrleansBundle::appartement.html.twig',[
+            'flats'=>$flats,
+            'residences'=>$residences,
+            'prestas'=>$prestas,
+            'typePrestas'=>$typePrestas,
+            'categoriePrestas'=>$categoriePrestas,
+        ]);
     }
 
     /**

@@ -12,7 +12,8 @@
             <div class="row center">
                 <div class="col s12 l12 m10">
                     <h2>
-                        <span>Le Pryvé</span>
+                        {% for residence in residences %}
+                        <span>{{ residence.id }}</span>
                     </h2>
                 </div>
                 <div class="row">
@@ -41,11 +42,14 @@
         </div>
         <div data-aos="fade-left" class="col s10 m5">
             <div class="info-apt">
-                <h3>St Pryvé St Mesmin</h3>
+                <h3>{{ residence.ville }}</h3>
+                {% endfor %}
                 <h3>Appartement Neuf</h3>
-                <h3>(Ref PRY13) Type2</h3>
-                <h3>37 m2</h3>
-                <h3>137 200 €</h3>
+                {% for flat in flats %}
+                <h3>({{ flat.reference }}) {{ flat.type }}</h3>
+                <h3>{{ flat.surface }} m2</h3>
+                <h3>{{ flat.prix }} €</h3>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -65,12 +69,9 @@
                 <div class="col offset-l1 l5 s10">
                     <h3>La Residence</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        {% for residence in residences %}
+                        {{ residence.description }}
+                        {% endfor %}
                     </p>
                 </div>
                 <div class="col l5 s10">
