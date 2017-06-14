@@ -39,14 +39,14 @@ class NosBiensController extends Controller
 
             // Envoi de contenu different en fonction du bouton clique : investisseur ou residence principale
             if ($simpleSearch->get('resPrincipaleBtn')->isClicked()) {
-                // Generation des articles avec le tag 'Residence Principale'
-                $articles = $em->getRepository(Article::class)->articleByTag('Residence Principale');
+                // Generation du dernier article avec le tag 'Residence Principale'
+/*                $article = $em->getRepository(Article::class)->articleByTag('Residence Principale');*/
 
                 $objectif = "residence";
             }
             if ($simpleSearch->get('investBtn')->isClicked()) {
-                // Generation des articles avec le tag 'Investissement'
-                $articles = $em->getRepository(Article::class)->articleByTag('Investissement');
+                // Generation du derier article avec le tag 'Investissement'
+/*                $article = $em->getRepository(Article::class)->articleByTag('Investissement');*/
 
                 $objectif = "investir";
             }
@@ -56,10 +56,6 @@ class NosBiensController extends Controller
             $ville = $data['ville'];
             $type = $data['type'];
             $residences = $em -> getRepository(Residence::class)->simpleSearch($ville, $type);
-
-            //Selection aleatoire d'un article
-            $numRandom = mt_rand(0, count($articles) - 1);
-            $articleRandom = $articles[$numRandom];
 
             $message = count($residences)." résidence(s) correspondent à votre recherche";
 
@@ -73,31 +69,26 @@ class NosBiensController extends Controller
                 'residences' => $residences,
                 'message' => $message,
                 'objectif' => $objectif,
-                'article' => $articleRandom
+/*                'article' => $article*/
             ]);
 
         // donnees envoyees a la page nos biens si le form simpleSearch n'est pas valide ou lorqu'on clique sur
         // l'onglet nos biens dans la navbar
         } else {
-            // Generation des articles avec le tag 'Investissement'
-            $articles = $em->getRepository(Article::class)->articleByTag('Investissement');
-
-            //Selection aleatoire d'un article
-            $numRandom = mt_rand(0, count($articles) - 1);
-            $articleRandom = $articles[$numRandom];
 
             $residences = $em->getRepository(Residence::class)->findAll();
             $message = "Découvrez les biens suggérés";
-            $objectif = "Investir";
+            $objectif = "investir";
 
-/*            var_dump($articleRandom);
-            die();*/
+            // Generation du dernier article avec le tag 'Investissement'
+/*            $article = $em->getRepository(Article::class)->articleByTag('Investissement');*/
+
 
             return $this->render('MyOrleansBundle::nosbiens.html.twig', [
                 'residences' => $residences,
                 'message' => $message,
-                'objectif' => $objectif,
-                'article' => $articleRandom
+                'objectif' => $objectif
+/*                'article' => $article*/
             ]);
 
 

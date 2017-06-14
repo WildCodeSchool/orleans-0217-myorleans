@@ -81,9 +81,9 @@ class Media
     private $pack;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article", inversedBy="medias")
+     * @ORM\ManyToMany(targetEntity="Article", inversedBy="media")
      */
-    private $article;
+    private $articles;
 
     /**
      * Get id
@@ -374,37 +374,4 @@ class Media
         return $this->pack;
     }
 
-    /**
-     * Add article
-     *
-     * @param \MyOrleansBundle\Entity\Article $article
-     *
-     * @return Media
-     */
-    public function addArticle(\MyOrleansBundle\Entity\Article $article)
-    {
-        $this->article[] = $article;
-
-        return $this;
-    }
-
-    /**
-     * Remove article
-     *
-     * @param \MyOrleansBundle\Entity\Article $article
-     */
-    public function removeArticle(\MyOrleansBundle\Entity\Article $article)
-    {
-        $this->article->removeElement($article);
-    }
-
-    /**
-     * Get article
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getArticle()
-    {
-        return $this->article;
-    }
 }

@@ -9,8 +9,10 @@
 namespace MyOrleansBundle\Controller\front;
 
 
+use MyOrleansBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use MyOrleansBundle\Repository\ArticleRepository;
 
 class BlogController extends Controller
 {
@@ -21,7 +23,14 @@ class BlogController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MyOrleansBundle:blog:blog_home.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $articles = $em->getRepository(Article::class)->findNineLastArticles();
+
+        return $this->render('MyOrleansBundle:blog:blog_home.html.twig', [
+                                'articles' => $articles
+        ]);
     }
 
     /**

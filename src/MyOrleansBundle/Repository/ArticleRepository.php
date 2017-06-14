@@ -14,10 +14,22 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('a');
 
-        $qb->where('a.')
-            ->join('a.tag', 't')
+        $qb->join('a.tag', 't')
             ->where('t.nom LIKE :tag')
-            ->setParameter('tag', $tag);
+            ->setParameter('tag', $tag)
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(1);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findNineLastArticles()
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->select('a')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(9);
 
         return $qb->getQuery()->getResult();
     }

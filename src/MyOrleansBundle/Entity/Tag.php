@@ -29,7 +29,7 @@ class Tag
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article")
+     * @ORM\ManyToMany(targetEntity="Article", inversedBy="tag")
      */
     private $article;
 
