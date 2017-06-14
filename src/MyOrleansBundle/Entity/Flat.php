@@ -86,9 +86,9 @@ class Flat
     private $medias;
 
     /**
-     * @ORM\OneToMany(targetEntity="Presta", mappedBy="flat")
+     * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="flat")
      */
-    private $prestas;
+    private $categoriePrestas;
 
 
 
@@ -327,21 +327,7 @@ class Flat
         $this->medias = $medias;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPrestas()
-    {
-        return $this->prestas;
-    }
 
-    /**
-     * @param mixed $prestas
-     */
-    public function setPrestas($prestas)
-    {
-        $this->prestas = $prestas;
-    }
 
 
 

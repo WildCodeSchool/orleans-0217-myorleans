@@ -145,9 +145,9 @@ class Residence
     private $flats;
 
     /**
-     * @ORM\OneToMany(targetEntity="Presta", mappedBy="residence", cascade={"all"}, fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="residence", cascade={"all"}, fetch="EAGER")
      */
-    private $prestas;
+    private $categoriePrestas;
 
 
     /**
@@ -592,36 +592,20 @@ class Residence
     }
 
     /**
-     * Add presta
-     *
-     * @param \MyOrleansBundle\Entity\Presta $presta
-     *
-     * @return Residence
+     * @return mixed
      */
-    public function addPresta(\MyOrleansBundle\Entity\Presta $presta)
+    public function getCategoriePrestas()
     {
-        $this->prestas[] = $presta;
-
-        return $this;
+        return $this->categoriePrestas;
     }
 
     /**
-     * Remove presta
-     *
-     * @param \MyOrleansBundle\Entity\Presta $presta
+     * @param mixed $categoriePrestas
      */
-    public function removePresta(\MyOrleansBundle\Entity\Presta $presta)
+    public function setCategoriePrestas($categoriePrestas)
     {
-        $this->prestas->removeElement($presta);
+        $this->categoriePrestas = $categoriePrestas;
     }
 
-    /**
-     * Get prestas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPrestas()
-    {
-        return $this->prestas;
-    }
+
 }

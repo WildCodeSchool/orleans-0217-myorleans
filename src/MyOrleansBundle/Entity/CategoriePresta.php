@@ -36,12 +36,12 @@ class CategoriePresta
     private $ordreAffichage;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Flat", inversedBy="prestas")
+     * @ORM\ManyToOne(targetEntity="Flat", inversedBy="categoriePrestas")
      */
     private $flat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Residence", inversedBy="prestas")
+     * @ORM\ManyToOne(targetEntity="Residence", inversedBy="categoriePrestas")
      */
     private $residence;
 

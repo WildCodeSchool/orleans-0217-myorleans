@@ -204,8 +204,8 @@
                         <div class="card large">
                             <div class="card-image">
 
-                                {% for medium in residence.media if medium.type == 'image' %}
-                                <img src="{{ asset('img/'~medium.lien) }}">
+                                {% for media in residence.medias if media.typeMedia.nom == 'image' %}
+                                <img src="{{ asset('img/'~media.lien) }}">
                                 {% endfor %}
 
                             </div>
@@ -257,7 +257,7 @@
 
                 <div class="row proposition-services">
                     <div class="col s12 offset-m1 m10">
-                        <div class="card medium">
+                        <div class="card media">
                             <div class="card-image">
                                 <img src="{{ asset('img/article-immo.jpg') }}">
                             </div>
@@ -287,7 +287,7 @@
                 {% if objectif == 'investir' %}
                 <div class="row">
                     <div class="col s12 offset-m1 m10">
-                        <div class="card medium">
+                        <div class="card media">
                             <div class="card-image">
                                 <img src="{{ asset('img/article-immo.jpg') }}">
                             </div>
@@ -309,7 +309,7 @@
 
                 <div class="row">
                     <div class="col s12 offset-m1 m10">
-                        <div class="card medium">
+                        <div class="card media">
                             <div class="card-content">
                                 {#<h4>{{ article.titre }}</h4>
                                 <p>{{ article.text | truncate(20) }}</p>#}
