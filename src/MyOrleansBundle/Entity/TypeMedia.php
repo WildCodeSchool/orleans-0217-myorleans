@@ -28,6 +28,11 @@ class TypeMedia
      */
     private $nom;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Media", mappedBy="typeMedia")
+     */
+    private $medias;
+
 
     /**
      * Get id
@@ -62,5 +67,23 @@ class TypeMedia
     {
         return $this->nom;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * @param mixed $medias
+     */
+    public function setMedias($medias)
+    {
+        $this->medias = $medias;
+    }
+
+
 }
 

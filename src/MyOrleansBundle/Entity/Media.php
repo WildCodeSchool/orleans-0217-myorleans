@@ -74,6 +74,11 @@ class Media
     private $articles;
 
     /**
+     * @ORM\ManyToOne(targetEntity="TypeMedia", inversedBy="medias")
+     */
+    private $typeMedia;
+
+    /**
      * Get id
      *
      * @return int
@@ -285,7 +290,21 @@ class Media
         $this->articles = $articles;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTypeMedia()
+    {
+        return $this->typeMedia;
+    }
 
+    /**
+     * @param mixed $typeMedia
+     */
+    public function setTypeMedia($typeMedia)
+    {
+        $this->typeMedia = $typeMedia;
+    }
 
 
 }
