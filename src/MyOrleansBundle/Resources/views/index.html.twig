@@ -77,42 +77,44 @@
                                 {{ form_widget(simpleSearch) }}
                             </div>
                         </div>
-                                <div class="row center">
-                                    <div class="formButton col s12 m12 l4 offset-l1">
-                                        <input type="submit" class="waves-effect waves-light btn-large light-green" value="Je souhaite investir"/>
-                                    </div>
-                                    <div class="formButton col s12 m12 l6">
-                                        <input type="submit" class="waves-effect waves-light btn-large light-green" value="Je recherche une résidence principale"/>
-                                    </div>
-                                </div>
-
-
-                                {{ form_end(simpleSearch) }}
-{#                                <input type="text" id="autocomplete-input" class="autocomplete" name="localisation">
-                                <label for="autocomplete-input">Localisation</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <select>
-                                    <option value="" disabled selected>Sélectionnez le type du bien</option>
-                                    <option value="1">Maison</option>
-                                    <option value="2">Appartement</option>
-                                </select>
-                                <label>Type</label>#}
-
-                            </div>
-                        </div>
-{#                        <div class="row center">
+                        <div class="row center">
                             <div class="formButton col s12 m12 l4 offset-l1">
-                                <a class="waves-effect waves-light btn-large light-green">Je souhaite investir</a>
+                                <input type="submit" class="waves-effect waves-light btn-large light-green"
+                                       value="Je souhaite investir"/>
                             </div>
                             <div class="formButton col s12 m12 l6">
-                                <a class="waves-effect waves-light btn-large light-green">Je recherche une résidence
-                                    Principale</a>
+                                <input type="submit" class="waves-effect waves-light btn-large light-green"
+                                       value="Je recherche une résidence principale"/>
                             </div>
-                        </div>#}
+                        </div>
+
+
+                        {{ form_end(simpleSearch) }}
+                        {#                                <input type="text" id="autocomplete-input" class="autocomplete" name="localisation">
+                                                        <label for="autocomplete-input">Localisation</label>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <select>
+                                                            <option value="" disabled selected>Sélectionnez le type du bien</option>
+                                                            <option value="1">Maison</option>
+                                                            <option value="2">Appartement</option>
+                                                        </select>
+                                                        <label>Type</label>#}
+
                     </div>
                 </div>
+                {#                        <div class="row center">
+                                            <div class="formButton col s12 m12 l4 offset-l1">
+                                                <a class="waves-effect waves-light btn-large light-green">Je souhaite investir</a>
+                                            </div>
+                                            <div class="formButton col s12 m12 l6">
+                                                <a class="waves-effect waves-light btn-large light-green">Je recherche une résidence
+                                                    Principale</a>
+                                            </div>
+                                        </div>#}
             </div>
+        </div>
+        </div>
         </section>
         </div>
         <div class="container-fluid">
@@ -127,19 +129,21 @@
                             <div class="col s12 l6">
                                 <div class="card mosaic-container">
                                     <div class="card-image">
-                                        <img src="{{ asset('img/res_dunois.jpg') }}">
+                                        {% for medium in residenceFav[0].media if medium.type == 'image' %}
+                                            <img src="{{ asset('img/'~medium.lien) }}">
+                                        {% endfor %}
                                     </div>
                                     <div class="card-content">
                                         <div class="row grille-infos">
                                             <div class="col s8 grille-gauche">
                                                 <div class="row nom-residence">
-                                                    <h4>Nom Résidence</h4>
-                                                    <p>Le Beau Dunois</p>
+                                                    <h4>{{ residenceFav[0].nom }}</h4>
+                                                    <p>à {{ residenceFav[0].ville }}</p>
                                                 </div>
                                                 <div class="row annee-nbPiece">
                                                     <div class="col s6 annee-residence">
                                                         <h4>Année</h4>
-                                                        <p>4è Trimestre 2017</p>
+                                                        <p>{{ residenceFav[0].dateLivraison }}</p>
                                                     </div>
                                                     <div class="col s6">
                                                         <h4>Nombre de pièces</h4>
@@ -152,33 +156,41 @@
                                                 <p>A partir de 90 000€</p>
                                                 <br/>
                                                 <h4>Disponibilité</h4>
-                                                <p>5 logements</p>
+                                                <p>{{ residenceFav[0].nbTotalLogements }} logements</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-action center">
                                         <a href="#">Découvrir la résidence</a>
+
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col s12 l6">
-                                <div class="col s12 l12">
-                                    <div class="card">
-                                        <div class="card-image">
-                                            <img src="{{ asset('img/leflores.jpeg') }}" class="responsive-img">
-                                            <span class="card-title">Le Flores</span>
+                                {# <div class="col s12 l12">
+                                     <div class="card">
+                                         <div class="card-image">
+                                           #}{#  {% for medium in residenceAll.media if medium.type == 'image' %}
+                                                 <img src="{{ asset('img/'~medium.lien) }}" class="responsive-img">
+                                                 <span class="card-title">Le Flores</span>
+                                             {% endfor %}#}{#
+                                         </div>
+                                     </div>
+                                 </div>#}
+                                {% for resTwoFav in residenceTwoFav %}
+                                    <div class="col s12 l12">
+                                        <div class="card">
+                                            <div class="card-image">
+                                                {% for medium in resTwoFav.media if medium.type == 'image' %}
+                                                    <img src="{{ asset('img/'~medium.lien) }}" class="responsive-img"
+                                                         alt="{{ resTwoFav.nom }}">
+                                                {% endfor %}
+                                                <span class="card-title">{{ resTwoFav.nom }}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col s12 l12">
-                                    <div class="card">
-                                        <div class="card-image">
-                                            <img src="{{ asset('img/villasaintmarc.jpeg') }}" class="responsive-img">
-                                            <span class="card-title">Le Flores</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -278,23 +290,18 @@
 
             <div class="row carouselAgence">
                 <div class="col s12 m10 l10 offset-l1">
-                    <h3>"Lorem ipsum njnanjndajnjznanjanjanj nanoanoanoan odaojdaoij </h3>
+                    <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
+                        clients.
+                        Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
+                        meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
                     <div class="carousel">
-                        <a class="carousel-item" href="#one!"><img src="{{ asset('img/equipe/Fabien.jpeg') }}">
-                            <p>Fabien Durand<br><span>Fondateur</span></p>
-                        </a>
-                        <a class="carousel-item" href="#two!"><img src="{{ asset('img/equipe/Emilie.jpeg') }}">
-                            <p>Fabien Durand<br><span>Fondateur</span></p></a>
-
-                        <a class="carousel-item" href="#three!"><img src="{{ asset('img/equipe/Charles.jpeg') }}">
-                            <p>Fabien Durand<br><span>Fondateur</span></p></a>
-
-                        <a class="carousel-item" href="#four!"><img src="{{ asset('img/equipe/Albane.jpeg') }}">
-                            <p>Fabien Durand<br><span>Fondateur</span></p></a>
-
-                        <a class="carousel-item" href="#five!"><img src="{{ asset('img/equipe/Mica.jpeg') }}">
-                            <p>Fabien Durand<br><span>Fondateur</span></p></a>
-
+                        {% for collaborateur in collaborateurs %}
+                            <a class="carousel-item" href="#one!"><img
+                                        src="{{ asset('img/equipe/'~collaborateur.media.lien) }}">
+                                <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
+                                    <br><span>{{ collaborateur.fonction }}</span></p>
+                            </a>
+                        {% endfor %}
                     </div>
                 </div>
 
@@ -350,45 +357,38 @@
                     <h3>L'actualité</h3>
                     <div class="card small">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ asset('img/lepryve.jpeg') }}">
+                                {#<img class="activator" src="{{ asset('img/'~actu[0].media.lien) }}">#}
                         </div>
                         <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Titre de l'actualité<i
+                        <span class="card-title activator grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">add</i></span>
-                            <p>26.06.2017</p>
-                            <p class="truncate">Iamque lituis cladium concrepantibus internarum non celate ut antea
-                                turbidum
-                                saeviebat
-                                ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
-                                sollemniter inquirente nec</p>
+                            <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
+                            <p class="truncate">{{ actu[0].text }}</p>
                         </div>
                         <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Titre de l'actualité<i
+                        <span class="card-title grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">close</i></span>
-                            <p>Iamque lituis cladium concrepantibus internarum non celate ut antea turbidum saeviebat
-                                ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
-                                sollemniter inquirente nec</p>
+                            <p>{{ actu[0].text }}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col s12 l6">
-                    <h3>Nos événements</h3>
+                    <h3>L'événement</h3>
                     <div class="card small">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ asset('img/event1.jpeg') }}">
+                            <img class="activator" src="{{ asset('img/'~event[0].media.lien) }}">
                         </div>
                         <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Card Title<i
+                        <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
                                     class="material-icons right">add</i></span>
-                            <p>26.06.2017</p>
+                            <p>{% if event[0].date %}{{ event[0].date|date('j-m-Y') }}{% endif %}</p>
+                            <p class="truncate">{{ event[0].description }}</p>
                         </div>
                         <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Card Title<i
+                        <span class="card-title grey-text text-darken-4">{{ event[0].nom }}<i
                                     class="material-icons right">close</i></span>
-                            <p>Iamque lituis cladium concrepantibus internarum non celate ut antea turbidum saeviebat
-                                ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
-                                sollemniter inquirente nec</p>
+                            <p>{{ event[0].description}}</p>
                         </div>
                     </div>
                 </div>
@@ -471,7 +471,7 @@
         <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
         <script>
-            $(document).ready(function(){
+            $(document).ready(function () {
 
                 // hide #back-top first
                 $("#back-top").hide();

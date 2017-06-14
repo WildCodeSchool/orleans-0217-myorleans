@@ -9,6 +9,7 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Collaborateur;
+use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Entity\Partenaire;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,10 +25,13 @@ class AgenceController extends Controller
 
         $partenaires = $em->getRepository(Partenaire::class)->findAll();
         $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
+        $evenements =$em->getRepository(Evenement::class)->findAll();
 
         return $this->render('MyOrleansBundle::agence.html.twig',
-            ['partenaires' => $partenaires,
-             'collaborateurs'=>$collaborateurs
+            [
+                'partenaires' => $partenaires,
+                'collaborateurs'=>$collaborateurs,
+                'evenements'=>$evenements
             ]
         );
     }

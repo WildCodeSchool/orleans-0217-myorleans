@@ -71,9 +71,9 @@ class Residence
     private $longitude;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date_livraison", type="date", nullable=true)
+     * @ORM\Column(name="date_livraison", type="string", nullable=true)
      */
     private $dateLivraison;
 
@@ -318,7 +318,7 @@ class Residence
     /**
      * Set dateLivraison
      *
-     * @param \DateTime $dateLivraison
+     * @param string $dateLivraison
      *
      * @return Residence
      */
@@ -332,7 +332,7 @@ class Residence
     /**
      * Get dateLivraison
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDateLivraison()
     {
