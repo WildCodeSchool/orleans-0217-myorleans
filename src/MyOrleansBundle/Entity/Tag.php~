@@ -66,4 +66,45 @@ class Tag
     {
         return $this->nom;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->article = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add article
+     *
+     * @param \MyOrleansBundle\Entity\Article $article
+     *
+     * @return Tag
+     */
+    public function addArticle(\MyOrleansBundle\Entity\Article $article)
+    {
+        $this->article[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \MyOrleansBundle\Entity\Article $article
+     */
+    public function removeArticle(\MyOrleansBundle\Entity\Article $article)
+    {
+        $this->article->removeElement($article);
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
 }

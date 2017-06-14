@@ -492,6 +492,20 @@ body {
     background-color: rgb(189,217,90);
 }
 
+.btn-vendu{
+    background-color: #FFFFF1 !important;
+    color : #EF562D;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+
 .collapsible-header{
     font-size: large;
 }
@@ -513,6 +527,9 @@ td{
     padding-top: 50px;
     padding-bottom: 50px;
 }
+
+
+
 
 
 

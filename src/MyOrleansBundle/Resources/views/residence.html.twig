@@ -7,30 +7,30 @@
 {% endblock %}
 
 {% block content %}
-    {% for residence in residences %}
-    {% if residence.id is not empty %}
+
     <div class="content-residence">
         <div class="video-container">
-            <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0"
+            <iframe width="853" height="480" src="{{ asset(media.lien) }}" frameborder="0"
                     allowfullscreen></iframe>
-            {#            <iframe width="560" height="315" src="https://www.youtube.com/embed/IjwUPnvKezE" frameborder="0" allowfullscreen></iframe>#}
+
         </div>
         <div class="container">
             <div class="row">
                 <div class="undervideo-residence">
                     <div class="col l6 s12">
                         <h2><span>{{ residence.nom }}</span></h2>
-                        <h2 class="lieu-residence">à {{ reidence.ville }}</h2>
+                        <h2 class="lieu-residence">à {{ residence.ville }}</h2>
                     </div>
                     <div class="col l6 s12">
                         <table class="offre-residence">
                             <tr>
-                                <td><strong>Offre</strong><br/><span class="subtab-residence">{{ reidence.date_livraison }}</span></td>
+                                <td><strong>Offre</strong><br/><span
+                                            class="subtab-residence">{{ residence.dateLivraison }}</span></td>
                                 <td><strong>Prix</strong><br/><span class="subtab-residence">à partir de 90 000 €</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong>Date de livraison</strong><br/><span class="subtab-residence">{{ reidence.date_livraison }}</span>
+                                <td><strong>Date de livraison</strong><br/><span class="subtab-residence">{{ residence.dateLivraison }}</span>
                                 </td>
                                 <td><strong>Nb. Pièces</strong><br/><span class="subtab-residence">du T1 au T5</span>
                                 </td>
@@ -48,13 +48,13 @@
                 <div class="col l6 s12">
                     <h2>La Residence</h2>
                     <p>
-                            {{ residence.description }}
+                        {{ residence.description }}
                     </p>
                 </div>
                 <div class="col l6 s12">
                     <h2>Les Prestations</h2>
-                    <img class="icon-residence" src="{{ asset('img/icons/Wheelchair_Accessible.png') }}"
-                         alt="acces handicape"/>Accessibiité<br/>
+
+                    <img class="icon-residence" src="{{ asset(media.lien) }}" alt="acces handicape"/>Accessibiité<br/>
                     <img class="icon-residence" src="{{ asset('img/icons/shopping-cart.png') }}" alt="commerces"/>Commerces<br/>
                     <img class="icon-residence" src="{{ asset('img/icons/smoking_not_allowed.png') }}"
                          alt="non fumeur"/>Non Fumeur<br/>
@@ -87,10 +87,10 @@
                 <div class="col s12">
                     <div class="citation-residence">
                         <p>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                            {{ residence.citation }}
                         </p>
                         <p class="pinel-residence">
-                            Eligible Loi Pinel
+                            {{ residence.pinel }}
                         </p>
                     </div>
                 </div>
@@ -99,9 +99,9 @@
         <div class="container">
             <div class="row">
                 <div class="col l12">
-                    <h3>Nombre de logements disponibles : 30</h3>
-{% endif %}
-{% endfor %}
+                    <h3>Nombre de logements disponibles : {{ count }}</h3>
+
+
                     <h3 class="consulter-residence">Consultez nos biens disponibles</h3>
                 </div>
             </div>
@@ -124,27 +124,21 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T1</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T1</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T1</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
+                                        {% for flat in flats if flat.type == 'T1' %}
+                                            <tr>
+                                                <td>{{ flat.reference }}</td>
+                                                <td>{{ flat.type }}</td>
+                                                <td>{{ flat.surface }}m2</td>
+                                                <td>{{ flat.prix }} €</td>
+                                                {% if flat.statut == 'VENDU' %}
+                                                    <td class="waves-effect waves-light btn btn-vendu">
+                                                        <strong>Vendu</strong></td>
+                                                {% else %}
+                                                    <td><a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                    </td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -164,27 +158,21 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T2</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T2</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T2</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
+                                        {% for flat in flats if flat.type == 'T2' %}
+                                            <tr>
+                                                <td>{{ flat.reference }}</td>
+                                                <td>{{ flat.type }}</td>
+                                                <td>{{ flat.surface }}m2</td>
+                                                <td>{{ flat.prix }} €</td>
+                                                {% if flat.statut == 'VENDU' %}
+                                                    <td class="waves-effect waves-light btn btn-vendu">
+                                                        <strong>Vendu</strong></td>
+                                                {% else %}
+                                                    <td><a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                    </td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -204,27 +192,21 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T3</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T3</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T3</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
+                                        {% for flat in flats if flat.type == 'T3' %}
+                                            <tr>
+                                                <td>{{ flat.reference }}</td>
+                                                <td>{{ flat.type }}</td>
+                                                <td>{{ flat.surface }}m2</td>
+                                                <td>{{ flat.prix }} €</td>
+                                                {% if flat.statut == 'VENDU' %}
+                                                    <td class="waves-effect waves-light btn btn-vendu">
+                                                        <strong>Vendu</strong></td>
+                                                {% else %}
+                                                    <td><a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                    </td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -244,33 +226,27 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T4</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T4</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T4</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
+                                        {% for flat in flats if flat.type == 'T4' %}
+                                            <tr>
+                                                <td>{{ flat.reference }}</td>
+                                                <td>{{ flat.type }}</td>
+                                                <td>{{ flat.surface }}m2</td>
+                                                <td>{{ flat.prix }} €</td>
+                                                {% if flat.statut == 'VENDU' %}
+                                                    <td class="waves-effect waves-light btn btn-vendu">
+                                                        <strong>Vendu</strong></td>
+                                                {% else %}
+                                                    <td><a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                    </td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
                             </li>
                             <li>
-                                <div class="collapsible-header">T5</div>
+                                <div class="collapsible-header">T5 et plus</div>
                                 <div class="collapsible-body">
                                     <table class="stripped">
                                         <thead>
@@ -284,27 +260,21 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T4</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T4</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRY13</td>
-                                            <td>T4</td>
-                                            <td>38m2</td>
-                                            <td>130 700 €</td>
-                                            <td><a class="waves-effect waves-light btn btn-residence">Voir</a></td>
-                                        </tr>
+                                        {% for flat in flats if flat.type == 'T5' or flat.type == 'T6' or flat.type == 'T7' or  flat.type == 'T8' %}
+                                            <tr>
+                                                <td>{{ flat.reference }}</td>
+                                                <td>{{ flat.type }}</td>
+                                                <td>{{ flat.surface }}m2</td>
+                                                <td>{{ flat.prix }} €</td>
+                                                {% if flat.statut == 'VENDU' %}
+                                                    <td class="waves-effect waves-light btn btn-vendu">
+                                                        <strong>Vendu</strong></td>
+                                                {% else %}
+                                                    <td><a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                    </td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -314,7 +284,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
 
 {% endblock %}

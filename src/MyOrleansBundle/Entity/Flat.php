@@ -88,24 +88,24 @@ class Flat
     /**
      * @var string
      *
-     * @ORM\Column(name="statu", type="string", length=10, nullable=true)
+     * @ORM\Column(name="statut", type="string", length=10, nullable=true)
      */
-    private $statu;
+    private $statut;
 
     /**
      * @return string
      */
-    public function getStatu()
+    public function getStatut()
     {
-        return $this->statu;
+        return $this->statut;
     }
 
     /**
-     * @param string $statu
+     * @param string $statut
      */
-    public function setStatu($statu)
+    public function setStatut($statut)
     {
-        $this->statu = $statu;
+        $this->statut = $statut;
     }
 
 

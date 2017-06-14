@@ -37,7 +37,7 @@ class Service
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Media")
+     * @ORM\OneToOne(targetEntity="Media", inversedBy="service")
      */
     private $media;
 

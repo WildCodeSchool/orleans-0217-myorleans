@@ -236,4 +236,38 @@ class Article
     {
         return $this->residence;
     }
+
+    /**
+     * Add tag
+     *
+     * @param \MyOrleansBundle\Entity\Tag $tag
+     *
+     * @return Article
+     */
+    public function addTag(\MyOrleansBundle\Entity\Tag $tag)
+    {
+        $this->tag[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \MyOrleansBundle\Entity\Tag $tag
+     */
+    public function removeTag(\MyOrleansBundle\Entity\Tag $tag)
+    {
+        $this->tag->removeElement($tag);
+    }
+
+    /**
+     * Get tag
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTag()
+    {
+        return $this->tag;
+    }
 }

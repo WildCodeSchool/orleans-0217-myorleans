@@ -12,8 +12,8 @@
             <div class="row center">
                 <div class="col s12 l12 m10">
                     <h2>
-                        {% for residence in residences %}
-                        <span>{{ residence.id }}</span>
+
+                        <span>{{ residence.nom }}</span>
                     </h2>
                 </div>
                 <div class="row">
@@ -43,13 +43,13 @@
         <div data-aos="fade-left" class="col s10 m5">
             <div class="info-apt">
                 <h3>{{ residence.ville }}</h3>
-                {% endfor %}
+
                 <h3>Appartement Neuf</h3>
-                {% for flat in flats %}
+
                 <h3>({{ flat.reference }}) {{ flat.type }}</h3>
                 <h3>{{ flat.surface }} m2</h3>
                 <h3>{{ flat.prix }} €</h3>
-                {% endfor %}
+
             </div>
         </div>
     </div>
@@ -69,9 +69,7 @@
                 <div class="col offset-l1 l5 s10">
                     <h3>La Residence</h3>
                     <p>
-                        {% for residence in residences %}
                         {{ residence.description }}
-                        {% endfor %}
                     </p>
                 </div>
                 <div class="col l5 s10">
@@ -170,7 +168,7 @@
         <script>
             AOS.init();
         </script>
-        <script>
+{#        <script>
             var doc = new jsPDF();
             var specialElementHandlers = {
                 '#editor': function (element, renderer) {
@@ -185,7 +183,7 @@
                 });
                 doc.save('sample-file.pdf');
             });
-        </script>
+        </script>#}
     {% endblock %}
 
 {% endblock %}

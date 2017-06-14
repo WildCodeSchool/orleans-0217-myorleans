@@ -6,6 +6,7 @@ namespace MyOrleansBundle\Controller\front;
 use MyOrleansBundle\Entity\Article;
 use MyOrleansBundle\Entity\CategoriePresta;
 use MyOrleansBundle\Entity\Flat;
+use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Pack;
 use MyOrleansBundle\Entity\Presta;
 use MyOrleansBundle\Entity\Service;
@@ -104,17 +105,31 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/residences")
+     * @Route("/residences/{id}")
      */
-    public function residence()
+    public function residence($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $residences = $em->getRepository(Residence::class)->findAll();
+        $residence = $em->getRepository(Residence::class)->find($id);
+        $media = $em->getRepository(Media::class)->find($id);
+
+        $count = 0;
+        $flats = $residence->getFlats();
+        foreach ($flats as $flat){
+            if ($flat->getStatut() == 'DISPONIBLE'){
+                $count++;
+            }
+        }
+
+        $flats = $residence->getFlats();
         $prestas = $em->getRepository(Presta::class)->findAll();
         $typePrestas = $em->getRepository(TypePresta::class)->findAll();
         $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();
-        return $this->render('MyOrleansBundle::residences.html.twig',[
-            'residences'=>$residences,
+        return $this->render('MyOrleansBundle::residence.html.twig',[
+            'residence'=>$residence,
+            'flats'=>$flats,
+            'count' => $count,
+            'media' => $media,
             'prestas'=>$prestas,
             'typePrestas'=>$typePrestas,
             'categoriePrestas'=>$categoriePrestas,
@@ -122,22 +137,22 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/appartement")
+     * @Route("/appartement/{id}")
      */
-    public function flat()
+    public function flat($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $flats = $em->getRepository(Flat::class)->findAll();
-        $residences = $em->getRepository(Residence::class)->findAll();
-        $prestas = $em->getRepository(Presta::class)->findAll();
+        $flat = $em->getRepository(Flat::class)->find($id);
+        $residence = $em->getRepository(Residence::class)->find($id);
+/*        $prestas = $em->getRepository(Presta::class)->findAll();
         $typePrestas = $em->getRepository(TypePresta::class)->findAll();
-        $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();
+        $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();*/
         return $this->render('MyOrleansBundle::appartement.html.twig',[
-            'flats'=>$flats,
-            'residences'=>$residences,
-            'prestas'=>$prestas,
+            'flat'=>$flat,
+            'residence'=>$residence,
+/*            'prestas'=>$prestas,
             'typePrestas'=>$typePrestas,
-            'categoriePrestas'=>$categoriePrestas,
+            'categoriePrestas'=>$categoriePrestas,*/
         ]);
     }
 

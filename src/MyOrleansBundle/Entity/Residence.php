@@ -120,6 +120,22 @@ class Residence
     private $noteEsthetisme;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="citation", type="text", nullable=true)
+     */
+    private $citation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pinel", type="string", length=45, nullable=true)
+     */
+    private $pinel;
+
+
+
+    /**
      * @var int
      *
      * @ORM\Column(name="favoris", type="integer", nullable=true)
@@ -616,5 +632,53 @@ class Residence
     public function getPrestas()
     {
         return $this->prestas;
+    }
+
+    /**
+     * Set citation
+     *
+     * @param string $citation
+     *
+     * @return Residence
+     */
+    public function setCitation($citation)
+    {
+        $this->citation = $citation;
+
+        return $this;
+    }
+
+    /**
+     * Get citation
+     *
+     * @return string
+     */
+    public function getCitation()
+    {
+        return $this->citation;
+    }
+
+    /**
+     * Set pinel
+     *
+     * @param string $pinel
+     *
+     * @return Residence
+     */
+    public function setPinel($pinel)
+    {
+        $this->pinel = $pinel;
+
+        return $this;
+    }
+
+    /**
+     * Get pinel
+     *
+     * @return string
+     */
+    public function getPinel()
+    {
+        return $this->pinel;
     }
 }

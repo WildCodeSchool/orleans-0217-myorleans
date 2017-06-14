@@ -50,6 +50,13 @@ class Residence
     private $ville;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="quartier", type="string", length=45, nullable=true)
+     */
+    private $quartier;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="latitude", type="float", nullable=true)
@@ -113,6 +120,22 @@ class Residence
     private $noteEsthetisme;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="citation", type="text", nullable=true)
+     */
+    private $citation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pinel", type="string", length=45, nullable=true)
+     */
+    private $pinel;
+
+
+
+    /**
      * @var int
      *
      * @ORM\Column(name="favoris", type="integer", nullable=true)
@@ -133,6 +156,9 @@ class Residence
      * @ORM\OneToMany(targetEntity="Presta", mappedBy="residence")
      */
     private $prestas;
+
+
+
 
 
     /**
@@ -229,6 +255,22 @@ class Residence
         $this->ville = $ville;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuartier()
+    {
+        return $this->quartier;
+    }
+
+    /**
+     * @param string $quartier
+     */
+    public function setQuartier($quartier)
+    {
+        $this->quartier = $quartier;
     }
 
     /**
@@ -590,5 +632,29 @@ class Residence
     public function getPrestas()
     {
         return $this->prestas;
+    }
+
+    /**
+     * Set citation
+     *
+     * @param string $citation
+     *
+     * @return Residence
+     */
+    public function setCitation($citation)
+    {
+        $this->citation = $citation;
+
+        return $this;
+    }
+
+    /**
+     * Get citation
+     *
+     * @return string
+     */
+    public function getCitation()
+    {
+        return $this->citation;
     }
 }

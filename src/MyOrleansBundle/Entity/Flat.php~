@@ -85,6 +85,30 @@ class Flat
      */
     private $prestas;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="statut", type="string", length=10, nullable=true)
+     */
+    private $statut;
+
+    /**
+     * @return string
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @param string $statut
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+    }
+
+
 
     /**
      * Get id
