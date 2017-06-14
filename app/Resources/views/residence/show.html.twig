@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <th>Datelivraison</th>
-                <td>{% if residence.dateLivraison %}{{ residence.dateLivraison }}{% endif %}</td>
+                <td>{{ residence.dateLivraison }}</td>
             </tr>
             <tr>
                 <th>Description</th>
@@ -65,15 +65,19 @@
                 <th>Favoris</th>
                 <td>{{ residence.favoris }}</td>
             </tr>
+            <tr>
+                <th>Accroche</th>
+                <td>{{ residence.accroche }}</td>
+            </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('residence_index') }}">Back to the list</a>
+            <a href="{{ path('admin_residence_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('residence_edit', { 'id': residence.id }) }}">Edit</a>
+            <a href="{{ path('admin_residence_edit', { 'id': residence.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

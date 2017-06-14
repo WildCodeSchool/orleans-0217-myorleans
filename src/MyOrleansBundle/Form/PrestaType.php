@@ -13,7 +13,7 @@ class PrestaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('value')->add('type_presta')->add('flat')->add('residence');
+        $builder->add('nomPresta')->add('type_presta');
     }
     
     /**

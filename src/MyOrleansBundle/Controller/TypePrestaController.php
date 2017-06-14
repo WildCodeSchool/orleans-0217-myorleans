@@ -1,6 +1,6 @@
 <?php
 
-namespace MyOrleansBundle\Controller\admin;
+namespace MyOrleansBundle\Controller;
 
 use MyOrleansBundle\Entity\TypePresta;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Typeprestum controller.
  *
- * @Route("typepresta")
+ * @Route("admin/typepresta")
  */
 class TypePrestaController extends Controller
 {
     /**
      * Lists all typePrestum entities.
      *
-     * @Route("/", name="typepresta_index")
+     * @Route("/", name="admin_typepresta_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class TypePrestaController extends Controller
     /**
      * Creates a new typePrestum entity.
      *
-     * @Route("/new", name="typepresta_new")
+     * @Route("/new", name="admin_typepresta_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class TypePrestaController extends Controller
             $em->persist($typePrestum);
             $em->flush();
 
-            return $this->redirectToRoute('typepresta_show', array('id' => $typePrestum->getId()));
+            return $this->redirectToRoute('admin_typepresta_show', array('id' => $typePrestum->getId()));
         }
 
         return $this->render('typepresta/new.html.twig', array(
@@ -60,7 +60,7 @@ class TypePrestaController extends Controller
     /**
      * Finds and displays a typePrestum entity.
      *
-     * @Route("/{id}", name="typepresta_show")
+     * @Route("/{id}", name="admin_typepresta_show")
      * @Method("GET")
      */
     public function showAction(TypePresta $typePrestum)
@@ -76,7 +76,7 @@ class TypePrestaController extends Controller
     /**
      * Displays a form to edit an existing typePrestum entity.
      *
-     * @Route("/{id}/edit", name="typepresta_edit")
+     * @Route("/{id}/edit", name="admin_typepresta_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, TypePresta $typePrestum)
@@ -88,7 +88,7 @@ class TypePrestaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('typepresta_edit', array('id' => $typePrestum->getId()));
+            return $this->redirectToRoute('admin_typepresta_edit', array('id' => $typePrestum->getId()));
         }
 
         return $this->render('typepresta/edit.html.twig', array(
@@ -101,7 +101,7 @@ class TypePrestaController extends Controller
     /**
      * Deletes a typePrestum entity.
      *
-     * @Route("/{id}", name="typepresta_delete")
+     * @Route("/{id}", name="admin_typepresta_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, TypePresta $typePrestum)
@@ -115,7 +115,7 @@ class TypePrestaController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('typepresta_index');
+        return $this->redirectToRoute('admin_typepresta_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class TypePrestaController extends Controller
     private function createDeleteForm(TypePresta $typePrestum)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('typepresta_delete', array('id' => $typePrestum->getId())))
+            ->setAction($this->generateUrl('admin_typepresta_delete', array('id' => $typePrestum->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

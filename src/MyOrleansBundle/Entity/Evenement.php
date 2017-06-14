@@ -52,14 +52,14 @@ class Evenement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="dateDebut", type="date", nullable=true)
      */
     private $dateDebut;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="dateFin", type="date", nullable=true)
      */
     private $dateFin;
 

@@ -7,7 +7,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Type</th>
                 <th>Page</th>
                 <th>Lien</th>
                 <th>Actions</th>
@@ -16,17 +15,16 @@
         <tbody>
         {% for medium in media %}
             <tr>
-                <td><a href="{{ path('media_show', { 'id': medium.id }) }}">{{ medium.id }}</a></td>
-                <td>{{ medium.type }}</td>
+                <td><a href="{{ path('admin_media_show', { 'id': medium.id }) }}">{{ medium.id }}</a></td>
                 <td>{{ medium.page }}</td>
                 <td>{{ medium.lien }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('media_show', { 'id': medium.id }) }}">show</a>
+                            <a href="{{ path('admin_media_show', { 'id': medium.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('media_edit', { 'id': medium.id }) }}">edit</a>
+                            <a href="{{ path('admin_media_edit', { 'id': medium.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -37,7 +35,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('media_new') }}">Create a new medium</a>
+            <a href="{{ path('admin_media_new') }}">Create a new medium</a>
         </li>
     </ul>
 {% endblock %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace MyOrleansBundle\Controller\admin;
+namespace MyOrleansBundle\Controller;
 
 use MyOrleansBundle\Entity\Residence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Residence controller.
  *
- * @Route("residence")
+ * @Route("admin/residence")
  */
 class ResidenceController extends Controller
 {
     /**
      * Lists all residence entities.
      *
-     * @Route("/", name="residence_index")
+     * @Route("/", name="admin_residence_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class ResidenceController extends Controller
     /**
      * Creates a new residence entity.
      *
-     * @Route("/new", name="residence_new")
+     * @Route("/new", name="admin_residence_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class ResidenceController extends Controller
             $em->persist($residence);
             $em->flush();
 
-            return $this->redirectToRoute('residence_show', array('id' => $residence->getId()));
+            return $this->redirectToRoute('admin_residence_show', array('id' => $residence->getId()));
         }
 
         return $this->render('residence/new.html.twig', array(
@@ -60,7 +60,7 @@ class ResidenceController extends Controller
     /**
      * Finds and displays a residence entity.
      *
-     * @Route("/{id}", name="residence_show")
+     * @Route("/{id}", name="admin_residence_show")
      * @Method("GET")
      */
     public function showAction(Residence $residence)
@@ -76,7 +76,7 @@ class ResidenceController extends Controller
     /**
      * Displays a form to edit an existing residence entity.
      *
-     * @Route("/{id}/edit", name="residence_edit")
+     * @Route("/{id}/edit", name="admin_residence_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Residence $residence)
@@ -88,7 +88,7 @@ class ResidenceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('residence_index');
+            return $this->redirectToRoute('admin_residence_edit', array('id' => $residence->getId()));
         }
 
         return $this->render('residence/edit.html.twig', array(
@@ -101,7 +101,7 @@ class ResidenceController extends Controller
     /**
      * Deletes a residence entity.
      *
-     * @Route("/{id}", name="residence_delete")
+     * @Route("/{id}", name="admin_residence_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Residence $residence)
@@ -115,7 +115,7 @@ class ResidenceController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('residence_index');
+        return $this->redirectToRoute('admin_residence_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class ResidenceController extends Controller
     private function createDeleteForm(Residence $residence)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('residence_delete', array('id' => $residence->getId())))
+            ->setAction($this->generateUrl('admin_residence_delete', array('id' => $residence->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

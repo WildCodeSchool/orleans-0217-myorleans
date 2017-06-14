@@ -20,7 +20,7 @@
         <tbody>
         {% for collaborateur in collaborateurs %}
             <tr>
-                <td><a href="{{ path('collaborateur_show', { 'id': collaborateur.id }) }}">{{ collaborateur.id }}</a></td>
+                <td><a href="{{ path('admin_collaborateur_show', { 'id': collaborateur.id }) }}">{{ collaborateur.id }}</a></td>
                 <td>{{ collaborateur.nom }}</td>
                 <td>{{ collaborateur.prenom }}</td>
                 <td>{{ collaborateur.fonction }}</td>
@@ -31,10 +31,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('collaborateur_show', { 'id': collaborateur.id }) }}">show</a>
+                            <a href="{{ path('admin_collaborateur_show', { 'id': collaborateur.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('collaborateur_edit', { 'id': collaborateur.id }) }}">edit</a>
+                            <a href="{{ path('admin_collaborateur_edit', { 'id': collaborateur.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -45,7 +45,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('collaborateur_new') }}">Create a new collaborateur</a>
+            <a href="{{ path('admin_collaborateur_new') }}">Create a new collaborateur</a>
         </li>
     </ul>
 {% endblock %}

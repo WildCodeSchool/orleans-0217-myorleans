@@ -1,6 +1,6 @@
 <?php
 
-namespace MyOrleansBundle\Controller\admin;
+namespace MyOrleansBundle\Controller;
 
 use MyOrleansBundle\Entity\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Client controller.
  *
- * @Route("client")
+ * @Route("admin/client")
  */
 class ClientController extends Controller
 {
     /**
      * Lists all client entities.
      *
-     * @Route("/", name="client_index")
+     * @Route("/", name="admin_client_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class ClientController extends Controller
     /**
      * Creates a new client entity.
      *
-     * @Route("/new", name="client_new")
+     * @Route("/new", name="admin_client_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class ClientController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('client_show', array('id' => $client->getId()));
+            return $this->redirectToRoute('admin_client_show', array('id' => $client->getId()));
         }
 
         return $this->render('client/new.html.twig', array(
@@ -60,7 +60,7 @@ class ClientController extends Controller
     /**
      * Finds and displays a client entity.
      *
-     * @Route("/{id}", name="client_show")
+     * @Route("/{id}", name="admin_client_show")
      * @Method("GET")
      */
     public function showAction(Client $client)
@@ -76,7 +76,7 @@ class ClientController extends Controller
     /**
      * Displays a form to edit an existing client entity.
      *
-     * @Route("/{id}/edit", name="client_edit")
+     * @Route("/{id}/edit", name="admin_client_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Client $client)
@@ -88,7 +88,7 @@ class ClientController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('client_edit', array('id' => $client->getId()));
+            return $this->redirectToRoute('admin_client_edit', array('id' => $client->getId()));
         }
 
         return $this->render('client/edit.html.twig', array(
@@ -101,7 +101,7 @@ class ClientController extends Controller
     /**
      * Deletes a client entity.
      *
-     * @Route("/{id}", name="client_delete")
+     * @Route("/{id}", name="admin_client_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Client $client)
@@ -115,7 +115,7 @@ class ClientController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('client_index');
+        return $this->redirectToRoute('admin_client_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class ClientController extends Controller
     private function createDeleteForm(Client $client)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('client_delete', array('id' => $client->getId())))
+            ->setAction($this->generateUrl('admin_client_delete', array('id' => $client->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

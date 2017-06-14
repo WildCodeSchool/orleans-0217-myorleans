@@ -26,8 +26,12 @@
                 <td>{{ evenement.ville }}</td>
             </tr>
             <tr>
-                <th>Date</th>
-                <td>{% if evenement.date %}{{ evenement.date|date('Y-m-d') }}{% endif %}</td>
+                <th>Datedebut</th>
+                <td>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Heuredebut</th>
@@ -46,10 +50,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('evenement_index') }}">Back to the list</a>
+            <a href="{{ path('admin_evenement_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">Edit</a>
+            <a href="{{ path('admin_evenement_edit', { 'id': evenement.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

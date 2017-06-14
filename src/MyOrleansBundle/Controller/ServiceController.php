@@ -1,6 +1,6 @@
 <?php
 
-namespace MyOrleansBundle\Controller\admin;
+namespace MyOrleansBundle\Controller;
 
 use MyOrleansBundle\Entity\Service;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Service controller.
  *
- * @Route("service")
+ * @Route("admin/service")
  */
 class ServiceController extends Controller
 {
     /**
      * Lists all service entities.
      *
-     * @Route("/", name="service_index")
+     * @Route("/", name="admin_service_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class ServiceController extends Controller
     /**
      * Creates a new service entity.
      *
-     * @Route("/new", name="service_new")
+     * @Route("/new", name="admin_service_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class ServiceController extends Controller
             $em->persist($service);
             $em->flush();
 
-            return $this->redirectToRoute('service_show', array('id' => $service->getId()));
+            return $this->redirectToRoute('admin_service_show', array('id' => $service->getId()));
         }
 
         return $this->render('service/new.html.twig', array(
@@ -60,7 +60,7 @@ class ServiceController extends Controller
     /**
      * Finds and displays a service entity.
      *
-     * @Route("/{id}", name="service_show")
+     * @Route("/{id}", name="admin_service_show")
      * @Method("GET")
      */
     public function showAction(Service $service)
@@ -76,7 +76,7 @@ class ServiceController extends Controller
     /**
      * Displays a form to edit an existing service entity.
      *
-     * @Route("/{id}/edit", name="service_edit")
+     * @Route("/{id}/edit", name="admin_service_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Service $service)
@@ -88,7 +88,7 @@ class ServiceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('service_edit', array('id' => $service->getId()));
+            return $this->redirectToRoute('admin_service_edit', array('id' => $service->getId()));
         }
 
         return $this->render('service/edit.html.twig', array(
@@ -101,7 +101,7 @@ class ServiceController extends Controller
     /**
      * Deletes a service entity.
      *
-     * @Route("/{id}", name="service_delete")
+     * @Route("/{id}", name="admin_service_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Service $service)
@@ -115,7 +115,7 @@ class ServiceController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('service_index');
+        return $this->redirectToRoute('admin_service_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class ServiceController extends Controller
     private function createDeleteForm(Service $service)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('service_delete', array('id' => $service->getId())))
+            ->setAction($this->generateUrl('admin_service_delete', array('id' => $service->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

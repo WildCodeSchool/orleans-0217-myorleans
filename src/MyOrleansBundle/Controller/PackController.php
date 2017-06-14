@@ -1,6 +1,6 @@
 <?php
 
-namespace MyOrleansBundle\Controller\admin;
+namespace MyOrleansBundle\Controller;
 
 use MyOrleansBundle\Entity\Pack;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Pack controller.
  *
- * @Route("pack")
+ * @Route("admin/pack")
  */
 class PackController extends Controller
 {
     /**
      * Lists all pack entities.
      *
-     * @Route("/", name="pack_index")
+     * @Route("/", name="admin_pack_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class PackController extends Controller
     /**
      * Creates a new pack entity.
      *
-     * @Route("/new", name="pack_new")
+     * @Route("/new", name="admin_pack_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class PackController extends Controller
             $em->persist($pack);
             $em->flush();
 
-            return $this->redirectToRoute('pack_show', array('id' => $pack->getId()));
+            return $this->redirectToRoute('admin_pack_show', array('id' => $pack->getId()));
         }
 
         return $this->render('pack/new.html.twig', array(
@@ -60,7 +60,7 @@ class PackController extends Controller
     /**
      * Finds and displays a pack entity.
      *
-     * @Route("/{id}", name="pack_show")
+     * @Route("/{id}", name="admin_pack_show")
      * @Method("GET")
      */
     public function showAction(Pack $pack)
@@ -76,7 +76,7 @@ class PackController extends Controller
     /**
      * Displays a form to edit an existing pack entity.
      *
-     * @Route("/{id}/edit", name="pack_edit")
+     * @Route("/{id}/edit", name="admin_pack_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Pack $pack)
@@ -88,7 +88,7 @@ class PackController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('pack_edit', array('id' => $pack->getId()));
+            return $this->redirectToRoute('admin_pack_edit', array('id' => $pack->getId()));
         }
 
         return $this->render('pack/edit.html.twig', array(
@@ -101,7 +101,7 @@ class PackController extends Controller
     /**
      * Deletes a pack entity.
      *
-     * @Route("/{id}", name="pack_delete")
+     * @Route("/{id}", name="admin_pack_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Pack $pack)
@@ -115,7 +115,7 @@ class PackController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('pack_index');
+        return $this->redirectToRoute('admin_pack_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class PackController extends Controller
     private function createDeleteForm(Pack $pack)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('pack_delete', array('id' => $pack->getId())))
+            ->setAction($this->generateUrl('admin_pack_delete', array('id' => $pack->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

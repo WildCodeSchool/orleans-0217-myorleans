@@ -1,63 +1,43 @@
-{% extends '::layout_admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
+{% block body %}
+    <h1>Packs list</h1>
 
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header light-green">
-                            <h4 class="title">Liste de vos packs</h4>
-                        </div>
-                        <div class="card-content table-responsive">
-                            <table class="table">
-                                <thead class="text">
-                                <th>Id</th>
-                                <th>Nom</th>
-                                <th>Description</th>
-                                <th>Prix</th>
-                                <th>Aperçu</th>
-                                <th>Éditer</th>
-                                </thead>
-                                <tbody>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pack in packs %}
+            <tr>
+                <td><a href="{{ path('admin_pack_show', { 'id': pack.id }) }}">{{ pack.id }}</a></td>
+                <td>{{ pack.nom }}</td>
+                <td>{{ pack.description }}</td>
+                <td>{{ pack.prix }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_pack_show', { 'id': pack.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_pack_edit', { 'id': pack.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-                                {% for pack in packs %}
-
-                                    <tr>
-                                        <td>
-                                            <a href="{{ path('pack_show', { 'id': pack.id }) }}">{{ pack.id }}</a>
-                                        </td>
-                                        <td>{{ pack.nom }}</td>
-                                        <td>{{ pack.description }}</td>
-                                        <td>{{ pack.prix }}</td>
-                                        <td>
-                                            <a href="{{ path('pack_show', { 'id': pack.id }) }}"><i
-                                                        class="material-icons">remove_red_eye</i></a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('pack_edit', { 'id': pack.id }) }}"><i
-                                                        class="material-icons">build</i></a>
-                                        </td>
-                                    </tr>
-
-                                {% endfor %}
-
-                                </tbody>
-                            </table>
-                            <hr>
-                            <ul>
-                                <li>
-
-                                    <a href="{{ path('pack_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
-                                        pack</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <ul>
+        <li>
+            <a href="{{ path('admin_pack_new') }}">Create a new pack</a>
+        </li>
+    </ul>
 {% endblock %}

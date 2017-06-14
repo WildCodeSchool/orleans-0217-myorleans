@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations\Annotation\Enum;
 
 /**
  * Residence
@@ -128,7 +129,8 @@ class Residence
 
     /**
      *
-     * @ORM\Column(name="eligibilitePinel", type="enum", nullable=true)
+     * @ENUM ({"Eligible", "Non-éligible"})
+     *
      */
     private $eligibilitePinel;
 

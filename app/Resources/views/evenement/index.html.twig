@@ -11,7 +11,8 @@
                 <th>Adresse</th>
                 <th>Codepostal</th>
                 <th>Ville</th>
-                <th>Date</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
                 <th>Heuredebut</th>
                 <th>Heurefin</th>
                 <th>Description</th>
@@ -21,22 +22,23 @@
         <tbody>
         {% for evenement in evenements %}
             <tr>
-                <td><a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
+                <td><a href="{{ path('admin_evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
                 <td>{{ evenement.nom }}</td>
                 <td>{{ evenement.adresse }}</td>
                 <td>{{ evenement.codePostal }}</td>
                 <td>{{ evenement.ville }}</td>
-                <td>{% if evenement.date %}{{ evenement.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i:s') }}{% endif %}</td>
                 <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('H:i:s') }}{% endif %}</td>
                 <td>{{ evenement.description }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">show</a>
+                            <a href="{{ path('admin_evenement_show', { 'id': evenement.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">edit</a>
+                            <a href="{{ path('admin_evenement_edit', { 'id': evenement.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -47,7 +49,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('evenement_new') }}">Create a new evenement</a>
+            <a href="{{ path('admin_evenement_new') }}">Create a new evenement</a>
         </li>
     </ul>
 {% endblock %}

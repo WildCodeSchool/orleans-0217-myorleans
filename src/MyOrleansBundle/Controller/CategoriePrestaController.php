@@ -1,6 +1,6 @@
 <?php
 
-namespace MyOrleansBundle\Controller\admin;
+namespace MyOrleansBundle\Controller;
 
 use MyOrleansBundle\Entity\CategoriePresta;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Categorieprestum controller.
  *
- * @Route("categoriepresta")
+ * @Route("admin/categorie-presta")
  */
 class CategoriePrestaController extends Controller
 {
     /**
      * Lists all categoriePrestum entities.
      *
-     * @Route("/", name="categoriepresta_index")
+     * @Route("/", name="admin_categorie-presta_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class CategoriePrestaController extends Controller
     /**
      * Creates a new categoriePrestum entity.
      *
-     * @Route("/new", name="categoriepresta_new")
+     * @Route("/new", name="admin_categorie-presta_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class CategoriePrestaController extends Controller
             $em->persist($categoriePrestum);
             $em->flush();
 
-            return $this->redirectToRoute('categoriepresta_show', array('id' => $categoriePrestum->getId()));
+            return $this->redirectToRoute('admin_categorie-presta_show', array('id' => $categoriePrestum->getId()));
         }
 
         return $this->render('categoriepresta/new.html.twig', array(
@@ -60,7 +60,7 @@ class CategoriePrestaController extends Controller
     /**
      * Finds and displays a categoriePrestum entity.
      *
-     * @Route("/{id}", name="categoriepresta_show")
+     * @Route("/{id}", name="admin_categorie-presta_show")
      * @Method("GET")
      */
     public function showAction(CategoriePresta $categoriePrestum)
@@ -76,7 +76,7 @@ class CategoriePrestaController extends Controller
     /**
      * Displays a form to edit an existing categoriePrestum entity.
      *
-     * @Route("/{id}/edit", name="categoriepresta_edit")
+     * @Route("/{id}/edit", name="admin_categorie-presta_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, CategoriePresta $categoriePrestum)
@@ -88,7 +88,7 @@ class CategoriePrestaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('categoriepresta_edit', array('id' => $categoriePrestum->getId()));
+            return $this->redirectToRoute('admin_categorie-presta_edit', array('id' => $categoriePrestum->getId()));
         }
 
         return $this->render('categoriepresta/edit.html.twig', array(
@@ -101,7 +101,7 @@ class CategoriePrestaController extends Controller
     /**
      * Deletes a categoriePrestum entity.
      *
-     * @Route("/{id}", name="categoriepresta_delete")
+     * @Route("/{id}", name="admin_categorie-presta_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, CategoriePresta $categoriePrestum)
@@ -115,7 +115,7 @@ class CategoriePrestaController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('categoriepresta_index');
+        return $this->redirectToRoute('admin_categorie-presta_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class CategoriePrestaController extends Controller
     private function createDeleteForm(CategoriePresta $categoriePrestum)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('categoriepresta_delete', array('id' => $categoriePrestum->getId())))
+            ->setAction($this->generateUrl('admin_categorie-presta_delete', array('id' => $categoriePrestum->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

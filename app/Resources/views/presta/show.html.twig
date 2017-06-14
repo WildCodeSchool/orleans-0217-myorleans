@@ -10,18 +10,18 @@
                 <td>{{ prestum.id }}</td>
             </tr>
             <tr>
-                <th>Value</th>
-                <td>{{ prestum.value }}</td>
+                <th>Nompresta</th>
+                <td>{{ prestum.nomPresta }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('presta_index') }}">Back to the list</a>
+            <a href="{{ path('admin_presta_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('presta_edit', { 'id': prestum.id }) }}">Edit</a>
+            <a href="{{ path('admin_presta_edit', { 'id': prestum.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

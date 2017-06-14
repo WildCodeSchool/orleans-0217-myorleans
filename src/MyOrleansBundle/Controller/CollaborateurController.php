@@ -1,6 +1,6 @@
 <?php
 
-namespace MyOrleansBundle\Controller\admin;
+namespace MyOrleansBundle\Controller;
 
 use MyOrleansBundle\Entity\Collaborateur;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Collaborateur controller.
  *
- * @Route("collaborateur")
+ * @Route("admin/collaborateur")
  */
 class CollaborateurController extends Controller
 {
     /**
      * Lists all collaborateur entities.
      *
-     * @Route("/", name="collaborateur_index")
+     * @Route("/", name="admin_collaborateur_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class CollaborateurController extends Controller
     /**
      * Creates a new collaborateur entity.
      *
-     * @Route("/new", name="collaborateur_new")
+     * @Route("/new", name="admin_collaborateur_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class CollaborateurController extends Controller
             $em->persist($collaborateur);
             $em->flush();
 
-            return $this->redirectToRoute('collaborateur_show', array('id' => $collaborateur->getId()));
+            return $this->redirectToRoute('admin_collaborateur_show', array('id' => $collaborateur->getId()));
         }
 
         return $this->render('collaborateur/new.html.twig', array(
@@ -60,7 +60,7 @@ class CollaborateurController extends Controller
     /**
      * Finds and displays a collaborateur entity.
      *
-     * @Route("/{id}", name="collaborateur_show")
+     * @Route("/{id}", name="admin_collaborateur_show")
      * @Method("GET")
      */
     public function showAction(Collaborateur $collaborateur)
@@ -76,7 +76,7 @@ class CollaborateurController extends Controller
     /**
      * Displays a form to edit an existing collaborateur entity.
      *
-     * @Route("/{id}/edit", name="collaborateur_edit")
+     * @Route("/{id}/edit", name="admin_collaborateur_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Collaborateur $collaborateur)
@@ -88,7 +88,7 @@ class CollaborateurController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('collaborateur_edit', array('id' => $collaborateur->getId()));
+            return $this->redirectToRoute('admin_collaborateur_edit', array('id' => $collaborateur->getId()));
         }
 
         return $this->render('collaborateur/edit.html.twig', array(
@@ -101,7 +101,7 @@ class CollaborateurController extends Controller
     /**
      * Deletes a collaborateur entity.
      *
-     * @Route("/{id}", name="collaborateur_delete")
+     * @Route("/{id}", name="admin_collaborateur_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Collaborateur $collaborateur)
@@ -115,7 +115,7 @@ class CollaborateurController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('collaborateur_index');
+        return $this->redirectToRoute('admin_collaborateur_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class CollaborateurController extends Controller
     private function createDeleteForm(Collaborateur $collaborateur)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('collaborateur_delete', array('id' => $collaborateur->getId())))
+            ->setAction($this->generateUrl('admin_collaborateur_delete', array('id' => $collaborateur->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

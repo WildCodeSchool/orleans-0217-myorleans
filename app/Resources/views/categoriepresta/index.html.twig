@@ -7,20 +7,24 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Nomcategorie</th>
+                <th>Ordreaffichage</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for categoriePrestum in categoriePrestas %}
             <tr>
-                <td><a href="{{ path('categoriepresta_show', { 'id': categoriePrestum.id }) }}">{{ categoriePrestum.id }}</a></td>
+                <td><a href="{{ path('admin_categorie-presta_show', { 'id': categoriePrestum.id }) }}">{{ categoriePrestum.id }}</a></td>
+                <td>{{ categoriePrestum.nomCategorie }}</td>
+                <td>{{ categoriePrestum.ordreAffichage }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('categoriepresta_show', { 'id': categoriePrestum.id }) }}">show</a>
+                            <a href="{{ path('admin_categorie-presta_show', { 'id': categoriePrestum.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('categoriepresta_edit', { 'id': categoriePrestum.id }) }}">edit</a>
+                            <a href="{{ path('admin_categorie-presta_edit', { 'id': categoriePrestum.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -31,9 +35,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('categoriepresta_new') }}">Create a new categoriePrestum</a>
+            <a href="{{ path('admin_categorie-presta_new') }}">Create a new categoriePrestum</a>
         </li>
     </ul>
 {% endblock %}
-
-

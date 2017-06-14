@@ -7,26 +7,22 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Type</th>
-                <th>Ordre</th>
-                <th>Ordreaffichage</th>
+                <th>Nomtype</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for typePrestum in typePrestas %}
             <tr>
-                <td><a href="{{ path('typepresta_show', { 'id': typePrestum.id }) }}">{{ typePrestum.id }}</a></td>
-                <td>{{ typePrestum.type }}</td>
-                <td>{{ typePrestum.ordre }}</td>
-                <td>{{ typePrestum.ordreAffichage }}</td>
+                <td><a href="{{ path('admin_typepresta_show', { 'id': typePrestum.id }) }}">{{ typePrestum.id }}</a></td>
+                <td>{{ typePrestum.nomType }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('typepresta_show', { 'id': typePrestum.id }) }}">show</a>
+                            <a href="{{ path('admin_typepresta_show', { 'id': typePrestum.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('typepresta_edit', { 'id': typePrestum.id }) }}">edit</a>
+                            <a href="{{ path('admin_typepresta_edit', { 'id': typePrestum.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -37,7 +33,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('typepresta_new') }}">Create a new typePrestum</a>
+            <a href="{{ path('admin_typepresta_new') }}">Create a new typePrestum</a>
         </li>
     </ul>
 {% endblock %}

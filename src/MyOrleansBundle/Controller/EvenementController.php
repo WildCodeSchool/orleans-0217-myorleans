@@ -1,6 +1,6 @@
 <?php
 
-namespace MyOrleansBundle\Controller\admin;
+namespace MyOrleansBundle\Controller;
 
 use MyOrleansBundle\Entity\Evenement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Evenement controller.
  *
- * @Route("evenement")
+ * @Route("admin/evenement")
  */
 class EvenementController extends Controller
 {
     /**
      * Lists all evenement entities.
      *
-     * @Route("/", name="evenement_index")
+     * @Route("/", name="admin_evenement_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class EvenementController extends Controller
     /**
      * Creates a new evenement entity.
      *
-     * @Route("/new", name="evenement_new")
+     * @Route("/new", name="admin_evenement_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class EvenementController extends Controller
             $em->persist($evenement);
             $em->flush();
 
-            return $this->redirectToRoute('evenement_show', array('id' => $evenement->getId()));
+            return $this->redirectToRoute('admin_evenement_show', array('id' => $evenement->getId()));
         }
 
         return $this->render('evenement/new.html.twig', array(
@@ -60,7 +60,7 @@ class EvenementController extends Controller
     /**
      * Finds and displays a evenement entity.
      *
-     * @Route("/{id}", name="evenement_show")
+     * @Route("/{id}", name="admin_evenement_show")
      * @Method("GET")
      */
     public function showAction(Evenement $evenement)
@@ -76,7 +76,7 @@ class EvenementController extends Controller
     /**
      * Displays a form to edit an existing evenement entity.
      *
-     * @Route("/{id}/edit", name="evenement_edit")
+     * @Route("/{id}/edit", name="admin_evenement_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Evenement $evenement)
@@ -88,7 +88,7 @@ class EvenementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId()));
+            return $this->redirectToRoute('admin_evenement_edit', array('id' => $evenement->getId()));
         }
 
         return $this->render('evenement/edit.html.twig', array(
@@ -101,7 +101,7 @@ class EvenementController extends Controller
     /**
      * Deletes a evenement entity.
      *
-     * @Route("/{id}", name="evenement_delete")
+     * @Route("/{id}", name="admin_evenement_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Evenement $evenement)
@@ -115,7 +115,7 @@ class EvenementController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('evenement_index');
+        return $this->redirectToRoute('admin_evenement_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class EvenementController extends Controller
     private function createDeleteForm(Evenement $evenement)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('evenement_delete', array('id' => $evenement->getId())))
+            ->setAction($this->generateUrl('admin_evenement_delete', array('id' => $evenement->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

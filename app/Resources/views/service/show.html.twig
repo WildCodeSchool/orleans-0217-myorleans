@@ -1,58 +1,36 @@
-{% extends '::layout_admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
+{% block body %}
+    <h1>Service</h1>
 
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ service.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ service.type }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ service.description }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header light-green">
-                            <h4 class="title">Service</h4>
-                        </div>
-                        <div class="card-content table-responsive">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th>Id</th>
-                                    <td>{{ service.id }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Type</th>
-                                    <td>{{ service.type }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Description</th>
-                                    <td>{{ service.description }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <hr>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('service_index') }}"><i class="material-icons">keyboard_return</i>Retour
-                                        à la liste des services</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('service_edit', { 'id': service.id }) }}"><i
-                                                class="material-icons">build</i>Éditer ce service</a>
-                                </li>
-
-                                <li>
-                                    {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete"
-                                           class="waves-effect waves-light btn-large red pull-right">
-                                    {{ form_end(delete_form) }}
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    <ul>
+        <li>
+            <a href="{{ path('admin_service_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_service_edit', { 'id': service.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
 {% endblock %}

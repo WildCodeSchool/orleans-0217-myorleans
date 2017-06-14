@@ -10,10 +10,6 @@
                 <td>{{ flat.id }}</td>
             </tr>
             <tr>
-                <th>Type</th>
-                <td>{{ flat.type }}</td>
-            </tr>
-            <tr>
                 <th>Reference</th>
                 <td>{{ flat.reference }}</td>
             </tr>
@@ -37,15 +33,19 @@
                 <th>Prestationcomplementaire</th>
                 <td>{{ flat.prestationComplementaire }}</td>
             </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ flat.statut }}</td>
+            </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('flat_index') }}">Back to the list</a>
+            <a href="{{ path('admin_flat_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('flat_edit', { 'id': flat.id }) }}">Edit</a>
+            <a href="{{ path('admin_flat_edit', { 'id': flat.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
