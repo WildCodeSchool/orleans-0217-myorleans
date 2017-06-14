@@ -59,7 +59,7 @@ class Article
     private $tags;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypeArticle", mappedBy="articles")
+     * @ORM\ManyToOne(targetEntity="TypeArticle", inversedBy="articles")
      */
     private $typeArticle;
 

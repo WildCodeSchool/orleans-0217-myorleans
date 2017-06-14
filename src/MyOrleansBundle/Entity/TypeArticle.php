@@ -29,7 +29,7 @@ class TypeArticle
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity="Article", inversedBy="typeArticle")
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="typeArticle")
      */
     private $articles;
 
