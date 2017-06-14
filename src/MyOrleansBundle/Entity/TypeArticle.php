@@ -5,12 +5,12 @@ namespace MyOrleansBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tag
+ * TypeArticle
  *
- * @ORM\Table(name="tag")
- * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\TagRepository")
+ * @ORM\Table(name="type_article")
+ * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\TypeArticleRepository")
  */
-class Tag
+class TypeArticle
 {
     /**
      * @var int
@@ -24,14 +24,15 @@ class Tag
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=45)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article", inversedBy="tags")
+     * @ORM\OneToMany(targetEntity="Article", inversedBy="typeArticle")
      */
     private $articles;
+
 
     /**
      * Get id
@@ -48,7 +49,7 @@ class Tag
      *
      * @param string $nom
      *
-     * @return Tag
+     * @return TypeArticle
      */
     public function setNom($nom)
     {
@@ -65,13 +66,6 @@ class Tag
     public function getNom()
     {
         return $this->nom;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -93,3 +87,4 @@ class Tag
 
 
 }
+

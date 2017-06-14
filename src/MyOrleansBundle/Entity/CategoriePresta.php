@@ -22,7 +22,31 @@ class CategoriePresta
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Media", inversedBy="categorie_prestas")
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=100, nullable=true)
+     */
+    private $nomCategorie;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ordre_affichage", type="integer", nullable=true)
+     */
+    private $ordreAffichage;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Flat", inversedBy="prestas")
+     */
+    private $flat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Residence", inversedBy="prestas")
+     */
+    private $residence;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Media")
      */
     private $media;
 
@@ -41,6 +65,7 @@ class CategoriePresta
     {
         return $this->id;
     }
+
     /**
      * Constructor
      */
@@ -50,23 +75,71 @@ class CategoriePresta
     }
 
     /**
-     * Set media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     *
-     * @return CategoriePresta
+     * @return mixed
      */
-    public function setMedia(\MyOrleansBundle\Entity\Media $media = null)
+    public function getNomCategorie()
     {
-        $this->media = $media;
-
-        return $this;
+        return $this->nomCategorie;
     }
 
     /**
-     * Get media
-     *
-     * @return \MyOrleansBundle\Entity\Media
+     * @param mixed $nomCategorie
+     */
+    public function setNomCategorie($nomCategorie)
+    {
+        $this->nomCategorie = $nomCategorie;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrdreAffichage()
+    {
+        return $this->ordreAffichage;
+    }
+
+    /**
+     * @param mixed $ordreAffichage
+     */
+    public function setOrdreAffichage($ordreAffichage)
+    {
+        $this->ordreAffichage = $ordreAffichage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFlat()
+    {
+        return $this->flat;
+    }
+
+    /**
+     * @param mixed $flat
+     */
+    public function setFlat($flat)
+    {
+        $this->flat = $flat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResidence()
+    {
+        return $this->residence;
+    }
+
+    /**
+     * @param mixed $residence
+     */
+    public function setResidence($residence)
+    {
+        $this->residence = $residence;
+    }
+
+    /**
+     * @return mixed
      */
     public function getMedia()
     {
@@ -74,36 +147,28 @@ class CategoriePresta
     }
 
     /**
-     * Add typePresta
-     *
-     * @param \MyOrleansBundle\Entity\TypePresta $typePresta
-     *
-     * @return CategoriePresta
+     * @param mixed $media
      */
-    public function addTypePresta(\MyOrleansBundle\Entity\TypePresta $typePresta)
+    public function setMedia($media)
     {
-        $this->type_prestas[] = $typePresta;
-
-        return $this;
+        $this->media = $media;
     }
 
     /**
-     * Remove typePresta
-     *
-     * @param \MyOrleansBundle\Entity\TypePresta $typePresta
-     */
-    public function removeTypePresta(\MyOrleansBundle\Entity\TypePresta $typePresta)
-    {
-        $this->type_prestas->removeElement($typePresta);
-    }
-
-    /**
-     * Get typePrestas
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return mixed
      */
     public function getTypePrestas()
     {
         return $this->type_prestas;
     }
+
+    /**
+     * @param mixed $type_prestas
+     */
+    public function setTypePrestas($type_prestas)
+    {
+        $this->type_prestas = $type_prestas;
+    }
+
+
 }

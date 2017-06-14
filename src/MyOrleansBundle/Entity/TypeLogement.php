@@ -5,12 +5,12 @@ namespace MyOrleansBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tag
+ * TypeLogement
  *
- * @ORM\Table(name="tag")
- * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\TagRepository")
+ * @ORM\Table(name="type_logement")
+ * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\TypeLogementRepository")
  */
-class Tag
+class TypeLogement
 {
     /**
      * @var int
@@ -24,14 +24,15 @@ class Tag
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=45)
+     * @ORM\Column(name="nom", type="string", length=20)
      */
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article", inversedBy="tags")
+     * @ORM\OneToMany(targetEntity="Flat", mappedBy="typeLogement")
      */
-    private $articles;
+    private $flats;
+
 
     /**
      * Get id
@@ -48,7 +49,7 @@ class Tag
      *
      * @param string $nom
      *
-     * @return Tag
+     * @return TypeLogement
      */
     public function setNom($nom)
     {
@@ -66,30 +67,23 @@ class Tag
     {
         return $this->nom;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * @return mixed
      */
-    public function getArticles()
+    public function getFlats()
     {
-        return $this->articles;
+        return $this->flats;
     }
 
     /**
-     * @param mixed $articles
+     * @param mixed $flats
      */
-    public function setArticles($articles)
+    public function setFlats($flats)
     {
-        $this->articles = $articles;
+        $this->flats = $flats;
     }
 
 
-
 }
+

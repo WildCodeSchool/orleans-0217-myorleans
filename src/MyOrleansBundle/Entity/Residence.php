@@ -120,9 +120,22 @@ class Residence
     private $favoris;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="accroche", type="string", nullable=true)
+     */
+    private $accroche;
+
+    /**
+     *
+     * @ORM\Column(name="eligibilitePinel", type="enum", nullable=true)
+     */
+    private $eligibilitePinel;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Media")
      */
-    private $media;
+    private $medias;
 
     /**
      * @ORM\OneToMany(targetEntity="Flat", mappedBy="residence", cascade={"all"}, fetch="EAGER")
@@ -480,49 +493,66 @@ class Residence
     {
         return $this->favoris;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAccroche()
+    {
+        return $this->accroche;
+    }
+
+    /**
+     * @param mixed $accroche
+     */
+    public function setAccroche($accroche)
+    {
+        $this->accroche = $accroche;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEligibilitePinel()
+    {
+        return $this->eligibilitePinel;
+    }
+
+    /**
+     * @param mixed $eligibilitePinel
+     */
+    public function setEligibilitePinel($eligibilitePinel)
+    {
+        $this->eligibilitePinel = $eligibilitePinel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * @param mixed $medias
+     */
+    public function setMedias($medias)
+    {
+        $this->medias = $medias;
+    }
+
+
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->media = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->appartements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->flats = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add medium
-     *
-     * @param \MyOrleansBundle\Entity\Media $medium
-     *
-     * @return Residence
-     */
-    public function addMedia(\MyOrleansBundle\Entity\Media $medium)
-    {
-        $medium->addResidence($this);
-        $this->media[] = $medium;
-
-        return $this;
-    }
-
-    /**
-     * Remove medium
-     *
-     * @param \MyOrleansBundle\Entity\Media $medium
-     */
-    public function removeMedia(\MyOrleansBundle\Entity\Media $medium)
-    {
-        $this->media->removeElement($medium);
-    }
-
-    /**
-     * Get media
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedia()
-    {
-        return $this->media;
-    }
 
 
     /**
