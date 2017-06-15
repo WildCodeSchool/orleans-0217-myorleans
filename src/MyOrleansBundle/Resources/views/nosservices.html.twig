@@ -131,8 +131,8 @@
                     {% for temoignage in temoignages %}
                     {% if temoignage.id is odd %}
                     <div class="boxi">
-                        <h3>{{ temoignage.motif }}</h3>
-                        <p>{{ temoignage.text }}</p>
+                        <h3>{{ temoignage.theme }}</h3>
+                        <p>{{ temoignage.message }}</p>
                         <br/>
                             <p style="text-align: right">{{ temoignage.auteur }}</p>
                             <p></p>
@@ -144,8 +144,8 @@
                 <div class="col s12 m6 l6">
 
                     <div class="boxi">
-                        <h3>{{ temoignage.motif }}</h3>
-                        <p>{{ temoignage.text }}</p>
+                        <h3>{{ temoignage.theme }}</h3>
+                        <p>{{ temoignage.message }}</p>
 
                         <br/>
                             <p style="text-align: right">{{ temoignage.auteur }}</p>
