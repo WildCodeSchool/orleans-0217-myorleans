@@ -42,18 +42,18 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nosservices") }}">Nos services</a></li>
-                        <li><a href="#">Parcours immobiliers</a></li>
+                        <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nosservices") }}">Nos services</a></li>
-                        <li><a href="#">Parcours immobiliers</a></li>
+                        <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                 </div>
             </nav>
@@ -71,20 +71,28 @@
                                 <span>Recherchez votre bien immobilier neuf</span>
                             </h1>
                         </div>
+                        {{ form_start(simpleSearch) }}
                         <div class="row">
                             <div class="input-field col s4 offset-s1">
-                                {{ form_start(simpleSearch) }}
-                                {{ form_widget(simpleSearch) }}
+                                {{ form_label(simpleSearch.ville, 'Localisation') }}
+                                {{ form_widget(simpleSearch.ville) }}
+                                {{ form_errors(simpleSearch.ville) }}
+                            </div>
+
+                            <div class="input-field col s4 offset-s1">
+                                {{ form_widget(simpleSearch.type) }}
+                                {{ form_errors(simpleSearch.type) }}
                             </div>
                         </div>
                         <div class="row center">
+
                             <div class="formButton col s12 m12 l4 offset-l1">
-                                <input type="submit" class="waves-effect waves-light btn-large light-green"
-                                       value="Je souhaite investir"/>
+                                {{ form_widget(simpleSearch.investBtn) }}
+
                             </div>
+
                             <div class="formButton col s12 m12 l6">
-                                <input type="submit" class="waves-effect waves-light btn-large light-green"
-                                       value="Je recherche une résidence principale"/>
+                                {{ form_widget(simpleSearch.resPrincipaleBtn) }}
                             </div>
                         </div>
 
@@ -113,8 +121,6 @@
                                             </div>
                                         </div>#}
             </div>
-        </div>
-        </div>
         </section>
         </div>
         <div class="container-fluid">
@@ -129,8 +135,8 @@
                             <div class="col s12 l6">
                                 <div class="card mosaic-container">
                                     <div class="card-image">
-                                        {% for medium in residenceFav[0].media if medium.type == 'image' %}
-                                            <img src="{{ asset('img/'~medium.lien) }}">
+                                        {% for media in residenceFav[0].medias if media.typeMedia.nom == 'image' %}
+                                            <img src="{{ asset('img/'~media.lien) }}">
                                         {% endfor %}
                                     </div>
                                     <div class="card-content">
@@ -182,8 +188,8 @@
                                     <div class="col s12 l12">
                                         <div class="card">
                                             <div class="card-image">
-                                                {% for medium in resTwoFav.media if medium.type == 'image' %}
-                                                    <img src="{{ asset('img/'~medium.lien) }}" class="responsive-img"
+                                                {% for media in resTwoFav.medias if media.typeMedia.nom == 'image' %}
+                                                    <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
                                                          alt="{{ resTwoFav.nom }}">
                                                 {% endfor %}
                                                 <span class="card-title">{{ resTwoFav.nom }}</span>
@@ -357,18 +363,20 @@
                     <h3>L'actualité</h3>
                     <div class="card small">
                         <div class="card-image waves-effect waves-block waves-light">
-                                {#<img class="activator" src="{{ asset('img/'~actu[0].media.lien) }}">#}
+                            {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
+                                <img class="activator" src="{{ asset('img/'~media.lien) }}">
+                            {% endfor %}
                         </div>
                         <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">add</i></span>
                             <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
-                            <p class="truncate">{{ actu[0].text }}</p>
+                            <p class="truncate">{{ actu[0].texte }}</p>
                         </div>
                         <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">close</i></span>
-                            <p>{{ actu[0].text }}</p>
+                            <p>{{ actu[0].texte }}</p>
                         </div>
                     </div>
                 </div>
@@ -382,13 +390,13 @@
                         <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
                                     class="material-icons right">add</i></span>
-                            <p>{% if event[0].date %}{{ event[0].date|date('j-m-Y') }}{% endif %}</p>
+                            <p>{% if event[0].dateDebut %}{{ event[0].dateDebut|date('j-m-Y') }}{% endif %}</p>
                             <p class="truncate">{{ event[0].description }}</p>
                         </div>
                         <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ event[0].nom }}<i
                                     class="material-icons right">close</i></span>
-                            <p>{{ event[0].description}}</p>
+                            <p>{{ event[0].description }}</p>
                         </div>
                     </div>
                 </div>
@@ -493,6 +501,21 @@
                         }, 800);
                         return false;
                     });
+                });
+
+
+                $('input.autocomplete').autocomplete({
+                    data: {
+                        {% for ville in villes %}
+                        "{{ ville }}": null,
+                        {% endfor %}
+                    },
+                    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                    onAutocomplete: function (val) {
+                        // Callback function when value is autcompleted.
+                    },
+                    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+
                 });
 
             });

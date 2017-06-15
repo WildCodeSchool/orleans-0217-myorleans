@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Flat</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ flat.id }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ flat.reference }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ flat.prix }}</td>
+            </tr>
+            <tr>
+                <th>Surface</th>
+                <td>{{ flat.surface }}</td>
+            </tr>
+            <tr>
+                <th>Nbpiece</th>
+                <td>{{ flat.nbPiece }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ flat.description }}</td>
+            </tr>
+            <tr>
+                <th>Prestationcomplementaire</th>
+                <td>{{ flat.prestationComplementaire }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ flat.statut }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_flat_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_flat_edit', { 'id': flat.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

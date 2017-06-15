@@ -29,9 +29,9 @@ class Tag
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article")
+     * @ORM\ManyToMany(targetEntity="Article", inversedBy="tags")
      */
-    private $article;
+    private $articles;
 
     /**
      * Get id
@@ -66,4 +66,30 @@ class Tag
     {
         return $this->nom;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * @param mixed $articles
+     */
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+    }
+
+
+
 }

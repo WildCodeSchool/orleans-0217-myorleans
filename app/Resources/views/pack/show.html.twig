@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pack</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pack.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ pack.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ pack.description }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ pack.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_pack_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_pack_edit', { 'id': pack.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

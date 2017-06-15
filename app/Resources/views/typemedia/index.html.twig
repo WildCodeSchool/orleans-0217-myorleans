@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Typemedia list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typeMedia in typeMedia %}
+            <tr>
+                <td><a href="{{ path('admin_typemedia_show', { 'id': typeMedia.id }) }}">{{ typeMedia.id }}</a></td>
+                <td>{{ typeMedia.nom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_typemedia_show', { 'id': typeMedia.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_typemedia_edit', { 'id': typeMedia.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_typemedia_new') }}">Create a new typeMedia</a>
+        </li>
+    </ul>
+{% endblock %}

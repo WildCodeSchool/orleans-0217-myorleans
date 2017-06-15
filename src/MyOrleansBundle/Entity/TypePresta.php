@@ -24,23 +24,9 @@ class TypePresta
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=45, nullable=true)
+     * @ORM\Column(name="type", type="string", length=100, nullable=true)
      */
-    private $type;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ordre", type="string", length=255)
-     */
-    private $ordre;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="ordre_affichage", type="integer", nullable=true)
-     */
-    private $ordreAffichage;
+    private $nomType;
 
     /**
      * @ORM\ManyToOne(targetEntity="CategoriePresta", inversedBy="type_prestas")
@@ -64,106 +50,60 @@ class TypePresta
     }
 
     /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return TypePresta
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
      * @return string
      */
-    public function getType()
+    public function getNomType()
     {
-        return $this->type;
+        return $this->nomType;
     }
 
     /**
-     * Set ordre
-     *
-     * @param string $ordre
-     *
-     * @return TypePresta
+     * @param string $nomType
      */
-    public function setOrdre($ordre)
+    public function setNomType($nomType)
     {
-        $this->ordre = $ordre;
-
-        return $this;
+        $this->nomType = $nomType;
     }
 
     /**
-     * Get ordre
-     *
-     * @return string
+     * @return mixed
      */
-    public function getOrdre()
+    public function getCategoriePresta()
     {
-        return $this->ordre;
+        return $this->categorie_presta;
     }
 
     /**
-     * Set ordreAffichage
-     *
-     * @param integer $ordreAffichage
-     *
-     * @return TypePresta
+     * @param mixed $categorie_presta
      */
-    public function setOrdreAffichage($ordreAffichage)
+    public function setCategoriePresta($categorie_presta)
     {
-        $this->ordreAffichage = $ordreAffichage;
-
-        return $this;
+        $this->categorie_presta = $categorie_presta;
     }
 
     /**
-     * Get ordreAffichage
-     *
-     * @return int
+     * @return mixed
      */
-    public function getOrdreAffichage()
+    public function getPrestas()
     {
-        return $this->ordreAffichage;
+        return $this->prestas;
     }
+
+    /**
+     * @param mixed $prestas
+     */
+    public function setPrestas($prestas)
+    {
+        $this->prestas = $prestas;
+    }
+
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->prestas = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     *
-     * @return TypePresta
-     */
-    public function setCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta = null)
-    {
-        $this->categorie_presta = $categoriePresta;
-
-        return $this;
-    }
-
-    /**
-     * Get categoriePresta
-     *
-     * @return \MyOrleansBundle\Entity\CategoriePresta
-     */
-    public function getCategoriePresta()
-    {
-        return $this->categorie_presta;
     }
 
     /**
@@ -188,15 +128,5 @@ class TypePresta
     public function removePresta(\MyOrleansBundle\Entity\Presta $presta)
     {
         $this->prestas->removeElement($presta);
-    }
-
-    /**
-     * Get prestas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPrestas()
-    {
-        return $this->prestas;
     }
 }

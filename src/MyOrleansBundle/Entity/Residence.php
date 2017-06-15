@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations\Annotation\Enum;
 
 /**
  * Residence
@@ -127,19 +128,33 @@ class Residence
     private $favoris;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Media")
+     * @var string
+     *
+     * @ORM\Column(name="accroche", type="string", nullable=true)
      */
-    private $media;
+    private $accroche;
 
     /**
-     * @ORM\OneToMany(targetEntity="Flat", mappedBy="residence")
+     *
+     * @ENUM ({"Eligible", "Non-éligible"})
+     *
+     */
+    private $eligibilitePinel;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Media")
+     */
+    private $medias;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Flat", mappedBy="residence", cascade={"all"}, fetch="EAGER")
      */
     private $flats;
 
     /**
-     * @ORM\OneToMany(targetEntity="Presta", mappedBy="residence")
+     * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="residence", cascade={"all"}, fetch="EAGER")
      */
-    private $prestas;
+    private $categoriePrestas;
 
 
 
@@ -242,6 +257,16 @@ class Residence
     }
 
     /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
      * @return string
      */
     public function getQuartier()
@@ -255,16 +280,6 @@ class Residence
     public function setQuartier($quartier)
     {
         $this->quartier = $quartier;
-    }
-
-    /**
-     * Get ville
-     *
-     * @return string
-     */
-    public function getVille()
-    {
-        return $this->ville;
     }
 
     /**
@@ -506,48 +521,66 @@ class Residence
     {
         return $this->favoris;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAccroche()
+    {
+        return $this->accroche;
+    }
+
+    /**
+     * @param mixed $accroche
+     */
+    public function setAccroche($accroche)
+    {
+        $this->accroche = $accroche;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEligibilitePinel()
+    {
+        return $this->eligibilitePinel;
+    }
+
+    /**
+     * @param mixed $eligibilitePinel
+     */
+    public function setEligibilitePinel($eligibilitePinel)
+    {
+        $this->eligibilitePinel = $eligibilitePinel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * @param mixed $medias
+     */
+    public function setMedias($medias)
+    {
+        $this->medias = $medias;
+    }
+
+
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->media = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->appartements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->flats = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add medium
-     *
-     * @param \MyOrleansBundle\Entity\Media $medium
-     *
-     * @return Residence
-     */
-    public function addMedia(\MyOrleansBundle\Entity\Media $medium)
-    {
-        $this->media[] = $medium;
-
-        return $this;
-    }
-
-    /**
-     * Remove medium
-     *
-     * @param \MyOrleansBundle\Entity\Media $medium
-     */
-    public function removeMedia(\MyOrleansBundle\Entity\Media $medium)
-    {
-        $this->media->removeElement($medium);
-    }
-
-    /**
-     * Get media
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedia()
-    {
-        return $this->media;
-    }
 
 
     /**
@@ -585,36 +618,68 @@ class Residence
     }
 
     /**
-     * Add presta
+     * @return mixed
+     */
+    public function getCategoriePrestas()
+    {
+        return $this->categoriePrestas;
+    }
+
+    /**
+     * @param mixed $categoriePrestas
+     */
+    public function setCategoriePrestas($categoriePrestas)
+    {
+        $this->categoriePrestas = $categoriePrestas;
+    }
+
+
+
+    /**
+     * Add media
      *
-     * @param \MyOrleansBundle\Entity\Presta $presta
+     * @param \MyOrleansBundle\Entity\Media $media
      *
      * @return Residence
      */
-    public function addPresta(\MyOrleansBundle\Entity\Presta $presta)
+    public function addMedia(\MyOrleansBundle\Entity\Media $media)
     {
-        $this->prestas[] = $presta;
+        $this->medias[] = $media;
 
         return $this;
     }
 
     /**
-     * Remove presta
+     * Remove media
      *
-     * @param \MyOrleansBundle\Entity\Presta $presta
+     * @param \MyOrleansBundle\Entity\Media $media
      */
-    public function removePresta(\MyOrleansBundle\Entity\Presta $presta)
+    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
     {
-        $this->prestas->removeElement($presta);
+        $this->medias->removeElement($media);
     }
 
     /**
-     * Get prestas
+     * Add categoriePresta
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
+     *
+     * @return Residence
      */
-    public function getPrestas()
+    public function addCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
     {
-        return $this->prestas;
+        $this->categoriePrestas[] = $categoriePresta;
+
+        return $this;
+    }
+
+    /**
+     * Remove categoriePresta
+     *
+     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
+     */
+    public function removeCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
+    {
+        $this->categoriePrestas->removeElement($categoriePresta);
     }
 }

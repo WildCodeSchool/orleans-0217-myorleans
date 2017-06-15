@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Typearticles list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typeArticle in typeArticles %}
+            <tr>
+                <td><a href="{{ path('admin_typearticle_show', { 'id': typeArticle.id }) }}">{{ typeArticle.id }}</a></td>
+                <td>{{ typeArticle.nom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_typearticle_show', { 'id': typeArticle.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_typearticle_edit', { 'id': typeArticle.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_typearticle_new') }}">Create a new typeArticle</a>
+        </li>
+    </ul>
+{% endblock %}

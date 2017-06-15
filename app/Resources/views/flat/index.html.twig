@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Flats list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reference</th>
+                <th>Prix</th>
+                <th>Surface</th>
+                <th>Nbpiece</th>
+                <th>Description</th>
+                <th>Prestationcomplementaire</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for flat in flats %}
+            <tr>
+                <td><a href="{{ path('admin_flat_show', { 'id': flat.id }) }}">{{ flat.id }}</a></td>
+                <td>{{ flat.reference }}</td>
+                <td>{{ flat.prix }}</td>
+                <td>{{ flat.surface }}</td>
+                <td>{{ flat.nbPiece }}</td>
+                <td>{{ flat.description }}</td>
+                <td>{{ flat.prestationComplementaire }}</td>
+                <td>{{ flat.statut }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_flat_show', { 'id': flat.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_flat_edit', { 'id': flat.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_flat_new') }}">Create a new flat</a>
+        </li>
+    </ul>
+{% endblock %}

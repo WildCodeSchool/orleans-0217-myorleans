@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Typemedia</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ typeMedia.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ typeMedia.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_typemedia_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_typemedia_edit', { 'id': typeMedia.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

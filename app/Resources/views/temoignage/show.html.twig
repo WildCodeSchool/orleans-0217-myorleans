@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Temoignage</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ temoignage.id }}</td>
+            </tr>
+            <tr>
+<<<<<<< HEAD
+                <th>Theme</th>
+                <td>{{ temoignage.theme }}</td>
+=======
+                <th>Motif</th>
+                <td>{{ temoignage.motif }}</td>
+>>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ temoignage.auteur }}</td>
+            </tr>
+            <tr>
+<<<<<<< HEAD
+                <th>Date</th>
+                <td>{{ temoignage.date }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ temoignage.message }}</td>
+=======
+                <th>Texte</th>
+                <td>{{ temoignage.text }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if temoignage.date %}{{ temoignage.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+>>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+<<<<<<< HEAD
+            <a href="{{ path('admin_temoignage_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_temoignage_edit', { 'id': temoignage.id }) }}">Edit</a>
+=======
+            <a href="{{ path('temoignage_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('temoignage_edit', { 'id': temoignage.id }) }}">Edit</a>
+>>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

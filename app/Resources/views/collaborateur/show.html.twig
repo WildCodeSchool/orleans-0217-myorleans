@@ -1,0 +1,94 @@
+{% extends '::layout_admin.html.twig' %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Membre {{ collaborateur.nom }} {{ collaborateur.prenom }}</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ collaborateur.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ collaborateur.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prenom</th>
+                                    <td>{{ collaborateur.prenom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Fonction</th>
+                                    <td>{{ collaborateur.fonction }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Bio</th>
+                                    <td>{{ collaborateur.bio }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Lientwiter</th>
+                                    <td>{{ collaborateur.lienTwiter }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Lienlinkedin</th>
+                                    <td>{{ collaborateur.lienLinkedin }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ collaborateur.email }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('collaborateur_index') }}"><i class="material-icons">keyboard_return</i>Retour
+                                        à la liste des membres</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('collaborateur_edit', { 'id': collaborateur.id }) }}"><i
+                                                class="material-icons">build</i>Éditer ce membre</a>
+                                </li>
+
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Delete"
+                                           class="waves-effect waves-light btn-large red pull-right">
+                                    {{ form_end(delete_form) }}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<<<<<<< HEAD
+    <ul>
+        <li>
+            <a href="{{ path('admin_collaborateur_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_collaborateur_edit', { 'id': collaborateur.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+=======
+>>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
+{% endblock %}

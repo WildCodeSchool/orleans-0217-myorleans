@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Typeprestas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nomtype</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typePrestum in typePrestas %}
+            <tr>
+                <td><a href="{{ path('admin_typepresta_show', { 'id': typePrestum.id }) }}">{{ typePrestum.id }}</a></td>
+                <td>{{ typePrestum.nomType }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_typepresta_show', { 'id': typePrestum.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_typepresta_edit', { 'id': typePrestum.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_typepresta_new') }}">Create a new typePrestum</a>
+        </li>
+    </ul>
+{% endblock %}

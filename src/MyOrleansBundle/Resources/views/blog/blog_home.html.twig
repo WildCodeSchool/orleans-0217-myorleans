@@ -79,32 +79,35 @@
     </div>#}
 
     <div class="row">
+
+    {% for article in articles  %}
         <div class="col offset-s1 s10 l6 xl4">
             <div class="blockArticle center">
                 <div class="imgArticle">
                     <img class="responsive-img" src="{{ asset('img/blog/blog11.jpg') }}" alt="">
                 </div>
                 <div class="titreArticle">
-                    <h4 class="white-text">Titre article</h4>
+                    <h4 class="white-text">{{ article.titre }}</h4>
                 </div>
                 <div class="infoArticle">
-                    <h4 class="white-text">Titre article</h4>
-                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                    <h4 class="white-text">{{ article.titre }}</h4>
+                    <p>{{ article.text | truncate(20, true, '...') }}</p>
+
+                    {% for tag in article.tag  %}
                     <div class="chip">
-                        Loi Pinel
+                        {{ tag }}
                     </div>
-                    <div class="chip">
-                        Investissement
-                    </div>
+                    {% endfor %}
+
                     <div class="row lien-article">
                         <a href="#">LIRE L'ARTICLE</a>
                     </div>
                 </div>
             </div>
         </div>
+    {% endfor %}
 
-        <div class="col offset-s1 s10 l6 xl4">
+        {#<div class="col offset-s1 s10 l6 xl4">
             <div class="blockArticle center">
                 <div class="imgArticle">
                     <img class="responsive-img" src="{{ asset('img/blog/blog12.jpg') }}" alt="">
@@ -302,7 +305,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>#}
 
     </div>
 

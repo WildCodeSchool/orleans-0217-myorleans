@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Temoignages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+<<<<<<< HEAD
+                <th>Theme</th>
+                <th>Auteur</th>
+                <th>Date</th>
+                <th>Message</th>
+=======
+                <th>Motif</th>
+                <th>Auteur</th>
+                <th>Date</th>
+                <th>Text</th>
+>>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for temoignage in temoignages %}
+            <tr>
+<<<<<<< HEAD
+                <td><a href="{{ path('admin_temoignage_show', { 'id': temoignage.id }) }}">{{ temoignage.id }}</a></td>
+                <td>{{ temoignage.theme }}</td>
+                <td>{{ temoignage.auteur }}</td>
+                <td>{{ temoignage.date }}</td>
+                <td>{{ temoignage.message }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_temoignage_show', { 'id': temoignage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_temoignage_edit', { 'id': temoignage.id }) }}">edit</a>
+=======
+                <td><a href="{{ path('temoignage_show', { 'id': temoignage.id }) }}">{{ temoignage.id }}</a></td>
+                <td>{{ temoignage.motif }}</td>
+                <td>{{ temoignage.auteur }}</td>
+                <td>{% if temoignage.date %}{{ temoignage.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ temoignage.text }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('temoignage_show', { 'id': temoignage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('temoignage_edit', { 'id': temoignage.id }) }}">edit</a>
+>>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+<<<<<<< HEAD
+            <a href="{{ path('admin_temoignage_new') }}">Create a new temoignage</a>
+=======
+            <a href="{{ path('temoignage_new') }}">Create a new temoignage</a>
+>>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Temoignage creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+<<<<<<< HEAD
+            <a href="{{ path('admin_temoignage_index') }}">Back to the list</a>
+=======
+            <a href="{{ path('temoignage_index') }}">Back to the list</a>
+>>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
+        </li>
+    </ul>
+{% endblock %}
