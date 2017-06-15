@@ -24,13 +24,6 @@ class Flat
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=45, nullable=true)
-     */
-    private $type;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="reference", type="string", length=45, nullable=true)
      */
     private $reference;
@@ -71,6 +64,18 @@ class Flat
     private $prestationComplementaire;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="statut", type="string", length=10, nullable=true)
+     */
+    private $statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TypeLogement", inversedBy="flats")
+     */
+    private $typeLogement;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Residence", inversedBy="flats")
      */
     private $residence;
@@ -78,12 +83,14 @@ class Flat
     /**
      * @ORM\ManyToMany(targetEntity="Media")
      */
-    private $media;
+    private $medias;
 
     /**
-     * @ORM\OneToMany(targetEntity="Presta", mappedBy="flat")
+     * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="flat")
      */
-    private $prestas;
+    private $categoriePrestas;
+
+
 
 
     /**
@@ -94,30 +101,6 @@ class Flat
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Flat
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -263,12 +246,45 @@ class Flat
     {
         return $this->prestationComplementaire;
     }
+
+    /**
+     * @return string
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @param string $statut
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+    }
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->media = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeLogement()
+    {
+        return $this->typeLogement;
+    }
+
+    /**
+     * @param mixed $typeLogement
+     */
+    public function setTypeLogement($typeLogement)
+    {
+        $this->typeLogement = $typeLogement;
     }
 
     /**
@@ -296,70 +312,36 @@ class Flat
     }
 
     /**
-     * Add medium
-     *
-     * @param \MyOrleansBundle\Entity\Media $medium
-     *
-     * @return Flat
+     * @return mixed
      */
-    public function addMedia(\MyOrleansBundle\Entity\Media $medium)
+    public function getMedias()
     {
-        $this->media[] = $medium;
-
-        return $this;
+        return $this->medias;
     }
 
     /**
-     * Remove medium
-     *
-     * @param \MyOrleansBundle\Entity\Media $medium
+     * @param mixed $medias
      */
-    public function removeMedia(\MyOrleansBundle\Entity\Media $medium)
+    public function setMedias($medias)
     {
-        $this->media->removeElement($medium);
+        $this->medias = $medias;
     }
 
     /**
-     * Get media
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return mixed
      */
-    public function getMedia()
+    public function getCategoriePrestas()
     {
-        return $this->media;
+        return $this->categoriePrestas;
     }
 
     /**
-     * Add presta
-     *
-     * @param \MyOrleansBundle\Entity\Presta $presta
-     *
-     * @return Flat
+     * @param mixed $categoriePrestas
      */
-    public function addPresta(\MyOrleansBundle\Entity\Presta $presta)
+    public function setCategoriePrestas($categoriePrestas)
     {
-        $this->prestas[] = $presta;
-
-        return $this;
+        $this->categoriePrestas = $categoriePrestas;
     }
 
-    /**
-     * Remove presta
-     *
-     * @param \MyOrleansBundle\Entity\Presta $presta
-     */
-    public function removePresta(\MyOrleansBundle\Entity\Presta $presta)
-    {
-        $this->prestas->removeElement($presta);
-    }
 
-    /**
-     * Get prestas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPrestas()
-    {
-        return $this->prestas;
-    }
 }
