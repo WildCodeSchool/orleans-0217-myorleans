@@ -85,9 +85,9 @@ class Evenement
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="evenement")
+     * @ORM\OneToOne(targetEntity="Media")
      */
-    private $medias;
+    private $media;
 
 
     /**
@@ -301,45 +301,21 @@ class Evenement
     {
         return $this->description;
     }
+
     /**
-     * Constructor
+     * @return mixed
      */
-    public function __construct()
+    public function getMedia()
     {
-        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->media;
     }
 
     /**
-     * Add media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     *
-     * @return Evenement
+     * @param mixed $media
      */
-    public function addMedia(\MyOrleansBundle\Entity\Media $media)
+    public function setMedia($media)
     {
-        $this->medias[] = $media;
-
-        return $this;
+        $this->media = $media;
     }
 
-    /**
-     * Remove media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     */
-    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
-    {
-        $this->medias->removeElement($media);
-    }
-
-    /**
-     * Get medias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedias()
-    {
-        return $this->medias;
-    }
 }

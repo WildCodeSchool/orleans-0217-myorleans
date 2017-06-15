@@ -37,4 +37,22 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+    public function findOneFav()
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.favoris = 1')
+            ->orderBy('r.id', 'DESC')
+            ->setMaxResults(1);
+         return $qb->getQuery()->getResult();
+    }
+
+    public function findTwoFav()
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.favoris = 1')
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(2);
+        return $qb->getQuery()->getResult();
+    }
 }
+
