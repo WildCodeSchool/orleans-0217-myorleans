@@ -43,7 +43,7 @@ class Article
     private $date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Media", mappedBy="articles", cascade={"all"}, fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"all"}, fetch="EAGER")
      */
     private $medias;
 

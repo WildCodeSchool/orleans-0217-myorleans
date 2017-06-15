@@ -86,3 +86,109 @@
         </li>
     </ul>
 {% endblock %}
+
+
+{% extends '::layout_admin.html.twig' %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Résidence : {{ residence.titre }}</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ residence.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ residence.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Adresse</th>
+                                    <td>{{ residence.adresse }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Codepostal</th>
+                                    <td>{{ residence.codePostal }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ville</th>
+                                    <td>{{ residence.ville }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Latitude</th>
+                                    <td>{{ residence.latitude }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Longitude</th>
+                                    <td>{{ residence.longitude }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Datelivraison</th>
+                                    <td>{% if residence.dateLivraison %}{{ residence.dateLivraison|date('Y-m-d') }}{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ residence.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nbtotallogements</th>
+                                    <td>{{ residence.nbTotalLogements }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Notetransports</th>
+                                    <td>{{ residence.noteTransports }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Notecommerces</th>
+                                    <td>{{ residence.noteCommerces }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Noteservices</th>
+                                    <td>{{ residence.noteServices }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Noteesthetisme</th>
+                                    <td>{{ residence.noteEsthetisme }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Favoris</th>
+                                    <td>{{ residence.favoris }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('residence_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des résidences</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('residence_edit', { 'id': residence.id }) }}"><i
+                                                class="material-icons">build</i>Éditer cette résidence</a>
+                                </li>
+
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
+                                    {{ form_end(delete_form) }}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

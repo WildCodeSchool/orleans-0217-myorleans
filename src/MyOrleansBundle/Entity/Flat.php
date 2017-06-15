@@ -327,8 +327,21 @@ class Flat
         $this->medias = $medias;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCategoriePrestas()
+    {
+        return $this->categoriePrestas;
+    }
 
-
+    /**
+     * @param mixed $categoriePrestas
+     */
+    public function setCategoriePrestas($categoriePrestas)
+    {
+        $this->categoriePrestas = $categoriePrestas;
+    }
 
 
 }

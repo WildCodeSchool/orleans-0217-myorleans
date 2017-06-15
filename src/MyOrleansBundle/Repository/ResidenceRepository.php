@@ -20,11 +20,21 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
         }
 
         if (!empty($type)) {
-            $qb->andWhere('f.type = :type')
+            $qb->andWhere('t.nom = :type')
                 ->setParameter('type', $type)
-                ->join('r.flats', 'f');
+                ->join('r.flats', 'f')
+                ->join('f.typeLogement', 't');
         }
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findAllLimit()
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->setMaxResults(3);
+        return $qb->getQuery()->getResult();
+
+    }
+
 }

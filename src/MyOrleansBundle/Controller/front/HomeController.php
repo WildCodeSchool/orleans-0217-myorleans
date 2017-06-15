@@ -2,9 +2,16 @@
 
 namespace MyOrleansBundle\Controller\front;
 
+
+use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\Pack;
+use MyOrleansBundle\Entity\Service;
+use MyOrleansBundle\Entity\Temoignage;
+
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Form\SimpleSearchType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +27,7 @@ class HomeController extends Controller
 
         // Recuperation de la liste des villes dans lesqulles se trouvent les residences
         $residences = $em->getRepository(Residence::class)->findAll();
-        $villes = "";
+        $villes = [];
         foreach ($residences as $residence) {
             $villes[] = $residence->getVille();
         }
@@ -44,7 +51,16 @@ class HomeController extends Controller
      */
     public function nosservices()
     {
-        return $this->render('MyOrleansBundle::nosservices.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $services = $em->getRepository(Service::class)->findAll();
+        $packs = $em->getRepository(Pack::class)->findAll();
+        $temoignages =$em->getRepository(Temoignage::class)->findAll();
+        return $this->render('MyOrleansBundle::nosservices.html.twig',[
+            'services'=>$services,
+            'packs'=>$packs,
+            'temoignages'=>$temoignages
+        ]);
+
     }
 
     /**
@@ -52,16 +68,15 @@ class HomeController extends Controller
      */
     public function immopratique()
     {
-        return $this->render('MyOrleansBundle::immopratique.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $articles = $em->getRepository(Article::class)->findAll();
+
+        return $this->render('MyOrleansBundle::immopratique.html.twig',[
+
+        'articles'=>$articles
+        ]);
     }
 
-    /**
-     * @Route("/agence", name="agence")
-     */
-    public function agencyAction()
-    {
-        return $this->render('MyOrleansBundle::agence.html.twig');
-    }
 
     /**
      * @Route("/parcours-immobilier", name="parcoursimmo")

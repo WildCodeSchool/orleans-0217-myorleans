@@ -69,7 +69,7 @@ class Media
     private $pack;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article", inversedBy="media")
+     * @ORM\ManyToMany(targetEntity="Article")
      */
     private $articles;
 

@@ -51,6 +51,13 @@ class Residence
     private $ville;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="quartier", type="string", length=45, nullable=true)
+     */
+    private $quartier;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="latitude", type="float", nullable=true)
@@ -148,6 +155,9 @@ class Residence
      * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="residence", cascade={"all"}, fetch="EAGER")
      */
     private $categoriePrestas;
+
+
+
 
 
     /**
@@ -254,6 +264,22 @@ class Residence
     public function getVille()
     {
         return $this->ville;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuartier()
+    {
+        return $this->quartier;
+    }
+
+    /**
+     * @param string $quartier
+     */
+    public function setQuartier($quartier)
+    {
+        $this->quartier = $quartier;
     }
 
     /**

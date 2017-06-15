@@ -81,13 +81,13 @@ class NosBiensController extends Controller
             $objectif = "investir";
 
             // Generation du dernier article avec le tag 'Investissement'
-/*            $article = $em->getRepository(Article::class)->articleByTag('Investissement');*/
+/*            $article = $em->getRepository(Article::class)->findOneByTags(2);*/
 
 
             return $this->render('MyOrleansBundle::nosbiens.html.twig', [
                 'residences' => $residences,
                 'message' => $message,
-                'objectif' => $objectif
+                'objectif' => $objectif,
 /*                'article' => $article*/
             ]);
 

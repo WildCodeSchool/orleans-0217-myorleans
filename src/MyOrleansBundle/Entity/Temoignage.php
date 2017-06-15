@@ -28,6 +28,7 @@ class Temoignage
      */
     private $theme;
 
+
     /**
      * @var string
      *
@@ -70,8 +71,6 @@ class Temoignage
     public function setTheme($theme)
     {
         $this->theme = $theme;
-
-        return $this;
     }
 
     /**
@@ -82,6 +81,7 @@ class Temoignage
     public function getTheme()
     {
         return $this->theme;
+
     }
 
     /**
@@ -132,6 +132,7 @@ class Temoignage
         return $this->date;
     }
 
+
     /**
      * Set message
      *
@@ -155,5 +156,6 @@ class Temoignage
     {
         return $this->message;
     }
+
 }
 
