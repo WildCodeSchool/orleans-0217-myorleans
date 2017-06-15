@@ -182,19 +182,12 @@ body {
 
 /* ------------------------ Page Nos Biens ----------------------------*/
 
+
 .page-nosbiens h2 {
     font-size:20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     color: #858585;
-}
-
-.page-nosbiens .card-content h2 {
-    font-size:20px;
-    color: #858585;
-    margin-top: 5px;
-}
-
-.page-nosbiens .alignement-titre h2 {
-    padding-top: 12px;
 }
 
 .page-nosbiens .liste-biens h4 {
@@ -222,7 +215,7 @@ body {
 .moteur-recherche {
     background-color: white;
     border-radius: 2px;
-    box-shadow: 1px 1px 10px #c2c2c2;
+    box-shadow: 1px 1px 3px #c2c2c2;
     padding: 5px 10px;
     position: fixed;
     width: 98%;
@@ -238,7 +231,7 @@ body {
 .carte {
     margin-top: 15px;
     position: fixed;
-    top: 270px;
+    top: 280px;
 }
 
 #map {
@@ -250,7 +243,7 @@ body {
 }
 
 .liste-biens {
-    margin-top: 190px;
+    margin-top: 200px;
 }
 
 /*--- Alignemant des informations des residences---*/
@@ -422,6 +415,23 @@ body {
     margin-top: -10px;
     padding: 0 10px 10px 10px;
     position: absolute;
+}
+
+
+.barre-recherche{
+    margin-top: 22px;
+    position: absolute;
+    bottom: 200px;
+    width: 95%;
+    left: 25px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-recherche{
+
+    width: 40%;
+    margin-left: 400px;
+    margin-top: 500px;
 }
 
 

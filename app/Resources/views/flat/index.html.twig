@@ -7,34 +7,34 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Type</th>
                 <th>Reference</th>
                 <th>Prix</th>
                 <th>Surface</th>
                 <th>Nbpiece</th>
                 <th>Description</th>
                 <th>Prestationcomplementaire</th>
+                <th>Statut</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for flat in flats %}
             <tr>
-                <td><a href="{{ path('flat_show', { 'id': flat.id }) }}">{{ flat.id }}</a></td>
-                <td>{{ flat.type }}</td>
+                <td><a href="{{ path('admin_flat_show', { 'id': flat.id }) }}">{{ flat.id }}</a></td>
                 <td>{{ flat.reference }}</td>
                 <td>{{ flat.prix }}</td>
                 <td>{{ flat.surface }}</td>
                 <td>{{ flat.nbPiece }}</td>
                 <td>{{ flat.description }}</td>
                 <td>{{ flat.prestationComplementaire }}</td>
+                <td>{{ flat.statut }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('flat_show', { 'id': flat.id }) }}">show</a>
+                            <a href="{{ path('admin_flat_show', { 'id': flat.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('flat_edit', { 'id': flat.id }) }}">edit</a>
+                            <a href="{{ path('admin_flat_edit', { 'id': flat.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -45,7 +45,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('flat_new') }}">Create a new flat</a>
+            <a href="{{ path('admin_flat_new') }}">Create a new flat</a>
         </li>
     </ul>
 {% endblock %}

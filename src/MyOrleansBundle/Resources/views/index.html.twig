@@ -42,18 +42,18 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nosservices") }}">Nos services</a></li>
-                        <li><a href="#">Parcours immobiliers</a></li>
+                        <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nosservices") }}">Nos services</a></li>
-                        <li><a href="#">Parcours immobiliers</a></li>
+                        <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                 </div>
             </nav>
@@ -71,48 +71,57 @@
                                 <span>Recherchez votre bien immobilier neuf</span>
                             </h1>
                         </div>
+                        {{ form_start(simpleSearch) }}
                         <div class="row">
                             <div class="input-field col s4 offset-s1">
-                                {{ form_start(simpleSearch) }}
-                                {{ form_widget(simpleSearch) }}
+                                {{ form_label(simpleSearch.ville, 'Localisation') }}
+                                {{ form_widget(simpleSearch.ville) }}
+                                {{ form_errors(simpleSearch.ville) }}
+                            </div>
+                            <div class="input-field col s4 offset-s1">
+                                {{ form_widget(simpleSearch.type) }}
+                                {{ form_errors(simpleSearch.type) }}
                             </div>
                         </div>
-                                <div class="row center">
-                                    <div class="formButton col s12 m12 l4 offset-l1">
-                                        <input type="submit" class="waves-effect waves-light btn-large light-green" value="Je souhaite investir"/>
-                                    </div>
-                                    <div class="formButton col s12 m12 l6">
-                                        <input type="submit" class="waves-effect waves-light btn-large light-green" value="Je recherche une résidence principale"/>
-                                    </div>
-                                </div>
+                        <div class="row center">
 
-
-                                {{ form_end(simpleSearch) }}
-{#                                <input type="text" id="autocomplete-input" class="autocomplete" name="localisation">
-                                <label for="autocomplete-input">Localisation</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <select>
-                                    <option value="" disabled selected>Sélectionnez le type du bien</option>
-                                    <option value="1">Maison</option>
-                                    <option value="2">Appartement</option>
-                                </select>
-                                <label>Type</label>#}
-
-                            </div>
-                        </div>
-{#                        <div class="row center">
                             <div class="formButton col s12 m12 l4 offset-l1">
-                                <a class="waves-effect waves-light btn-large light-green">Je souhaite investir</a>
+                                {{ form_widget(simpleSearch.investBtn) }}
                             </div>
+
                             <div class="formButton col s12 m12 l6">
-                                <a class="waves-effect waves-light btn-large light-green">Je recherche une résidence
-                                    Principale</a>
+                                {{ form_widget(simpleSearch.resPrincipaleBtn) }}
                             </div>
-                        </div>#}
+
+                        </div>
+
+
+                        {{ form_end(simpleSearch) }}
+                        {#                                <input type="text" id="autocomplete-input" class="autocomplete" name="localisation">
+                                                        <label for="autocomplete-input">Localisation</label>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <select>
+                                                            <option value="" disabled selected>Sélectionnez le type du bien</option>
+                                                            <option value="1">Maison</option>
+                                                            <option value="2">Appartement</option>
+                                                        </select>
+                                                        <label>Type</label>#}
+
                     </div>
                 </div>
+                {#                        <div class="row center">
+                                            <div class="formButton col s12 m12 l4 offset-l1">
+                                                <a class="waves-effect waves-light btn-large light-green">Je souhaite investir</a>
+                                            </div>
+                                            <div class="formButton col s12 m12 l6">
+                                                <a class="waves-effect waves-light btn-large light-green">Je recherche une résidence
+                                                    Principale</a>
+                                            </div>
+                                        </div>#}
             </div>
+        </div>
+        </div>
         </section>
         </div>
         <div class="container-fluid">
@@ -471,7 +480,7 @@
         <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
         <script>
-            $(document).ready(function(){
+            $(document).ready(function () {
 
                 // hide #back-top first
                 $("#back-top").hide();
@@ -493,6 +502,22 @@
                         }, 800);
                         return false;
                     });
+                });
+
+
+
+                $('input.autocomplete').autocomplete({
+                    data: {
+                        {% for ville in villes %}
+                            "{{ ville }}" : null,
+                        {% endfor %}
+                    },
+                    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                    onAutocomplete: function (val) {
+                        // Callback function when value is autcompleted.
+                    },
+                    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+
                 });
 
             });

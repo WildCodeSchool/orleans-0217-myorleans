@@ -24,9 +24,10 @@ class Temoignage
     /**
      * @var string
      *
-     * @ORM\Column(name="motif", type="string", length=255)
+     * @ORM\Column(name="theme", type="string", length=255)
      */
-    private $motif;
+    private $theme;
+
 
     /**
      * @var string
@@ -36,34 +37,19 @@ class Temoignage
     private $auteur;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="string", length=255)
      */
     private $date;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="message", type="text")
      */
-    private $text;
+    private $message;
 
-    /**
-     * @return mixed
-     */
-    public function getText()
-    {
-        return $this->text;
-    }
-
-    /**
-     * @param mixed $text
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-    }
 
     /**
      * Get id
@@ -76,27 +62,26 @@ class Temoignage
     }
 
     /**
-     * Set motif
+     * Set theme
      *
-     * @param string $motif
+     * @param string $theme
      *
      * @return Temoignage
      */
-    public function setMotif($motif)
+    public function setTheme($theme)
     {
-        $this->motif = $motif;
-
-        return $this;
+        $this->theme = $theme;
     }
 
     /**
-     * Get motif
+     * Get theme
      *
      * @return string
      */
-    public function getMotif()
+    public function getTheme()
     {
-        return $this->motif;
+        return $this->theme;
+
     }
 
     /**
@@ -126,7 +111,7 @@ class Temoignage
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param string $date
      *
      * @return Temoignage
      */
@@ -140,11 +125,37 @@ class Temoignage
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDate()
     {
         return $this->date;
     }
+
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     *
+     * @return Temoignage
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
 }
 

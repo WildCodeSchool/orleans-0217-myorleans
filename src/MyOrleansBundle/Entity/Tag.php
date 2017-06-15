@@ -29,9 +29,9 @@ class Tag
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article")
+     * @ORM\ManyToMany(targetEntity="Article", inversedBy="tags")
      */
-    private $article;
+    private $articles;
 
     /**
      * Get id
@@ -71,40 +71,25 @@ class Tag
      */
     public function __construct()
     {
-        $this->article = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add article
-     *
-     * @param \MyOrleansBundle\Entity\Article $article
-     *
-     * @return Tag
+     * @return mixed
      */
-    public function addArticle(\MyOrleansBundle\Entity\Article $article)
+    public function getArticles()
     {
-        $this->article[] = $article;
-
-        return $this;
+        return $this->articles;
     }
 
     /**
-     * Remove article
-     *
-     * @param \MyOrleansBundle\Entity\Article $article
+     * @param mixed $articles
      */
-    public function removeArticle(\MyOrleansBundle\Entity\Article $article)
+    public function setArticles($articles)
     {
-        $this->article->removeElement($article);
+        $this->articles = $articles;
     }
 
-    /**
-     * Get article
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getArticle()
-    {
-        return $this->article;
-    }
+
+
 }

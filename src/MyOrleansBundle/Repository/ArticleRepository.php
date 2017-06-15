@@ -10,4 +10,31 @@ namespace MyOrleansBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+    CONST nbArticlesFrontPage = 9;
+
+    public function articleByTag($tag)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->where('t.nom LIKE :tag')
+            ->setParameter('tag', $tag)
+            ->join('a.tags', 't')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(1);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findFrontPageArticles()
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->select('a')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(nbArticlesFrontPage);
+
+        return $qb->getQuery()->getResult();
+    }
+
+
 }

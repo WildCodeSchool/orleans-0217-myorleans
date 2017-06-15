@@ -9,6 +9,7 @@ use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
 
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Form\SimpleSearchType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,36 +24,23 @@ class HomeController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $residence = new Residence();
-        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType', $residence);
-        $simpleSearch->handleRequest($request);
-        if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
-            $data = $simpleSearch->getData();
-            $ville = $data['ville'];
-            $residences = $em -> getRepository(Residence::class)->searchByVille($ville);
 
-            if($residence == null){
-                $residence = $em -> getRepository(Residence::class)->findAll();
-            }
-            return $this->render('MyOrleansBundle::nos-biens.html.twig',[
-                'residences' => $residences
-            ]);
-        }else{
-            return $this->render('MyOrleansBundle::index.html.twig', [
-            'simpleSearch' => $simpleSearch->createView()
-            ]);
+        // Recuperation de la liste des villes dans lesqulles se trouvent les residences
+        $residences = $em->getRepository(Residence::class)->findAll();
+        $villes = [];
+        foreach ($residences as $residence) {
+            $villes[] = $residence->getVille();
         }
+        // Fin recuperation des villes
 
-    }
+        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
+                                            null,
+                                            ['action' => $this->generateUrl('nosbiens')]);
 
-    /**
-     * @Route("/nos-biens", name="nosbiens")
-     */
-    public function nosBiensAction()
-    {
-        $em=$this->getDoctrine()->getManager();
-
-        return $this->render('MyOrleansBundle::nosbiens.html.twig');
+        return $this->render('MyOrleansBundle::index.html.twig', [
+            'simpleSearch' => $simpleSearch->createView(),
+            'villes' => $villes
+        ]);
     }
 
 
@@ -60,12 +48,13 @@ class HomeController extends Controller
 
 
 
+
     /**
-     * @Route("/agence", name="agence")
+     * @Route("/parcours-immobilier", name="parcoursimmo")
      */
-    public function agencyAction()
+    public function parcoursImmoAction()
     {
-        return $this->render('MyOrleansBundle::agence.html.twig');
+        return $this->render('MyOrleansBundle::parcoursimmo.html.twig');
     }
 
     /**

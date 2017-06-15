@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Typelogements list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typeLogement in typeLogements %}
+            <tr>
+                <td><a href="{{ path('admin_typelogement_show', { 'id': typeLogement.id }) }}">{{ typeLogement.id }}</a></td>
+                <td>{{ typeLogement.nom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_typelogement_show', { 'id': typeLogement.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_typelogement_edit', { 'id': typeLogement.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_typelogement_new') }}">Create a new typeLogement</a>
+        </li>
+    </ul>
+{% endblock %}

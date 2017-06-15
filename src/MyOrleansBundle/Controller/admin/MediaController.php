@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Medium controller.
  *
- * @Route("media")
+ * @Route("admin/media")
  */
 class MediaController extends Controller
 {
     /**
      * Lists all medium entities.
      *
-     * @Route("/", name="media_index")
+     * @Route("/", name="admin_media_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class MediaController extends Controller
     /**
      * Creates a new medium entity.
      *
-     * @Route("/new", name="media_new")
+     * @Route("/new", name="admin_media_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class MediaController extends Controller
             $em->persist($medium);
             $em->flush();
 
-            return $this->redirectToRoute('media_show', array('id' => $medium->getId()));
+            return $this->redirectToRoute('admin_media_show', array('id' => $medium->getId()));
         }
 
         return $this->render('media/new.html.twig', array(
@@ -60,7 +60,7 @@ class MediaController extends Controller
     /**
      * Finds and displays a medium entity.
      *
-     * @Route("/{id}", name="media_show")
+     * @Route("/{id}", name="admin_media_show")
      * @Method("GET")
      */
     public function showAction(Media $medium)
@@ -76,7 +76,7 @@ class MediaController extends Controller
     /**
      * Displays a form to edit an existing medium entity.
      *
-     * @Route("/{id}/edit", name="media_edit")
+     * @Route("/{id}/edit", name="admin_media_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Media $medium)
@@ -88,7 +88,7 @@ class MediaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('media_edit', array('id' => $medium->getId()));
+            return $this->redirectToRoute('admin_media_edit', array('id' => $medium->getId()));
         }
 
         return $this->render('media/edit.html.twig', array(
@@ -101,7 +101,7 @@ class MediaController extends Controller
     /**
      * Deletes a medium entity.
      *
-     * @Route("/{id}", name="media_delete")
+     * @Route("/{id}", name="admin_media_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Media $medium)
@@ -115,7 +115,7 @@ class MediaController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('media_index');
+        return $this->redirectToRoute('admin_media_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class MediaController extends Controller
     private function createDeleteForm(Media $medium)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('media_delete', array('id' => $medium->getId())))
+            ->setAction($this->generateUrl('admin_media_delete', array('id' => $medium->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

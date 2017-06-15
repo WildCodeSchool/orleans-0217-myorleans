@@ -26,22 +26,14 @@ class Presta
      *
      * @ORM\Column(name="value", type="float", nullable=true)
      */
-    private $value;
+    private $nomPresta;
 
     /**
      * @ORM\ManyToOne(targetEntity="TypePresta", inversedBy="prestas")
      */
     private $type_presta;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Flat", inversedBy="prestas")
-     */
-    private $flat;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Residence", inversedBy="prestas")
-     */
-    private $residence;
 
 
     /**
@@ -55,47 +47,23 @@ class Presta
     }
 
     /**
-     * Set value
-     *
-     * @param float $value
-     *
-     * @return Presta
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get value
-     *
      * @return float
      */
-    public function getValue()
+    public function getNomPresta()
     {
-        return $this->value;
+        return $this->nomPresta;
     }
 
     /**
-     * Set typePresta
-     *
-     * @param \MyOrleansBundle\Entity\TypePresta $typePresta
-     *
-     * @return Presta
+     * @param float $nomPresta
      */
-    public function setTypePresta(\MyOrleansBundle\Entity\TypePresta $typePresta = null)
+    public function setNomPresta($nomPresta)
     {
-        $this->type_presta = $typePresta;
-
-        return $this;
+        $this->nomPresta = $nomPresta;
     }
 
     /**
-     * Get typePresta
-     *
-     * @return \MyOrleansBundle\Entity\TypePresta
+     * @return mixed
      */
     public function getTypePresta()
     {
@@ -103,50 +71,12 @@ class Presta
     }
 
     /**
-     * Set flat
-     *
-     * @param \MyOrleansBundle\Entity\Flat $flat
-     *
-     * @return Presta
+     * @param mixed $type_presta
      */
-    public function setFlat(\MyOrleansBundle\Entity\Flat $flat = null)
+    public function setTypePresta($type_presta)
     {
-        $this->flat = $flat;
-
-        return $this;
+        $this->type_presta = $type_presta;
     }
 
-    /**
-     * Get flat
-     *
-     * @return \MyOrleansBundle\Entity\Flat
-     */
-    public function getFlat()
-    {
-        return $this->flat;
-    }
 
-    /**
-     * Set residence
-     *
-     * @param \MyOrleansBundle\Entity\Residence $residence
-     *
-     * @return Presta
-     */
-    public function setResidence(\MyOrleansBundle\Entity\Residence $residence = null)
-    {
-        $this->residence = $residence;
-
-        return $this;
-    }
-
-    /**
-     * Get residence
-     *
-     * @return \MyOrleansBundle\Entity\Residence
-     */
-    public function getResidence()
-    {
-        return $this->residence;
-    }
 }

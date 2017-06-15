@@ -77,3 +77,11 @@ fos_user:
     from_email:
         address: wildersmyorleans@gmail.com #"%mailer_user%"
         sender_name: wildersmyorleans #"%mailer_user%"
+
+
+# Services
+services:
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }

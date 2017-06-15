@@ -10,4 +10,31 @@ namespace MyOrleansBundle\Repository;
  */
 class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function simpleSearch($ville, $type)
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        if (!empty($ville)) {
+            $qb->andWhere('r.ville LIKE :ville')
+                ->setParameter('ville', '%'.$ville.'%');
+        }
+
+        if (!empty($type)) {
+            $qb->andWhere('t.nom = :type')
+                ->setParameter('type', $type)
+                ->join('r.flats', 'f')
+                ->join('f.typeLogement', 't');
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findAllLimit()
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->setMaxResults(3);
+        return $qb->getQuery()->getResult();
+
+    }
+
 }

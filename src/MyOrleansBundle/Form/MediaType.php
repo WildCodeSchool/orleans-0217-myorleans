@@ -13,7 +13,7 @@ class MediaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type')->add('page')->add('lien')->add('flat')->add('residence')->add('evenement')->add('partenaire')->add('service')->add('pack')->add('article');
+        $builder->add('page')->add('lien')->add('flats')->add('residences')->add('evenement')->add('partenaire')->add('service')->add('pack')->add('articles');
     }
     
     /**

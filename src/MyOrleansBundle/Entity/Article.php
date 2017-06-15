@@ -24,13 +24,6 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=45)
-     */
-    private $type;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="titre", type="string", length=45)
      */
     private $titre;
@@ -40,7 +33,7 @@ class Article
      *
      * @ORM\Column(name="text", type="text")
      */
-    private $text;
+    private $texte;
 
     /**
      * @var \DateTime
@@ -50,20 +43,26 @@ class Article
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="article")
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"all"}, fetch="EAGER")
      */
     private $medias;
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Residence")
+     * @ORM\ManyToOne(targetEntity="Residence")
      */
     private $residence;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="articles", cascade={"all"}, fetch="EAGER")
      */
-    private $tag;
+    private $tags;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TypeArticle", inversedBy="articles")
+     */
+    private $typeArticle;
+
 
 
     /**
@@ -74,30 +73,6 @@ class Article
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Article
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -131,9 +106,9 @@ class Article
      *
      * @return Article
      */
-    public function setText($text)
+    public function setTexte($texte)
     {
-        $this->text = $text;
+        $this->texte = $texte;
 
         return $this;
     }
@@ -143,9 +118,9 @@ class Article
      *
      * @return string
      */
-    public function getText()
+    public function getTexte()
     {
-        return $this->text;
+        return $this->texte;
     }
 
     /**
@@ -171,46 +146,15 @@ class Article
     {
         return $this->date;
     }
+
+
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     *
-     * @return Article
-     */
-    public function addMedia(\MyOrleansBundle\Entity\Media $media)
-    {
-        $this->medias[] = $media;
-
-        return $this;
-    }
-
-    /**
-     * Remove media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     */
-    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
-    {
-        $this->medias->removeElement($media);
-    }
-
-    /**
-     * Get medias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedias()
-    {
-        return $this->medias;
     }
 
     /**
@@ -238,36 +182,51 @@ class Article
     }
 
     /**
-     * Add tag
-     *
-     * @param \MyOrleansBundle\Entity\Tag $tag
-     *
-     * @return Article
+     * @return mixed
      */
-    public function addTag(\MyOrleansBundle\Entity\Tag $tag)
+    public function getMedias()
     {
-        $this->tag[] = $tag;
-
-        return $this;
+        return $this->medias;
     }
 
     /**
-     * Remove tag
-     *
-     * @param \MyOrleansBundle\Entity\Tag $tag
+     * @param mixed $medias
      */
-    public function removeTag(\MyOrleansBundle\Entity\Tag $tag)
+    public function setMedias($medias)
     {
-        $this->tag->removeElement($tag);
+        $this->medias = $medias;
     }
 
     /**
-     * Get tag
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return mixed
      */
-    public function getTag()
+    public function getTags()
     {
-        return $this->tag;
+        return $this->tags;
     }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeArticle()
+    {
+        return $this->typeArticle;
+    }
+
+    /**
+     * @param mixed $typeArticle
+     */
+    public function setTypeArticle($typeArticle)
+    {
+        $this->typeArticle = $typeArticle;
+    }
+
 }

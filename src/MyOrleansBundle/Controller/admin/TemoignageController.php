@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Temoignage controller.
  *
- * @Route("temoignage")
+ * @Route("admin/temoignage")
  */
 class TemoignageController extends Controller
 {
     /**
      * Lists all temoignage entities.
      *
-     * @Route("/", name="temoignage_index")
+     * @Route("/", name="admin_temoignage_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class TemoignageController extends Controller
     /**
      * Creates a new temoignage entity.
      *
-     * @Route("/new", name="temoignage_new")
+     * @Route("/new", name="admin_temoignage_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class TemoignageController extends Controller
             $em->persist($temoignage);
             $em->flush();
 
-            return $this->redirectToRoute('temoignage_show', array('id' => $temoignage->getId()));
+            return $this->redirectToRoute('admin_temoignage_show', array('id' => $temoignage->getId()));
         }
 
         return $this->render('temoignage/new.html.twig', array(
@@ -60,7 +60,7 @@ class TemoignageController extends Controller
     /**
      * Finds and displays a temoignage entity.
      *
-     * @Route("/{id}", name="temoignage_show")
+     * @Route("/{id}", name="admin_temoignage_show")
      * @Method("GET")
      */
     public function showAction(Temoignage $temoignage)
@@ -76,7 +76,7 @@ class TemoignageController extends Controller
     /**
      * Displays a form to edit an existing temoignage entity.
      *
-     * @Route("/{id}/edit", name="temoignage_edit")
+     * @Route("/{id}/edit", name="admin_temoignage_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Temoignage $temoignage)
@@ -88,7 +88,7 @@ class TemoignageController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('temoignage_edit', array('id' => $temoignage->getId()));
+            return $this->redirectToRoute('admin_temoignage_edit', array('id' => $temoignage->getId()));
         }
 
         return $this->render('temoignage/edit.html.twig', array(
@@ -101,7 +101,7 @@ class TemoignageController extends Controller
     /**
      * Deletes a temoignage entity.
      *
-     * @Route("/{id}", name="temoignage_delete")
+     * @Route("/{id}", name="admin_temoignage_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Temoignage $temoignage)
@@ -115,7 +115,7 @@ class TemoignageController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('temoignage_index');
+        return $this->redirectToRoute('admin_temoignage_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class TemoignageController extends Controller
     private function createDeleteForm(Temoignage $temoignage)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('temoignage_delete', array('id' => $temoignage->getId())))
+            ->setAction($this->generateUrl('admin_temoignage_delete', array('id' => $temoignage->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
