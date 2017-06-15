@@ -68,7 +68,7 @@ class FlatController extends Controller
      */
     public function pdfAction($id)
     {
-        $pageUrl = $this->generateUrl('flat_show', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
+        $pageUrl = $this->generateUrl('admin_flat_show', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
 
         return new Response(
             $this->get('knp_snappy.pdf')->getOutput($pageUrl),
@@ -80,6 +80,10 @@ class FlatController extends Controller
         );
     }
 
+    public function pdfReturnAction($id)
+    {
+
+    }
 
 
     /**
