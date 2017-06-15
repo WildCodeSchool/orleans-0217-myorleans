@@ -171,4 +171,28 @@ class CategoriePresta
     }
 
 
+
+    /**
+     * Add typePresta
+     *
+     * @param \MyOrleansBundle\Entity\TypePresta $typePresta
+     *
+     * @return CategoriePresta
+     */
+    public function addTypePresta(\MyOrleansBundle\Entity\TypePresta $typePresta)
+    {
+        $this->type_prestas[] = $typePresta;
+
+        return $this;
+    }
+
+    /**
+     * Remove typePresta
+     *
+     * @param \MyOrleansBundle\Entity\TypePresta $typePresta
+     */
+    public function removeTypePresta(\MyOrleansBundle\Entity\TypePresta $typePresta)
+    {
+        $this->type_prestas->removeElement($typePresta);
+    }
 }

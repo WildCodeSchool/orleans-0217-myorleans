@@ -46,36 +46,7 @@ class HomeController extends Controller
 
     /*-----------------------------------------------*/
 
-    /**
-     * @Route("/nos-services", name="nosservices")
-     */
-    public function nosservices()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $services = $em->getRepository(Service::class)->findAll();
-        $packs = $em->getRepository(Pack::class)->findAll();
-        $temoignages =$em->getRepository(Temoignage::class)->findAll();
-        return $this->render('MyOrleansBundle::nosservices.html.twig',[
-            'services'=>$services,
-            'packs'=>$packs,
-            'temoignages'=>$temoignages
-        ]);
 
-    }
-
-    /**
-     * @Route("/immopratique", name="immopratique")
-     */
-    public function immopratique()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findAll();
-
-        return $this->render('MyOrleansBundle::immopratique.html.twig',[
-
-        'articles'=>$articles
-        ]);
-    }
 
 
     /**

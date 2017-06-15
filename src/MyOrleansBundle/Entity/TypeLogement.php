@@ -85,5 +85,35 @@ class TypeLogement
     }
 
 
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->flats = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add flat
+     *
+     * @param \MyOrleansBundle\Entity\Flat $flat
+     *
+     * @return TypeLogement
+     */
+    public function addFlat(\MyOrleansBundle\Entity\Flat $flat)
+    {
+        $this->flats[] = $flat;
+
+        return $this;
+    }
+
+    /**
+     * Remove flat
+     *
+     * @param \MyOrleansBundle\Entity\Flat $flat
+     */
+    public function removeFlat(\MyOrleansBundle\Entity\Flat $flat)
+    {
+        $this->flats->removeElement($flat);
+    }
+}
