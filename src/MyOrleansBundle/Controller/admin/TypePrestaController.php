@@ -5,17 +5,18 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\TypePresta;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Typeprestum controller.
+ * typepresta controller.
  *
  * @Route("admin/typepresta")
  */
 class TypePrestaController extends Controller
 {
     /**
-     * Lists all typePrestum entities.
+     * Lists all typepresta entities.
      *
      * @Route("/", name="admin_typepresta_index")
      * @Method("GET")
@@ -32,86 +33,86 @@ class TypePrestaController extends Controller
     }
 
     /**
-     * Creates a new typePrestum entity.
+     * Creates a new typepresta entity.
      *
      * @Route("/new", name="admin_typepresta_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $typePrestum = new Typeprestum();
-        $form = $this->createForm('MyOrleansBundle\Form\TypePrestaType', $typePrestum);
+        $typepresta = new TypePresta();
+        $form = $this->createForm('MyOrleansBundle\Form\TypePrestaType', $typepresta);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($typePrestum);
+            $em->persist($typepresta);
             $em->flush();
 
-            return $this->redirectToRoute('admin_typepresta_show', array('id' => $typePrestum->getId()));
+            return $this->redirectToRoute('admin_typepresta_show', array('id' => $typepresta->getId()));
         }
 
         return $this->render('typepresta/new.html.twig', array(
-            'typePrestum' => $typePrestum,
+            'typepresta' => $typepresta,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a typePrestum entity.
+     * Finds and displays a typepresta entity.
      *
      * @Route("/{id}", name="admin_typepresta_show")
      * @Method("GET")
      */
-    public function showAction(TypePresta $typePrestum)
+    public function showAction(TypePresta $typepresta)
     {
-        $deleteForm = $this->createDeleteForm($typePrestum);
+        $deleteForm = $this->createDeleteForm($typepresta);
 
         return $this->render('typepresta/show.html.twig', array(
-            'typePrestum' => $typePrestum,
+            'typepresta' => $typepresta,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing typePrestum entity.
+     * Displays a form to edit an existing typepresta entity.
      *
      * @Route("/{id}/edit", name="admin_typepresta_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, TypePresta $typePrestum)
+    public function editAction(Request $request, TypePresta $typepresta)
     {
-        $deleteForm = $this->createDeleteForm($typePrestum);
-        $editForm = $this->createForm('MyOrleansBundle\Form\TypePrestaType', $typePrestum);
+        $deleteForm = $this->createDeleteForm($typepresta);
+        $editForm = $this->createForm('MyOrleansBundle\Form\TypePrestaType', $typepresta);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_typepresta_edit', array('id' => $typePrestum->getId()));
+            return $this->redirectToRoute('admin_typepresta_edit', array('id' => $typepresta->getId()));
         }
 
         return $this->render('typepresta/edit.html.twig', array(
-            'typePrestum' => $typePrestum,
+            'typepresta' => $typepresta,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Deletes a typePrestum entity.
+     * Deletes a typepresta entity.
      *
      * @Route("/{id}", name="admin_typepresta_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, TypePresta $typePrestum)
+    public function deleteAction(Request $request, TypePresta $typepresta)
     {
-        $form = $this->createDeleteForm($typePrestum);
+        $form = $this->createDeleteForm($typepresta);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($typePrestum);
+            $em->remove($typepresta);
             $em->flush();
         }
 
@@ -119,16 +120,16 @@ class TypePrestaController extends Controller
     }
 
     /**
-     * Creates a form to delete a typePrestum entity.
+     * Creates a form to delete a typepresta entity.
      *
-     * @param TypePresta $typePrestum The typePrestum entity
+     * @param TypePresta $typepresta The typepresta entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(TypePresta $typePrestum)
+    private function createDeleteForm(TypePresta $typepresta)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_typepresta_delete', array('id' => $typePrestum->getId())))
+            ->setAction($this->generateUrl('admin_typepresta_delete', array('id' => $typepresta->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

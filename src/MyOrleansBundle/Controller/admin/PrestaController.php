@@ -5,17 +5,18 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\Presta;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Prestum controller.
+ * presta controller.
  *
  * @Route("admin/presta")
  */
 class PrestaController extends Controller
 {
     /**
-     * Lists all prestum entities.
+     * Lists all presta entities.
      *
      * @Route("/", name="admin_presta_index")
      * @Method("GET")
@@ -32,86 +33,86 @@ class PrestaController extends Controller
     }
 
     /**
-     * Creates a new prestum entity.
+     * Creates a new presta entity.
      *
      * @Route("/new", name="admin_presta_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $prestum = new Prestum();
-        $form = $this->createForm('MyOrleansBundle\Form\PrestaType', $prestum);
+        $presta = new Presta();
+        $form = $this->createForm('MyOrleansBundle\Form\PrestaType', $presta);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($prestum);
+            $em->persist($presta);
             $em->flush();
 
-            return $this->redirectToRoute('admin_presta_show', array('id' => $prestum->getId()));
+            return $this->redirectToRoute('admin_presta_show', array('id' => $presta->getId()));
         }
 
         return $this->render('presta/new.html.twig', array(
-            'prestum' => $prestum,
+            'presta' => $presta,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a prestum entity.
+     * Finds and displays a presta entity.
      *
      * @Route("/{id}", name="admin_presta_show")
      * @Method("GET")
      */
-    public function showAction(Presta $prestum)
+    public function showAction(Presta $presta)
     {
-        $deleteForm = $this->createDeleteForm($prestum);
+        $deleteForm = $this->createDeleteForm($presta);
 
         return $this->render('presta/show.html.twig', array(
-            'prestum' => $prestum,
+            'presta' => $presta,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing prestum entity.
+     * Displays a form to edit an existing presta entity.
      *
      * @Route("/{id}/edit", name="admin_presta_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Presta $prestum)
+    public function editAction(Request $request, Presta $presta)
     {
-        $deleteForm = $this->createDeleteForm($prestum);
-        $editForm = $this->createForm('MyOrleansBundle\Form\PrestaType', $prestum);
+        $deleteForm = $this->createDeleteForm($presta);
+        $editForm = $this->createForm('MyOrleansBundle\Form\PrestaType', $presta);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_presta_edit', array('id' => $prestum->getId()));
+            return $this->redirectToRoute('admin_presta_edit', array('id' => $presta->getId()));
         }
 
         return $this->render('presta/edit.html.twig', array(
-            'prestum' => $prestum,
+            'presta' => $presta,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Deletes a prestum entity.
+     * Deletes a presta entity.
      *
      * @Route("/{id}", name="admin_presta_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Presta $prestum)
+    public function deleteAction(Request $request, Presta $presta)
     {
-        $form = $this->createDeleteForm($prestum);
+        $form = $this->createDeleteForm($presta);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($prestum);
+            $em->remove($presta);
             $em->flush();
         }
 
@@ -119,16 +120,16 @@ class PrestaController extends Controller
     }
 
     /**
-     * Creates a form to delete a prestum entity.
+     * Creates a form to delete a presta entity.
      *
-     * @param Presta $prestum The prestum entity
+     * @param Presta $presta The presta entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Presta $prestum)
+    private function createDeleteForm(Presta $presta)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_presta_delete', array('id' => $prestum->getId())))
+            ->setAction($this->generateUrl('admin_presta_delete', array('id' => $presta->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

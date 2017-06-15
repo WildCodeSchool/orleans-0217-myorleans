@@ -7,11 +7,9 @@ use MyOrleansBundle\Entity\Article;
 use MyOrleansBundle\Entity\Pack;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
-
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Form\SimpleSearchType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;

@@ -11,6 +11,8 @@ namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use MyOrleansBundle\Repository\ArticleRepository;
 
@@ -26,20 +28,33 @@ class BlogController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $articles = $em->getRepository(Article::class)->findNineLastArticles();
+        $articles = $em->getRepository(Article::class)->findLatestArticles();
 
         return $this->render('MyOrleansBundle:blog:blog_home.html.twig', [
-                                'articles' => $articles
+                    'articles' => $articles
         ]);
     }
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/blog/article", name="")
+     * @Route("/blog/article", name="blog-article")
      */
-    public function afficherArticleAction()
+    public function afficherArticleAction($idArticle)
     {
-        return $this->render('MyOrleansBundle:blog:blog_article.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository(Article::class)->find($idArticle);
+
+        $tags = $article->getTags();
+
+        $articlesAssocies = $tags->getArticles();
+        $articleAssocie = $articlesAssocies[0];
+        var_dump($articleAssocie);
+        die();
+
+        return $this->render('MyOrleansBundle:blog:blog_article.html.twig',[
+                'article' => $article,
+                'articleAssocie' => $articleAssocie
+        ]);
     }
 
 }

@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+
+    CONST NUM_ARTICLES = 9;
+
     /**
      * @var int
      *
@@ -31,7 +34,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="texte", type="text")
      */
     private $texte;
 
@@ -229,4 +232,52 @@ class Article
         $this->typeArticle = $typeArticle;
     }
 
+
+    /**
+     * Add media
+     *
+     * @param \MyOrleansBundle\Entity\Media $media
+     *
+     * @return Article
+     */
+    public function addMedia(\MyOrleansBundle\Entity\Media $media)
+    {
+        $this->medias[] = $media;
+
+        return $this;
+    }
+
+    /**
+     * Remove media
+     *
+     * @param \MyOrleansBundle\Entity\Media $media
+     */
+    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
+    {
+        $this->medias->removeElement($media);
+    }
+
+    /**
+     * Add tag
+     *
+     * @param \MyOrleansBundle\Entity\Tag $tag
+     *
+     * @return Article
+     */
+    public function addTag(\MyOrleansBundle\Entity\Tag $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \MyOrleansBundle\Entity\Tag $tag
+     */
+    public function removeTag(\MyOrleansBundle\Entity\Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
 }

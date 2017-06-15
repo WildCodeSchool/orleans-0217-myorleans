@@ -20,29 +20,6 @@
         <div class="col s6 m3 center">
             <a class="waves-effect waves-light btn-large btn-newsletter"><i class="material-icons left">mode_edit</i>je m'abonne à la newsletter</a>
         </div>
-
-        {#<ul class="collapsible popout" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header"><i class="material-icons">filter_drama</i>Rechercher un thème</div>
-                <div class="collapsible-body">
-                    <span>
-                        <div class="col s6 offset-m3 m3">
-                            <div class="input-field col s12 center">
-                                <select>
-                                    <option value="" disabled selected>Thèmes</option>
-                                    <option value="1">Loi Pinel</option>
-                                    <option value="2">Défiscalisation</option>
-                                    <option value="3">Premier achat</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col s6 m3 center">
-                            <a class="waves-effect waves-light btn-large btn-newsletter"><i class="material-icons left">mode_edit</i>je m'abonne à la newsletter</a>
-                        </div>
-                    </span>
-                </div>
-            </li>
-        </ul>#}
     </div>
 
     <div class="row no-margin-bottom">
@@ -53,66 +30,19 @@
 
         <div class="row article-blog">
             <h1 class="titre-article">
-                Titre de l'article
+                {{ article.titre }}
                 <span class="tags">
-                   <div class="chip">
-                        Loi Pinel
-                    </div>
-                    <div class="chip">
-                        Investissement
-                    </div>
+                    {% for tag in article.tags %}
+                        <div class="chip">
+                            {{ tag.nom }}
+                        </div>
+                    {% endfor %}
                 </span>
             </h1>
         </div>
 
         <div class="row">
-            <p class="chapeau-article">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-            </p>
-
-            <h2>Sous-titre 1</h2>
-
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-            </p>
-
-            <h2>Sous-titre 2</h2>
-
-            <img class="img-corps-article" src="{{ asset('img/blog/blog11.jpg') }}" alt="illustration article 2" />
-
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-            </p>
+            {{ article.texte }}
         </div>
 
         <hr class="separe">
@@ -126,13 +56,15 @@
                 <h3>L'opportunité du moment</h3>
                 <div class="card large">
                     <div class="card-image">
-                        <img src="{{ asset('img/res_dunois.jpg') }}">
+                        {% for media in article.medias if media.typeMedia.nom == 'image' %}
+                            <img src="{{ asset('img/'~media.lien) }}">
+                        {% endfor %}
                     </div>
                     <div class="card-content">
                         <div class="row no-margin-bottom">
                             <div class="col s8">
-                                <h4>Nom Résidence</h4>
-                                <p>My Park</p>
+                                <h4>{{ article.residence.nom }}</h4>
+                                <p>à {{ article.residence.ville }}</p>
                             </div>
                             <div class="col s4 right-content">
                                 <h4>Prix</h4>
@@ -141,7 +73,7 @@
                         </div>
                     </div>
                     <div class="card-action center">
-                        <a href="#">Découvrir la résidence</a>
+                        <a href="{{ path('residences', { 'idResidence': article.residence.id }) }}">Découvrir la résidence</a>
                     </div>
                 </div>
             </div>

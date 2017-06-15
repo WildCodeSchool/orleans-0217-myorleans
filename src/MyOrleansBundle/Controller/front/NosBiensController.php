@@ -40,13 +40,13 @@ class NosBiensController extends Controller
             // Envoi de contenu different en fonction du bouton clique : investisseur ou residence principale
             if ($simpleSearch->get('resPrincipaleBtn')->isClicked()) {
                 // Generation du dernier article avec le tag 'Residence Principale'
-/*                $article = $em->getRepository(Article::class)->articleByTag('Residence Principale');*/
+                $article = $em->getRepository(Article::class)->articleByTag('Residence Principale');
 
                 $objectif = "residence";
             }
             if ($simpleSearch->get('investBtn')->isClicked()) {
                 // Generation du derier article avec le tag 'Investissement'
-/*                $article = $em->getRepository(Article::class)->articleByTag('Investissement');*/
+                $article = $em->getRepository(Article::class)->articleByTag('Investissement');
 
                 $objectif = "investir";
             }
@@ -69,7 +69,7 @@ class NosBiensController extends Controller
                 'residences' => $residences,
                 'message' => $message,
                 'objectif' => $objectif,
-/*                'article' => $article*/
+                'article' => $article
             ]);
 
         // donnees envoyees a la page nos biens si le form simpleSearch n'est pas valide ou lorqu'on clique sur
@@ -81,14 +81,14 @@ class NosBiensController extends Controller
             $objectif = "investir";
 
             // Generation du dernier article avec le tag 'Investissement'
-/*            $article = $em->getRepository(Article::class)->findOneByTags(2);*/
+            $article = $em->getRepository(Article::class)->articleByTag('Investissement');
 
 
             return $this->render('MyOrleansBundle::nosbiens.html.twig', [
                 'residences' => $residences,
                 'message' => $message,
                 'objectif' => $objectif,
-/*                'article' => $article*/
+                'article' => $article
             ]);
 
 

@@ -311,16 +311,13 @@
                     <div class="col s12 offset-m1 m10">
                         <div class="card media">
                             <div class="card-content">
-{#                                <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte | truncate(20) }}</p>#}
-                                <h4>Bla bla</h4>
-                                <p>jdz fmf pozrf po ozc kpo</p>
+                                <h4>{{ article.titre }}</h4>
+                                <p>{{ article.texte | truncate(20) }}</p>
                             </div>
                             <div class="card-image">
-{#                                {% for media in article.medias if media.typeMedia.nom == 'image' %}
+                                {% for media in article.medias if media.typeMedia.nom == 'image' %}
                                     <img src="{{ asset('img/'~media.lien) }}">
-                                {% endfor %}#}
-                                <img src="{{ asset('img/article-immo.jpg') }}">
+                                {% endfor %}
                             </div>
                             <div class="card-action center">
                                 <a href="#">Lire l'article</a>
