@@ -25,12 +25,14 @@ class HomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+
         // Recuperation de la liste des villes dans lesqulles se trouvent les residences
         $residences = $em->getRepository(Residence::class)->findAll();
         $villes = [];
         foreach ($residences as $residence) {
             $villes[] = $residence->getVille();
         }
+
         // Fin recuperation des villes
 
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
