@@ -20,61 +20,52 @@ class Collaborateur
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=45, nullable=true)
      */
     private $nom;
-
     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=45, nullable=true)
      */
     private $prenom;
-
     /**
      * @var string
      *
      * @ORM\Column(name="fonction", type="string", length=45, nullable=true)
      */
     private $fonction;
-
     /**
      * @var string
      *
      * @ORM\Column(name="bio", type="text", nullable=true)
      */
     private $bio;
-
     /**
      * @var string
      *
      * @ORM\Column(name="lien_twiter", type="string", length=45, nullable=true)
      */
     private $lienTwiter;
-
     /**
      * @var string
      *
      * @ORM\Column(name="lien_linkedin", type="string", length=45, nullable=true)
      */
     private $lienLinkedin;
-
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=45, nullable=true)
      */
     private $email;
-
     /**
      * @ORM\OneToOne(targetEntity="Media")
      */
     private $media;
-
 
     /**
      * Get id
@@ -96,7 +87,6 @@ class Collaborateur
     public function setNom($nom)
     {
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -120,7 +110,6 @@ class Collaborateur
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-
         return $this;
     }
 
@@ -144,7 +133,6 @@ class Collaborateur
     public function setFonction($fonction)
     {
         $this->fonction = $fonction;
-
         return $this;
     }
 
@@ -168,7 +156,6 @@ class Collaborateur
     public function setBio($bio)
     {
         $this->bio = $bio;
-
         return $this;
     }
 
@@ -192,7 +179,6 @@ class Collaborateur
     public function setLienTwiter($lienTwiter)
     {
         $this->lienTwiter = $lienTwiter;
-
         return $this;
     }
 
@@ -216,7 +202,6 @@ class Collaborateur
     public function setLienLinkedin($lienLinkedin)
     {
         $this->lienLinkedin = $lienLinkedin;
-
         return $this;
     }
 
@@ -240,7 +225,6 @@ class Collaborateur
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -264,7 +248,6 @@ class Collaborateur
     public function setMedia(\MyOrleansBundle\Entity\Media $media = null)
     {
         $this->media = $media;
-
         return $this;
     }
 

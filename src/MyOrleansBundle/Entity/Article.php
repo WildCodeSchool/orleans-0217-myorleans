@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+
+    CONST NUM_ARTICLES = 9;
+
     /**
      * @var int
      *
@@ -31,7 +34,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="texte", type="text")
      */
     private $texte;
 
@@ -100,9 +103,9 @@ class Article
     }
 
     /**
-     * Set text
+     * Set texte
      *
-     * @param string $text
+     * @param string $texte
      *
      * @return Article
      */
@@ -114,7 +117,7 @@ class Article
     }
 
     /**
-     * Get text
+     * Get texte
      *
      * @return string
      */

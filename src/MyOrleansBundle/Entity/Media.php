@@ -46,7 +46,7 @@ class Media
     private $residences;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Evenement", inversedBy="medias")
+     * @ORM\OneToOne(targetEntity="Evenement", mappedBy="media")
      */
     private $evenement;
 
