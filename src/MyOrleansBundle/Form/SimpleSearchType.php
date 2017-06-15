@@ -32,9 +32,7 @@ class SimpleSearchType extends AbstractType
                 'attr'=> ['id'=>'autocomplete-input', 'class'=>'autocomplete', 'autocomplete' => 'off']
 
             ])
-<<<<<<< HEAD
 
-=======
             ->add('type', ChoiceType::class, [
                 'required'=>false,
                 'placeholder'=>'Sélectionnez le type du bien',
@@ -53,7 +51,6 @@ class SimpleSearchType extends AbstractType
                 'label' => 'Je recherche une résidence principale',
                 'attr' => ['class' => 'waves-effect waves-light btn-large light-green']
             ])
->>>>>>> b91387d6eb7fd5845461a4267efe301a7e489ced
             ->getForm();
     }
 }
