@@ -29,9 +29,7 @@ class HomeController extends Controller
         if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
             $data = $simpleSearch->getData();
             $ville = $data['ville'];
-            $type = $data['type'];
             $residences = $em -> getRepository(Residence::class)->searchByVille($ville);
-            $types = $em -> getRepository(Flat::class)->searchByType($type);
 
             if($residence == null){
                 $residence = $em -> getRepository(Residence::class)->findAll();
@@ -60,36 +58,7 @@ class HomeController extends Controller
 
     /*-----------------------------------------------*/
 
-    /**
-     * @Route("/nos-services", name="nosservices")
-     */
-    public function nosservices()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $services = $em->getRepository(Service::class)->findAll();
-        $packs = $em->getRepository(Pack::class)->findAll();
-        $temoignages =$em->getRepository(Temoignage::class)->findAll();
-        return $this->render('MyOrleansBundle::nosservices.html.twig',[
-            'services'=>$services,
-            'packs'=>$packs,
-            'temoignages'=>$temoignages
-        ]);
 
-    }
-
-    /**
-     * @Route("/immopratique", name="immopratique")
-     */
-    public function immopratique()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findAll();
-
-        return $this->render('MyOrleansBundle::immopratique.html.twig',[
-
-        'articles'=>$articles
-        ]);
-    }
 
     /**
      * @Route("/agence", name="agence")

@@ -27,12 +27,7 @@ class SimpleSearchType extends AbstractType
                 'attr'=> ['id'=>'autocomplete-input', 'class'=>'autocomplete']
 
             ])
-            ->add('type', EntityType::class, [
-                'class'=>Flat::class,
-                'choice_label'=>'type',
-                'required'=>false,
-                'attr'=> ['placeholder'=>'Sélectionnez le type du bien']
-            ])
+
             ->getForm();
     }
 }
