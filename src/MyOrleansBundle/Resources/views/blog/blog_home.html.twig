@@ -85,7 +85,7 @@
             <div class="blockArticle center">
                 <div class="imgArticle">
                     {% for media in article.medias if media.typeMedia.nom == 'image' %}
-                        <img src="{{ asset('img/'~media.lien) }}" alt="photo illistration">
+                        <img src="{{ asset('img/blog/'~media.lien) }}" alt="photo illistration">
                     {% endfor %}
                 </div>
                 <div class="titreArticle">

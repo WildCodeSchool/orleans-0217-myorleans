@@ -554,6 +554,8 @@ class Residence
         $this->eligibilitePinel = $eligibilitePinel;
     }
 
+
+
     /**
      * @return mixed
      */

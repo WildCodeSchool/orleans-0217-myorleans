@@ -30,7 +30,7 @@
 
                                     <tr>
                                         <td>
-                                            <a href="{{ path('collaborateur_show', { 'id': collaborateur.id }) }}">{{ collaborateur.id }}</a>
+                                            <a href="{{ path('admin_collaborateur_show', { 'id': collaborateur.id }) }}">{{ collaborateur.id }}</a>
                                         </td>
                                         <td>{{ collaborateur.nom }}</td>
                                         <td>{{ collaborateur.prenom }}</td>
@@ -40,11 +40,11 @@
                                         <td>{{ collaborateur.lienLinkedin }}</td>
                                         <td>{{ collaborateur.email }}</td>
                                         <td>
-                                            <a href="{{ path('collaborateur_show', { 'id': collaborateur.id }) }}"><i
+                                            <a href="{{ path('admin_collaborateur_show', { 'id': collaborateur.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('collaborateur_edit', { 'id': collaborateur.id }) }}"><i
+                                            <a href="{{ path('admin_collaborateur_edit', { 'id': collaborateur.id }) }}"><i
                                                         class="material-icons">build</i></a>
                                         </td>
                                     </tr>
@@ -57,7 +57,7 @@
                             <ul>
                                 <li>
 
-                                    <a href="{{ path('collaborateur_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
+                                    <a href="{{ path('admin_collaborateur_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
                                         membre</a>
                                 </li>
                             </ul>

@@ -23,7 +23,9 @@
     </div>
 
     <div class="row no-margin-bottom">
-        <img class="img-article" src="{{ asset('img/blog/blog11-3.jpg') }}" alt="illustration article"/>
+        {% for media in article.medias if media.typeMedia.nom == 'image-header' %}
+        <img class="img-article" src="{{ asset('img/blog/'~media.lien) }}" alt="illustration article"/>
+        {% endfor %}
     </div>
 
     <div class="container article-blog">
@@ -52,11 +54,12 @@
     <div class="container-fluid">
 
         <div class="row suggestion-contenu">
+
             <div class="col s12 l4">
                 <h3>L'opportunité du moment</h3>
                 <div class="card large">
                     <div class="card-image">
-                        {% for media in article.medias if media.typeMedia.nom == 'image' %}
+                        {% for media in article.residence.medias if media.typeMedia.nom == 'image' %}
                             <img src="{{ asset('img/'~media.lien) }}">
                         {% endfor %}
                     </div>
@@ -69,6 +72,9 @@
                             <div class="col s4 right-content">
                                 <h4>Prix</h4>
                                 <p>Dès 90 000€</p>
+{#
+                                <p>Dès {{ min(article.residence.flats.prix) }}€</p>
+#}
                             </div>
                         </div>
                     </div>
@@ -78,37 +84,43 @@
                 </div>
             </div>
 
+
+        {% for article in articlesAssocies %}
+
             <div class="col s12 l4">
                 <div class="suggestion-article">
                     <h3>Sur le même sujet</h3>
                     <div class="blockArticle center">
                         <div class="imgArticle">
-                            <img class="responsive-img" src="{{ asset('img/blog/blog16.jpg') }}" alt="">
+                            {% for media in article.medias if media.typeMedia.nom == "image" %}
+                            <img class="responsive-img" src="{{ asset('img/blog/'~media.lien) }}" alt="">
+                            {% endfor %}
                         </div>
                         <div class="titreArticle">
-                            <h4 class="white-text">Titre article</h4>
+                            <h4 class="white-text">{{ article.titre }}</h4>
                         </div>
                         <div class="infoArticle">
-                            <h4 class="white-text">Titre article</h4>
-                            <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                            <h4 class="white-text">{{ article.titre }}</h4>
+                            <p>{{ article.texte | truncate(20, true, '...') }}</p>
+
+                            {% for tag in article.tags %}
                             <div class="chip">
-                                Loi Pinel
-                                <i class="close material-icons">close</i>
+                                {{ tag.nom }}
                             </div>
-                            <div class="chip">
-                                Investissement
-                                <i class="close material-icons">close</i>
-                            </div>
+                            {% endfor %}
+
                             <div class="row lien-article">
-                                <a href="#">LIRE L'ARTICLE</a>
+                                <a href="{{ path('blog-article', { 'idArticle': article.id }) }}">LIRE L'ARTICLE</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col s12 l4">
+        {% endfor %}
+
+
+           {# <div class="col s12 l4">
                 <div class="suggestion-article">
                     <h3 class="white-text">Sur le même sujet</h3>
                     <div class="blockArticle center">
@@ -136,7 +148,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>#}
         </div>
 
     </div>

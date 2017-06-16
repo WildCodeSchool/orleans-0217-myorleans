@@ -51,56 +51,56 @@
 
     <!--premier block-->
     {% for article in articles %}
-    {% if article.id is odd %}
-    <div class="fiches-conseils">
-    <h2 class="subtitle fancy" id="conseils"><span>{{ article.type }}</span></h2>
-    <div class="row">
+        {% if article.id is odd %}
+            <div class="fiches-conseils">
+                <h2><span>Fiches conseils</span></h2>
+            <div class="row">
 
-        <div class="col s12 m6 l6">
-            <div data-aos="fade-up-right">
-                <div class="boxi">
-                    <h4>{{ article.titre }}</h4>
-                    <p>{{ article.text }}</p>
-                    <div class="center">
-                        <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger la fiche</a>
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-right">
+                    <div class="boxi">
+                        <h4>{{ article.titre }}</h4>
+                        <p>{{ article.texte }}</p>
+                        <div class="center">
+                            <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger la fiche</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-left">
+                    <img src="{{ asset('img/conseil3.jpg') }}" class="responsive-img" alt="image fiche conseil" />
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <!--fin premier block-->
+
+        <!--deuxième block-->
+        {% elseif article.id is even  %}
+        <div class="row">
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-right">
+                    <img src="{{ asset('img/conseil4.jpg') }}" class="responsive-img" alt="image fiche conseil" />
+                </div>
+            </div>
+
+            <div class="col s12 m6 l6">
+                <div data-aos="fade-up-left">
+                    <div class="boxi">
+                        <h4>{{ article.titre }}</h4>
+                        <p>{{ article.texte }}</p>
+                        <div class="center">
+                            <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger la fiche</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col s12 m6 l6">
-            <div data-aos="fade-up-left">
-                <img src="{{ asset('img/conseil3.jpg') }}" class="responsive-img" alt="image fiche conseil" />
-            </div>
-        </div>
-    </div>
-    </div>
-
-
-    <!--fin premier block-->
-
-    <!--deuxième block-->
-    {% elseif article.id is even  %}
-    <div class="row">
-        <div class="col s12 m6 l6">
-            <div data-aos="fade-up-right">
-                <img src="{{ asset('img/conseil4.jpg') }}" class="responsive-img" alt="image fiche conseil" />
-            </div>
-        </div>
-
-        <div class="col s12 m6 l6">
-            <div data-aos="fade-up-left">
-                <div class="boxi">
-                    <h4>{{ article.titre }}</h4>
-                    <p>{{ article.text }}</p>
-                    <div class="center">
-                        <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger la fiche</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
+        {% endif %}
     {% endfor %}
 </div>
 
@@ -111,11 +111,14 @@
 
         <!--troisième block-->
 
-<div class="bloc-color container">
+<div class="bloc-color container-fluid">
     <div class="row">
+
+        <div class="container">
+
         <div class="col s12 l12 m6">
 
-             <h2 class="subtitle fancy" id="thematiques"><span>Dossiers thématiques</span></h2>
+             <h2><span>Dossiers thématiques</span></h2>
                 <div class="row">
                     <div class="col s12 m6 l6">
                         <div data-aos="fade-up-right">
@@ -170,6 +173,8 @@
 
             </div>
         </div>
+
+    </div>
     </div>
 
 
@@ -177,7 +182,7 @@
         <!--fin quatrième block-->
     <div class="container">
         <!--cinquième block-->
-     <h2 class="subtitle fancy" id="actu-immo"><span>Actualités immobilières</span></h2></a>
+     <h2><span>Actualités immobilières</span></h2>
         <div class="row">
             <div class="col s12 m6 l6">
                 <div data-aos="fade-up-right">

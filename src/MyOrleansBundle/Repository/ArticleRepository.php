@@ -13,16 +13,17 @@ use MyOrleansBundle\Entity\Article;
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function articleByTag($tag)
+    public function articleByTag($tag, $nbArticles)
     {
         $qb = $this->createQueryBuilder('a');
 
         $qb->select('a')
-            ->where('t.nom LIKE :tag')
+            ->leftJoin('a.tags', 't')
+            ->addSelect('t')
+            ->where('t.nom = :tag')
             ->setParameter('tag', $tag)
             ->orderBy('a.id', 'DESC')
-            ->setMaxResults(1)
-            ->join('a.tags', 't');
+            ->setMaxResults($nbArticles);
 
         return $qb->getQuery()->getResult();
     }

@@ -122,7 +122,7 @@ body {
 }
 
 .body-container-margin {
-    margin: 23px 20px 0 20px;
+    margin: 21px 20px 0 20px;
 }
 
 .btn, .btn-large {
@@ -189,12 +189,20 @@ body {
     color: #858585;
 }
 
+.page-nosbiens .titre-contenu-associe h2 {
+    font-size: 36px;
+}
+
 .page-nosbiens .liste-biens h4 {
     margin-bottom: 0;
 }
 
 .liste-biens .card.large {
     height: 580px;
+}
+
+.liste-biens .contenu-associe .card.large {
+    height: 420px;
 }
 
 .card .card-content p {

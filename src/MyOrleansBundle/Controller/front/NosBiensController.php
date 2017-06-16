@@ -9,6 +9,7 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +17,7 @@ use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Form\SimpleSearchType;
 use MyOrleansBundle\Repository\ArticleRepository;
+use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 
 
 class NosBiensController extends Controller
@@ -40,13 +42,15 @@ class NosBiensController extends Controller
             // Envoi de contenu different en fonction du bouton clique : investisseur ou residence principale
             if ($simpleSearch->get('resPrincipaleBtn')->isClicked()) {
                 // Generation du dernier article avec le tag 'Residence Principale'
-                $article = $em->getRepository(Article::class)->articleByTag('Residence Principale');
+                $article = $em->getRepository(Article::class)->articleByTag('Residence Principale', 1);
+                $article = $article[0];
 
                 $objectif = "residence";
             }
             if ($simpleSearch->get('investBtn')->isClicked()) {
                 // Generation du derier article avec le tag 'Investissement'
-                $article = $em->getRepository(Article::class)->articleByTag('Investissement');
+                $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
+                $article = $article[0];
 
                 $objectif = "investir";
             }
@@ -79,10 +83,11 @@ class NosBiensController extends Controller
             $residences = $em->getRepository(Residence::class)->findAll();
             $message = "Découvrez les biens suggérés";
             $objectif = "investir";
+/*            $tagInv =  $em->getRepository(Tag::class)->findOneByNom('Investissement');*/
 
             // Generation du dernier article avec le tag 'Investissement'
-            $article = $em->getRepository(Article::class)->articleByTag('Investissement');
-
+            $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
+            $article = $article[0];
 
             return $this->render('MyOrleansBundle::nosbiens.html.twig', [
                 'residences' => $residences,

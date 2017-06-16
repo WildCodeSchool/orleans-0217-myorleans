@@ -69,9 +69,14 @@ class HomeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $articles = $em->getRepository(Article::class)->findAll();
 
+        // TMP
+        $articlesImmo[] = $articles[0];
+        $articlesImmo[] = $articles[1];
+        // TMP
+
         return $this->render('MyOrleansBundle::immopratique.html.twig',[
 
-        'articles'=>$articles
+        'articles'=>$articlesImmo
         ]);
     }
 
@@ -85,7 +90,7 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/residences")
+     * @Route("/residences", name="residences")
      */
     public function residence()
     {

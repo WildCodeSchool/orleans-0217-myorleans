@@ -37,23 +37,31 @@ class BlogController extends Controller
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/blog/article", name="blog-article")
+     * @Route("/blog/{idArticle}", name="blog-article")
      */
     public function afficherArticleAction($idArticle)
     {
         $em = $this->getDoctrine()->getManager();
         $article = $em->getRepository(Article::class)->find($idArticle);
 
-        $tags = $article->getTags();
+/*        $flats = $article->getResidence()->getFlats();
+        foreach ($flats as $flat) {
+            $prix[] = $flat->getPrix();
+        }*/
 
-        $articlesAssocies = $tags->getArticles();
-        $articleAssocie = $articlesAssocies[0];
-        var_dump($articleAssocie);
-        die();
+        //Recuperation des tags de l'article et selection du premier tag
+        $tags = $article->getTags();
+        foreach ($tags as $tag) {
+            $nomTag[] = $tag->getNom();
+        }
+        $tag = $nomTag[0];
+        //Fin recuperation du tag
+
+        $articlesAssocies = $em->getRepository(Article::class)->articleByTag($tag, 2);
 
         return $this->render('MyOrleansBundle:blog:blog_article.html.twig',[
                 'article' => $article,
-                'articleAssocie' => $articleAssocie
+                'articlesAssocies' => $articlesAssocies
         ]);
     }
 

@@ -98,4 +98,35 @@ class TypePresta
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->prestas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add presta
+     *
+     * @param \MyOrleansBundle\Entity\Presta $presta
+     *
+     * @return TypePresta
+     */
+    public function addPresta(\MyOrleansBundle\Entity\Presta $presta)
+    {
+        $this->prestas[] = $presta;
+
+        return $this;
+    }
+
+    /**
+     * Remove presta
+     *
+     * @param \MyOrleansBundle\Entity\Presta $presta
+     */
+    public function removePresta(\MyOrleansBundle\Entity\Presta $presta)
+    {
+        $this->prestas->removeElement($presta);
+    }
 }
