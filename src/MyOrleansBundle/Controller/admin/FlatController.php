@@ -66,18 +66,19 @@ class FlatController extends Controller
      * @Route("/pdf/{id}", name="flat_pdf")
      * @Method("GET")
      */
-    public function pdfAction($id)
+    public function pdfAction(Flat $flat)
     {
-        $pageUrl = $this->generateUrl('flat_show', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
 
-        return new Response(
-            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="file.pdf"'
-            )
-        );
+//        $pageUrl = $this->generateUrl('flat_show', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
+        return $this->render('flat/show.html.twig', ['flat'=>$flat]);
+//        return new Response(
+//            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+//            200,
+//            array(
+//                'Content-Type'          => 'application/pdf',
+//                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+//            )
+//        );
     }
 
 
