@@ -1,65 +1,67 @@
-{% extends 'base.html.twig' %}
+{% extends '::layout_admin.html.twig' %}
 
-{% block body %}
-    <h1>Temoignage</h1>
+{% block content %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ temoignage.id }}</td>
-            </tr>
-            <tr>
-<<<<<<< HEAD
-                <th>Theme</th>
-                <td>{{ temoignage.theme }}</td>
-=======
-                <th>Motif</th>
-                <td>{{ temoignage.motif }}</td>
->>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
-            </tr>
-            <tr>
-                <th>Auteur</th>
-                <td>{{ temoignage.auteur }}</td>
-            </tr>
-            <tr>
-<<<<<<< HEAD
-                <th>Date</th>
-                <td>{{ temoignage.date }}</td>
-            </tr>
-            <tr>
-                <th>Message</th>
-                <td>{{ temoignage.message }}</td>
-=======
-                <th>Texte</th>
-                <td>{{ temoignage.text }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{% if temoignage.date %}{{ temoignage.date|date('Y-m-d H:i:s') }}{% endif %}</td>
->>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
-            </tr>
-        </tbody>
-    </table>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
 
-    <ul>
-        <li>
-<<<<<<< HEAD
-            <a href="{{ path('admin_temoignage_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_temoignage_edit', { 'id': temoignage.id }) }}">Edit</a>
-=======
-            <a href="{{ path('temoignage_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('temoignage_edit', { 'id': temoignage.id }) }}">Edit</a>
->>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Témoignage n°: {{ temoignage.id }}</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ temoignage.id }}</td>
+                                </tr>
+                                <tr>
+
+                                    <th>Theme</th>
+                                    <td>{{ temoignage.theme }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Auteur</th>
+                                    <td>{{ temoignage.auteur }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date</th>
+                                    <td>{{ temoignage.date }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Message</th>
+                                    <td>{{ temoignage.message }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_temoignage_index') }}"><i class="material-icons">keyboard_return</i>Retour
+                                        à la liste des témoignages</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_temoignage_edit', { 'id': temoignage.id }) }}"><i
+                                                class="material-icons">build</i>Éditer ce temoignage</a>
+                                </li>
+
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Delete"
+                                           class="waves-effect waves-light btn-large red pull-right">
+                                    {{ form_end(delete_form) }}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}

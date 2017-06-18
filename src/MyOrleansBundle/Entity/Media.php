@@ -2,6 +2,7 @@
 
 namespace MyOrleansBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -141,8 +142,8 @@ class Media
      */
     public function __construct()
     {
-        $this->residences = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->flats = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->residences = new ArrayCollection();
+        $this->flats = new ArrayCollection();
     }
 
 
@@ -379,4 +380,9 @@ class Media
     {
         $this->articles->removeElement($article);
     }
+
+   /* public function __toString()
+    {
+        return $this->page;
+    }*/
 }

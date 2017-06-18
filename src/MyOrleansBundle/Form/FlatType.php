@@ -13,7 +13,13 @@ class FlatType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('reference')->add('prix')->add('surface')->add('nbPiece')->add('description')->add('prestationComplementaire')->add('statut')->add('typeLogement')->add('residence')->add('medias');
+        $builder->add('reference')
+            ->add('prix')->add('surface')
+            ->add('nbPiece')->add('description')
+            ->add('prestationComplementaire')
+            ->add('statut')->add('typeLogement')
+            /* ->add('residence')
+             ->add('medias')*/;
     }
     
     /**

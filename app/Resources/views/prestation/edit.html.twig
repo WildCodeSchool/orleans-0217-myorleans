@@ -12,18 +12,6 @@
                         </div>
                         <div class="card-content table-responsive">
 
-<<<<<<< HEAD
-    <ul>
-        <li>
-            <a href="{{ path('admin_presta_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-=======
                             {{ form_start(edit_form) }}
                             {{ form_widget(edit_form) }}
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
@@ -31,11 +19,14 @@
 
                             <ul>
                                 <li>
-                                    <a href="{{ path('presta_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des prestations</a>
+                                    <a href="{{ path('admin_prestation_index') }}"><i
+                                                class="material-icons">keyboard_return</i>Retour à la liste des
+                                        prestations</a>
                                 </li>
                                 <li>
                                     {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
+                                    <input type="submit" value="Delete"
+                                           class="waves-effect waves-light btn-large red pull-right">
                                     {{ form_end(delete_form) }}
                                 </li>
                             </ul>
@@ -46,5 +37,4 @@
             </div>
         </div>
     </div>
->>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
 {% endblock %}

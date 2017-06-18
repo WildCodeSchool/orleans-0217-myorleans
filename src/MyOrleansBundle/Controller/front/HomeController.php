@@ -33,6 +33,8 @@ class HomeController extends Controller
         $residenceTwoFav = $em->getRepository(Residence::class)->findTwoFav();
         $residenceAll = $em->getRepository(Residence::class)->findAll();
 
+        $testimonials = $em->getRepository(Temoignage::class)->findAll();
+
         $actu = $em->getRepository(Article::class)->findOneActu();
         $event = $em->getRepository(Evenement::class)->findOneEvent();
 
@@ -57,7 +59,8 @@ class HomeController extends Controller
             'residenceTwoFav' => $residenceTwoFav,
             'residenceAll' => $residenceAll,
             'actu' => $actu,
-            'event' => $event
+            'event' => $event,
+            'testimonials' => $testimonials
         ]);
     }
 

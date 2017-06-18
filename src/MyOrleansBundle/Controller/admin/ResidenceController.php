@@ -3,6 +3,8 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Form\ResidenceType;
+use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,7 +26,6 @@ class ResidenceController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $residences = $em->getRepository('MyOrleansBundle:Residence')->findAll();
 
         return $this->render('residence/index.html.twig', array(
@@ -41,10 +42,11 @@ class ResidenceController extends Controller
     public function newAction(Request $request)
     {
         $residence = new Residence();
-        $form = $this->createForm('MyOrleansBundle\Form\ResidenceType', $residence);
+        $form = $this->createForm(ResidenceType::class, $residence);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //$residence = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($residence);
             $em->flush();
@@ -53,7 +55,6 @@ class ResidenceController extends Controller
         }
 
         return $this->render('residence/new.html.twig', array(
-            'residence' => $residence,
             'form' => $form->createView(),
         ));
     }

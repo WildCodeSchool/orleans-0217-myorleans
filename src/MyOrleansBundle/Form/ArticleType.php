@@ -2,6 +2,8 @@
 
 namespace MyOrleansBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +15,13 @@ class ArticleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titre')->add('texte')->add('date')->add('medias')->add('residence')->add('tags')->add('typeArticle');
+        $builder->add('titre')
+            ->add('texte')
+            ->add('date')
+            ->add('medias')
+            ->add('residence', EntityType::class, ['class'=>'MyOrleansBundle:Residence', 'choice_label'=>'nom'])
+            ->add('tags')
+            ->add('typeArticle');
     }
     
     /**
