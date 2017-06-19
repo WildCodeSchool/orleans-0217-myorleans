@@ -3,8 +3,12 @@
 namespace MyOrleansBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use MyOrleansBundle\Entity\Article;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,11 +21,14 @@ class ArticleType extends AbstractType
     {
         $builder->add('titre')
             ->add('texte')
-            ->add('date')
-            ->add('medias')
+            ->add('date', DateTimeType::class)
             ->add('residence', EntityType::class, ['class'=>'MyOrleansBundle:Residence', 'choice_label'=>'nom'])
             ->add('tags')
-            ->add('typeArticle');
+            ->add('typeArticle')
+            ->add('medias', CollectionType::class, array(
+                'entry_type' => MediaType::class,
+                //'data_class'=> FileType::class
+            ));
     }
     
     /**
@@ -30,7 +37,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MyOrleansBundle\Entity\Article'
+            'data_class' => Article::class
         ));
     }
 

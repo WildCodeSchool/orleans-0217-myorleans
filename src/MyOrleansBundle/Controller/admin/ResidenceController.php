@@ -2,7 +2,9 @@
 
 namespace MyOrleansBundle\Controller\admin;
 
+use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\ResidenceType;
 use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -41,14 +43,21 @@ class ResidenceController extends Controller
      */
     public function newAction(Request $request)
     {
+
         $residence = new Residence();
+        $media = new Media();
+        $residence->getMedias()->add($media);
+
         $form = $this->createForm(ResidenceType::class, $residence);
         $form->handleRequest($request);
+
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$residence = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($residence);
+            //dump($residence, $media); die();
             $em->flush();
 
             return $this->redirectToRoute('admin_residence_show', array('id' => $residence->getId()));

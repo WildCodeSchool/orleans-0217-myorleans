@@ -32,7 +32,7 @@ class Media
     /**
      * @var string
      *
-     * @ORM\Column(name="lien", type="string", length=45, nullable=true)
+     * @ORM\Column(name="lien", type="text", nullable=true)
      */
     private $lien;
 
@@ -75,7 +75,7 @@ class Media
     private $articles;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypeMedia", inversedBy="medias")
+     * @ORM\ManyToOne(targetEntity="TypeMedia", inversedBy="medias", cascade={"persist"})
      */
     private $typeMedia;
 

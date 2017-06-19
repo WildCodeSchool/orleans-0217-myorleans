@@ -2,6 +2,7 @@
 
 namespace MyOrleansBundle\Form;
 
+use MyOrleansBundle\Entity\Tag;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,9 @@ class TagType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')->add('articles');
+        $builder
+            ->add('nom')
+            ->add('articles');
     }
     
     /**
@@ -22,7 +25,7 @@ class TagType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MyOrleansBundle\Entity\Tag'
+            'data_class' => Tag::class
         ));
     }
 

@@ -143,7 +143,7 @@ class Residence
     private $eligibilitePinel;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Media")
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
      * @JoinTable(name="residence_media")
      */
     private $medias;
