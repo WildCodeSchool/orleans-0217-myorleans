@@ -124,14 +124,14 @@ class Residence
      *
      * @ORM\Column(name="citation", type="text", nullable=true)
      */
-    private $citation;
+/*    private $citation;*/
 
     /**
      * @var string
      *
      * @ORM\Column(name="pinel", type="string", length=45, nullable=true)
      */
-    private $pinel;
+/*    private $pinel;*/
 
 
 
@@ -641,22 +641,22 @@ class Residence
      *
      * @return Residence
      */
-    public function setCitation($citation)
+/*    public function setCitation($citation)
     {
         $this->citation = $citation;
 
         return $this;
-    }
+    }*/
 
     /**
      * Get citation
      *
      * @return string
      */
-    public function getCitation()
+/*    public function getCitation()
     {
         return $this->citation;
-    }
+    }*/
 
     /**
      * Set pinel
@@ -665,20 +665,20 @@ class Residence
      *
      * @return Residence
      */
-    public function setPinel($pinel)
+/*    public function setPinel($pinel)
     {
         $this->pinel = $pinel;
 
         return $this;
-    }
+    }*/
 
     /**
      * Get pinel
      *
      * @return string
      */
-    public function getPinel()
+/*    public function getPinel()
     {
         return $this->pinel;
-    }
+    }*/
 }

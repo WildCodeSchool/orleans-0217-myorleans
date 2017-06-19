@@ -111,7 +111,7 @@ class HomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $residence = $em->getRepository(Residence::class)->find($id);
-        $media = $em->getRepository(Media::class)->find($id);
+/*        $media = $em->getRepository(Media::class)->find($id);*/
 
         $count = 0;
         $flats = $residence->getFlats();
