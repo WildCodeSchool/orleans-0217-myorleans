@@ -37,4 +37,65 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+
+    public function completeSearch($ville, $quartier, $type, $surfaceMin, $surfaceMax, $nbChambres, $nbPieces, $budgetMin, $budgetMax)
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        if (!empty($ville)) {
+            $qb->andWhere('r.ville LIKE :ville')
+                ->setParameter('ville', '%'.$ville.'%');
+        }
+
+        if (!empty($quartier)) {
+            $qb->andWhere('r.ville LIKE :ville')
+                ->setParameter('ville', '%'.$quartier.'%');
+        }
+
+        if (!empty($type)) {
+            $qb->andWhere('t.nom = :type')
+                ->setParameter('type', $type)
+                ->join('r.flats', 'f')
+                ->join('f.typeLogement', 't');
+        }
+
+/*        if (!empty($surfaceMin)) {
+            $qb->andWhere('f.surface >= :surfaceMin')
+                ->setParameter('surfaceMin', $surfaceMin)
+                ->join('r.flats', 'f');
+        }
+
+        if (!empty($surfaceMax)) {
+            $qb->andWhere('f.surface <= :surfaceMax')
+                ->setParameter('surfaceMax', $surfaceMax)
+                ->join('r.flats', 'f');
+        }
+
+        if (!empty($nbChambres)) {
+            $qb->andWhere('t.nbChambre >= :nbChambres')
+                ->setParameter('nbChambres', $nbChambres)
+                ->join('r.flats', 'f');
+        }
+
+        if (!empty($nbPieces)) {
+            $qb->andWhere('t.nbPiece >= :nbPieces')
+                ->setParameter('nbPieces', $nbPieces)
+                ->join('r.flats', 'f');
+        }
+
+        if (!empty($budgetMin)) {
+            $qb->andWhere('f.prix >= :budgetMin')
+                ->setParameter('budgetMin', $budgetMin)
+                ->join('r.flats', 'f');
+        }
+
+        if (!empty($budgetMax)) {
+            $qb->andWhere('f.prix < :budgetMax ')
+                ->setParameter('budgetMax', $budgetMax)
+                ->join('r.flats', 'f');
+        }*/
+
+        return $qb->getQuery()->getResult();
+    }
+
 }

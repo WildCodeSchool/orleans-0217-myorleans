@@ -19,15 +19,20 @@
     <div class="page-nosbiens body-container-margin">
 
         <div class="moteur-recherche hide-on-med-and-down">
+            {{ form_start(completeSearch) }}
             <div class="row no-margin-bottom">
                 <div class="col s12 m6 l3">
                     <h2 class="titre-recherche">Localisation</h2>
                     <div class="row no-margin-bottom">
                         <div class="col s6">
-                            <input placeholder="Ville" id="champ-ville" type="text" class="validate">
+                            {{ form_label(completeSearch.ville, 'Ville') }}
+                            {{ form_widget(completeSearch.ville) }}
+                            {{ form_errors(completeSearch.ville) }}
                         </div>
                         <div class="col s6">
-                            <input placeholder="Quartier" id="champ-quartier" type="text" class="validate">
+                            {{ form_label(completeSearch.quartier, 'Quartier') }}
+                            {{ form_widget(completeSearch.quartier) }}
+                            {{ form_errors(completeSearch.quartier) }}
                         </div>
                     </div>
                 </div>
@@ -36,19 +41,16 @@
                         <h2 class="titre-recherche">Votre bien</h2>
                         <div class="row no-margin-bottom">
                             <div class="col s6">
-                                <select class="typeBien">
-                                    <option value="" disabled selected>Type</option>
-                                    <option id="T1" value="1">T1</option>
-                                    <option id="T2" value="2">T2</option>
-                                    <option id="T3" value="3">T3</option>
-                                    <option id="T4" value="4">T4 et +</option>
-                                </select>
+                                {{ form_widget(completeSearch.type) }}
+                                {{ form_errors(completeSearch.type) }}
                             </div>
                             <div class="col s3">
-                                <input placeholder="Surface min" id="champ-surface-min" type="text" class="validate">
+                                {{ form_widget(completeSearch.surfaceMin) }}
+                                {{ form_errors(completeSearch.surfaceMin) }}
                             </div>
                             <div class="col s3">
-                                <input placeholder="Surface max" id="champ-surface-max" type="text" class="validate">
+                                {{ form_widget(completeSearch.surfaceMax) }}
+                                {{ form_errors(completeSearch.surfaceMax) }}
                             </div>
                         </div>
                     </div>
@@ -57,23 +59,12 @@
                     <div class="row no-margin-bottom">
                         <h2 class="white-text titre-recherche">Votre bien</h2>
                         <div class="col s6">
-                            <select class="choixChb">
-                                <option value="" disabled selected>Nb. Chambre(s)</option>
-                                <option id="chb1" value="1">1 champbre</option>
-                                <option id="chb2" value="2">2 chambres</option>
-                                <option id="chb3" value="3">3 chambres</option>
-                                <option id="chb4" value="4">4 chambres et plus</option>
-                            </select>
+                            {{ form_widget(completeSearch.nbChambres) }}
+                            {{ form_errors(completeSearch.nbChambres) }}
                         </div>
                         <div class="col s6">
-                            <select class="choixPiece">
-                                <option value="" disabled selected>Nb. Pièce(s)</option>
-                                <option id="piece1" value="1">1 pièce</option>
-                                <option id="piece2" value="2">2 pièces</option>
-                                <option id="piece3" value="3">3 pièces</option>
-                                <option id="piece4" value="4">4 pièces</option>
-                                <option id="piece5" value="5">5 pièces et plus</option>
-                            </select>
+                            {{ form_widget(completeSearch.nbPieces) }}
+                            {{ form_errors(completeSearch.nbPieces) }}
                         </div>
                     </div>
                 </div>
@@ -82,24 +73,23 @@
                         <h2 class="titre-recherche">Investissement</h2>
                         <div class="row no-margin-bottom">
                             <div class="col s6">
-                                <select class="objectif">
-                                    <option value="" disabled selected>Objectif</option>
-                                    <option id="invest" value="1">Investir</option>
-                                    <option id="ResPrinc" value="2">Acheter en résidence principale</option>
-                                </select>
+                                {{ form_widget(completeSearch.objectif) }}
+                                {{ form_errors(completeSearch.objectif) }}
                             </div>
                             <div class="col s3">
-                                <input placeholder="Budget min" id="champ-budget-min" type="text" class="validate">
+                                {{ form_widget(completeSearch.budgetMin) }}
+                                {{ form_errors(completeSearch.budgetMin) }}
                             </div>
                             <div class="col s3">
-                                <input placeholder="Budget max" id="champ-budget-max" type="text" class="validate">
+                                {{ form_widget(completeSearch.budgetMax) }}
+                                {{ form_errors(completeSearch.budgetMax) }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row center">
-                <button class="btn waves-effect waves-light" type="submit" value="Rechercher">Rechercher</button>
+                {{ form_widget(completeSearch.submit) }}
             </div>
         </div>
 
@@ -113,42 +103,42 @@
                         <span>
                             <div class="row no-margin-top no-margin-bottom">
                                 <div class="col s12 m6">
-                                    <input placeholder="Ville" id="champ-ville" type="text" class="validate">
+                                    {{ form_label(completeSearch.ville, 'Ville') }}
+                                    {{ form_widget(completeSearch.ville) }}
+                                    {{ form_errors(completeSearch.ville) }}
                                 </div>
                                 <div class="col s12 m6">
-                                    <input placeholder="Quartier" id="champ-quartier" type="text" class="validate">
+                                    {{ form_label(completeSearch.quartier, 'Quartier') }}
+                                    {{ form_widget(completeSearch.quartier) }}
+                                    {{ form_errors(completeSearch.quartier) }}
                                 </div>
                             </div>
                             <div class="row no-margin-top no-margin-bottom">
                                 <div class="col s12 m6">
-                                    <select class="typeBien">
-                                        <option value="" disabled selected>Type de bien</option>
-                                        <option id="T1" value="1">T1</option>
-                                        <option id="T2" value="2">T2</option>
-                                        <option id="T3" value="3">T3</option>
-                                        <option id="T4" value="4">T4 et +</option>
-                                    </select>
+                                    {{ form_widget(completeSearch.type) }}
+                                    {{ form_errors(completeSearch.type) }}
                                 </div>
                                 <div class="col s6 m3 no-padding-left">
-                                    <input placeholder="Surface min" id="champ-surface-min" type="text" class="validate">
+                                    {{ form_widget(completeSearch.surfaceMin) }}
+                                    {{ form_errors(completeSearch.surfaceMin) }}
                                 </div>
                                 <div class="col s6 m3 no-padding-right">
-                                    <input placeholder="Surface max" id="champ-surface-max" type="text" class="validate">
+                                    {{ form_widget(completeSearch.surfaceMax) }}
+                                    {{ form_errors(completeSearch.surfaceMax) }}
                                 </div>
                             </div>
                             <div class="row no-margin-top no-margin-bottom">
                                 <div class="col s12 m6">
-                                    <select class="objectif">
-                                        <option value="" disabled selected>Objectif</option>
-                                        <option id="invest" value="1">Investir</option>
-                                        <option id="ResPrinc" value="2">Acheter en résidence principale</option>
-                                    </select>
+                                    {{ form_widget(completeSearch.objectif) }}
+                                    {{ form_errors(completeSearch.objectif) }}
                                 </div>
                                 <div class="col s6 m3 no-padding-left">
-                                    <input placeholder="Budget min" id="champ-budget-min" type="text" class="validate">
+                                    {{ form_widget(completeSearch.budgetMin) }}
+                                    {{ form_errors(completeSearch.budgetMin) }}
                                 </div>
                                 <div class="col s6 m3 no-padding-right">
-                                    <input placeholder="Budget max" id="champ-budget-max" type="text" class="validate">
+                                    {{ form_widget(completeSearch.budgetMax) }}
+                                    {{ form_errors(completeSearch.budgetMax) }}
                                 </div>
                             </div>
                         </span>
@@ -160,23 +150,12 @@
                         <span>
                             <div class="row no-margin-top">
                                 <div class="col s12 m6">
-                                    <select class="choixChb">
-                                        <option value="" disabled selected>Nb. Chambre(s)</option>
-                                        <option id="chb1" value="1">1 champbre</option>
-                                        <option id="chb2" value="2">2 chambres</option>
-                                        <option id="chb3" value="3">3 chambres</option>
-                                        <option id="chb4" value="4">4 chambres et plus</option>
-                                    </select>
+                                    {{ form_widget(completeSearch.nbChambres) }}
+                                    {{ form_errors(completeSearch.nbChambres) }}
                                 </div>
                                 <div class="col s12 m6">
-                                    <select class="choixPiece">
-                                        <option value="" disabled selected>Nb. Pièce(s)</option>
-                                        <option id="piece1" value="1">1 pièce</option>
-                                        <option id="piece2" value="2">2 pièces</option>
-                                        <option id="piece3" value="3">3 pièces</option>
-                                        <option id="piece4" value="4">4 pièces</option>
-                                        <option id="piece5" value="5">5 pièces et plus</option>
-                                    </select>
+                                    {{ form_widget(completeSearch.nbPieces) }}
+                                    {{ form_errors(completeSearch.nbPieces) }}
                                 </div>
                             </div>
                         </span>
@@ -184,7 +163,7 @@
                 </li>
             </ul>
             <div class="row center no-margin-top btn-recherche-nosbiens">
-                <button class="btn waves-effect waves-light" type="submit" value="Rechercher">Rechercher</button>
+                {{ form_widget(completeSearch.submit) }}
             </div>
         </div>
 
@@ -193,6 +172,8 @@
             <div class="col s12 l7 xl8 liste-biens">
 
                 <div class="row center no-margin-bottom">
+                    {% set nb_res = residences|length %}
+                    {% if  %}
                     <h1 class="section-title">{{ message }}</h1>
                 </div>
 
@@ -200,52 +181,11 @@
 
                         {% for residence in residences %}
 
-                    <div class="col s12 xl6">
-                        <div class="card large">
-                            <div class="card-image">
-
-                                {% for media in residence.medias if media.typeMedia.nom == 'image' %}
-                                <img src="{{ asset('img/'~media.lien) }}">
-                                {% endfor %}
-
-                            </div>
-                            <div class="card-content">
-                                <div class="row grille-infos">
-                                    <div class="col s7 grille-gauche">
-                                        <div class="row nom-residence">
-                                            <h4>{{ residence.nom }}</h4>
-                                            <p>à {{ residence.ville }}</p>
-                                        </div>
-                                        <div class="row annee-nbPiece">
-                                            <div class="col s6 annee-residence">
-                                                <h4>Livraison</h4>
-                                                <p>{{ residence.dateLivraison }}</p>
-                                            </div>
-                                            <div class="col s6">
-                                                <h4>Nb. pièces</h4>
-                                                <p>Du T1 au T5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col s5">
-                                        <h4>Prix</h4>
-                                        <p>A partir de 90 000€</p>
-                                        <br/>
-                                        <h4>Disponibilité</h4>
-                                        <p>5 logements</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-action center">
-                                <a href="#">Découvrir la résidence</a>
-                            </div>
-                        </div>
-                    </div>
+                            {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidence', {'id': residence.id })) }}
 
                         {% endfor %}
 
                 </div>
-
 
                 <div class="row titre-contenu-associe">
                     {% if objectif == 'investir' %}
@@ -330,9 +270,40 @@
 
             <div class="col offset-l7 l6 offset-xl8 xl5 hide-on-small-only carte">
                 <div id="map"></div>
-                <script>
+                    <script>
+                        $(document).ready(function () {
+                            $('input.autocomplete').autocomplete({
+                                data: {
+                                    {% for ville in villes %}
+                                    "{{ ville }}" : null,
+                                    {% endfor %}
+                                },
+                                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                                onAutocomplete: function (val) {
+                                    // Callback function when value is autcompleted.
+                                },
+                                minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
 
-                    function initMap() {
+                            });
+
+                            $('input.autocomplete-qaurtier').autocomplete({
+                                data: {
+                                    {% for quartier in quartiers %}
+                                    "{{ quartier }}" : null,
+                                    {% endfor %}
+                                },
+                                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                                onAutocomplete: function (val) {
+                                    // Callback function when value is autcompleted.
+                                },
+                                minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+
+                            });
+
+                        });
+
+
+                        function initMap() {
 
                         var count = 0;
                         var locations = [
@@ -368,7 +339,7 @@
 
                     }
 
-                </script>
+                    </script>
                 <script async defer
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
                 </script>

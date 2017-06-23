@@ -10,6 +10,7 @@ use MyOrleansBundle\Entity\Temoignage;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Form\SimpleSearchType;
+use MyOrleansBundle\Service\AutocompleteGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,16 +20,14 @@ class HomeController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, AutocompleteGenerator $generator)
     {
         $em = $this->getDoctrine()->getManager();
 
         // Recuperation de la liste des villes dans lesqulles se trouvent les residences
         $residences = $em->getRepository(Residence::class)->findAll();
-        $villes = [];
-        foreach ($residences as $residence) {
-            $villes[] = $residence->getVille();
-        }
+        $villes = $generator->findVilles($residences);
+
         // Fin recuperation des villes
 
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',

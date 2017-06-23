@@ -31,9 +31,8 @@ class Tag
 
     /**
      * @ORM\ManyToMany(targetEntity="Article", inversedBy="tags")
-     * @JoinTable(name="article_tag",
-     *     joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")})
+     * @JoinTable(name="article_tag")
+     *
      */
     private $articles;
 

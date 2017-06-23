@@ -1,0 +1,41 @@
+<div class="col s12 xl6">
+    <div class="card large">
+        <div class="card-image">
+
+            {% for media in residence.medias if media.typeMedia.nom == 'image' %}
+                <img src="{{ asset('img/'~media.lien) }}">
+            {% endfor %}
+
+        </div>
+        <div class="card-content">
+            <div class="row grille-infos">
+                <div class="col s7 grille-gauche">
+                    <div class="row nom-residence">
+                        <h4>{{ residence.nom }}</h4>
+                        <p>à {{ residence.ville }}</p>
+                    </div>
+                    <div class="row annee-nbPiece">
+                        <div class="col s6 annee-residence">
+                            <h4>Livraison</h4>
+                            <p>{{ residence.dateLivraison }}</p>
+                        </div>
+                        <div class="col s6">
+                            <h4>Nb. pièces</h4>
+                            <p>Du {{ typeMin }} au {{ typeMax }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s5">
+                    <h4>Prix</h4>
+                    <p>A partir de {{ prixMin }}€</p>
+                    <br/>
+                    <h4>Disponibilité</h4>
+                    <p>{{ flatsDispo }} logements</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-action center">
+            <a href="#">Découvrir la résidence</a>
+        </div>
+    </div>
+</div>
