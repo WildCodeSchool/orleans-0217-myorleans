@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Residence controller.
@@ -54,8 +55,20 @@ class ResidenceController extends Controller
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$residence = $form->getData();
+
             $em = $this->getDoctrine()->getManager();
+            $medias = $residence->getMedias();
+
+            foreach ($medias as $media) {
+                $file = $media->getLien();
+                $filename = 'image' . uniqid() . '.' . $file->guessExtension();
+                $file->move(
+                    $this->getParameter('upload_directory'),
+                    $filename
+                );
+                $media->setLien($filename);
+            }
+           // $residence->setMedias($filename);
             $em->persist($residence);
             //dump($residence, $media); die();
             $em->flush();
@@ -93,7 +106,7 @@ class ResidenceController extends Controller
     public function editAction(Request $request, Residence $residence)
     {
         $deleteForm = $this->createDeleteForm($residence);
-        $editForm = $this->createForm('MyOrleansBundle\Form\ResidenceType', $residence);
+        $editForm = $this->createForm(ResidenceType::class, $residence);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

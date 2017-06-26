@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
 
+
 /**
  * Residence
  *
@@ -145,6 +146,7 @@ class Residence
     /**
      * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
      * @JoinTable(name="residence_media")
+     *
      */
     private $medias;
 

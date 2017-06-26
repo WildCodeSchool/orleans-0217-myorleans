@@ -4,7 +4,8 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Media
  *
@@ -31,18 +32,18 @@ class Media
 
     /**
      * @var string
-     *
+     * @Assert\File()
      * @ORM\Column(name="lien", type="text", nullable=true)
      */
     private $lien;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Flat")
+     * @ORM\ManyToMany(targetEntity="Flat", cascade={"persist"})
      */
     private $flats;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Residence")
+     * @ORM\ManyToMany(targetEntity="Residence", cascade={"persist"})
      */
     private $residences;
 
@@ -70,7 +71,7 @@ class Media
     private $pack;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article")
+     * @ORM\ManyToMany(targetEntity="Article",cascade={"persist"})
      */
     private $articles;
 
