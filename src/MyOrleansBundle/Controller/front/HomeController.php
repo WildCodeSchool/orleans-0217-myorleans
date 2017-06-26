@@ -9,6 +9,7 @@ use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\Flat;
+use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Form\SimpleSearchType;
 use MyOrleansBundle\Service\AutocompleteGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,8 +26,9 @@ class HomeController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // Recuperation de la liste des villes dans lesqulles se trouvent les residences
-        $residences = $em->getRepository(Residence::class)->findAll();
-        $villes = $generator->findVilles($residences);
+        /*$residences = $em->getRepository(Residence::class)->findAll();
+        $villes = $generator->findVilles($residences);*/
+        $villes = $em->getRepository(Ville::class)->findAll();
 
         // Fin recuperation des villes
 

@@ -12,6 +12,7 @@ namespace MyOrleansBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,12 +26,20 @@ class CompleteSearchType extends AbstractType
             ->setMethod('GET')
             ->add('ville', SearchType::class, [
                 'required'=>false,
-                'attr'=> ['id'=>'autocomplete-input', 'class'=>'autocomplete', 'autocomplete' => 'off']
+                'attr'=> [
+                    'id'=>'villes',
+                    'class'=>'autocomplete',
+                    'autocomplete' => 'off'
+                ]
 
             ])
             ->add('quartier', SearchType::class, [
                 'required'=>false,
-                'attr'=> ['id'=>'autocomplete-input', 'class'=>'autocomplete-quartier', 'autocomplete' => 'off']
+                'attr'=> [
+                    'id'=>'quartiers',
+                    'class'=>'autocomplete',
+                    'autocomplete' => 'off'
+                ]
 
             ])
             ->add('type', ChoiceType::class, [
@@ -49,7 +58,7 @@ class CompleteSearchType extends AbstractType
             ])
             ->add('surfaceMax', IntegerType::class, [
                 'required' => false,
-                'attr' => ['placeholder'=>'Surface min'],
+                'attr' => ['placeholder'=>'Surface max'],
             ])
             ->add('nbChambres', ChoiceType::class, [
                 'required'=>false,
@@ -61,7 +70,8 @@ class CompleteSearchType extends AbstractType
                     '4 chambres et plus' => '4',
                 )
             ])
-            ->add('nbPieces', ChoiceType::class, [
+// En attente validation client de la suppression de ce critere
+/*            ->add('nbPieces', ChoiceType::class, [
                 'required'=>false,
                 'placeholder'=>'Nb. Pièce(s)',
                 'choices' => array(
@@ -70,7 +80,7 @@ class CompleteSearchType extends AbstractType
                     '3 pièces' => '3',
                     '4 pièces et plus' => '4',
                 )
-            ])
+            ])*/
             ->add('objectif', ChoiceType::class, [
                 'required'=>false,
                 'placeholder'=>'Objectif',
@@ -79,11 +89,13 @@ class CompleteSearchType extends AbstractType
                     'acheter en résidence principale' => '2',
                 )
             ])
-            ->add('budgetMin', IntegerType::class, [
+            ->add('budgetMin', MoneyType::class, [
+                'scale' => 0,
                 'required' => false,
                 'attr' => ['placeholder'=>'Budget min'],
             ])
-            ->add('budgetMax', IntegerType::class, [
+            ->add('budgetMax', MoneyType::class, [
+                'scale' => 0,
                 'required' => false,
                 'attr' => ['placeholder'=>'Budget max'],
             ])

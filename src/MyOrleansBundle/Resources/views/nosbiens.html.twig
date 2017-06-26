@@ -44,13 +44,9 @@
                                 {{ form_widget(completeSearch.type) }}
                                 {{ form_errors(completeSearch.type) }}
                             </div>
-                            <div class="col s3">
-                                {{ form_widget(completeSearch.surfaceMin) }}
-                                {{ form_errors(completeSearch.surfaceMin) }}
-                            </div>
-                            <div class="col s3">
-                                {{ form_widget(completeSearch.surfaceMax) }}
-                                {{ form_errors(completeSearch.surfaceMax) }}
+                            <div class="col s6">
+                                {{ form_widget(completeSearch.nbChambres) }}
+                                {{ form_errors(completeSearch.nbChambres) }}
                             </div>
                         </div>
                     </div>
@@ -58,13 +54,21 @@
                 <div class="col s12 m6 l3">
                     <div class="row no-margin-bottom">
                         <h2 class="white-text titre-recherche">Votre bien</h2>
-                        <div class="col s6">
-                            {{ form_widget(completeSearch.nbChambres) }}
-                            {{ form_errors(completeSearch.nbChambres) }}
+                        <div class="col s3">
+                            {{ form_widget(completeSearch.surfaceMin) }}
+                            {{ form_errors(completeSearch.surfaceMin) }}
                         </div>
-                        <div class="col s6">
-                            {{ form_widget(completeSearch.nbPieces) }}
-                            {{ form_errors(completeSearch.nbPieces) }}
+                        <div class="col s3">
+                            {{ form_widget(completeSearch.surfaceMax) }}
+                            {{ form_errors(completeSearch.surfaceMax) }}
+                        </div>
+                        <div class="col s3">
+                            {{ form_widget(completeSearch.budgetMin) }}
+                            {{ form_errors(completeSearch.budgetMin) }}
+                        </div>
+                        <div class="col s3">
+                            {{ form_widget(completeSearch.budgetMax) }}
+                            {{ form_errors(completeSearch.budgetMax) }}
                         </div>
                     </div>
                 </div>
@@ -76,20 +80,12 @@
                                 {{ form_widget(completeSearch.objectif) }}
                                 {{ form_errors(completeSearch.objectif) }}
                             </div>
-                            <div class="col s3">
-                                {{ form_widget(completeSearch.budgetMin) }}
-                                {{ form_errors(completeSearch.budgetMin) }}
-                            </div>
-                            <div class="col s3">
-                                {{ form_widget(completeSearch.budgetMax) }}
-                                {{ form_errors(completeSearch.budgetMax) }}
+                            <div class="col s6 center">
+                                {{ form_widget(completeSearch.submit) }}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row center">
-                {{ form_widget(completeSearch.submit) }}
             </div>
         </div>
 
@@ -108,21 +104,16 @@
                                     {{ form_errors(completeSearch.ville) }}
                                 </div>
                                 <div class="col s12 m6">
-                                    {{ form_label(completeSearch.quartier, 'Quartier') }}
-                                    {{ form_widget(completeSearch.quartier) }}
-                                    {{ form_errors(completeSearch.quartier) }}
-                                </div>
-                            </div>
-                            <div class="row no-margin-top no-margin-bottom">
-                                <div class="col s12 m6">
                                     {{ form_widget(completeSearch.type) }}
                                     {{ form_errors(completeSearch.type) }}
                                 </div>
-                                <div class="col s6 m3 no-padding-left">
+                            </div>
+                            <div class="row no-margin-top no-margin-bottom">
+                                <div class="col s12 m6 no-padding-left">
                                     {{ form_widget(completeSearch.surfaceMin) }}
                                     {{ form_errors(completeSearch.surfaceMin) }}
                                 </div>
-                                <div class="col s6 m3 no-padding-right">
+                                <div class="col s12 m6 no-padding-right">
                                     {{ form_widget(completeSearch.surfaceMax) }}
                                     {{ form_errors(completeSearch.surfaceMax) }}
                                 </div>
@@ -154,8 +145,9 @@
                                     {{ form_errors(completeSearch.nbChambres) }}
                                 </div>
                                 <div class="col s12 m6">
-                                    {{ form_widget(completeSearch.nbPieces) }}
-                                    {{ form_errors(completeSearch.nbPieces) }}
+                                    {{ form_label(completeSearch.quartier, 'Quartier') }}
+                                    {{ form_widget(completeSearch.quartier) }}
+                                    {{ form_errors(completeSearch.quartier) }}
                                 </div>
                             </div>
                         </span>
@@ -172,8 +164,8 @@
             <div class="col s12 l7 xl8 liste-biens">
 
                 <div class="row center no-margin-bottom">
-                    {% set nb_res = residences|length %}
-                    {% if  %}
+{#                    {% set nb_res = residences|length %}
+                    {% if  %}#}
                     <h1 class="section-title">{{ message }}</h1>
                 </div>
 
@@ -271,82 +263,51 @@
             <div class="col offset-l7 l6 offset-xl8 xl5 hide-on-small-only carte">
                 <div id="map"></div>
                     <script>
-                        $(document).ready(function () {
-                            $('input.autocomplete').autocomplete({
-                                data: {
-                                    {% for ville in villes %}
-                                    "{{ ville }}" : null,
-                                    {% endfor %}
-                                },
-                                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                                onAutocomplete: function (val) {
-                                    // Callback function when value is autcompleted.
-                                },
-                                minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-
-                            });
-
-                            $('input.autocomplete-qaurtier').autocomplete({
-                                data: {
-                                    {% for quartier in quartiers %}
-                                    "{{ quartier }}" : null,
-                                    {% endfor %}
-                                },
-                                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                                onAutocomplete: function (val) {
-                                    // Callback function when value is autcompleted.
-                                },
-                                minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-
-                            });
-
-                        });
-
 
                         function initMap() {
 
-                        var count = 0;
-                        var locations = [
-                            {% for residence in residences %}
-                                ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}],
-                            {% endfor %}
+                            var count = 0;
+                            var locations = [
+                                {% for residence in residences %}
+                                    ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}],
+                                {% endfor %}
 
-                        ];
+                            ];
 
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 12,
-                            center: new google.maps.LatLng(47.902964, 1.909251),
-                            mapTypeId: google.maps.MapTypeId.ROADMAP
-                        });
-
-                        var infowindow = new google.maps.InfoWindow();
-
-                        var marker, i;
-
-                        for (i = 0; i < locations.length; i++) {
-                            marker = new google.maps.Marker({
-                                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                map: map
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 12,
+                                center: new google.maps.LatLng(47.902964, 1.909251),
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
                             });
 
-                            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                                return function() {
-                                    infowindow.setContent(locations[i][0]);
-                                    infowindow.open(map, marker);
-                                }
-                            })(marker, i));
+                            var infowindow = new google.maps.InfoWindow();
+
+                            var marker, i;
+
+                            for (i = 0; i < locations.length; i++) {
+                                marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                    map: map
+                                });
+
+                                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                    return function() {
+                                        infowindow.setContent(locations[i][0]);
+                                        infowindow.open(map, marker);
+                                    }
+                                })(marker, i));
+                            }
                         }
 
-                    }
-
                     </script>
-                <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
-                </script>
 
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
+                    </script>
+
+                </div>
             </div>
         </div>
-    </div>
 
 
 {% endblock content %}
@@ -354,3 +315,44 @@
 {% block footer %}
 
 {% endblock footer %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#complete_search_quartier').autocomplete({
+                data: {
+                {% for quartier in quartiers %}
+                    "{{ quartier.nom }}" : null,
+                {% endfor %}
+                },
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function (val) {
+                // Callback function when value is autcompleted.
+                },
+                minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
+
+            });
+
+            $('#complete_search_ville').autocomplete({
+                data: {
+                {% for ville in villes %}
+                    "{{ ville.nom }}" : null,
+                {% endfor %}
+                },
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function (val) {
+                // Callback function when value is autcompleted.
+                },
+                minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
+
+                });
+        });
+
+    </script>
+
+{% endblock %}

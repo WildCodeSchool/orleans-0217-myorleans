@@ -238,7 +238,7 @@ body {
 .carte {
     margin-top: 15px;
     position: fixed;
-    top: 280px;
+    top: 270px;
 }
 
 #map {
@@ -250,7 +250,7 @@ body {
 }
 
 .liste-biens {
-    margin-top: 200px;
+    margin-top: 170px;
 }
 
 /*--- Alignemant des informations des residences---*/

@@ -488,7 +488,7 @@
                 $('input.autocomplete').autocomplete({
                     data: {
                         {% for ville in villes %}
-                            "{{ ville }}" : null,
+                            "{{ ville.nom }}" : null,
                         {% endfor %}
                     },
                     limit: 20, // The max amount of results that can be shown at once. Default: Infinity.

@@ -9,6 +9,8 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\Quartier;
+use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Service\AutocompleteGenerator;
 use MyOrleansBundle\Service\CalculateurCaracteristiquesResidence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -26,15 +28,14 @@ class NosBiensController extends Controller
     /**
      * @Route("/nos-biens", name="nosbiens")
      */
-    public function nosBiensAction(Request $request, AutocompleteGenerator $generator)
+    public function nosBiensAction(Request $request)
     {
         // Generation du manager
         $em = $this->getDoctrine()->getManager();
 
         // Recuperation de la liste des villes et des quartiers dans lesqulles se trouvent les residences
-        $residences = $em->getRepository(Residence::class)->findAll();
-        $villes = $generator->findVilles($residences);
-        $quartiers = $generator->findQuartiers($residences);
+        $villes = $em->getRepository(Ville::class)->findAll();
+        $quartiers = $em->getRepository(Quartier::class)->findAll();
 
         // Definition des contenus associes par defaut
         $message = "Découvrez les biens suggérés";
@@ -59,34 +60,39 @@ class NosBiensController extends Controller
 
             // Envoi de contenu different en fonction du bouton clique : investisseur ou residence principale
             $objectif = 'investir';
-            $tag = 'investissement';
+            $tag = 'Investissement';
             if ($simpleSearch->get('resPrincipaleBtn')->isClicked()) {
                 $objectif = $tag = 'Residence Principale';
             }
             // Generation du dernier article avec le tag 'Residence Principale'
-            $article = $em->getRepository(Article::class)->findOneBy(['tag'=>$tag], ['date'=>'DESC']);
-
+            $article = $em->getRepository(Article::class)->articleByTag($tag, 1);
+            $article = $article[0];
 
             // Prise en compte des filtres du moteur de recherche
             $data = $simpleSearch->getData();
             $residences = $em -> getRepository(Residence::class)->simpleSearch($data['ville'], $data['type']);
 
-           // $message = count($residences)." résidence(s) correspondent à votre recherche";
+            $message = count($residences)." résidence(s) correspondent à votre recherche";
 
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
                 $residences = $em -> getRepository(Residence::class)->findAll();
-               // $message = "Aucune résidence ne correspond à votre recherche. Découvrez les biens suggérés.";
+                $message = "Aucune résidence ne correspond à votre recherche. Découvrez les biens suggérés.";
             }
 
         }
 
+        // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
+        if(empty($residences)) {
+            $residences = $em -> getRepository(Residence::class)->findAll();
+        }
 
         return $this->render('MyOrleansBundle::nosbiens.html.twig', [
             'residences' => $residences,
             'completeSearch' => $completeSearch->createView(),
             'villes' => $villes,
             'quartiers' => $quartiers,
+            'message' => $message,
             'objectif' => $objectif,
             'article' => $article,
         ]);
@@ -102,6 +108,10 @@ class NosBiensController extends Controller
         $completeSearch = $this->createForm('MyOrleansBundle\Form\CompleteSearchType');
         $completeSearch->handleRequest($request);
 
+        // Recuperation de la liste des villes et des quartiers dans lesqulles se trouvent les residences
+        $villes = $em->getRepository(Ville::class)->findAll();
+        $quartiers = $em->getRepository(Quartier::class)->findAll();
+
         // Traitement de la requete
         if ($completeSearch->isSubmitted()) {
 
@@ -112,19 +122,20 @@ class NosBiensController extends Controller
             $surfaceMin = $data['surfaceMin'];
             $surfaceMax = $data['surfaceMax'];
             $nbChambres = $data['nbChambres'];
-            $nbPieces = $data['nbPieces'];
             $objectif = $data['objectif'];
             $budgetMin = $data['budgetMin'];
             $budgetMax = $data['budgetMax'];
+            $objectif = $data['objectif'];
 
-            $residences = $em -> getRepository(Residence::class)->completeSearch($ville, $quartier, $type, $surfaceMin,
-                $surfaceMax, $nbChambres, $nbPieces, $budgetMin, $budgetMax);
+            $residences = $em->getRepository(Residence::class)->completeSearch($ville, $quartier, $type, $surfaceMin,
+                                                                                $surfaceMax, $nbChambres, $budgetMin,
+                                                                                $budgetMax);
 
             $message = count($residences)." résidence(s) correspondent à votre recherche";
 
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
-                $residences = $em -> getRepository(Residence::class)->findAll();
+                $residences = $em->getRepository(Residence::class)->findAll();
                 $message = "Aucune résidence ne correspond à votre recherche. Découvrez les biens suggérés.";
             }
 
@@ -143,23 +154,14 @@ class NosBiensController extends Controller
 
             // Fin contenu associe
 
-            //recuperation des caracteristiques de chaque residence
-            foreach ($residences as $residence) {
-                $prixMin[] = $calculateur->calculPrix($residence);
-                $flatsDispo[] = $calculateur->calculFlatDispo($residence);
-                $typeMinMax[] = $calculateur->calculSizes($residence);
-            }
-            // Fin recup caracteristiques
-
             return $this->render('MyOrleansBundle::nosbiens.html.twig',[
                 'completeSearch' => $completeSearch->createView(),
                 'residences' => $residences,
+                'villes' => $villes,
+                'quartiers' => $quartiers,
                 'message' => $message,
                 'objectif' => $objectif,
-                'article' => $article,
-                'prixMin' => $prixMin,
-                'flatsDispo' => $flatsDispo,
-                'typeMinMax' => $typeMinMax
+                'article' => $article
             ]);
 
         } else {
