@@ -85,8 +85,8 @@ class CompleteSearchType extends AbstractType
                 'required'=>false,
                 'placeholder'=>'Objectif',
                 'choices' => array(
-                    'investir' => '1',
-                    'acheter en résidence principale' => '2',
+                    'investir' => 'investir',
+                    'acheter en résidence principale' => 'Residence Principale',
                 )
             ])
             ->add('budgetMin', MoneyType::class, [

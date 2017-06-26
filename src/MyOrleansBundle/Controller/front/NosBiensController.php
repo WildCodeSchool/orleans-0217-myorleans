@@ -145,7 +145,7 @@ class NosBiensController extends Controller
                 $article = $em->getRepository(Article::class)->articleByTag('Residence Principale', 1);
                 $article = $article[0];
 
-                $objectif = "residence";
+                $objectif = "Residence Principale";
             }
 
             // Generation du derier article avec le tag 'Investissement'

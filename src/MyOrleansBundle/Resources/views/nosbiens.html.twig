@@ -98,22 +98,22 @@
                     <div class="collapsible-body">
                         <span>
                             <div class="row no-margin-top no-margin-bottom">
-                                <div class="col s12 m6">
+                                <div class="input-field col s12 m6">
                                     {{ form_label(completeSearch.ville, 'Ville') }}
                                     {{ form_widget(completeSearch.ville) }}
                                     {{ form_errors(completeSearch.ville) }}
                                 </div>
-                                <div class="col s12 m6">
+                                <div class="input-field col s12 m6">
                                     {{ form_widget(completeSearch.type) }}
                                     {{ form_errors(completeSearch.type) }}
                                 </div>
                             </div>
                             <div class="row no-margin-top no-margin-bottom">
-                                <div class="col s12 m6 no-padding-left">
+                                <div class="input-field col s12 m6 no-padding-left">
                                     {{ form_widget(completeSearch.surfaceMin) }}
                                     {{ form_errors(completeSearch.surfaceMin) }}
                                 </div>
-                                <div class="col s12 m6 no-padding-right">
+                                <div class="input-field col s12 m6 no-padding-right">
                                     {{ form_widget(completeSearch.surfaceMax) }}
                                     {{ form_errors(completeSearch.surfaceMax) }}
                                 </div>
@@ -182,7 +182,7 @@
                 <div class="row titre-contenu-associe">
                     {% if objectif == 'investir' %}
                     <h2><span>Investissez en toute sérénité</span></h2>
-                    {% elseif objectif == 'residence' %}
+                    {% elseif objectif == 'Residence Principale' %}
                     <h2><span>Devenez propriétaire</span></h2>
                     {% endif %}
                 </div>
@@ -198,7 +198,7 @@
                                     <h4>Nos services de Location et Gestion locative</h4>
                                     <p>Not the same lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                                         lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
-                                {% elseif objectif == 'residence' %}
+                                {% elseif objectif == 'Residence Principale' %}
                                     <h4>Les parcours immobiliers</h4>
                                     <p>Not the same lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                                         lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
@@ -207,7 +207,7 @@
                             <div class="card-action center">
                                 {% if objectif == 'investir' %}
                                     <a href="{{ path("nosservices") }}">Découvrez les services</a>
-                                {% elseif objectif == 'residence' %}
+                                {% elseif objectif == 'Residence Principale' %}
                                     <a href="{{ path("parcoursimmo") }}">Découvrez les parcours</a>
                                 {% endif %}
                             </div>
@@ -234,7 +234,7 @@
                             </div>
                         </div>
                     </div>
-                {% elseif objectif == 'residence' %}
+                {% elseif objectif == 'Residence Principale' %}
 
                 {% endif %}
                 {# Fin affichage packs #}

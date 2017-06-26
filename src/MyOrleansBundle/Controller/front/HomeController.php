@@ -21,13 +21,11 @@ class HomeController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function indexAction(Request $request, AutocompleteGenerator $generator)
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         // Recuperation de la liste des villes dans lesqulles se trouvent les residences
-        /*$residences = $em->getRepository(Residence::class)->findAll();
-        $villes = $generator->findVilles($residences);*/
         $villes = $em->getRepository(Ville::class)->findAll();
 
         // Fin recuperation des villes
