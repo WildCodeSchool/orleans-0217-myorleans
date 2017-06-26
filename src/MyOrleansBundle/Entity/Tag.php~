@@ -92,4 +92,28 @@ class Tag
 
 
 
+
+    /**
+     * Add article
+     *
+     * @param \MyOrleansBundle\Entity\Article $article
+     *
+     * @return Tag
+     */
+    public function addArticle(\MyOrleansBundle\Entity\Article $article)
+    {
+        $this->articles[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \MyOrleansBundle\Entity\Article $article
+     */
+    public function removeArticle(\MyOrleansBundle\Entity\Article $article)
+    {
+        $this->articles->removeElement($article);
+    }
 }

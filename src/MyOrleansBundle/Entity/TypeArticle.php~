@@ -86,5 +86,35 @@ class TypeArticle
 
 
 
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add article
+     *
+     * @param \MyOrleansBundle\Entity\Article $article
+     *
+     * @return TypeArticle
+     */
+    public function addArticle(\MyOrleansBundle\Entity\Article $article)
+    {
+        $this->articles[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \MyOrleansBundle\Entity\Article $article
+     */
+    public function removeArticle(\MyOrleansBundle\Entity\Article $article)
+    {
+        $this->articles->removeElement($article);
+    }
+}

@@ -2,88 +2,95 @@
 
 {% block content %}
 
-<!--premier slide-->
+    <!--logo dde de documentation-->
 
     <div class="breadcrumb">
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
     </div>
+    <!--fin logo dde de documentation-->
 
 
+    <!--premier block-->
     <div class="container">
 
         <h2 class="subtitle fancy"><span>Nos services</span></h2>
-        <!--premier block-->
+
         {% for service in services %}
             {% if service.id is odd %}
-        <div class="row">
-            <div class="col s12 m6 l6">
-                <div data-aos="fade-up-right">
-                    <div class="boxi">
-                        <h3>{{ service.type }}</h3>
-                        <p>{{ service.description }}</p>
-                        <div class="center">
-                            <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light btn"><i class="material-icons">message</i> Demander la documentation</a>
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <div data-aos="fade-up-right">
+                            <div class="boxi">
+                                <h3>{{ service.type }}</h3>
+                                <p>{{ service.description }}</p>
+                                <div class="center">
+                                    <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light btn"><i class="material-icons">message</i> Demander la documentation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m6 l6">
+                        <div data-aos="fade-up-left">
+                            {% for media in service.media %}
+                            {% if media.typeMedia.nom == 'image' %}
+                            <img src="{{ asset('img/'~media.lien) }}">
+                            {% elseif media.typeMedia.nom == 'video'  %}
+
+                            <div class="video-container">
+                                <iframe width="560" height="315" src="{{ service.media.lien }}" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-            </div>
+
+            {% elseif service.id is even  %}
 
 
-            <div class="col s12 m6 l6">
-                <div data-aos="fade-up-left">
-                    <div class="video-container">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/OFE0Z6r--7E" frameborder="0" allowfullscreen></iframe>
+                <div class="row">
+                    <div class="col s12 m6 l6">
+
+
+                        <div data-aos="fade-up-right">
+                            {% for media in service.media %}
+                                {% if media.typeMedia.nom == 'image' %}
+                                    <img src="{{ asset('img/'~media.lien) }}">
+                                {% elseif media.typeMedia.nom == 'video'  %}
+                                    <div class="video-container">
+                                        <iframe width="560" height="315" src="{{ media.lien }}" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        {% elseif service.id is even  %}
 
 
-        <!--fin premier block-->
-
-
-
-
-        <!--fin formulaire de contact-->
-
-        <!--deuxième block-->
-
-        <div class="row">
-            <div class="col s12 m6 l6">
-
-                <div data-aos="fade-up-right">
-                    <div class="video-container">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/OFE0Z6r--7E" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col s12 m6 l6">
-                <div data-aos="fade-up-left">
-                    <div class="boxi">
-                        <h3>{{ service.type }}</h3>
-                        <p>{{ service.description }}</p>
-                        <div class="center">
-                            <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light btn"><i class="material-icons">message</i> Demander la documentation</a>
+                    <div class="col s12 m6 l6">
+                        <div data-aos="fade-up-left">
+                            <div class="boxi">
+                                <h3>{{ service.type }}</h3>
+                                <p>{{ service.description }}</p>
+                                <div class="center">
+                                    <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light btn"><i class="material-icons">message</i> Demander la documentation</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!--fin prenmier container et fin block-->
-{% endif %}
 
-{% endfor %}
+            {% endif %}
+
+        {% endfor %}
 
     </div>
+    <!--fin prenmier container et fin block-->
 
 
 
-<!-- debut container fluid -->
+    <!-- debut container fluid deuxieme block -->
     <!--les packs-->
 
     <div class="bloc-color container-fluid">
@@ -92,21 +99,22 @@
                 <h2 class="subtitle fancy"><span>Nos packs</span></h2>
                 <div class="row">
                     {% for pack in packs %}
-                    <div class="col m6 s12 l4">
-                        <div class="card">
-                            <div class="card-image">
-                                <div data-aos="flip-left">
-                                    <img src="{{ asset('img/pack4.jpg') }}" alt="logo de l'entreprise" />
-
-                                    <span class="card-title">{{ pack.nom }}</span>
-                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green button-collapse" data-activates="slide-out" href="#"><i class="material-icons">message</i></a>
-                                </div>
-                                <div class="card-content">
-                                    <p>{{ pack.description }}</p>
+                        <div class="col m6 s12 l4">
+                            <div class="card">
+                                <div class="card-image">
+                                    <div data-aos="flip-left">
+                                        {% for media in pack %}
+                                            <img src="{{ asset('img/'~pack.media.lien) }}">
+                                        {% endfor %}
+                                        <span class="card-title">{{ pack.nom }}</span>
+                                        <a class="btn-floating halfway-fab waves-effect waves-light light-green button-collapse" data-activates="slide-out" href="#"><i class="material-icons">message</i></a>
+                                    </div>
+                                    <div class="card-content">
+                                        <p>{{ pack.description }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
 
                     {% endfor %}
@@ -117,9 +125,9 @@
         </div>
 
     </div>
-
-
+    <!-- fin container fluid deuxieme block -->
     <!--fin packs-->
+
 
     <!--fin troisième block-->
     <div class="container">
@@ -127,35 +135,35 @@
         <div class="row">
             <h2 class="subtitle fancy"><span>Nos derniers témoignages</span></h2>
 
-                <div class="col s12 m6 l6">
-                    {% for temoignage in temoignages %}
-                    {% if temoignage.id is odd %}
-                    <div class="boxi">
-                        <h3>{{ temoignage.theme }}</h3>
-                        <p>{{ temoignage.message }}</p>
-                        <br/>
-                            <p style="text-align: right">{{ temoignage.auteur }}</p>
-                            <p></p>
+            <div class="col s12 m6 l6">
+                {% for temoignage in temoignages %}
+                {% if temoignage.id is odd %}
+                <div class="boxi">
+                    <h3>{{ temoignage.theme }}</h3>
+                    <p>{{ temoignage.message }}</p>
+                    <br/>
+                    <p style="text-align: right">{{ temoignage.auteur }}</p>
+                    <p></p>
 
-                    </div>
                 </div>
+            </div>
 
 
-                <div class="col s12 m6 l6">
+            <div class="col s12 m6 l6">
 
-                    <div class="boxi">
-                        <h3>{{ temoignage.theme }}</h3>
-                        <p>{{ temoignage.message }}</p>
+                <div class="boxi">
+                    <h3>{{ temoignage.theme }}</h3>
+                    <p>{{ temoignage.message }}</p>
 
-                        <br/>
-                            <p style="text-align: right">{{ temoignage.auteur }}</p>
-                            <p></p>
+                    <br/>
+                    <p style="text-align: right">{{ temoignage.auteur }}</p>
+                    <p></p>
 
-                    </div>
-                    {% endif %}
-
-                    {% endfor %}
                 </div>
+                {% endif %}
+
+                {% endfor %}
+            </div>
 
 
         </div>
@@ -166,73 +174,18 @@
 
 
     <!-- Formulaire -->
-    <form method="post" action="nosservices" >
-    <div id="slide-out" class="side-nav">
-        <div class="userView">
+    <form method="post" action="" >
+        <div id="slide-out" class="side-nav">
+            <div class="userView">
                 <h3 align="center">Contactez nous !</h3>
                 <h4 align="center">02.38.75.94.47</h4>
 
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Nom</label>
-                    </div>
-
-                    <div class="input-field col s6">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="first_name">Prénom</label>
-                    </div>
-                </div>
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">phone</i>
-                            <input id="icon_telephone" type="tel" class="validate">
-                            <label for="icon_telephone">Téléphone</label>
-                        </div>
-                    </div>
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix">email</i>
-                                    <input id="email" type="email" class="validate">
-                                    <label for="email" data-error="wrong" data-success="right">Email</label>
-                                </div>
-                            </div>
+                {{ form(form)}}
 
 
+            </div>
 
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">error</i>
-                            <select>
-                                <option value="" disabled selected>Objet?</option>
-                                <option value="1">Gestion locative</option>
-                                <option value="2">Vente</option>
-                                <option value="3">Pack services</option>
-                                <option value="4">Autres</option>
-                            </select>
-
-                        </div>
-
-                            <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="material-icons prefix">mode_edit</i>
-                                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                        <label for="icon_prefix2">Votre message</label>
-                                    </div>
-                            </div>
-
-                        <div class="row">
-                            <div class="col s12">
-                                <button class="btn waves-effect waves-light btn-large center-align" type="submit" name="action">Envoyer
-                                    <i class="material-icons right">send</i>
-                                </button>
-                            </div>
-                        </div>
-    </div>
-
-</div>
+        </div>
     </form>
     <!--fin formulaire-->
 

@@ -306,24 +306,14 @@ body {
 
 }
 
-.barre-recherche{
-    margin-top: 22px;
-    position: absolute;
-    bottom: 200px;
-    width: 50%;
-    left:300px;
-    right: 150px;
-    background-color: rgb(255, 255, 255, 0.8);
 
 
-}
-
-.nav-recherche{
-
+.recherche{
     width: 40%;
     margin-left: 400px;
     margin-top: 500px;
     border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 
@@ -421,10 +411,11 @@ body {
 .barre-recherche{
     margin-top: 22px;
     position: absolute;
-    bottom: 200px;
+    bottom: 250px;
     width: 95%;
     left: 25px;
-    background-color: rgba(255, 255, 255, 0.8);
+
+
 }
 
 .nav-recherche{
@@ -441,9 +432,7 @@ body {
 }
 
 .header-image{
-
     margin-top: 22px;
-
 }
 
 .bloc-color{
@@ -480,18 +469,10 @@ body {
     color:white;
 }
 
-.fiches-ancres{
-    margin-bottom: 100px;
-}
 
-.fiches-conseils{
-    margin-top: 50px;
-}
 
-.recherche{
-    background-color: rgba(255, 255, 255, 0.5);
 
-}
+
 
 
 /* --------------------------------------------------------------------*/

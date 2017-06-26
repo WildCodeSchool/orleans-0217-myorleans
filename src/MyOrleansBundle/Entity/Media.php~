@@ -307,4 +307,76 @@ class Media
     }
 
 
+
+    /**
+     * Add flat
+     *
+     * @param \MyOrleansBundle\Entity\Flat $flat
+     *
+     * @return Media
+     */
+    public function addFlat(\MyOrleansBundle\Entity\Flat $flat)
+    {
+        $this->flats[] = $flat;
+
+        return $this;
+    }
+
+    /**
+     * Remove flat
+     *
+     * @param \MyOrleansBundle\Entity\Flat $flat
+     */
+    public function removeFlat(\MyOrleansBundle\Entity\Flat $flat)
+    {
+        $this->flats->removeElement($flat);
+    }
+
+    /**
+     * Add residence
+     *
+     * @param \MyOrleansBundle\Entity\Residence $residence
+     *
+     * @return Media
+     */
+    public function addResidence(\MyOrleansBundle\Entity\Residence $residence)
+    {
+        $this->residences[] = $residence;
+
+        return $this;
+    }
+
+    /**
+     * Remove residence
+     *
+     * @param \MyOrleansBundle\Entity\Residence $residence
+     */
+    public function removeResidence(\MyOrleansBundle\Entity\Residence $residence)
+    {
+        $this->residences->removeElement($residence);
+    }
+
+    /**
+     * Add article
+     *
+     * @param \MyOrleansBundle\Entity\Article $article
+     *
+     * @return Media
+     */
+    public function addArticle(\MyOrleansBundle\Entity\Article $article)
+    {
+        $this->articles[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \MyOrleansBundle\Entity\Article $article
+     */
+    public function removeArticle(\MyOrleansBundle\Entity\Article $article)
+    {
+        $this->articles->removeElement($article);
+    }
 }

@@ -634,4 +634,52 @@ class Residence
     }
 
 
+
+    /**
+     * Add media
+     *
+     * @param \MyOrleansBundle\Entity\Media $media
+     *
+     * @return Residence
+     */
+    public function addMedia(\MyOrleansBundle\Entity\Media $media)
+    {
+        $this->medias[] = $media;
+
+        return $this;
+    }
+
+    /**
+     * Remove media
+     *
+     * @param \MyOrleansBundle\Entity\Media $media
+     */
+    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
+    {
+        $this->medias->removeElement($media);
+    }
+
+    /**
+     * Add categoriePresta
+     *
+     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
+     *
+     * @return Residence
+     */
+    public function addCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
+    {
+        $this->categoriePrestas[] = $categoriePresta;
+
+        return $this;
+    }
+
+    /**
+     * Remove categoriePresta
+     *
+     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
+     */
+    public function removeCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
+    {
+        $this->categoriePrestas->removeElement($categoriePresta);
+    }
 }
