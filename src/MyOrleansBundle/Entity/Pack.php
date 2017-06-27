@@ -43,7 +43,7 @@ class Pack
     private $prix;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="pack")
+     * @ORM\OneToOne(targetEntity="Media", cascade={"persist"})
      */
     private $media;
 

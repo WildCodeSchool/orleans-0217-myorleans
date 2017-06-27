@@ -3,6 +3,8 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Flat;
+use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Form\FlatType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -40,11 +42,24 @@ class FlatController extends Controller
     public function newAction(Request $request)
     {
         $flat = new Flat();
-        $form = $this->createForm('MyOrleansBundle\Form\FlatType', $flat);
+        $media = new Media();
+        $flat->getMedias()->add($media);
+        $form = $this->createForm(FlatType::class, $flat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $medias = $flat->getMedias();
+
+            foreach ($medias as $media) {
+                $file = $media->getLien();
+                $filename = 'flat' . uniqid() . '.' . $file->guessExtension();
+                $file->move(
+                    $this->getParameter('upload_directory'),
+                    $filename
+                );
+                $media->setLien($filename);
+            }
             $em->persist($flat);
             $em->flush();
 

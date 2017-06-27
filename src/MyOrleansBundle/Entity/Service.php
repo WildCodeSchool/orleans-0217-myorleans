@@ -37,7 +37,7 @@ class Service
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="service")
+     * @ORM\OneToOne(targetEntity="Media", cascade={"persist"})
      */
     private $media;
 

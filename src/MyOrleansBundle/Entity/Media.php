@@ -48,13 +48,13 @@ class Media
     private $residences;
 
     /**
-     * @ORM\OneToOne(targetEntity="Evenement", mappedBy="media")
+     * @ORM\ManyToOne(targetEntity="Evenement", inversedBy="medias")
      */
     private $evenement;
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media")
      */
     private $partenaire;
 

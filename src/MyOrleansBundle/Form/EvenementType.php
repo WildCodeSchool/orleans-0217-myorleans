@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,7 +23,11 @@ class EvenementType extends AbstractType
             ->add('dateFin')
             ->add('heureDebut')
             ->add('heureFin')
-            ->add('description');
+            ->add('description')
+            ->add('medias', CollectionType::class,
+                array(
+                    'entry_type' => MediaType::class,
+                ));
     }
     
     /**

@@ -45,6 +45,15 @@ class CollaborateurController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $media = $collaborateur->getMedia();
+            $file = $media->getLien();
+
+            $filename = 'membre' . uniqid() . '.' . $file->guessExtension();
+            $file->move(
+                $this->getParameter('upload_directory'),
+                $filename
+            );
+            $media->setLien($filename);
             $em->persist($collaborateur);
             $em->flush();
 
