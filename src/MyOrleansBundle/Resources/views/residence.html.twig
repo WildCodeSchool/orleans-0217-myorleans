@@ -87,10 +87,10 @@
                 <div class="col s12">
                     <div class="citation-residence">
                         <p>
-{#                            {{ residence.citation }}#}
+                            {{ residence.citation }}
                         </p>
                         <p class="pinel-residence">
-{#                            {{ residence.pinel }}#}
+                            {{ residence.pinel }}
                         </p>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                                         {% for flat in flats if flat.type == 'T1' %}
                                             <tr>
                                                 <td>{{ flat.reference }}</td>
-{#                                                <td>{{ flat.type }}</td>#}
+                                                <td>{{ flat.type }}</td>
                                                 <td>{{ flat.surface }}m2</td>
                                                 <td>{{ flat.prix }} €</td>
                                                 {% if flat.statut == 'VENDU' %}
@@ -161,7 +161,7 @@
                                         {% for flat in flats if flat.type == 'T2' %}
                                             <tr>
                                                 <td>{{ flat.reference }}</td>
-{#                                                <td>{{ flat.type }}</td>#}
+                                                <td>{{ flat.type }}</td>
                                                 <td>{{ flat.surface }}m2</td>
                                                 <td>{{ flat.prix }} €</td>
                                                 {% if flat.statut == 'VENDU' %}
@@ -195,7 +195,7 @@
                                         {% for flat in flats if flat.type == 'T3' %}
                                             <tr>
                                                 <td>{{ flat.reference }}</td>
-{#                                                <td>{{ flat.type }}</td>#}
+                                                <td>{{ flat.type }}</td>
                                                 <td>{{ flat.surface }}m2</td>
                                                 <td>{{ flat.prix }} €</td>
                                                 {% if flat.statut == 'VENDU' %}
@@ -229,7 +229,7 @@
                                         {% for flat in flats if flat.type == 'T4' %}
                                             <tr>
                                                 <td>{{ flat.reference }}</td>
-{#                                                <td>{{ flat.type }}</td>#}
+                                                <td>{{ flat.type }}</td>
                                                 <td>{{ flat.surface }}m2</td>
                                                 <td>{{ flat.prix }} €</td>
                                                 {% if flat.statut == 'VENDU' %}
@@ -263,7 +263,7 @@
                                         {% for flat in flats if flat.type == 'T5' or flat.type == 'T6' or flat.type == 'T7' or  flat.type == 'T8' %}
                                             <tr>
                                                 <td>{{ flat.reference }}</td>
-{#                                                <td>{{ flat.type }}</td>#}
+                                                <td>{{ flat.type }}</td>
                                                 <td>{{ flat.surface }}m2</td>
                                                 <td>{{ flat.prix }} €</td>
                                                 {% if flat.statut == 'VENDU' %}

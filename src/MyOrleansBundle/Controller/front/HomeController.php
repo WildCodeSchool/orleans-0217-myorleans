@@ -104,37 +104,7 @@ class HomeController extends Controller
         return $this->render('MyOrleansBundle::agence.html.twig');
     }
 
-    /**
-     * @Route("/residences/{id}")
-     */
-    public function residence($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $residence = $em->getRepository(Residence::class)->find($id);
-/*        $media = $em->getRepository(Media::class)->find($id);*/
 
-        $count = 0;
-        $flats = $residence->getFlats();
-        foreach ($flats as $flat){
-            if ($flat->getStatut() == 'DISPONIBLE'){
-                $count++;
-            }
-        }
-
-        $flats = $residence->getFlats();
-        $prestas = $em->getRepository(Presta::class)->findAll();
-        $typePrestas = $em->getRepository(TypePresta::class)->findAll();
-        $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();
-        return $this->render('MyOrleansBundle::residence.html.twig',[
-            'residence'=>$residence,
-            'flats'=>$flats,
-            'count' => $count,
-            'media' => $media,
-            'prestas'=>$prestas,
-            'typePrestas'=>$typePrestas,
-            'categoriePrestas'=>$categoriePrestas,
-        ]);
-    }
 
     /**
      * @Route("/appartement/{id}")
