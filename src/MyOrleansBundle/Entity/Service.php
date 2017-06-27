@@ -37,9 +37,9 @@ class Service
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="service")
+     * @ORM\OneToMany(targetEntity="Media", mappedBy="service")
      */
-    private $media;
+    private $medias;
 
     /**
      * Get id

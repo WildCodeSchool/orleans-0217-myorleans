@@ -58,7 +58,7 @@ class Media
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Service", mappedBy="media")
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="medias")
      */
     private $service;
 
