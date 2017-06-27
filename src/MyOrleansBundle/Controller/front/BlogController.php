@@ -48,10 +48,8 @@ class BlogController extends Controller
 
         //Recuperation des tags de l'article et selection du premier tag
         $tags = $article->getTags();
-        foreach ($tags as $tag) {
-            $nomTag[] = $tag->getNom();
-        }
-        $tag = $nomTag[0];
+        $tag = $tags[0]->getNom();
+
         //Fin recuperation du tag
 
         $articlesAssocies = $em->getRepository(Article::class)->articleByTag($tag, 2);
