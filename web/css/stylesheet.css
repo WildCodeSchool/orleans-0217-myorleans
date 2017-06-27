@@ -458,7 +458,7 @@ body {
     position: fixed;
     right: 20px;
     padding: 10px;
-    z-index: 1000;
+    z-index: 100;
     -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
     -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
 
