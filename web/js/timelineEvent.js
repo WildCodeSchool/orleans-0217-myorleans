@@ -1,9 +1,9 @@
 
 
-(function () {
+$(document).ready(function () {
 
     // VARIABLES
-    var timeline = document.querySelector(".timeline ol"),
+    const timeline = document.querySelector(".timeline ol"),
         elH = document.querySelectorAll(".timeline li > div"),
         arrows = document.querySelectorAll(".timeline .arrows .arrow"),
         arrowPrev = document.querySelector(".timeline .arrows .arrow__prev"),
@@ -25,35 +25,34 @@
 
     // SET EQUAL HEIGHTS
     function setEqualHeights(el) {
-        var counter = 0;
-        for (var i = 0; i < el.length; i++) {if (window.CP.shouldStopExecution(1)){break;}
-            var singleHeight = el[i].offsetHeight;
+        let counter = 0;
+        for (let i = 0; i < el.length; i++) {
+            const singleHeight = el[i].offsetHeight;
 
             if (counter < singleHeight) {
                 counter = singleHeight;
             }
         }
-        window.CP.exitedLoop(1);
 
-
-        for (var i = 0; i < el.length; i++) {if (window.CP.shouldStopExecution(2)){break;}
-            el[i].style.height = counter + "px";
+        for (let i = 0; i < el.length; i++) {
+            el[i].style.height = `${counter}px`;
         }
-        window.CP.exitedLoop(2);
-
     }
 
     // CHECK IF AN ELEMENT IS IN VIEWPORT
     // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
     function isElementInViewport(el) {
-        var rect = el.getBoundingClientRect();
-        return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
     }
 
     // SET STATE OF PREV/NEXT ARROWS
-    function setBtnState(el) {
-        var flag = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
-
+    function setBtnState(el, flag = true) {
         if (flag) {
             el.classList.add(disabledClass);
         } else {
@@ -66,64 +65,59 @@
 
     // ANIMATE TIMELINE
     function animateTl(scrolling, el, tl) {
-        var counter = 0;
-        for (var i = 0; i < el.length; i++) {if (window.CP.shouldStopExecution(3)){break;}
-            el[i].addEventListener("click", function () {
+        let counter = 0;
+        for (let i = 0; i < el.length; i++) {
+            el[i].addEventListener("click", function() {
                 if (!arrowPrev.disabled) {
                     arrowPrev.disabled = true;
                 }
                 if (!arrowNext.disabled) {
                     arrowNext.disabled = true;
                 }
-                var sign = this.classList.contains("arrow__prev") ? "" : "-";
+                const sign = (this.classList.contains("arrow__prev")) ? "" : "-";
                 if (counter === 0) {
-                    tl.style.transform = "translateX(-" + scrolling + "px)";
+                    tl.style.transform = `translateX(-${scrolling}px)`;
                 } else {
-                    var tlStyle = getComputedStyle(tl);
+                    const tlStyle = getComputedStyle(tl);
                     // add more browser prefixes if needed here
-                    var tlTransform = tlStyle.getPropertyValue("-webkit-transform") || tlStyle.getPropertyValue("transform");
-                    var values = parseInt(tlTransform.split(",")[4]) + parseInt("" + sign + scrolling);
-                    tl.style.transform = "translateX(" + values + "px)";
+                    const tlTransform = tlStyle.getPropertyValue("-webkit-transform") || tlStyle.getPropertyValue("transform");
+                    const values = parseInt(tlTransform.split(",")[4]) + parseInt(`${sign}${scrolling}`);
+                    tl.style.transform = `translateX(${values}px)`;
                 }
 
-                setTimeout(function () {
+                setTimeout(() => {
                     isElementInViewport(firstItem) ? setBtnState(arrowPrev) : setBtnState(arrowPrev, false);
-                    isElementInViewport(lastItem) ? setBtnState(arrowNext) : setBtnState(arrowNext, false);
-                }, 1100);
+                isElementInViewport(lastItem) ? setBtnState(arrowNext) : setBtnState(arrowNext, false);
+            }, 1100);
 
                 counter++;
             });
         }
-        window.CP.exitedLoop(3);
-
     }
 
     // ADD SWIPE SUPPORT FOR TOUCH DEVICES
     function setSwipeFn(tl, prev, next) {
-        var hammer = new Hammer(tl);
-        hammer.on("swipeleft", function () {
-            return next.click();
-        });
-        hammer.on("swiperight", function () {
-            return prev.click();
-        });
+        const hammer = new Hammer(tl);
+        hammer.on("swipeleft", () => next.click());
+        hammer.on("swiperight", () => prev.click());
     }
 
     // ADD BASIC KEYBOARD FUNCTIONALITY
     function setKeyboardFn(prev, next) {
-        document.addEventListener("keydown", function (e) {
-            if (e.which === 37 || e.which === 39) {
-                var timelineOfTop = timeline.offsetTop;
-                var y = window.pageYOffset;
-                if (timelineOfTop !== y) {
-                    window.scrollTo(0, timelineOfTop);
-                }
-                if (e.which === 37) {
-                    prev.click();
-                } else if (e.which === 39) {
-                    next.click();
-                }
+        document.addEventListener("keydown", (e) => {
+            if ((e.which === 37) || (e.which === 39)) {
+            const timelineOfTop = timeline.offsetTop;
+            const y = window.pageYOffset;
+            if (timelineOfTop !== y) {
+                window.scrollTo(0, timelineOfTop);
             }
-        });
+            if (e.which === 37) {
+                prev.click();
+            } else if (e.which === 39) {
+                next.click();
+            }
+        }
+    });
     }
+
 })();

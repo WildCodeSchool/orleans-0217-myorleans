@@ -3,6 +3,8 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations\Annotation\Enum;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Article
@@ -12,6 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+
+    CONST NUM_ARTICLES = 9;
+
     /**
      * @var int
      *
@@ -24,13 +29,6 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=45)
-     */
-    private $type;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="titre", type="string", length=45)
      */
     private $titre;
@@ -38,9 +36,9 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="texte", type="text")
      */
-    private $text;
+    private $texte;
 
     /**
      * @var \DateTime
@@ -50,20 +48,27 @@ class Article
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="article")
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"all"}, fetch="EAGER")
      */
     private $medias;
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Residence")
+     * @ORM\ManyToOne(targetEntity="Residence")
+     * @JoinTable(name="article_media")
      */
     private $residence;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="articles", cascade={"all"}, fetch="EAGER")
      */
-    private $tag;
+    private $tags;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TypeArticle", inversedBy="articles")
+     */
+    private $typeArticle;
+
 
 
     /**
@@ -74,30 +79,6 @@ class Article
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Article
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -125,27 +106,27 @@ class Article
     }
 
     /**
-     * Set text
+     * Set texte
      *
-     * @param string $text
+     * @param string $texte
      *
      * @return Article
      */
-    public function setText($text)
+    public function setTexte($texte)
     {
-        $this->text = $text;
+        $this->texte = $texte;
 
         return $this;
     }
 
     /**
-     * Get text
+     * Get texte
      *
      * @return string
      */
-    public function getText()
+    public function getTexte()
     {
-        return $this->text;
+        return $this->texte;
     }
 
     /**
@@ -171,46 +152,15 @@ class Article
     {
         return $this->date;
     }
+
+
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     *
-     * @return Article
-     */
-    public function addMedia(\MyOrleansBundle\Entity\Media $media)
-    {
-        $this->medias[] = $media;
-
-        return $this;
-    }
-
-    /**
-     * Remove media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     */
-    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
-    {
-        $this->medias->removeElement($media);
-    }
-
-    /**
-     * Get medias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedias()
-    {
-        return $this->medias;
     }
 
     /**
@@ -238,6 +188,79 @@ class Article
     }
 
     /**
+     * @return mixed
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * @param mixed $medias
+     */
+    public function setMedias($medias)
+    {
+        $this->medias = $medias;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeArticle()
+    {
+        return $this->typeArticle;
+    }
+
+    /**
+     * @param mixed $typeArticle
+     */
+    public function setTypeArticle($typeArticle)
+    {
+        $this->typeArticle = $typeArticle;
+    }
+
+
+    /**
+     * Add media
+     *
+     * @param \MyOrleansBundle\Entity\Media $media
+     *
+     * @return Article
+     */
+    public function addMedia(\MyOrleansBundle\Entity\Media $media)
+    {
+        $this->medias[] = $media;
+
+        return $this;
+    }
+
+    /**
+     * Remove media
+     *
+     * @param \MyOrleansBundle\Entity\Media $media
+     */
+    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
+    {
+        $this->medias->removeElement($media);
+    }
+
+    /**
      * Add tag
      *
      * @param \MyOrleansBundle\Entity\Tag $tag
@@ -246,7 +269,7 @@ class Article
      */
     public function addTag(\MyOrleansBundle\Entity\Tag $tag)
     {
-        $this->tag[] = $tag;
+        $this->tags[] = $tag;
 
         return $this;
     }
@@ -258,16 +281,6 @@ class Article
      */
     public function removeTag(\MyOrleansBundle\Entity\Tag $tag)
     {
-        $this->tag->removeElement($tag);
-    }
-
-    /**
-     * Get tag
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTag()
-    {
-        return $this->tag;
+        $this->tags->removeElement($tag);
     }
 }

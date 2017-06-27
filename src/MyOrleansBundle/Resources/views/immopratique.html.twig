@@ -3,69 +3,65 @@
 {% block content %}
 
     <div class="breadcrumb">
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
+        <a href="#" data-activates="slide-out" class="button-collapse pulse-button"><i class="material-icons">message</i></a>
     </div>
 
+
     <div class="header-image">
-        <img src="{{ asset('img/coverjbh1-2.jpg') }}" class="img-immo-pratique" alt="image fiche conseil" />
+        <img src="{{ asset('img/apart2.jpg') }}" style="width: 100%; margin-bottom: -120px;" alt="photo interieur appartement" />
     </div>
+
 
 
         <div class="barre-recherche">
-             <form>
-                <div class="input-field">
-                    <input id="search" type="search" required placeholder="Rechercher par thème">
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
+            <nav class="recherche" style="border-radius: 25px">
+                <div class="nav-wrapper">
+                    <form>
+                        <div class="input-field">
+                            <input id="search" placeholder="Rechercher votre info par mot clé" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons">seach</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </nav>
         </div>
 
-
-<div class="container">
-
-  <div class="row">
-    <div class="col s12 l12 m12">
-
-        <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-            ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-            an quaedam altiora meditantis iam Galli secreta susceperint scripta,
-            qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
-            petit exindeque per protectores retractus artissime tenebatur.</p>
-    </div>
-  </div>
-
     <!--barre de recherche-->
-
-    <div class="row bloc-color">
-        <div class="col offset-s1 s10">
-            <div class="row nav-immo-pratique center">
-                <div class="col s12 l4">
-                    <a class="waves-effect waves-light btn" href="#conseils">Fiches conseils</a>
-                </div>
-                <div class="col s12 l4">
-                    <a class="waves-effect waves-light btn" href="#thematiques">Dossiers thématiques</a>
-                </div>
-                <div class="col s12 l4">
-                    <a class="waves-effect waves-light btn" href="#actu-immo">Actualités immobilières</a>
+    <div class="fiches-ancres">
+        <div class="row bloc-color">
+            <div class="col l12 ">
+                <div class="row nav-immo-pratique center">
+                    <div class="col s12 l4">
+                        <a class="waves-effect waves-light btn" href="#conseils">Fiches conseils</a>
+                    </div>
+                    <div class="col s12 l4">
+                        <a class="waves-effect waves-light btn" href="#thematiques">Dossiers thématiques</a>
+                    </div>
+                    <div class="col s12 l4">
+                        <a class="waves-effect waves-light btn" href="#actu-immo">Actualités immobilières</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-<!--fin barre de recherche-->
+    <!--fin barre de recherche-->
+
+<div class="container">
+
 
     <!--premier block-->
-    <h2 class="subtitle fancy" id="conseils"><span>Nos fiches conseils</span></h2></a>
+    {% for article in articles %}
+    {% if article.id is odd %}
+    <div class="fiches-conseils">
+    <h2 class="subtitle fancy" id="conseils"><span>{{ article.type }}</span></h2>
     <div class="row">
+
         <div class="col s12 m6 l6">
             <div data-aos="fade-up-right">
                 <div class="boxi">
-                    <h4>Lorem ipsum lorem ipsum</h4>
-                    <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                    ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                    an quaedam altiora meditantis iam Galli secreta susceperint scripta,
-                    qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
-                    petit exindeque per protectores retractus artissime tenebatur.</p>
+                    <h4>{{ article.titre }}</h4>
+                    <p>{{ article.text }}</p>
                     <div class="center">
                         <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger la fiche</a>
                     </div>
@@ -79,12 +75,13 @@
             </div>
         </div>
     </div>
+    </div>
 
 
     <!--fin premier block-->
 
     <!--deuxième block-->
-
+    {% elseif article.id is even  %}
     <div class="row">
         <div class="col s12 m6 l6">
             <div data-aos="fade-up-right">
@@ -95,12 +92,8 @@
         <div class="col s12 m6 l6">
             <div data-aos="fade-up-left">
                 <div class="boxi">
-                    <h4>Lorem ipsum lorem ipsum</h4>
-                    <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                        ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                        an quaedam altiora meditantis iam Galli secreta susceperint scripta,
-                        qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
-                        petit exindeque per protectores retractus artissime tenebatur.</p>
+                    <h4>{{ article.titre }}</h4>
+                    <p>{{ article.text }}</p>
                     <div class="center">
                         <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger la fiche</a>
                     </div>
@@ -108,7 +101,10 @@
             </div>
         </div>
     </div>
+    {% endif %}
+    {% endfor %}
 </div>
+
 
     <!--fin deuxième block-->
     <!-- fin premier container -->
@@ -116,11 +112,11 @@
 
         <!--troisième block-->
 
-<div class="bloc-color container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col offset-s2 s8">
+        <div class="col s12 l12 m6">
 
-             <h2 id="thematiques"><span>Dossiers thématiques</span></h2>
+             <h2 class="subtitle fancy" id="thematiques"><span>Dossiers thématiques</span></h2>
                 <div class="row">
                     <div class="col s12 m6 l6">
                         <div data-aos="fade-up-right">
@@ -182,7 +178,7 @@
         <!--fin quatrième block-->
     <div class="container">
         <!--cinquième block-->
-     <h2 id="actu-immo"><span>Actualités immobilières</span></h2></a>
+     <h2 class="subtitle fancy" id="actu-immo"><span>Actualités immobilières</span></h2></a>
         <div class="row">
             <div class="col s12 m6 l6">
                 <div data-aos="fade-up-right">
@@ -243,6 +239,7 @@
     <ul id="slide-out" class="side-nav">
         <li><div class="userView">
                 <h3 align="center">Contactez nous !</h3>
+                <h4 align="center">02 38 75 94 47</h4>
                 <div class="row">
 
                     <div class="input-field col s6">
@@ -317,28 +314,11 @@
             AOS.init();
             $('.button-collapse').sideNav({
                     edge: 'right', // Choose the horizontal origin
-                    menuWidth: 600,
-                    draggable: true, // Choose whether you can drag to open on touch screens
+                    draggable: false, // Choose whether you can drag to open on touch screens
+                closeOnClick: true
                 }
-            );
 
-            $('.modal').modal({
-                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-                    opacity: .5, // Opacity of modal background
-                    inDuration: 300, // Transition in duration
-                    outDuration: 200, // Transition out duration
-                    startingTop: '4%', // Starting top style attribute
-                    endingTop: '10%', // Ending top style attribute
-                    ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-
-                        console.log(modal, trigger);
-                    },
-
-                }
             );
         </script>
     {% endblock %}
-
-
-
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '::layout_admin.html.twig' %}
 
 {% block body %}
     <h1>Categorieprestum edit</h1>
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('categoriepresta_index') }}">Back to the list</a>
+            <a href="{{ path('admin_categorie-presta_index') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

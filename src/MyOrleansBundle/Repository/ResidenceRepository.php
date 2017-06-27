@@ -10,4 +10,49 @@ namespace MyOrleansBundle\Repository;
  */
 class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function simpleSearch($ville, $type)
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        if (!empty($ville)) {
+            $qb->andWhere('r.ville LIKE :ville')
+                ->setParameter('ville', '%'.$ville.'%');
+        }
+
+        if (!empty($type)) {
+            $qb->andWhere('t.nom = :type')
+                ->setParameter('type', $type)
+                ->join('r.flats', 'f')
+                ->join('f.typeLogement', 't');
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findAllLimit()
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->setMaxResults(3);
+        return $qb->getQuery()->getResult();
+
+    }
+
+    public function findOneFav()
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.favoris = 1')
+            ->orderBy('r.id', 'DESC')
+            ->setMaxResults(1);
+         return $qb->getQuery()->getResult();
+    }
+
+    public function findTwoFav()
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.favoris = 1')
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(2);
+        return $qb->getQuery()->getResult();
+    }
 }
+

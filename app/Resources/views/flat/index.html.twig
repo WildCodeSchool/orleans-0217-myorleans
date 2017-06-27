@@ -1,51 +1,69 @@
-{% extends 'base.html.twig' %}
+{% extends '::layout_admin.html.twig' %}
 
-{% block body %}
-    <h1>Flats list</h1>
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Type</th>
-                <th>Reference</th>
-                <th>Prix</th>
-                <th>Surface</th>
-                <th>Nbpiece</th>
-                <th>Description</th>
-                <th>Prestationcomplementaire</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for flat in flats %}
-            <tr>
-                <td><a href="{{ path('flat_show', { 'id': flat.id }) }}">{{ flat.id }}</a></td>
-                <td>{{ flat.type }}</td>
-                <td>{{ flat.reference }}</td>
-                <td>{{ flat.prix }}</td>
-                <td>{{ flat.surface }}</td>
-                <td>{{ flat.nbPiece }}</td>
-                <td>{{ flat.description }}</td>
-                <td>{{ flat.prestationComplementaire }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('flat_show', { 'id': flat.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('flat_edit', { 'id': flat.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Liste des biens</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Reference</th>
+                                    <th>Prix</th>
+                                    <th>Surface</th>
+                                    <th>Nbpiece</th>
+                                    <th>Description</th>
+                                    <th>Prestationcomplementaire</th>
+                                    <th>Statut</th>
+                                    <th>Aperçu</th>
+                                    <th>Éditer</th>
+                                </thead>
+                                <tbody>
 
-    <ul>
-        <li>
-            <a href="{{ path('flat_new') }}">Create a new flat</a>
-        </li>
-    </ul>
+                                {% for flat in flats %}
+                                    <tr>
+                                        <td><a href="{{ path('admin_flat_show', { 'id': flat.id }) }}">{{ flat.id }}</a></td>
+                                        <td>{{ flat.reference }}</td>
+                                        <td>{{ flat.prix }}</td>
+                                        <td>{{ flat.surface }}</td>
+                                        <td>{{ flat.nbPiece }}</td>
+                                        <td>{{ flat.description }}</td>
+                                        <td>{{ flat.prestationComplementaire }}</td>
+                                        <td>{{ flat.statut }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_flat_show', { 'id': flat.id }) }}"><i
+                                                        class="material-icons">remove_red_eye</i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_flat_edit', { 'id': flat.id }) }}"><i
+                                                        class="material-icons">build</i></a>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <hr>
+                            <ul>
+                                <li>
+
+                                    <a href="{{ path('admin_flat_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">add</i>Ajouter un bien</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

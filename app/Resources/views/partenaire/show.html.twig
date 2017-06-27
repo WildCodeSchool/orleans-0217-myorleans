@@ -1,36 +1,56 @@
-{% extends 'base.html.twig' %}
+{% extends '::layout_admin.html.twig' %}
 
-{% block body %}
-    <h1>Partenaire</h1>
+{% block content %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ partenaire.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ partenaire.nom }}</td>
-            </tr>
-            <tr>
-                <th>Url</th>
-                <td>{{ partenaire.url }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
 
-    <ul>
-        <li>
-            <a href="{{ path('partenaire_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('partenaire_edit', { 'id': partenaire.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Partenaire : {{ partenaire.nom }}</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ partenaire.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ partenaire.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Url</th>
+                                    <td>{{ partenaire.url }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_partenaire_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des partenaires</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_partenaire_edit', { 'id': partenaire.id }) }}"><i
+                                                class="material-icons">build</i>Éditer ce partenaire</a>
+                                </li>
+
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
+                                    {{ form_end(delete_form) }}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}

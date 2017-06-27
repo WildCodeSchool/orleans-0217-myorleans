@@ -3,30 +3,43 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}" media="screen,projection"/>
+    <link rel="stylesheet" href="{{ asset('css/style_accueil.css') }}" media="screen,projection"/>
 {% endblock %}
 
 {% block content %}
-    <div class="content-appartement">
+    <div id="content" class="content-appartement">
         <div class="container-fluid">
             <div class="row center">
                 <div class="col s12 l12 m10">
-                    <h2><span>Le Pryvé</span></h2>
+                    <h2>
+                        <span>Le Pryvé</span>
+                    </h2>
                 </div>
-                <div class="center">
-                    <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la documentation</a>
+                <div class="row">
+                    <div class="col offset-l1 l5 s10">
+                        <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la
+                            documentation</a>
+                    </div>
+
+                    <div id="editor" class="col offset-l1 l5 s10">
+
+{#
+                        <i id="cmd" class="material-icons print">print</i>
+#}
+                        <button id="cmd">generate PDF</button>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row center photoinfo-apt">
         <div class="col offset-l1 s10 m5">
             <div data-aos="fade-right">
                 <img src="{{ asset('img/apt-neuf.jpg') }}" class="photo-apt" alt="photo-appart"/>
             </div>
         </div>
-
-        <div data-aos="fade-left" class="col offset-l1 s10 m5">
+        <div data-aos="fade-left" class="col s10 m5">
             <div class="info-apt">
                 <h3>St Pryvé St Mesmin</h3>
                 <h3>Appartement Neuf</h3>
@@ -35,44 +48,49 @@
                 <h3>137 200 €</h3>
             </div>
         </div>
-        {#                </div>
-                        </div>#}
     </div>
-    {#        </div>#}
     <div class="row center">
         <div class="col s12">
             <img class="plan" src="{{ asset('img/plan.jpg') }}" alt="plan"/>
         </div>
     </div>
-
     <div class="row center">
         <div class="col s12">
             <img class="notation" src="{{ asset('img/notation.jpg') }}" alt="notation"/>
         </div>
     </div>
     <div class="row">
-        <div class="col offset-l1 l6 s10">
-            <h3>La Residence</h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </div>
-        <div class="col offset-l1 l4 s10">
-            <h3>Les Prestations</h3>
-            <img class="icon-residence" src="{{ asset('img/icons/Wheelchair_Accessible.png') }}"
-                 alt="acces handicape"/>Accessibiité<br/>
-            <img class="icon-residence" src="{{ asset('img/icons/shopping-cart.png') }}"
-                 alt="commerces"/>Commerces<br/>
-            <img class="icon-residence" src="{{ asset('img/icons/smoking_not_allowed.png') }}"
-                 alt="non fumeur"/>Non Fumeur<br/>
-            <img class="icon-residence" src="{{ asset('img/icons/finance.png') }}"
-                 alt="éligibilité loi pinel"/>Eligible Loi Pinel
-
+        <div class="col offset-l1 l10 center">
+            <div class="row">
+                <div class="col offset-l1 l5 s10">
+                    <h3>La Residence</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                        sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+                <div class="col l5 s10">
+                    <h3>Les Prestations</h3>
+                    <div class="row icon-left">
+                        <div class="col offset-l1 l5">
+                            <img class="icon-residence" src="{{ asset('img/icons/Wheelchair_Accessible.png') }}"
+                                 alt="acces handicape"/>Accessibiité<br/>
+                            <img class="icon-residence" src="{{ asset('img/icons/shopping-cart.png') }}"
+                                 alt="commerces"/>Commerces<br/>
+                        </div>
+                        <div class="col l5">
+                            <img class="icon-residence" src="{{ asset('img/icons/smoking_not_allowed.png') }}"
+                                 alt="non fumeur"/>Non Fumeur<br/>
+                            <img class="icon-residence" src="{{ asset('img/icons/finance.png') }}"
+                                 alt="éligibilité loi pinel"/>Eligible Loi Pinel
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container-fluid">
@@ -140,17 +158,32 @@
             </div>
         </div>
     </div>
-    <div class="col l6 s12">
-        <a href="#" class="demande-doc">Demander la documentation</a>
+    <div>
+        <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la documentation</a>
     </div>
-    </div>
-    </div>
+
 
     {% block javascripts %}
         {{ parent() }}
         <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
         <script>
             AOS.init();
+        </script>
+        <script>
+            var doc = new jsPDF();
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                    return true;
+                }
+            };
+
+            $('#cmd').click(function () {
+                doc.fromHTML($('#content').html(), 15, 15, {
+                    'width': 170,
+                    'elementHandlers': specialElementHandlers
+                });
+                doc.save('sample-file.pdf');
+            });
         </script>
     {% endblock %}
 

@@ -71,6 +71,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
 nav {
     background-color: rgba(248, 248, 248, 0.9);
     padding: 10px 20px;
+    box-shadow: none;
 }
 
 nav .brand-logo {
@@ -82,6 +83,10 @@ nav ul a {
     font-size: 16px;
 }
 
+nav ul a:hover {
+    border-bottom: 5px solid  #a5ca2a;
+     background: inherit;
+}
 /*nav li {
     border-right: solid #7a7a7a 1px;
 }*/
@@ -160,52 +165,41 @@ body {
 /* --------------------------------------------------------------------*!
 !* ------------------------ ACCUEIL --------------------------*!
 !* --------------------------------------------------------------------*/
-/*#siteWrapper header {
-    position: absolute;
-    top: inherit;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-
-#siteWrapper header.fixed {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-
-}
-
-.cover {
-    background: rgba(0, 0, 0, 0) url("../img/cover2.jpg");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}*/
 
 #GrandeIntro {
     height: 100%;
     background: url("../img/cover2.jpg") no-repeat;
     background-size: cover;
     background-position: center;
+    background-color: rgba(0,0,0,0.7);
+}
 
+.logoIntro img{
+    margin-top: 70px;
+    width: 350px;
+    height: auto;
+    padding-bottom: 50px;
+    border-bottom: 5px solid #a5ca2a;
 }
 
 .pictoParcours{
-    margin-top: 150px;
+    margin-top: 20px;
+    padding-bottom: 20px;
 }
 
 .pictoParcours a i {
-    font-size: 400px;
-    color: grey ;
+    font-size: 250px;
+    color: #C8CACC ;
     -webkit-transition:color 250ms ease-out;
     -moz-transition:color 250ms ease-out;
     transition:color 250ms ease-out;
+    background-color: rgba(255,255,255, .95);
+    padding: 5px;
+    height: 290px;
+    width: 290px;
+    border-radius: 50%;
 }
 .pictoParcours a:hover i {
-    font-size: 400px;
     color: #a5ca2a ;
 }
 
@@ -349,7 +343,7 @@ figure {
 
 .formSearch {
     background-color: rgba(255, 255, 255, 0.9);
-    margin-top: 50px;
+    margin-top: 130px;
     position: relative;
     padding: 15px !important;
 }
@@ -443,34 +437,25 @@ ACCUEIL - BLOC AGENCE
 
 .carouselAgence .carousel a {
     color: white;
-
 }
 
 .carouselAgence .carousel .carousel-item {
-    height: 350px;
-    width: 350px;
-
+    height: 250px;
+    width: 250px;
 }
 
-@media screen and (max-width:767px ){
-    .carouselAgence .carousel {
-        height: 400px;
-    }
-
-    .carouselAgence .carousel .carousel-item {
-        height: 150px;
-        width: 150px;
-    }
-
-    .buttonNewsletter{
-        font-size: 14px;
-    }
+.carousel .carousel-item p{
+    color: #444444;
+    font-size: 16px;
+}
+.carousel .carousel-item p span{
+    color: #a5c143;
+    font-size: 13px;
 }
 
 /* ==========================================================================
 FIN ACCUEIL - BLOC AGENCE
 =======*/
-
 
 
 .section-title {
@@ -490,11 +475,19 @@ FIN ACCUEIL - BLOC AGENCE
 
 
 /* --------------------------------------------------------------------*/
+/* ------------------------------ BLOC ACTU EVENT ---------------------*/
+/* --------------------------------------------------------------------*/
+.card .card-content .card-title i{
+   color: #a5c143;
+}
+
+
+/* --------------------------------------------------------------------*/
 /* ------------------------------ FOOTER ------------------------------*/
 /* --------------------------------------------------------------------*/
 
 .pre-footer {
-    margin-bottom: -7px;
+    margin-bottom: -8px;
 }
 
 .skyline {
@@ -505,8 +498,8 @@ FIN ACCUEIL - BLOC AGENCE
     background-color: #c8cacc;
 }
 
-.footer-right-side {
-    border-left: solid #7a7a7a 1px;
+.footer-left-side {
+    border-right: 1px solid white;
 }
 
 .footer-right-side a {
@@ -524,7 +517,7 @@ FIN ACCUEIL - BLOC AGENCE
 
 .p-footer-phone {
     color: #444444;
-    font-size: 28px;
+    font-size: 20px;
 }
 
 .align-icon {
@@ -539,6 +532,14 @@ FIN ACCUEIL - BLOC AGENCE
     border-radius: 50px;
     background-color: white;
     margin: 15px 50px 0 0;
+    -webkit-transition: background-color 500ms ease-out 10ms;
+    -moz-transition: background-color 500ms ease-out 10ms;
+    -o-transition: background-color 500ms ease-out 10ms;
+    transition: background-color 500ms ease-out 10ms;
+}
+
+.social-btn:hover {
+    background-color: #444444;
 }
 
 .icon-social {
@@ -551,6 +552,17 @@ FIN ACCUEIL - BLOC AGENCE
     margin-top: 11px;
     margin-left: 17px;
     color: #c8cacc;
+}
+
+.email a{
+    -webkit-transition: color 500ms ease-out 10ms;
+    -moz-transition: color 500ms ease-out 10ms;
+    -o-transition: color 500ms ease-out 10ms;
+    transition: color 500ms ease-out 10ms;
+}
+
+.email a:hover{
+   color: white;
 }
 
 /* --------------------------------------------------------------------*/
@@ -569,3 +581,155 @@ FIN ACCUEIL - BLOC AGENCE
     margin-bottom: 0;
 }
 
+/* --------------------------------------------------------------------*/
+/* ------------------------ BACK TO TOP --------------------------*/
+/* --------------------------------------------------------------------*/
+
+#back-top {
+    position: fixed;
+    bottom: 30px;
+    z-index: 99;
+}
+
+#back-top a {
+    position: fixed;
+    right: 20px;
+    bottom: 15px;
+    width: 108px;
+    display: block;
+    text-align: center;
+    font: 11px/100% Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #bbb;
+
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+#back-top a:hover {
+    color: #000;
+}
+
+/* arrow icon (span tag) */
+#back-top span {
+    width: 108px;
+    height: 108px;
+    display: block;
+    margin-bottom: 7px;
+    background: #ddd url(up-arrow.png) no-repeat center center;
+
+    /* rounded corners */
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+#back-top a:hover span {
+    background-color: #777;
+}
+
+#back-top a img{
+    height: 20%;
+    width: 20%;
+
+}
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ MEDIAS QUERIES --------------------------*/
+/* --------------------------------------------------------------------*/
+
+
+@media (max-width: 767px){
+
+    h3 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .logoIntro img{
+        margin-top: 60px;
+        width: 150px;
+        height: auto;
+        padding-bottom: 30px;
+        border-bottom: 5px solid #a5ca2a;
+    }
+
+    .pictoParcours a i {
+        font-size: 100px;
+        height: 110px;
+        width: 110px;
+        border-radius: 50%;
+    }
+
+    .formButton input{
+        font-size: 10px;
+        width: auto;
+    }
+
+    .liste-biens h4 {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+    .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+        color: #b7d64a;
+        font-size: 14px;
+        margin-right: inherit;
+    }
+
+    .buttonNewsletter{
+        font-size: 9px;
+        height: 100%;
+    }
+    .modal-trigger i {
+        font-size: 10px;
+    }
+
+    .carouselAgence .carousel {
+        height: 400px;
+    }
+
+    .carouselAgence .carousel .carousel-item {
+        height: 150px;
+        width: 150px;
+    }
+
+    .carousel .carousel-item p{
+        color: #444444;
+    }
+    .carousel .carousel-item p span{
+        color: #a5c143;
+        font-size: 13px;
+    }
+
+    .social-btn {
+        height: 45px;
+        width: 45px;
+        border-radius: 50px;
+        margin: 15px 50px 0 0;
+    }
+
+    .social-btn{
+        font-size: 12px;
+    }
+
+    .icon-social {
+        margin-top: 4px;
+        margin-left: 8px;
+    }
+
+    .fb-social {
+        margin-top: 6px;
+        margin-left: 11px;
+    }
+
+    .footer-copyright p{
+        font-size: 12px;
+    }
+}

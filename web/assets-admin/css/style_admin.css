@@ -1,0 +1,33 @@
+.sidebar .nav li.active a{
+    background-color: #8BC34A;
+}
+i{
+    color:#8BC34A;
+}
+
+.content a{
+    color:#8BC34A;
+}
+
+.content a:hover{
+    color:grey;
+}
+
+.nav li{
+    position: relative;
+    display: block;
+    color: slategrey;
+}
+.collapsible-header{
+    background-color: inherit;
+    border-bottom:none;
+}
+
+.collapsible-body {
+    border-bottom:none;
+}
+
+.sidebar[data-color="green"] .nav div.active a, .off-canvas-sidebar[data-color="green"] .nav li.active a {
+    background-color: #8BC34A;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}

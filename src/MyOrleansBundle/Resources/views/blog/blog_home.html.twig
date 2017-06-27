@@ -2,78 +2,311 @@
 
 {% block content %}
 
-<div class="container margin-top-container">
-    <div class="row header-blog center">
-        <h1>IMMOBILIRAMA</h1>
-        <h2>Toute l'actualité de l'immobilier neuf</h2>
-        <p>Découvrez des dossiers thématiques, des conseils, des témoignages,... Lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum vlorem ipsum vlorem ipsum lorem ipsum lorem ipsum lorem
-            ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
-    </div>
-</div>
+<div class="container-fluid margin-top-container">
 
-<div class="row barre-recherche">
-    <div class="container">
-        <div class="col s12 m6">
-            <h4>Rechercher des articles par thèmes</h4>
-            <div class="input-field col s12 center">
-                <select>
-                    <option value="" disabled selected>Rechercher un thème</option>
-                    <option value="1">Loi Pinel</option>
-                    <option value="2">Défiscalisation</option>
-                    <option value="3">Premier achat</option>
-                </select>
+    <div class="parallax-container">
+        <div class="parallax"><img src="{{ asset('img/blog/blog-header.jpg') }}"></div>
+        <div class="header-blog center">
+            <h2>IMMOBILIRAMA</h2>
+            <h1>Toute l'actualité de l'immobilier neuf</h1>
+            <p>Découvrez des dossiers thématiques, des conseils, des témoignages,... Lorem ipsum lorem ipsum lorem ipsum
+                lorem ipsum lorem ipsum lorem ipsum lorem ipsum vlorem ipsum vlorem ipsum lorem ipsum lorem ipsum lorem
+                ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+        </div>
+    </div>
+    <div class="section white">
+        <div class="row container barre-recherche">
+            <div class="col s12 m6 center">
+                <h4>Rechercher des articles par thèmes</h4>
+                <div class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Thèmes</option>
+                        <option value="1">Loi Pinel</option>
+                        <option value="2">Défiscalisation</option>
+                        <option value="3">Premier achat</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col s12 offset-m1 m5 center">
+                <h4>Recevoir les derniers articles</h4>
+                <a class="waves-effect waves-light btn-large btn-newsletter"><i class="material-icons left">mode_edit</i>je m'abonne à la newsletter</a>
             </div>
         </div>
-        <div class="col s12 offset-m1 m5 center">
-            <h4>Recevoir les derniers articles</h4>
-            <a class="waves-effect waves-light btn-large btn-newsletter"><i class="material-icons left">mode_edit</i>je m'abonne à la newsletter</a>
-        </div>
     </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="{{ asset('img/blog/blog-header-2.jpg') }}"></div>
+    </div>
+
 </div>
 
-<div class="container">
+<div class="row titre-grid-articles">
+    <h3><span>Les derniers articles</span></h3>
+</div>
+
+{#    // Tentative utilisation flexbox //
+    <div class="flexcol">
+        <div class="flexbox">
+
+        </div>
+        <div class="flexbox">
+
+        </div>
+        <div class="flexbox">
+
+        </div>
+    </div>
+    <div class="flexcol">
+        <div class="flexbox">
+
+        </div>
+        <div class="flexbox">
+
+        </div>
+        <div class="flexbox">
+
+        </div>
+    </div>
+    <div class="flexcol">
+        <div class="flexbox">
+
+        </div>
+        <div class="flexbox">
+
+        </div>
+        <div class="flexbox">
+
+        </div>
+    </div>#}
+
     <div class="row">
-        <h3></h3>
+
+    {% for article in articles  %}
+        <div class="col offset-s1 s10 l6 xl4">
+            <div class="blockArticle center">
+                <div class="imgArticle">
+                    <img class="responsive-img" src="{{ asset('img/blog/blog11.jpg') }}" alt="">
+                </div>
+                <div class="titreArticle">
+                    <h4 class="white-text">{{ article.titre }}</h4>
+                </div>
+                <div class="infoArticle">
+                    <h4 class="white-text">{{ article.titre }}</h4>
+                    <p>{{ article.text | truncate(20, true, '...') }}</p>
+
+                    {% for tag in article.tag  %}
+                    <div class="chip">
+                        {{ tag }}
+                    </div>
+                    {% endfor %}
+
+                    <div class="row lien-article">
+                        <a href="#">LIRE L'ARTICLE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+        {#<div class="col offset-s1 s10 l6 xl4">
+            <div class="blockArticle center">
+                <div class="imgArticle">
+                    <img class="responsive-img" src="{{ asset('img/blog/blog12.jpg') }}" alt="">
+                </div>
+                <div class="titreArticle">
+                    <h4 class="white-text">Titre article</h4>
+                </div>
+                <div class="infoArticle">
+                    <h4 class="white-text">Titre article</h4>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                    <div class="chip">
+                        Loi Pinel
+                    </div>
+                    <div class="chip">
+                        Investissement
+                    </div>
+                    <div class="row lien-article">
+                        <a href="#">LIRE L'ARTICLE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col offset-s1 s10 l6 xl4">
+            <div class="blockArticle center">
+                <div class="imgArticle">
+                    <img class="responsive-img" src="{{ asset('img/blog/blog13.jpg') }}" alt="">
+                </div>
+                <div class="titreArticle">
+                    <h4 class="white-text">Titre article</h4>
+                </div>
+                <div class="infoArticle">
+                    <h4 class="white-text">Titre article</h4>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                    <div class="chip">
+                        Loi Pinel
+                    </div>
+                    <div class="chip">
+                        Investissement
+                    </div>
+                    <div class="row lien-article">
+                        <a href="#">LIRE L'ARTICLE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col offset-s1 s10 l6 xl4">
+            <div class="blockArticle center">
+                <div class="imgArticle">
+                    <img class="responsive-img" src="{{ asset('img/blog/blog14.jpg') }}" alt="">
+                </div>
+                <div class="titreArticle">
+                    <h4 class="white-text">Titre article</h4>
+                </div>
+                <div class="infoArticle">
+                    <h4 class="white-text">Titre article</h4>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                    <div class="chip">
+                        Loi Pinel
+                    </div>
+                    <div class="chip">
+                        Investissement
+                    </div>
+                    <div class="row lien-article">
+                        <a href="#">LIRE L'ARTICLE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col offset-s1 s10 l6 xl4">
+            <div class="blockArticle center">
+                <div class="imgArticle">
+                    <img class="responsive-img" src="{{ asset('img/blog/blog15.jpg') }}" alt="">
+                </div>
+                <div class="titreArticle">
+                    <h4 class="white-text">Titre article</h4>
+                </div>
+                <div class="infoArticle">
+                    <h4 class="white-text">Titre article</h4>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                    <div class="chip">
+                        Loi Pinel
+                    </div>
+                    <div class="chip">
+                        Investissement
+                    </div>
+                    <div class="row lien-article">
+                        <a href="#">LIRE L'ARTICLE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col offset-s1 s10 l6 xl4">
+            <div class="blockArticle center">
+                <div class="imgArticle">
+                    <img class="responsive-img" src="{{ asset('img/blog/blog16.jpg') }}" alt="">
+                </div>
+                <div class="titreArticle">
+                    <h4 class="white-text">Titre article</h4>
+                </div>
+                <div class="infoArticle">
+                    <h4 class="white-text">Titre article</h4>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                    <div class="chip">
+                        Loi Pinel
+                    </div>
+                    <div class="chip">
+                        Investissement
+                    </div>
+                    <div class="row lien-article">
+                        <a href="#">LIRE L'ARTICLE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col offset-s1 s10 l6 xl4">
+            <div class="blockArticle center">
+                <div class="imgArticle">
+                    <img class="responsive-img" src="{{ asset('img/blog/blog17.jpg') }}" alt="">
+                </div>
+                <div class="titreArticle">
+                    <h4 class="white-text">Titre article</h4>
+                </div>
+                <div class="infoArticle">
+                    <h4 class="white-text">Titre article</h4>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                    <div class="chip">
+                        Loi Pinel
+                    </div>
+                    <div class="chip">
+                        Investissement
+                    </div>
+                    <div class="row lien-article">
+                        <a href="#">LIRE L'ARTICLE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col offset-s1 s10 l6 xl4">
+            <div class="blockArticle center">
+                <div class="imgArticle">
+                    <img class="responsive-img" src="{{ asset('img/blog/blog18.jpg') }}" alt="">
+                </div>
+                <div class="titreArticle">
+                    <h4 class="white-text">Titre article</h4>
+                </div>
+                <div class="infoArticle">
+                    <h4 class="white-text">Titre article</h4>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                    <div class="chip">
+                        Loi Pinel
+                    </div>
+                    <div class="chip">
+                        Investissement
+                    </div>
+                    <div class="row lien-article">
+                        <a href="#">LIRE L'ARTICLE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col offset-s1 s10 l6 xl4">
+            <div class="blockArticle center">
+                <div class="imgArticle">
+                    <img class="responsive-img" src="{{ asset('img/blog/blog11.jpg') }}" alt="">
+                </div>
+                <div class="titreArticle">
+                    <h4 class="white-text">Titre article</h4>
+                </div>
+                <div class="infoArticle">
+                    <h4 class="white-text">Titre article</h4>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                    <div class="chip">
+                        Loi Pinel
+                    </div>
+                    <div class="chip">
+                        Investissement
+                    </div>
+                    <div class="row lien-article">
+                        <a href="#">LIRE L'ARTICLE</a>
+                    </div>
+                </div>
+            </div>
+        </div>#}
+
     </div>
-    <div class="row">
-        <div class="col s12 m6 l4 grid-col">
-            <div class="row">
-
-            </div>
-            <div class="row">
-
-            </div>
-            <div class="row">
-
-            </div>
-        </div>
-        <div class="col s12 m6 l4 grid-col">
-            <div class="row">
-
-            </div>
-            <div class="row">
-
-            </div>
-            <div class="row">
-
-            </div>
-        </div>
-        <div class="col s12 m6 l4 grid-col">
-            <div class="row">
-
-            </div>
-            <div class="row">
-
-            </div>
-            <div class="row">
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 
 {% endblock content %}

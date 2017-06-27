@@ -16,4 +16,13 @@
 /web/bundles/
 /.idea/
 composer.json
+
 /app/config/parameters.yml
+
+/.web-server-pid
+
+.web-server-pid
+
+
+
+*~

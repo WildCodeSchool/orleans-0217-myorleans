@@ -1,40 +1,60 @@
-{% extends 'base.html.twig' %}
+{% extends '::layout_admin.html.twig' %}
 
-{% block body %}
-    <h1>Pack</h1>
+{% block content %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ pack.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ pack.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ pack.description }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ pack.prix }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
 
-    <ul>
-        <li>
-            <a href="{{ path('pack_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('pack_edit', { 'id': pack.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Pack : {{ pack.nom }}</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ pack.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ pack.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ pack.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prix</th>
+                                    <td>{{ pack.prix }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_pack_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des packs</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_pack_edit', { 'id': rpack.id }) }}"><i
+                                                class="material-icons">build</i>Éditer ce pack</a>
+                                </li>
+
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
+                                    {{ form_end(delete_form) }}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}

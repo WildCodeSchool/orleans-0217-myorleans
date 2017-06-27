@@ -2,55 +2,54 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}"  media="screen,projection"/>
+    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}" media="screen,projection"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 {% endblock %}
 
 {% block body %}
+    <div class="container-fluid">
 
-<div class="container-fluid">
+    {% block navbar %}
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="{{ path("home") }}" class="brand-logo">
+                        <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
+                    </a>
+                    <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i
+                                class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
+                        <li><a href="{{ path("nosservices") }}">Nos services</a></li>
+                        <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
+                        <li><a href="{{ path("agence") }}">Notre agence</a></li>
+                        <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
+                        <li><a href="{{ path("homeblog") }}">Blog</a></li>
+                    </ul>
+                    <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
+                        <li><a href="#">Nos biens</a></li>
+                        <li><a href="#">Nos services</a></li>
+                        <li><a href="{{ path("parcoursimmo") }}">Votre parcours immobilier</a></li>
+                        <li><a href="#">L'agence</a></li>
+                        <li><a href="#">L'immobilier pratique</a></li>
+                        <li><a href="{{ path("homeblog") }}">Blog</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
-{% block navbar %}
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper">
-                <a href="{{ path("home") }}" class="brand-logo">
-                    <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
-                </a>
-                <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i
-                            class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
-                    <li><a href="{{ path("nosservices") }}">Nos services</a></li>
-                    <li><a href="#">Parcours immobiliers</a></li>
-                    <li><a href="{{ path("agence") }}">Notre agence</a></li>
-                    <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-                <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
-                    <li><a href="#">Nos biens</a></li>
-                    <li><a href="#">Nos services</a></li>
-                    <li><a href="#">Votre parcours immobilier</a></li>
-                    <li><a href="#">L'agence</a></li>
-                    <li><a href="#">L'immobilier pratique</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-
-{% endblock navbar %}
-
-
-
-{% block content %}
-
-{% endblock %}
+    {% endblock navbar %}
 
 
 
-{% block footer %}
+    {% block content %}
+
+    {% endblock %}
+
+
+
+    {% block footer %}
 
         <div class="pre-footer">
             <img class="skyline" src="{{ asset('img/toit_Orleans_vFinal.png') }}" alt="toits d'Orléans"/>
@@ -58,28 +57,27 @@
 
         <footer class="page-footer">
             <div class="container">
+                <p id="back-top"><a href="#top"><img src="{{ asset('img/backTop.png') }}"></a></p>
                 <div class="row">
-                    <div class="col l6 s12">
-                        <div class="row no-margin-bottom">
-                            <h5 class="white-text">Suivez-nous</h5>
-                        </div>
+                    <div class="col l6 s12 footer-left-side">
+                        <h5 class="white-text">Suivez-nous</h5>
                         <div class="row">
                             <div class="col s1">
-                                <a href="#">
+                                <a href="https://www.facebook.com/myorleans/?ref=page_internal" target="_blank">
                                     <div class="social-btn">
                                         <i class="fa fa-facebook fa-3x fb-social" aria-hidden="true"></i>
                                     </div>
                                 </a>
                             </div>
                             <div class="col offset-s1 s1">
-                                <a href="#">
+                                <a href="https://twitter.com/myorleans" target="_blank">
                                     <div class="social-btn">
                                         <i class="fa fa-twitter fa-3x icon-social" aria-hidden="true"></i>
                                     </div>
                                 </a>
                             </div>
                             <div class="col offset-s1 s1">
-                                <a href="#">
+                                <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ" target="_blank">
                                     <div class="social-btn">
                                         <i class="fa fa-youtube fa-3x icon-social" aria-hidden="true"></i>
                                     </div>
@@ -89,16 +87,17 @@
                     </div>
                     <div class="col l5 offset-l1 s12 footer-right-side">
                         <h5 class="white-text">Contactez-nous</h5>
-                        <p class="p-footer-phone no-margin-bottom"><span><i class="small material-icons align-icon">phone</i></span>02 38 75 94
-                            47</p>
+                        <p class="p-footer-phone no-margin-bottom"><span><i
+                                        class="small material-icons align-icon">phone</i></span><a href="tel:+33238759447">02
+                                38 75 94
+                                47</a></p>
                         <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13,
                             rue Bannier 45000 Orléans</p>
-                        <p class="p-footer"><span><i class="small material-icons align-icon">email</i></span><a
-                                    href="#!">agence@my-orleans.com</a></p>
+                        <p class="p-footer email"><span><i class="small material-icons align-icon">email</i></span><a
+                                    href="mailto:agence@my-orleans.com">agence@my-orleans.com</a></p>
                     </div>
                 </div>
             </div>
-
             <div class="footer-copyright">
                 <div class="container">
                     <div class="row row-ml">
@@ -107,7 +106,7 @@
                         </div>
                         <div class="col s8 center">
                             <p><a class="grey-text text-lighten-4 ml-padding-right" href="#!">Mentions légales</a>
-                            <a class="grey-text text-lighten-4" href="#!">Frais et honoraires de gestion</a></p>
+                                <a class="grey-text text-lighten-4" href="#!">Frais et honoraires de gestion</a></p>
                         </div>
                         <div class="col s2">
                             <p><a class="grey-text text-lighten-4" href="#!">Wild Code School</a></p>
@@ -115,15 +114,42 @@
                     </div>
                 </div>
             </div>
-    </footer>
-</div>
+        </footer>
+        </div>
 
-{% endblock footer %}
+    {% endblock footer %}
 
-{% endblock body%}
+{% endblock body %}
 
 
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+
+            // hide #back-top first
+            $("#back-top").hide();
+
+            // fade in #back-top
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 100) {
+                        $('#back-top').fadeIn();
+                    } else {
+                        $('#back-top').fadeOut();
+                    }
+                });
+
+                // scroll body to 0px on click
+                $('#back-top a').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 800);
+                    return false;
+                });
+            });
+
+        });
+    </script>
 {% endblock %}
