@@ -57,31 +57,7 @@
 
             <div class="col s12 l4">
                 <h3>L'opportunité du moment</h3>
-                <div class="card large">
-                    <div class="card-image">
-                        {% for media in article.residence.medias if media.typeMedia.nom == 'image' %}
-                            <img src="{{ asset('img/'~media.lien) }}">
-                        {% endfor %}
-                    </div>
-                    <div class="card-content">
-                        <div class="row no-margin-bottom">
-                            <div class="col s8">
-                                <h4>{{ article.residence.nom }}</h4>
-                                <p>à {{ article.residence.ville }}</p>
-                            </div>
-                            <div class="col s4 right-content">
-                                <h4>Prix</h4>
-                                <p>Dès 90 000€</p>
-{#
-                                <p>Dès {{ min(article.residence.flats.prix) }}€</p>
-#}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-action center">
-                        <a href="{{ path('residences', { 'idResidence': article.residence.id }) }}">Découvrir la résidence</a>
-                    </div>
-                </div>
+                {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidence', {'id': residence.id, 'param':'blog' })) }}
             </div>
 
 

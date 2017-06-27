@@ -44,10 +44,7 @@ class BlogController extends Controller
         $em = $this->getDoctrine()->getManager();
         $article = $em->getRepository(Article::class)->find($idArticle);
 
-/*        $flats = $article->getResidence()->getFlats();
-        foreach ($flats as $flat) {
-            $prix[] = $flat->getPrix();
-        }*/
+        $residence = $article->getResidence();
 
         //Recuperation des tags de l'article et selection du premier tag
         $tags = $article->getTags();
@@ -61,6 +58,7 @@ class BlogController extends Controller
 
         return $this->render('MyOrleansBundle:blog:blog_article.html.twig',[
                 'article' => $article,
+                'residence' => $residence,
                 'articlesAssocies' => $articlesAssocies
         ]);
     }

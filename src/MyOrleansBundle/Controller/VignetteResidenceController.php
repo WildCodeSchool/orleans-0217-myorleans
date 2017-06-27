@@ -24,7 +24,7 @@ class VignetteResidenceController extends Controller
      *
      * @Route("/vignette-residence/{id}", name="vignette-residence")
      */
-    public function affichageResidenceAction($id, CalculateurCaracteristiquesResidence $calculateur)
+    public function affichageResidenceAction($id, $param, CalculateurCaracteristiquesResidence $calculateur)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -40,13 +40,23 @@ class VignetteResidenceController extends Controller
         $typeMax = $typeMinMax[1];
         // Fin recup caracteristiques
 
-        return $this->render('MyOrleansBundle::affichage_residence.html.twig', [
-            'residence' => $residence,
-            'prixMin' => $prixMin,
-            'flatsDispo' => $flatsDispo,
-            'typeMin' => $typeMin,
-            'typeMax' => $typeMax
-        ]);
+        if ($param == 'blog'){
+            return $this->render('MyOrleansBundle:blog:blog_affichage_residence.html.twig', [
+                'residence' => $residence,
+                'prixMin' => $prixMin,
+                'flatsDispo' => $flatsDispo,
+                'typeMin' => $typeMin,
+                'typeMax' => $typeMax
+            ]);
+        } else {
+            return $this->render('MyOrleansBundle::affichage_residence.html.twig', [
+                'residence' => $residence,
+                'prixMin' => $prixMin,
+                'flatsDispo' => $flatsDispo,
+                'typeMin' => $typeMin,
+                'typeMax' => $typeMax
+            ]);
+        }
 
     }
 
