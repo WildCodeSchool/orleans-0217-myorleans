@@ -36,7 +36,7 @@ class Partenaire
     private $url;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="partenaire")
+     * @ORM\OneToOne(targetEntity="Media", inversedBy="partenaire", cascade={"persist"})
      */
     private $media;
 

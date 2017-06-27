@@ -11,14 +11,6 @@
                             <h4 class="title">Ajouter un nouveau membre</h4>
                         </div>
                         <div class="card-content table-responsive">
-
-<<<<<<< HEAD
-    <ul>
-        <li>
-            <a href="{{ path('admin_collaborateur_index') }}">Back to the list</a>
-        </li>
-    </ul>
-=======
                             {{ form_start(form) }}
                             {{ form_widget(form) }}
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Create"/>
@@ -26,7 +18,7 @@
 
                             <ul>
                                 <li>
-                                    <a href="{{ path('collaborateur_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des membres</a>
+                                    <a href="{{ path('admin_collaborateur_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des membres</a>
                                 </li>
                             </ul>
 
@@ -36,5 +28,4 @@
             </div>
         </div>
     </div>
->>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
 {% endblock %}

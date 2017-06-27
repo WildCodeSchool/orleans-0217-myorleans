@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Categorieprestum controller.
  *
- * @Route("admin/categorie-presta")
+ * @Route("admin/categorie-prestation")
  */
 class CategoriePrestaController extends Controller
 {
