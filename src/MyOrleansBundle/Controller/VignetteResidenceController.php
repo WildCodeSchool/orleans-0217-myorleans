@@ -24,39 +24,44 @@ class VignetteResidenceController extends Controller
      *
      * @Route("/vignette-residence/{id}", name="vignette-residence")
      */
-    public function affichageResidenceAction($id, $param, CalculateurCaracteristiquesResidence $calculateur)
+    public function affichageResidenceAction(Residence $residence, CalculateurCaracteristiquesResidence $calculateur)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        // recuperation de la residence par son id
-        $residence = $em->getRepository(Residence::class)->find($id);
-
         //recuperation des caracteristiques de chaque residence
         $prixMin = $calculateur->calculPrix($residence);
         $flatsDispo = $calculateur->calculFlatDispo($residence);
         $typeMinMax = $calculateur->calculSizes($residence);
 
-        $typeMin = $typeMinMax[0];
-        $typeMax = $typeMinMax[1];
         // Fin recup caracteristiques
 
-        if ($param == 'blog'){
-            return $this->render('MyOrleansBundle:blog:blog_affichage_residence.html.twig', [
+        return $this->render('MyOrleansBundle::affichage_residence.html.twig', [
                 'residence' => $residence,
                 'prixMin' => $prixMin,
                 'flatsDispo' => $flatsDispo,
-                'typeMin' => $typeMin,
-                'typeMax' => $typeMax
-            ]);
-        } else {
-            return $this->render('MyOrleansBundle::affichage_residence.html.twig', [
-                'residence' => $residence,
-                'prixMin' => $prixMin,
-                'flatsDispo' => $flatsDispo,
-                'typeMin' => $typeMin,
-                'typeMax' => $typeMax
-            ]);
-        }
+                'typeMin' => $typeMinMax[0],
+                'typeMax' => $typeMinMax[1]
+        ]);
+
+    }
+
+
+    /**
+     * @param $id
+     * @param CalculateurCaracteristiquesResidence $calculateur
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/vignette-residence-simplifie/{id}", name="vignette-residence-simplifie")
+     */
+    public function affichageResidenceSimplifieAction(Residence $residence, CalculateurCaracteristiquesResidence $calculateur)
+    {
+        //recuperation des caracteristiques de chaque residence
+        $prixMin = $calculateur->calculPrix($residence);
+
+        // Fin recup caracteristiques
+
+        return $this->render('MyOrleansBundle:blog:blog_affichage_residence.html.twig', [
+            'residence' => $residence,
+            'prixMin' => $prixMin,
+        ]);
 
     }
 

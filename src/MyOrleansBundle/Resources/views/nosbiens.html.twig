@@ -173,7 +173,7 @@
 
                     {% for residence in residences %}
 
-                        {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidence', {'id': residence.id, 'param':'site' })) }}
+                        {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidence', {'id': residence.id })) }}
 
                     {% endfor %}
 
@@ -252,7 +252,7 @@
                                 <p>{{ article.texte | truncate(100, true, '...') }}</p>
                             </div>
                             <div class="card-action center">
-                                <a href="{{ path('blog-article', { 'idArticle': article.id }) }}">Lire l'article</a>
+                                <a href="{{ path('blog-article', { 'id': article.id }) }}">Lire l'article</a>
                             </div>
                         </div>
                     </div>

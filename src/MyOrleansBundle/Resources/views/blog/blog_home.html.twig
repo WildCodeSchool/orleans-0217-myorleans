@@ -43,41 +43,6 @@
     <h3><span>Les derniers articles</span></h3>
 </div>
 
-{#    // Tentative utilisation flexbox //
-    <div class="flexcol">
-        <div class="flexbox">
-
-        </div>
-        <div class="flexbox">
-
-        </div>
-        <div class="flexbox">
-
-        </div>
-    </div>
-    <div class="flexcol">
-        <div class="flexbox">
-
-        </div>
-        <div class="flexbox">
-
-        </div>
-        <div class="flexbox">
-
-        </div>
-    </div>
-    <div class="flexcol">
-        <div class="flexbox">
-
-        </div>
-        <div class="flexbox">
-
-        </div>
-        <div class="flexbox">
-
-        </div>
-    </div>#}
-
     <div class="row">
 
     {% for article in articles  %}
@@ -102,7 +67,7 @@
                     {% endfor %}
 
                     <div class="row lien-article">
-                        <a href="{{ path("blog-article", { 'idArticle': article.id }) }}">LIRE L'ARTICLE</a>
+                        <a href="{{ path("blog-article", { 'id': article.id }) }}">LIRE L'ARTICLE</a>
                     </div>
                 </div>
             </div>
