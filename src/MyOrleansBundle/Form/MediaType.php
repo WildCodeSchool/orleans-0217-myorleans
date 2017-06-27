@@ -27,7 +27,7 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('page')
-            ->add('lien')//, FileType::class)
+            ->add('lien')
             //->add('flats',  EntityType::class, ['class'=>Evenement::class, 'choice_label'=>'nom'])
             /* ->add('residences', EntityType::class, ['class'=>Residence::class, 'choice_label'=>'nom'])
              ->add('evenement', EntityType::class, ['class'=>Evenement::class, 'choice_label'=>'nom'])

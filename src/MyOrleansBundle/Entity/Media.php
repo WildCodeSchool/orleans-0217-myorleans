@@ -54,7 +54,7 @@ class Media
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media")
+     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media", cascade={"persist"})
      */
     private $partenaire;
 
@@ -64,6 +64,10 @@ class Media
      */
     private $service;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Collaborateur", mappedBy="media")
+     */
+    private $collaborateur;
 
     /**
      * @ORM\OneToOne(targetEntity="Pack", mappedBy="media")
@@ -382,8 +386,21 @@ class Media
         $this->articles->removeElement($article);
     }
 
-   /* public function __toString()
+    /**
+     * @return mixed
+     */
+    public function getCollaborateur()
     {
-        return $this->page;
-    }*/
+        return $this->collaborateur;
+    }
+
+    /**
+     * @param mixed $collaborateur
+     */
+    public function setCollaborateur($collaborateur)
+    {
+        $this->collaborateur = $collaborateur;
+    }
+
+
 }

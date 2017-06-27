@@ -68,9 +68,7 @@ class ResidenceController extends Controller
                 );
                 $media->setLien($filename);
             }
-           // $residence->setMedias($filename);
             $em->persist($residence);
-            //dump($residence, $media); die();
             $em->flush();
 
             return $this->redirectToRoute('admin_residence_show', array('id' => $residence->getId()));

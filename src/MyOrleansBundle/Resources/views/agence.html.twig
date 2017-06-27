@@ -66,7 +66,7 @@
                             <time>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('j-m-Y') }}{% endif %}</time>
                             {{ evenement.nom }}<br>
                             {{ evenement.description }}
-                            <img class="responsive-img" src="{{ asset('img/'~evenement.media.lien) }}">
+                            <img class="responsive-img" src="{{ asset('uploads/'~evenement.media.lien) }}">
                         </div>
                     </li>
                     {% endfor %}
@@ -90,8 +90,8 @@
                     <div class="row center">
                         {% for partenaire in partenaires %}
                             <div class="col s3 l1">
-                                <a href="{{ partenaire.url }}">
-                                    <img class="img-responsive" src="{{ partenaire.media.lien }}"
+                                <a href="{{ partenaire.url }}" target="_blank">
+                                    <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.lien) }}"
                                          alt="{{ partenaire.nom }}">
                                 </a>
                             </div>

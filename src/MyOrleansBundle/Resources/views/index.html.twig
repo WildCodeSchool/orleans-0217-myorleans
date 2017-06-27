@@ -11,8 +11,6 @@
 
 {% block body %}
 
-
-
     <div id="GrandeIntro">
         <div class="row center logoIntro">
             <div class="col s12 ">
@@ -136,7 +134,7 @@
                                 <div class="card mosaic-container">
                                     <div class="card-image">
                                         {% for media in residenceFav[0].medias if media.typeMedia.nom == 'image' %}
-                                            <img src="{{ asset('img/'~media.lien) }}">
+                                            <img src="{{ asset('uploads/'~media.lien) }}">
                                         {% endfor %}
                                     </div>
                                     <div class="card-content">
@@ -300,7 +298,7 @@
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
                         {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
-                            <img class="activator" src="{{ asset('img/'~media.lien) }}">
+                            <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
                         {% endfor %}
                     </div>
                     <div class="card-content">

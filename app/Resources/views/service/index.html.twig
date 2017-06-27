@@ -13,7 +13,6 @@
                         <div class="card-content table-responsive">
                             <table class="table">
                                 <thead class="text">
-                                r>
                                 <th>Id</th>
                                 <th>Type</th>
                                 <th>Description</th>
@@ -24,7 +23,9 @@
 
                                 {% for service in services %}
                                     <tr>
-                                        <td><a href="{{ path('admin_service_show', { 'id': service.id }) }}">{{ service.id }}</a></td>
+                                        <td>
+                                            <a href="{{ path('admin_service_show', { 'id': service.id }) }}">{{ service.id }}</a>
+                                        </td>
                                         <td>{{ service.type }}</td>
                                         <td>{{ service.description }}</td>
                                         <td>
