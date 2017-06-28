@@ -6,14 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PrestaType extends AbstractType
+class PrestationType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomPresta')->add('type_presta');
+        $builder->add('nomPrestation')->add('type_prestation');
     }
     
     /**
@@ -22,7 +22,7 @@ class PrestaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MyOrleansBundle\Entity\Presta'
+            'data_class' => 'MyOrleansBundle\Entity\Prestation'
         ));
     }
 
@@ -31,7 +31,7 @@ class PrestaType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'myorleansbundle_presta';
+        return 'myorleansbundle_prestation';
     }
 
 

@@ -1,56 +1,79 @@
-{% extends 'base.html.twig' %}
+{% extends '::layout_admin.html.twig' %}
 
-{% block body %}
-    <h1>Flat</h1>
+{% block content %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ flat.id }}</td>
-            </tr>
-            <tr>
-                <th>Reference</th>
-                <td>{{ flat.reference }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ flat.prix }}</td>
-            </tr>
-            <tr>
-                <th>Surface</th>
-                <td>{{ flat.surface }}</td>
-            </tr>
-            <tr>
-                <th>Nbpiece</th>
-                <td>{{ flat.nbPiece }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ flat.description }}</td>
-            </tr>
-            <tr>
-                <th>Prestationcomplementaire</th>
-                <td>{{ flat.prestationComplementaire }}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ flat.statut }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_flat_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_flat_edit', { 'id': flat.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Bien ref.:{{ flat.reference }} </h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ flat.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Reference</th>
+                                    <td>{{ flat.reference }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prix</th>
+                                    <td>{{ flat.prix }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface</th>
+                                    <td>{{ flat.surface }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nbpiece</th>
+                                    <td>{{ flat.nbPiece }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ flat.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prestationcomplementaire</th>
+                                    <td>{{ flat.prestationComplementaire }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Statut</th>
+                                    <td>{{ flat.statut }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_flat_index') }}"><i
+                                                class="material-icons">keyboard_return</i>Retour à la liste des
+                                        biens</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_flat_edit', { 'id': flat.id }) }}"><i
+                                                class="material-icons">build</i>Éditer ce bien</a>
+                                </li>
+
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Delete"
+                                           class="waves-effect waves-light btn-large red pull-right">
+                                    {{ form_end(delete_form) }}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}

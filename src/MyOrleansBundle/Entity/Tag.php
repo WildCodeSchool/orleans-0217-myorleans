@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Tag
@@ -30,6 +31,8 @@ class Tag
 
     /**
      * @ORM\ManyToMany(targetEntity="Article", inversedBy="tags")
+     * @JoinTable(name="article_tag")
+     *
      */
     private $articles;
 

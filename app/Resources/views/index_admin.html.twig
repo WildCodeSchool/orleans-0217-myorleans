@@ -8,7 +8,6 @@
                     <h3>Bonjour et bienvenue sur votre espace administration</h3>
                     <h5> Celui-ci est conçu dans le but de gérer intuitivement le contenu de votre site internet. <br>
                     </h5>
-                    <p> Voici la liste des personnes dernièrement enregistrées via le formulaire de contact :</p>
                 </div>
             </div>
             <div class="row">
@@ -25,7 +24,6 @@
                                 <th>Adresse</th>
                                 <th>Code Postal</th>
                                 <th>Ville</th>
-
                                 <th>Aperçu</th>
                                 <th>Éditer</th>
                                 </thead>
@@ -36,14 +34,14 @@
                                         <td>{{ residence.nom }}</td>
                                         <td>{{ residence.adresse }}</td>
                                         <td>{{ residence.codePostal }}</td>
-                                        <td>{{ residence.ville }}</td>
+                                        <td>{{ residence.ville.nom }}</td>
 
                                         <td>
-                                            <a href="{{ path('residence_show', { 'id': residence.id }) }}"><i
+                                            <a href="{{ path('admin_residence_show', { 'id': residence.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('residence_edit', { 'id': residence.id }) }}"><i
+                                            <a href="{{ path('admin_residence_edit', { 'id': residence.id }) }}"><i
                                                         class="material-icons">build</i></a>
                                         </td>
                                     </tr>
@@ -53,7 +51,7 @@
                             </table>
                             <p>
                                 Ajoutez une nouvelle résidence
-                                <a href="{{ path('residence_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter une
+                                <a href="{{ path('admin_residence_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter une
                                     résidence</a>
                             </p>
                         </div>

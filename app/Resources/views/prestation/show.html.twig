@@ -16,22 +16,22 @@
                                 <tbody>
                                 <tr>
                                     <th>Id</th>
-                                    <td>{{ prestum.id }}</td>
+                                    <td>{{ presta.id }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Value</th>
-                                    <td>{{ prestum.value }}</td>
+                                    <th>Prestation</th>
+                                    <td>{{ presta.nomPrestation }}</td>
                                 </tr>
                                 </tbody>
                             </table>
                             <hr>
                             <ul>
                                 <li>
-                                    <a href="{{ path('presta_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des prestations</a>
+                                    <a href="{{ path('admin_prestation_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des prestations</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('presta_edit', { 'id': prestum.id }) }}"><i
-                                                class="material-icons">build</i>Éditer cet article</a>
+                                    <a href="{{ path('admin_prestation_edit', { 'id': presta.id }) }}"><i
+                                                class="material-icons">build</i>Éditer cette prestation</a>
                                 </li>
 
                                 <li>
@@ -47,35 +47,4 @@
             </div>
         </div>
     </div>
-
-<<<<<<< HEAD
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ prestum.id }}</td>
-            </tr>
-            <tr>
-                <th>Nompresta</th>
-                <td>{{ prestum.nomPresta }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_presta_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_presta_edit', { 'id': prestum.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-=======
-
->>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
 {% endblock %}
