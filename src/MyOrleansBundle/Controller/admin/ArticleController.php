@@ -3,9 +3,11 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\Media;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Article controller.
@@ -40,11 +42,24 @@ class ArticleController extends Controller
     public function newAction(Request $request)
     {
         $article = new Article();
+        $media = new Media();
+        $article->getMedias()->add($media);
         $form = $this->createForm('MyOrleansBundle\Form\ArticleType', $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $medias = $article->getMedias();
+
+            foreach ($medias as $media) {
+                $file = $media->getLien();
+                $filename = 'image' . uniqid() . '.' . $file->guessExtension();
+                $file->move(
+                    $this->getParameter('upload_directory'),
+                    $filename
+                );
+                $media->setLien($filename);
+            }
             $em->persist($article);
             $em->flush();
 
@@ -130,7 +145,6 @@ class ArticleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_article_delete', array('id' => $article->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

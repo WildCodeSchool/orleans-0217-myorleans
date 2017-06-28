@@ -2,10 +2,12 @@
 
 namespace MyOrleansBundle\Controller\admin;
 
+use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Partenaire;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Partenaire controller.
@@ -23,7 +25,6 @@ class PartenaireController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $partenaires = $em->getRepository('MyOrleansBundle:Partenaire')->findAll();
 
         return $this->render('partenaire/index.html.twig', array(
@@ -45,6 +46,15 @@ class PartenaireController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $media = $partenaire->getMedia();
+            $file = $media->getLien();
+
+            $filename = 'partenaire' . uniqid() . '.' . $file->guessExtension();
+            $file->move(
+                $this->getParameter('upload_directory'),
+                $filename
+            );
+            $media->setLien($filename);
             $em->persist($partenaire);
             $em->flush();
 
@@ -130,7 +140,6 @@ class PartenaireController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_partenaire_delete', array('id' => $partenaire->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

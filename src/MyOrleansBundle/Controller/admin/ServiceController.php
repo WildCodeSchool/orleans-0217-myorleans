@@ -45,6 +45,15 @@ class ServiceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $media = $service->getMedia();
+            $file = $media->getLien();
+
+            $filename = 'service' . uniqid() . '.' . $file->guessExtension();
+            $file->move(
+                $this->getParameter('upload_directory'),
+                $filename
+            );
+            $media->setLien($filename);
             $em->persist($service);
             $em->flush();
 

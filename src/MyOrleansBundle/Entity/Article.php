@@ -48,7 +48,8 @@ class Article
     private $date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Media", cascade={"all"}, fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
+     * @JoinTable(name="article_media")
      */
     private $medias;
 

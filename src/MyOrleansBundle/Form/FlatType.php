@@ -2,6 +2,7 @@
 
 namespace MyOrleansBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +28,7 @@ class FlatType extends AbstractType
                 array(
                     'entry_type' => MediaType::class
                 ))
-            ->add('residence');
+            ->add('residence',EntityType::class, ['class' => 'MyOrleansBundle:Residence', 'choice_label' => 'nom']);
     }
     
     /**

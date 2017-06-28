@@ -45,6 +45,15 @@ class PackController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $media = $pack->getMedia();
+            $file = $media->getLien();
+
+            $filename = 'pack' . uniqid() . '.' . $file->guessExtension();
+            $file->move(
+                $this->getParameter('upload_directory'),
+                $filename
+            );
+            $media->setLien($filename);
             $em->persist($pack);
             $em->flush();
 

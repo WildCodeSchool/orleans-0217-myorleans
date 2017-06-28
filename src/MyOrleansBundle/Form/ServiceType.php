@@ -13,7 +13,10 @@ class ServiceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type')->add('description')->add('media');
+        $builder
+            ->add('type')
+            ->add('description')
+            ->add('media', MediaType::class);
     }
     
     /**

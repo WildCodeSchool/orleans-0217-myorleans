@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Evenement;
+use MyOrleansBundle\Entity\Media;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -40,11 +41,25 @@ class EvenementController extends Controller
     public function newAction(Request $request)
     {
         $evenement = new Evenement();
+        $media = new Media();
+        $evenement->getMedias()->add($media);
         $form = $this->createForm('MyOrleansBundle\Form\EvenementType', $evenement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $medias = $evenement->getMedias();
+
+            foreach ($medias as $media) {
+                $file = $media->getLien();
+                $filename = 'evt' . uniqid() . '.' . $file->guessExtension();
+                $file->move(
+                    $this->getParameter('upload_directory'),
+                    $filename
+                );
+                $media->setLien($filename);
+                $media->setEvenement($evenement);
+            }
             $em->persist($evenement);
             $em->flush();
 
