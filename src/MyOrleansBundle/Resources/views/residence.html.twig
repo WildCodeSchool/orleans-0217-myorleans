@@ -2,7 +2,6 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}" media="screen,projection"/>
     <link rel="stylesheet" href="{{ asset('css/style_accueil.css') }}" media="screen,projection"/>
     <link href="{{ asset('css/residence.css') }}" rel="stylesheet" type="text/css"/>
 
@@ -372,7 +371,7 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
     <script src="{{ asset('js/testcompteur.js') }}"></script>
     <script src="{{ asset('js/jquery.circliful.min.js') }}"></script>
 

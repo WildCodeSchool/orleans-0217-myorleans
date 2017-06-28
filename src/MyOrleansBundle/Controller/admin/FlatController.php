@@ -66,9 +66,9 @@ class FlatController extends Controller
      * @Route("/pdf/{id}", name="flat_pdf")
      * @Method("GET")
      */
-    public function pdfAction($id)
+    public function pdfAction(Flat $flat)
     {
-        $pageUrl = $this->generateUrl('admin_flat_show', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
+        $pageUrl = $this->generateUrl('admin_flat_show', ['flat' => $flat], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
 
         return new Response(
             $this->get('knp_snappy.pdf')->getOutput($pageUrl),
