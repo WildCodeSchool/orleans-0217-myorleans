@@ -733,3 +733,29 @@ FIN ACCUEIL - BLOC AGENCE
         font-size: 12px;
     }
 }
+
+/* --------------------------------------------------------------------*/
+/* ------------------------------ FORMULAIRE DE CONTACT ---------------------*/
+/* --------------------------------------------------------------------*/
+
+.side-nav{
+    width: 600px;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding-bottom: 50px;
+
+}
+
+
+@media (max-width : 767px) {
+    .side-nav li > .userView{
+        width: 100%;
+    }
+    .side-nav{
+        width: 300px;
+    }
+
+    .barre-recherche{
+        visibility: hidden;
+    }
+}

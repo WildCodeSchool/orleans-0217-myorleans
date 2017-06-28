@@ -25,19 +25,23 @@ class ImmopratiqueController extends Controller
     public function immopratique(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType');
+        $client = new Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
 
-        $client = new Client();
+
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($client);
             $em->flush();
 
+
             return $this->redirectToRoute('immopratique');
         }
         $articles = $em->getRepository(Article::class)->findAll();
+
+
 
         return $this->render('MyOrleansBundle::immopratique.html.twig',[
 

@@ -12,7 +12,6 @@
 {% block body %}
 
 
-
     <div id="GrandeIntro">
         <div class="row center logoIntro">
             <div class="col s12 ">
@@ -61,6 +60,8 @@
     </header>
 
     {% block content %}
+
+
 
         <section id="content">
             <div>
@@ -311,17 +312,20 @@
                     </div>
                 </div>
 
+                <a class="btn-floating halfway-fab waves-effect waves-light light-green button-collapse"
+                   data-activates="slide-out" href="#"><i class="material-icons">message</i></a>
+
                 <!-- Modal Trigger -->
                 <div class="row">
                     <div class="col s12 center">
-                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
-                           href="#modal1">
+                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter button-collapse"
+                           href="#" data-activates="slide-out">
                             <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
                         </a>
                     </div>
                 </div>
                 <!-- Modal Structure -->
-                <div id="modal1" class="modal modal-fixed-footer">
+                {#<div id="modal1" class="modal modal-fixed-footer">
                     <div class="modal-content black-text">
                         <h3> Inscrivez-vous !</h3>
 
@@ -354,7 +358,7 @@
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Je
                             m'inscris</a>
                     </div>
-                </div>
+                </div>#}
             </div>
 
 
@@ -470,6 +474,24 @@
         </div>
     </footer>
 
+    <!-- Formulaire -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav">
+            <div class="userView">
+                <h3 align="center">Contactez nous !</h3>
+                <h4 align="center">02.38.75.94.47</h4>
+                <div class="row">
+
+                    {{ form(form) }}
+                </div>
+
+
+            </div>
+
+        </div>
+    </form>
+    <!--fin formulaire-->
+
     
 
 {% endblock %}
@@ -518,7 +540,16 @@
                     },
                     minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
 
+
+
                 });
+
+                $('.button-collapse').sideNav({
+                        edge: 'right', // Choose the horizontal origin
+                        draggable: false, // Choose whether you can drag to open on touch screens
+                        closeOnClick: true
+                    }
+                );
 
             });
         </script>

@@ -11,26 +11,29 @@
 
     <!--grande image du haut-->
     <div class="header-image">
-        <img src="{{ asset('img/coverjbh1.jpg') }}" style="width: 100%; margin-bottom: -100px;"
+        <img src="{{ asset('img/orleans2.jpg') }}" style="width: 100%; margin-bottom: -90px;"
              alt="photo interieur appartement"/>
     </div>
     <!--fin grande image du haut-->
+    {#<div class="parallax-container">
+        <div class="parallax"><img src="{{ asset('img/orleans2.jpg') }}"></div>
+    </div>#}
 
 
     <!-- barre de recherche par mot clé-->
-    <div class="barre-recherche">
-        <nav class="recherche" style="border-radius: 25px">
-            <div class="nav-wrapper">
-                <form>
-                    <div class="input-field">
-                        <input id="search" placeholder="Rechercher votre info par mot clé" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons">seach</i></label>
-                        <i class="material-icons">close</i>
-                    </div>
-                </form>
-            </div>
-        </nav>
-    </div>
+    {# <div class="barre-recherche">
+         <nav class="recherche" style="border-radius: 25px">
+             <div class="nav-wrapper">
+                 <form>
+                     <div class="input-field">
+                         <input id="search" placeholder="Rechercher votre info par mot clé" type="search" required>
+                         <label class="label-icon" for="search"><i class="material-icons">seach</i></label>
+                         <i class="material-icons">close</i>
+                     </div>
+                 </form>
+             </div>
+         </nav>
+     </div>#}
     <!--fin barre de recherche par mot clé-->
 
     <!--menu dossiers thematiques-->
@@ -56,62 +59,62 @@
 
 
     <!--premier block-->
-    <div class="container">
+    <div class="container bloc">
 
         <h2 class="subtitle fancy" id="conseils"><span>Nos fiches conseils</span></h2>
 
-        {% for article in articles if article.typeArticle.nom  == 'conseil'%}
-        {% for media in article.medias %}
-            {% if article.id is odd %}
-                <div class="row">
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-right">
-                            <div class="boxi">
-                                <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte }}</p>
-                                <div class="center">
-                                    <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger
-                                        la fiche</a>
+        {% for article in articles if article.typeArticle.nom  == 'conseil' %}
+            {% for media in article.medias %}
+                {% if article.id is odd %}
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-right">
+                                <div class="boxi">
+                                    <h4>{{ article.titre }}</h4>
+                                    <p>{{ article.texte }}</p>
+                                    <div class="center">
+                                        <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger
+                                            la fiche</a>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-left">
+                                <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
+                                     alt="image fiche conseil"/>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-left">
-                            <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
-                                 alt="image fiche conseil"/>
+
+                {% elseif article.id is even %}
+
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-right">
+                                <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
+                                     alt="image fiche conseil"/>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-
-            {% elseif article.id is even %}
-
-                <div class="row">
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-right">
-                            <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
-                                 alt="image fiche conseil"/>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-left">
-                            <div class="boxi">
-                                <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte }}</p>
-                                <div class="center">
-                                    <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger
-                                        la fiche</a>
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-left">
+                                <div class="boxi">
+                                    <h4>{{ article.titre }}</h4>
+                                    <p>{{ article.texte }}</p>
+                                    <div class="center">
+                                        <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>Télécharger
+                                            la fiche</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-            {% endif %}
-        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
         {% endfor %}
     </div>
     <!--fin premier block-->
@@ -124,53 +127,55 @@
 
     <div class="container">
         <h2 class="subtitle fancy" id="thematiques"><span>Dossier thématiques</span></h2>
-        {% for article in articles if article.typeArticle.nom  == 'dossier'%}
-        {% for media in article.medias %}
-            {% if article.id is odd %}
-                <div class="row">
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-right">
-                            <div class="boxi">
-                                <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte }}</p>
-                                <div class="center lien-article">
-                                    <a href="#">LIRE LE DOSSIER</a>
+        {% for article in articles if article.typeArticle.nom  == 'dossier' %}
+            {% for media in article.medias %}
+                {% if article.id is odd %}
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-right">
+                                <div class="boxi">
+                                    <h4>{{ article.titre }}</h4>
+                                    <p>{{ article.texte }}</p>
+                                    <div class="center lien-article">
+                                        <a href="#">LIRE LE DOSSIER</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-left">
+                                <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
+                                     alt="image fiche conseil"/>
+                            </div>
+                        </div>
+                    </div>
+
+                {% elseif article.id is even %}
+
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-right">
+                                <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
+                                     alt="image fiche conseil"/>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-left">
+                                <div class="boxi">
+                                    <h4>{{ article.titre }}</h4>
+                                    <p>{{ article.texte }}</p>
+                                    <div class="center lien-article">
+                                        <a href="#">LIRE LE DOSSIER</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-left">
-                                                        <img src="{{ asset('img/'~media.lien) }}" class="responsive-img" alt="image fiche conseil" />
-                        </div>
-                    </div>
-                </div>
-
-            {% elseif article.id is even %}
-
-                <div class="row">
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-right">
-                                                        <img src="{{ asset('img/'~media.lien) }}" class="responsive-img" alt="image fiche conseil" />
-                        </div>
-                    </div>
-
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-left">
-                            <div class="boxi">
-                                <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte }}</p>
-                                <div class="center lien-article">
-                                    <a href="#">LIRE LE DOSSIER</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            {% endif %}
-        {% endfor %}
+                {% endif %}
+            {% endfor %}
         {% endfor %}
     </div>
     <!--fin deuxième block-->
@@ -184,83 +189,163 @@
     <div class="container">
 
         <h2 class="subtitle fancy" id="actu-immo"><span>Actualités immobilières</span></h2>
-        {% for article in articles if article.typeArticle.nom  == 'actu'%}
-        {% for media in article.medias %}
-            {% if article.id is odd %}
-                <div class="row">
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-right">
-                            <div class="boxi">
-                                <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte }}</p>
-                                <div class="center lien-article">
-                                    <a href="#">LIRE L'ARTICLE</a>
+        {% for article in articles if article.typeArticle.nom  == 'actu' %}
+            {% for media in article.medias %}
+                {% if article.id is odd %}
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-right">
+                                <div class="boxi">
+                                    <h4>{{ article.titre }}</h4>
+                                    <p>{{ article.texte }}</p>
+                                    <div class="center lien-article">
+                                        <a href="#">LIRE L'ARTICLE</a>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-left">
+                                <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
+                                     alt="image fiche conseil"/>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-left">
-                             <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
-                                  alt="image fiche conseil"/>
+                {% elseif article.id is even %}
+
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-right">
+                                <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
+                                     alt="image fiche conseil"/>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-            {% elseif article.id is even %}
-
-                <div class="row">
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-right">
-                              <img src="{{ asset('img/'~media.lien) }}" class="responsive-img" alt="image fiche conseil" />
-                        </div>
-                    </div>
-
-                    <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-left">
-                            <div class="boxi">
-                                <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte }}</p>
-                                <div class="center lien-article">
-                                    <a href="#">LIRE L'ARTICLE</a>
+                        <div class="col s12 m6 l6">
+                            <div data-aos="fade-up-left">
+                                <div class="boxi">
+                                    <h4>{{ article.titre }}</h4>
+                                    <p>{{ article.texte }}</p>
+                                    <div class="center lien-article">
+                                        <a href="#">LIRE L'ARTICLE</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-        {% endfor %}
+                {% endif %}
+            {% endfor %}
         {% endfor %}
     </div>
 
     <!--fin troisième block-->
 
 
-    <!-- Formulaire -->
+    <!-- form -->
     <form method="post" action="">
         <div id="slide-out" class="side-nav">
             <div class="userView">
                 <h3 align="center">Contactez nous !</h3>
                 <h4 align="center">02.38.75.94.47</h4>
+                {{ form_start(form) }}
                 <div class="row">
 
-                    {{ form(form) }}
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.prenom) }}
+                        {{ form_widget(form.prenom) }}
+                        {{ form_errors(form.prenom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">location_on</i>
+                        {{ form_label(form.ville) }}
+                        {{ form_widget(form.ville) }}
+                        {{ form_errors(form.ville) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.adresse) }}
+                        {{ form_widget(form.adresse) }}
+                        {{ form_errors(form.adresse) }}
+                    </div>
+
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+
+                    <div class="row center">
+                        <p style="text-align: center">Je souhaite m'abonner à la newsletter?</p>
+
+                            {{ form_widget(form.newsletter) }}
+                            {{ form_errors(form.newsletter) }}
+                        </div>
+                    </div>
+
+
+                    <div class="input-field col l12">
+                        {{ form_row(form.envoyer) }}
+                    </div>
+
+                    {{ form_end(form) }}
                 </div>
 
 
             </div>
 
-        </div>
+
     </form>
-    <!--fin formulaire de contact-->
+    <!--fin form de contact-->
+
+
 
 
     {% block javascripts %}
 
         {{ parent() }}
         <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
+        {#<script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>#}
+
+
         <script>
+
+
+
             AOS.init();
             $('.button-collapse').sideNav({
                     edge: 'right', // Choose the horizontal origin

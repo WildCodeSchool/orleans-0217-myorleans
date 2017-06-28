@@ -32,10 +32,11 @@ class NosServicesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType');
+        $client = new Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
 
-        $client = new Client();
+
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($client);

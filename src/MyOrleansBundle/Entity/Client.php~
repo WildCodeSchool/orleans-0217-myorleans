@@ -79,6 +79,13 @@ class Client
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", nullable=true)
+     */
+    private $message;
+
+    /**
      * Get id
      *
      * @return int

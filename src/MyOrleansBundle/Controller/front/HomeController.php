@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Collaborateur;
 use MyOrleansBundle\Entity\Evenement;
 
@@ -16,6 +17,8 @@ use MyOrleansBundle\Form\SimpleSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class HomeController extends Controller
 {
@@ -35,6 +38,24 @@ class HomeController extends Controller
 
         $actu = $em->getRepository(Article::class)->findOneActu();
         $event = $em->getRepository(Evenement::class)->findOneEvent();
+
+        // Formulaire de contact
+        $client = new  Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+
+            $em->persist($client);
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+
+       /* dump($formulaire);
+        die;*/
+
 
 
         // Recuperation de la liste des villes dans lesqulles se trouvent les residences
@@ -57,11 +78,14 @@ class HomeController extends Controller
             'residenceTwoFav' => $residenceTwoFav,
             'residenceAll' => $residenceAll,
             'actu' => $actu,
-            'event' => $event
+            'event' => $event,
+            'form' => $formulaire->createView()
         ]);
     }
 
     /*-----------------------------------------------*/
+
+
 
     /**
      * @Route("/nos-services", name="nosservices")

@@ -10,7 +10,9 @@ namespace MyOrleansBundle\Form;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -24,12 +26,21 @@ class FormulaireType extends AbstractType
             ->add('prenom', TextType::class)
             ->add('email', TextType::class)
             ->add('telephone', TextType::class)
-            ->add('adresse', TextType::class)
             ->add('codePostal', TextType::class)
             ->add('ville', TextType::class)
-            ->add('newsletter', TextType::class)
-            ->add('save', SubmitType::class)
+            ->add('adresse', TextType::class)
+            ->add('message', TextareaType::class)
+            ->add('newsletter', ChoiceType::class, array(
+                'choices' => array('oui' => true, 'non' => false),
+                'expanded' => true,
+                'multiple' => false
+            ))
+
+            ->add('envoyer', SubmitType::class, [
+                'attr'=> ['class' => 'waves-effect waves-light btn-large light-green']
+            ])
             ->getForm();
 
     }
 }
+

@@ -79,6 +79,13 @@ class Client
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", nullable=true)
+     */
+    private $message;
+
+    /**
      * Get id
      *
      * @return int
@@ -278,5 +285,29 @@ class Client
     public function getNewsletter()
     {
         return $this->newsletter;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     *
+     * @return Client
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 }
