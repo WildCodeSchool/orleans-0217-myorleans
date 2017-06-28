@@ -20,99 +20,31 @@
         <div class="col s6 m3 center">
             <a class="waves-effect waves-light btn-large btn-newsletter"><i class="material-icons left">mode_edit</i>je m'abonne à la newsletter</a>
         </div>
-
-        {#<ul class="collapsible popout" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header"><i class="material-icons">filter_drama</i>Rechercher un thème</div>
-                <div class="collapsible-body">
-                    <span>
-                        <div class="col s6 offset-m3 m3">
-                            <div class="input-field col s12 center">
-                                <select>
-                                    <option value="" disabled selected>Thèmes</option>
-                                    <option value="1">Loi Pinel</option>
-                                    <option value="2">Défiscalisation</option>
-                                    <option value="3">Premier achat</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col s6 m3 center">
-                            <a class="waves-effect waves-light btn-large btn-newsletter"><i class="material-icons left">mode_edit</i>je m'abonne à la newsletter</a>
-                        </div>
-                    </span>
-                </div>
-            </li>
-        </ul>#}
     </div>
 
     <div class="row no-margin-bottom">
-        <img class="img-article" src="{{ asset('img/blog/blog11-3.jpg') }}" alt="illustration article"/>
+        {% for media in article.medias if media.typeMedia.nom == 'image-header' %}
+        <img class="img-article" src="{{ asset('img/blog/'~media.lien) }}" alt="illustration article"/>
+        {% endfor %}
     </div>
 
     <div class="container article-blog">
 
         <div class="row article-blog">
             <h1 class="titre-article">
-                Titre de l'article
+                {{ article.titre }}
                 <span class="tags">
-                   <div class="chip">
-                        Loi Pinel
-                    </div>
-                    <div class="chip">
-                        Investissement
-                    </div>
+                    {% for tag in article.tags %}
+                        <div class="chip">
+                            {{ tag.nom }}
+                        </div>
+                    {% endfor %}
                 </span>
             </h1>
         </div>
 
         <div class="row">
-            <p class="chapeau-article">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-            </p>
-
-            <h2>Sous-titre 1</h2>
-
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-            </p>
-
-            <h2>Sous-titre 2</h2>
-
-            <img class="img-corps-article" src="{{ asset('img/blog/blog11.jpg') }}" alt="illustration article 2" />
-
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque corporis cupiditate doloremque enim
-                illum iusto laudantium numquam pariatur sit, voluptate. Ad consectetur ea explicabo laudantium minus
-                odit officiis quisquam repellat!
-            </p>
+            {{ article.texte }}
         </div>
 
         <hr class="separe">
@@ -122,89 +54,47 @@
     <div class="container-fluid">
 
         <div class="row suggestion-contenu">
+
             <div class="col s12 l4">
                 <h3>L'opportunité du moment</h3>
-                <div class="card large">
-                    <div class="card-image">
-                        <img src="{{ asset('img/res_dunois.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <div class="row no-margin-bottom">
-                            <div class="col s8">
-                                <h4>Nom Résidence</h4>
-                                <p>My Park</p>
-                            </div>
-                            <div class="col s4 right-content">
-                                <h4>Prix</h4>
-                                <p>Dès 90 000€</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-action center">
-                        <a href="#">Découvrir la résidence</a>
-                    </div>
-                </div>
+                {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidenceSimplifie', {'id': residence.id })) }}
             </div>
 
-            <div class="col s12 l4">
-                <div class="suggestion-article">
-                    <h3>Sur le même sujet</h3>
-                    <div class="blockArticle center">
-                        <div class="imgArticle">
-                            <img class="responsive-img" src="{{ asset('img/blog/blog16.jpg') }}" alt="">
-                        </div>
-                        <div class="titreArticle">
-                            <h4 class="white-text">Titre article</h4>
-                        </div>
-                        <div class="infoArticle">
-                            <h4 class="white-text">Titre article</h4>
-                            <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                            <div class="chip">
-                                Loi Pinel
-                                <i class="close material-icons">close</i>
-                            </div>
-                            <div class="chip">
-                                Investissement
-                                <i class="close material-icons">close</i>
-                            </div>
-                            <div class="row lien-article">
-                                <a href="#">LIRE L'ARTICLE</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col s12 l4">
-                <div class="suggestion-article">
-                    <h3 class="white-text">Sur le même sujet</h3>
-                    <div class="blockArticle center">
-                        <div class="imgArticle">
-                            <img class="responsive-img" src="{{ asset('img/blog/blog17.jpg') }}" alt="">
-                        </div>
-                        <div class="titreArticle">
-                            <h4 class="white-text">Titre article</h4>
-                        </div>
-                        <div class="infoArticle">
-                            <h4 class="white-text">Titre article</h4>
-                            <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                            <div class="chip">
-                                Loi Pinel
-                                <i class="close material-icons">close</i>
+            {% for article in articlesAssocies %}
+
+                <div class="col s12 l4">
+                    <div class="suggestion-article">
+                        <h3>Sur le même sujet</h3>
+                        <div class="blockArticle center">
+                            <div class="imgArticle">
+                                {% for media in article.medias if media.typeMedia.nom == "image" %}
+                                <img class="responsive-img" src="{{ asset('img/blog/'~media.lien) }}" alt="">
+                                {% endfor %}
                             </div>
-                            <div class="chip">
-                                Investissement
-                                <i class="close material-icons">close</i>
+                            <div class="titreArticle">
+                                <h4 class="white-text">{{ article.titre }}</h4>
                             </div>
-                            <div class="row lien-article">
-                                <a href="#">LIRE L'ARTICLE</a>
+                            <div class="infoArticle">
+                                <h4 class="white-text">{{ article.titre }}</h4>
+                                <p>{{ article.texte | truncate(20, true, '...') }}</p>
+
+                                {% for tag in article.tags %}
+                                <div class="chip">
+                                    {{ tag.nom }}
+                                </div>
+                                {% endfor %}
+
+                                <div class="row lien-article">
+                                    <a href="{{ path('blog-article', { 'id': article.id }) }}">LIRE L'ARTICLE</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            {% endfor %}
+
         </div>
 
     </div>

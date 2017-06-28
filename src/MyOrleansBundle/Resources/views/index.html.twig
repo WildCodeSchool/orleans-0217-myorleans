@@ -96,31 +96,12 @@
 
 
                         {{ form_end(simpleSearch) }}
-                        {#                                <input type="text" id="autocomplete-input" class="autocomplete" name="localisation">
-                                                        <label for="autocomplete-input">Localisation</label>
-                                                    </div>
-                                                    <div class="input-field col s6">
-                                                        <select>
-                                                            <option value="" disabled selected>Sélectionnez le type du bien</option>
-                                                            <option value="1">Maison</option>
-                                                            <option value="2">Appartement</option>
-                                                        </select>
-                                                        <label>Type</label>#}
 
+                        </div>
                     </div>
                 </div>
-                {#                        <div class="row center">
-                                            <div class="formButton col s12 m12 l4 offset-l1">
-                                                <a class="waves-effect waves-light btn-large light-green">Je souhaite investir</a>
-                                            </div>
-                                            <div class="formButton col s12 m12 l6">
-                                                <a class="waves-effect waves-light btn-large light-green">Je recherche une résidence
-                                                    Principale</a>
-                                            </div>
-                                        </div>#}
             </div>
         </section>
-        </div>
         <div class="container-fluid">
             <div class="section white">
                 <div class="row container">
@@ -131,23 +112,24 @@
                         </h2>
                         <div class="row">
                             <div class="col s12 l6">
+                                {% for residence in residenceFav %}
                                 <div class="card mosaic-container">
                                     <div class="card-image">
-                                        {% for media in residenceFav[0].medias if media.typeMedia.nom == 'image' %}
-                                            <img src="{{ asset('uploads/'~media.lien) }}">
+                                        {% for media in residence.medias if media.typeMedia.nom == 'image' %}
+                                            <img src="{{ asset('img/'~media.lien) }}">
                                         {% endfor %}
                                     </div>
                                     <div class="card-content">
                                         <div class="row grille-infos">
                                             <div class="col s8 grille-gauche">
                                                 <div class="row nom-residence">
-                                                    <h4>{{ residenceFav[0].nom }}</h4>
-                                                    <p>à {{ residenceFav[0].ville }}</p>
+                                                    <h4>{{ residence.nom }}</h4>
+                                                    <p>à {{ residence.ville.nom }}</p>
                                                 </div>
                                                 <div class="row annee-nbPiece">
                                                     <div class="col s6 annee-residence">
                                                         <h4>Année</h4>
-                                                        <p>{{ residenceFav[0].dateLivraison }}</p>
+                                                        <p>{{ residence.dateLivraison }}</p>
                                                     </div>
                                                     <div class="col s6">
                                                         <h4>Nombre de pièces</h4>
@@ -160,15 +142,15 @@
                                                 <p>A partir de 90 000€</p>
                                                 <br/>
                                                 <h4>Disponibilité</h4>
-                                                <p>{{ residenceFav[0].nbTotalLogements }} logements</p>
+                                                <p>{{ residence.nbTotalLogements }} logements</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-action center">
                                         <a href="#">Découvrir la résidence</a>
-
                                     </div>
                                 </div>
+                                {% endfor %}
                             </div>
 
                             <div class="col s12 l6">
@@ -441,7 +423,7 @@
                 $('input.autocomplete').autocomplete({
                     data: {
                         {% for ville in villes %}
-                        "{{ ville }}": null,
+                            "{{ ville.nom }}" : null,
                         {% endfor %}
                     },
                     limit: 20, // The max amount of results that can be shown at once. Default: Infinity.

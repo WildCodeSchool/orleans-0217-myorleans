@@ -3,16 +3,15 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Article;
-use MyOrleansBundle\Entity\Collaborateur;
-use MyOrleansBundle\Entity\Evenement;
-
 use MyOrleansBundle\Entity\Pack;
-use MyOrleansBundle\Entity\Residence;
-use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
+use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\Flat;
+use MyOrleansBundle\Entity\Ville;
+use MyOrleansBundle\Entity\Collaborateur;
+use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Form\SimpleSearchType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,11 +39,8 @@ class HomeController extends Controller
 
 
         // Recuperation de la liste des villes dans lesqulles se trouvent les residences
-        $residences = $em->getRepository(Residence::class)->findAll();
-        $villes = [];
-        foreach ($residences as $residence) {
-            $villes[] = $residence->getVille();
-        }
+        $villes = $em->getRepository(Ville::class)->findAll();
+
         // Fin recuperation des villes
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
             null,
@@ -88,6 +84,12 @@ class HomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $articles = $em->getRepository(Article::class)->findAll();
+
+        // TMP
+        //$articlesImmo[] = $articles[0];
+        //$articlesImmo[] = $articles[1];
+        // TMP
+
         return $this->render('MyOrleansBundle::immopratique.html.twig', [
             'articles' => $articles
         ]);

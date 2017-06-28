@@ -61,6 +61,7 @@ class Article
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag", mappedBy="articles", cascade={"all"}, fetch="EAGER")
+     *
      */
     private $tags;
 
