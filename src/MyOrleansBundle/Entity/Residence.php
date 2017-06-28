@@ -620,22 +620,6 @@ class Residence
         $this->categoriePrestas = $categoriePrestas;
     }
 
-
-
-    /**
-     * Add media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     *
-     * @return Residence
-     */
-   /* public function addMedia(Media $media)
-    {
-        $this->medias[] = $media;
-
-        return $this;
-   } */
-
     /**
      * Remove media
      *
@@ -670,6 +654,7 @@ class Residence
         $this->categoriePrestas->removeElement($categoriePresta);
     }
 
+
     /**
      * Set ville
      *
@@ -693,6 +678,7 @@ class Residence
     {
         return $this->ville;
     }
+
 
 
 }

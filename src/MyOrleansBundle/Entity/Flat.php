@@ -92,10 +92,12 @@ class Flat
      */
     private $medias;
 
+
     /**
      * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="flat")
      */
     private $categoriePrestas;
+
 
 
 

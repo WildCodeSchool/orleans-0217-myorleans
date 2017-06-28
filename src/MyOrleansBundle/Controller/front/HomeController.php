@@ -25,7 +25,6 @@ class HomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-
         $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
 
         $residenceFav = $em->getRepository(Residence::class)->findOneFav();
@@ -40,6 +39,7 @@ class HomeController extends Controller
 
         // Recuperation de la liste des villes dans lesqulles se trouvent les residences
         $villes = $em->getRepository(Ville::class)->findAll();
+
 
         // Fin recuperation des villes
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',

@@ -386,6 +386,7 @@ class Media
         $this->articles->removeElement($article);
     }
 
+
     /**
      * @return mixed
      */
@@ -401,6 +402,7 @@ class Media
     {
         $this->collaborateur = $collaborateur;
     }
+
 
 
 }
