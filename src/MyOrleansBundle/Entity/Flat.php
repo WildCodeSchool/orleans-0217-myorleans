@@ -50,6 +50,13 @@ class Flat
     private $nbPiece;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="nb_chambre", type="integer", nullable=true)
+     */
+    private $nbChambre;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
@@ -200,6 +207,24 @@ class Flat
     {
         return $this->nbPiece;
     }
+
+    /**
+     * @return int
+     */
+    public function getNbChambre()
+    {
+        return $this->nbChambre;
+    }
+
+    /**
+     * @param int $nbChambre
+     */
+    public function setNbChambre($nbChambre)
+    {
+        $this->nbChambre = $nbChambre;
+    }
+
+
 
     /**
      * Set description

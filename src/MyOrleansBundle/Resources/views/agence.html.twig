@@ -3,8 +3,10 @@
     {% block content %}
         <div class="row agencyVideo">
             <div class="col s12">
-                <iframe id="myIframe" src="https://www.youtube.com/embed/CzyAV8f1j9Q" frameborder="0"
+                {% for cover in cover if cover.page == 'agence_cover' %}
+                <iframe id="myIframe" src="{{ cover.lien }}" frameborder="0"
                         allowfullscreen></iframe>
+                {% endfor %}
             </div>
         </div>
         <div class="container">
@@ -58,59 +60,16 @@
             </div>
             <section class="timeline">
                 <ol>
+                    {% for evenement in evenements %}
                     <li>
                         <div>
-                            <time>10.02.2017</time>
-                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                            blanditiis praesentium
-                            <img class="responsive-img" src="{{ asset('img/logo_myorleans.png') }}">
+                            <time>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('j-m-Y') }}{% endif %}</time>
+                            {{ evenement.nom }}<br>
+                            {{ evenement.description }}
+                            <img class="responsive-img" src="{{ asset('uploads/'~evenement.media.lien) }}">
                         </div>
                     </li>
-                    <li>
-                        <div>
-                            <time>22.03.2017</time>
-                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                            blanditiis praesentium
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>1.04.2017</time>
-                            Proin quam velit, efficitur vel neque vitae, rhoncus commodo mi. Suspendisse finibus
-                            mauris et bibendum molestie. Aenean ex augue, varius et pulvinar in, pretium non
-                            nisi.
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>31.05.2017</time>
-                            Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar
-                            tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>31.05.2017</time>
-                            Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar
-                            tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>31.05.2017</time>
-                            Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar
-                            tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>31.05.2017</time>
-                            Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar
-                            tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
-                        </div>
-                    </li>
+                    {% endfor %}
                     <li></li>
                 </ol>
 
@@ -131,8 +90,8 @@
                     <div class="row center">
                         {% for partenaire in partenaires %}
                             <div class="col s3 l1">
-                                <a href="{{ partenaire.url }}">
-                                    <img class="img-responsive" src="{{ partenaire.media.lien }}"
+                                <a href="{{ partenaire.url }}" target="_blank">
+                                    <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.lien) }}"
                                          alt="{{ partenaire.nom }}">
                                 </a>
                             </div>

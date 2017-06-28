@@ -3,19 +3,20 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\TypeMedia;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Medium controller.
+ * media controller.
  *
  * @Route("admin/media")
  */
 class MediaController extends Controller
 {
     /**
-     * Lists all medium entities.
+     * Lists all media entities.
      *
      * @Route("/", name="admin_media_index")
      * @Method("GET")
@@ -32,86 +33,87 @@ class MediaController extends Controller
     }
 
     /**
-     * Creates a new medium entity.
+     * Creates a new media entity.
      *
      * @Route("/new", name="admin_media_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $medium = new Medium();
-        $form = $this->createForm('MyOrleansBundle\Form\MediaType', $medium);
+        $media = new Media();
+        $form = $this->createForm('MyOrleansBundle\Form\MediaType', $media);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($medium);
+            $em->persist($media);
             $em->flush();
 
-            return $this->redirectToRoute('admin_media_show', array('id' => $medium->getId()));
+            return $this->redirectToRoute('admin_media_show', array('id' => $media->getId()));
         }
 
         return $this->render('media/new.html.twig', array(
-            'medium' => $medium,
+            'media' => $media,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a medium entity.
+     * Finds and displays a media entity.
      *
      * @Route("/{id}", name="admin_media_show")
      * @Method("GET")
      */
-    public function showAction(Media $medium)
+    public function showAction(Media $media)
     {
-        $deleteForm = $this->createDeleteForm($medium);
+        $deleteForm = $this->createDeleteForm($media);
 
         return $this->render('media/show.html.twig', array(
-            'medium' => $medium,
+            'media' => $media,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing medium entity.
+     * Displays a form to edit an existing media entity.
      *
      * @Route("/{id}/edit", name="admin_media_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Media $medium)
+    public function editAction(Request $request, Media $media)
     {
-        $deleteForm = $this->createDeleteForm($medium);
-        $editForm = $this->createForm('MyOrleansBundle\Form\MediaType', $medium);
+        $deleteForm = $this->createDeleteForm($media);
+        $editForm = $this->createForm('MyOrleansBundle\Form\MediaType', $media);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_media_edit', array('id' => $medium->getId()));
+            return $this->redirectToRoute('admin_media_edit', array('id' => $media->getId()));
         }
 
         return $this->render('media/edit.html.twig', array(
-            'medium' => $medium,
+            'media' => $media,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Deletes a medium entity.
+     * Deletes a media entity.
      *
      * @Route("/{id}", name="admin_media_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Media $medium)
+    public function deleteAction(Request $request, Media $media)
     {
-        $form = $this->createDeleteForm($medium);
+        $form = $this->createDeleteForm($media);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($medium);
+            $em->remove($media);
             $em->flush();
         }
 
@@ -119,16 +121,16 @@ class MediaController extends Controller
     }
 
     /**
-     * Creates a form to delete a medium entity.
+     * Creates a form to delete a media entity.
      *
-     * @param Media $medium The medium entity
+     * @param Media $media The media entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Media $medium)
+    private function createDeleteForm(Media $media)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_media_delete', array('id' => $medium->getId())))
+            ->setAction($this->generateUrl('admin_media_delete', array('id' => $media->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

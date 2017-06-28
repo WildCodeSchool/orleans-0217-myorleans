@@ -10,4 +10,5 @@ namespace MyOrleansBundle\Repository;
  */
 class TemoignageRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

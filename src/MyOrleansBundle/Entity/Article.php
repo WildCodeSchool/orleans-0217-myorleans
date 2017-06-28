@@ -3,6 +3,8 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations\Annotation\Enum;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Article
@@ -12,6 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+
+    CONST NUM_ARTICLES = 9;
+
     /**
      * @var int
      *
@@ -31,7 +36,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="texte", type="text")
      */
     private $texte;
 
@@ -50,11 +55,13 @@ class Article
 
     /**
      * @ORM\ManyToOne(targetEntity="Residence")
+     * @JoinTable(name="article_media")
      */
     private $residence;
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag", mappedBy="articles", cascade={"all"}, fetch="EAGER")
+     *
      */
     private $tags;
 
@@ -100,9 +107,9 @@ class Article
     }
 
     /**
-     * Set text
+     * Set texte
      *
-     * @param string $text
+     * @param string $texte
      *
      * @return Article
      */
@@ -114,7 +121,7 @@ class Article
     }
 
     /**
-     * Get text
+     * Get texte
      *
      * @return string
      */

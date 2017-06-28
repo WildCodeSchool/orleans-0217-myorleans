@@ -34,7 +34,7 @@ class TypePresta
     private $categorie_presta;
 
     /**
-     * @ORM\OneToMany(targetEntity="Presta", mappedBy="type_presta")
+     * @ORM\OneToMany(targetEntity="Prestation", mappedBy="type_presta")
      */
     private $prestas;
 
@@ -107,13 +107,13 @@ class TypePresta
     }
 
     /**
-     * Add presta
+     * Add prestation
      *
-     * @param \MyOrleansBundle\Entity\Presta $presta
+     * @param \MyOrleansBundle\Entity\Prestation $presta
      *
      * @return TypePresta
      */
-    public function addPresta(\MyOrleansBundle\Entity\Presta $presta)
+    public function addPresta(\MyOrleansBundle\Entity\Prestation $presta)
     {
         $this->prestas[] = $presta;
 
@@ -121,11 +121,11 @@ class TypePresta
     }
 
     /**
-     * Remove presta
+     * Remove prestation
      *
-     * @param \MyOrleansBundle\Entity\Presta $presta
+     * @param \MyOrleansBundle\Entity\Prestayio $presta
      */
-    public function removePresta(\MyOrleansBundle\Entity\Presta $presta)
+    public function removePresta(\MyOrleansBundle\Entity\Prestation $presta)
     {
         $this->prestas->removeElement($presta);
     }
