@@ -5,7 +5,9 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\Collaborateur;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Collaborateur controller.
@@ -82,6 +84,10 @@ class CollaborateurController extends Controller
     public function editAction(Request $request, Collaborateur $collaborateur)
     {
         $deleteForm = $this->createDeleteForm($collaborateur);
+        $collaborateur->setMedia(
+            new File($this->getParameter('upload_directory') . '/' .
+                $collaborateur->getMedia())
+        );
         $editForm = $this->createForm('MyOrleansBundle\Form\CollaborateurType', $collaborateur);
         $editForm->handleRequest($request);
 
@@ -130,7 +136,6 @@ class CollaborateurController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_collaborateur_delete', array('id' => $collaborateur->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
