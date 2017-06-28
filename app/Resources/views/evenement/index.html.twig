@@ -1,59 +1,3 @@
-<<<<<<< HEAD
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Evenements list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Adresse</th>
-                <th>Codepostal</th>
-                <th>Ville</th>
-                <th>Datedebut</th>
-                <th>Datefin</th>
-                <th>Heuredebut</th>
-                <th>Heurefin</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for evenement in evenements %}
-            <tr>
-                <td><a href="{{ path('admin_evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
-                <td>{{ evenement.nom }}</td>
-                <td>{{ evenement.adresse }}</td>
-                <td>{{ evenement.codePostal }}</td>
-                <td>{{ evenement.ville }}</td>
-                <td>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i:s') }}{% endif %}</td>
-                <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('H:i:s') }}{% endif %}</td>
-                <td>{{ evenement.description }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_evenement_show', { 'id': evenement.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_evenement_edit', { 'id': evenement.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_evenement_new') }}">Create a new evenement</a>
-        </li>
-    </ul>
-=======
 {% extends '::layout_admin.html.twig' %}
 
 {% block content %}
@@ -74,7 +18,8 @@
                                 <th>Adresse</th>
                                 <th>Codepostal</th>
                                 <th>Ville</th>
-                                <th>Date</th>
+                                <th>Datedebut</th>
+                                <th>Datefin</th>
                                 <th>Heuredebut</th>
                                 <th>Heurefin</th>
                                 <th>Description</th>
@@ -82,27 +27,26 @@
                                 <th>Éditer</th>
                                 </thead>
                                 <tbody>
-
                                 {% for evenement in evenements %}
-
                                     <tr>
                                         <td>
-                                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a>
+                                            <a href="{{ path('admin_evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a>
                                         </td>
                                         <td>{{ evenement.nom }}</td>
                                         <td>{{ evenement.adresse }}</td>
                                         <td>{{ evenement.codePostal }}</td>
                                         <td>{{ evenement.ville }}</td>
-                                        <td>{% if evenement.date %}{{ evenement.date|date('Y-m-d') }}{% endif %}</td>
+                                        <td>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('j-m-Y') }}{% endif %}</td>
+                                        <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('j-m-Y') }}{% endif %}</td>
                                         <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i:s') }}{% endif %}</td>
                                         <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('H:i:s') }}{% endif %}</td>
                                         <td>{{ evenement.description }}</td>
                                         <td>
-                                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}"><i
+                                            <a href="{{ path('admin_evenement_show', { 'id': evenement.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}"><i
+                                            <a href="{{ path('admin_evenement_edit', { 'id': evenement.id }) }}"><i
                                                         class="material-icons">build</i></a>
                                         </td>
                                     </tr>
@@ -115,7 +59,9 @@
                             <ul>
                                 <li>
 
-                                    <a href="{{ path('evenement_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
+                                    <a href="{{ path('admin_evenement_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">create</i>Ajouter un
                                         événement</a>
                                 </li>
                             </ul>
@@ -125,6 +71,4 @@
             </div>
         </div>
     </div>
-
->>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
 {% endblock %}

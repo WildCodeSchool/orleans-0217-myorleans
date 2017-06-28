@@ -4,6 +4,8 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
+use Doctrine\ORM\Mapping\JoinTable;
+
 
 /**
  * Residence
@@ -138,7 +140,9 @@ class Residence
     private $eligibilitePinel;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Media")
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
+     * @JoinTable(name="residence_media")
+     *
      */
     private $medias;
 
@@ -531,6 +535,11 @@ class Residence
     }
 
 
+    public function addMedia(Media $media)
+    {
+        $media->addResidence($this); // synchronously updating inverse side
+        $this->medias[] = $media;
+    }
 
     /**
      * @return mixed
@@ -620,12 +629,12 @@ class Residence
      *
      * @return Residence
      */
-    public function addMedia(\MyOrleansBundle\Entity\Media $media)
+   /* public function addMedia(Media $media)
     {
         $this->medias[] = $media;
 
         return $this;
-    }
+   } */
 
     /**
      * Remove media
@@ -684,5 +693,6 @@ class Residence
     {
         return $this->ville;
     }
+
 
 }

@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\TypeMedia;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -41,6 +42,7 @@ class MediaController extends Controller
     {
         $media = new Media();
         $form = $this->createForm('MyOrleansBundle\Form\MediaType', $media);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

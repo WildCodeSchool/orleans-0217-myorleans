@@ -2,7 +2,9 @@
 
 namespace MyOrleansBundle\Form;
 
+use MyOrleansBundle\Entity\TypeArticle;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +15,7 @@ class TypeArticleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom');
+        $builder->add('nom', ChoiceType::class);
     }
     
     /**
@@ -22,7 +24,7 @@ class TypeArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MyOrleansBundle\Entity\TypeArticle'
+            'data_class' => TypeArticle::class
         ));
     }
 

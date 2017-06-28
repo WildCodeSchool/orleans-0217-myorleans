@@ -51,11 +51,11 @@
                             <hr>
                             <ul>
                                 <li>
-                                    <a href="{{ path('collaborateur_index') }}"><i class="material-icons">keyboard_return</i>Retour
+                                    <a href="{{ path('admin_collaborateur_index') }}"><i class="material-icons">keyboard_return</i>Retour
                                         à la liste des membres</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('collaborateur_edit', { 'id': collaborateur.id }) }}"><i
+                                    <a href="{{ path('admin_collaborateur_edit', { 'id': collaborateur.id }) }}"><i
                                                 class="material-icons">build</i>Éditer ce membre</a>
                                 </li>
 
@@ -73,22 +73,4 @@
             </div>
         </div>
     </div>
-
-
-<<<<<<< HEAD
-    <ul>
-        <li>
-            <a href="{{ path('admin_collaborateur_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_collaborateur_edit', { 'id': collaborateur.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-=======
->>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
 {% endblock %}

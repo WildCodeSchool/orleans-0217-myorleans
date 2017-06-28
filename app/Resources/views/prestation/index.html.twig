@@ -1,43 +1,3 @@
-<<<<<<< HEAD
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Prestas list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nompresta</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for prestum in prestas %}
-            <tr>
-                <td><a href="{{ path('admin_presta_show', { 'id': prestum.id }) }}">{{ prestum.id }}</a></td>
-                <td>{{ prestum.nomPresta }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_presta_show', { 'id': prestum.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_presta_edit', { 'id': prestum.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_presta_new') }}">Create a new prestum</a>
-        </li>
-    </ul>
-=======
 {% extends '::layout_admin.html.twig' %}
 
 {% block content %}
@@ -54,25 +14,25 @@
                             <table class="table">
                                 <thead class="text">
                                 <th>Id</th>
-                                <th>Value</th>
+                                <th>Prestation</th>
                                 <th>Aperçu</th>
                                 <th>Éditer</th>
                                 </thead>
                                 <tbody>
 
-                                {% for prestum in prestas %}
+                                {% for presta in prestations %}
 
                                     <tr>
                                         <td>
-                                            <a href="{{ path('presta_show', { 'id': prestum.id }) }}">{{ prestum.id }}</a>
+                                            <a href="{{ path('admin_prestation_show', { 'id': presta.id }) }}">{{ presta.id }}</a>
                                         </td>
-                                        <td>{{ prestum.value }}</td>
+                                        <td>{{ presta.nomPrestation }}</td>
                                         <td>
-                                            <a href="{{ path('presta_show', { 'id': prestum.id }) }}"><i
+                                            <a href="{{ path('admin_prestation_show', { 'id': presta.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('presta_edit', { 'id': prestum.id }) }}"><i
+                                            <a href="{{ path('admin_prestation_edit', { 'id': presta.id }) }}"><i
                                                         class="material-icons">build</i></a>
                                         </td>
                                     </tr>
@@ -85,7 +45,7 @@
                             <ul>
                                 <li>
 
-                                    <a href="{{ path('presta_new') }}"
+                                    <a href="{{ path('admin_prestation_new') }}"
                                        class="btn-floating btn-large waves-effect waves-light light-green"><i
                                                 class="material-icons">create</i>Ajouter une prestation</a>
                                 </li>
@@ -97,5 +57,4 @@
         </div>
     </div>
 
->>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
 {% endblock %}

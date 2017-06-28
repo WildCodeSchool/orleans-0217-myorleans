@@ -2,11 +2,16 @@
 
 namespace MyOrleansBundle\Controller\admin;
 
+use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\TypeMedia;
+use MyOrleansBundle\Form\ResidenceType;
+use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Residence controller.
@@ -24,7 +29,6 @@ class ResidenceController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $residences = $em->getRepository('MyOrleansBundle:Residence')->findAll();
 
         return $this->render('residence/index.html.twig', array(
@@ -40,12 +44,30 @@ class ResidenceController extends Controller
      */
     public function newAction(Request $request)
     {
+
         $residence = new Residence();
-        $form = $this->createForm('MyOrleansBundle\Form\ResidenceType', $residence);
+        $media = new Media();
+        $residence->getMedias()->add($media);
+
+        $form = $this->createForm(ResidenceType::class, $residence);
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
+            $medias = $residence->getMedias();
+
+            foreach ($medias as $media) {
+                $file = $media->getLien();
+                $filename = 'image' . uniqid() . '.' . $file->guessExtension();
+                $file->move(
+                    $this->getParameter('upload_directory'),
+                    $filename
+                );
+                $media->setLien($filename);
+            }
             $em->persist($residence);
             $em->flush();
 
@@ -53,7 +75,6 @@ class ResidenceController extends Controller
         }
 
         return $this->render('residence/new.html.twig', array(
-            'residence' => $residence,
             'form' => $form->createView(),
         ));
     }
@@ -83,7 +104,7 @@ class ResidenceController extends Controller
     public function editAction(Request $request, Residence $residence)
     {
         $deleteForm = $this->createDeleteForm($residence);
-        $editForm = $this->createForm('MyOrleansBundle\Form\ResidenceType', $residence);
+        $editForm = $this->createForm(ResidenceType::class, $residence);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

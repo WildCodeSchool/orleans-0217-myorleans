@@ -12,22 +12,22 @@
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
-                                <thead class="text">
-                                <th>Id</th>
-                                <th>Nom</th>
-                                <th>Prenom</th>
-                                <th>Fonction</th>
-                                <th>Bio</th>
-                                <th>Lientwiter</th>
-                                <th>Lienlinkedin</th>
-                                <th>Email</th>
-                                <th>Aperçu</th>
-                                <th>Éditer</th>
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Fonction</th>
+                                    <th>Bio</th>
+                                    <th>Lientwiter</th>
+                                    <th>Lienlinkedin</th>
+                                    <th>Email</th>
+                                    <th>Aperçu</th>
+                                    <th>Éditer</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-
                                 {% for collaborateur in collaborateurs %}
-
                                     <tr>
                                         <td>
                                             <a href="{{ path('admin_collaborateur_show', { 'id': collaborateur.id }) }}">{{ collaborateur.id }}</a>
@@ -57,8 +57,9 @@
                             <ul>
                                 <li>
 
-                                    <a href="{{ path('admin_collaborateur_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
-                                        membre</a>
+                                    <a href="{{ path('admin_collaborateur_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">create</i>Ajouter un membre</a>
                                 </li>
                             </ul>
                         </div>
