@@ -51,7 +51,7 @@ li.content .notesite>#slice>.pie {
 }
 .notesite>#slice>.pie.fill {
     -webkit-transform: rotate(180deg) !important;
-    transform: rotate(180deg) !important;
+    transform: rotate(180deg)!important;
 }
 .notesite.fill>.percent {
     display: none;
