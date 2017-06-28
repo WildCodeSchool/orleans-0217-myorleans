@@ -13,6 +13,16 @@ use MyOrleansBundle\Entity\Article;
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
 
+
+    public function findOneActu()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(1);
+        return $qb->getQuery()->getResult();
+    }
+
+
     public function articleByTag($tag, $nbArticles)
     {
         $qb = $this->createQueryBuilder('a');
@@ -38,6 +48,5 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getResult();
     }
-
 
 }

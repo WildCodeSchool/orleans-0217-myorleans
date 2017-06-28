@@ -101,6 +101,7 @@ nav ul a:hover {
     background: inherit;
 }
 
+
 /*nav li {
     border-right: solid #7a7a7a 1px;
 }*/
@@ -308,6 +309,58 @@ body {
     border-radius: 20px;
 }
 
+.side-nav{
+    width: 600px;
+
+}
+
+.barre-recherche{
+    margin-top: 22px;
+    position: absolute;
+    bottom: 200px;
+    width: 50%;
+    left:300px;
+    right: 150px;
+    background-color: rgb(255, 255, 255, 0.8);
+
+
+}
+
+.nav-recherche{
+
+    width: 40%;
+    margin-left: 400px;
+    margin-top: 500px;
+    border-radius: 20px;
+}
+
+
+
+@media (max-width : 767px) {
+    .side-nav li > .userView{
+        width: 100%;
+    }
+    .side-nav{
+    width: 300px;
+    }
+
+    .barre-recherche{
+        visibility: hidden;
+    }
+}
+
+
+.pulse-button:hover
+{
+    -webkit-animation: none;-moz-animation: none;animation: none;
+}
+
+@-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-moz-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-ms-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+
+
 /* ------------------------------------------------------------------*/
 
 
@@ -372,6 +425,7 @@ body {
     position: absolute;
 }
 
+
 .barre-recherche{
     margin-top: 22px;
     position: absolute;
@@ -388,6 +442,7 @@ body {
     margin-top: 500px;
 }
 
+
 .side-nav{
     background-color: rgba(255, 255, 255, 0.9);
     padding-bottom: 50px;
@@ -397,7 +452,6 @@ body {
 
     margin-top: 22px;
 
-
 }
 
 .bloc-color{
@@ -405,9 +459,6 @@ body {
 
 }
 
-.input-field{
-    border-radius: 20px;
-}
 
 .btn-large{
     display: block;
@@ -422,8 +473,13 @@ body {
     border-radius: 5px;
     margin-top: 25px;
     position: fixed;
-    margin-left: 1200px;
+    right: 20px;
     padding: 10px;
+    z-index: 1000;
+    -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+
+    animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
 
 }
 
@@ -432,10 +488,17 @@ body {
     color:white;
 }
 
-
+.fiches-ancres{
+    margin-bottom: 100px;
+}
 
 .fiches-conseils{
     margin-top: 50px;
+}
+
+.recherche{
+    background-color: rgba(255, 255, 255, 0.5);
+
 }
 
 

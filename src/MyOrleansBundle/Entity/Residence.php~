@@ -44,12 +44,16 @@ class Residence
     private $codePostal;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="residences")
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=45, nullable=true)
      */
     private $ville;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quartier", inversedBy="residences")
+     * @var string
+     *
+     * @ORM\Column(name="quartier", type="string", length=45, nullable=true)
      */
     private $quartier;
 
@@ -238,9 +242,29 @@ class Residence
         return $this->codePostal;
     }
 
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Residence
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
 
-    //Getter Setter $Ville
+        return $this;
+    }
 
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
 
     /**
      * @return string
@@ -530,8 +554,6 @@ class Residence
         $this->eligibilitePinel = $eligibilitePinel;
     }
 
-
-
     /**
      * @return mixed
      */
@@ -611,78 +633,5 @@ class Residence
         $this->categoriePrestas = $categoriePrestas;
     }
 
-
-
-    /**
-     * Add media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     *
-     * @return Residence
-     */
-    public function addMedia(\MyOrleansBundle\Entity\Media $media)
-    {
-        $this->medias[] = $media;
-
-        return $this;
-    }
-
-    /**
-     * Remove media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     */
-    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
-    {
-        $this->medias->removeElement($media);
-    }
-
-    /**
-     * Add categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     *
-     * @return Residence
-     */
-    public function addCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
-    {
-        $this->categoriePrestas[] = $categoriePresta;
-
-        return $this;
-    }
-
-    /**
-     * Remove categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     */
-    public function removeCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
-    {
-        $this->categoriePrestas->removeElement($categoriePresta);
-    }
-
-    /**
-     * Set ville
-     *
-     * @param \MyOrleansBundle\Entity\Ville $ville
-     *
-     * @return Residence
-     */
-    public function setVille(\MyOrleansBundle\Entity\Ville $ville = null)
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    /**
-     * Get ville
-     *
-     * @return \MyOrleansBundle\Entity\Ville
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
 
 }

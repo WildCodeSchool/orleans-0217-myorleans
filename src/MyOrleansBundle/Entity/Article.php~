@@ -12,9 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
-
-    CONST NUM_ARTICLES = 9;
-
     /**
      * @var int
      *
@@ -34,7 +31,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="texte", type="text")
+     * @ORM\Column(name="text", type="text")
      */
     private $texte;
 
@@ -58,7 +55,6 @@ class Article
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag", mappedBy="articles", cascade={"all"}, fetch="EAGER")
-     *
      */
     private $tags;
 
@@ -104,9 +100,9 @@ class Article
     }
 
     /**
-     * Set texte
+     * Set text
      *
-     * @param string $texte
+     * @param string $text
      *
      * @return Article
      */
@@ -118,7 +114,7 @@ class Article
     }
 
     /**
-     * Get texte
+     * Get text
      *
      * @return string
      */
@@ -233,52 +229,4 @@ class Article
         $this->typeArticle = $typeArticle;
     }
 
-
-    /**
-     * Add media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     *
-     * @return Article
-     */
-    public function addMedia(\MyOrleansBundle\Entity\Media $media)
-    {
-        $this->medias[] = $media;
-
-        return $this;
-    }
-
-    /**
-     * Remove media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     */
-    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
-    {
-        $this->medias->removeElement($media);
-    }
-
-    /**
-     * Add tag
-     *
-     * @param \MyOrleansBundle\Entity\Tag $tag
-     *
-     * @return Article
-     */
-    public function addTag(\MyOrleansBundle\Entity\Tag $tag)
-    {
-        $this->tags[] = $tag;
-
-        return $this;
-    }
-
-    /**
-     * Remove tag
-     *
-     * @param \MyOrleansBundle\Entity\Tag $tag
-     */
-    public function removeTag(\MyOrleansBundle\Entity\Tag $tag)
-    {
-        $this->tags->removeElement($tag);
-    }
 }

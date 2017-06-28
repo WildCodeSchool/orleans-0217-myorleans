@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Residence controller.
  *
- * @Route("admin/residence")
+ * @Route("/admin/residence")
  */
 class ResidenceController extends Controller
 {

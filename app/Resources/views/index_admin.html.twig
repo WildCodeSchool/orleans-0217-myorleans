@@ -39,11 +39,11 @@
                                         <td>{{ residence.ville }}</td>
 
                                         <td>
-                                            <a href="{{ path('residence_show', { 'id': residence.id }) }}"><i
+                                            <a href="{{ path('admin_residence_show', { 'id': residence.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('residence_edit', { 'id': residence.id }) }}"><i
+                                            <a href="{{ path('admin_residence_edit', { 'id': residence.id }) }}"><i
                                                         class="material-icons">build</i></a>
                                         </td>
                                     </tr>
@@ -53,7 +53,7 @@
                             </table>
                             <p>
                                 Ajoutez une nouvelle résidence
-                                <a href="{{ path('residence_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter une
+                                <a href="{{ path('admin_residence_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter une
                                     résidence</a>
                             </p>
                         </div>
