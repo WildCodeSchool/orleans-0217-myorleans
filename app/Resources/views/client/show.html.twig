@@ -1,64 +1,5 @@
 {% extends '::layout_admin.html.twig' %}
 
-<<<<<<< HEAD
-{% block body %}
-    <h1>Client</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ client.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ client.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ client.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ client.email }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ client.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ client.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Codepostal</th>
-                <td>{{ client.codePostal }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ client.ville }}</td>
-            </tr>
-            <tr>
-                <th>Newsletter</th>
-                <td>{{ client.newsletter }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_client_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_client_edit', { 'id': client.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-=======
 {% block content %}
 
     <div class="content">
@@ -68,7 +9,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title">client : {{ client.nom }}</h4>
+                            <h4 class="title">Client : {{ client.nom }}</h4>
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
@@ -109,17 +50,16 @@
                                     <th>Newsletter</th>
                                     <td>{{ client.newsletter }}</td>
                                 </tr>
-
                                 </tbody>
                             </table>
                             <hr>
                             <ul>
                                 <li>
-                                    <a href="{{ path('client_index') }}"><i class="material-icons">keyboard_return</i>Retour
+                                    <a href="{{ path('admin_client_index') }}"><i class="material-icons">keyboard_return</i>Retour
                                         à la liste des clients</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('client_edit', { 'id': client.id }) }}"><i
+                                    <a href="{{ path('admin_client_edit', { 'id': client.id }) }}"><i
                                                 class="material-icons">build</i>Éditer ce client</a>
                                 </li>
 
@@ -137,7 +77,4 @@
             </div>
         </div>
     </div>
-
-
->>>>>>> sprint3
 {% endblock %}

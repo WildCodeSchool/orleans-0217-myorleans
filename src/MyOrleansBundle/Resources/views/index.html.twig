@@ -11,8 +11,6 @@
 
 {% block body %}
 
-
-
     <div id="GrandeIntro">
         <div class="row center logoIntro">
             <div class="col s12 ">
@@ -136,7 +134,7 @@
                                 <div class="card mosaic-container">
                                     <div class="card-image">
                                         {% for media in residenceFav[0].medias if media.typeMedia.nom == 'image' %}
-                                            <img src="{{ asset('img/'~media.lien) }}">
+                                            <img src="{{ asset('uploads/'~media.lien) }}">
                                         {% endfor %}
                                     </div>
                                     <div class="card-content">
@@ -174,16 +172,6 @@
                             </div>
 
                             <div class="col s12 l6">
-                                {# <div class="col s12 l12">
-                                     <div class="card">
-                                         <div class="card-image">
-                                           #}{#  {% for medium in residenceAll.media if medium.type == 'image' %}
-                                                 <img src="{{ asset('img/'~medium.lien) }}" class="responsive-img">
-                                                 <span class="card-title">Le Flores</span>
-                                             {% endfor %}#}{#
-                                         </div>
-                                     </div>
-                                 </div>#}
                                 {% for resTwoFav in residenceTwoFav %}
                                     <div class="col s12 l12">
                                         <div class="card">
@@ -212,195 +200,141 @@
                         <h3 class="h3-testimonial center-align"> Ce que les clients pensent de nous</h3>
                         <div class="col m8 offset-m2 col s12">
                             <div class="owl-carousel owl-theme owl-responsive-1000 owl-loaded">
-
-                                <div class="item cloned">
-                                    <div>
-                                        <div class="box_overlay">
-                                            <div class="pic">
-                                                <figure>
-                                                    <img src="{{ asset('img/equipe/Fabien.jpeg') }}" alt=""
-                                                         class="circle responsive-img">
-                                                </figure>
-                                                <h4>Fabien
-                                                    <small>30 Mai 2017</small>
-                                                </h4>
-                                            </div>
-                                            <div class="comment">
-                                                <p>"Mea ad postea meliore fuisset. Timeam repudiare id eum, ex paulo
-                                                    dictas
-                                                    elaboraret
-                                                    sed,
-                                                    mel cu unum nostrud. No nam indoctum accommodare, vix ei discere
-                                                    civibus
-                                                    philosophia.
-                                                    Vis ea dicant diceret ocurreret."</p>
-                                            </div>
-                                        </div><!-- End box_overlay -->
+                                {% for testimonial in testimonials if testimonial.theme == 'avis' %}
+                                    <div class="item cloned">
+                                        <div>
+                                            <div class="box_overlay">
+                                                <div class="pic">
+                                                    <figure>
+                                                        <img src="{{ asset('img/testimonial_comment.jpg') }}" alt=""
+                                                             class="circle responsive-img">
+                                                    </figure>
+                                                    <h4>{{ testimonial.auteur }}
+                                                        <small>{{ testimonial.date }}</small>
+                                                    </h4>
+                                                </div>
+                                                <div class="comment">
+                                                    <p>{{ testimonial.message }}</p>
+                                                </div>
+                                            </div><!-- End box_overlay -->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="item cloned">
-                                    <div>
-                                        <div class="box_overlay">
-                                            <div class="pic">
-                                                <figure>
-                                                    <img src="{{ asset('img/equipe/Albane.jpeg') }}" alt=""
-                                                         class="circle responsive-img">
-                                                </figure>
-                                                <h4>Albane
-                                                    <small>30 Mai 2017</small>
-                                                </h4>
-                                            </div>
-                                            <div class="comment">
-                                                <p>"Mea ad postea meliore fuisset. Timeam repudiare id eum, ex paulo
-                                                    dictas
-                                                    elaboraret
-                                                    sed,
-                                                    mel cu unum nostrud. No nam indoctum accommodare, vix ei discere
-                                                    civibus
-                                                    philosophia.
-                                                    Vis ea dicant diceret ocurreret."</p>
-                                            </div>
-                                        </div><!-- End box_overlay -->
-                                    </div>
-                                </div>
-                                <div class="item cloned">
-                                    <div>
-                                        <div class="box_overlay">
-                                            <div class="pic">
-                                                <figure>
-                                                    <img src="{{ asset('img/equipe/Emilie.jpeg') }}" alt=""
-                                                         class="circle">
-                                                </figure>
-                                                <h4>Emilie
-                                                    <small>30 Mai 2017</small>
-                                                </h4>
-                                            </div>
-                                            <div class="comment">
-                                                <p>"Mea ad postea meliore fuisset. Timeam repudiare id eum, ex paulo
-                                                    dictas
-                                                    elaboraret
-                                                    sed,
-                                                    mel cu unum nostrud. No nam indoctum accommodare, vix ei discere
-                                                    civibus
-                                                    philosophia.
-                                                    Vis ea dicant diceret ocurreret."</p>
-                                            </div>
-                                        </div><!-- End box_overlay -->
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="row carouselAgence">
-                <div class="col s12 m10 l10 offset-l1">
-                    <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
-                        clients.
-                        Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
-                        meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
-                    <div class="carousel">
-                        {% for collaborateur in collaborateurs %}
-                            <a class="carousel-item" href="#one!"><img
-                                        src="{{ asset('img/equipe/'~collaborateur.media.lien) }}">
-                                <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
-                                    <br><span>{{ collaborateur.fonction }}</span></p>
-                            </a>
+
+        <div class="row carouselAgence">
+            <div class="col s12 m10 l10 offset-l1">
+                <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
+                    clients.
+                    Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
+                    meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
+                <div class="carousel">
+                    {% for collaborateur in collaborateurs %}
+                        <a class="carousel-item" href="#one!"><img
+                                    src="{{ asset('img/equipe/'~collaborateur.media.lien) }}">
+                            <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
+                                <br><span>{{ collaborateur.fonction }}</span></p>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Modal Trigger -->
+            <div class="row">
+                <div class="col s12 center">
+                    <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
+                       href="#modal1">
+                        <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
+                    </a>
+                </div>
+            </div>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal modal-fixed-footer">
+                <div class="modal-content black-text">
+                    <h3> Inscrivez-vous !</h3>
+
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="first_name" type="text" class="validate">
+                                    <label for="first_name">Nom </label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="last_name" type="text" class="validate">
+                                    <label for="last_name">Prénom</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="input-field inline">
+                                        <input id="email" type="email" class="validate">
+                                        <label for="email" data-error="wrong" data-success="right">Email</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Je
+                        m'inscris</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12 l6">
+                <h3>L'actualité</h3>
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
+                            <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
                         {% endfor %}
                     </div>
-                </div>
-
-                <!-- Modal Trigger -->
-                <div class="row">
-                    <div class="col s12 center">
-                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
-                           href="#modal1">
-                            <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
-                        </a>
-                    </div>
-                </div>
-                <!-- Modal Structure -->
-                <div id="modal1" class="modal modal-fixed-footer">
-                    <div class="modal-content black-text">
-                        <h3> Inscrivez-vous !</h3>
-
-                        <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <input id="first_name" type="text" class="validate">
-                                        <label for="first_name">Nom </label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="last_name" type="text" class="validate">
-                                        <label for="last_name">Prénom</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col s12">
-                                        <div class="input-field inline">
-                                            <input id="email" type="email" class="validate">
-                                            <label for="email" data-error="wrong" data-success="right">Email</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Je
-                            m'inscris</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col s12 l6">
-                    <h3>L'actualité</h3>
-                    <div class="card small">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
-                                <img class="activator" src="{{ asset('img/'~media.lien) }}">
-                            {% endfor %}
-                        </div>
-                        <div class="card-content">
+                    <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">add</i></span>
-                            <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
-                            <p class="truncate">{{ actu[0].texte }}</p>
-                        </div>
-                        <div class="card-reveal">
+                        <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
+                        <p class="truncate">{{ actu[0].texte }}</p>
+                    </div>
+                    <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">close</i></span>
-                            <p>{{ actu[0].texte }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s12 l6">
-                    <h3>L'événement</h3>
-                    <div class="card small">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ asset('img/'~event[0].media.lien) }}">
-                        </div>
-                        <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
-                                    class="material-icons right">add</i></span>
-                            <p>{% if event[0].dateDebut %}{{ event[0].dateDebut|date('j-m-Y') }}{% endif %}</p>
-                            <p class="truncate">{{ event[0].description }}</p>
-                        </div>
-                        <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ event[0].nom }}<i
-                                    class="material-icons right">close</i></span>
-                            <p>{{ event[0].description }}</p>
-                        </div>
+                        <p>{{ actu[0].texte }}</p>
                     </div>
                 </div>
             </div>
+
+            <div class="col s12 l6">
+                <h3>L'événement</h3>
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="{{ asset('img/'~event[0].media.lien) }}">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
+                                    class="material-icons right">add</i></span>
+                        <p>{% if event[0].dateDebut %}{{ event[0].dateDebut|date('j-m-Y') }}{% endif %}</p>
+                        <p class="truncate">{{ event[0].description }}</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ event[0].nom }}<i
+                                    class="material-icons right">close</i></span>
+                        <p>{{ event[0].description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     {% endblock %}
 

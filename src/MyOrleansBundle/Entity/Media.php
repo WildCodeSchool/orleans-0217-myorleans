@@ -2,8 +2,10 @@
 
 namespace MyOrleansBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Media
  *
@@ -30,18 +32,18 @@ class Media
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="lien", type="string", length=45, nullable=true)
+     * @Assert\File()
+     * @ORM\Column(name="lien", type="text", nullable=true)
      */
     private $lien;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Flat")
+     * @ORM\ManyToMany(targetEntity="Flat", cascade={"persist"})
      */
     private $flats;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Residence")
+     * @ORM\ManyToMany(targetEntity="Residence", cascade={"persist"})
      */
     private $residences;
 
@@ -52,7 +54,7 @@ class Media
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media")
+     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media", cascade={"persist"})
      */
     private $partenaire;
 
@@ -62,6 +64,10 @@ class Media
      */
     private $service;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Collaborateur", mappedBy="media")
+     */
+    private $collaborateur;
 
     /**
      * @ORM\OneToOne(targetEntity="Pack", mappedBy="media")
@@ -69,12 +75,12 @@ class Media
     private $pack;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article")
+     * @ORM\ManyToMany(targetEntity="Article",cascade={"persist"})
      */
     private $articles;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypeMedia", inversedBy="medias")
+     * @ORM\ManyToOne(targetEntity="TypeMedia", inversedBy="medias", cascade={"persist"})
      */
     private $typeMedia;
 
@@ -141,8 +147,8 @@ class Media
      */
     public function __construct()
     {
-        $this->residences = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->flats = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->residences = new ArrayCollection();
+        $this->flats = new ArrayCollection();
     }
 
 
@@ -379,4 +385,22 @@ class Media
     {
         $this->articles->removeElement($article);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCollaborateur()
+    {
+        return $this->collaborateur;
+    }
+
+    /**
+     * @param mixed $collaborateur
+     */
+    public function setCollaborateur($collaborateur)
+    {
+        $this->collaborateur = $collaborateur;
+    }
+
+
 }
