@@ -15,16 +15,22 @@ use MyOrleansBundle\Form\SimpleSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function indexAction(Request $request)
+    public function indexAction(SessionInterface $session)
     {
+        $parcours = null;
+        if (isset($_SESSION['parcours'])) {
+            $parcours = $_SESSION['parcours'];
+        }
         $em = $this->getDoctrine()->getManager();
-
 
         $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
 
@@ -48,6 +54,7 @@ class HomeController extends Controller
 
 
         return $this->render('MyOrleansBundle::index.html.twig', [
+            'parcours' => $parcours,
             'simpleSearch' => $simpleSearch->createView(),
             'villes'=> $villes,
             'collaborateurs' => $collaborateurs,
@@ -115,7 +122,14 @@ class HomeController extends Controller
      */
     public function parcoursImmoAction()
     {
-        return $this->render('MyOrleansBundle::parcoursimmo.html.twig');
+        $parcours = null;
+        if (isset($_SESSION)) {
+            $parcours = $_SESSION['parcours'];
+        }
+
+        return $this->render('MyOrleansBundle::parcoursimmo.html.twig', [
+            'parcours' => $parcours
+        ]);
     }
 
 

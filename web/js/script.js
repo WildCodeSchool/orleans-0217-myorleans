@@ -16,4 +16,5 @@ $(document).ready(function () {
         shift: 20,
         duration: 100
     });
+
 });

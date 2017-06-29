@@ -15,6 +15,8 @@ use MyOrleansBundle\Service\AutocompleteGenerator;
 use MyOrleansBundle\Service\CalculateurCaracteristiquesResidence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Form\SimpleSearchType;
@@ -30,16 +32,28 @@ class NosBiensController extends Controller
      */
     public function nosBiensAction(Request $request)
     {
+        // Definition des contenus associes par defaut
+        $message = "Découvrez les biens suggérés";
+        $objectif = "investir";
+
+        // Definition du parcours du visiteur
+        $parcours = null;
+        if (isset($_SESSION['parcours'])) {
+            $parcours = $_SESSION['parcours'];
+            if ($parcours == $this->getParameter('parcours_investisseur')) {
+                $objectif = 'investir';
+            } else {
+                $objectif = 'Residence Principale';
+            }
+
+        }
+
         // Generation du manager
         $em = $this->getDoctrine()->getManager();
 
         // Recuperation de la liste des villes et des quartiers dans lesqulles se trouvent les residences
         $villes = $em->getRepository(Ville::class)->findAll();
         $quartiers = $em->getRepository(Quartier::class)->findAll();
-
-        // Definition des contenus associes par defaut
-        $message = "Découvrez les biens suggérés";
-        $objectif = "investir";
 
         // Generation du dernier article avec le tag 'Investissement'
         $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
@@ -61,8 +75,14 @@ class NosBiensController extends Controller
             // Envoi de contenu different en fonction du bouton clique : investisseur ou residence principale
             $objectif = 'investir';
             $tag = 'Investissement';
+
+            $_SESSION['parcours'] = $this->getParameter('parcours_investisseur');
+
             if ($simpleSearch->get('resPrincipaleBtn')->isClicked()) {
                 $objectif = $tag = 'Residence Principale';
+
+                $_SESSION['parcours'] = $this->getParameter('parcours_residence');
+
             }
             // Generation du dernier article avec le tag 'Residence Principale'
             $article = $em->getRepository(Article::class)->articleByTag($tag, 1);
@@ -80,6 +100,9 @@ class NosBiensController extends Controller
                 $message = "Aucune résidence ne correspond à votre recherche. Découvrez les biens suggérés.";
             }
 
+            // Parametrage du parcours visiteur
+            $parcours = $_SESSION['parcours'];
+
         }
 
         // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
@@ -88,6 +111,7 @@ class NosBiensController extends Controller
         }
 
         return $this->render('MyOrleansBundle::nosbiens.html.twig', [
+            'parcours' => $parcours,
             'residences' => $residences,
             'completeSearch' => $completeSearch->createView(),
             'villes' => $villes,
@@ -140,13 +164,22 @@ class NosBiensController extends Controller
             }
 
             // Generation des contenus associes en fonction de l'objectif
-            if ($objectif != 'investir') {
+            if (isset($objectif) && $objectif == 'Residence Principale') {
                 // Generation du dernier article avec le tag 'Residence Principale'
                 $article = $em->getRepository(Article::class)->articleByTag('Residence Principale', 1);
                 $article = $article[0];
 
                 $objectif = "Residence Principale";
+
+                $_SESSION['parcours'] = $this->getParameter('parcours_residence');
             }
+
+            if (isset($objectif) && $objectif == 'investir') {
+                $_SESSION['parcours'] = $this->getParameter('parcours_investisseur');
+            }
+
+            // Parametrage du parcours visiteur
+            $parcours = $_SESSION['parcours'];
 
             // Generation du derier article avec le tag 'Investissement'
             $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
@@ -155,6 +188,7 @@ class NosBiensController extends Controller
             // Fin contenu associe
 
             return $this->render('MyOrleansBundle::nosbiens.html.twig',[
+                'parcours' => $parcours,
                 'completeSearch' => $completeSearch->createView(),
                 'residences' => $residences,
                 'villes' => $villes,

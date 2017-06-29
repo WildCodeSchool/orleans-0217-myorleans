@@ -22,6 +22,11 @@ class AgenceController extends Controller
      */
     public function agencyAction()
     {
+        $parcours = null;
+        if (isset($_SESSION)) {
+            $parcours = $_SESSION['parcours'];
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $partenaires = $em->getRepository(Partenaire::class)->findAll();
@@ -31,6 +36,7 @@ class AgenceController extends Controller
 
         return $this->render('MyOrleansBundle::agence.html.twig',
             [
+                'parcours' => $parcours,
                 'partenaires' => $partenaires,
                 'collaborateurs'=>$collaborateurs,
                 'evenements'=>$evenements,

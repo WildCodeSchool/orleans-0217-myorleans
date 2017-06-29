@@ -163,6 +163,35 @@ body {
     color: rgba(44, 44, 44, 0.6);
 }
 
+.icone-profil a i {
+    font-size: 25px;
+    color: #ffffff ;
+    background-color: #a5ca2a;
+    padding: 8px;
+    height: 40px;
+    width: 45px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-left: 220px;
+    line-height: 1;
+}
+
+.icone-profil a {
+    color: transparent;
+}
+
+.icone-profil a:hover i {
+    color: #a5ca2a ;
+    background-color: #ffffff;
+    border: solid 1px #a5ca2a;
+}
+
+.icone-profil a:hover {
+    border-bottom: none;
+    color: #a5ca2a;
+    font-weight: bold;
+}
+
 .no-margin-bottom {
     margin-bottom: 0;
 }
@@ -321,7 +350,7 @@ body {
     width: 50%;
     left:300px;
     right: 150px;
-    background-color: rgb(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
 
 
 }

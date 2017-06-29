@@ -22,11 +22,17 @@ class NosServicesController extends Controller
      */
     public function nosservices()
     {
+        $parcours = null;
+        if (isset($_SESSION)) {
+            $parcours = $_SESSION['parcours'];
+        }
+
         $em = $this->getDoctrine()->getManager();
         $services = $em->getRepository(Service::class)->findAll();
         $packs = $em->getRepository(Pack::class)->findAll();
         $temoignages =$em->getRepository(Temoignage::class)->findAll();
         return $this->render('MyOrleansBundle::nosservices.html.twig',[
+            'parcours' => $parcours,
             'services'=>$services,
             'packs'=>$packs,
             'temoignages'=>$temoignages

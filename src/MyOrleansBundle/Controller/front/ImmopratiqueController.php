@@ -22,11 +22,16 @@ class ImmopratiqueController extends Controller
      */
     public function immopratique()
     {
+        $parcours = null;
+        if (isset($_SESSION)) {
+            $parcours = $_SESSION['parcours'];
+        }
+
         $em = $this->getDoctrine()->getManager();
         $articles = $em->getRepository(Article::class)->findAll();
 
         return $this->render('MyOrleansBundle::immopratique.html.twig',[
-
+            'parcours' => $parcours,
             'articles'=>$articles
         ]);
     }
