@@ -24,7 +24,7 @@ class AgenceController extends Controller
     public function agencyAction(SessionInterface $session)
     {
         $parcours = null;
-        if (!empty($session->get('parcours'))) {
+        if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
 

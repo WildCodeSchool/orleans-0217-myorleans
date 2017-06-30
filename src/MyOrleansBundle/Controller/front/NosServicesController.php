@@ -24,7 +24,7 @@ class NosServicesController extends Controller
     public function nosservices(SessionInterface $session)
     {
         $parcours = null;
-        if (!empty($session->get('parcours'))) {
+        if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
 

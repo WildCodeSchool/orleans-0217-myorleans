@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function indexAction(SessionInterface $session)
     {
         $parcours = null;
-        if (!empty($session->get('parcours'))) {
+        if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
         $em = $this->getDoctrine()->getManager();

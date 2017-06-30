@@ -24,7 +24,7 @@ class ImmopratiqueController extends Controller
     public function immopratique(SessionInterface $session)
     {
         $parcours = null;
-        if (!empty($session->get('parcours'))) {
+        if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
 

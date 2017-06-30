@@ -38,7 +38,8 @@ class NosBiensController extends Controller
 
         // Definition du parcours du visiteur
         $parcours = null;
-        if (!empty($session->get('parcours'))) {
+
+        if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
             if ($parcours == $this->getParameter('parcours_investisseur')) {
                 $objectif = 'investir';
