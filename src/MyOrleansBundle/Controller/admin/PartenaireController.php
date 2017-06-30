@@ -85,13 +85,20 @@ class PartenaireController extends Controller
      * @Route("/{id}/edit", name="admin_partenaire_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Partenaire $partenaire)
+    public function editAction(Request $request, Partenaire $partenaire, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($partenaire);
         $editForm = $this->createForm('MyOrleansBundle\Form\PartenaireType', $partenaire);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $media = $partenaire->getMedia();
+
+            $file = $media->getLien();
+            if ($file) {
+                $filename = $fileUploader->upload($file);
+                $media->setLien($filename);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_partenaire_edit', array('id' => $partenaire->getId()));
@@ -122,6 +129,22 @@ class PartenaireController extends Controller
         }
 
         return $this->redirectToRoute('admin_partenaire_index');
+    }
+
+    /**
+     * Deletes a partenaire media.
+     *
+     * @Route("/{id}/delete_media", name="partenaire_media_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Partenaire $partenaire)
+    {
+        $path = $partenaire->getMedia()->getLien();
+        $em = $this->getDoctrine()->getManager();
+        $partenaire->setMedia(null);
+        $em->flush();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        return $this->redirectToRoute('admin_partenaire_edit', array('id' => $partenaire->getId()));
     }
 
     /**

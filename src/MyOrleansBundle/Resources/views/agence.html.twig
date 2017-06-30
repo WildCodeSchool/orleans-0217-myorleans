@@ -33,9 +33,11 @@
                         {% for collaborateur in collaborateurs %}
                             <div class="col l4 s12">
                                 <div class="blockStaff">
+                                    {% if collaborateur.media.lien is defined  %}
                                     <div class="imgStaff">
                                         <img src="{{ asset('uploads/'~collaborateur.media.lien ) }}" alt="">
                                     </div>
+                                    {% endif %}
                                     <div class="infoStaff">
                                         <h3>{{ collaborateur.prenom }} {{ collaborateur.nom }}</h3>
                                         <h4>{{ collaborateur.fonction }}</h4>
