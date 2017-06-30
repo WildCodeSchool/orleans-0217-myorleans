@@ -63,13 +63,10 @@ class NosBiensController extends Controller
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType', null, ['action' => $this->generateUrl('nosbiens')]);
         $simpleSearch->handleRequest($request);
 
-        // Generation du moteur de recherche complet
-        $completeSearch = $this->createForm('MyOrleansBundle\Form\CompleteSearchType', null, ['action' => $this->generateUrl('nosbiens-search')]);
-        $completeSearch->handleRequest($request);
+        // initialisation des variables ville et type a 0 si le formulaire simpleSearch n'est pas soumis
+        $selectedVille = $selectedType = '';
 
-
-
-        // affectation des valeurs ville et type si le form simpleSearch est valide
+              // affectation des valeurs ville et type si le form simpleSearch est valide
         if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
 
             // Envoi de contenu different en fonction du bouton clique : investisseur ou residence principale
@@ -90,7 +87,9 @@ class NosBiensController extends Controller
 
             // Prise en compte des filtres du moteur de recherche
             $data = $simpleSearch->getData();
-            $residences = $em -> getRepository(Residence::class)->simpleSearch($data['ville'], $data['type']);
+            $selectedVille = $data['ville'];
+            $selectedType = $data['type'];
+            $residences = $em -> getRepository(Residence::class)->simpleSearch($selectedVille, $selectedType);
 
             $message = count($residences)." résidence(s) correspondent à votre recherche";
 
@@ -104,6 +103,10 @@ class NosBiensController extends Controller
             $parcours = $session->get('parcours');
 
         }
+
+        // Generation du moteur de recherche complet avec les valeurs ville et type definies ou non dans simpleSearch
+        $completeSearch = $this->createForm('MyOrleansBundle\Form\CompleteSearchType', ['ville'=>$selectedVille, 'type'=>$selectedType], ['action' => $this->generateUrl('nosbiens-search')]);
+        $completeSearch->handleRequest($request);
 
         // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
         if(empty($residences)) {
