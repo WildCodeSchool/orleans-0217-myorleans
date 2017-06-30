@@ -94,10 +94,12 @@
                     <div class="row center">
                         {% for partenaire in partenaires %}
                             <div class="col s3 l1">
+                                {% if partenaire.media.lien is defined  %}
                                 <a href="{{ partenaire.url }}" target="_blank">
                                     <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.lien) }}"
                                          alt="{{ partenaire.nom }}">
                                 </a>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>

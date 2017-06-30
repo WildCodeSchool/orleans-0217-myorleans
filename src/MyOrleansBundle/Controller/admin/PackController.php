@@ -89,11 +89,6 @@ class PackController extends Controller
     public function editAction(Request $request, Pack $pack, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($pack);
-        $pack->setMedia(
-            new Media($this->getParameter('upload_directory') . '/' .
-                $pack->getMedia()->getLien()
-            )
-        );
         $editForm = $this->createForm('MyOrleansBundle\Form\PackType', $pack);
         $editForm->handleRequest($request);
 
@@ -136,6 +131,21 @@ class PackController extends Controller
         return $this->redirectToRoute('admin_pack_index');
     }
 
+    /**
+     * Deletes a pack media.
+     *
+     * @Route("/{id}/delete_media", name="pack_media_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Pack $pack)
+    {
+        $path = $pack->getMedia()->getLien();
+        $em = $this->getDoctrine()->getManager();
+        $pack->setMedia(null);
+        $em->flush();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        return $this->redirectToRoute('admin_pack_edit', array('id' => $pack->getId()));
+    }
     /**
      * Creates a form to delete a pack entity.
      *
