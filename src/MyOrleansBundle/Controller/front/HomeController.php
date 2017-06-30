@@ -47,18 +47,31 @@ class HomeController extends Controller
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($client->getEmail())
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionform.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
 
             $em->persist($client);
             $em->flush();
             return $this->redirectToRoute('home');
         }
 
-       /* dump($formulaire);
-        die;*/
 
 
-
-        // Recuperation de la liste des villes dans lesqulles se trouvent les residences
+        // Recuperation de la liste des villes dans lesquelles se trouvent les residences
         $residences = $em->getRepository(Residence::class)->findAll();
         $villes = [];
         foreach ($residences as $residence) {

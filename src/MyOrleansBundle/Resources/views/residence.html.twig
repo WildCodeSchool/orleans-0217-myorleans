@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block content %}
+    <!--logo dde de documentation-->
+    <div class="breadcrumb">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
+    </div>
+    <!--fin logo dde de documentation-->
     <div class="content-residence">
         <div class="video-container">
             <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0"
@@ -317,5 +322,21 @@
         </div>
         </div>
     </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        //formulaire de contact
+        $('.button-collapse').sideNav({
+                edge: 'right', // Choose the horizontal origin
+                draggable: false, // Choose whether you can drag to open on touch screens
+                closeOnClick: true
+            }
+        );
+    </script>
+
 
 {% endblock %}

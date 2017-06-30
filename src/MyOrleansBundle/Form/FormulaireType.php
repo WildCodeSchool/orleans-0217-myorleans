@@ -11,6 +11,8 @@ namespace MyOrleansBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,12 +26,14 @@ class FormulaireType extends AbstractType
             ->setMethod('post')
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('email', TextType::class)
-            ->add('telephone', TextType::class)
-            ->add('codePostal', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('telephone', NumberType::class)
+            ->add('codePostal', NumberType::class)
             ->add('ville', TextType::class)
             ->add('adresse', TextType::class)
-            ->add('message', TextareaType::class)
+            ->add('message', TextareaType::class, [
+                'attr' =>['class' => 'materialize-textarea']
+            ])
             ->add('newsletter', ChoiceType::class, array(
                 'choices' => array('oui' => true, 'non' => false),
                 'expanded' => true,

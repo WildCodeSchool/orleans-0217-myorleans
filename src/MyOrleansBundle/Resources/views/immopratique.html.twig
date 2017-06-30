@@ -14,27 +14,9 @@
         <img src="{{ asset('img/orleans2.jpg') }}" style="width: 100%; margin-bottom: -90px;"
              alt="photo interieur appartement"/>
     </div>
+
     <!--fin grande image du haut-->
-    {#<div class="parallax-container">
-        <div class="parallax"><img src="{{ asset('img/orleans2.jpg') }}"></div>
-    </div>#}
 
-
-    <!-- barre de recherche par mot clé-->
-    {# <div class="barre-recherche">
-         <nav class="recherche" style="border-radius: 25px">
-             <div class="nav-wrapper">
-                 <form>
-                     <div class="input-field">
-                         <input id="search" placeholder="Rechercher votre info par mot clé" type="search" required>
-                         <label class="label-icon" for="search"><i class="material-icons">seach</i></label>
-                         <i class="material-icons">close</i>
-                     </div>
-                 </form>
-             </div>
-         </nav>
-     </div>#}
-    <!--fin barre de recherche par mot clé-->
 
     <!--menu dossiers thematiques-->
     <div class="fiches-ancres">
@@ -55,7 +37,6 @@
         </div>
     </div>
     <!--fin menu dossier thématiques-->
-
 
 
     <!--premier block-->
@@ -120,9 +101,6 @@
     <!--fin premier block-->
 
 
-
-
-
     <!-- deuxième block -->
 
     <div class="container">
@@ -180,14 +158,8 @@
     </div>
     <!--fin deuxième block-->
 
-
-
-
-
-
     <!--troisième block-->
     <div class="container">
-
         <h2 class="subtitle fancy" id="actu-immo"><span>Actualités immobilières</span></h2>
         {% for article in articles if article.typeArticle.nom  == 'actu' %}
             {% for media in article.medias %}
@@ -239,11 +211,9 @@
             {% endfor %}
         {% endfor %}
     </div>
-
     <!--fin troisième block-->
 
-
-    <!-- form -->
+    <!-- début formulaire de contact -->
     <form method="post" action="">
         <div id="slide-out" class="side-nav">
             <div class="userView">
@@ -312,47 +282,38 @@
                     <div class="row center">
                         <p style="text-align: center">Je souhaite m'abonner à la newsletter?</p>
 
-                            {{ form_widget(form.newsletter) }}
-                            {{ form_errors(form.newsletter) }}
-                        </div>
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
                     </div>
-
-
-                    <div class="input-field col l12">
-                        {{ form_row(form.envoyer) }}
-                    </div>
-
-                    {{ form_end(form) }}
                 </div>
 
+                <div class="input-field col l12">
+                    {{ form_row(form.envoyer) }}
+                </div>
 
+                {{ form_end(form) }}
             </div>
 
+        </div>
 
     </form>
-    <!--fin form de contact-->
 
-
+    <!--fin formulaire de contact-->
 
 
     {% block javascripts %}
-
         {{ parent() }}
         <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
-        {#<script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>#}
-
-
         <script>
-
-
-
             AOS.init();
+            //formulaire de contact
             $('.button-collapse').sideNav({
                     edge: 'right', // Choose the horizontal origin
                     draggable: false, // Choose whether you can drag to open on touch screens
                     closeOnClick: true
                 }
             );
+
         </script>
     {% endblock %}
 {% endblock %}

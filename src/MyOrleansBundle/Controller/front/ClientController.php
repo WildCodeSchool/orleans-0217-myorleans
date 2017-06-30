@@ -19,12 +19,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class ClientController extends Controller
 {
 
-
-
     /**
      * @Route("/nos-services", name="nosservices")
      */
-    public function testAction(Request $request)
+    public function formulaireAction(Request $request)
     {
 
 
@@ -57,5 +55,6 @@ class ClientController extends Controller
         return $this->render('MyOrleansBundle::nosservices.html.twig', array('form' => $form->createView()));
 
     }
+
 }
 

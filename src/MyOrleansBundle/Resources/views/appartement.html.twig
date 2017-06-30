@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block content %}
+    <!--logo dde de documentation-->
+    <div class="breadcrumb">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
+    </div>
+    <!--fin logo dde de documentation-->
     <div id="content" class="content-appartement">
         <div class="container-fluid">
             <div class="row center">
@@ -163,6 +168,8 @@
     </div>
 
 
+
+
     {% block javascripts %}
         {{ parent() }}
         <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
@@ -184,6 +191,14 @@
                 });
                 doc.save('sample-file.pdf');
             });
+
+            //formulaire de contact
+            $('.button-collapse').sideNav({
+                    edge: 'right', // Choose the horizontal origin
+                    draggable: false, // Choose whether you can drag to open on touch screens
+                    closeOnClick: true
+                }
+            );
         </script>
     {% endblock %}
 

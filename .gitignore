@@ -26,3 +26,4 @@ composer.json
 .web-server-pid
 
 >>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
+!/src/MyOrleansBundle/Resources/views/receptionform.html.twig

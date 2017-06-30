@@ -28,7 +28,7 @@ class NosServicesController extends Controller
     /**
      * @Route("/nos-services", name="nosservices")
      */
-    public function nosservices(Request $request)
+    public function nosServicesAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -39,6 +39,23 @@ class NosServicesController extends Controller
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($client->getEmail())
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionform.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
             $em->persist($client);
             $em->flush();
 

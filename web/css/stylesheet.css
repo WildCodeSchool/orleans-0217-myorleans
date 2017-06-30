@@ -307,7 +307,6 @@ body {
 }
 
 
-
 .recherche{
     width: 40%;
     margin-left: 400px;
@@ -326,9 +325,6 @@ body {
     width: 300px;
     }
 
-    .barre-recherche{
-        visibility: hidden;
-    }
 }
 
 
