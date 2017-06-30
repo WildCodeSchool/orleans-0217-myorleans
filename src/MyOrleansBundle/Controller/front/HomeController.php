@@ -51,7 +51,7 @@ class HomeController extends Controller
 
             $message = new \Swift_Message('Nouveau message de my-orleans.com');
             $message
-                ->setTo($client->getEmail())
+                ->setTo('wildersmyorleans@gmail.com')
                 ->setFrom($this->getParameter('mailer_user'))
                 ->setBody(
                     $this->renderView(
