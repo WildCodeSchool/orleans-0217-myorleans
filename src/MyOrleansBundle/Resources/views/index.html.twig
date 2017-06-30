@@ -113,43 +113,8 @@
                         <div class="row">
                             <div class="col s12 l6">
                                 {% for residence in residenceFav %}
-                                <div class="card mosaic-container">
-                                    <div class="card-image">
-                                        {% for media in residence.medias if media.typeMedia.nom == 'image' %}
-                                            <img src="{{ asset('img/'~media.lien) }}">
-                                        {% endfor %}
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="row grille-infos">
-                                            <div class="col s8 grille-gauche">
-                                                <div class="row nom-residence">
-                                                    <h4>{{ residence.nom }}</h4>
-                                                    <p>à {{ residence.ville.nom }}</p>
-                                                </div>
-                                                <div class="row annee-nbPiece">
-                                                    <div class="col s6 annee-residence">
-                                                        <h4>Année</h4>
-                                                        <p>{{ residence.dateLivraison }}</p>
-                                                    </div>
-                                                    <div class="col s6">
-                                                        <h4>Nombre de pièces</h4>
-                                                        <p>Du T1 au T5</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col s4">
-                                                <h4>Prix</h4>
-                                                <p>A partir de 90 000€</p>
-                                                <br/>
-                                                <h4>Disponibilité</h4>
-                                                <p>{{ residence.nbTotalLogements }} logements</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-action center">
-                                        <a href="#">Découvrir la résidence</a>
-                                    </div>
-                                </div>
+                                    {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidenceHome',
+                                                        {'id': residence.id })) }}
                                 {% endfor %}
                             </div>
 

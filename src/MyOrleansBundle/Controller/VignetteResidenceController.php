@@ -43,6 +43,32 @@ class VignetteResidenceController extends Controller
 
     }
 
+    /**
+     * @param $id
+     * @param CalculateurCaracteristiquesResidence $calculateur
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/vignette-residence-home/{id}", name="vignette-residence-home")
+     */
+    public function affichageResidenceHomeAction(Residence $residence, CalculateurCaracteristiquesResidence $calculateur)
+    {
+        //recuperation des caracteristiques de chaque residence
+        $prixMin = $calculateur->calculPrix($residence);
+        $flatsDispo = $calculateur->calculFlatDispo($residence);
+        $typeMinMax = $calculateur->calculSizes($residence);
+
+        // Fin recup caracteristiques
+
+        return $this->render('MyOrleansBundle::home_affichage_residence.html.twig', [
+            'residence' => $residence,
+            'prixMin' => $prixMin,
+            'flatsDispo' => $flatsDispo,
+            'typeMin' => $typeMinMax[0],
+            'typeMax' => $typeMinMax[1]
+        ]);
+
+    }
+
 
     /**
      * @param $id
