@@ -13,6 +13,7 @@ use MyOrleansBundle\Entity\Pack;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
 use MyOrleansBundle\Entity\Article;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ImmopratiqueController extends Controller
 {
@@ -20,11 +21,11 @@ class ImmopratiqueController extends Controller
     /**
      * @Route("/immopratique", name="immopratique")
      */
-    public function immopratique()
+    public function immopratique(SessionInterface $session)
     {
         $parcours = null;
-        if (isset($_SESSION)) {
-            $parcours = $_SESSION['parcours'];
+        if (!empty($session->get('parcours'))) {
+            $parcours = $session->get('parcours');
         }
 
         $em = $this->getDoctrine()->getManager();

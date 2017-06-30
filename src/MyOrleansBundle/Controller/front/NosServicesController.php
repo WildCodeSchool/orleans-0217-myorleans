@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MyOrleansBundle\Entity\Pack;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 class NosServicesController extends Controller
@@ -20,11 +21,11 @@ class NosServicesController extends Controller
     /**
      * @Route("/nos-services", name="nosservices")
      */
-    public function nosservices()
+    public function nosservices(SessionInterface $session)
     {
         $parcours = null;
-        if (isset($_SESSION)) {
-            $parcours = $_SESSION['parcours'];
+        if (!empty($session->get('parcours'))) {
+            $parcours = $session->get('parcours');
         }
 
         $em = $this->getDoctrine()->getManager();

@@ -27,8 +27,8 @@ class HomeController extends Controller
     public function indexAction(SessionInterface $session)
     {
         $parcours = null;
-        if (isset($_SESSION['parcours'])) {
-            $parcours = $_SESSION['parcours'];
+        if (!empty($session->get('parcours'))) {
+            $parcours = $session->get('parcours');
         }
         $em = $this->getDoctrine()->getManager();
 
@@ -68,39 +68,6 @@ class HomeController extends Controller
     }
 
     /*-----------------------------------------------*/
-
-    /**
-     * @Route("/nos-services", name="nosservices")
-     */
-    public function nosservices()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $services = $em->getRepository(Service::class)->findAll();
-        $packs = $em->getRepository(Pack::class)->findAll();
-        $temoignages = $em->getRepository(Temoignage::class)->findAll();
-        return $this->render('MyOrleansBundle::nosservices.html.twig', [
-            'services' => $services,
-            'packs' => $packs,
-            'temoignages' => $temoignages
-        ]);
-    }
-    /**
-     * @Route("/immopratique", name="immopratique")
-     */
-    public function immopratique()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findAll();
-
-        // TMP
-        //$articlesImmo[] = $articles[0];
-        //$articlesImmo[] = $articles[1];
-        // TMP
-
-        return $this->render('MyOrleansBundle::immopratique.html.twig', [
-            'articles' => $articles
-        ]);
-    }
 
     /**
      * @Route("/residences", name="residences")

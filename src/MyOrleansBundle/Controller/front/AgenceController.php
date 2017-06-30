@@ -14,17 +14,18 @@ use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Partenaire;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class AgenceController extends Controller
 {
     /**
      * @Route("/agence", name="agence")
      */
-    public function agencyAction()
+    public function agencyAction(SessionInterface $session)
     {
         $parcours = null;
-        if (isset($_SESSION)) {
-            $parcours = $_SESSION['parcours'];
+        if (!empty($session->get('parcours'))) {
+            $parcours = $session->get('parcours');
         }
 
         $em = $this->getDoctrine()->getManager();

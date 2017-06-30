@@ -30,7 +30,7 @@ class NosBiensController extends Controller
     /**
      * @Route("/nos-biens", name="nosbiens")
      */
-    public function nosBiensAction(Request $request)
+    public function nosBiensAction(Request $request, SessionInterface $session)
     {
         // Definition des contenus associes par defaut
         $message = "Découvrez les biens suggérés";
@@ -38,14 +38,13 @@ class NosBiensController extends Controller
 
         // Definition du parcours du visiteur
         $parcours = null;
-        if (isset($_SESSION['parcours'])) {
-            $parcours = $_SESSION['parcours'];
+        if (!empty($session->get('parcours'))) {
+            $parcours = $session->get('parcours');
             if ($parcours == $this->getParameter('parcours_investisseur')) {
                 $objectif = 'investir';
             } else {
                 $objectif = 'Residence Principale';
             }
-
         }
 
         // Generation du manager
@@ -76,12 +75,12 @@ class NosBiensController extends Controller
             $objectif = 'investir';
             $tag = 'Investissement';
 
-            $_SESSION['parcours'] = $this->getParameter('parcours_investisseur');
+            $session->set('parcours', $this->getParameter('parcours_investisseur'));
 
             if ($simpleSearch->get('resPrincipaleBtn')->isClicked()) {
                 $objectif = $tag = 'Residence Principale';
 
-                $_SESSION['parcours'] = $this->getParameter('parcours_residence');
+                $session->set('parcours', $this->getParameter('parcours_residence'));
 
             }
             // Generation du dernier article avec le tag 'Residence Principale'
@@ -101,7 +100,7 @@ class NosBiensController extends Controller
             }
 
             // Parametrage du parcours visiteur
-            $parcours = $_SESSION['parcours'];
+            $parcours = $session->get('parcours');
 
         }
 
@@ -126,7 +125,7 @@ class NosBiensController extends Controller
     /**
      * @Route("/nos-biens/search", name="nosbiens-search")
      */
-    public function completeSearchAction(Request $request, CalculateurCaracteristiquesResidence $calculateur)
+    public function completeSearchAction(Request $request, SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
         $completeSearch = $this->createForm('MyOrleansBundle\Form\CompleteSearchType');
@@ -171,15 +170,17 @@ class NosBiensController extends Controller
 
                 $objectif = "Residence Principale";
 
-                $_SESSION['parcours'] = $this->getParameter('parcours_residence');
+                $session->set('parcours', $this->getParameter('parcours_residence'));
+
             }
 
             if (isset($objectif) && $objectif == 'investir') {
-                $_SESSION['parcours'] = $this->getParameter('parcours_investisseur');
+                $session->set('parcours', $this->getParameter('parcours_investisseur'));
+
             }
 
             // Parametrage du parcours visiteur
-            $parcours = $_SESSION['parcours'];
+            $parcours = $session->get('parcours');
 
             // Generation du derier article avec le tag 'Investissement'
             $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);

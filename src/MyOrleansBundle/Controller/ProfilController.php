@@ -24,9 +24,9 @@ class ProfilController extends Controller
      *
      * @Route("/parcours/{profil}/{route}", name="parcours")
      */
-    public function parametrerProfilAction($profil, $route)
+    public function parametrerProfilAction($profil, $route, SessionInterface $session)
     {
-        $_SESSION['parcours'] = $profil;
+        $session->set('parcours', $profil);
 
         return $this->redirectToRoute($route);
     }
