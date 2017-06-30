@@ -11,11 +11,38 @@
                             <h4 class="title">Modifier cet événement</h4>
                         </div>
                         <div class="card-content table-responsive">
-
                             {{ form_start(edit_form) }}
-                            {{ form_widget(edit_form) }}
+                            {{ form_label(edit_form.nom, "Nom de l'évènement:") }}
+                            {{ form_widget(edit_form.nom) }}
+                            {{ form_label(edit_form.ville, 'Lieu/Ville: ') }}
+                            {{ form_widget(edit_form.ville) }}
+                            {{ form_label(edit_form.codePostal, 'Code Postal: ') }}
+                            {{ form_widget(edit_form.codePostal) }}
+                            {{ form_label(edit_form.dateDebut, 'Date de début: ') }}
+                            {{ form_widget(edit_form.dateDebut) }}
+                            {{ form_label(edit_form.heureDebut, 'Heure de début: ') }}
+                            {{ form_widget(edit_form.heureDebut) }}
+                            {{ form_label(edit_form.dateFin, 'Date de fin: ') }}
+                            {{ form_widget(edit_form.dateFin) }}
+                            {{ form_label(edit_form.heureFin, 'Heure de fin: ') }}
+                            {{ form_widget(edit_form.heureFin) }}
+                            {{ form_label(edit_form.description, 'Description: ') }}
+                            {{ form_widget(edit_form.description) }}
+                            {% if evenement.media.lien is defined %}
+
+                                <p class="imgUploader"><img class="responsive-img"
+                                                            src="{{ asset('uploads/'~evenement.media.lien) }}"
+                                                            alt="{{ evenement.nom }}"/>
+                                    <a href="{{ path('evenement_media_delete', {"id" : evenement.id}) }}">Supprimer</a>
+                                </p>
+                            {% else %}
+                                <h3>Veuillez charger une nouvelle image.</h3>
+                                <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du media.</p>
+                                {{ form_widget(edit_form.medias) }}
+                            {% endif %}
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
-                            {{ form_end(edit_form) }}
+                            {{ form_widget(edit_form._token) }}
+                            </form>
 
                             <ul>
                                 <li>

@@ -48,7 +48,8 @@ class Media
     private $residences;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Evenement", inversedBy="medias")
+     * @ORM\ManyToOne(targetEntity="Evenement", inversedBy="medias", cascade={"persist"})
+     *
      */
     private $evenement;
 

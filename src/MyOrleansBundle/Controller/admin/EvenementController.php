@@ -4,9 +4,11 @@ namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Evenement controller.
@@ -38,7 +40,7 @@ class EvenementController extends Controller
      * @Route("/new", name="admin_evenement_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $evenement = new Evenement();
         $media = new Media();
@@ -52,11 +54,7 @@ class EvenementController extends Controller
 
             foreach ($medias as $media) {
                 $file = $media->getLien();
-                $filename = 'evt' . uniqid() . '.' . $file->guessExtension();
-                $file->move(
-                    $this->getParameter('upload_directory'),
-                    $filename
-                );
+                $filename = $fileUploader->upload($file);
                 $media->setLien($filename);
                 $media->setEvenement($evenement);
             }
@@ -94,13 +92,23 @@ class EvenementController extends Controller
      * @Route("/{id}/edit", name="admin_evenement_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Evenement $evenement)
+    public function editAction(Request $request, Evenement $evenement, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($evenement);
         $editForm = $this->createForm('MyOrleansBundle\Form\EvenementType', $evenement);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $evenement  = $editForm->getData();
+            $medias = $evenement->getMedias();
+            foreach ($medias as $media) {
+                $file = $media->getLien();
+
+                if ($file) {
+                    $filename = $fileUploader->upload($file);
+                    $media->setLien($filename);
+                }
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_evenement_edit', array('id' => $evenement->getId()));
@@ -133,6 +141,23 @@ class EvenementController extends Controller
         return $this->redirectToRoute('admin_evenement_index');
     }
 
+
+    /**
+     * Deletes a evenement media.
+     *
+     * @Route("/{id}/delete_media", name="evenement_media_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Evenement $evenement)
+    {
+        $path = $evenement->getMedias()->getLien();
+        $em = $this->getDoctrine()->getManager();
+        $evenement->setMedias(null);
+        $em->flush();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        return $this->redirectToRoute('admin_evenement_edit', array('id' => $evenement->getId()));
+    }
+
     /**
      * Creates a form to delete a evenement entity.
      *
@@ -145,7 +170,6 @@ class EvenementController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_evenement_delete', array('id' => $evenement->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

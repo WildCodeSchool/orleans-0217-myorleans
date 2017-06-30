@@ -236,11 +236,13 @@
                     meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
                 <div class="carousel center-align">
                     {% for collaborateur in collaborateurs %}
-                        <a class="carousel-item" href="#one!"><img
-                                    src="{{ asset('uploads/'~collaborateur.media.lien) }}">
-                            <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
-                                <br><span>{{ collaborateur.fonction }}</span></p>
-                        </a>
+                        {% if collaborateur.media.lien is defined %}
+                            <a class="carousel-item" href="#one!"><img
+                                        src="{{ asset('uploads/'~collaborateur.media.lien) }}">
+                                <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
+                                    <br><span>{{ collaborateur.fonction }}</span></p>
+                            </a>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
