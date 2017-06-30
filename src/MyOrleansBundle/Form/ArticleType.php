@@ -30,7 +30,9 @@ class ArticleType extends AbstractType
                 array(
                     'entry_type' => TagType::class
                 ))
-            ->add('typeArticle')
+            ->add('typeArticle',EntityType::class, ['class' => TypeArticle::class,
+                'choice_label' => 'nom'
+            ])
             ->add('medias', CollectionType::class, array(
                 'entry_type' => MediaType::class,
                 // 'data_class'=> FileType::class

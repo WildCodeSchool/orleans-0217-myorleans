@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Partenaire;
+use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -38,7 +39,7 @@ class PartenaireController extends Controller
      * @Route("/new", name="admin_partenaire_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $partenaire = new Partenaire();
         $form = $this->createForm('MyOrleansBundle\Form\PartenaireType', $partenaire);
@@ -48,12 +49,7 @@ class PartenaireController extends Controller
             $em = $this->getDoctrine()->getManager();
             $media = $partenaire->getMedia();
             $file = $media->getLien();
-
-            $filename = 'partenaire' . uniqid() . '.' . $file->guessExtension();
-            $file->move(
-                $this->getParameter('upload_directory'),
-                $filename
-            );
+            $filename = $fileUploader->upload($file);
             $media->setLien($filename);
             $em->persist($partenaire);
             $em->flush();
