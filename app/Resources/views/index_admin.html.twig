@@ -8,52 +8,57 @@
                     <h3>Bonjour et bienvenue sur votre espace administration</h3>
                     <h5> Celui-ci est conçu dans le but de gérer intuitivement le contenu de votre site internet. <br>
                     </h5>
-                    <p> Voici la liste des personnes dernièrement enregistrées via le formulaire de contact :</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="orange">
-                            <h4 class="title">Contacts</h4>
-                            <p class="category">Personnes enregistrées</p>
+                            <h4 class="title">Résidences</h4>
+                            <p class="category">Voici les dernières résidences ajoutées</p>
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table table-hover">
                                 <thead class="text-warning">
                                 <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Objet</th>
-                                <th>Message</th>
+                                <th>Adresse</th>
+                                <th>Code Postal</th>
+                                <th>Ville</th>
                                 <th>Aperçu</th>
+                                <th>Éditer</th>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Rice</td>
-                                    <td>Dakota</td>
-                                    <td>Résidence ref. 23XY3O</td>
-                                    <td>Bonjour, j'aimerai...</td>
-                                    <td><a href="#"><i
-                                                    class="material-icons">remove_red_eye</i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Hooper</td>
-                                    <td>Minerva</td>
-                                    <td>Demande de RDV</td>
-                                    <td>Bonjour, je souhaiterai</td>
-                                    <td><a href="#"><i
-                                                    class="material-icons">remove_red_eye</i></a>
-                                    </td>
-                                </tr>
+                                {% for residence in residences %}
+
+                                    <tr>
+                                        <td>{{ residence.nom }}</td>
+                                        <td>{{ residence.adresse }}</td>
+                                        <td>{{ residence.codePostal }}</td>
+                                        <td>{{ residence.ville.nom }}</td>
+
+                                        <td>
+                                            <a href="{{ path('admin_residence_show', { 'id': residence.id }) }}"><i
+                                                        class="material-icons">remove_red_eye</i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_residence_edit', { 'id': residence.id }) }}"><i
+                                                        class="material-icons">build</i></a>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
                                 </tbody>
                             </table>
+                            <p>
+                                Ajoutez une nouvelle résidence
+                                <a href="{{ path('admin_residence_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter une
+                                    résidence</a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 {% endblock %}

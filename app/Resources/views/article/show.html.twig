@@ -9,7 +9,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title">Article : {{ article.titre }}</h4>
+                            <h4 class="title">Article</h4>
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
@@ -19,30 +19,26 @@
                                     <td>{{ article.id }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Type</th>
-                                    <td>{{ article.type }}</td>
-                                </tr>
-                                <tr>
                                     <th>Titre</th>
                                     <td>{{ article.titre }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Text</th>
-                                    <td>{{ article.text }}</td>
+                                    <th>Texte</th>
+                                    <td>{{ article.texte }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date</th>
-                                    <td>{% if article.date %}{{ article.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>{% if article.date %}{{ article.date|date('j-m-Y') }}{% endif %}</td>
                                 </tr>
                                 </tbody>
                             </table>
                             <hr>
                             <ul>
                                 <li>
-                                    <a href="{{ path('article_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des articles</a>
+                                    <a href="{{ path('admin_article_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des articles</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('article_edit', { 'id': article.id }) }}"><i
+                                    <a href="{{ path('admin_article_edit', { 'id': article.id }) }}"><i
                                                 class="material-icons">build</i>Éditer cet article</a>
                                 </li>
 

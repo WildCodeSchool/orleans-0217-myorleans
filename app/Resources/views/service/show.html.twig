@@ -31,11 +31,12 @@
                             <hr>
                             <ul>
                                 <li>
-                                    <a href="{{ path('service_index') }}"><i class="material-icons">keyboard_return</i>Retour
+                                    <a href="{{ path('admin_service_index') }}">
+                                        <i class="material-icons">keyboard_return</i>Retour
                                         à la liste des services</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('service_edit', { 'id': service.id }) }}"><i
+                                    <a href="{{ path('admin_service_edit', { 'id': service.id }) }}"><i
                                                 class="material-icons">build</i>Éditer ce service</a>
                                 </li>
 

@@ -24,13 +24,6 @@ class Flat
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=45, nullable=true)
-     */
-    private $type;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="reference", type="string", length=45, nullable=true)
      */
     private $reference;
@@ -57,6 +50,13 @@ class Flat
     private $nbPiece;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="nb_chambre", type="integer", nullable=true)
+     */
+    private $nbChambre;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
@@ -71,6 +71,18 @@ class Flat
     private $prestationComplementaire;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="statut", type="string", length=10, nullable=true)
+     */
+    private $statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TypeLogement", inversedBy="flats")
+     */
+    private $typeLogement;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Residence", inversedBy="flats")
      */
     private $residence;
@@ -78,12 +90,16 @@ class Flat
     /**
      * @ORM\ManyToMany(targetEntity="Media")
      */
-    private $media;
+    private $medias;
+
 
     /**
-     * @ORM\OneToMany(targetEntity="Presta", mappedBy="flat")
+     * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="flat")
      */
-    private $prestas;
+    private $categoriePrestas;
+
+
+
 
 
     /**
@@ -94,30 +110,6 @@ class Flat
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Flat
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -217,6 +209,24 @@ class Flat
     }
 
     /**
+     * @return int
+     */
+    public function getNbChambre()
+    {
+        return $this->nbChambre;
+    }
+
+    /**
+     * @param int $nbChambre
+     */
+    public function setNbChambre($nbChambre)
+    {
+        $this->nbChambre = $nbChambre;
+    }
+
+
+
+    /**
      * Set description
      *
      * @param string $description
@@ -263,12 +273,45 @@ class Flat
     {
         return $this->prestationComplementaire;
     }
+
+    /**
+     * @return string
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @param string $statut
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+    }
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->media = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeLogement()
+    {
+        return $this->typeLogement;
+    }
+
+    /**
+     * @param mixed $typeLogement
+     */
+    public function setTypeLogement($typeLogement)
+    {
+        $this->typeLogement = $typeLogement;
     }
 
     /**
@@ -296,70 +339,84 @@ class Flat
     }
 
     /**
-     * Add medium
+     * @return mixed
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * @param mixed $medias
+     */
+    public function setMedias($medias)
+    {
+        $this->medias = $medias;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoriePrestas()
+    {
+        return $this->categoriePrestas;
+    }
+
+    /**
+     * @param mixed $categoriePrestas
+     */
+    public function setCategoriePrestas($categoriePrestas)
+    {
+        $this->categoriePrestas = $categoriePrestas;
+    }
+
+
+
+    /**
+     * Add media
      *
-     * @param \MyOrleansBundle\Entity\Media $medium
+     * @param \MyOrleansBundle\Entity\Media $media
      *
      * @return Flat
      */
-    public function addMedia(\MyOrleansBundle\Entity\Media $medium)
+    public function addMedia(\MyOrleansBundle\Entity\Media $media)
     {
-        $this->media[] = $medium;
+        $this->medias[] = $media;
 
         return $this;
     }
 
     /**
-     * Remove medium
+     * Remove media
      *
-     * @param \MyOrleansBundle\Entity\Media $medium
+     * @param \MyOrleansBundle\Entity\Media $media
      */
-    public function removeMedia(\MyOrleansBundle\Entity\Media $medium)
+    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
     {
-        $this->media->removeElement($medium);
+        $this->medias->removeElement($media);
     }
 
     /**
-     * Get media
+     * Add categoriePresta
      *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedia()
-    {
-        return $this->media;
-    }
-
-    /**
-     * Add presta
-     *
-     * @param \MyOrleansBundle\Entity\Presta $presta
+     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
      *
      * @return Flat
      */
-    public function addPresta(\MyOrleansBundle\Entity\Presta $presta)
+    public function addCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
     {
-        $this->prestas[] = $presta;
+        $this->categoriePrestas[] = $categoriePresta;
 
         return $this;
     }
 
     /**
-     * Remove presta
+     * Remove categoriePresta
      *
-     * @param \MyOrleansBundle\Entity\Presta $presta
+     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
      */
-    public function removePresta(\MyOrleansBundle\Entity\Presta $presta)
+    public function removeCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
     {
-        $this->prestas->removeElement($presta);
-    }
-
-    /**
-     * Get prestas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPrestas()
-    {
-        return $this->prestas;
+        $this->categoriePrestas->removeElement($categoriePresta);
     }
 }

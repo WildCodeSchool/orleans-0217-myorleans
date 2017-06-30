@@ -13,6 +13,7 @@
                         <div class="card-content table-responsive">
                             <table class="table">
                                 <thead class="text">
+                                tr>
                                 <th>Id</th>
                                 <th>Nom</th>
                                 <th>Description</th>
@@ -23,20 +24,17 @@
                                 <tbody>
 
                                 {% for pack in packs %}
-
                                     <tr>
-                                        <td>
-                                            <a href="{{ path('pack_show', { 'id': pack.id }) }}">{{ pack.id }}</a>
-                                        </td>
+                                        <td><a href="{{ path('admin_pack_show', { 'id': pack.id }) }}">{{ pack.id }}</a></td>
                                         <td>{{ pack.nom }}</td>
                                         <td>{{ pack.description }}</td>
                                         <td>{{ pack.prix }}</td>
                                         <td>
-                                            <a href="{{ path('pack_show', { 'id': pack.id }) }}"><i
+                                            <a href="{{ path('admin_pack_show', { 'id': pack.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('pack_edit', { 'id': pack.id }) }}"><i
+                                            <a href="{{ path('admin_pack_edit', { 'id': pack.id }) }}"><i
                                                         class="material-icons">build</i></a>
                                         </td>
                                     </tr>
@@ -49,8 +47,9 @@
                             <ul>
                                 <li>
 
-                                    <a href="{{ path('pack_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
-                                        pack</a>
+                                    <a href="{{ path('admin_pack_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">add</i>Ajouter un pack</a>
                                 </li>
                             </ul>
                         </div>
@@ -59,5 +58,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

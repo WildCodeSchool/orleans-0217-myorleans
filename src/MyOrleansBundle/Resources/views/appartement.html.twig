@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-appartement">
+    <div id="content" class="content-appartement">
         <div class="container-fluid">
             <div class="row center">
                 <div class="col s12 l12 m10">
@@ -21,8 +21,12 @@
                             documentation</a>
                     </div>
 
-                    <div class="col offset-l1 l5 s10">
-                        <i class="material-icons print">print</i>
+                    <div id="editor" class="col offset-l1 l5 s10">
+
+{#
+                        <i id="cmd" class="material-icons print">print</i>
+#}
+                        <button id="cmd">generate PDF</button>
                     </div>
                     </div>
                 </div>
@@ -165,6 +169,23 @@
         <script>
             AOS.init();
         </script>
+
+{#        <script>
+            var doc = new jsPDF();
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                    return true;
+                }
+            };
+
+            $('#cmd').click(function () {
+                doc.fromHTML($('#content').html(), 15, 15, {
+                    'width': 170,
+                    'elementHandlers': specialElementHandlers
+                });
+                doc.save('sample-file.pdf');
+            });
+        </script>#}
     {% endblock %}
 
 {% endblock %}

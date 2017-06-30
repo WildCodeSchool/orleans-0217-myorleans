@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,10 @@ class PartenaireType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')->add('url')->add('media');
+        $builder
+            ->add('nom')
+            ->add('url')
+            ->add('media', MediaType::class);
     }
     
     /**

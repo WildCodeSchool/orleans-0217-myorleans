@@ -11,8 +11,6 @@
 
 {% block body %}
 
-
-
     <div id="GrandeIntro">
         <div class="row center logoIntro">
             <div class="col s12 ">
@@ -20,14 +18,29 @@
             </div>
         </div>
         <div class="row center">
-            <div class="col s6 l5 offset-l1 pictoParcours">
-                <a href=""><i class="fa fa-user" aria-hidden="true"></i></a>
+            {% if parcours == 'investisseur' %}
+            <div class="col s6 l6 offset-l3 pictoParcours pictoInvest">
+                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}" class="profil-investisseur">
+                    <i class="fa fa-calculator" aria-hidden="true"></i></a>
             </div>
-            <div class="col s6 l5 pictoParcours">
-                <a href=""><i class="fa fa-user" aria-hidden="true"></i></a>
+            {% elseif parcours == 'residence' %}
+            <div class="col s6 l6 offset-l3 pictoParcours pictoResidence">
+                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}" class="profil-residence">
+                    <i class="fa fa-home" aria-hidden="true"></i></a>
             </div>
+            {% else %}
+            <div class="col s6 l5 offset-l1 pictoParcours pictoInvest">
+                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}" class="profil-investisseur">
+                    <i class="fa fa-calculator" aria-hidden="true"></i></a>
+            </div>
+            <div class="col s6 l5 pictoParcours pictoResidence">
+                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}" class="profil-residence">
+                    <i class="fa fa-home" aria-hidden="true"></i></a>
+            </div>
+            {% endif %}
         </div>
     </div>
+
     <div class="container-fluid" id="siteWrapper">
     <header>
         <div id="headerTop"></div>
@@ -37,23 +50,39 @@
                     <a href="{{ path("home") }}" class="brand-logo">
                         <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
                     </a>
+
+                    <ul class="center">
+                        {% if parcours == 'investisseur' %}
+                        <li>
+                            <div class="icone-profil icone-investisseur">
+                                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"><i class="fa fa-calculator" aria-hidden="true"></i>  Changer de parcours</a>
+                            </div>
+                        </li>
+                        {% elseif parcours == 'residence' %}
+                        <li>
+                            <div class="icone-profil icone-residence">
+                                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"><i class="fa fa-home" aria-hidden="true"></i>  Changer de parcours</a>
+                            </div>
+                        </li>
+                        {% elseif parcours == null %}
+                        {% endif %}
+                    </ul>
+
                     <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i
                                 class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nosservices") }}">Nos services</a></li>
-                        <li><a href="#">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nosservices") }}">Nos services</a></li>
-                        <li><a href="#">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                 </div>
             </nav>
@@ -71,34 +100,47 @@
                                 <span>Recherchez votre bien immobilier neuf</span>
                             </h1>
                         </div>
+                        {{ form_start(simpleSearch) }}
                         <div class="row">
                             <div class="input-field col s4 offset-s1">
-                                <input type="text" id="autocomplete-input" class="autocomplete">
-                                <label for="autocomplete-input">Localisation</label>
+                                {{ form_label(simpleSearch.ville, 'Localisation') }}
+                                {{ form_widget(simpleSearch.ville) }}
+                                {{ form_errors(simpleSearch.ville) }}
                             </div>
-                            <div class="input-field col s6">
-                                <select>
-                                    <option value="" disabled selected>Sélectionnez le type du bien</option>
-                                    <option value="1">Maison</option>
-                                    <option value="2">Appartement</option>
-                                </select>
-                                <label>Type</label>
+
+                            <div class="input-field col s4 offset-s1">
+                                {{ form_widget(simpleSearch.type) }}
+                                {{ form_errors(simpleSearch.type) }}
                             </div>
                         </div>
                         <div class="row center">
+
+                            {% if parcours == 'investisseur' %}
+                            <div class="formButton col s12 m12 l4 offset-l4">
+                                {{ form_widget(simpleSearch.investBtn) }}
+                                {{ form_widget(simpleSearch._token) }}
+                            </div>
+                            {% elseif parcours == 'residence' %}
+                            <div class="formButton col s12 m12 l4 offset-l4">
+                                {{ form_widget(simpleSearch.resPrincipaleBtn) }}
+                                {{ form_widget(simpleSearch._token) }}
+                            </div>
+                            {% else %}
                             <div class="formButton col s12 m12 l4 offset-l1">
-                                <a class="waves-effect waves-light btn-large light-green">Je souhaite investir</a>
+                                {{ form_widget(simpleSearch.investBtn) }}
                             </div>
                             <div class="formButton col s12 m12 l6">
-                                <a class="waves-effect waves-light btn-large light-green">Je recherche une résidence
-                                    Principale</a>
+                                {{ form_widget(simpleSearch.resPrincipaleBtn) }}
                             </div>
+                            {{ form_end(simpleSearch) }}
+                            {% endif %}
+
                         </div>
+
                     </div>
                 </div>
             </div>
         </section>
-        </div>
         <div class="container-fluid">
             <div class="section white">
                 <div class="row container">
@@ -109,60 +151,26 @@
                         </h2>
                         <div class="row">
                             <div class="col s12 l6">
-                                <div class="card mosaic-container">
-                                    <div class="card-image">
-                                        <img src="{{ asset('img/res_dunois.jpg') }}">
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="row grille-infos">
-                                            <div class="col s8 grille-gauche">
-                                                <div class="row nom-residence">
-                                                    <h4>Nom Résidence</h4>
-                                                    <p>Le Beau Dunois</p>
-                                                </div>
-                                                <div class="row annee-nbPiece">
-                                                    <div class="col s6 annee-residence">
-                                                        <h4>Année</h4>
-                                                        <p>4è Trimestre 2017</p>
-                                                    </div>
-                                                    <div class="col s6">
-                                                        <h4>Nombre de pièces</h4>
-                                                        <p>Du T1 au T5</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col s4">
-                                                <h4>Prix</h4>
-                                                <p>A partir de 90 000€</p>
-                                                <br/>
-                                                <h4>Disponibilité</h4>
-                                                <p>5 logements</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-action center">
-                                        <a href="#">Découvrir la résidence</a>
-                                    </div>
-                                </div>
+                                {% for residence in residenceFav %}
+                                    {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidenceHome',
+                                                        {'id': residence.id })) }}
+                                {% endfor %}
                             </div>
 
                             <div class="col s12 l6">
-                                <div class="col s12 l12">
-                                    <div class="card">
-                                        <div class="card-image">
-                                            <img src="{{ asset('img/leflores.jpeg') }}" class="responsive-img">
-                                            <span class="card-title">Le Flores</span>
+                                {% for resTwoFav in residenceTwoFav %}
+                                    <div class="col s12 l12">
+                                        <div class="card">
+                                            <div class="card-image">
+                                                {% for media in resTwoFav.medias if media.typeMedia.nom == 'image' %}
+                                                    <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
+                                                         alt="{{ resTwoFav.nom }}">
+                                                {% endfor %}
+                                                <span class="card-title">{{ resTwoFav.nom }}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col s12 l12">
-                                    <div class="card">
-                                        <div class="card-image">
-                                            <img src="{{ asset('img/villasaintmarc.jpeg') }}" class="responsive-img">
-                                            <span class="card-title">Le Flores</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -178,205 +186,141 @@
                         <h3 class="h3-testimonial center-align"> Ce que les clients pensent de nous</h3>
                         <div class="col m8 offset-m2 col s12">
                             <div class="owl-carousel owl-theme owl-responsive-1000 owl-loaded">
-
-                                <div class="item cloned">
-                                    <div>
-                                        <div class="box_overlay">
-                                            <div class="pic">
-                                                <figure>
-                                                    <img src="{{ asset('img/equipe/Fabien.jpeg') }}" alt=""
-                                                         class="circle responsive-img">
-                                                </figure>
-                                                <h4>Fabien
-                                                    <small>30 Mai 2017</small>
-                                                </h4>
-                                            </div>
-                                            <div class="comment">
-                                                <p>"Mea ad postea meliore fuisset. Timeam repudiare id eum, ex paulo
-                                                    dictas
-                                                    elaboraret
-                                                    sed,
-                                                    mel cu unum nostrud. No nam indoctum accommodare, vix ei discere
-                                                    civibus
-                                                    philosophia.
-                                                    Vis ea dicant diceret ocurreret."</p>
-                                            </div>
-                                        </div><!-- End box_overlay -->
+                                {% for testimonial in testimonials if testimonial.theme == 'avis' %}
+                                    <div class="item cloned">
+                                        <div>
+                                            <div class="box_overlay">
+                                                <div class="pic">
+                                                    <figure>
+                                                        <img src="{{ asset('img/testimonial_comment.jpg') }}" alt=""
+                                                             class="circle responsive-img">
+                                                    </figure>
+                                                    <h4>{{ testimonial.auteur }}
+                                                        <small>{{ testimonial.date }}</small>
+                                                    </h4>
+                                                </div>
+                                                <div class="comment">
+                                                    <p>{{ testimonial.message }}</p>
+                                                </div>
+                                            </div><!-- End box_overlay -->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="item cloned">
-                                    <div>
-                                        <div class="box_overlay">
-                                            <div class="pic">
-                                                <figure>
-                                                    <img src="{{ asset('img/equipe/Albane.jpeg') }}" alt=""
-                                                         class="circle responsive-img">
-                                                </figure>
-                                                <h4>Albane
-                                                    <small>30 Mai 2017</small>
-                                                </h4>
-                                            </div>
-                                            <div class="comment">
-                                                <p>"Mea ad postea meliore fuisset. Timeam repudiare id eum, ex paulo
-                                                    dictas
-                                                    elaboraret
-                                                    sed,
-                                                    mel cu unum nostrud. No nam indoctum accommodare, vix ei discere
-                                                    civibus
-                                                    philosophia.
-                                                    Vis ea dicant diceret ocurreret."</p>
-                                            </div>
-                                        </div><!-- End box_overlay -->
-                                    </div>
-                                </div>
-                                <div class="item cloned">
-                                    <div>
-                                        <div class="box_overlay">
-                                            <div class="pic">
-                                                <figure>
-                                                    <img src="{{ asset('img/equipe/Emilie.jpeg') }}" alt=""
-                                                         class="circle">
-                                                </figure>
-                                                <h4>Emilie
-                                                    <small>30 Mai 2017</small>
-                                                </h4>
-                                            </div>
-                                            <div class="comment">
-                                                <p>"Mea ad postea meliore fuisset. Timeam repudiare id eum, ex paulo
-                                                    dictas
-                                                    elaboraret
-                                                    sed,
-                                                    mel cu unum nostrud. No nam indoctum accommodare, vix ei discere
-                                                    civibus
-                                                    philosophia.
-                                                    Vis ea dicant diceret ocurreret."</p>
-                                            </div>
-                                        </div><!-- End box_overlay -->
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="row carouselAgence">
-                <div class="col s12 m10 l10 offset-l1">
-                    <h3>"Lorem ipsum njnanjndajnjznanjanjanj nanoanoanoan odaojdaoij </h3>
-                    <div class="carousel">
-                        <a class="carousel-item" href="#one!"><img src="{{ asset('img/equipe/Fabien.jpeg') }}">
-                            <p>Fabien Durand<br><span>Fondateur</span></p>
+
+        <div class="row carouselAgence">
+            <div class="col s12 m10 l10 offset-l1">
+                <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
+                    clients.
+                    Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
+                    meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
+                <div class="carousel">
+                    {% for collaborateur in collaborateurs %}
+                        <a class="carousel-item" href="#one!"><img
+                                    src="{{ asset('img/equipe/'~collaborateur.media.lien) }}">
+                            <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
+                                <br><span>{{ collaborateur.fonction }}</span></p>
                         </a>
-                        <a class="carousel-item" href="#two!"><img src="{{ asset('img/equipe/Emilie.jpeg') }}">
-                            <p>Fabien Durand<br><span>Fondateur</span></p></a>
-
-                        <a class="carousel-item" href="#three!"><img src="{{ asset('img/equipe/Charles.jpeg') }}">
-                            <p>Fabien Durand<br><span>Fondateur</span></p></a>
-
-                        <a class="carousel-item" href="#four!"><img src="{{ asset('img/equipe/Albane.jpeg') }}">
-                            <p>Fabien Durand<br><span>Fondateur</span></p></a>
-
-                        <a class="carousel-item" href="#five!"><img src="{{ asset('img/equipe/Mica.jpeg') }}">
-                            <p>Fabien Durand<br><span>Fondateur</span></p></a>
-
-                    </div>
-                </div>
-
-                <!-- Modal Trigger -->
-                <div class="row">
-                    <div class="col s12 center">
-                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
-                           href="#modal1">
-                            <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
-                        </a>
-                    </div>
-                </div>
-                <!-- Modal Structure -->
-                <div id="modal1" class="modal modal-fixed-footer">
-                    <div class="modal-content black-text">
-                        <h3> Inscrivez-vous !</h3>
-
-                        <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <input id="first_name" type="text" class="validate">
-                                        <label for="first_name">Nom </label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="last_name" type="text" class="validate">
-                                        <label for="last_name">Prénom</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col s12">
-                                        <div class="input-field inline">
-                                            <input id="email" type="email" class="validate">
-                                            <label for="email" data-error="wrong" data-success="right">Email</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Je
-                            m'inscris</a>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
-
+            <!-- Modal Trigger -->
             <div class="row">
-                <div class="col s12 l6">
-                    <h3>L'actualité</h3>
-                    <div class="card small">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ asset('img/lepryve.jpeg') }}">
-                        </div>
-                        <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Titre de l'actualité<i
-                                    class="material-icons right">add</i></span>
-                            <p>26.06.2017</p>
-                            <p class="truncate">Iamque lituis cladium concrepantibus internarum non celate ut antea
-                                turbidum
-                                saeviebat
-                                ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
-                                sollemniter inquirente nec</p>
-                        </div>
-                        <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Titre de l'actualité<i
-                                    class="material-icons right">close</i></span>
-                            <p>Iamque lituis cladium concrepantibus internarum non celate ut antea turbidum saeviebat
-                                ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
-                                sollemniter inquirente nec</p>
-                        </div>
-                    </div>
+                <div class="col s12 center">
+                    <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
+                       href="#modal1">
+                        <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
+                    </a>
                 </div>
+            </div>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal modal-fixed-footer">
+                <div class="modal-content black-text">
+                    <h3> Inscrivez-vous !</h3>
 
-                <div class="col s12 l6">
-                    <h3>Nos événements</h3>
-                    <div class="card small">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ asset('img/event1.jpeg') }}">
-                        </div>
-                        <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Card Title<i
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="first_name" type="text" class="validate">
+                                    <label for="first_name">Nom </label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="last_name" type="text" class="validate">
+                                    <label for="last_name">Prénom</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="input-field inline">
+                                        <input id="email" type="email" class="validate">
+                                        <label for="email" data-error="wrong" data-success="right">Email</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Je
+                        m'inscris</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12 l6">
+                <h3>L'actualité</h3>
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
+                            <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
+                        {% endfor %}
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">add</i></span>
-                            <p>26.06.2017</p>
-                        </div>
-                        <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Card Title<i
+                        <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
+                        <p class="truncate">{{ actu[0].texte }}</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">close</i></span>
-                            <p>Iamque lituis cladium concrepantibus internarum non celate ut antea turbidum saeviebat
-                                ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem
-                                sollemniter inquirente nec</p>
-                        </div>
+                        <p>{{ actu[0].texte }}</p>
                     </div>
                 </div>
             </div>
+
+            <div class="col s12 l6">
+                <h3>L'événement</h3>
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="{{ asset('img/'~event[0].media.lien) }}">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
+                                    class="material-icons right">add</i></span>
+                        <p>{% if event[0].dateDebut %}{{ event[0].dateDebut|date('j-m-Y') }}{% endif %}</p>
+                        <p class="truncate">{{ event[0].description }}</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ event[0].nom }}<i
+                                    class="material-icons right">close</i></span>
+                        <p>{{ event[0].description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     {% endblock %}
 
@@ -450,12 +394,14 @@
 
     {% block javascripts %}
         {{ parent() }}
+
         <script type="text/javascript" src="{{ asset("js/carousel-testimonial.js") }}"></script>
         <script type="text/javascript" src="{{ asset('owlcarousel/owl.carousel.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
-        <script>
-            $(document).ready(function(){
+
+        <script type="text/javascript">
+            $(document).ready(function () {
 
                 // hide #back-top first
                 $("#back-top").hide();
@@ -477,6 +423,21 @@
                         }, 800);
                         return false;
                     });
+                });
+
+
+                $('input.autocomplete').autocomplete({
+                    data: {
+                        {% for ville in villes %}
+                            "{{ ville.nom }}" : null,
+                        {% endfor %}
+                    },
+                    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                    onAutocomplete: function (val) {
+                        // Callback function when value is autcompleted.
+                    },
+                    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+
                 });
 
             });

@@ -3,8 +3,10 @@
     {% block content %}
         <div class="row agencyVideo">
             <div class="col s12">
-                <iframe id="myIframe" src="https://www.youtube.com/embed/CzyAV8f1j9Q" frameborder="0"
+                {% for cover in cover if cover.page == 'agence_cover' %}
+                <iframe id="myIframe" src="{{ cover.lien }}" frameborder="0"
                         allowfullscreen></iframe>
+                {% endfor %}
             </div>
         </div>
         <div class="container">
@@ -28,129 +30,28 @@
                 <h2 class="fancy"><span>l'Équipe</span></h2>
                 <div class="col s12 l10 offset-l1">
                     <div class="row">
-                        <div class="col l4 s12">
-                            <div class="blockStaff">
-                                <div class="imgStaff">
-                                    <img src="{{ asset('img/equipe/Fabien.jpeg') }}" alt="">
-                                </div>
-                                <div class="infoStaff">
-                                    <h3>Fabien Durand</h3>
-                                    <h4>Fondateur</h4>
-                                    <div class="socialStaff">
-                                        <a href="#" target="_blank"><i class="fa fa-facebook"
-                                                                       aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-                                        <a class="mail" href="mailto:albane@my-orleans.com"><i class="fa fa-envelope"
-                                                                                               aria-hidden="true"></i></a>
+                        {% for collaborateur in collaborateurs %}
+                            <div class="col l4 s12">
+                                <div class="blockStaff">
+                                    <div class="imgStaff">
+                                        <img src="{{ asset('img/equipe/'~collaborateur.media.lien ) }}" alt="">
+                                    </div>
+                                    <div class="infoStaff">
+                                        <h3>{{ collaborateur.prenom }} {{ collaborateur.nom }}</h3>
+                                        <h4>{{ collaborateur.fonction }}</h4>
+                                        <div class="socialStaff">
+                                            <a href="{{ collaborateur.lienTwiter }}" target="_blank"><i
+                                                        class="fa fa-twitter" aria-hidden="true"></i></a>
+                                            <a href="{{ collaborateur.lienLinkedin }}" target="_blank"><i
+                                                        class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                            <a class="mail" href='mailto:{{ collaborateur.email }}'><i
+                                                        class="fa fa-envelope"
+                                                        aria-hidden="true"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class=" col s12 l4">
-                            <div class="blockStaff">
-                                <div class="imgStaff">
-                                    <img src="{{ asset('img/equipe/Albane.jpeg') }}" alt="">
-                                </div>
-                                <div class="infoStaff">
-                                    <h3>Albane Pothain</h3>
-                                    <h4>
-                                        Responsable communicatioin
-                                    </h4>
-                                    <div class="socialStaff">
-                                        <a href="#" target="_blank"><i class="fa fa-facebook"
-                                                                       aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-                                        <a class="mail" href="mailto:albane@my-orleans.com"><i class="fa fa-envelope"
-                                                                                               aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col l4 s12">
-                            <div class="blockStaff">
-                                <div class="imgStaff">
-                                    <img src="{{ asset('img/equipe/Charles.jpeg') }}" alt="">
-                                </div>
-                                <div class="infoStaff">
-                                    <h3>Fabien Durand</h3>
-                                    <h4>Fondateur</h4>
-                                    <div class="socialStaff">
-                                        <a href="#" target="_blank"><i class="fa fa-facebook"
-                                                                       aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-                                        <a class="mail" href="mailto:albane@my-orleans.com"><i class="fa fa-envelope"
-                                                                                               aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col s12 l4">
-                            <div class="blockStaff">
-                                <div class="imgStaff">
-                                    <img src="{{ asset('img/equipe/Emilie.jpeg') }}" alt="">
-                                </div>
-                                <div class="infoStaff">
-                                    <h3>Albane Pothain</h3>
-                                    <h4>
-                                        Responsable communicatioin
-                                    </h4>
-                                    <div class="socialStaff">
-                                        <a href="#" target="_blank"><i class="fa fa-facebook"
-                                                                       aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-                                        <a class="mail" href="mailto:albane@my-orleans.com"><i class="fa fa-envelope"
-                                                                                               aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l4 s12">
-                            <div class="blockStaff">
-                                <div class="imgStaff">
-                                    <img src="{{ asset('img/equipe/Mica.jpeg') }}" alt="">
-                                </div>
-                                <div class="infoStaff">
-                                    <h3>Fabien Durand</h3>
-                                    <h4>Fondateur</h4>
-                                    <div class="socialStaff">
-                                        <a href="#" target="_blank"><i class="fa fa-facebook"
-                                                                       aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-                                        <a class="mail" href="mailto:albane@my-orleans.com"><i class="fa fa-envelope"
-                                                                                               aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col s12 l4">
-                            <div class="blockStaff">
-                                <div class="imgStaff">
-                                    <img src="{{ asset('img/logo_myorleans.png') }}" alt="">
-                                </div>
-                                <div class="infoStaff">
-                                    <h3>Albane Pothain</h3>
-                                    <h4>
-                                        Responsable communicatioin
-                                    </h4>
-
-                                    <div class="socialStaff">
-                                        <a href="#" target="_blank"><i class="fa fa-facebook"
-                                                                       aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                        <a href="#" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-                                        <a class="mail" href="mailto:albane@my-orleans.com"><i class="fa fa-envelope"
-                                                                                               aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -159,56 +60,16 @@
             </div>
             <section class="timeline">
                 <ol>
+                    {% for evenement in evenements %}
                     <li>
                         <div>
-                            <time>10.02.2017</time>
-                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                            blanditiis praesentium
-                            <img class="responsive-img" src="{{ asset('img/logo_myorleans.png') }}">
+                            <time>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('j-m-Y') }}{% endif %}</time>
+                            {{ evenement.nom }}<br>
+                            {{ evenement.description }}
+                            <img class="responsive-img" src="{{ asset('uploads/'~evenement.media.lien) }}">
                         </div>
                     </li>
-                    <li>
-                        <div>
-                            <time>22.03.2017</time>
-                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                            blanditiis praesentium
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>1.04.2017</time>
-                            Proin quam velit, efficitur vel neque vitae, rhoncus commodo mi. Suspendisse finibus
-                            mauris et bibendum molestie. Aenean ex augue, varius et pulvinar in, pretium non
-                            nisi.
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>31.05.2017</time>
-                            Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar
-                            tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
-                        </div>
-                    </li><li>
-                        <div>
-                            <time>31.05.2017</time>
-                            Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar
-                            tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
-                        </div>
-                    </li><li>
-                        <div>
-                            <time>31.05.2017</time>
-                            Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar
-                            tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
-                        </div>
-                    </li><li>
-                        <div>
-                            <time>31.05.2017</time>
-                            Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar
-                            tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
-                        </div>
-                    </li>
+                    {% endfor %}
                     <li></li>
                 </ol>
 
@@ -227,42 +88,14 @@
                 <h2 class="fancy"><span>Nos partenaires</span></h2>
                 <div class="col s12 l10 offset-l1">
                     <div class="row center">
-                        <div class="col s3 l1">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1 ">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1 ">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1 ">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
-                        <div class="col s3 l1">
-                            <a href="#"><img class="img-responsive" src="http://lorempixel.com/80/80/" alt=""></a>
-                        </div>
+                        {% for partenaire in partenaires %}
+                            <div class="col s3 l1">
+                                <a href="{{ partenaire.url }}" target="_blank">
+                                    <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.lien) }}"
+                                         alt="{{ partenaire.nom }}">
+                                </a>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

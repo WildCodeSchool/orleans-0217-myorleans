@@ -10,10 +10,6 @@
                 <td>{{ medium.id }}</td>
             </tr>
             <tr>
-                <th>Type</th>
-                <td>{{ medium.type }}</td>
-            </tr>
-            <tr>
                 <th>Page</th>
                 <td>{{ medium.page }}</td>
             </tr>
@@ -26,10 +22,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('media_index') }}">Back to the list</a>
+            <a href="{{ path('admin_media_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('media_edit', { 'id': medium.id }) }}">Edit</a>
+            <a href="{{ path('admin_media_edit', { 'id': medium.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
