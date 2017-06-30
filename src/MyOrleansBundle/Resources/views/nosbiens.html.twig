@@ -18,6 +18,8 @@
 {% block content %}
     <div class="page-nosbiens body-container-margin">
 
+        {{ dump(app.request.query.get('simple_search["ville"]')) }}
+
         <div class="moteur-recherche hide-on-med-and-down">
             {{ form_start(completeSearch) }}
             <div class="row no-margin-bottom">

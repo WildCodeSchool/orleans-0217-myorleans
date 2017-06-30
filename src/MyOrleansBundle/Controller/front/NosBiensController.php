@@ -70,7 +70,9 @@ class NosBiensController extends Controller
 
             // Prise en compte des filtres du moteur de recherche
             $data = $simpleSearch->getData();
-            $residences = $em -> getRepository(Residence::class)->simpleSearch($data['ville'], $data['type']);
+            $selectedVille = $data['ville'];
+            $selectedType = $data['type'];
+            $residences = $em -> getRepository(Residence::class)->simpleSearch($selectedVille, $selectedType);
 
             $message = count($residences)." résidence(s) correspondent à votre recherche";
 
@@ -87,6 +89,16 @@ class NosBiensController extends Controller
             $residences = $em -> getRepository(Residence::class)->findAll();
         }
 
+        /*// Definition des valeurs du formulaire completeSearch si formulaire simpleSearch a ete rempli
+        $completeSearch['ville'] = '';
+        if (!empty($selectedVille)) {
+            $completeSearch['ville'] = $selectedVille;
+        }
+        $completeSearch['type'] = '';
+        if (!empty($selectedType)) {
+            $completeSearch['type'] = $selectedType;
+        }*/
+
         return $this->render('MyOrleansBundle::nosbiens.html.twig', [
             'residences' => $residences,
             'completeSearch' => $completeSearch->createView(),
@@ -102,7 +114,7 @@ class NosBiensController extends Controller
     /**
      * @Route("/nos-biens/search", name="nosbiens-search")
      */
-    public function completeSearchAction(Request $request, CalculateurCaracteristiquesResidence $calculateur)
+    public function completeSearchAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $completeSearch = $this->createForm('MyOrleansBundle\Form\CompleteSearchType');
