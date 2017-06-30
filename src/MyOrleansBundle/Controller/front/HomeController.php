@@ -15,14 +15,21 @@ use MyOrleansBundle\Form\SimpleSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function indexAction(Request $request)
+    public function indexAction(SessionInterface $session)
     {
+        $parcours = null;
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
@@ -48,6 +55,7 @@ class HomeController extends Controller
 
 
         return $this->render('MyOrleansBundle::index.html.twig', [
+            'parcours' => $parcours,
             'simpleSearch' => $simpleSearch->createView(),
             'villes'=> $villes,
             'collaborateurs' => $collaborateurs,
@@ -61,39 +69,6 @@ class HomeController extends Controller
     }
 
     /*-----------------------------------------------*/
-
-    /**
-     * @Route("/nos-services", name="nosservices")
-     */
-    public function nosservices()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $services = $em->getRepository(Service::class)->findAll();
-        $packs = $em->getRepository(Pack::class)->findAll();
-        $temoignages = $em->getRepository(Temoignage::class)->findAll();
-        return $this->render('MyOrleansBundle::nosservices.html.twig', [
-            'services' => $services,
-            'packs' => $packs,
-            'temoignages' => $temoignages
-        ]);
-    }
-    /**
-     * @Route("/immopratique", name="immopratique")
-     */
-    public function immopratique()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findAll();
-
-        // TMP
-        //$articlesImmo[] = $articles[0];
-        //$articlesImmo[] = $articles[1];
-        // TMP
-
-        return $this->render('MyOrleansBundle::immopratique.html.twig', [
-            'articles' => $articles
-        ]);
-    }
 
     /**
      * @Route("/residences", name="residences")
@@ -115,7 +90,14 @@ class HomeController extends Controller
      */
     public function parcoursImmoAction()
     {
-        return $this->render('MyOrleansBundle::parcoursimmo.html.twig');
+        $parcours = null;
+        if (isset($_SESSION)) {
+            $parcours = $_SESSION['parcours'];
+        }
+
+        return $this->render('MyOrleansBundle::parcoursimmo.html.twig', [
+            'parcours' => $parcours
+        ]);
     }
 
 

@@ -18,14 +18,29 @@
             </div>
         </div>
         <div class="row center">
-            <div class="col s6 l5 offset-l1 pictoParcours">
-                <a href=""><i class="fa fa-user" aria-hidden="true"></i></a>
+            {% if parcours == 'investisseur' %}
+            <div class="col s6 l6 offset-l3 pictoParcours pictoInvest">
+                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}" class="profil-investisseur">
+                    <i class="fa fa-calculator" aria-hidden="true"></i></a>
             </div>
-            <div class="col s6 l5 pictoParcours">
-                <a href=""><i class="fa fa-user" aria-hidden="true"></i></a>
+            {% elseif parcours == 'residence' %}
+            <div class="col s6 l6 offset-l3 pictoParcours pictoResidence">
+                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}" class="profil-residence">
+                    <i class="fa fa-home" aria-hidden="true"></i></a>
             </div>
+            {% else %}
+            <div class="col s6 l5 offset-l1 pictoParcours pictoInvest">
+                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}" class="profil-investisseur">
+                    <i class="fa fa-calculator" aria-hidden="true"></i></a>
+            </div>
+            <div class="col s6 l5 pictoParcours pictoResidence">
+                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}" class="profil-residence">
+                    <i class="fa fa-home" aria-hidden="true"></i></a>
+            </div>
+            {% endif %}
         </div>
     </div>
+
     <div class="container-fluid" id="siteWrapper">
     <header>
         <div id="headerTop"></div>
@@ -35,12 +50,29 @@
                     <a href="{{ path("home") }}" class="brand-logo">
                         <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
                     </a>
+
+                    <ul class="center">
+                        {% if parcours == 'investisseur' %}
+                        <li>
+                            <div class="icone-profil icone-investisseur">
+                                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"><i class="fa fa-calculator" aria-hidden="true"></i>  Changer de parcours</a>
+                            </div>
+                        </li>
+                        {% elseif parcours == 'residence' %}
+                        <li>
+                            <div class="icone-profil icone-residence">
+                                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"><i class="fa fa-home" aria-hidden="true"></i>  Changer de parcours</a>
+                            </div>
+                        </li>
+                        {% elseif parcours == null %}
+                        {% endif %}
+                    </ul>
+
                     <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i
                                 class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nosservices") }}">Nos services</a></li>
-                        <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
@@ -48,7 +80,6 @@
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nosservices") }}">Nos services</a></li>
-                        <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
@@ -84,20 +115,28 @@
                         </div>
                         <div class="row center">
 
+                            {% if parcours == 'investisseur' %}
+                            <div class="formButton col s12 m12 l4 offset-l4">
+                                {{ form_widget(simpleSearch.investBtn) }}
+                                {{ form_widget(simpleSearch._token) }}
+                            </div>
+                            {% elseif parcours == 'residence' %}
+                            <div class="formButton col s12 m12 l4 offset-l4">
+                                {{ form_widget(simpleSearch.resPrincipaleBtn) }}
+                                {{ form_widget(simpleSearch._token) }}
+                            </div>
+                            {% else %}
                             <div class="formButton col s12 m12 l4 offset-l1">
                                 {{ form_widget(simpleSearch.investBtn) }}
-
                             </div>
-
                             <div class="formButton col s12 m12 l6">
                                 {{ form_widget(simpleSearch.resPrincipaleBtn) }}
                             </div>
-                        </div>
-
-
-                        {{ form_end(simpleSearch) }}
+                            {{ form_end(simpleSearch) }}
+                            {% endif %}
 
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -113,43 +152,8 @@
                         <div class="row">
                             <div class="col s12 l6">
                                 {% for residence in residenceFav %}
-                                <div class="card mosaic-container">
-                                    <div class="card-image">
-                                        {% for media in residence.medias if media.typeMedia.nom == 'image' %}
-                                            <img src="{{ asset('img/'~media.lien) }}">
-                                        {% endfor %}
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="row grille-infos">
-                                            <div class="col s8 grille-gauche">
-                                                <div class="row nom-residence">
-                                                    <h4>{{ residence.nom }}</h4>
-                                                    <p>à {{ residence.ville.nom }}</p>
-                                                </div>
-                                                <div class="row annee-nbPiece">
-                                                    <div class="col s6 annee-residence">
-                                                        <h4>Année</h4>
-                                                        <p>{{ residence.dateLivraison }}</p>
-                                                    </div>
-                                                    <div class="col s6">
-                                                        <h4>Nombre de pièces</h4>
-                                                        <p>Du T1 au T5</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col s4">
-                                                <h4>Prix</h4>
-                                                <p>A partir de 90 000€</p>
-                                                <br/>
-                                                <h4>Disponibilité</h4>
-                                                <p>{{ residence.nbTotalLogements }} logements</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-action center">
-                                        <a href="#">Découvrir la résidence</a>
-                                    </div>
-                                </div>
+                                    {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidenceHome',
+                                                        {'id': residence.id })) }}
                                 {% endfor %}
                             </div>
 
@@ -390,11 +394,13 @@
 
     {% block javascripts %}
         {{ parent() }}
+
         <script type="text/javascript" src="{{ asset("js/carousel-testimonial.js") }}"></script>
         <script type="text/javascript" src="{{ asset('owlcarousel/owl.carousel.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
-        <script>
+
+        <script type="text/javascript">
             $(document).ready(function () {
 
                 // hide #back-top first
