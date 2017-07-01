@@ -101,6 +101,7 @@ nav ul a:hover {
     background: inherit;
 }
 
+
 /*nav li {
     border-right: solid #7a7a7a 1px;
 }*/
@@ -122,7 +123,7 @@ body {
 }
 
 .body-container-margin {
-    margin: 23px 20px 0 20px;
+    margin: 21px 20px 0 20px;
 }
 
 .btn, .btn-large {
@@ -162,6 +163,35 @@ body {
     color: rgba(44, 44, 44, 0.6);
 }
 
+.icone-profil a i {
+    font-size: 25px;
+    color: #ffffff ;
+    background-color: #a5ca2a;
+    padding: 8px;
+    height: 40px;
+    width: 45px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-left: 220px;
+    line-height: 1;
+}
+
+.icone-profil a {
+    color: transparent;
+}
+
+.icone-profil a:hover i {
+    color: #a5ca2a ;
+    background-color: #ffffff;
+    border: solid 1px #a5ca2a;
+}
+
+.icone-profil a:hover {
+    border-bottom: none;
+    color: #a5ca2a;
+    font-weight: bold;
+}
+
 .no-margin-bottom {
     margin-bottom: 0;
 }
@@ -181,19 +211,16 @@ body {
 
 /* ------------------------ Page Nos Biens ----------------------------*/
 
+
 .page-nosbiens h2 {
     font-size:20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     color: #858585;
 }
 
-.page-nosbiens .card-content h2 {
-    font-size:20px;
-    color: #858585;
-    margin-top: 5px;
-}
-
-.page-nosbiens .alignement-titre h2 {
-    padding-top: 12px;
+.page-nosbiens .titre-contenu-associe h2 {
+    font-size: 36px;
 }
 
 .page-nosbiens .liste-biens h4 {
@@ -202,6 +229,10 @@ body {
 
 .liste-biens .card.large {
     height: 580px;
+}
+
+.liste-biens .contenu-associe .card.large {
+    height: 420px;
 }
 
 .card .card-content p {
@@ -221,7 +252,7 @@ body {
 .moteur-recherche {
     background-color: white;
     border-radius: 2px;
-    box-shadow: 1px 1px 10px #c2c2c2;
+    box-shadow: 1px 1px 3px #c2c2c2;
     padding: 5px 10px;
     position: fixed;
     width: 98%;
@@ -249,7 +280,7 @@ body {
 }
 
 .liste-biens {
-    margin-top: 190px;
+    margin-top: 170px;
 }
 
 /*--- Alignemant des informations des residences---*/
@@ -306,6 +337,58 @@ body {
 .nav-wrapper{
     border-radius: 20px;
 }
+
+.side-nav{
+    width: 600px;
+
+}
+
+.barre-recherche{
+    margin-top: 22px;
+    position: absolute;
+    bottom: 200px;
+    width: 50%;
+    left:300px;
+    right: 150px;
+    background-color: rgba(255, 255, 255, 0.8);
+
+
+}
+
+.nav-recherche{
+
+    width: 40%;
+    margin-left: 400px;
+    margin-top: 500px;
+    border-radius: 20px;
+}
+
+
+
+@media (max-width : 767px) {
+    .side-nav li > .userView{
+        width: 100%;
+    }
+    .side-nav{
+    width: 300px;
+    }
+
+    .barre-recherche{
+        visibility: hidden;
+    }
+}
+
+
+.pulse-button:hover
+{
+    -webkit-animation: none;-moz-animation: none;animation: none;
+}
+
+@-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-moz-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-ms-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+
 
 /* ------------------------------------------------------------------*/
 
@@ -371,13 +454,14 @@ body {
     position: absolute;
 }
 
+
 .barre-recherche{
     margin-top: 22px;
     position: absolute;
     bottom: 200px;
     width: 95%;
     left: 25px;
-    background-color: rgb(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .nav-recherche{
@@ -386,6 +470,7 @@ body {
     margin-left: 400px;
     margin-top: 500px;
 }
+
 
 .side-nav{
     background-color: rgba(255, 255, 255, 0.9);
@@ -396,7 +481,6 @@ body {
 
     margin-top: 22px;
 
-
 }
 
 .bloc-color{
@@ -404,9 +488,6 @@ body {
 
 }
 
-.input-field{
-    border-radius: 20px;
-}
 
 .btn-large{
     display: block;
@@ -421,8 +502,13 @@ body {
     border-radius: 5px;
     margin-top: 25px;
     position: fixed;
-    margin-left: 1200px;
+    right: 20px;
     padding: 10px;
+    z-index: 1000;
+    -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+
+    animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
 
 }
 
@@ -431,10 +517,17 @@ body {
     color:white;
 }
 
-
+.fiches-ancres{
+    margin-bottom: 100px;
+}
 
 .fiches-conseils{
     margin-top: 50px;
+}
+
+.recherche{
+    background-color: rgba(255, 255, 255, 0.5);
+
 }
 
 
@@ -528,7 +621,43 @@ td{
     padding-bottom: 50px;
 }
 
+@media (max-width: 400px){
 
+    .collapsible-body td {
+        font-size: 12px;
+        padding: 2px;
+    }
+    .collapsible-body th {
+        font-size: 12px;
+        padding: 2px;
+    }
+    .btn-residence{
+        font-size: 10px;
+        line-height: 25px;
+
+        width: 40px;
+        height: 25px;
+        padding: 0px 0px 0px 0px;
+    }
+}
+@media (min-width: 400px) and (max-width: 540px){
+
+    .collapsible-body td {
+        font-size: 14px;
+        padding: 2px;
+    }
+    .collapsible-body th {
+        font-size: 14px;
+        padding: 2px;
+    }
+    .btn-residence{
+        font-size: 14px;
+        line-height: 25px;
+        width: 60px;
+        height: 25px;
+        padding: 0px 0px 0px 0px;
+    }
+}
 
 
 
@@ -1012,7 +1141,6 @@ transition:color 250ms ease-out;
     font-size: 1rem;
     white-space: normal;
     color: black;
-
 }
 
 .timeline ol li div::before {

@@ -22,19 +22,18 @@
                                 <tbody>
 
                                 {% for service in services %}
-
                                     <tr>
                                         <td>
-                                            <a href="{{ path('service_show', { 'id': service.id }) }}">{{ service.id }}</a>
+                                            <a href="{{ path('admin_service_show', { 'id': service.id }) }}">{{ service.id }}</a>
                                         </td>
-                                        <td>{{ service.type}}</td>
+                                        <td>{{ service.type }}</td>
                                         <td>{{ service.description }}</td>
                                         <td>
-                                            <a href="{{ path('service_show', { 'id': service.id }) }}"><i
+                                            <a href="{{ path('admin_service_show', { 'id': service.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('service_edit', { 'id': service.id }) }}"><i
+                                            <a href="{{ path('admin_service_edit', { 'id': service.id }) }}"><i
                                                         class="material-icons">build</i></a>
                                         </td>
                                     </tr>
@@ -47,8 +46,9 @@
                             <ul>
                                 <li>
 
-                                    <a href="{{ path('service_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
-                                        service</a>
+                                    <a href="{{ path('admin_service_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">add</i>Ajouter un service</a>
                                 </li>
                             </ul>
                         </div>
@@ -57,5 +57,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

@@ -5,19 +5,22 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\Flat;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Flat controller.
  *
- * @Route("flat")
+ * @Route("admin/flat")
  */
 class FlatController extends Controller
 {
     /**
      * Lists all flat entities.
      *
-     * @Route("/", name="flat_index")
+     * @Route("/", name="admin_flat_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +37,7 @@ class FlatController extends Controller
     /**
      * Creates a new flat entity.
      *
-     * @Route("/new", name="flat_new")
+     * @Route("/new", name="admin_flat_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +51,7 @@ class FlatController extends Controller
             $em->persist($flat);
             $em->flush();
 
-            return $this->redirectToRoute('flat_show', array('id' => $flat->getId()));
+            return $this->redirectToRoute('admin_flat_show', array('id' => $flat->getId()));
         }
 
         return $this->render('flat/new.html.twig', array(
@@ -58,9 +61,35 @@ class FlatController extends Controller
     }
 
     /**
+     * Retrun a pdf file from à flat.
+     * @return Response
+     * @Route("/pdf/{id}", name="flat_pdf")
+     * @Method("GET")
+     */
+    public function pdfAction(Flat $flat)
+    {
+        $pageUrl = $this->generateUrl('admin_flat_show', ['flat' => $flat], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+            )
+        );
+    }
+
+    public function pdfReturnAction($id)
+    {
+
+    }
+
+
+    /**
      * Finds and displays a flat entity.
      *
-     * @Route("/{id}", name="flat_show")
+     * @Route("/{id}", name="admin_flat_show")
      * @Method("GET")
      */
     public function showAction(Flat $flat)
@@ -73,10 +102,11 @@ class FlatController extends Controller
         ));
     }
 
+
     /**
      * Displays a form to edit an existing flat entity.
      *
-     * @Route("/{id}/edit", name="flat_edit")
+     * @Route("/{id}/edit", name="admin_flat_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Flat $flat)
@@ -88,7 +118,7 @@ class FlatController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('flat_edit', array('id' => $flat->getId()));
+            return $this->redirectToRoute('admin_flat_edit', array('id' => $flat->getId()));
         }
 
         return $this->render('flat/edit.html.twig', array(
@@ -101,7 +131,7 @@ class FlatController extends Controller
     /**
      * Deletes a flat entity.
      *
-     * @Route("/{id}", name="flat_delete")
+     * @Route("/{id}", name="admin_flat_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Flat $flat)
@@ -115,7 +145,7 @@ class FlatController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('flat_index');
+        return $this->redirectToRoute('admin_flat_index');
     }
 
     /**
@@ -128,7 +158,7 @@ class FlatController extends Controller
     private function createDeleteForm(Flat $flat)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('flat_delete', array('id' => $flat->getId())))
+            ->setAction($this->generateUrl('admin_flat_delete', array('id' => $flat->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

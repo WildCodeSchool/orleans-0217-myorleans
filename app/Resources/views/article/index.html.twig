@@ -14,9 +14,7 @@
                             <table class="table">
                                 <thead class="text">
                                 <th>Id</th>
-                                <th>Type</th>
                                 <th>Titre</th>
-                                <th>Text</th>
                                 <th>Date</th>
                                 <th>Aperçu</th>
                                 <th>Éditer</th>
@@ -27,18 +25,16 @@
 
                                     <tr>
                                         <td>
-                                            <a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a>
+                                            <a href="{{ path('admin_article_show', { 'id': article.id }) }}">{{ article.id }}</a>
                                         </td>
-                                        <td>{{ article.type }}</td>
                                         <td>{{ article.titre }}</td>
-                                        <td>{{ article.text }}</td>
-                                        <td>{% if article.date %}{{ article.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                        <td>{% if article.date %}{{ article.date|date('j-m-Y') }}{% endif %}</td>
                                         <td>
-                                            <a href="{{ path('article_show', { 'id': article.id }) }}"><i
+                                            <a href="{{ path('admin_article_show', { 'id': article.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('article_edit', { 'id': article.id }) }}"><i
+                                            <a href="{{ path('admin_article_edit', { 'id': article.id }) }}"><i
                                                         class="material-icons">build</i></a>
                                         </td>
                                     </tr>
@@ -51,7 +47,9 @@
                             <ul>
                                 <li>
 
-                                    <a href="{{ path('article_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
+                                    <a href="{{ path('admin_article_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">add</i>Ajouter un
                                         article</a>
                                 </li>
                             </ul>
@@ -61,5 +59,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

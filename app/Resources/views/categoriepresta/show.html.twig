@@ -9,15 +9,23 @@
                 <th>Id</th>
                 <td>{{ categoriePrestum.id }}</td>
             </tr>
+            <tr>
+                <th>Nomcategorie</th>
+                <td>{{ categoriePrestum.nomCategorie }}</td>
+            </tr>
+            <tr>
+                <th>Ordreaffichage</th>
+                <td>{{ categoriePrestum.ordreAffichage }}</td>
+            </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('categoriepresta_index') }}">Back to the list</a>
+            <a href="{{ path('admin_categorie-presta_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('categoriepresta_edit', { 'id': categoriePrestum.id }) }}">Edit</a>
+            <a href="{{ path('admin_categorie-presta_edit', { 'id': categoriePrestum.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

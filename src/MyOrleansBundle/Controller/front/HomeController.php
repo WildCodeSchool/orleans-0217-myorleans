@@ -2,109 +2,85 @@
 
 namespace MyOrleansBundle\Controller\front;
 
-
 use MyOrleansBundle\Entity\Article;
 use MyOrleansBundle\Entity\CategoriePresta;
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Pack;
-use MyOrleansBundle\Entity\Presta;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
-
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypePresta;
+use MyOrleansBundle\Entity\Ville;
+use MyOrleansBundle\Entity\Collaborateur;
+use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Form\SimpleSearchType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function indexAction(Request $request)
+    public function indexAction(SessionInterface $session)
     {
-        $em = $this->getDoctrine()->getManager();
-        $residence = new Residence();
-        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType', $residence);
-        $simpleSearch->handleRequest($request);
-        if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
-            $data = $simpleSearch->getData();
-            $ville = $data['ville'];
-
-            $residences = $em -> getRepository(Residence::class)->searchByVille($ville);
-
-
-            if($residence == null){
-                $residence = $em -> getRepository(Residence::class)->findAll();
-            }
-            return $this->render('MyOrleansBundle::nos-biens.html.twig',[
-                'residences' => $residences
-            ]);
-        }else{
-            return $this->render('MyOrleansBundle::index.html.twig', [
-            'simpleSearch' => $simpleSearch->createView()
-            ]);
+        $parcours = null;
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
         }
+        $em = $this->getDoctrine()->getManager();
 
+        $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
+
+        $residenceFav = $em->getRepository(Residence::class)->findOneFav();
+        $residenceTwoFav = $em->getRepository(Residence::class)->findTwoFav();
+        $residenceAll = $em->getRepository(Residence::class)->findAll();
+
+        $testimonials = $em->getRepository(Temoignage::class)->findAll();
+
+        $actu = $em->getRepository(Article::class)->findOneActu();
+        $event = $em->getRepository(Evenement::class)->findOneEvent();
+
+
+        // Recuperation de la liste des villes dans lesqulles se trouvent les residences
+        $villes = $em->getRepository(Ville::class)->findAll();
+
+
+        // Fin recuperation des villes
+        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
+            null,
+            ['action' => $this->generateUrl('nosbiens')]);
+
+
+        return $this->render('MyOrleansBundle::index.html.twig', [
+            'parcours' => $parcours,
+            'simpleSearch' => $simpleSearch->createView(),
+            'villes'=> $villes,
+            'collaborateurs' => $collaborateurs,
+            'residenceFav' => $residenceFav,
+            'residenceTwoFav' => $residenceTwoFav,
+            'residenceAll' => $residenceAll,
+            'actu' => $actu,
+            'event' => $event,
+            'testimonials' => $testimonials
+        ]);
     }
-
-    /**
-     * @Route("/nos-biens", name="nosbiens")
-     */
-    public function nosBiensAction()
-    {
-        $em=$this->getDoctrine()->getManager();
-
-        return $this->render('MyOrleansBundle::nosbiens.html.twig');
-    }
-
 
     /*-----------------------------------------------*/
 
-    /**
-     * @Route("/nos-services", name="nosservices")
-     */
-    public function nosservices()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $services = $em->getRepository(Service::class)->findAll();
-        $packs = $em->getRepository(Pack::class)->findAll();
-        $temoignages =$em->getRepository(Temoignage::class)->findAll();
-        return $this->render('MyOrleansBundle::nosservices.html.twig',[
-            'services'=>$services,
-            'packs'=>$packs,
-            'temoignages'=>$temoignages
-        ]);
-
-    }
 
     /**
-     * @Route("/immopratique", name="immopratique")
+     * @Route("/residences", name="residences")
      */
-    public function immopratique()
+    public function residence()
     {
-        $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findAll();
-
-        return $this->render('MyOrleansBundle::immopratique.html.twig',[
-
-        'articles'=>$articles
-        ]);
+        return $this->render('MyOrleansBundle::residence.html.twig');
     }
-
-    /**
-     * @Route("/agence", name="agence")
-     */
-    public function agencyAction()
-    {
-        return $this->render('MyOrleansBundle::agence.html.twig');
-    }
-
-
 
     /**
      * @Route("/appartement/{id}")
@@ -127,14 +103,28 @@ class HomeController extends Controller
     }
 
     /**
+     * @Route("/parcours-immobilier", name="parcoursimmo")
+     */
+    public function parcoursImmoAction()
+    {
+        $parcours = null;
+        if (isset($_SESSION)) {
+            $parcours = $_SESSION['parcours'];
+        }
+
+        return $this->render('MyOrleansBundle::parcoursimmo.html.twig', [
+            'parcours' => $parcours
+        ]);
+    }
+
+
+    /**
      * @Route("/admin")
      */
     public function admin()
     {
         return $this->render('MyOrleansBundle::admin.html.twig');
     }
-
-
 
 
 }

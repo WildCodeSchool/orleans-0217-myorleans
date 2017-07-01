@@ -52,9 +52,16 @@ class Evenement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="dateDebut", type="date", nullable=true)
      */
-    private $date;
+    private $dateDebut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateFin", type="date", nullable=true)
+     */
+    private $dateFin;
 
     /**
      * @var \DateTime
@@ -190,28 +197,38 @@ class Evenement
     }
 
     /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Evenement
+     * @return \DateTime
      */
-    public function setDate($date)
+    public function getDateDebut()
     {
-        $this->date = $date;
-
-        return $this;
+        return $this->dateDebut;
     }
 
     /**
-     * Get date
-     *
+     * @param \DateTime $dateDebut
+     */
+    public function setDateDebut($dateDebut)
+    {
+        $this->dateDebut = $dateDebut;
+    }
+
+    /**
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateFin()
     {
-        return $this->date;
+        return $this->dateFin;
     }
+
+    /**
+     * @param \DateTime $dateFin
+     */
+    public function setDateFin($dateFin)
+    {
+        $this->dateFin = $dateFin;
+    }
+
+
 
     /**
      * Set heureDebut

@@ -2,8 +2,10 @@
 
 namespace MyOrleansBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Media
  *
@@ -24,47 +26,35 @@ class Media
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=45, nullable=true)
-     */
-    private $type;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="page", type="string", length=45, nullable=true)
      */
     private $page;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="lien", type="string", length=45, nullable=true)
+     * @Assert\File()
+     * @ORM\Column(name="lien", type="text", nullable=true)
      */
     private $lien;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Flat")
+     * @ORM\ManyToMany(targetEntity="Flat", cascade={"persist"})
      */
-    private $flat;
+    private $flats;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Residence")
+     * @ORM\ManyToMany(targetEntity="Residence", cascade={"persist"})
      */
-    private $residence;
+    private $residences;
 
     /**
      * @ORM\OneToOne(targetEntity="Evenement", mappedBy="media")
      */
     private $evenement;
 
-    /**
-     * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="media")
-     */
-    private $categorie_prestas;
-
 
     /**
-     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media")
+     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media", cascade={"persist"})
      */
     private $partenaire;
 
@@ -74,6 +64,10 @@ class Media
      */
     private $service;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Collaborateur", mappedBy="media")
+     */
+    private $collaborateur;
 
     /**
      * @ORM\OneToOne(targetEntity="Pack", mappedBy="media")
@@ -81,9 +75,14 @@ class Media
     private $pack;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article", inversedBy="medias")
+     * @ORM\ManyToMany(targetEntity="Article",cascade={"persist"})
      */
-    private $article;
+    private $articles;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TypeMedia", inversedBy="medias", cascade={"persist"})
+     */
+    private $typeMedia;
 
     /**
      * Get id
@@ -95,29 +94,6 @@ class Media
         return $this->id;
     }
 
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Media
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 
     /**
      * Set page
@@ -171,44 +147,10 @@ class Media
      */
     public function __construct()
     {
-        $this->residence = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->flat = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->residences = new ArrayCollection();
+        $this->flats = new ArrayCollection();
     }
 
-
-    /**
-     * Add residence
-     *
-     * @param \MyOrleansBundle\Entity\Residence $residence
-     *
-     * @return Media
-     */
-    public function addResidence(\MyOrleansBundle\Entity\Residence $residence)
-    {
-        $this->residence[] = $residence;
-
-        return $this;
-    }
-
-    /**
-     * Remove residence
-     *
-     * @param \MyOrleansBundle\Entity\Residence $residence
-     */
-    public function removeResidence(\MyOrleansBundle\Entity\Residence $residence)
-    {
-        $this->residence->removeElement($residence);
-    }
-
-    /**
-     * Get residence
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getResidence()
-    {
-        return $this->residence;
-    }
 
     /**
      * Set evenement
@@ -232,74 +174,6 @@ class Media
     public function getEvenement()
     {
         return $this->evenement;
-    }
-
-    /**
-     * Add flat
-     *
-     * @param \MyOrleansBundle\Entity\Flat $flat
-     *
-     * @return Media
-     */
-    public function addFlat(\MyOrleansBundle\Entity\Flat $flat)
-    {
-        $this->flat[] = $flat;
-
-        return $this;
-    }
-
-    /**
-     * Remove flat
-     *
-     * @param \MyOrleansBundle\Entity\Flat $flat
-     */
-    public function removeFlat(\MyOrleansBundle\Entity\Flat $flat)
-    {
-        $this->flat->removeElement($flat);
-    }
-
-    /**
-     * Get flat
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFlat()
-    {
-        return $this->flat;
-    }
-
-    /**
-     * Add categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     *
-     * @return Media
-     */
-    public function addCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
-    {
-        $this->categorie_prestas[] = $categoriePresta;
-
-        return $this;
-    }
-
-    /**
-     * Remove categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     */
-    public function removeCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
-    {
-        $this->categorie_prestas->removeElement($categoriePresta);
-    }
-
-    /**
-     * Get categoriePrestas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCategoriePrestas()
-    {
-        return $this->categorie_prestas;
     }
 
     /**
@@ -375,6 +249,120 @@ class Media
     }
 
     /**
+     * @return mixed
+     */
+    public function getFlats()
+    {
+        return $this->flats;
+    }
+
+    /**
+     * @param mixed $flats
+     */
+    public function setFlats($flats)
+    {
+        $this->flats = $flats;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResidences()
+    {
+        return $this->residences;
+    }
+
+    /**
+     * @param mixed $residences
+     */
+    public function setResidences($residences)
+    {
+        $this->residences = $residences;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * @param mixed $articles
+     */
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeMedia()
+    {
+        return $this->typeMedia;
+    }
+
+    /**
+     * @param mixed $typeMedia
+     */
+    public function setTypeMedia($typeMedia)
+    {
+        $this->typeMedia = $typeMedia;
+    }
+
+
+
+    /**
+     * Add flat
+     *
+     * @param \MyOrleansBundle\Entity\Flat $flat
+     *
+     * @return Media
+     */
+    public function addFlat(\MyOrleansBundle\Entity\Flat $flat)
+    {
+        $this->flats[] = $flat;
+
+        return $this;
+    }
+
+    /**
+     * Remove flat
+     *
+     * @param \MyOrleansBundle\Entity\Flat $flat
+     */
+    public function removeFlat(\MyOrleansBundle\Entity\Flat $flat)
+    {
+        $this->flats->removeElement($flat);
+    }
+
+    /**
+     * Add residence
+     *
+     * @param \MyOrleansBundle\Entity\Residence $residence
+     *
+     * @return Media
+     */
+    public function addResidence(\MyOrleansBundle\Entity\Residence $residence)
+    {
+        $this->residences[] = $residence;
+
+        return $this;
+    }
+
+    /**
+     * Remove residence
+     *
+     * @param \MyOrleansBundle\Entity\Residence $residence
+     */
+    public function removeResidence(\MyOrleansBundle\Entity\Residence $residence)
+    {
+        $this->residences->removeElement($residence);
+    }
+
+    /**
      * Add article
      *
      * @param \MyOrleansBundle\Entity\Article $article
@@ -383,7 +371,7 @@ class Media
      */
     public function addArticle(\MyOrleansBundle\Entity\Article $article)
     {
-        $this->article[] = $article;
+        $this->articles[] = $article;
 
         return $this;
     }
@@ -395,16 +383,26 @@ class Media
      */
     public function removeArticle(\MyOrleansBundle\Entity\Article $article)
     {
-        $this->article->removeElement($article);
+        $this->articles->removeElement($article);
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getCollaborateur()
+    {
+        return $this->collaborateur;
     }
 
     /**
-     * Get article
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param mixed $collaborateur
      */
-    public function getArticle()
+    public function setCollaborateur($collaborateur)
     {
-        return $this->article;
+        $this->collaborateur = $collaborateur;
     }
+
+
+
 }

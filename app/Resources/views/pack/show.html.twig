@@ -9,7 +9,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title">Pack {{ pack.nom }}</h4>
+                            <h4 class="title">Pack : {{ pack.nom }}</h4>
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
@@ -35,18 +35,16 @@
                             <hr>
                             <ul>
                                 <li>
-                                    <a href="{{ path('pack_index') }}"><i class="material-icons">keyboard_return</i>Retour
-                                        à la liste des packs</a>
+                                    <a href="{{ path('admin_pack_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des packs</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('pack_edit', { 'id': pack.id }) }}"><i
+                                    <a href="{{ path('admin_pack_edit', { 'id': rpack.id }) }}"><i
                                                 class="material-icons">build</i>Éditer ce pack</a>
                                 </li>
 
                                 <li>
                                     {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete"
-                                           class="waves-effect waves-light btn-large red pull-right">
+                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
                                     {{ form_end(delete_form) }}
                                 </li>
                             </ul>

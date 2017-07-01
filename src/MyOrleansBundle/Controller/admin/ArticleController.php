@@ -11,14 +11,14 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Article controller.
  *
- * @Route("article")
+ * @Route("admin/article")
  */
 class ArticleController extends Controller
 {
     /**
      * Lists all article entities.
      *
-     * @Route("/", name="article_index")
+     * @Route("/", name="admin_article_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -35,7 +35,7 @@ class ArticleController extends Controller
     /**
      * Creates a new article entity.
      *
-     * @Route("/new", name="article_new")
+     * @Route("/new", name="admin_article_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -49,7 +49,7 @@ class ArticleController extends Controller
             $em->persist($article);
             $em->flush();
 
-            return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+            return $this->redirectToRoute('admin_article_show', array('id' => $article->getId()));
         }
 
         return $this->render('article/new.html.twig', array(
@@ -61,7 +61,7 @@ class ArticleController extends Controller
     /**
      * Finds and displays a article entity.
      *
-     * @Route("/{id}", name="article_show")
+     * @Route("/{id}", name="admin_article_show")
      * @Method("GET")
      */
     public function showAction(Article $article)
@@ -77,7 +77,7 @@ class ArticleController extends Controller
     /**
      * Displays a form to edit an existing article entity.
      *
-     * @Route("/{id}/edit", name="article_edit")
+     * @Route("/{id}/edit", name="admin_article_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Article $article)
@@ -89,7 +89,7 @@ class ArticleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('article_edit', array('id' => $article->getId()));
+            return $this->redirectToRoute('admin_article_edit', array('id' => $article->getId()));
         }
 
         return $this->render('article/edit.html.twig', array(
@@ -102,7 +102,7 @@ class ArticleController extends Controller
     /**
      * Deletes a article entity.
      *
-     * @Route("/{id}", name="article_delete")
+     * @Route("/{id}", name="admin_article_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Article $article)
@@ -116,7 +116,7 @@ class ArticleController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('article_index');
+        return $this->redirectToRoute('admin_article_index');
     }
 
     /**
@@ -129,7 +129,7 @@ class ArticleController extends Controller
     private function createDeleteForm(Article $article)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('article_delete', array('id' => $article->getId())))
+            ->setAction($this->generateUrl('admin_article_delete', array('id' => $article->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

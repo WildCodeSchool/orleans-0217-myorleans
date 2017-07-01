@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Partenaire controller.
  *
- * @Route("partenaire")
+ * @Route("admin/partenaire")
  */
 class PartenaireController extends Controller
 {
     /**
      * Lists all partenaire entities.
      *
-     * @Route("/", name="partenaire_index")
+     * @Route("/", name="admin_partenaire_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class PartenaireController extends Controller
     /**
      * Creates a new partenaire entity.
      *
-     * @Route("/new", name="partenaire_new")
+     * @Route("/new", name="admin_partenaire_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class PartenaireController extends Controller
             $em->persist($partenaire);
             $em->flush();
 
-            return $this->redirectToRoute('partenaire_show', array('id' => $partenaire->getId()));
+            return $this->redirectToRoute('admin_partenaire_show', array('id' => $partenaire->getId()));
         }
 
         return $this->render('partenaire/new.html.twig', array(
@@ -60,7 +60,7 @@ class PartenaireController extends Controller
     /**
      * Finds and displays a partenaire entity.
      *
-     * @Route("/{id}", name="partenaire_show")
+     * @Route("/{id}", name="admin_partenaire_show")
      * @Method("GET")
      */
     public function showAction(Partenaire $partenaire)
@@ -76,7 +76,7 @@ class PartenaireController extends Controller
     /**
      * Displays a form to edit an existing partenaire entity.
      *
-     * @Route("/{id}/edit", name="partenaire_edit")
+     * @Route("/{id}/edit", name="admin_partenaire_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Partenaire $partenaire)
@@ -88,7 +88,7 @@ class PartenaireController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('partenaire_edit', array('id' => $partenaire->getId()));
+            return $this->redirectToRoute('admin_partenaire_edit', array('id' => $partenaire->getId()));
         }
 
         return $this->render('partenaire/edit.html.twig', array(
@@ -101,7 +101,7 @@ class PartenaireController extends Controller
     /**
      * Deletes a partenaire entity.
      *
-     * @Route("/{id}", name="partenaire_delete")
+     * @Route("/{id}", name="admin_partenaire_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Partenaire $partenaire)
@@ -115,7 +115,7 @@ class PartenaireController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('partenaire_index');
+        return $this->redirectToRoute('admin_partenaire_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class PartenaireController extends Controller
     private function createDeleteForm(Partenaire $partenaire)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('partenaire_delete', array('id' => $partenaire->getId())))
+            ->setAction($this->generateUrl('admin_partenaire_delete', array('id' => $partenaire->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
