@@ -74,33 +74,9 @@ class HomeController extends Controller
     /*-----------------------------------------------*/
 
 
-    /**
-     * @Route("/residences", name="residences")
-     */
-    public function residence()
-    {
-        return $this->render('MyOrleansBundle::residence.html.twig');
-    }
 
-    /**
-     * @Route("/appartement/{id}")
-     */
-    public function flat($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $flat = $em->getRepository(Flat::class)->find($id);
-        $residence = $em->getRepository(Residence::class)->find($id);
-/*        $prestas = $em->getRepository(Presta::class)->findAll();
-        $typePrestas = $em->getRepository(TypePresta::class)->findAll();
-        $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();*/
-        return $this->render('MyOrleansBundle::appartement.html.twig',[
-            'flat'=>$flat,
-            'residence'=>$residence,
-/*            'prestas'=>$prestas,
-            'typePrestas'=>$typePrestas,
-            'categoriePrestas'=>$categoriePrestas,*/
-        ]);
-    }
+
+
 
     /**
      * @Route("/parcours-immobilier", name="parcoursimmo")
