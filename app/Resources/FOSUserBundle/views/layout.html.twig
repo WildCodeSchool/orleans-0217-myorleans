@@ -1,0 +1,16 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block body %}
+    <div class="container-fosuser">
+        <div class="fosuser">
+            <div class="logo-fosuser">
+                <a href="#" class="simple-text">
+                    <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"
+                         height="80px"/><br>
+                </a>
+            </div>
+            {% block fos_user_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
