@@ -39,6 +39,8 @@ class HomeController extends Controller
         $actu = $em->getRepository(Article::class)->findOneActu();
         $event = $em->getRepository(Evenement::class)->findOneEvent();
 
+        $telephoneNumber = $this->getParameter('telephone_number');
+
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
@@ -92,6 +94,7 @@ class HomeController extends Controller
             'residenceAll' => $residenceAll,
             'actu' => $actu,
             'event' => $event,
+            'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
         ]);
     }
@@ -109,6 +112,7 @@ class HomeController extends Controller
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -137,6 +141,7 @@ class HomeController extends Controller
         }
 
         return $this->render('MyOrleansBundle::residence.html.twig', [
+            'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
         ]);
 
@@ -149,6 +154,7 @@ class HomeController extends Controller
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -177,6 +183,7 @@ class HomeController extends Controller
             return $this->redirectToRoute('appartement');
         }
         return $this->render('MyOrleansBundle::appartement.html.twig', [
+            'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
         ]);
     }

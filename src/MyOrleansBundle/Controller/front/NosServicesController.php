@@ -33,6 +33,7 @@ class NosServicesController extends Controller
         $client = new Client();
         $em = $this->getDoctrine()->getManager();
         $services = $em->getRepository(Service::class)->findAll();
+        $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $packs = $em->getRepository(Pack::class)->findAll();
         $temoignages = $em->getRepository(Temoignage::class)->findAll();
@@ -67,6 +68,7 @@ class NosServicesController extends Controller
             'services' => $services,
             'packs' => $packs,
             'temoignages' => $temoignages,
+            'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
         ]);
     }
