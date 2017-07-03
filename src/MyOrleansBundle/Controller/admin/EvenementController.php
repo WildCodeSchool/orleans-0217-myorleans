@@ -169,6 +169,7 @@ class EvenementController extends Controller
         return $this->redirectToRoute('admin_evenement_edit', array('id' => $evenement->getId()));
     }
 
+
     /**
      * Creates a form to delete a evenement entity.
      *
