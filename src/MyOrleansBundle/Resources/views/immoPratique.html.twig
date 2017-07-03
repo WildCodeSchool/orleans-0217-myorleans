@@ -11,7 +11,7 @@
 
     <!--grande image du haut-->
     <div class="header-image">
-        <img src="{{ asset('img/orleans2.jpg') }}" style="width: 100%; margin-bottom: -90px;"
+        <img class="img-header" src="{{ asset('img/orleans2.jpg') }}";
              alt="photo interieur appartement"/>
     </div>
 
@@ -218,7 +218,7 @@
         <div id="slide-out" class="side-nav">
             <div class="userView">
                 <h3 align="center">Contactez nous !</h3>
-                <h4 align="center">02.38.75.94.47</h4>
+                <h4 align="center">{{ telephone_number }}</h4>
                 {{ form_start(form) }}
                 <div class="row">
 
@@ -280,7 +280,7 @@
                     </div>
 
                     <div class="row center">
-                        <p style="text-align: center">Je souhaite m'abonner à la newsletter?</p>
+                        <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
 
                         {{ form_widget(form.newsletter) }}
                         {{ form_errors(form.newsletter) }}

@@ -315,7 +315,18 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
 }
 
+.img-header{
+    width: 100%;
+    margin-bottom: -90px;
+}
 
+.newsletter{
+    text-align: center;
+}
+
+.temoignage{
+    text-align: right;
+}
 
 @media (max-width : 767px) {
     .side-nav li > .userView{

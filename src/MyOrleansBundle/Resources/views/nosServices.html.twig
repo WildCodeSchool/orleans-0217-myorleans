@@ -137,8 +137,8 @@
                                 <h3>{{ temoignage.theme }}</h3>
                                 <p>{{ temoignage.message }}</p>
                                 <br/>
-                                <p style="text-align: right">{{ temoignage.auteur }}</p>
-                                <p style="text-align: right">{{ temoignage.date|date("m/d/y") }}</p>
+                                <p class="temoignage">{{ temoignage.auteur }}</p>
+                                <p class="temoignage">{{ temoignage.date|date("m/d/y") }}</p>
 
                             </div>
                         </div>
@@ -152,8 +152,8 @@
                                 <p>{{ temoignage.message }}</p>
 
                                 <br/>
-                                <p style="text-align: right">{{ temoignage.auteur }}</p>
-                                <p style="text-align: right">{{ temoignage.date|date("m/d/y") }}</p>
+                                <p class="temoignage">{{ temoignage.auteur }}</p>
+                                <p class="temoignage">{{ temoignage.date|date("m/d/y") }}</p>
 
                             </div>
                         </div>
@@ -233,7 +233,7 @@
                     </div>
 
                     <div class="row center">
-                        <p style="text-align: center">Je souhaite m'abonner à la newsletter?</p>
+                        <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
 
                         {{ form_widget(form.newsletter) }}
                         {{ form_errors(form.newsletter) }}

@@ -15,6 +15,7 @@ parameters:
     mailer_user: ~
     mailer_password: ~
     mailer_encryption: ~
+    telephone_number: 02.38.75.94.47
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt

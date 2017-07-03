@@ -30,6 +30,7 @@ class ImmoPratiqueController extends Controller
         $client = new Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $articles = $em->getRepository(Article::class)->findAll();
+        $telephoneNumber = $this->getParameter('telephone_number');
 
         $formulaire->handleRequest($request);
 
@@ -42,6 +43,7 @@ class ImmoPratiqueController extends Controller
             $message
                 ->setTo($this->getParameter('mailer_user'))
                 ->setFrom($this->getParameter('mailer_user'))
+
                 ->setBody(
                     $this->renderView(
 
@@ -62,6 +64,7 @@ class ImmoPratiqueController extends Controller
         return $this->render('MyOrleansBundle::immoPratique.html.twig', [
 
             'articles' => $articles,
+            'telephone_number' =>$telephoneNumber,
             'form' => $formulaire->createView()
         ]);
     }
