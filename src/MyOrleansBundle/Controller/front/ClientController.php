@@ -52,7 +52,7 @@ class ClientController extends Controller
         }
 
 
-        return $this->render('MyOrleansBundle::nosservices.html.twig', array('form' => $form->createView()));
+        return $this->render('MyOrleansBundle::nosServices.html.twig', array('form' => $form->createView()));
 
     }
 

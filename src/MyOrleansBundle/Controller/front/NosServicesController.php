@@ -7,6 +7,7 @@
  */
 
 namespace MyOrleansBundle\Controller\front;
+
 use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Form\FormulaireType;
@@ -21,24 +22,24 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 
-
 class NosServicesController extends Controller
 {
 
     /**
-     * @Route("/nos-services", name="nosservices")
+     * @Route("/nos_services", name="nos_services")
      */
     public function nosServicesAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $client = new Client();
+        $em = $this->getDoctrine()->getManager();
+        $services = $em->getRepository(Service::class)->findAll();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $packs = $em->getRepository(Pack::class)->findAll();
+        $temoignages = $em->getRepository(Temoignage::class)->findAll();
         $formulaire->handleRequest($request);
 
-
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
             $mailer = $this->get('mailer');
 
             $message = new \Swift_Message('Nouveau message de my-orleans.com');
@@ -48,7 +49,7 @@ class NosServicesController extends Controller
                 ->setBody(
                     $this->renderView(
 
-                        'MyOrleansBundle::receptionform.html.twig',
+                        'MyOrleansBundle::receptionForm.html.twig',
                         array('client' => $client)
                     ),
                     'text/html'
@@ -59,18 +60,14 @@ class NosServicesController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('nosservices');
+            return $this->redirectToRoute('nos_services');
         }
 
-        $services = $em->getRepository(Service::class)->findAll();
-        $packs = $em->getRepository(Pack::class)->findAll();
-        $temoignages = $em->getRepository(Temoignage::class)->findAll();
-        return $this->render('MyOrleansBundle::nosservices.html.twig', [
+        return $this->render('MyOrleansBundle::nosServices.html.twig', [
             'services' => $services,
             'packs' => $packs,
             'temoignages' => $temoignages,
-            'form'=>$formulaire->createView()
-
+            'form' => $formulaire->createView()
         ]);
     }
 

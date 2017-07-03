@@ -18,11 +18,11 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 
-class ImmopratiqueController extends Controller
+class ImmoPratiqueController extends Controller
 {
 
     /**
-     * @Route("/immopratique", name="immopratique")
+     * @Route("/immo_pratique", name="immo_pratique")
      */
     public function immoPratiqueAction(Request $request)
     {
@@ -45,7 +45,7 @@ class ImmopratiqueController extends Controller
                 ->setBody(
                     $this->renderView(
 
-                        'MyOrleansBundle::receptionform.html.twig',
+                        'MyOrleansBundle::receptionForm.html.twig',
                         array('client' => $client)
                     ),
                     'text/html'
@@ -56,10 +56,10 @@ class ImmopratiqueController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('nosservices');
+            return $this->redirectToRoute('immo_pratique');
         }
 
-        return $this->render('MyOrleansBundle::immopratique.html.twig', [
+        return $this->render('MyOrleansBundle::immoPratique.html.twig', [
 
             'articles' => $articles,
             'form' => $formulaire->createView()

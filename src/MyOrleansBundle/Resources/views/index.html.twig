@@ -40,18 +40,18 @@
                                 class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
-                        <li><a href="{{ path("nosservices") }}">Nos services</a></li>
+                        <li><a href="{{ path("nos_services") }}">Nos services</a></li>
                         <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
-                        <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
+                        <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
-                        <li><a href="{{ path("nosservices") }}">Nos services</a></li>
+                        <li><a href="{{ path("nos_services") }}">Nos services</a></li>
                         <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
-                        <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
+                        <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                 </div>
@@ -64,7 +64,7 @@
 
 
         <section id="content">
-            <div>
+
                 <div class="row">
                     <div class="col s12 l10 offset-l1 formSearch z-depth-3">
                         <div class="row">
@@ -99,29 +99,12 @@
 
 
                         {{ form_end(simpleSearch) }}
-                        {#                                <input type="text" id="autocomplete-input" class="autocomplete" name="localisation">
-                                                        <label for="autocomplete-input">Localisation</label>
-                                                    </div>
-                                                    <div class="input-field col s6">
-                                                        <select>
-                                                            <option value="" disabled selected>Sélectionnez le type du bien</option>
-                                                            <option value="1">Maison</option>
-                                                            <option value="2">Appartement</option>
-                                                        </select>
-                                                        <label>Type</label>#}
+
 
                     </div>
                 </div>
-                {#                        <div class="row center">
-                                            <div class="formButton col s12 m12 l4 offset-l1">
-                                                <a class="waves-effect waves-light btn-large light-green">Je souhaite investir</a>
-                                            </div>
-                                            <div class="formButton col s12 m12 l6">
-                                                <a class="waves-effect waves-light btn-large light-green">Je recherche une résidence
-                                                    Principale</a>
-                                            </div>
-                                        </div>#}
-            </div>
+
+
         </section>
         </div>
         <div class="container-fluid">
@@ -175,16 +158,6 @@
                             </div>
 
                             <div class="col s12 l6">
-                                {# <div class="col s12 l12">
-                                     <div class="card">
-                                         <div class="card-image">
-                                           #}{#  {% for medium in residenceAll.media if medium.type == 'image' %}
-                                                 <img src="{{ asset('img/'~medium.lien) }}" class="responsive-img">
-                                                 <span class="card-title">Le Flores</span>
-                                             {% endfor %}#}{#
-                                         </div>
-                                     </div>
-                                 </div>#}
                                 {% for resTwoFav in residenceTwoFav %}
                                     <div class="col s12 l12">
                                         <div class="card">
@@ -323,42 +296,8 @@
                         </a>
                     </div>
                 </div>
-                <!-- Modal Structure -->
-                {#<div id="modal1" class="modal modal-fixed-footer">
-                    <div class="modal-content black-text">
-                        <h3> Inscrivez-vous !</h3>
-
-                        <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <input id="first_name" type="text" class="validate">
-                                        <label for="first_name">Nom </label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="last_name" type="text" class="validate">
-                                        <label for="last_name">Prénom</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col s12">
-                                        <div class="input-field inline">
-                                            <input id="email" type="email" class="validate">
-                                            <label for="email" data-error="wrong" data-success="right">Email</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
 
 
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Je
-                            m'inscris</a>
-                    </div>
-                </div>#}
-            </div>
 
 
             <div class="row">

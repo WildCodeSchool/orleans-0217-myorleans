@@ -56,7 +56,7 @@ class HomeController extends Controller
                 ->setBody(
                     $this->renderView(
 
-                        'MyOrleansBundle::receptionform.html.twig',
+                        'MyOrleansBundle::receptionForm.html.twig',
                         array('client' => $client)
                     ),
                     'text/html'
@@ -123,7 +123,7 @@ class HomeController extends Controller
                 ->setBody(
                     $this->renderView(
 
-                        'MyOrleansBundle::receptionform.html.twig',
+                        'MyOrleansBundle::receptionForm.html.twig',
                         array('client' => $client)
                     ),
                     'text/html'
@@ -163,8 +163,9 @@ class HomeController extends Controller
                 ->setBody(
                     $this->renderView(
 
-                        'MyOrleansBundle::receptionform.html.twig',
-                        array('client' => $client)
+                        'MyOrleansBundle::receptionForm.html.twig', [
+                            'client' => $client
+                        ]
                     ),
                     'text/html'
                 );

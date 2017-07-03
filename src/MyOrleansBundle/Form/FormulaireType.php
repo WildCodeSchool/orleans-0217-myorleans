@@ -34,11 +34,11 @@ class FormulaireType extends AbstractType
             ->add('message', TextareaType::class, [
                 'attr' =>['class' => 'materialize-textarea']
             ])
-            ->add('newsletter', ChoiceType::class, array(
+            ->add('newsletter', ChoiceType::class, [
                 'choices' => array('oui' => true, 'non' => false),
                 'expanded' => true,
                 'multiple' => false
-            ))
+            ])
 
             ->add('envoyer', SubmitType::class, [
                 'attr'=> ['class' => 'waves-effect waves-light btn-large light-green']
