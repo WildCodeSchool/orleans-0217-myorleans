@@ -52,9 +52,16 @@ class Evenement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="dateDebut", type="date", nullable=true)
      */
-    private $date;
+    private $dateDebut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateFin", type="date", nullable=true)
+     */
+    private $dateFin;
 
     /**
      * @var \DateTime
@@ -78,9 +85,9 @@ class Evenement
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="evenement")
+     * @ORM\OneToOne(targetEntity="Media")
      */
-    private $medias;
+    private $media;
 
 
     /**
@@ -190,28 +197,38 @@ class Evenement
     }
 
     /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Evenement
+     * @return \DateTime
      */
-    public function setDate($date)
+    public function getDateDebut()
     {
-        $this->date = $date;
-
-        return $this;
+        return $this->dateDebut;
     }
 
     /**
-     * Get date
-     *
+     * @param \DateTime $dateDebut
+     */
+    public function setDateDebut($dateDebut)
+    {
+        $this->dateDebut = $dateDebut;
+    }
+
+    /**
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateFin()
     {
-        return $this->date;
+        return $this->dateFin;
     }
+
+    /**
+     * @param \DateTime $dateFin
+     */
+    public function setDateFin($dateFin)
+    {
+        $this->dateFin = $dateFin;
+    }
+
+
 
     /**
      * Set heureDebut
@@ -284,45 +301,21 @@ class Evenement
     {
         return $this->description;
     }
+
     /**
-     * Constructor
+     * @return mixed
      */
-    public function __construct()
+    public function getMedia()
     {
-        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->media;
     }
 
     /**
-     * Add media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     *
-     * @return Evenement
+     * @param mixed $media
      */
-    public function addMedia(\MyOrleansBundle\Entity\Media $media)
+    public function setMedia($media)
     {
-        $this->medias[] = $media;
-
-        return $this;
+        $this->media = $media;
     }
 
-    /**
-     * Remove media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     */
-    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
-    {
-        $this->medias->removeElement($media);
-    }
-
-    /**
-     * Get medias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedias()
-    {
-        return $this->medias;
-    }
 }

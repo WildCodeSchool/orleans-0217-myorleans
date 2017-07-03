@@ -13,14 +13,14 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 /**
  * Flat controller.
  *
- * @Route("flat")
+ * @Route("admin/flat")
  */
 class FlatController extends Controller
 {
     /**
      * Lists all flat entities.
      *
-     * @Route("/", name="flat_index")
+     * @Route("/", name="admin_flat_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -37,7 +37,7 @@ class FlatController extends Controller
     /**
      * Creates a new flat entity.
      *
-     * @Route("/new", name="flat_new")
+     * @Route("/new", name="admin_flat_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -51,7 +51,7 @@ class FlatController extends Controller
             $em->persist($flat);
             $em->flush();
 
-            return $this->redirectToRoute('flat_show', array('id' => $flat->getId()));
+            return $this->redirectToRoute('admin_flat_show', array('id' => $flat->getId()));
         }
 
         return $this->render('flat/new.html.twig', array(
@@ -69,24 +69,29 @@ class FlatController extends Controller
     public function pdfAction(Flat $flat)
     {
 
-//        $pageUrl = $this->generateUrl('flat_show', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
-        return $this->render('flat/show.html.twig', ['flat'=>$flat]);
-//        return new Response(
-//            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
-//            200,
-//            array(
-//                'Content-Type'          => 'application/pdf',
-//                'Content-Disposition'   => 'attachment; filename="file.pdf"'
-//            )
-//        );
+        $pageUrl = $this->generateUrl('admin_flat_show', ['id' => $flat->getId()], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+            )
+        );
+
     }
 
+    public function pdfReturnAction($id)
+    {
+
+    }
 
 
     /**
      * Finds and displays a flat entity.
      *
-     * @Route("/{id}", name="flat_show")
+     * @Route("/{id}", name="admin_flat_show")
      * @Method("GET")
      */
     public function showAction(Flat $flat)
@@ -103,7 +108,7 @@ class FlatController extends Controller
     /**
      * Displays a form to edit an existing flat entity.
      *
-     * @Route("/{id}/edit", name="flat_edit")
+     * @Route("/{id}/edit", name="admin_flat_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Flat $flat)
@@ -115,7 +120,7 @@ class FlatController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('flat_edit', array('id' => $flat->getId()));
+            return $this->redirectToRoute('admin_flat_edit', array('id' => $flat->getId()));
         }
 
         return $this->render('flat/edit.html.twig', array(
@@ -128,7 +133,7 @@ class FlatController extends Controller
     /**
      * Deletes a flat entity.
      *
-     * @Route("/{id}", name="flat_delete")
+     * @Route("/{id}", name="admin_flat_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Flat $flat)
@@ -142,7 +147,7 @@ class FlatController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('flat_index');
+        return $this->redirectToRoute('admin_flat_index');
     }
 
     /**
@@ -155,7 +160,7 @@ class FlatController extends Controller
     private function createDeleteForm(Flat $flat)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('flat_delete', array('id' => $flat->getId())))
+            ->setAction($this->generateUrl('admin_flat_delete', array('id' => $flat->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

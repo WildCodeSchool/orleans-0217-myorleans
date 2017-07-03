@@ -10,6 +10,7 @@ namespace MyOrleansBundle\Controller\admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use MyOrleansBundle\Repository\ResidenceRepository;
 
 class AdminController extends Controller
 {
@@ -19,7 +20,12 @@ class AdminController extends Controller
     public function indexAction()
     {
 
-        return $this->render('index_admin.html.twig');
+        $em = $this->getDoctrine()->getManager();
 
+        $residences = $em->getRepository('MyOrleansBundle:Residence')->findAllLimit();
+
+        return $this->render('index_admin.html.twig', array(
+            'residences' => $residences,
+        ));
     }
 }

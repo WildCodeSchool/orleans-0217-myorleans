@@ -5,31 +5,29 @@
 <!--premier slide-->
 
     <div class="breadcrumb">
-        <a href="#" data-activates="slide-out" class="button-collapse pulse"><i class="material-icons">message</i></a>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
     </div>
+
 
     <div class="container">
 
         <h2 class="subtitle fancy"><span>Nos services</span></h2>
         <!--premier block-->
-
+        {% for service in services %}
+            {% if service.id is odd %}
         <div class="row">
             <div class="col s12 m6 l6">
                 <div data-aos="fade-up-right">
                     <div class="boxi">
-                        <h3>Location</h3>
-                        <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                            ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                            an quaedam altiora meditantis iam Galli secreta susceperint scripta,
-                            qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
-                            petit exindeque per protectores retractus artissime tenebatur.</p>
+                        <h3>{{ service.type }}</h3>
+                        <p>{{ service.description }}</p>
                         <div class="center">
                             <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light btn"><i class="material-icons">message</i> Demander la documentation</a>
                         </div>
                     </div>
                 </div>
-
             </div>
+
 
             <div class="col s12 m6 l6">
                 <div data-aos="fade-up-left">
@@ -39,6 +37,9 @@
                 </div>
             </div>
         </div>
+
+        {% elseif service.id is even  %}
+
 
         <!--fin premier block-->
 
@@ -63,12 +64,8 @@
             <div class="col s12 m6 l6">
                 <div data-aos="fade-up-left">
                     <div class="boxi">
-                        <h3>Gestion immobilière</h3>
-                        <p>Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam,
-                            ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur,
-                            an quaedam altiora meditantis iam Galli secreta susceperint scripta,
-                            qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim
-                            petit exindeque per protectores retractus artissime tenebatur.</p>
+                        <h3>{{ service.type }}</h3>
+                        <p>{{ service.description }}</p>
                         <div class="center">
                             <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light btn"><i class="material-icons">message</i> Demander la documentation</a>
                         </div>
@@ -78,70 +75,49 @@
         </div>
 
         <!--fin prenmier container et fin block-->
+{% endif %}
+
+{% endfor %}
+
     </div>
 
 
 
 <!-- debut container fluid -->
     <!--les packs-->
+
     <div class="bloc-color container-fluid">
         <div class="row">
             <div class="col offset-s2 s8">
                 <h2 class="subtitle fancy"><span>Nos packs</span></h2>
                 <div class="row">
+                    {% for pack in packs %}
                     <div class="col m6 s12 l4">
                         <div class="card">
                             <div class="card-image">
                                 <div data-aos="flip-left">
                                     <img src="{{ asset('img/pack4.jpg') }}" alt="logo de l'entreprise" />
 
-                                    <span class="card-title">Pack Sérénité</span>
+                                    <span class="card-title">{{ pack.nom }}</span>
                                     <a class="btn-floating halfway-fab waves-effect waves-light light-green button-collapse" data-activates="slide-out" href="#"><i class="material-icons">message</i></a>
                                 </div>
                                 <div class="card-content">
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                    <p>{{ pack.description }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col m6 s12 l4">
-                        <div class="card">
-                            <div class="card-image">
-                                <div data-aos="flip-right">
-                                    <img src="{{ asset('img/pack5.jpg') }}" alt="logo de l'entreprise" />
 
-                                    <span class="card-title">Pack Confiance</span>
-                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green button-collapse" data-activates="slide-out" href="#"><i class="material-icons">message</i></a>                            </div>
-                                <div class="card-content">
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
 
-                    <div class="col m6 s12 l4">
-                        <div class="card">
-                            <div class="card-image">
-                                <div data-aos="flip-left">
-
-                                    <img src="{{ asset('img/pack6.jpg') }}" alt="logo de l'entreprise" />
-
-                                    <span class="card-title">Pack VIP</span>
-                                    <a class="btn-floating halfway-fab waves-effect waves-light light-green button-collapse" data-activates="slide-out" href="#"><i class="material-icons">message</i></a>
-                                </div>
-                                <div class="card-content">
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>
         </div>
 
     </div>
+
 
     <!--fin packs-->
 
@@ -150,60 +126,53 @@
         <!--quatrième block-->
         <div class="row">
             <h2 class="subtitle fancy"><span>Nos derniers témoignages</span></h2>
-            <div data-aos="fade-up-right">
+
+                <div class="col s12 m6 l6">
+                    {% for temoignage in temoignages %}
+                    {% if temoignage.id is odd %}
+                    <div class="boxi">
+                        <h3>{{ temoignage.motif }}</h3>
+                        <p>{{ temoignage.text }}</p>
+                        <br/>
+                            <p style="text-align: right">{{ temoignage.auteur }}</p>
+                            <p></p>
+
+                    </div>
+                </div>
+
+
                 <div class="col s12 m6 l6">
 
                     <div class="boxi">
-                        <h3>Vente</h3>
-                        <p>Iamque non umbratis fallaciis res agebatur,
-                            sed qua palatium est extra muros, armatis omne circumdedit.
-                            ingressusque obscuro iam die, ablatis regiis indumentis Caesarem tunica
-                            texit et paludamento communi, eum post haec nihil passurum velut mandato
-                            principis iurandi crebritate confirmans et statim inquit exsurge et inopinum
-                            carpento privato inpositum ad Histriam duxit prope oppidum Polam, ubi quondam
-                            peremptum Constantini filium accepimus Crispum.</p>
+                        <h3>{{ temoignage.motif }}</h3>
+                        <p>{{ temoignage.text }}</p>
 
-                        <div class="auteur">
-                            <p>M Franck Bertrand, Client depuis 2014</p>
-                        </div>
+                        <br/>
+                            <p style="text-align: right">{{ temoignage.auteur }}</p>
+                            <p></p>
+
                     </div>
+                    {% endif %}
+
+                    {% endfor %}
                 </div>
-            </div>
 
-            <div data-aos="fade-up-left">
-                <div class="col s12 m6 l6">
 
-                    <div class="boxi">
-                        <h3>Location</h3>
-                        <p>Iamque non umbratis fallaciis res agebatur,
-                            sed qua palatium est extra muros, armatis omne circumdedit.
-                            ingressusque obscuro iam die, ablatis regiis indumentis Caesarem tunica
-                            texit et paludamento communi, eum post haec nihil passurum velut mandato
-                            principis iurandi crebritate confirmans et statim inquit exsurge et inopinum
-                            carpento privato inpositum ad Histriam duxit prope oppidum Polam, ubi quondam
-                            peremptum Constantini filium accepimus Crispum.</p>
-
-                        <div class="auteur">
-                            <p>Mme Martine Rolland, Cliente depuis 2016</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-
-        <!-- Formulaire -->
-
-        <!--fin formulaire-->
 
 
     </div>
+    <!-- Fin bloc Body-->
 
-    <ul id="slide-out" class="side-nav">
-        <li><div class="userView">
+
+    <!-- Formulaire -->
+    <form method="post" action="nosservices" >
+    <div id="slide-out" class="side-nav">
+        <div class="userView">
                 <h3 align="center">Contactez nous !</h3>
-                <h4 align="center">02 38 75 94 47</h4>
-                <div class="row">
+                <h4 align="center">02.38.75.94.47</h4>
 
+                <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">account_circle</i>
                         <input id="last_name" type="text" class="validate">
@@ -211,17 +180,19 @@
                     </div>
 
                     <div class="input-field col s6">
-
                         <input id="last_name" type="text" class="validate">
                         <label for="first_name">Prénom</label>
                     </div>
+                </div>
+
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <i class="material-icons prefix">phone</i>
                             <input id="icon_telephone" type="tel" class="validate">
                             <label for="icon_telephone">Téléphone</label>
                         </div>
-                        <form class="col s6">
+                    </div>
+
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">email</i>
@@ -229,7 +200,9 @@
                                     <label for="email" data-error="wrong" data-success="right">Email</label>
                                 </div>
                             </div>
-                        </form>
+
+
+
                         <div class="input-field col s12">
                             <i class="material-icons prefix">error</i>
                             <select>
@@ -241,17 +214,15 @@
                             </select>
 
                         </div>
-                        <div class="row">
-                            <form class="col s12">
-                                <div class="row">
+
+                            <div class="row">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">mode_edit</i>
                                         <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
                                         <label for="icon_prefix2">Votre message</label>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+
                         <div class="row">
                             <div class="col s12">
                                 <button class="btn waves-effect waves-light btn-large center-align" type="submit" name="action">Envoyer
@@ -259,8 +230,11 @@
                                 </button>
                             </div>
                         </div>
-    </ul>
+    </div>
 
+</div>
+    </form>
+    <!--fin formulaire-->
 
     {% block javascripts %}
 
@@ -270,15 +244,11 @@
             AOS.init();
             $('.button-collapse').sideNav({
                     edge: 'right', // Choose the horizontal origin
-                    menuWidth: 600,
-                    draggable: true, // Choose whether you can drag to open on touch screens
+                    draggable: false, // Choose whether you can drag to open on touch screens
                     closeOnClick: true
                 }
 
-
-
             );
-
         </script>
     {% endblock %}
 {% endblock %}

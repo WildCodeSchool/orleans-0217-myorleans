@@ -43,7 +43,7 @@ class Pack
     private $prix;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="partenaire")
+     * @ORM\OneToOne(targetEntity="Media", inversedBy="pack")
      */
     private $media;
 

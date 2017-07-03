@@ -22,19 +22,16 @@
                                 <tbody>
 
                                 {% for partenaire in partenaires %}
-
                                     <tr>
-                                        <td>
-                                            <a href="{{ path('partenaire_show', { 'id': partenaire.id }) }}">{{ partenaire.id }}</a>
-                                        </td>
+                                        <td><a href="{{ path('admin_partenaire_show', { 'id': partenaire.id }) }}">{{ partenaire.id }}</a></td>
                                         <td>{{ partenaire.nom }}</td>
                                         <td>{{ partenaire.url }}</td>
                                         <td>
-                                            <a href="{{ path('partenaire_show', { 'id': partenaire.id }) }}"><i
+                                            <a href="{{ path('admin_partenaire_show', { 'id': partenaire.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('partenaire_edit', { 'id': partenaire.id }) }}"><i
+                                            <a href="{{ path('admin_partenaire_edit', { 'id': partenaire.id }) }}"><i
                                                         class="material-icons">build</i></a>
                                         </td>
                                     </tr>
@@ -47,8 +44,9 @@
                             <ul>
                                 <li>
 
-                                    <a href="{{ path('partenaire_new') }}" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">create</i>Ajouter un
-                                        partenaire</a>
+                                    <a href="{{ path('admin_partenaire_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">add</i>Ajouter un partenaire</a>
                                 </li>
                             </ul>
                         </div>
@@ -57,5 +55,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

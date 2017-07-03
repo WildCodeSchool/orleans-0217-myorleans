@@ -23,9 +23,7 @@
 
                     <div id="editor" class="col offset-l1 l5 s10">
 
-{#
                         <i id="cmd" class="material-icons print">print</i>
-#}
                         <button id="cmd">generate PDF</button>
                     </div>
                     </div>
@@ -169,7 +167,8 @@
         <script>
             AOS.init();
         </script>
-{#        <script>
+
+        <script>
             var doc = new jsPDF();
             var specialElementHandlers = {
                 '#editor': function (element, renderer) {
@@ -184,7 +183,7 @@
                 });
                 doc.save('sample-file.pdf');
             });
-        </script>#}
+        </script>
     {% endblock %}
 
 {% endblock %}

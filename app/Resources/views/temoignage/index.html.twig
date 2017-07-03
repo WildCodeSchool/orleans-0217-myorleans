@@ -1,0 +1,62 @@
+{% extends '::layout_admin.html.twig' %}
+
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Liste des témoignages</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <thead class="text">
+                                <th>Id</th>
+                                <th>Theme</th>
+                                <th>Auteur</th>
+                                <th>Date</th>
+                                <th>Message</th>
+                                <th>Aperçu</th>
+                                <th>Éditer</th>
+                                </thead>
+                                <tbody>
+                                {% for temoignage in temoignages %}
+                                    <tr>
+                                        <td><a href="{{ path('admin_temoignage_show', { 'id': temoignage.id }) }}">
+                                                {{ temoignage.id }}</a></td>
+                                        <td>{{ temoignage.theme }}</td>
+                                        <td>{{ temoignage.auteur }}</td>
+                                        <td>{{ temoignage.date }}</td>
+                                        <td>{{ temoignage.message }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_temoignage_show', { 'id': temoignage.id }) }}"><i
+                                                        class="material-icons">remove_red_eye</i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_temoignage_edit', { 'id': temoignage.id }) }}"><i
+                                                        class="material-icons">build</i></a>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <hr>
+                            <ul>
+                                <li>
+
+                                    <a href="{{ path('admin_temoignage_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">add</i>Ajouter un témoignage</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

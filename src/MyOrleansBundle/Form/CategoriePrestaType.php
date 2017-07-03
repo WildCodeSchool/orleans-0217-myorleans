@@ -13,7 +13,7 @@ class CategoriePrestaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('media');
+        $builder->add('nomCategorie')->add('ordreAffichage')->add('flat')->add('residence')->add('media');
     }
     
     /**

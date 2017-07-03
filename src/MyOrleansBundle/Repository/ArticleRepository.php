@@ -2,6 +2,8 @@
 
 namespace MyOrleansBundle\Repository;
 
+use MyOrleansBundle\Entity\Article;
+
 /**
  * ArticleRepository
  *
@@ -10,4 +12,41 @@ namespace MyOrleansBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
+    public function findOneActu()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(1);
+        return $qb->getQuery()->getResult();
+    }
+
+
+    public function articleByTag($tag, $nbArticles)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->select('a')
+            ->leftJoin('a.tags', 't')
+            ->addSelect('t')
+            ->where('t.nom = :tag')
+            ->setParameter('tag', $tag)
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults($nbArticles);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findLatestArticles($limit = Article::NUM_ARTICLES)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->select('a')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults($limit);
+
+        return $qb->getQuery()->getResult();
+    }
+
 }

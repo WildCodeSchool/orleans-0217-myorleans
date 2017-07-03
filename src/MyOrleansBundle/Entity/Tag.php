@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Tag
@@ -29,9 +30,11 @@ class Tag
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article")
+     * @ORM\ManyToMany(targetEntity="Article", inversedBy="tags")
+     * @JoinTable(name="article_tag")
+     *
      */
-    private $article;
+    private $articles;
 
     /**
      * Get id
@@ -71,8 +74,27 @@ class Tag
      */
     public function __construct()
     {
-        $this->article = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * @param mixed $articles
+     */
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+    }
+
+
+
 
     /**
      * Add article
@@ -83,7 +105,7 @@ class Tag
      */
     public function addArticle(\MyOrleansBundle\Entity\Article $article)
     {
-        $this->article[] = $article;
+        $this->articles[] = $article;
 
         return $this;
     }
@@ -95,16 +117,6 @@ class Tag
      */
     public function removeArticle(\MyOrleansBundle\Entity\Article $article)
     {
-        $this->article->removeElement($article);
-    }
-
-    /**
-     * Get article
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getArticle()
-    {
-        return $this->article;
+        $this->articles->removeElement($article);
     }
 }
