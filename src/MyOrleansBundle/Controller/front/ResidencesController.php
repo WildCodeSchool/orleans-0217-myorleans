@@ -9,19 +9,31 @@
 namespace MyOrleansBundle\Controller\front;
 
 
+use MyOrleansBundle\Entity\Article;
 use MyOrleansBundle\Entity\CategoriePresta;
-use MyOrleansBundle\Entity\Presta;
+use MyOrleansBundle\Entity\Flat;
+use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\Pack;
+use MyOrleansBundle\Entity\Service;
+use MyOrleansBundle\Entity\Temoignage;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypePresta;
-
+use MyOrleansBundle\Entity\Ville;
+use MyOrleansBundle\Entity\Collaborateur;
+use MyOrleansBundle\Entity\Evenement;
+use MyOrleansBundle\Form\SimpleSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 class ResidencesController extends Controller
 {
     /**
-     * @Route("/residences/{id}")
+     * @Route("/residences/{id")
      */
     public function residence($id)
     {
