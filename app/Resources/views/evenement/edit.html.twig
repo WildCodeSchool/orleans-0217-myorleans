@@ -1,7 +1,6 @@
 {% extends '::layout_admin.html.twig' %}
 
 {% block content %}
-
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -28,18 +27,21 @@
                             {{ form_widget(edit_form.heureFin) }}
                             {{ form_label(edit_form.description, 'Description: ') }}
                             {{ form_widget(edit_form.description) }}
-                            {% if evenement.media.lien is defined %}
 
-                                <p class="imgUploader"><img class="responsive-img"
-                                                            src="{{ asset('uploads/'~evenement.media.lien) }}"
-                                                            alt="{{ evenement.nom }}"/>
-                                    <a href="{{ path('evenement_media_delete', {"id" : evenement.id}) }}">Supprimer</a>
-                                </p>
-                            {% else %}
-                                <h3>Veuillez charger une nouvelle image.</h3>
-                                <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du media.</p>
-                                {{ form_widget(edit_form.medias) }}
-                            {% endif %}
+
+                            {% for media in evenement.medias %}
+                                {% if media.id != null %}
+                                    <p class="imgUploader"><img class="responsive-img"
+                                                                src="{{ asset('uploads/'~media.lien) }}"/>
+                                        <a href="{{ path('evenement_media_delete', {"id" : media.id}) }}">Supprimer</a>
+                                    </p>
+                                {% else %}
+                                    <h3>Veuillez charger une nouvelle image.</h3>
+                                    <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du
+                                        media.</p>
+                                    {{ form_widget(edit_form.medias) }}
+                                {% endif %}
+                            {% endfor %}
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
                             {{ form_widget(edit_form._token) }}
                             </form>
