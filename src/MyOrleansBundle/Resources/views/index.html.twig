@@ -78,10 +78,9 @@
                                 class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
-
                         <li><a href="{{ path("nos_services") }}">Nos services</a></li>
-                        <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
-
+                        {# A afficher lorsque le contenu sera disponible #}
+                        {#<li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>#}
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
@@ -89,8 +88,8 @@
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nos_services") }}">Nos services</a></li>
-                        <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
-
+                        {# A afficher lorsque le contenu sera disponible #}
+                        {#<li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>#}
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
@@ -148,12 +147,8 @@
                         {{ form_end(simpleSearch) }}
                     {% endif %}
 
-                    {{ form_end(simpleSearch) }}
-
-
                 </div>
             </div>
-
 
         </div>
 
@@ -233,90 +228,81 @@
     </div>
 
 
-
-
-
     <!-- Modal Trigger -->
     <div class="row">
         <div class="col s12 center">
-            <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter button-collapse"
-               href="#" data-activates="slide-out">
-                <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter</a>
+            <div class="row carouselAgence">
+                <div class="col s12 m10 l10 offset-l1">
+                    <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
+                        clients.
+                        Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
+                        meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
+                    <div class="carousel">
+                        {% for collaborateur in collaborateurs %}
+                            <a class="carousel-item" href="#one!">
+                                <img src="{{ asset('img/equipe/'~collaborateur.media.lien ) | imagine_filter('thumb_collaborateur') }}" alt="">
+                                <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
+                                    <br><span>{{ collaborateur.fonction }}</span></p>
 
-                <div class="row carouselAgence">
-                    <div class="col s12 m10 l10 offset-l1">
-                        <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
-                            clients.
-                            Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
-                            meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
-                        <div class="carousel">
-                            {% for collaborateur in collaborateurs %}
-                                <a class="carousel-item" href="#one!"><img
-                                            src="{{ asset('img/equipe/'~collaborateur.media.lien) }}">
-                                    <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
-                                        <br><span>{{ collaborateur.fonction }}</span></p>
-
-                                </a>
-                            {% endfor %}
-                        </div>
-
+                            </a>
+                        {% endfor %}
                     </div>
+                    <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter button-collapse"
+                       href="#" data-activates="slide-out">
+                        <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter</a>
                 </div>
+            </div>
         </div>
     </div>
 
 
+        <div class="row">
+            <div class="col s12 l6">
+                <h3>L'actualité</h3>
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
+                            <img class="activator" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
+                        {% endfor %}
+                    </div>
+                    <div class="card-content">
 
-
-
-
-                <div class="row">
-                    <div class="col s12 l6">
-                        <h3>L'actualité</h3>
-                        <div class="card small">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
-                                    <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
-                                {% endfor %}
-                            </div>
-                            <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">add</i></span>
-                                <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
-                                <p class="truncate">{{ actu[0].texte }}</p>
-                            </div>
-                            <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ actu[0].titre }}<i
-                                    class="material-icons right">close</i></span>
-                                <p>{{ actu[0].texte }}</p>
-                            </div>
-                        </div>
+                        <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
+                        <p class="truncate">{{ actu[0].texte }}</p>
                     </div>
-
-                    <div class="col s12 l6">
-                        <h3>L'événement</h3>
-                        <div class="card small">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="{{ asset('img/'~event[0].media.lien) }}">
-                            </div>
-                            <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
-                                    class="material-icons right">add</i></span>
-                                <p>{% if event[0].dateDebut %}{{ event[0].dateDebut|date('j-m-Y') }}{% endif %}</p>
-                                <p class="truncate">{{ event[0].description }}</p>
-                            </div>
-                            <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ event[0].nom }}<i
-                                    class="material-icons right">close</i></span>
-                                <p>{{ event[0].description }}</p>
-                            </div>
-                        </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ actu[0].titre }}<i
+                            class="material-icons right">close</i></span>
+                        <p>{{ actu[0].texte }}</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="col s12 l6">
+                <h3>L'événement</h3>
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="{{ asset('img/'~event[0].media.lien) | imagine_filter('thumb_article_site') }}">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
+                                    class="material-icons right">add</i></span>
+                        <p>{% if event[0].dateDebut %}{{ event[0].dateDebut|date('j-m-Y') }}{% endif %}</p>
+                        <p class="truncate">{{ event[0].description }}</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ event[0].nom }}<i
+                                    class="material-icons right">close</i></span>
+                        <p>{{ event[0].description }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-        </div>
-        {% endblock %}
+
+    {% endblock %}
 
 
         <div class="pre-footer">
