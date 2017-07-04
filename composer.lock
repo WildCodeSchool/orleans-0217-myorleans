@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "content-hash": "b28f1f6e62bd80bcf0397068f667c5e3",
+
     "packages": [
         {
             "name": "composer/ca-bundle",

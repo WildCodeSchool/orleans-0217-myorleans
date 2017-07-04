@@ -37,9 +37,9 @@ class Service
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="service")
+     * @ORM\OneToMany(targetEntity="Media", mappedBy="service")
      */
-    private $media;
+    private $medias;
 
     /**
      * Get id
@@ -121,5 +121,46 @@ class Service
     public function getMedia()
     {
         return $this->media;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add media
+     *
+     * @param \MyOrleansBundle\Entity\Media $media
+     *
+     * @return Service
+     */
+    public function addMedia(\MyOrleansBundle\Entity\Media $media)
+    {
+        $this->medias[] = $media;
+
+        return $this;
+    }
+
+    /**
+     * Remove media
+     *
+     * @param \MyOrleansBundle\Entity\Media $media
+     */
+    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
+    {
+        $this->medias->removeElement($media);
+    }
+
+    /**
+     * Get medias
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedias()
+    {
+        return $this->medias;
     }
 }
