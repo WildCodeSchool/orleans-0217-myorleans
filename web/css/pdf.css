@@ -1,3 +1,283 @@
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+h1 {
+    font-size: 22px;
+    text-align: center;
+}
+
+h1::after, h3::after {
+    content: "";
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 8px;
+    margin: 20px auto;
+    background-color: #a5ca2a;
+}
+
+h2 {
+    overflow: hidden;
+    text-align: center;
+    color: grey;
+    font-size: 36px;
+}
+
+h2 span {
+    position: relative;
+}
+
+h2 span:before,
+h2 span:after {
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid white;
+    border-top: 5px solid #a5ca2a;
+    width: 400px;
+    height: 7px;
+    top: 50%;
+    margin-top: -4px;
+}
+
+h2 span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+h2 span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+h3 {
+    font-size: 28px;
+    text-align: center;
+}
+
+p {
+    font-size: 16px;
+}
+/* --------------------------------------------------------------------*/
+/* ------------------------------ BODY --------------------------------*/
+/* --------------------------------------------------------------------*/
+body {
+    font-family: Helvetica;
+}
+
+.body-container-margin {
+    margin: 50px 20px 0 20px;
+}
+
+.btn, .btn-large {
+    background-color: #b7d64a;
+}
+
+.btn:hover, .btn-large:hover, .btn:visited, .btn-large:visited, .btn:focus, .btn-large:focus {
+    background-color: #a5c143;
+}
+
+::-webkit-input-placeholder {
+    color: #b7d64a;
+    opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: black;
+    opacity: 0.3 !important;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    color: black;
+    opacity: 0.3 !important;
+}
+
+:-ms-input-placeholder {
+    color: black;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #a5c143;
+}
+
+.select-wrapper input.select-dropdown {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
+}
+
+.no-margin-top {
+    margin-top: 0;
+}
+
+.no-padding-left {
+    padding-left: 0;
+}
+
+.no-padding-right {
+    padding-right: 0;
+}
+/* --------------------------------------------------------------------*/
+/* ------------------------ PAGE RESIDENCE --------------------------*/
+/* --------------------------------------------------------------------*/
+
+.offre-residence td {
+    border: 1px solid black;
+}
+
+.lieu-residence{
+    color: rgb(192,192,192);
+}
+
+.subtab-residence{
+    color: rgb(192,192,192);
+}
+
+.undervideo-residence{
+    padding-top: 50px;
+}
+
+.icon-residence{
+    width: 2em;
+    height: 2em;
+}
+
+.citation-residence{
+    background-color: rgb(68,68,68);
+    color: white;
+    text-align: center;
+    font-style: italic;
+    font-size: 2em;
+    padding: 20px;
+}
+
+.pinel-residence{
+    text-align: right;
+}
+
+.consulter-residence{
+    color: rgb(192,192,192);
+}
+
+.content-residence{
+    padding-top: 20px;
+}
+
+.accordeon-residence{
+    padding-bottom: 30px;
+}
+
+.btn-residence{
+    background-color: rgb(189,217,90);
+}
+
+.collapsible-header{
+    font-size: large;
+}
+
+th{
+    font-size: 20px;
+}
+
+td{
+    font-size: 16px;
+}
+
+#map-residences {
+    width:100%;
+    height: 300px;
+}
+
+.notation{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+@media (max-width: 400px){
+
+    .collapsible-body td {
+        font-size: 12px;
+        padding: 2px;
+    }
+    .collapsible-body th {
+        font-size: 12px;
+        padding: 2px;
+    }
+    .btn-residence{
+        font-size: 10px;
+        line-height: 25px;
+
+        width: 40px;
+        height: 25px;
+        padding: 0px 0px 0px 0px;
+    }
+}
+@media (min-width: 400px) and (max-width: 540px){
+
+    .collapsible-body td {
+        font-size: 14px;
+        padding: 2px;
+    }
+    .collapsible-body th {
+        font-size: 14px;
+        padding: 2px;
+    }
+    .btn-residence{
+        font-size: 14px;
+        line-height: 25px;
+        width: 60px;
+        height: 25px;
+        padding: 0px 0px 0px 0px;
+    }
+}
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ FIN PAGE RESIDENCE --------------------------*/
+/* --------------------------------------------------------------------*/
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ PAGE APPARTEMENT --------------------------*/
+/* --------------------------------------------------------------------*/
+.content-appartement{
+    padding-top: 20px;
+}
+
+.info-apt {
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: white;
+    margin-top: -10px;
+    padding: 0 10px 10px 10px;
+}
+.icon-apt{
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.print{
+    width: 4rem;
+    height: 4rem;
+}
+
+.icon-left{
+    text-align: left;
+}
+
+.plan{
+    width:100%;
+}
+/*.photo-apt{
+    width: ;
+}*/
+
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ FIN PAGE APPARTEMENT --------------------------*/
+/* --------------------------------------------------------------------*/
 /* bloc pour les compteurs sur les pages rÃ©sidences */
 
 .notesite {
@@ -207,20 +487,5 @@ li.design{
     text-align: center;
 }
 
-@media screen and (max-width: 365px)
-{
-    .notesite {
-        font-size: 100px;
-    }
-    .notesite>.percent {
-        top: 25px;
-        font-size: 35px;
-    }
-    .notesite>.percent .dec {
-        font-size: 20px;
-    }
-    .list-legend ul li {
-        font-size: 12px;
-    }
-}
+
 

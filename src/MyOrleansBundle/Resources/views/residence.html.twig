@@ -13,9 +13,19 @@
         <div class="video-container">
             <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0"
                     allowfullscreen></iframe>
-            {#            <iframe width="560" height="315" src="https://www.youtube.com/embed/IjwUPnvKezE" frameborder="0" allowfullscreen></iframe>#}
+
         </div>
         <div class="container">
+            <div class="row">
+                <div class="col offset-l1 l5 s10">
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la
+                        documentation</a>
+                </div>
+
+                <div id="editor" class="col offset-l1 l5 s10">
+                    <a class="waves-effect waves-light btn" href="{{ path('residence_pdf', { 'id': 1}) }}"><i id="cmd" class="material-icons left">print</i>Imprimer cette page</a>
+                </div>
+            </div>
             <div class="row">
                 <div class="undervideo-residence">
                     <div class="col l6 s12">
