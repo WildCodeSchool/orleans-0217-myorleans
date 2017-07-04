@@ -246,7 +246,7 @@
                         <div class="card large">
                             <div class="card-image">
                                 {% for media in article.medias if media.typeMedia.nom == 'image' %}
-                                    <img src="{{ asset('img/blog/'~media.lien) | imagine_filter('thumb_article_site') }}">
+                                    <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
                                 {% endfor %}
                             </div>
                             <div class="card-content">

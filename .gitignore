@@ -24,3 +24,5 @@ composer.json
 .web-server-pid
 
 /Entity/*~
+
+/web/uploads/
