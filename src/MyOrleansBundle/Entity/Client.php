@@ -45,7 +45,7 @@ class Client
     /**
      * @var string
      *
-     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
+     * @ORM\Column(name="telephone", type="float", length=15, nullable=true)
      */
     private $telephone;
 

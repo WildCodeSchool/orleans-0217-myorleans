@@ -48,7 +48,7 @@ class ImmoPratiqueController extends Controller
 
             $message = new \Swift_Message('Nouveau message de my-orleans.com');
             $message
-                ->setTo($this->getParameter('mailer_user'))
+                ->setTo($this->getEmail('mail'))
                 ->setFrom($this->getParameter('mailer_user'))
 
                 ->setBody(
