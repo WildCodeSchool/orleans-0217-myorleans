@@ -23,6 +23,6 @@ composer.json
 
 .web-server-pid
 
-
+/web/media/
 
 *~
