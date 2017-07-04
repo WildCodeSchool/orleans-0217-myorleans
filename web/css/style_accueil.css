@@ -180,15 +180,14 @@ body {
     height: auto;
     padding-bottom: 50px;
     border-bottom: 5px solid #a5ca2a;
+
 }
 
-.pictoParcours{
-    margin-top: 20px;
+.pictoParcours {;
     padding-bottom: 20px;
 }
 
 .pictoParcours a i {
-    font-size: 250px;
     color: #C8CACC ;
     -webkit-transition:color 250ms ease-out;
     -moz-transition:color 250ms ease-out;
@@ -199,8 +198,24 @@ body {
     width: 290px;
     border-radius: 50%;
 }
-.pictoParcours a:hover i {
+
+.pictoParcours:hover a i {
     color: #a5ca2a ;
+}
+
+.pictoInvest {
+    font-size: 170px;
+    margin-top: 70px
+}
+
+.pictoInvest a i {
+    padding-top: 60px;
+    padding-left: 15px;
+}
+
+.pictoResidence {
+    font-size: 250px;
+    margin-top: 20px
 }
 
 #siteWrapper {
@@ -218,6 +233,38 @@ body {
     left: 0;
     z-index: 1000;
 }
+
+.icone-profil a i {
+    font-size: 25px;
+    color: #ffffff ;
+    background-color: #a5ca2a;
+    padding: 8px;
+    height: 40px;
+    width: 45px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-left: 220px;
+    line-height: 1;
+}
+
+.icone-profil a {
+    color: transparent;
+}
+
+.icone-profil a:hover i {
+    color: #a5ca2a ;
+    background-color: #ffffff;
+    border: solid 1px #a5ca2a;
+}
+
+.icone-profil a:hover {
+    border-bottom: none;
+    color: #a5ca2a;
+    font-weight: bold;
+}
+
+
+
 
 /* ==========================================================================
 ACCUEIL - EFFET PARALLAX  ========================================================================== */

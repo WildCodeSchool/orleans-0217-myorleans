@@ -2,8 +2,10 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}" media="screen,projection"/>
     <link rel="stylesheet" href="{{ asset('css/style_accueil.css') }}" media="screen,projection"/>
+    <link href="{{ asset('css/residence.css') }}" rel="stylesheet" type="text/css"/>
+
+
 {% endblock %}
 
 {% block content %}
@@ -42,9 +44,54 @@
                     </div>
                 </div>
             </div>
-            <div class="row center">
-                <div class="col s12">
-                    <img class="notation" src="{{ asset('img/notation.jpg') }}" alt="notation"/>
+            <div class="row">
+                <div class="box-notesite">
+                    <div class="row">
+                    <li>
+                        <li class="design col m3 s6">
+                            <div class="notesite" id="note_0" data-note="9.30"></div><br/>
+                            <div class="list-legend">
+                                <div class="row center-align">
+                                    <ul>
+                                        <li class="design col m12">transports</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="content col m3 s6">
+                            <div class="notesite" id="note_3" data-note="8.70"></div><br/>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">commerces</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="creativity col m3 s6">
+                            <div class="notesite" id="note_1" data-note="9.80"></div>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">services</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="usability col m3 s6">
+                            <div class="notesite" id="note_2" data-note="9.20"></div>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">esthétisme</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
+                    </ul>
+                    </div>
+
                 </div>
             </div>
             <div class="row justify">
@@ -104,9 +151,10 @@
                 </div>
             </div>
         </div>
+
         <div class="container">
             <div class="row">
-                <div class="col l12">
+                <div class="col s12">
                     <h3>Nombre de logements disponibles : 30</h3>
                     <h3 class="consulter-residence">Consultez nos biens disponibles</h3>
                 </div>
@@ -320,8 +368,8 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
+
 
     <!-- début formulaire de contact -->
     <form method="post" action="">
@@ -414,7 +462,12 @@
 
 {% endblock %}
 
+
+
 {% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/testcompteur.js') }}"></script>
+    <script src="{{ asset('js/jquery.circliful.min.js') }}"></script>
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
     <script>
@@ -427,6 +480,11 @@
             }
         );
     </script>
-
-
 {% endblock %}
+
+
+
+
+
+
+

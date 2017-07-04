@@ -3,8 +3,10 @@
     {% block content %}
         <div class="row agencyVideo">
             <div class="col s12">
-                <iframe id="myIframe" src="https://www.youtube.com/embed/CzyAV8f1j9Q" frameborder="0"
+                {% for cover in cover if cover.page == 'agence_cover' %}
+                <iframe id="myIframe" src="{{ cover.lien }}" frameborder="0"
                         allowfullscreen></iframe>
+                {% endfor %}
             </div>
         </div>
         <div class="container">
@@ -64,7 +66,7 @@
                             <time>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('j-m-Y') }}{% endif %}</time>
                             {{ evenement.nom }}<br>
                             {{ evenement.description }}
-                            <img class="responsive-img" src="{{ asset('img/'~evenement.media.lien) }}">
+                            <img class="responsive-img" src="{{ asset('uploads/'~evenement.media.lien) }}">
                         </div>
                     </li>
                     {% endfor %}
@@ -88,8 +90,8 @@
                     <div class="row center">
                         {% for partenaire in partenaires %}
                             <div class="col s3 l1">
-                                <a href="{{ partenaire.url }}">
-                                    <img class="img-responsive" src="{{ partenaire.media.lien }}"
+                                <a href="{{ partenaire.url }}" target="_blank">
+                                    <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.lien) }}"
                                          alt="{{ partenaire.nom }}">
                                 </a>
                             </div>

@@ -123,7 +123,7 @@ body {
 }
 
 .body-container-margin {
-    margin: 23px 20px 0 20px;
+    margin: 21px 20px 0 20px;
 }
 
 .btn, .btn-large {
@@ -163,6 +163,35 @@ body {
     color: rgba(44, 44, 44, 0.6);
 }
 
+.icone-profil a i {
+    font-size: 25px;
+    color: #ffffff ;
+    background-color: #a5ca2a;
+    padding: 8px;
+    height: 40px;
+    width: 45px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-left: 220px;
+    line-height: 1;
+}
+
+.icone-profil a {
+    color: transparent;
+}
+
+.icone-profil a:hover i {
+    color: #a5ca2a ;
+    background-color: #ffffff;
+    border: solid 1px #a5ca2a;
+}
+
+.icone-profil a:hover {
+    border-bottom: none;
+    color: #a5ca2a;
+    font-weight: bold;
+}
+
 .no-margin-bottom {
     margin-bottom: 0;
 }
@@ -190,12 +219,20 @@ body {
     color: #858585;
 }
 
+.page-nosbiens .titre-contenu-associe h2 {
+    font-size: 36px;
+}
+
 .page-nosbiens .liste-biens h4 {
     margin-bottom: 0;
 }
 
 .liste-biens .card.large {
     height: 580px;
+}
+
+.liste-biens .contenu-associe .card.large {
+    height: 420px;
 }
 
 .card .card-content p {
@@ -231,7 +268,7 @@ body {
 .carte {
     margin-top: 15px;
     position: fixed;
-    top: 280px;
+    top: 270px;
 }
 
 #map {
@@ -243,7 +280,7 @@ body {
 }
 
 .liste-biens {
-    margin-top: 200px;
+    margin-top: 170px;
 }
 
 /*--- Alignemant des informations des residences---*/
@@ -568,7 +605,43 @@ td{
     padding-bottom: 50px;
 }
 
+@media (max-width: 400px){
 
+    .collapsible-body td {
+        font-size: 12px;
+        padding: 2px;
+    }
+    .collapsible-body th {
+        font-size: 12px;
+        padding: 2px;
+    }
+    .btn-residence{
+        font-size: 10px;
+        line-height: 25px;
+
+        width: 40px;
+        height: 25px;
+        padding: 0px 0px 0px 0px;
+    }
+}
+@media (min-width: 400px) and (max-width: 540px){
+
+    .collapsible-body td {
+        font-size: 14px;
+        padding: 2px;
+    }
+    .collapsible-body th {
+        font-size: 14px;
+        padding: 2px;
+    }
+    .btn-residence{
+        font-size: 14px;
+        line-height: 25px;
+        width: 60px;
+        height: 25px;
+        padding: 0px 0px 0px 0px;
+    }
+}
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE RESIDENCE --------------------------*/
@@ -1049,7 +1122,6 @@ transition:color 250ms ease-out;
     font-size: 1rem;
     white-space: normal;
     color: black;
-
 }
 
 .timeline ol li div::before {

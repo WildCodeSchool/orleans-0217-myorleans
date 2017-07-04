@@ -20,6 +20,8 @@ use MyOrleansBundle\Entity\Temoignage;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 
 class NosServicesController extends Controller
@@ -28,16 +30,27 @@ class NosServicesController extends Controller
     /**
      * @Route("/nos_services", name="nos_services")
      */
-    public function nosServicesAction(Request $request)
+
+    public function nosServicesAction(SessionInterface $session, Request $request)
     {
+
         $client = new Client();
+        $parcours = null;
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
+        }
+
+
         $em = $this->getDoctrine()->getManager();
         $services = $em->getRepository(Service::class)->findAll();
         $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $packs = $em->getRepository(Pack::class)->findAll();
+
         $temoignages = $em->getRepository(Temoignage::class)->findAll();
         $formulaire->handleRequest($request);
+
+
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
@@ -69,6 +82,7 @@ class NosServicesController extends Controller
             'packs' => $packs,
             'temoignages' => $temoignages,
             'telephone_number' => $telephoneNumber,
+            'parcours' => $parcours,
             'form' => $formulaire->createView()
         ]);
     }

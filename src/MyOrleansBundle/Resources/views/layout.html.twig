@@ -17,12 +17,33 @@
                     <a href="{{ path("home") }}" class="brand-logo">
                         <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
                     </a>
+
+                    <ul class="center">
+                        {% if parcours == 'investisseur' %}
+                            <li>
+                                <div class="icone-profil icone-investisseur">
+                                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}">
+                                        <i class="fa fa-calculator" aria-hidden="true"></i>  Changer de parcours</a>
+                                </div>
+                            </li>
+                        {% elseif parcours == 'residence' %}
+                            <li>
+                                <div class="icone-profil icone-residence">
+                                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>  Changer de parcours</a>
+                                </div>
+                            </li>
+                        {% elseif parcours == null %}
+                        {% endif %}
+                    </ul>
+
                     <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i
                                 class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nos_services") }}">Nos services</a></li>
                         <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
+
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
@@ -33,6 +54,7 @@
                         <li><a href="{{ path("parcoursimmo") }}">Votre parcours immobilier</a></li>
                         <li><a href="{{ path("agence") }}">L'agence</a></li>
                         <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
+
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                 </div>

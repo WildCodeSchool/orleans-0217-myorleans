@@ -16,6 +16,7 @@ use MyOrleansBundle\Entity\Article;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 class ImmoPratiqueController extends Controller
@@ -24,8 +25,14 @@ class ImmoPratiqueController extends Controller
     /**
      * @Route("/immo_pratique", name="immo_pratique")
      */
-    public function immoPratiqueAction(Request $request)
+    public function immoPratiqueAction(SessionInterface $session, Request $request)
     {
+
+        $parcours = null;
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $client = new Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
@@ -64,6 +71,7 @@ class ImmoPratiqueController extends Controller
         return $this->render('MyOrleansBundle::immoPratique.html.twig', [
 
             'articles' => $articles,
+            'parcours' => $parcours,
             'telephone_number' =>$telephoneNumber,
             'form' => $formulaire->createView()
         ]);

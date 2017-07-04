@@ -5,7 +5,10 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\Flat;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Flat controller.
@@ -58,6 +61,32 @@ class FlatController extends Controller
     }
 
     /**
+     * Retrun a pdf file from à flat.
+     * @return Response
+     * @Route("/pdf/{id}", name="flat_pdf")
+     * @Method("GET")
+     */
+    public function pdfAction(Flat $flat)
+    {
+        $pageUrl = $this->generateUrl('admin_flat_show', ['id' => $flat->getId()], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+            )
+        );
+    }
+
+    public function pdfReturnAction($id)
+    {
+
+    }
+
+
+    /**
      * Finds and displays a flat entity.
      *
      * @Route("/{id}", name="admin_flat_show")
@@ -72,6 +101,7 @@ class FlatController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
 
     /**
      * Displays a form to edit an existing flat entity.

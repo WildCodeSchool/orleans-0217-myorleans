@@ -13,6 +13,7 @@ use MyOrleansBundle\Entity\Article;
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
 
+
     public function findOneActu()
     {
         $qb = $this->createQueryBuilder('a')
@@ -22,20 +23,22 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
-    public function articleByTag($tag)
+    public function articleByTag($tag, $nbArticles)
     {
         $qb = $this->createQueryBuilder('a');
 
-        $qb->where('t.nom LIKE :tag')
+        $qb->select('a')
+            ->leftJoin('a.tags', 't')
+            ->addSelect('t')
+            ->where('t.nom = :tag')
             ->setParameter('tag', $tag)
-            ->join('a.tags', 't')
             ->orderBy('a.id', 'DESC')
-            ->setMaxResults(1);
+            ->setMaxResults($nbArticles);
 
         return $qb->getQuery()->getResult();
     }
 
-    public function findFrontPageArticles($limit = Article::NUM_ARTICLES)
+    public function findLatestArticles($limit = Article::NUM_ARTICLES)
     {
         $qb = $this->createQueryBuilder('a');
 

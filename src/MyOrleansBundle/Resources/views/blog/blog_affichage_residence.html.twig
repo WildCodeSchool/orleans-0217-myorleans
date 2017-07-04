@@ -1,0 +1,24 @@
+<div class="card large">
+    <div class="card-image">
+
+        {% for media in residence.medias if media.typeMedia.nom == 'image' %}
+            <img src="{{ asset('img/'~media.lien) }}">
+        {% endfor %}
+
+    </div>
+    <div class="card-content">
+        <div class="row no-margin-bottom">
+            <div class="col s8">
+                <h4>{{ residence.nom }}</h4>
+                <p>à {{ residence.ville.nom }}</p>
+            </div>
+            <div class="col s4 right-content">
+                <h4>Prix</h4>
+                <p>Dès {{ prixMin }} €</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-action center">
+        <a href="{{ path('residences', { 'id': residence.id }) }}">Découvrir la résidence</a>
+    </div>
+</div>

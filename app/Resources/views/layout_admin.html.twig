@@ -30,6 +30,14 @@
                 <div class="sidebar-wrapper">
                     <ul class="nav collapsible collapsible-accordion" data-collapsible="accordion">
                         <li>
+                            <div class="active collapsible-header">
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                <i class="material-icons">power_settings_new</i>
+                                <p>Déconnexion</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
                             <div class="active collapsible-header"><a href="{{ path("admin_home") }}">
                                     <i class="material-icons">dashboard</i>
                                     <p>Accueil</p>
@@ -37,48 +45,48 @@
                             </div>
                         </li>
                         <li>
-                            <div class="collapsible-header">Administration des biens  <i class="material-icons">settings</i></div>
+                            <div class="collapsible-header">Administration des biens <i
+                                        class="material-icons">settings</i></div>
                             <div class="collapsible-body">
                                 <a href="{{ path("admin_residence_index") }}">
 
                                     <p>Résidences</p>
                                 </a><br>
-                                <a href="{{ path("admin_presta_index") }}">
+                                <a href="{{ path("admin_flat_index") }}">
+
+                                    <p>Biens</p>
+                                </a><br>
+                                <a href="{{ path("admin_prestation_index") }}">
 
                                     <p>Prestations</p>
                                 </a>
                             </div>
                         </li>
                         <li>
-                            <div class="collapsible-header">Administration du site <i class="material-icons">lock</i> </div>
+                            <div class="collapsible-header">Administration du site <i class="material-icons">lock</i>
+                            </div>
                             <div class="collapsible-body">
                                 <a href="{{ path("admin_article_index") }}">
-
                                     <p>Articles</p>
                                 </a><br>
-                                <a href="{{ path("admin_partenaire_index") }}">
-
-                                    <p>Partenaires</p>
-                                </a><br>
                                 <a href="{{ path("admin_evenement_index") }}">
-
                                     <p>Événements</p>
                                 </a><br>
                                 <a href="{{ path("admin_service_index") }}">
-
                                     <p>Services</p>
-                                </a><br>
-                                <a href="{{ path("admin_collaborateur_index") }}">
-
-                                    <p>Membres de l'agence</p>
-                                </a><br>
-                                <a href="{{ path("admin_client_index") }}">
-
-                                    <p>Clients</p>
                                 </a><br>
                                 <a href="{{ path("admin_pack_index") }}">
                                     <p>Packs</p>
-                                </a>
+                                </a><br>
+                                <a href="{{ path("admin_client_index") }}">
+                                    <p>Clients</p>
+                                </a><br>
+                                <a href="{{ path("admin_collaborateur_index") }}">
+                                    <p>Membres de l'agence</p>
+                                </a><br>
+                                <a href="{{ path("admin_partenaire_index") }}">
+                                    <p>Partenaires</p>
+                                </a><br>
                             </div>
                         </li>
 
@@ -112,7 +120,6 @@
         {% block javascripts %}
             {{ parent() }}
             <!--   Core JS Files   -->
-            <script src="{{ asset('assets-admin/js/bootstrap.min.js') }}" type="text/javascript"></script>
             <script src="{{ asset('assets-admin/js/material.min.js') }}" type="text/javascript"></script>
 
             <!--  Charts Plugin -->
@@ -132,7 +139,7 @@
 
                     // Javascript method's body can be found in assets/js/demos.js
                     demo.initDashboardPageCharts();
-                    $('select').material_select();  
+                    $('select').material_select();
 
                 });
 
