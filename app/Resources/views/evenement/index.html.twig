@@ -1,3 +1,61 @@
+<<<<<<< HEAD
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Evenements list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Codepostal</th>
+                <th>Ville</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Heuredebut</th>
+                <th>Heurefin</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td><a href="{{ path('admin_evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
+                <td>{{ evenement.nom }}</td>
+                <td>{{ evenement.adresse }}</td>
+                <td>{{ evenement.codePostal }}</td>
+                <td>{{ evenement.ville }}</td>
+                <td>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i:s') }}{% endif %}</td>
+                <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('H:i:s') }}{% endif %}</td>
+                <td>{{ evenement.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_evenement_show', { 'id': evenement.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_evenement_edit', { 'id': evenement.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_evenement_new') }}">Create a new evenement</a>
+        </li>
+    </ul>
+
+=======
 {% extends '::layout_admin.html.twig' %}
 
 {% block content %}
@@ -71,4 +129,5 @@
             </div>
         </div>
     </div>
+>>>>>>> baf4400a67b4f134288fe5b5c2d9bbfffba23d19
 {% endblock %}

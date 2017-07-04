@@ -7,7 +7,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
 
 framework:
     #esi: ~
@@ -62,12 +62,12 @@ doctrine:
         auto_mapping: true
 
 # Swiftmailer Configuration
+
 swiftmailer:
-    transport: '%mailer_transport%'
-    encryption: '%mailer_encryption%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
+    transport: gmail
+    host:      '%mailer_host%'
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
     spool: { type: memory }
 
 fos_user:
@@ -97,4 +97,64 @@ knp_snappy:
         binary:     %kernel.project_dir/bin/wkhtmltoimage #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" for Windows users
         options:    []
 
+liip_imagine:
 
+    # configure resolvers
+    resolvers:
+        default:
+            web_path: ~
+
+    # your filter sets are defined here
+    filter_sets:
+        cache: ~
+
+        thumb_residence:
+            filters:
+                thumbnail:
+                    size: [590, 350]
+                    mode: outbound
+
+        thumb_residence_home:
+            filters:
+                thumbnail:
+                    size: [620, 400]
+                    mode: outbound
+
+        thumb_collaborateur:
+            filters:
+                thumbnail:
+                    size: [250, 250]
+                    mode: outbound
+
+        thumb_pack:
+            filters:
+                thumbnail:
+                    size: [395, 380]
+                    mode: outbound
+
+        thumb_article_blog:
+            filters:
+                thumbnail:
+                    size: [615, 410]
+                    mode: outbound
+
+        thumb_article_site:
+            filters:
+                thumbnail:
+                    size: [1000, 260]
+                    mode: outbound
+
+        thumb_articles_immopratique:
+            filters:
+                thumbnail:
+                    size: [630, 395]
+                    mode: outbound
+
+        thumb_header_article_blog:
+            filters:
+                relative_resize:
+                    widen: 1920
+
+                crop:
+                    size: [ 1920, 450 ]
+                    start: [ 000, 300 ]
