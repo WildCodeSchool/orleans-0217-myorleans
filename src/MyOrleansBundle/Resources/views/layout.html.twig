@@ -41,16 +41,20 @@
                                 class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
-                        <li><a href="{{ path("nosservices") }}">Nos services</a></li>
+                        <li><a href="{{ path("nos_services") }}">Nos services</a></li>
+                        <li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>
+
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
-                        <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
+                        <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
-                        <li><a href="#">Nos biens</a></li>
-                        <li><a href="#">Nos services</a></li>
-                        <li><a href="#">L'agence</a></li>
-                        <li><a href="#">L'immobilier pratique</a></li>
+                        <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
+                        <li><a href="{{ path("nos_services") }}">Nos services</a></li>
+                        <li><a href="{{ path("parcoursimmo") }}">Votre parcours immobilier</a></li>
+                        <li><a href="{{ path("agence") }}">L'agence</a></li>
+                        <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
+
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                 </div>
@@ -62,6 +66,7 @@
 
 
     {% block content %}
+
 
     {% endblock %}
 
@@ -144,6 +149,8 @@
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
     <script>
+
+
         $(document).ready(function(){
 
             // hide #back-top first
@@ -167,6 +174,8 @@
                     return false;
                 });
             });
+
+
 
         });
     </script>

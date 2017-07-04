@@ -180,6 +180,7 @@ body {
     height: auto;
     padding-bottom: 50px;
     border-bottom: 5px solid #a5ca2a;
+
 }
 
 .pictoParcours {;
@@ -777,5 +778,31 @@ FIN ACCUEIL - BLOC AGENCE
 
     .footer-copyright p{
         font-size: 12px;
+    }
+}
+
+/* --------------------------------------------------------------------*/
+/* ------------------------------ FORMULAIRE DE CONTACT ---------------------*/
+/* --------------------------------------------------------------------*/
+
+.side-nav{
+    width: 600px;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding-bottom: 50px;
+
+}
+
+
+@media (max-width : 767px) {
+    .side-nav li > .userView{
+        width: 100%;
+    }
+    .side-nav{
+        width: 300px;
+    }
+
+    .barre-recherche{
+        visibility: hidden;
     }
 }
