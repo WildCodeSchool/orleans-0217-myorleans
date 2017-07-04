@@ -61,7 +61,7 @@ class Media
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Service", mappedBy="media")
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="medias")
      */
     private $service;
 
@@ -387,6 +387,7 @@ class Media
         $this->articles->removeElement($article);
     }
 
+
     /**
      * @return mixed
      */
@@ -402,6 +403,7 @@ class Media
     {
         $this->collaborateur = $collaborateur;
     }
+
 
 
 }

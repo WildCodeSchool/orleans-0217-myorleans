@@ -11,6 +11,8 @@ namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use MyOrleansBundle\Repository\ArticleRepository;
 
@@ -26,20 +28,34 @@ class BlogController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $articles = $em->getRepository(Article::class)->findNineLastArticles();
+        $articles = $em->getRepository(Article::class)->findLatestArticles();
 
         return $this->render('MyOrleansBundle:blog:blog_home.html.twig', [
-                                'articles' => $articles
+                    'articles' => $articles
         ]);
     }
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/blog/article", name="")
+     * @Route("/blog/{id}", name="blog-article")
      */
-    public function afficherArticleAction()
+    public function afficherArticleAction(Article $article)
     {
-        return $this->render('MyOrleansBundle:blog:blog_article.html.twig');
+        $residence = $article->getResidence();
+
+        //Recuperation des tags de l'article et selection du premier tag
+        $tags = $article->getTags();
+        $tag = $tags[0]->getNom();
+
+        //Fin recuperation du tag
+        $em = $this->getDoctrine()->getManager();
+        $articlesAssocies = $em->getRepository(Article::class)->articleByTag($tag, 2);
+
+        return $this->render('MyOrleansBundle:blog:blog_article.html.twig',[
+                'article' => $article,
+                'residence' => $residence,
+                'articlesAssocies' => $articlesAssocies
+        ]);
     }
 
 }

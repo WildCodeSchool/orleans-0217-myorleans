@@ -43,6 +43,7 @@ class SimpleSearchType extends AbstractType
                     'T4+' => 'T4+',
                 )
             ])
+
             ->add('investBtn', SubmitType::class, [
                 'label' => 'Je souhaite investir',
                 'attr' => ['class' => 'waves-effect waves-light btn-large light-green']
@@ -51,6 +52,7 @@ class SimpleSearchType extends AbstractType
                 'label' => 'Je recherche une résidence principale',
                 'attr' => ['class' => 'waves-effect waves-light btn-large light-green']
             ])
+
             ->getForm();
     }
 }

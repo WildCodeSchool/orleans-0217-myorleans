@@ -46,16 +46,12 @@ class Residence
     private $codePostal;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ville", type="string", length=45, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="residences")
      */
     private $ville;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="quartier", type="string", length=45, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Quartier", inversedBy="residences")
      */
     private $quartier;
 
@@ -246,29 +242,9 @@ class Residence
         return $this->codePostal;
     }
 
-    /**
-     * Set ville
-     *
-     * @param string $ville
-     *
-     * @return Residence
-     */
-    public function setVille($ville)
-    {
-        $this->ville = $ville;
 
-        return $this;
-    }
+    //Getter Setter $Ville
 
-    /**
-     * Get ville
-     *
-     * @return string
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
 
     /**
      * @return string
@@ -558,6 +534,7 @@ class Residence
         $this->eligibilitePinel = $eligibilitePinel;
     }
 
+
     public function addMedia(Media $media)
     {
         $media->addResidence($this); // synchronously updating inverse side
@@ -643,22 +620,6 @@ class Residence
         $this->categoriePrestas = $categoriePrestas;
     }
 
-
-
-    /**
-     * Add media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     *
-     * @return Residence
-     */
-   /* public function addMedia(Media $media)
-    {
-        $this->medias[] = $media;
-
-        return $this;
-   } */
-
     /**
      * Remove media
      *
@@ -692,6 +653,32 @@ class Residence
     {
         $this->categoriePrestas->removeElement($categoriePresta);
     }
+
+
+    /**
+     * Set ville
+     *
+     * @param \MyOrleansBundle\Entity\Ville $ville
+     *
+     * @return Residence
+     */
+    public function setVille(\MyOrleansBundle\Entity\Ville $ville = null)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return \MyOrleansBundle\Entity\Ville
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
 
 
 }

@@ -7,44 +7,87 @@
  */
 
 namespace MyOrleansBundle\Controller\front;
+
+use MyOrleansBundle\Entity\Client;
+use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Form\FormulaireType;
+use MyOrleansBundle\MyOrleansBundle;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MyOrleansBundle\Entity\Pack;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 
 class NosServicesController extends Controller
 {
 
     /**
-     * @Route("/nos-services", name="nosservices")
+     * @Route("/nos_services", name="nos_services")
      */
-    public function nosservices()
+
+    public function nosServicesAction(SessionInterface $session, Request $request)
     {
+
+        $client = new Client();
+        $parcours = null;
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
+        }
+
+
         $em = $this->getDoctrine()->getManager();
         $services = $em->getRepository(Service::class)->findAll();
+        $telephoneNumber = $this->getParameter('telephone_number');
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $packs = $em->getRepository(Pack::class)->findAll();
-        $temoignages =$em->getRepository(Temoignage::class)->findAll();
-        return $this->render('MyOrleansBundle::nosservices.html.twig',[
-            'services'=>$services,
-            'packs'=>$packs,
-            'temoignages'=>$temoignages
-        ]);
 
-    }
+        $temoignages = $em->getRepository(Temoignage::class)->findAll();
+        $formulaire->handleRequest($request);
 
-    public function formulaire()
-    {
-        $alert = '';
-        if (isset($_POST['mail'])) {
-            $send = new MailController();
-            if (0 == $send->Send($_POST, $this->expediteur)) {
-                $alert = 2;
-            } else {
-                $alert = 1;
-            };
+
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($this->getParameter('mailer_user'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionForm.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+            $em->persist($client);
+            $em->flush();
+
+            return $this->redirectToRoute('nos_services');
         }
-        return $this->getTwig()->render('nosservices.html.twig', array('alert' => $alert));
+
+        return $this->render('MyOrleansBundle::nosServices.html.twig', [
+            'services' => $services,
+            'packs' => $packs,
+            'temoignages' => $temoignages,
+            'telephone_number' => $telephoneNumber,
+            'parcours' => $parcours,
+            'form' => $formulaire->createView()
+        ]);
     }
+
 }
+
+
+

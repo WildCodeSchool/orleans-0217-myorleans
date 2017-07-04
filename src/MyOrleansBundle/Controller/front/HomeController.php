@@ -3,29 +3,38 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Collaborateur;
 use MyOrleansBundle\Entity\Evenement;
-
 use MyOrleansBundle\Entity\Pack;
-use MyOrleansBundle\Entity\Residence;
-use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
+use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\Flat;
+use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Form\SimpleSearchType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function indexAction(Request $request)
+    public function indexAction(SessionInterface $session, Request $request)
     {
+        $parcours = null;
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
+        }
         $em = $this->getDoctrine()->getManager();
-
 
         $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
 
@@ -38,13 +47,53 @@ class HomeController extends Controller
         $actu = $em->getRepository(Article::class)->findOneActu();
         $event = $em->getRepository(Evenement::class)->findOneEvent();
 
+        $telephoneNumber = $this->getParameter('telephone_number');
 
-        // Recuperation de la liste des villes dans lesqulles se trouvent les residences
+
+        // Formulaire de contact
+        $client = new  Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($this->getParameter('mailer_user'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionForm.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+            $em->persist($client);
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+
+
+
+        // Recuperation de la liste des villes dans lesquelles se trouvent les residences
         $residences = $em->getRepository(Residence::class)->findAll();
         $villes = [];
         foreach ($residences as $residence) {
             $villes[] = $residence->getVille();
         }
+
+        // Recuperation de la liste des villes dans lesqulles se trouvent les residences
+        $villes = $em->getRepository(Ville::class)->findAll();
+
+
+
         // Fin recuperation des villes
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
             null,
@@ -52,6 +101,7 @@ class HomeController extends Controller
 
 
         return $this->render('MyOrleansBundle::index.html.twig', [
+            'parcours' => $parcours,
             'simpleSearch' => $simpleSearch->createView(),
             'villes'=> $villes,
             'collaborateurs' => $collaborateurs,
@@ -60,60 +110,128 @@ class HomeController extends Controller
             'residenceAll' => $residenceAll,
             'actu' => $actu,
             'event' => $event,
-            'testimonials' => $testimonials
+            'testimonials' => $testimonials,
+            'telephone_number' => $telephoneNumber,
+            'form' => $formulaire->createView()
+
+
+
         ]);
     }
 
     /*-----------------------------------------------*/
 
-    /**
-     * @Route("/nos-services", name="nosservices")
-     */
-    public function nosservices()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $services = $em->getRepository(Service::class)->findAll();
-        $packs = $em->getRepository(Pack::class)->findAll();
-        $temoignages = $em->getRepository(Temoignage::class)->findAll();
-        return $this->render('MyOrleansBundle::nosservices.html.twig', [
-            'services' => $services,
-            'packs' => $packs,
-            'temoignages' => $temoignages
-        ]);
-    }
-    /**
-     * @Route("/immopratique", name="immopratique")
-     */
-    public function immopratique()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findAll();
-        return $this->render('MyOrleansBundle::immopratique.html.twig', [
-            'articles' => $articles
-        ]);
-    }
 
     /**
      * @Route("/residences", name="residences")
      */
-    public function residence()
+    public function residence(SessionInterface $session, Request $request)
     {
-        return $this->render('MyOrleansBundle::residence.html.twig');
+
+        $parcours = null;
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
+        }
+
+        // Formulaire de contact
+        $client = new  Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $telephoneNumber = $this->getParameter('telephone_number');
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($this->getParameter('mailer_user'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionForm.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+            $em->persist($client);
+            $em->flush();
+            return $this->redirectToRoute('residences');
+        }
+
+        return $this->render('MyOrleansBundle::residence.html.twig', [
+            'parcours' => $parcours,
+            'telephone_number' => $telephoneNumber,
+            'form' => $formulaire->createView()
+        ]);
+
     }
     /**
      * @Route("/appartement")
      */
-    public function flat()
+    public function flat(SessionInterface $session, Request $request)
     {
-        return $this->render('MyOrleansBundle::appartement.html.twig');
+
+        $parcours = null;
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
+        }
+        // Formulaire de contact
+        $client = new  Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $telephoneNumber = $this->getParameter('telephone_number');
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($this->getParameter('mailer_user'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionForm.html.twig', [
+                            'client' => $client
+                        ]
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+            $em->persist($client);
+            $em->flush();
+            return $this->redirectToRoute('appartement');
+        }
+        return $this->render('MyOrleansBundle::appartement.html.twig', [
+            'parcours' => $parcours,
+            'telephone_number' => $telephoneNumber,
+            'form' => $formulaire->createView()
+        ]);
     }
 
     /**
      * @Route("/parcours-immobilier", name="parcoursimmo")
      */
-    public function parcoursImmoAction()
+    public function parcoursImmoAction(SessionInterface $session)
     {
-        return $this->render('MyOrleansBundle::parcoursimmo.html.twig');
+        $parcours = null;
+        if (isset($_SESSION)) {
+            $parcours = $_SESSION['parcours'];
+        }
+
+        return $this->render('MyOrleansBundle::parcoursimmo.html.twig', [
+            'parcours' => $parcours
+        ]);
     }
 
 

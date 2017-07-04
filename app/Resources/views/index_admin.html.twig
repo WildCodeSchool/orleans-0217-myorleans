@@ -34,7 +34,7 @@
                                         <td>{{ residence.nom }}</td>
                                         <td>{{ residence.adresse }}</td>
                                         <td>{{ residence.codePostal }}</td>
-                                        <td>{{ residence.ville }}</td>
+                                        <td>{{ residence.ville.nom }}</td>
 
                                         <td>
                                             <a href="{{ path('admin_residence_show', { 'id': residence.id }) }}"><i
