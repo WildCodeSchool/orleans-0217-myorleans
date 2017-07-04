@@ -10,6 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,25 +24,31 @@ class ResidenceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('adresse')
-            ->add('codePostal')
-            ->add('ville')
-            ->add('latitude')
-            ->add('longitude')
-            ->add('dateLivraison')
-            ->add('description')
-            ->add('nbTotalLogements')
-            ->add('noteTransports')
-            ->add('noteCommerces')
-            ->add('noteServices')
-            ->add('noteEsthetisme')
-            ->add('favoris')
-            ->add('accroche')
+            ->add('nom', TextType::class)
+            ->add('adresse', TextType::class)
+            ->add('codePostal', NumberType::class)
+            ->add('ville', TextType::class)
+            ->add('latitude', NumberType::class)
+            ->add('longitude', NumberType::class)
+            ->add('dateLivraison', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('nbTotalLogements', NumberType::class)
+            ->add('noteTransports', NumberType::class)
+            ->add('noteCommerces', NumberType::class)
+            ->add('noteServices', NumberType::class)
+            ->add('noteEsthetisme', NumberType::class)
+            ->add('favoris', ChoiceType::class, [
+                'choices' => [
+                    'Oui' => '1',
+                    'Non' => '0'
+                ]
+            ])
+            ->add('accroche', TextareaType::class)
             ->add('medias', CollectionType::class,
                 array(
                     'entry_type' => MediaType::class,
-                    //'attr' => array('class' => 'input-field')
+                    'allow_add' => true,
+                    'prototype' => true,
                 ));
     }
 

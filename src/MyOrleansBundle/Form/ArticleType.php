@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
 use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypeArticle;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -26,18 +27,26 @@ class ArticleType extends AbstractType
         $builder->add('titre', TextType::class)
             ->add('texte', TextareaType::class)
             ->add('date', DateTimeType::class)
-            ->add('residence', EntityType::class, ['class' => 'MyOrleansBundle:Residence', 'choice_label' => 'nom'])
-            ->add('tags', CollectionType::class,
-                array(
-                    'entry_type' => TagType::class
-                ))
-            ->add('typeArticle',EntityType::class, ['class' => TypeArticle::class,
+            ->add('residence', EntityType::class, [
+                'class' => Residence::class,
                 'choice_label' => 'nom'
             ])
-            ->add('medias', CollectionType::class, array(
+            ->add('tags', CollectionType::class, [
+                'entry_type' => TagType::class,
+                'allow_add' => true,
+                /*'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,*/
+            ])
+            ->add('typeArticle', EntityType::class, [
+                'class' => TypeArticle::class,
+                'choice_label' => 'nom'
+            ])
+            ->add('medias', CollectionType::class, [
                 'entry_type' => MediaType::class,
-                // 'data_class'=> FileType::class
-            ));
+                'allow_add' => true,
+                'prototype' => true,
+            ]);
     }
 
     /**

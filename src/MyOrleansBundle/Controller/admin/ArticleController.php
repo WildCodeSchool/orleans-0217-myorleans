@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Article;
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Form\ArticleType;
 use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -101,7 +102,7 @@ class ArticleController extends Controller
             $media = new Media();
             $article->getMedias()->add($media);
         }
-        $editForm = $this->createForm('MyOrleansBundle\Form\ArticleType', $article);
+        $editForm = $this->createForm(ArticleType::class, $article);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

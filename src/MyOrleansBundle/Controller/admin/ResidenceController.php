@@ -6,12 +6,14 @@ use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\ResidenceType;
+use MyOrleansBundle\Service\FileUploader;
 use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Residence controller.
@@ -42,31 +44,25 @@ class ResidenceController extends Controller
      * @Route("/new", name="admin_residence_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
 
         $residence = new Residence();
         $media = new Media();
         $residence->getMedias()->add($media);
-
         $form = $this->createForm(ResidenceType::class, $residence);
         $form->handleRequest($request);
 
 
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em = $this->getDoctrine()->getManager();
             $medias = $residence->getMedias();
 
             foreach ($medias as $media) {
                 $file = $media->getLien();
-                $filename = 'image' . uniqid() . '.' . $file->guessExtension();
-                $file->move(
-                    $this->getParameter('upload_directory'),
-                    $filename
-                );
+                $filename = $fileUploader->upload($file);
                 $media->setLien($filename);
+                $media->setResidences([$residence]);
             }
             $em->persist($residence);
             $em->flush();
@@ -101,13 +97,28 @@ class ResidenceController extends Controller
      * @Route("/{id}/edit", name="admin_residence_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Residence $residence)
+    public function editAction(Request $request, Residence $residence, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($residence);
+        if (!empty($residence->getMedias())) {
+            $media = new Media();
+            $residence->getMedias()->add($media);
+        }
         $editForm = $this->createForm(ResidenceType::class, $residence);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $residence = $editForm->getData();
+            $medias = $residence->getMedias();
+            foreach ($medias as $media) {
+                $file = $media->getLien();
+                if ($file) {
+                    $filename = $fileUploader->upload($file);
+                    $media->setLien($filename);
+                    $media->setResidences([$residence]);
+                }
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_residence_edit', array('id' => $residence->getId()));
@@ -141,6 +152,28 @@ class ResidenceController extends Controller
     }
 
     /**
+     * Deletes a residence media.
+     *
+     * @Route("/{id}/delete_media/{media_id}", name="residence_media_delete")
+     * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"id" = "id"})
+     * @ParamConverter("media", class="MyOrleansBundle:Media", options={"id" = "media_id"})
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Residence $residence, Media $media)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $path = $media->getLien();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        $residence->removeMedia($media);
+        $em->remove($media);
+
+        $em->flush();
+        return $this->redirectToRoute('admin_residence_edit', array('id' => $residence->getId()));
+    }
+
+
+    /**
      * Creates a form to delete a residence entity.
      *
      * @param Residence $residence The residence entity
@@ -152,7 +185,6 @@ class ResidenceController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_residence_delete', array('id' => $residence->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

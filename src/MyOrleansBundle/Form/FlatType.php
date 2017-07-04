@@ -4,7 +4,11 @@ namespace MyOrleansBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,21 +20,35 @@ class FlatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('reference')
-            ->add('prix')
-            ->add('surface')
-            ->add('nbPiece')
-            ->add('description')
-            ->add('prestationComplementaire')
-            ->add('statut')
-            ->add('typeLogement')
+            ->add('reference', TextType::class)
+            ->add('prix', NumberType::class)
+            ->add('surface', NumberType::class)
+            ->add('nbPiece', NumberType::class)
+            ->add('description', TextareaType::class)
+            ->add('prestationComplementaire', TextareaType::class, [
+                'required' => false
+            ])
+            ->add('statut', ChoiceType::class, [
+                'choices' => [
+                    'Disponible' => '1', 'Vendu' => '0'
+                ]
+            ])
+            ->add('typeLogement', EntityType::class, [
+                'class' => 'MyOrleansBundle:TypeLogement',
+                'choice_label' => 'nom'
+            ])
+            ->add('residence', EntityType::class, [
+                'class' => 'MyOrleansBundle:Residence',
+                'choice_label' => 'nom'
+            ])
             ->add('medias', CollectionType::class,
-                array(
-                    'entry_type' => MediaType::class
-                ))
-            ->add('residence',EntityType::class, ['class' => 'MyOrleansBundle:Residence', 'choice_label' => 'nom']);
+                [
+                    'entry_type' => MediaType::class,
+                    'allow_add' => true,
+                    'prototype' => true,
+                ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */
