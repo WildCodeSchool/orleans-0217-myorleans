@@ -73,16 +73,30 @@ class HomeController extends Controller
     /**
      * @Route("/residences", name="residences")
      */
-    public function residence()
+    public function residence(SessionInterface $session)
     {
-        return $this->render('MyOrleansBundle::residence.html.twig');
+        $parcours = null;
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
+        }
+
+        return $this->render('MyOrleansBundle::residence.html.twig', [
+            'parcours' => $parcours
+        ]);
     }
     /**
      * @Route("/appartement")
      */
-    public function flat()
+    public function flat(SessionInterface $session)
     {
-        return $this->render('MyOrleansBundle::appartement.html.twig');
+        $parcours = null;
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
+        }
+
+        return $this->render('MyOrleansBundle::appartement.html.twig', [
+            'parcours' => $parcours
+        ]);
     }
 
     /**

@@ -193,7 +193,7 @@
                     <div class="col s12 offset-m1 m10">
                         <div class="card large">
                             <div class="card-image">
-                                <img src="{{ asset('img/illustration_services.jpg') }}">
+                                <img src="{{ asset('img/illustration_services.jpg') | imagine_filter('thumb_article_site') }}">
                             </div>
                             <div class="card-content">
                                 {% if objectif == 'investir' %}
@@ -223,7 +223,7 @@
                         <div class="col s12 offset-m1 m10">
                             <div class="card large">
                                 <div class="card-image">
-                                    <img src="{{ asset('img/pack6.jpg') }}">
+                                    <img src="{{ asset('img/pack6.jpg') | imagine_filter('thumb_article_site') }}">
                                 </div>
                                 <div class="card-content">
                                     <h4>Pack Sérénité</h4>
@@ -246,7 +246,7 @@
                         <div class="card large">
                             <div class="card-image">
                                 {% for media in article.medias if media.typeMedia.nom == 'image' %}
-                                    <img src="{{ asset('img/blog/'~media.lien) }}">
+                                    <img src="{{ asset('img/blog/'~media.lien) | imagine_filter('thumb_article_site') }}">
                                 {% endfor %}
                             </div>
                             <div class="card-content">

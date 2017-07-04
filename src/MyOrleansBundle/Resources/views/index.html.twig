@@ -163,7 +163,7 @@
                                         <div class="card">
                                             <div class="card-image">
                                                 {% for media in resTwoFav.medias if media.typeMedia.nom == 'image' %}
-                                                    <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
+                                                    <img src="{{ asset('img/'~media.lien) | imagine_filter('thumb_residence_home') }}" class="responsive-img"
                                                          alt="{{ resTwoFav.nom }}">
                                                 {% endfor %}
                                                 <span class="card-title">{{ resTwoFav.nom }}</span>
@@ -223,7 +223,7 @@
                 <div class="carousel">
                     {% for collaborateur in collaborateurs %}
                         <a class="carousel-item" href="#one!"><img
-                                    src="{{ asset('img/equipe/'~collaborateur.media.lien) }}">
+                                    src="{{ asset('img/equipe/'~collaborateur.media.lien) | imagine_filter('thumb_collaborateur')  }}">
                             <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
                                 <br><span>{{ collaborateur.fonction }}</span></p>
                         </a>
@@ -284,7 +284,7 @@
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
                         {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
-                            <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
+                            <img class="activator" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
                         {% endfor %}
                     </div>
                     <div class="card-content">
@@ -305,7 +305,7 @@
                 <h3>L'événement</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ asset('img/'~event[0].media.lien) }}">
+                        <img class="activator" src="{{ asset('img/'~event[0].media.lien) | imagine_filter('thumb_article_site') }}">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
