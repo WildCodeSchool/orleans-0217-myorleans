@@ -21,8 +21,7 @@ composer.json
 
 /.web-server-pid
 
-.web-server-pid
 
 /web/media/
 
-*~
+
