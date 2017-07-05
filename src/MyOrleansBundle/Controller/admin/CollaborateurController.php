@@ -3,9 +3,14 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Collaborateur;
+use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Form\CollaborateurType;
+use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Collaborateur controller.
@@ -37,14 +42,15 @@ class CollaborateurController extends Controller
      * @Route("/new", name="admin_collaborateur_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $collaborateur = new Collaborateur();
-        $form = $this->createForm('MyOrleansBundle\Form\CollaborateurType', $collaborateur);
+        $form = $this->createForm(CollaborateurType::class, $collaborateur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($collaborateur);
             $em->flush();
 
@@ -79,16 +85,32 @@ class CollaborateurController extends Controller
      * @Route("/{id}/edit", name="admin_collaborateur_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Collaborateur $collaborateur)
+    public function editAction(Request $request, Collaborateur $collaborateur, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($collaborateur);
-        $editForm = $this->createForm('MyOrleansBundle\Form\CollaborateurType', $collaborateur);
+        /*
+        $collaborateur->setMedia(
+            new Media($this->getParameter('upload_directory') . '/' .
+                $collaborateur->getMedia()->getLien()
+            )
+        );
+        */
+
+        $editForm = $this->createForm(CollaborateurType::class, $collaborateur);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+/*
+            $media = $collaborateur->getMedia();
+
+            $file = $media->getLien();
+            if ($file) {
+                $filename = $fileUploader->upload($file);
+                $media->setLien($filename);
+            }*/
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_collaborateur_edit', array('id' => $collaborateur->getId()));
+            return $this->redirectToRoute('admin_collaborateur_show', array('id' => $collaborateur->getId()));
         }
 
         return $this->render('collaborateur/edit.html.twig', array(
@@ -119,6 +141,22 @@ class CollaborateurController extends Controller
     }
 
     /**
+     * Deletes a collaborateur media.
+     *
+     * @Route("/{id}/delete_media", name="collaborateur_media_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Collaborateur $collaborateur)
+    {
+        $path = $collaborateur->getMedia()->getLien();
+        $em = $this->getDoctrine()->getManager();
+        $collaborateur->setMedia(null);
+        $em->flush();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        return $this->redirectToRoute('admin_collaborateur_edit', array('id' => $collaborateur->getId()));
+    }
+
+    /**
      * Creates a form to delete a collaborateur entity.
      *
      * @param Collaborateur $collaborateur The collaborateur entity
@@ -130,7 +168,6 @@ class CollaborateurController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_collaborateur_delete', array('id' => $collaborateur->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

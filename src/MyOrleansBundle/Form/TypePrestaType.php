@@ -13,7 +13,9 @@ class TypePrestaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomType')->add('categorie_presta');
+        $builder
+            ->add('nomType')
+            ->add('categorie_presta');
     }
     
     /**

@@ -3,9 +3,11 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Service;
+use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Service controller.
@@ -37,7 +39,7 @@ class ServiceController extends Controller
      * @Route("/new", name="admin_service_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $service = new Service();
         $form = $this->createForm('MyOrleansBundle\Form\ServiceType', $service);
@@ -79,13 +81,15 @@ class ServiceController extends Controller
      * @Route("/{id}/edit", name="admin_service_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Service $service)
+    public function editAction(Request $request, Service $service, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($service);
+
         $editForm = $this->createForm('MyOrleansBundle\Form\ServiceType', $service);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_service_edit', array('id' => $service->getId()));
@@ -118,6 +122,23 @@ class ServiceController extends Controller
         return $this->redirectToRoute('admin_service_index');
     }
 
+
+    /**
+     * Deletes a service media.
+     *
+     * @Route("/{id}/delete_media", name="service_media_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Service $service)
+    {
+        $path = $service->getMedia()->getLien();
+        $em = $this->getDoctrine()->getManager();
+        $service->setMedia(null);
+        $em->flush();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        return $this->redirectToRoute('admin_service_edit', array('id' => $service->getId()));
+    }
+
     /**
      * Creates a form to delete a service entity.
      *
@@ -130,7 +151,6 @@ class ServiceController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_service_delete', array('id' => $service->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

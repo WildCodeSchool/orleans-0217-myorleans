@@ -13,7 +13,11 @@ class TemoignageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('theme')->add('auteur')->add('date')->add('message');
+        $builder
+            ->add('theme')
+            ->add('auteur')
+            ->add('date')
+            ->add('message');
     }
     
     /**
