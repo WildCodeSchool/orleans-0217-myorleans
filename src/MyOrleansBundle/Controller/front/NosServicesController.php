@@ -70,6 +70,9 @@ class NosServicesController extends Controller
                 );
 
             $mailer->send($message);
+/*
+            dump($formulaire);
+                die();*/
 
             $em->persist($client);
             $em->flush();

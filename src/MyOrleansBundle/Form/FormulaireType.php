@@ -41,6 +41,7 @@ class FormulaireType extends AbstractType
             ])
             ->add('newsletter', ChoiceType::class, [
                 'choices' => array('oui' => true, 'non' => false),
+                'data' => true,
                 'expanded' => true,
                 'multiple' => false
             ])

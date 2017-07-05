@@ -366,6 +366,7 @@ body {
 
 .message{
     margin-top: 40px;
+    background-color: #b7d64a;
 }
 
 @media (max-width : 767px) {
