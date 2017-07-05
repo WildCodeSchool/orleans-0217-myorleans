@@ -1,7 +1,7 @@
 <div class="card mosaic-container">
     <div class="card-image">
         {% for media in residence.medias if media.typeMedia.nom == 'image' %}
-            <img src="{{ asset('img/'~media.lien) | imagine_filter('thumb_residence_home') }}">
+            <img src="{{ asset('uploads/'~media.lien) }}">
         {% endfor %}
     </div>
     <div class="card-content">

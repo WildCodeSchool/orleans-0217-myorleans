@@ -13,7 +13,9 @@ class PrestationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomPrestation')->add('type_prestation');
+        $builder
+            ->add('nomPrestation')
+            ->add('type_prestation');
     }
     
     /**

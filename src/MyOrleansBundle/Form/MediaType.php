@@ -27,19 +27,12 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('page')
-            ->add('lien')
-            //->add('flats',  EntityType::class, ['class'=>Evenement::class, 'choice_label'=>'nom'])
-            /* ->add('residences', EntityType::class, ['class'=>Residence::class, 'choice_label'=>'nom'])
-             ->add('evenement', EntityType::class, ['class'=>Evenement::class, 'choice_label'=>'nom'])
-             ->add('partenaire',  EntityType::class, ['class'=>Partenaire::class, 'choice_label'=>'nom'])
-             ->add('service',  EntityType::class, ['class'=>Service::class, 'choice_label'=>'type'])
-             ->add('pack',  EntityType::class, ['class'=>Pack::class, 'choice_label'=>'nom'])
-             ->add('articles', EntityType::class, ['class'=>Article::class, 'choice_label'=>'titre']);*/
-            /*       ->add('typemedia', CollectionType::class, array(
-                   'entry_type' => TypeMedia::class,
-                   //'data_class'=> FileType::class
-                   ));*/
-            ->add('typemedia', EntityType::class, ['class' => TypeMedia::class,
+            ->add('lien', FileType::class, [
+                'data_class' => null,
+                'required'=>false
+            ])
+            ->add('typemedia', EntityType::class, [
+                'class' => TypeMedia::class,
                 'choice_label' => 'nom'
             ]);
     }

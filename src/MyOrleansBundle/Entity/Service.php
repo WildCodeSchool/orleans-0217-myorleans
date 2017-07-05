@@ -37,7 +37,7 @@ class Service
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="service")
+     * @ORM\OneToOne(targetEntity="Media",inversedBy="service", cascade={"persist"})
      */
     private $medias;
 
@@ -162,5 +162,19 @@ class Service
     public function getMedias()
     {
         return $this->medias;
+    }
+
+    /**
+     * Set medias
+     *
+     * @param \MyOrleansBundle\Entity\Media $medias
+     *
+     * @return Service
+     */
+    public function setMedias(\MyOrleansBundle\Entity\Media $medias = null)
+    {
+        $this->medias = $medias;
+
+        return $this;
     }
 }

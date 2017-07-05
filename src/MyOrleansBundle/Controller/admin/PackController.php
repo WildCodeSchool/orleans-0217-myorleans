@@ -2,10 +2,13 @@
 
 namespace MyOrleansBundle\Controller\admin;
 
+use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Pack;
+use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Pack controller.
@@ -37,7 +40,7 @@ class PackController extends Controller
      * @Route("/new", name="admin_pack_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $pack = new Pack();
         $form = $this->createForm('MyOrleansBundle\Form\PackType', $pack);
@@ -79,13 +82,14 @@ class PackController extends Controller
      * @Route("/{id}/edit", name="admin_pack_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Pack $pack)
+    public function editAction(Request $request, Pack $pack, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($pack);
         $editForm = $this->createForm('MyOrleansBundle\Form\PackType', $pack);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_pack_edit', array('id' => $pack->getId()));
@@ -119,6 +123,21 @@ class PackController extends Controller
     }
 
     /**
+     * Deletes a pack media.
+     *
+     * @Route("/{id}/delete_media", name="pack_media_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Pack $pack)
+    {
+        $path = $pack->getMedia()->getLien();
+        $em = $this->getDoctrine()->getManager();
+        $pack->setMedia(null);
+        $em->flush();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        return $this->redirectToRoute('admin_pack_edit', array('id' => $pack->getId()));
+    }
+    /**
      * Creates a form to delete a pack entity.
      *
      * @param Pack $pack The pack entity
@@ -130,7 +149,6 @@ class PackController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_pack_delete', array('id' => $pack->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
