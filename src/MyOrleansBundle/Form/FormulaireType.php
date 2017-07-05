@@ -27,12 +27,12 @@ class FormulaireType extends AbstractType
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
             ->add('email', EmailType::class)
-            ->add('telephone', NumberType::class)
-            ->add('codePostal', NumberType::class)
+            ->add('telephone', TextType::class)
+            ->add('codePostal', TextType::class)
             ->add('ville', TextType::class)
             ->add('adresse', TextType::class)
             ->add('sujet', ChoiceType::class, [
-                'choices' => ['Objet du message?'=> null, 'Residence principale' => 1, 'Investissement' => 2, 'Services' => 3],
+                'choices' => ['Objet du message?'=> 0, 'Residence principale' => 1, 'Investissement' => 2, 'Services' => 3],
                 'empty_data' => 'Objet du message?',
                 'expanded' => false,
                 'multiple' => false

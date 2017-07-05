@@ -45,7 +45,7 @@ class Client
     /**
      * @var string
      *
-     * @ORM\Column(name="telephone", type="integer", length=15, nullable=true)
+     * @ORM\Column(name="telephone", type="string", columnDefinition="CHAR(10)"), lenght=10 nullable=true)
      */
     private $telephone;
 
@@ -57,9 +57,9 @@ class Client
     private $adresse;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="code_postal", type="integer", nullable=true)
+     * @ORM\Column(name="codePostal", type="string", columnDefinition="CHAR(5)"), lenght=5 nullable=true)
      */
     private $codePostal;
 
