@@ -3,7 +3,9 @@
         <div class="card-image">
 
             {% for media in residence.medias if media.typeMedia.nom == 'image' %}
+
                 <img src="{{ asset('uploads/'~media.lien) }}">
+
             {% endfor %}
 
         </div>
