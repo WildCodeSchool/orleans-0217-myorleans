@@ -41,7 +41,7 @@
                             <div class="col l4 s12">
                                 <div class="blockStaff">
                                     <div class="imgStaff">
-                                        <img src="{{ asset('img/equipe/'~collaborateur.media.lien ) }}" alt="">
+                                        <img src="{{ asset('img/equipe/'~collaborateur.media.lien ) | imagine_filter('thumb_collaborateur') }}" alt="">
                                     </div>
                                     <div class="infoStaff">
                                         <h3>{{ collaborateur.prenom }} {{ collaborateur.nom }}</h3>

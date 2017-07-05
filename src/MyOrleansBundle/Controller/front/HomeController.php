@@ -127,6 +127,7 @@ class HomeController extends Controller
     /**
      * @Route("/residences", name="residences")
      */
+
     public function residence(SessionInterface $session, Request $request)
     {
 
@@ -175,16 +176,18 @@ class HomeController extends Controller
         ]);
 
     }
+
+
     /**
      * @Route("/appartement")
      */
     public function flat(SessionInterface $session, Request $request)
     {
-
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
+
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
