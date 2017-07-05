@@ -20,5 +20,5 @@ composer.json
 /.web-server-pid
 /src/MyOrleansBundle/Entity/*~
 /Entity/*~
-/web/uploads/
-/web/media/
+web/uploads/
+web/media/
