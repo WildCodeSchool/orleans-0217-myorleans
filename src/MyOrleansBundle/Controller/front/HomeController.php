@@ -77,6 +77,8 @@ class HomeController extends Controller
 
             $em->persist($client);
             $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
             return $this->redirectToRoute('home');
         }
 
@@ -161,6 +163,8 @@ class HomeController extends Controller
 
             $em->persist($client);
             $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
             return $this->redirectToRoute('residences');
         }
 
@@ -210,6 +214,8 @@ class HomeController extends Controller
 
             $em->persist($client);
             $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
             return $this->redirectToRoute('appartement');
         }
         return $this->render('MyOrleansBundle::appartement.html.twig', [

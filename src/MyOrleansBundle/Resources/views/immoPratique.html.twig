@@ -301,6 +301,8 @@
     <!--fin formulaire de contact-->
 
 
+
+
     {% block javascripts %}
         {{ parent() }}
         <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
@@ -313,6 +315,10 @@
                     closeOnClick: true
                 }
             );
+            $('#alert_close').click(function(){
+                $( "#alert_box" ).fadeOut( "slow", function() {
+                });
+            });
 
         </script>
     {% endblock %}

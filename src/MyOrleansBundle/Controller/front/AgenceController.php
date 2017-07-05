@@ -68,7 +68,7 @@ class AgenceController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('immo_pratique');
+            return $this->redirectToRoute('agence');
         }
 
         return $this->render('MyOrleansBundle::agence.html.twig',

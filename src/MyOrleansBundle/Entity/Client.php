@@ -78,6 +78,7 @@ class Client
     private $newsletter;
 
 
+
     /**
      * @var string
      *

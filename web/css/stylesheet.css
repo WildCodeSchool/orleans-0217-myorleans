@@ -365,6 +365,10 @@ body {
     text-align: right;
 }
 
+.message{
+    margin-top: 40px;
+}
+
 @media (max-width : 767px) {
     .side-nav li > .userView{
         width: 100%;
@@ -515,7 +519,14 @@ body {
     color:white;
 }
 
-
+.icon_style{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: white;
+    cursor:pointer;
+}
 
 .img-service{
     width: 500px;
@@ -526,6 +537,8 @@ body {
     width: 200px;
     height: 200px;
 }
+
+
 
 
 
