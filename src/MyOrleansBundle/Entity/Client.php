@@ -70,6 +70,7 @@ class Client
      */
     private $ville;
 
+
     /**
      * @var int
      *
@@ -77,7 +78,12 @@ class Client
      */
     private $newsletter;
 
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sujet", type="string", nullable=true)
+     */
+    private $sujet;
 
     /**
      * @var string
@@ -310,5 +316,29 @@ class Client
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Set sujet
+     *
+     * @param string $sujet
+     *
+     * @return Client
+     */
+    public function setSujet($sujet)
+    {
+        $this->sujet = $sujet;
+
+        return $this;
+    }
+
+    /**
+     * Get sujet
+     *
+     * @return string
+     */
+    public function getSujet()
+    {
+        return $this->sujet;
     }
 }

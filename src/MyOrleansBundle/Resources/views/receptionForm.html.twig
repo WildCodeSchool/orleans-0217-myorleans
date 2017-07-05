@@ -11,7 +11,19 @@
     <p><strong>Code postal: </strong>{{ client.codePostal }}</p>
     <p><strong>Ville</strong>: {{ client.ville }}</p>
     <p><strong>Adresse</strong>: {{ client.adresse }}</p>
+
+    {% if client.sujet == 1 %}
+        <p><strong>Sujet</strong>: Residence principale</p>
+    {% elseif client.sujet == 2 %}
+        <p><strong>Sujet</strong>: Investissement</p>
+    {% elseif client.sujet == 3 %}
+        <p><strong>Sujet</strong>: Services</p>
+    {% else %}
+        <p><strong>Sujet</strong>: Divers</p>
+    {% endif %}
+
     <p><strong>Message</strong>: {{ client.message }}</p>
+
     {% if client.newsletter == 0 %}
         <p><strong>Inscription newsletter</strong>: non </p>
     {% else %}

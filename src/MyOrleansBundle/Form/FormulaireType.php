@@ -31,6 +31,11 @@ class FormulaireType extends AbstractType
             ->add('codePostal', NumberType::class)
             ->add('ville', TextType::class)
             ->add('adresse', TextType::class)
+            ->add('sujet', ChoiceType::class, [
+                'choices' => array('Objet ?' => 0, 'Residence principale' => 1, 'Investissement' => 2, 'Services' => 3),
+                'expanded' => false,
+                'multiple' => false
+            ])
             ->add('message', TextareaType::class, [
                 'attr' =>['class' => 'materialize-textarea']
             ])
