@@ -59,16 +59,54 @@
                 <h2 class="fancy"><span>Nos événements</span></h2>
             </div>
             <section class="timeline">
+
                 <ol>
                     {% for evenement in evenements %}
-                    <li>
-                        <div>
-                            <time>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('j-m-Y') }}{% endif %}</time>
-                            {{ evenement.nom }}<br>
-                            {{ evenement.description }}
-                            <img class="responsive-img" src="{{ asset('uploads/'~evenement.media.lien) }}">
-                        </div>
-                    </li>
+
+                        {% if evenement.dateDebut|date("Ymj") < "now"|date("Ymj") %}
+                            <li>
+                                <div class="event past-event center">
+                                    <h4>{{ evenement.nom }}</h4>
+                                    <h5>{{ evenement.dateDebut|date('j F Y') }}</h5>
+                                    <p></p>{{ evenement.description }}
+                                    <img class="responsive-img" src="{{ asset('uploads/'~evenement.media.lien) }}">
+                                    <a class="waves-effect waves-light btn white" data-toggle="modal" data-id="{{ evenement.id }}"
+                                       href="#modal-{{ evenement.id }}">VOIR LES PHOTOS</a>
+                                </div>
+                            </li>
+
+                            <!-- Modal Structure -->
+                            <div id="modal-{{ evenement.id }}" class="modal">
+                                <div class="modal-content">
+                                    <h4>Photos de l'événement {{ evenement.nom }}</h4>
+                                    <div class="carousel carousel-slider">
+                                        {% set count = 0 %}
+                                        {% for media in evenement.medias if media.typeMedia.nom == "image" %}
+                                        <a class="carousel-item" href="{{ count+1 }}"><img src="{{ asset('uploads/'~evenement.media.lien) }}"></a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+                                </div>
+                            </div>
+
+                        {% else %}
+                            <li>
+                                <div class="event future-event center">
+                                    <h4>{{ evenement.nom }}</h4>
+                                    <time>{{ evenement.dateDebut|date('j F Y') }} |
+                                        <span>
+                                        {{ evenement.heureDebut|date('H:m') }} - {{ evenement.heureFin|date('H:m') }}
+                                        </span>
+                                    </time>
+                                    <p></p>{{ evenement.description }}
+                                    <img class="responsive-img" src="{{ asset('uploads/'~evenement.media.lien) }}">
+                                    <a class="button-collapse waves-effect waves-light btn" data-activates="slide-out">JE M'INSCRIS</a>
+                                </div>
+                            </li>
+
+                        {% endif %}
                     {% endfor %}
                     <li></li>
                 </ol>
@@ -102,10 +140,113 @@
         </div>
 
 
+        <!-- début formulaire de contact -->
+        <form method="post" action="">
+            <div id="slide-out" class="side-nav">
+                <div class="userView">
+                    <h3 align="center">Contactez nous !</h3>
+                    <h4 align="center">{{ telephone_number }}</h4>
+                    {{ form_start(contactForm) }}
+                    <div class="row">
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form_label(contactForm.nom) }}
+                            {{ form_widget(contactForm.nom) }}
+                            {{ form_errors(contactForm.nom) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form_label(contactForm.prenom) }}
+                            {{ form_widget(contactForm.prenom) }}
+                            {{ form_errors(contactForm.prenom) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">email</i>
+                            {{ form_label(contactForm.email) }}
+                            {{ form_widget(contactForm.email) }}
+                            {{ form_errors(contactForm.email) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">phone</i>
+                            {{ form_label(contactForm.telephone) }}
+                            {{ form_widget(contactForm.telephone) }}
+                            {{ form_errors(contactForm.telephone) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">my_location</i>
+                            {{ form_label(contactForm.codePostal) }}
+                            {{ form_widget(contactForm.codePostal) }}
+                            {{ form_errors(contactForm.codePostal) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">location_on</i>
+                            {{ form_label(contactForm.ville) }}
+                            {{ form_widget(contactForm.ville) }}
+                            {{ form_errors(contactForm.ville) }}
+                        </div>
+
+                        <div class="input-field col l12 m12 s12">
+                            <i class="material-icons prefix">my_location</i>
+                            {{ form_label(contactForm.adresse) }}
+                            {{ form_widget(contactForm.adresse) }}
+                            {{ form_errors(contactForm.adresse) }}
+                        </div>
+
+
+                        <div class="input-field col l12 m12 s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            {{ form_label(contactForm.message) }}
+                            {{ form_widget(contactForm.message) }}
+                            {{ form_errors(contactForm.message) }}
+                        </div>
+
+                        <div class="row center">
+                            <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+
+                            {{ form_widget(contactForm.newsletter) }}
+                            {{ form_errors(contactForm.newsletter) }}
+                        </div>
+                    </div>
+
+                    <div class="input-field col l12">
+                        {{ form_row(contactForm.envoyer) }}
+                    </div>
+
+                    {{ form_end(contactForm) }}
+                </div>
+
+            </div>
+
+        </form>
+
+        <!--fin formulaire de contact-->
+
+
         {% block javascripts %}
 
+            <script>
+                $('.button-collapse').sideNav({
+                        edge: 'right', // Choose the horizontal origin
+                        draggable: false, // Choose whether you can drag to open on touch screens
+                        closeOnClick: true
+                    }
+                );
+
+                $(document).ready(function(){
+                    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+                    $('.modal').modal();
+                });
+
+            </script>
             <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
             <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
             {{ parent() }}
+
         {% endblock %}
     {% endblock %}

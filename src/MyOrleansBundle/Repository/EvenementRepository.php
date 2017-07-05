@@ -21,7 +21,7 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
     public function findAll()
     {
         $qb = $this->createQueryBuilder('e')
-            ->orderBy('e.id', 'DESC')
+            ->orderBy('e.dateDebut', 'ASC')
             ->setMaxResults(10);
         return $qb->getQuery()->getResult();
     }
