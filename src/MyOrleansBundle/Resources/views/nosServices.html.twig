@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-            {% else service.id is even %}
+            {% elseif service.id is even %}
 
                 <div class="row">
                     <div class="col s12 m6 l6">
@@ -144,7 +144,7 @@
                         </div>
                     </div>
 
-                {% else temoignage.id is even %}
+                {% elseif temoignage.id is even %}
                     <div class="col s12 m6 l6">
                         <di data-aos="fade-up-left">
                             <div class="boxi">
@@ -267,6 +267,7 @@
 
 
 {% endblock %}
+
 
     {% block javascripts %}
 
