@@ -6,27 +6,27 @@
 
     <p>Vous avez reçu un nouveau message de {{ client.prenom }} {{ client.nom }}</p>
     <br/>
-    <p><strong>Mail: </strong>{{ client.email }}</p>
-    <p><strong>Téléphone: </strong>{{ client.telephone }}</p>
-    <p><strong>Code postal: </strong>{{ client.codePostal }}</p>
-    <p><strong>Ville</strong>: {{ client.ville }}</p>
-    <p><strong>Adresse</strong>: {{ client.adresse }}</p>
+    <p>Mail: {{ client.email }}</p>
+    <p>Téléphone: {{ client.telephone }}</p>
+    <p>Code postal: {{ client.codePostal }}</p>
+    <p>Ville: {{ client.ville }}</p>
+    <p>Adresse : {{ client.adresse }}</p>
 
     {% if client.sujet == 1 %}
-        <p><strong>Sujet</strong>: Residence principale</p>
+        <p>Sujet: Residence principale</p>
     {% elseif client.sujet == 2 %}
-        <p><strong>Sujet</strong>: Investissement</p>
+        <p>Sujet: Investissement</p>
     {% elseif client.sujet == 3 %}
-        <p><strong>Sujet</strong>: Services</p>
+        <p>Sujet: Services</p>
     {% else %}
-        <p><strong>Sujet</strong>: Divers</p>
+        <p>Sujet: Divers</p>
     {% endif %}
 
-    <p><strong>Message</strong>: {{ client.message }}</p>
+    <p>Message: {{ client.message }}</p>
 
     {% if client.newsletter == 0 %}
-        <p><strong>Inscription newsletter</strong>: non </p>
+        <p>Inscription newsletter: non </p>
     {% else %}
-        <p><strong>Inscription newsletter</strong>: oui </p>
+        <p>Inscription newsletter: oui </p>
     {% endif %}
 {% endblock %}

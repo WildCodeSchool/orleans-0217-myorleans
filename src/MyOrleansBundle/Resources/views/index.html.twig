@@ -79,8 +79,7 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nos_services") }}">Nos services</a></li>
-                        {# A afficher lorsque le contenu sera disponible #}
-                        {#<li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>#}
+
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
@@ -88,8 +87,7 @@
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nos_services") }}">Nos services</a></li>
-                        {# A afficher lorsque le contenu sera disponible #}
-                        {#<li><a href="{{ path("parcoursimmo") }}">Parcours immobiliers</a></li>#}
+
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
@@ -234,10 +232,10 @@
         <div class="col s12 center">
             <div class="row carouselAgence">
                 <div class="col s12 m10 l10 offset-l1">
-                    <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
+                    <p>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
                         clients.
                         Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
-                        meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
+                        meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </p>
                     <div class="carousel">
                         {% for collaborateur in collaborateurs %}
                             <a class="carousel-item" href="#one!">
