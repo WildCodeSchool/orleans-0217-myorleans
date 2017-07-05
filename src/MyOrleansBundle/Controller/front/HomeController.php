@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Article;
 
+
 use MyOrleansBundle\Entity\CategoriePresta;
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Media;
@@ -11,6 +12,7 @@ use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Collaborateur;
 use MyOrleansBundle\Entity\Evenement;
+
 
 use MyOrleansBundle\Entity\Pack;
 use MyOrleansBundle\Entity\Service;
@@ -119,6 +121,7 @@ class HomeController extends Controller
             'testimonials' => $testimonials,
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
+
 
 
 
