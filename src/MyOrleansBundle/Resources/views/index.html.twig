@@ -11,41 +11,41 @@
 
 {% block body %}
 
-<div id="GrandeIntro">
-    <div class="row center logoIntro">
-        <div class="col s12 ">
-            <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
+    <div id="GrandeIntro">
+        <div class="row center logoIntro">
+            <div class="col s12 ">
+                <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
+            </div>
+        </div>
+        <div class="row center">
+            {% if parcours == 'investisseur' %}
+                <div class="col s6 l6 offset-l3 pictoParcours pictoInvest">
+                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
+                       class="profil-investisseur">
+                        <i class="fa fa-calculator" aria-hidden="true"></i></a>
+                </div>
+            {% elseif parcours == 'residence' %}
+                <div class="col s6 l6 offset-l3 pictoParcours pictoResidence">
+                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
+                       class="profil-residence">
+                        <i class="fa fa-home" aria-hidden="true"></i></a>
+                </div>
+            {% else %}
+                <div class="col s6 l5 offset-l1 pictoParcours pictoInvest">
+                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
+                       class="profil-investisseur">
+                        <i class="fa fa-calculator" aria-hidden="true"></i></a>
+                </div>
+                <div class="col s6 l5 pictoParcours pictoResidence">
+                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
+                       class="profil-residence">
+                        <i class="fa fa-home" aria-hidden="true"></i></a>
+                </div>
+            {% endif %}
         </div>
     </div>
-    <div class="row center">
-        {% if parcours == 'investisseur' %}
-            <div class="col s6 l6 offset-l3 pictoParcours pictoInvest">
-                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
-                   class="profil-investisseur">
-                    <i class="fa fa-calculator" aria-hidden="true"></i></a>
-            </div>
-        {% elseif parcours == 'residence' %}
-            <div class="col s6 l6 offset-l3 pictoParcours pictoResidence">
-                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
-                   class="profil-residence">
-                    <i class="fa fa-home" aria-hidden="true"></i></a>
-            </div>
-        {% else %}
-            <div class="col s6 l5 offset-l1 pictoParcours pictoInvest">
-                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
-                   class="profil-investisseur">
-                    <i class="fa fa-calculator" aria-hidden="true"></i></a>
-            </div>
-            <div class="col s6 l5 pictoParcours pictoResidence">
-                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
-                   class="profil-residence">
-                    <i class="fa fa-home" aria-hidden="true"></i></a>
-            </div>
-        {% endif %}
-    </div>
-</div>
 
-<div class="container-fluid" id="siteWrapper">
+    <div class="container-fluid" id="siteWrapper">
     <header>
         <div id="headerTop"></div>
         <div class="navbar" id="Grandenavigation">
@@ -103,149 +103,151 @@
     {% block content %}
 
 
-    <section id="content">
+        <section id="content">
 
-        <div class="row">
-            <div class="col s12 l10 offset-l1 formSearch z-depth-3">
-                <div class="row">
-                    <h1>
-                        <span>Recherchez votre bien immobilier neuf</span>
-                    </h1>
-                </div>
-                {{ form_start(simpleSearch) }}
-                <div class="row">
-                    <div class="input-field col s4 offset-s1">
-                        {{ form_label(simpleSearch.ville, 'Localisation') }}
-                        {{ form_widget(simpleSearch.ville) }}
-                        {{ form_errors(simpleSearch.ville) }}
+            <div class="row">
+                <div class="col s12 l10 offset-l1 formSearch z-depth-3">
+                    <div class="row">
+                        <h1>
+                            <span>Recherchez votre bien immobilier neuf</span>
+                        </h1>
                     </div>
+                    {{ form_start(simpleSearch) }}
+                    <div class="row">
+                        <div class="input-field col s4 offset-s1">
+                            {{ form_label(simpleSearch.ville, 'Localisation') }}
+                            {{ form_widget(simpleSearch.ville) }}
+                            {{ form_errors(simpleSearch.ville) }}
+                        </div>
 
-                    <div class="input-field col s4 offset-s1">
-                        {{ form_widget(simpleSearch.type) }}
-                        {{ form_errors(simpleSearch.type) }}
+                        <div class="input-field col s4 offset-s1">
+                            {{ form_widget(simpleSearch.type) }}
+                            {{ form_errors(simpleSearch.type) }}
+                        </div>
+                    </div>
+                    <div class="row center">
+
+                        {% if parcours == 'investisseur' %}
+                            <div class="formButton col s12 m12 l4 offset-l4">
+                                {{ form_widget(simpleSearch.investBtn) }}
+                                {{ form_widget(simpleSearch._token) }}
+                            </div>
+                        {% elseif parcours == 'residence' %}
+                            <div class="formButton col s12 m12 l4 offset-l4">
+                                {{ form_widget(simpleSearch.resPrincipaleBtn) }}
+                                {{ form_widget(simpleSearch._token) }}
+                            </div>
+                        {% else %}
+                            <div class="formButton col s12 m12 l4 offset-l1">
+                                {{ form_widget(simpleSearch.investBtn) }}
+                            </div>
+                            <div class="formButton col s12 m12 l6">
+                                {{ form_widget(simpleSearch.resPrincipaleBtn) }}
+                            </div>
+                            {{ form_end(simpleSearch) }}
+                        {% endif %}
+
                     </div>
                 </div>
-                <div class="row center">
 
-                    {% if parcours == 'investisseur' %}
-                        <div class="formButton col s12 m12 l4 offset-l4">
-                            {{ form_widget(simpleSearch.investBtn) }}
-                            {{ form_widget(simpleSearch._token) }}
-                        </div>
-                    {% elseif parcours == 'residence' %}
-                        <div class="formButton col s12 m12 l4 offset-l4">
-                            {{ form_widget(simpleSearch.resPrincipaleBtn) }}
-                            {{ form_widget(simpleSearch._token) }}
-                        </div>
-                    {% else %}
-                        <div class="formButton col s12 m12 l4 offset-l1">
-                            {{ form_widget(simpleSearch.investBtn) }}
-                        </div>
-                        <div class="formButton col s12 m12 l6">
-                            {{ form_widget(simpleSearch.resPrincipaleBtn) }}
-                        </div>
-                        {{ form_end(simpleSearch) }}
-                    {% endif %}
-
-                </div>
             </div>
 
-        </div>
 
+        </section>
 
-    </section>
+        <div class="container-fluid">
+            <div class="section white">
+                <div class="row container">
 
-    <div class="container-fluid">
-        <div class="section white">
-            <div class="row container">
+                    <div class="col s12 l12 liste-biens">
+                        <h2>
+                            <span>Nos biens phares</span>
+                        </h2>
+                        <div class="row">
+                            <div class="col s12 l6">
+                                {% for residence in residenceFav %}
+                                    {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidenceHome',
+                                    {'id': residence.id })) }}
+                                {% endfor %}
+                            </div>
 
-                <div class="col s12 l12 liste-biens">
-                    <h2>
-                        <span>Nos biens phares</span>
-                    </h2>
-                    <div class="row">
-                        <div class="col s12 l6">
-                            {% for residence in residenceFav %}
-                                {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidenceHome',
-                                {'id': residence.id })) }}
-                            {% endfor %}
-                        </div>
-
-                        <div class="col s12 l6">
-                            {% for resTwoFav in residenceTwoFav %}
-                                <div class="col s12 l12">
-                                    <div class="card">
-                                        <div class="card-image">
-                                            {% for media in resTwoFav.medias if media.typeMedia.nom == 'image' %}
-                                                <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
-                                                     alt="{{ resTwoFav.nom }}">
-                                            {% endfor %}
-                                            <span class="card-title">{{ resTwoFav.nom }}</span>
+                            <div class="col s12 l6">
+                                {% for resTwoFav in residenceTwoFav %}
+                                    <div class="col s12 l12">
+                                        <div class="card">
+                                            <div class="card-image">
+                                                {% for media in resTwoFav.medias if media.typeMedia.nom == 'image' %}
+                                                    <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
+                                                         alt="{{ resTwoFav.nom }}">
+                                                {% endfor %}
+                                                <span class="card-title">{{ resTwoFav.nom }}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
-        <div class="row parallax-container">
-            <div class="parallax parallax-testimonial">
-                <img src="{{ asset('img/apt-neuf.jpg') }}">
-            </div>
-            <div class="container">
-                <div class="row">
-                    <h3 class="h3-testimonial center-align"> Ce que les clients pensent de nous</h3>
-                    <div class="col m8 offset-m2 col s12">
-                        <div class="owl-carousel owl-theme owl-responsive-1000 owl-loaded">
-                            {% for testimonial in testimonials if testimonial.theme == 'avis' %}
-                                <div class="item cloned">
-                                    <div>
-                                        <div class="box_overlay">
-                                            <div class="pic">
-                                                <figure>
-                                                    <img src="{{ asset('img/testimonial_comment.jpg') }}" alt=""
-                                                         class="circle responsive-img">
-                                                </figure>
-                                                <h4>{{ testimonial.auteur }}
-                                                    <small>{{ testimonial.date }}</small>
-                                                </h4>
-                                            </div>
-                                            <div class="comment">
-                                                <p>{{ testimonial.message }}</p>
-                                            </div>
-                                        </div><!-- End box_overlay -->
+            <div class="row parallax-container">
+                <div class="parallax parallax-testimonial">
+                    <img src="{{ asset('img/apt-neuf.jpg') }}">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <h3 class="h3-testimonial center-align"> Ce que les clients pensent de nous</h3>
+                        <div class="col m8 offset-m2 col s12">
+                            <div class="owl-carousel owl-theme owl-responsive-1000 owl-loaded">
+                                {% for testimonial in testimonials if testimonial.theme == 'avis' %}
+                                    <div class="item cloned">
+                                        <div>
+                                            <div class="box_overlay">
+                                                <div class="pic">
+                                                    <figure>
+                                                        <img src="{{ asset('img/testimonial_comment.jpg') }}" alt=""
+                                                             class="circle responsive-img">
+                                                    </figure>
+                                                    <h4>{{ testimonial.auteur }}
+                                                        <small>{{ testimonial.date }}</small>
+                                                    </h4>
+                                                </div>
+                                                <div class="comment">
+                                                    <p>{{ testimonial.message }}</p>
+                                                </div>
+                                            </div><!-- End box_overlay -->
+                                        </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <!-- Modal Trigger -->
+        <div class="row">
+            <div class="col s12 center">
+                <div class="row carouselAgence">
+                    <div class="col s12 m10 l10 offset-l1">
+                        <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
+                            clients.
+                            Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
+                            meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
+                        <div class="carousel center-align">
+                            {% for collaborateur in collaborateurs %}
+                                {% if collaborateur.media.lien is defined %}
+                                    <a class="carousel-item" href="#one!"><img
+                                                src="{{ asset('uploads/'~collaborateur.media.lien) }}">
+                                        <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
+                                            <br><span>{{ collaborateur.fonction }}</span></p>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
 
-    <!-- Modal Trigger -->
-    <div class="row">
-        <div class="col s12 center">
-
-            <div class="row carouselAgence">
-                <div class="col s12 m10 l10 offset-l1">
-                    <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
-                        clients.
-                        Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
-                        meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
-                    <div class="carousel">
-                        {% for collaborateur in collaborateurs %}
-                            <a class="carousel-item" href="#one!"><img
-                                        src="{{ asset('img/equipe/'~collaborateur.media.lien) }}">
-                                <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
-                                    <br><span>{{ collaborateur.fonction }}</span></p>
-                            </a>
-                        {% endfor %}
                     </div>
                 </div>
 
@@ -261,13 +263,17 @@
             </div>
         </div>
 
+        </div>
+
+
         <div class="row">
             <div class="col s12 l6">
                 <h3>L'actualité</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
                         {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
-                            <img class="activator" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
+                            <img class="activator"
+                                 src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
                         {% endfor %}
                     </div>
                     <div class="card-content">
@@ -279,7 +285,7 @@
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ actu[0].titre }}<i
-                            class="material-icons right">close</i></span>
+                                    class="material-icons right">close</i></span>
                         <p>{{ actu[0].texte }}</p>
                     </div>
                 </div>
@@ -289,7 +295,10 @@
                 <h3>L'événement</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ asset('img/'~event[0].media.lien) | imagine_filter('thumb_article_site') }}">
+
+                        {% for media in event[0].medias if media.typeMedia.nom == 'image' %}
+                            <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
+                        {% endfor %}
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
@@ -305,225 +314,228 @@
                 </div>
             </div>
         </div>
-    </div>
 
     {% endblock %}
 
 
-        <div class="pre-footer">
-            <img class="skyline" src="{{ asset('img/toit_Orleans_vFinal.png') }}" alt="toits d'Orléans"/>
-        </div>
+    <div class="pre-footer">
+        <img class="skyline" src="{{ asset('img/toit_Orleans_vFinal.png') }}" alt="toits d'Orléans"/>
+    </div>
 
-        <footer class="page-footer">
-            <div class="container">
-                <p id="back-top"><a href="#top"><img src="{{ asset('img/backTop.png') }}"></a></p>
-                <div class="row">
-                    <div class="col l6 s12 footer-left-side">
-                        <h5 class="white-text">Suivez-nous</h5>
-                        <div class="row">
-                            <div class="col s1">
-                                <a href="https://www.facebook.com/myorleans/?ref=page_internal" target="_blank">
-                                    <div class="social-btn">
-                                        <i class="fa fa-facebook fa-3x fb-social" aria-hidden="true"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col offset-s1 s1">
-                                <a href="https://twitter.com/myorleans" target="_blank">
-                                    <div class="social-btn">
-                                        <i class="fa fa-twitter fa-3x icon-social" aria-hidden="true"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col offset-s1 s1">
-                                <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ" target="_blank">
-                                    <div class="social-btn">
-                                        <i class="fa fa-youtube fa-3x icon-social" aria-hidden="true"></i>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l5 offset-l1 s12 footer-right-side">
-                        <h5 class="white-text">Contactez-nous</h5>
-                        <p class="p-footer-phone no-margin-bottom"><span><i
-                                        class="small material-icons align-icon">phone</i></span><a
-                                    href="tel:+33238759447">02
-                                38 75 94
-                                47</a></p>
-                        <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13,
-                            rue Bannier 45000 Orléans</p>
-                        <p class="p-footer email"><span><i class="small material-icons align-icon">email</i></span><a
-                                    href="mailto:agence@my-orleans.com">agence@my-orleans.com</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    <div class="row row-ml">
-                        <div class="col s2">
-                            <p>© 2017 My-Orléans</p>
-                        </div>
-                        <div class="col s8 center">
-                            <p><a class="grey-text text-lighten-4 ml-padding-right" href="#!">Mentions légales</a>
-                                <a class="grey-text text-lighten-4" href="#!">Frais et honoraires de gestion</a></p>
-                        </div>
-                        <div class="col s2">
-                            <p><a class="grey-text text-lighten-4" href="#!">Wild Code School</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- début formulaire de contact -->
-        <form method="post" action="">
-            <div id="slide-out" class="side-nav">
-                <div class="userView">
-                    <h3 align="center">Contactez nous !</h3>
-                    <h4 align="center">{{ telephone_number }}</h4>
-                    {{ form_start(form) }}
+    <footer class="page-footer">
+        <div class="container">
+            <p id="back-top"><a href="#top"><img src="{{ asset('img/backTop.png') }}"></a></p>
+            <div class="row">
+                <div class="col l6 s12 footer-left-side">
+                    <h5 class="white-text">Suivez-nous</h5>
                     <div class="row">
-
-                        <div class="input-field col l6 m6 s12">
-                            <i class="material-icons prefix">account_circle</i>
-                            {{ form_label(form.nom) }}
-                            {{ form_widget(form.nom) }}
-                            {{ form_errors(form.nom) }}
+                        <div class="col s1">
+                            <a href="https://www.facebook.com/myorleans/?ref=page_internal"
+                               target="_blank">
+                                <div class="social-btn">
+                                    <i class="fa fa-facebook fa-3x fb-social" aria-hidden="true"></i>
+                                </div>
+                            </a>
                         </div>
-
-                        <div class="input-field col l6 m6 s12">
-                            <i class="material-icons prefix">account_circle</i>
-                            {{ form_label(form.prenom) }}
-                            {{ form_widget(form.prenom) }}
-                            {{ form_errors(form.prenom) }}
+                        <div class="col offset-s1 s1">
+                            <a href="https://twitter.com/myorleans" target="_blank">
+                                <div class="social-btn">
+                                    <i class="fa fa-twitter fa-3x icon-social" aria-hidden="true"></i>
+                                </div>
+                            </a>
                         </div>
-
-                        <div class="input-field col l6 m6 s12">
-                            <i class="material-icons prefix">email</i>
-                            {{ form_label(form.email) }}
-                            {{ form_widget(form.email) }}
-                            {{ form_errors(form.email) }}
+                        <div class="col offset-s1 s1">
+                            <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ"
+                               target="_blank">
+                                <div class="social-btn">
+                                    <i class="fa fa-youtube fa-3x icon-social" aria-hidden="true"></i>
+                                </div>
+                            </a>
                         </div>
+                    </div>
+                </div>
+                <div class="col l5 offset-l1 s12 footer-right-side">
+                    <h5 class="white-text">Contactez-nous</h5>
+                    <p class="p-footer-phone no-margin-bottom"><span><i
+                                    class="small material-icons align-icon">phone</i></span><a
+                                href="tel:+33238759447">02
+                            38 75 94
+                            47</a></p>
+                    <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13,
+                        rue Bannier 45000 Orléans</p>
+                    <p class="p-footer email"><span><i class="small material-icons align-icon">email</i></span><a
+                                href="mailto:agence@my-orleans.com">agence@my-orleans.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row row-ml">
+                    <div class="col s2">
+                        <p>© 2017 My-Orléans</p>
+                    </div>
+                    <div class="col s8 center">
+                        <p><a class="grey-text text-lighten-4 ml-padding-right" href="#!">Mentions
+                                légales</a>
+                            <a class="grey-text text-lighten-4" href="#!">Frais et honoraires de
+                                gestion</a></p>
+                    </div>
+                    <div class="col s2">
+                        <p><a class="grey-text text-lighten-4" href="#!">Wild Code School</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-                        <div class="input-field col l6 m6 s12">
-                            <i class="material-icons prefix">phone</i>
-                            {{ form_label(form.telephone) }}
-                            {{ form_widget(form.telephone) }}
-                            {{ form_errors(form.telephone) }}
-                        </div>
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav">
+            <div class="userView">
+                <h3 align="center">Contactez nous !</h3>
+                <h4 align="center">{{ telephone_number }}</h4>
+                {{ form_start(form) }}
+                <div class="row">
 
-                        <div class="input-field col l6 m6 s12">
-                            <i class="material-icons prefix">my_location</i>
-                            {{ form_label(form.codePostal) }}
-                            {{ form_widget(form.codePostal) }}
-                            {{ form_errors(form.codePostal) }}
-                        </div>
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
 
-                        <div class="input-field col l6 m6 s12">
-                            <i class="material-icons prefix">location_on</i>
-                            {{ form_label(form.ville) }}
-                            {{ form_widget(form.ville) }}
-                            {{ form_errors(form.ville) }}
-                        </div>
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.prenom) }}
+                        {{ form_widget(form.prenom) }}
+                        {{ form_errors(form.prenom) }}
+                    </div>
 
-                        <div class="input-field col l12 m12 s12">
-                            <i class="material-icons prefix">my_location</i>
-                            {{ form_label(form.adresse) }}
-                            {{ form_widget(form.adresse) }}
-                            {{ form_errors(form.adresse) }}
-                        </div>
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">location_on</i>
+                        {{ form_label(form.ville) }}
+                        {{ form_widget(form.ville) }}
+                        {{ form_errors(form.ville) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.adresse) }}
+                        {{ form_widget(form.adresse) }}
+                        {{ form_errors(form.adresse) }}
+                    </div>
 
 
-                        <div class="input-field col l12 m12 s12">
-                            <i class="material-icons prefix">mode_edit</i>
-                            {{ form_label(form.message) }}
-                            {{ form_widget(form.message) }}
-                            {{ form_errors(form.message) }}
-                        </div>
-
-                        <div class="row center">
-                            <p style="text-align: center">Je souhaite m'abonner à la newsletter?</p>
-
-                            {{ form_widget(form.newsletter) }}
-                            {{ form_errors(form.newsletter) }}
-                        </div>
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message) }}
+                        {{ form_errors(form.message) }}
                     </div>
 
                     <div class="row center">
-                        <div class="input-field col l12">
-                            {{ form_row(form.envoyer) }}
-                        </div>
-                    </div>
+                        <p style="text-align: center">Je souhaite m'abonner à la newsletter?</p>
 
-                    {{ form_end(form) }}
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
+                    </div>
                 </div>
 
+                <div class="row center">
+                    <div class="input-field col l12">
+                        {{ form_row(form.envoyer) }}
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
             </div>
 
-        </form>
-        <!--fin formulaire de contact-->
+        </div>
+
+    </form>
+    <!--fin formulaire de contact-->
 
 
-        {% endblock %}
+{% endblock %}
 
-        {% block javascripts %}
-            {{ parent() }}
+                    {% block javascripts %}
+                        {{ parent() }}
 
-            <script type="text/javascript" src="{{ asset("js/carousel-testimonial.js") }}"></script>
-            <script type="text/javascript" src="{{ asset('owlcarousel/owl.carousel.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
+                        <script type="text/javascript" src="{{ asset("js/carousel-testimonial.js") }}"></script>
+                        <script type="text/javascript" src="{{ asset('owlcarousel/owl.carousel.js') }}"></script>
+                        <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+                        <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
 
-            <script type="text/javascript">
-                $(document).ready(function () {
+                        <script type="text/javascript">
+                            $(document).ready(function () {
 
-                    // hide #back-top first
-                    $("#back-top").hide();
+                                // hide #back-top first
+                                $("#back-top").hide();
 
-                    // fade in #back-top
-                    $(function () {
-                        $(window).scroll(function () {
-                            if ($(this).scrollTop() > 100) {
-                                $('#back-top').fadeIn();
-                            } else {
-                                $('#back-top').fadeOut();
-                            }
-                        });
+                                // fade in #back-top
+                                $(function () {
+                                    $(window).scroll(function () {
+                                        if ($(this).scrollTop() > 100) {
+                                            $('#back-top').fadeIn();
+                                        } else {
+                                            $('#back-top').fadeOut();
+                                        }
+                                    });
 
-                        // scroll body to 0px on click
-                        $('#back-top a').click(function () {
-                            $('body,html').animate({
-                                scrollTop: 0
-                            }, 800);
-                            return false;
-                        });
-                    });
-
-
-                    $('input.autocomplete').autocomplete({
-                        data: {
-                            {% for ville in villes %}
-                            "{{ ville.nom }}": null,
-                            {% endfor %}
-                        },
-                        limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                        onAutocomplete: function (val) {
-                            // Callback function when value is autcompleted.
-                        },
-                        minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+                                    // scroll body to 0px on click
+                                    $('#back-top a').click(function () {
+                                        $('body,html').animate({
+                                            scrollTop: 0
+                                        }, 800);
+                                        return false;
+                                    });
+                                });
 
 
-                    });
+                                $('input.autocomplete').autocomplete({
+                                    data: {
+                                        {% for ville in villes %}
+                                        "{{ ville.nom }}": null,
+                                        {% endfor %}
+                                    },
+                                    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                                    onAutocomplete: function (val) {
+                                        // Callback function when value is autcompleted.
+                                    },
+                                    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
 
-                    $('.button-collapse').sideNav({
-                            edge: 'right', // Choose the horizontal origin
-                            draggable: false, // Choose whether you can drag to open on touch screens
-                            closeOnClick: true
-                        }
-                    );
 
-                });
-            </script>
+                                });
 
-        {% endblock %}
+                                $('.button-collapse').sideNav({
+                                        edge: 'right', // Choose the horizontal origin
+                                        draggable: false, // Choose whether you can drag to open on touch screens
+                                        closeOnClick: true
+                                    }
+                                );
+
+                            });
+                        </script>
+
+                    {% endblock %}

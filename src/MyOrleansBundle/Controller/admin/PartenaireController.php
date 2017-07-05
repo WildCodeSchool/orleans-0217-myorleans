@@ -2,10 +2,13 @@
 
 namespace MyOrleansBundle\Controller\admin;
 
+use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Partenaire;
+use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Partenaire controller.
@@ -23,7 +26,6 @@ class PartenaireController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $partenaires = $em->getRepository('MyOrleansBundle:Partenaire')->findAll();
 
         return $this->render('partenaire/index.html.twig', array(
@@ -37,7 +39,7 @@ class PartenaireController extends Controller
      * @Route("/new", name="admin_partenaire_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $partenaire = new Partenaire();
         $form = $this->createForm('MyOrleansBundle\Form\PartenaireType', $partenaire);
@@ -45,6 +47,7 @@ class PartenaireController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($partenaire);
             $em->flush();
 
@@ -79,13 +82,14 @@ class PartenaireController extends Controller
      * @Route("/{id}/edit", name="admin_partenaire_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Partenaire $partenaire)
+    public function editAction(Request $request, Partenaire $partenaire, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($partenaire);
         $editForm = $this->createForm('MyOrleansBundle\Form\PartenaireType', $partenaire);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_partenaire_edit', array('id' => $partenaire->getId()));
@@ -119,6 +123,22 @@ class PartenaireController extends Controller
     }
 
     /**
+     * Deletes a partenaire media.
+     *
+     * @Route("/{id}/delete_media", name="partenaire_media_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Partenaire $partenaire)
+    {
+        $path = $partenaire->getMedia()->getLien();
+        $em = $this->getDoctrine()->getManager();
+        $partenaire->setMedia(null);
+        $em->flush();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        return $this->redirectToRoute('admin_partenaire_edit', array('id' => $partenaire->getId()));
+    }
+
+    /**
      * Creates a form to delete a partenaire entity.
      *
      * @param Partenaire $partenaire The partenaire entity
@@ -130,7 +150,6 @@ class PartenaireController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_partenaire_delete', array('id' => $partenaire->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

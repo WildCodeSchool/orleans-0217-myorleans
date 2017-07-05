@@ -4,8 +4,8 @@
         <div class="row agencyVideo">
             <div class="col s12">
                 {% for cover in cover if cover.page == 'agence_cover' %}
-                <iframe id="myIframe" src="{{ cover.lien }}" frameborder="0"
-                        allowfullscreen></iframe>
+                    <iframe id="myIframe" src="{{ cover.lien }}" frameborder="0"
+                            allowfullscreen></iframe>
                 {% endfor %}
             </div>
         </div>
@@ -33,9 +33,13 @@
                         {% for collaborateur in collaborateurs %}
                             <div class="col l4 s12">
                                 <div class="blockStaff">
+                                    {% if collaborateur.media.lien is defined  %}
                                     <div class="imgStaff">
-                                        <img src="{{ asset('img/equipe/'~collaborateur.media.lien ) | imagine_filter('thumb_collaborateur') }}" alt="">
+
+                                        <img src="{{ asset('uploads/'~collaborateur.media.lien ) }}" alt="">
+
                                     </div>
+                                    {% endif %}
                                     <div class="infoStaff">
                                         <h3>{{ collaborateur.prenom }} {{ collaborateur.nom }}</h3>
                                         <h4>{{ collaborateur.fonction }}</h4>
@@ -107,6 +111,7 @@
                             </li>
 
                         {% endif %}
+
                     {% endfor %}
                     <li></li>
                 </ol>
@@ -128,10 +133,12 @@
                     <div class="row center">
                         {% for partenaire in partenaires %}
                             <div class="col s3 l1">
+                                {% if partenaire.media.lien is defined  %}
                                 <a href="{{ partenaire.url }}" target="_blank">
                                     <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.lien) }}"
                                          alt="{{ partenaire.nom }}">
                                 </a>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>

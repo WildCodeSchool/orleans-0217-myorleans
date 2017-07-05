@@ -3,10 +3,15 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Form\ArticleType;
+use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 
 /**
  * Article controller.
@@ -38,14 +43,17 @@ class ArticleController extends Controller
      * @Route("/new", name="admin_article_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $article = new Article();
+        $media = new Media();
+        $article->getMedias()->add($media);
         $form = $this->createForm('MyOrleansBundle\Form\ArticleType', $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($article);
             $em->flush();
 
@@ -80,15 +88,19 @@ class ArticleController extends Controller
      * @Route("/{id}/edit", name="admin_article_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Article $article)
+    public function editAction(Request $request, Article $article, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($article);
-        $editForm = $this->createForm('MyOrleansBundle\Form\ArticleType', $article);
+        if (!empty($article->getMedias())) {
+            $media = new Media();
+            $article->getMedias()->add($media);
+        }
+        $editForm = $this->createForm(ArticleType::class, $article);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
+            $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('admin_article_edit', array('id' => $article->getId()));
         }
 
@@ -119,6 +131,30 @@ class ArticleController extends Controller
         return $this->redirectToRoute('admin_article_index');
     }
 
+
+    /**
+     * Deletes a article media.
+     *
+     * @Route("/{id}/delete_media/{media_id}", name="article_media_delete")
+     * @ParamConverter("article", class="MyOrleansBundle:Article", options={"id" = "id"})
+     * @ParamConverter("media", class="MyOrleansBundle:Media", options={"id" = "media_id"})
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Article $article, Media $media)
+    {
+        //$articles = $media->getArticles();
+        $em = $this->getDoctrine()->getManager();
+
+        $path = $media->getLien();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        $article->removeMedia($media);
+        $em->remove($media);
+
+        $em->flush();
+        return $this->redirectToRoute('admin_article_edit', array('id' => $article->getId()));
+    }
+
+
     /**
      * Creates a form to delete a article entity.
      *
@@ -131,7 +167,6 @@ class ArticleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_article_delete', array('id' => $article->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

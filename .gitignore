@@ -18,8 +18,7 @@
 composer.json
 /app/config/parameters.yml
 /.web-server-pid
+/src/MyOrleansBundle/Entity/*~
 /Entity/*~
-/web/uploads/
-/web/media/
-
-
+web/uploads/
+web/media/

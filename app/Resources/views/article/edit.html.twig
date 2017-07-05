@@ -13,9 +13,36 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_widget(edit_form) }}
+                            {{ form_label(edit_form.titre, "Titre de l'article:") }}
+                            {{ form_widget(edit_form.titre) }}
+                            {{ form_label(edit_form.texte, 'Texte de l\'article: ') }}
+                            {{ form_widget(edit_form.texte) }}
+                            {{ form_label(edit_form.date, 'Date: ') }}
+                            {{ form_widget(edit_form.date) }}
+                            {{ form_label(edit_form.residence, 'Résidence lié: ') }}
+                            {{ form_widget(edit_form.residence) }}
+                            {{ form_label(edit_form.tags, 'Tags: ') }}
+                            {{ form_widget(edit_form.tags) }}
+                            {{ form_label(edit_form.typeArticle, 'Type de l\'article: ') }}
+                            {{ form_widget(edit_form.typeArticle) }}
+                            {% for media in article.medias %}
+                                {% if media.id != null %}
+                                    <p class="imgUploader"><img class="responsive-img"
+                                                                src="{{ asset('uploads/'~media.lien) }}"/>
+                                        <a href="{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}">Supprimer</a>
+                                    </p>
+                                {% else %}
+                                    <h3>Veuillez charger une nouvelle image.</h3>
+                                    <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type
+                                        du
+                                        media.</p>
+                                    {{ form_row(edit_form.medias) }}
+                                {% endif %}
+                            {% endfor %}
+                            <a href="#" id="add-another-media">Ajouter un média</a>
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
-                            {{ form_end(edit_form) }}
+                            {{ form_widget(edit_form._token) }}
+                            </form>
 
                             <ul>
                                 <li>
@@ -37,4 +64,27 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        // keep track of how many email fields have been rendered
+        var mediaCount = '{{ edit_form.medias|length }}';
+        jQuery(document).ready(function () {
+            jQuery('#add-another-media').click(function (e) { // appbundle_products_add-product
+                e.preventDefault();
+                var mediaList = jQuery('#{{ edit_form.medias.vars.id }}');
+
+                var newWidget = mediaList.attr('data-prototype');
+                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
+                newWidget = newWidget.replace(/__name__/g, mediaCount);
+                mediaCount++;
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(mediaList);
+
+            });
+        })
+    </script>
 {% endblock %}

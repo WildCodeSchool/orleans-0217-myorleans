@@ -18,6 +18,7 @@
                                 <th>Adresse</th>
                                 <th>Codepostal</th>
                                 <th>Ville</th>
+                                <th>Quartier</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
                                 <th>Datelivraison</th>
@@ -35,7 +36,16 @@
                                         <td>{{ residence.nom }}</td>
                                         <td>{{ residence.adresse }}</td>
                                         <td>{{ residence.codePostal }}</td>
-                                        <td>{{ residence.ville.nom }}</td>
+                                        {% if residence.ville.nom is defined %}
+                                            <td>{{ residence.ville.nom }}</td>
+                                        {% else %}
+                                            <td>  </td>
+                                        {% endif %}
+                                        {% if residence.quartier.nom is defined %}
+                                            <td>{{ residence.quartier.nom }}</td>
+                                        {% else %}
+                                            <td>  </td>
+                                        {% endif %}
                                         <td>{{ residence.latitude }}</td>
                                         <td>{{ residence.longitude }}</td>
                                         <td>{{ residence.dateLivraison }}</td>

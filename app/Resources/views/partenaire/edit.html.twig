@@ -13,9 +13,25 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_widget(edit_form) }}
+                            {{ form_label(edit_form.nom, 'Nom du partenaire:') }}
+                            {{ form_widget(edit_form.nom) }}
+                            {{ form_label(edit_form.url, 'Url du site web:') }}
+                            {{ form_widget(edit_form.url) }}
+                            {% if partenaire.media.lien is defined %}
+
+                                <p class="imgUploader"><img class="responsive-img"
+                                                            src="{{ asset('uploads/'~partenaire.media.lien) }}"
+                                                            alt="{{ partenaire.nom }}"/>
+                                    <a href="{{ path('partenaire_media_delete', {"id" : partenaire.id}) }}">Supprimer</a>
+                                </p>
+                            {% else %}
+                                <h3>Veuillez charger une nouvelle image.</h3>
+                                <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du media.</p>
+                                {{ form_widget(edit_form.media) }}
+                            {% endif %}
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
-                            {{ form_end(edit_form) }}
+                            {{ form_widget(edit_form._token) }}
+                            </form>
 
                             <ul>
                                 <li>

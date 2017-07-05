@@ -13,9 +13,27 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_widget(edit_form) }}
+                            {{ form_label(edit_form.nom, 'Nom du pack:') }}
+                            {{ form_widget(edit_form.nom) }}
+                            {{ form_label(edit_form.description, 'Description du pack:') }}
+                            {{ form_widget(edit_form.description) }}
+                            {{ form_label(edit_form.prix, 'Prix du pack:') }}
+                            {{ form_widget(edit_form.prix) }}
+                            {% if pack.media.lien is defined %}
+
+                                <p class="imgUploader"><img class="responsive-img"
+                                                            src="{{ asset('uploads/'~pack.media.lien) }}"
+                                                            alt="{{ pack.nom }}"/>
+                                    <a href="{{ path('pack_media_delete', {"id" : pack.id}) }}">Supprimer</a>
+                                </p>
+                            {% else %}
+                                <h3>Veuillez charger une nouvelle image.</h3>
+                                <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du media.</p>
+                                {{ form_widget(edit_form.media) }}
+                            {% endif %}
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
-                            {{ form_end(edit_form) }}
+                            {{ form_widget(edit_form._token) }}
+                            </form>
 
                             <ul>
                                 <li>

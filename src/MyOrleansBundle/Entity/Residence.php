@@ -46,12 +46,12 @@ class Residence
     private $codePostal;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="residences")
+     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="residences", cascade={"persist"}, fetch="EAGER")
      */
     private $ville;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quartier", inversedBy="residences")
+     * @ORM\ManyToOne(targetEntity="Quartier", inversedBy="residences", cascade={"persist"}, fetch="EAGER")
      */
     private $quartier;
 
@@ -662,7 +662,7 @@ class Residence
      *
      * @return Residence
      */
-    public function setVille(\MyOrleansBundle\Entity\Ville $ville = null)
+    public function setVille(\MyOrleansBundle\Entity\Ville $ville)
     {
         $this->ville = $ville;
 
