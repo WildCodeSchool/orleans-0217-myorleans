@@ -21,9 +21,6 @@
                             <table class="table table-hover">
                                 <thead class="text-warning">
                                 <th>Nom</th>
-                                <th>Adresse</th>
-                                <th>Code Postal</th>
-                                <th>Ville</th>
                                 <th>Aperçu</th>
                                 <th>Éditer</th>
                                 </thead>
@@ -32,9 +29,6 @@
 
                                     <tr>
                                         <td>{{ residence.nom }}</td>
-                                        <td>{{ residence.adresse }}</td>
-                                        <td>{{ residence.codePostal }}</td>
-                                        <td>{{ residence.ville.nom }}</td>
 
                                         <td>
                                             <a href="{{ path('admin_residence_show', { 'id': residence.id }) }}"><i

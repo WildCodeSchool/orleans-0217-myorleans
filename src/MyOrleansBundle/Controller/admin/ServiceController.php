@@ -47,12 +47,6 @@ class ServiceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $media = $service->getMedia();
-            $file = $media->getLien();
-
-            $filename = $fileUploader->upload($file);
-
-            $media->setLien($filename);
             $em->persist($service);
             $em->flush();
 
@@ -95,13 +89,7 @@ class ServiceController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $media = $service->getMedia();
 
-            $file = $media->getLien();
-            if ($file) {
-                $filename = $fileUploader->upload($file);
-                $media->setLien($filename);
-            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_service_edit', array('id' => $service->getId()));

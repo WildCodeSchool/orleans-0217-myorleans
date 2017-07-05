@@ -56,14 +56,7 @@ class ResidenceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $medias = $residence->getMedias();
 
-            foreach ($medias as $media) {
-                $file = $media->getLien();
-                $filename = $fileUploader->upload($file);
-                $media->setLien($filename);
-                $media->setResidences([$residence]);
-            }
             $em->persist($residence);
             $em->flush();
 
@@ -100,7 +93,7 @@ class ResidenceController extends Controller
     public function editAction(Request $request, Residence $residence, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($residence);
-        if (!empty($residence->getMedias())) {
+        if ($residence->getMedias()->isEmpty()) {
             $media = new Media();
             $residence->getMedias()->add($media);
         }
@@ -109,16 +102,7 @@ class ResidenceController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-            $residence = $editForm->getData();
-            $medias = $residence->getMedias();
-            foreach ($medias as $media) {
-                $file = $media->getLien();
-                if ($file) {
-                    $filename = $fileUploader->upload($file);
-                    $media->setLien($filename);
-                    $media->setResidences([$residence]);
-                }
-            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_residence_edit', array('id' => $residence->getId()));

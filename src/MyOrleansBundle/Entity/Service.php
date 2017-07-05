@@ -163,4 +163,18 @@ class Service
     {
         return $this->medias;
     }
+
+    /**
+     * Set medias
+     *
+     * @param \MyOrleansBundle\Entity\Media $medias
+     *
+     * @return Service
+     */
+    public function setMedias(\MyOrleansBundle\Entity\Media $medias = null)
+    {
+        $this->medias = $medias;
+
+        return $this;
+    }
 }

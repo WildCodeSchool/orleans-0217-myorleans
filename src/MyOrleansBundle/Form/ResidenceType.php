@@ -3,7 +3,9 @@
 namespace MyOrleansBundle\Form;
 
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\Quartier;
 use MyOrleansBundle\Entity\TypeMedia;
+use MyOrleansBundle\Entity\Ville;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -27,7 +29,14 @@ class ResidenceType extends AbstractType
             ->add('nom', TextType::class)
             ->add('adresse', TextType::class)
             ->add('codePostal', NumberType::class)
-            ->add('ville', TextType::class)
+            ->add('ville', EntityType::class, [
+                'class' => Ville::class,
+                'choice_label' => 'nom'
+            ])
+            ->add('quartier',  EntityType::class, [
+                'class' => Quartier::class,
+                'choice_label' => 'nom'
+            ])
             ->add('latitude', NumberType::class)
             ->add('longitude', NumberType::class)
             ->add('dateLivraison', TextType::class)

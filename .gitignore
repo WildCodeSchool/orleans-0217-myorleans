@@ -23,8 +23,8 @@ composer.json
 
 
 
-*~
+/src/MyOrleansBundle/Entity/*~
 
 
-/web/uploads
+/web/uploads/
 

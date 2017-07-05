@@ -53,14 +53,7 @@ class ArticleController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $medias = $article->getMedias();
 
-            foreach ($medias as $media) {
-                $file = $media->getLien();
-                $filename = $fileUploader->upload($file);
-                $media->setLien($filename);
-                $media->setArticles([$article]);
-            }
             $em->persist($article);
             $em->flush();
 
@@ -106,17 +99,7 @@ class ArticleController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $article = $editForm->getData();
-            $medias = $article->getMedias();
-            foreach ($medias as $media) {
-                $file = $media->getLien();
 
-                if ($file) {
-                    $filename = $fileUploader->upload($file);
-                    $media->setLien($filename);
-                    $media->setArticles([$article]);
-                }
-            }
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('admin_article_edit', array('id' => $article->getId()));
         }

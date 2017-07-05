@@ -349,7 +349,6 @@ class Media
     public function addResidence(\MyOrleansBundle\Entity\Residence $residence)
     {
         $this->residences[] = $residence;
-
         return $this;
     }
 

@@ -250,6 +250,7 @@ class Article
         $this->medias[] = $media;
         $media->setArticles($this);
         return $this;
+
     }
 
     /**

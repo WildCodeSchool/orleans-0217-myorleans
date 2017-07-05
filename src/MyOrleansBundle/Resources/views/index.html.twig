@@ -182,7 +182,7 @@
                                     <div class="card">
                                         <div class="card-image">
                                             {% for media in resTwoFav.medias if media.typeMedia.nom == 'image' %}
-                                                <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
+                                                <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
                                                      alt="{{ resTwoFav.nom }}">
                                             {% endfor %}
                                             <span class="card-title">{{ resTwoFav.nom }}</span>

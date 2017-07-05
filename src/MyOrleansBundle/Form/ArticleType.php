@@ -34,9 +34,6 @@ class ArticleType extends AbstractType
             ->add('tags', CollectionType::class, [
                 'entry_type' => TagType::class,
                 'allow_add' => true,
-                /*'allow_delete' => true,
-                'prototype' => true,
-                'by_reference' => false,*/
             ])
             ->add('typeArticle', EntityType::class, [
                 'class' => TypeArticle::class,

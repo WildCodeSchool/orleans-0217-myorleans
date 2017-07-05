@@ -48,10 +48,6 @@ class PackController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $media = $pack->getMedia();
-            $file = $media->getLien();
-            $filename = $fileUploader->upload($file);
-            $media->setLien($filename);
             $em->persist($pack);
             $em->flush();
 
@@ -93,12 +89,7 @@ class PackController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $media = $pack->getMedia();
-            $file = $media->getLien();
-            if ($file) {
-                $filename = $fileUploader->upload($file);
-                $media->setLien($filename);
-            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_pack_edit', array('id' => $pack->getId()));

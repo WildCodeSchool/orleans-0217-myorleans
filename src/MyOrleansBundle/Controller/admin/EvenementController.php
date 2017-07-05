@@ -52,14 +52,7 @@ class EvenementController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $medias = $evenement->getMedias();
 
-            foreach ($medias as $media) {
-                $file = $media->getLien();
-                $filename = $fileUploader->upload($file);
-                $media->setLien($filename);
-                $media->setEvenement($evenement);
-            }
             $em->persist($evenement);
             $em->flush();
 
@@ -97,25 +90,10 @@ class EvenementController extends Controller
     public function editAction(Request $request, Evenement $evenement, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($evenement);
-        if (count($evenement->getMedias()) == 0) {
-            $media = new Media();
-            $evenement->getMedias()->add($media);
-        }
         $editForm = $this->createForm(EvenementType::class, $evenement);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $evenement = $editForm->getData();
-            $medias = $evenement->getMedias();
-            foreach ($medias as $media) {
-                $file = $media->getLien();
-
-                if ($file) {
-                    $filename = $fileUploader->upload($file);
-                    $media->setLien($filename);
-                    $media->setEvenement($evenement);
-                }
-            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_evenement_show', array('id' => $evenement->getId()));

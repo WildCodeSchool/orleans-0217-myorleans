@@ -47,10 +47,7 @@ class PartenaireController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $media = $partenaire->getMedia();
-            $file = $media->getLien();
-            $filename = $fileUploader->upload($file);
-            $media->setLien($filename);
+
             $em->persist($partenaire);
             $em->flush();
 
@@ -92,13 +89,7 @@ class PartenaireController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $media = $partenaire->getMedia();
 
-            $file = $media->getLien();
-            if ($file) {
-                $filename = $fileUploader->upload($file);
-                $media->setLien($filename);
-            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_partenaire_edit', array('id' => $partenaire->getId()));

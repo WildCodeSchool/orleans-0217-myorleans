@@ -55,14 +55,7 @@ class FlatController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $medias = $flat->getMedias();
 
-            foreach ($medias as $media) {
-                $file = $media->getLien();
-                $filename = $fileUploader->upload($file);
-                $media->setLien($filename);
-                $media->setFlats([$flat]);
-            }
             $em->persist($flat);
             $em->flush();
 
@@ -136,16 +129,6 @@ class FlatController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-            $flat = $editForm->getData();
-            $medias = $flat->getMedias();
-            foreach ($medias as $media) {
-                $file = $media->getLien();
-                if ($file) {
-                    $filename = $fileUploader->upload($file);
-                    $media->setLien($filename);
-                    $media->setFlats([$flat]);
-                }
-            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_flat_edit', array('id' => $flat->getId()));
