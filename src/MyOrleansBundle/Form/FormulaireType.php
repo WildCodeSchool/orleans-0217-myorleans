@@ -32,7 +32,7 @@ class FormulaireType extends AbstractType
             ->add('ville', TextType::class)
             ->add('adresse', TextType::class)
             ->add('sujet', ChoiceType::class, [
-                'choices' => ['Objet du message?'=> 0, 'Residence principale' => 1, 'Investissement' => 2, 'Services' => 3],
+                'choices' => ['Objet du message?'=> 0, 'Residence principale' => 1, 'Investissement' => 2, 'Services' => 3, 'Autres' =>4],
                 'empty_data' => 'Objet du message?',
                 'expanded' => false,
                 'multiple' => false
