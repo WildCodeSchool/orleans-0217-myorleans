@@ -30,14 +30,6 @@
                 <div class="sidebar-wrapper">
                     <ul class="nav collapsible collapsible-accordion" data-collapsible="accordion">
                         <li>
-                            <div class="active collapsible-header">
-                                <a href="{{ path('fos_user_security_logout') }}">
-                                <i class="material-icons">power_settings_new</i>
-                                <p>Déconnexion</p>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
                             <div class="active collapsible-header"><a href="{{ path("admin_home") }}">
                                     <i class="material-icons">dashboard</i>
                                     <p>Accueil</p>
@@ -92,7 +84,15 @@
                                 </a><br>
                             </div>
                         </li>
-
+                        <hr>
+                        <li>
+                            <div class="active collapsible-header">
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    <i class="material-icons">power_settings_new</i>
+                                    <p>Déconnexion</p>
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
