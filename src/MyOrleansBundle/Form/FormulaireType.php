@@ -32,7 +32,8 @@ class FormulaireType extends AbstractType
             ->add('ville', TextType::class)
             ->add('adresse', TextType::class)
             ->add('sujet', ChoiceType::class, [
-                'choices' => array('Objet ?' => 0, 'Residence principale' => 1, 'Investissement' => 2, 'Services' => 3),
+                'choices' => ['Objet du message?'=> null, 'Residence principale' => 1, 'Investissement' => 2, 'Services' => 3],
+                'empty_data' => 'Objet du message?',
                 'expanded' => false,
                 'multiple' => false
             ])
@@ -42,6 +43,7 @@ class FormulaireType extends AbstractType
             ->add('newsletter', ChoiceType::class, [
                 'choices' => array('oui' => true, 'non' => false),
                 'data' => true,
+
                 'expanded' => true,
                 'multiple' => false
             ])

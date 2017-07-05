@@ -51,7 +51,7 @@ class HomeController extends Controller
 
 
         // Formulaire de contact
-        $client = new  Client();
+        $client = new Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
 
@@ -83,7 +83,6 @@ class HomeController extends Controller
         }
 
 
-
         // Recuperation de la liste des villes dans lesquelles se trouvent les residences
         $residences = $em->getRepository(Residence::class)->findAll();
         $villes = [];
@@ -95,7 +94,6 @@ class HomeController extends Controller
         $villes = $em->getRepository(Ville::class)->findAll();
 
 
-
         // Fin recuperation des villes
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
             null,
@@ -105,7 +103,7 @@ class HomeController extends Controller
         return $this->render('MyOrleansBundle::index.html.twig', [
             'parcours' => $parcours,
             'simpleSearch' => $simpleSearch->createView(),
-            'villes'=> $villes,
+            'villes' => $villes,
             'collaborateurs' => $collaborateurs,
             'residenceFav' => $residenceFav,
             'residenceTwoFav' => $residenceTwoFav,
@@ -115,7 +113,6 @@ class HomeController extends Controller
             'testimonials' => $testimonials,
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
-
 
 
         ]);
@@ -234,8 +231,8 @@ class HomeController extends Controller
     public function parcoursImmoAction(SessionInterface $session)
     {
         $parcours = null;
-        if (isset($_SESSION)) {
-            $parcours = $_SESSION['parcours'];
+        if ($session->has('parcours')) {
+            $parcours = $session->get('parcours');
         }
 
         return $this->render('MyOrleansBundle::parcoursimmo.html.twig', [
