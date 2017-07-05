@@ -64,7 +64,7 @@ class Collaborateur
      */
     private $email;
     /**
-     * @ORM\OneToOne(targetEntity="Media",cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Media", inversedBy="collaborateur",cascade={"persist"})
      */
     private $media;
 

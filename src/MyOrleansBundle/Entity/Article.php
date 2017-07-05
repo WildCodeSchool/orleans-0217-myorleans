@@ -48,7 +48,8 @@ class Article
     private $date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Media", cascade={"all"}, fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
+     * @JoinTable(name="article_media")
      */
     private $medias;
 
@@ -60,8 +61,8 @@ class Article
     private $residence;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="articles", cascade={"all"}, fetch="EAGER")
-     *
+     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="articles", cascade={"persist"})
+     * @JoinTable(name="article_tag")
      */
     private $tags;
 
@@ -247,8 +248,9 @@ class Article
     public function addMedia(\MyOrleansBundle\Entity\Media $media)
     {
         $this->medias[] = $media;
-
+        $media->setArticles($this);
         return $this;
+
     }
 
     /**

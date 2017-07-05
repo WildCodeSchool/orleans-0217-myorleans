@@ -39,6 +39,7 @@ class CategoriePrestaController extends Controller
      */
     public function newAction(Request $request)
     {
+
         $categoriepresta = new CategoriePresta();
         $form = $this->createForm('MyOrleansBundle\Form\CategoriePrestaType', $categoriepresta);
         $form->handleRequest($request);

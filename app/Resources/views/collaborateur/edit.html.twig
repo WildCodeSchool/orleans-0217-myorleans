@@ -13,23 +13,54 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_widget(edit_form) }}
-                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
-                            {{ form_end(edit_form) }}
+                            {{ form_label(edit_form.nom, 'Nom:') }}
+                            {{ form_widget(edit_form.nom) }}
+                            {{ form_label(edit_form.prenom, 'Prénom:') }}
+                            {{ form_widget(edit_form.prenom) }}
+                            {{ form_label(edit_form.fonction, 'Fonction:') }}
+                            {{ form_widget(edit_form.fonction) }}
+                            {{ form_label(edit_form.bio, 'Biographie:') }}
+                            {{ form_widget(edit_form.bio) }}
+                            {{ form_label(edit_form.lienTwiter, 'Lien url du compte Twitter:') }}
+                            {{ form_widget(edit_form.lienTwiter) }}
+                            {{ form_label(edit_form.lienLinkedin, 'Lien url du compte LinkedIn:') }}
+                            {{ form_widget(edit_form.lienLinkedin) }}
+                            {{ form_label(edit_form.email, 'Adresse mail:') }}
+                            {{ form_widget(edit_form.email) }}
 
+                            {% if collaborateur.media.lien is defined %}
+
+                                <p><img class="responsive-img"
+                                        src="{{ asset('uploads/'~collaborateur.media.lien) }}"
+                                        alt="{{ collaborateur.nom }}"/>
+                                    <a href="{{ path('collaborateur_media_delete', {"id" : collaborateur.id}) }}">Supprimer</a>
+                                </p>
+                            {% else %}
+                                <h3>Veuillez charger une nouvelle image.</h3>
+                                <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du media.</p>
+                                {{ form_widget(edit_form.media) }}
+                            {% endif %}
+                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
+                            {{ form_widget(edit_form._token) }}
+                            </form>
                             <ul>
                                 <li>
-                                    <a href="{{ path('admin_collaborateur_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des membres</a>
+                                    <a href="{{ path('admin_collaborateur_index') }}"><i
+                                                class="material-icons">keyboard_return</i>Retour
+                                        à la liste des membres</a>
                                 </li>
                                 <li>
                                     {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
+                                    <input type="submit" value="Delete"
+                                           class="waves-effect waves-light btn-large red pull-right">
                                     {{ form_end(delete_form) }}
                                 </li>
                             </ul>
-
                         </div>
+
                     </div>
+
+
                 </div>
             </div>
         </div>
