@@ -158,3 +158,9 @@ liip_imagine:
                 crop:
                     size: [ 1920, 450 ]
                     start: [ 000, 300 ]
+
+        thumb_images_carrousel:
+            filters:
+                thumbnail:
+                    size: [600, 400]
+                    mode: outbound

@@ -82,7 +82,7 @@
                             </li>
 
                             <!-- Modal Structure -->
-                           {# <div id="modal-{{ evenement.id }}" class="modal">
+                            <div id="modal-{{ evenement.id }}" class="modal">
                                 <div class="modal-content">
                                     <h4>Photos de l'événement {{ evenement.nom }}</h4>
                                     {{ render(controller('MyOrleansBundle:Carrousel:affichageCarrousel',
@@ -91,7 +91,7 @@
                                 <div class="modal-footer">
                                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
                                 </div>
-                            </div>#}
+                            </div>
 
                         {% else %}
                             <li>
@@ -236,7 +236,9 @@
 
 
         {% block javascripts %}
-
+            <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
+            <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
+            {{ parent() }}
             <script>
                 $('.button-collapse').sideNav({
                         edge: 'right', // Choose the horizontal origin
@@ -244,17 +246,15 @@
                         closeOnClick: true
                     }
                 );
-                $('.carousel.carousel-slider').carousel({fullWidth: true});
 
-                $(document).ready(function(){
-                    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-                    $('.modal').modal();
+                $(function(){
+                    $('.carousel.carousel-slider').carousel({
+                        full_width: true,
+                        indicators: true
+                    });
                 });
 
             </script>
-            <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
-            <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
-            {{ parent() }}
 
         {% endblock %}
     {% endblock %}

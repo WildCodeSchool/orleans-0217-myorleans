@@ -1112,6 +1112,10 @@ transition:color 250ms ease-out;
     margin-top: 5px;
 }
 
+.carousel-slider {
+    height: 400px !important;
+}
+
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––– */
 

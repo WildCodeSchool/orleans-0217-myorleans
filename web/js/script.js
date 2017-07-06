@@ -10,11 +10,4 @@ $(document).ready(function () {
     $('.modal').modal();
     // Script JS pour l'autocomplétion
 
-    $('.carousel').carousel({
-        indicators: true,
-        dist: 0,
-        shift: 20,
-        duration: 100
-    });
-
 });
