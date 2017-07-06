@@ -474,9 +474,13 @@
     {{ parent() }}
     <script src="{{ asset('js/testcompteur.js') }}"></script>
     <script src="{{ asset('js/jquery.circliful.min.js') }}"></script>
-    {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
     <script>
+
+        $(document).ready(function(){
+            $('.collapsible').collapsible();
+        });
+
         AOS.init();
         //formulaire de contact
         $('.button-collapse').sideNav({
@@ -485,10 +489,6 @@
                 closeOnClick: true
             }
         );
-
-        $(document).ready(function(){
-            $('.collapsible').collapsible();
-        });
 
     </script>
 {% endblock %}

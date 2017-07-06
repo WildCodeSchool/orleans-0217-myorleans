@@ -1,16 +1,17 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-
     <h1>Reception du formulaire de contact</h1>
 
     <p>Vous avez reçu un nouveau message de {{ client.prenom }} {{ client.nom }}</p>
     <br/>
-    <p>Mail: {{ client.email }}</p>
-    <p>Téléphone: {{ client.telephone }}</p>
-    <p>Code postal: {{ client.codePostal }}</p>
-    <p>Ville: {{ client.ville }}</p>
-    <p>Adresse : {{ client.adresse }}</p>
+    dd dl
+    <p><strong>Mail:</strong> {{ client.email }}</p>
+    <p><strong>Téléphone:</strong> {{ client.telephone }}</p>
+    <p><strong>Code postal:</strong> {{ client.codePostal }}</p>
+    <p><strong>Ville:</strong> {{ client.ville }}</p>
+    <p><strong>Adresse:</strong> {{ client.adresse }}</p>
+
 
     {% if client.sujet == 1 %}
         <p>Sujet: Residence principale</p>
@@ -22,11 +23,16 @@
         <p>Sujet: Autres</p>
     {% endif %}
 
-    <p>Message: {{ client.message }}</p>
+
+    <p><strong>Message:</strong> {{ client.message }}</p>
 
     {% if client.newsletter == 0 %}
-        <p>Inscription newsletter: non </p>
+        <p><strong>Inscription newsletter:</strong> non </p>
     {% else %}
-        <p>Inscription newsletter: oui </p>
+        <p><strong>Inscription newsletter:</strong> oui </p>
     {% endif %}
 {% endblock %}
+
+
+
+
