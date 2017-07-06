@@ -25,12 +25,20 @@
 
 <body>
 
-{% block body %}{% endblock body %}
+{% block body %}
+
+{% endblock body %}
 
 {% block javascripts %}
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script>
+        $('#alert_close').click(function () {
+            $("#alert_box").fadeOut("slow", function () {
+            });
+        });
+    </script>
 {% endblock %}
 
 </body>

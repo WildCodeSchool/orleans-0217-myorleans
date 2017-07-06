@@ -13,7 +13,7 @@
         <p><strong>Ville:</strong> {{ client.ville }}</p>
         <p><strong>Adresse:</strong> {{ client.adresse }}</p>
 
-        <p><strong>:
+        <p><strong>Sujet:</strong>
             {% if client.sujet == 1 %}
                 Residence principale
             {% elseif client.sujet == 2 %}
@@ -23,7 +23,7 @@
             {% else %}
                 Autres
             {% endif %}
-            </strong></p>
+                    </p>
 
         <p><strong>Message:</strong> {{ client.message }}</p>
 

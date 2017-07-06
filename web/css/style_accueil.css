@@ -263,6 +263,11 @@ body {
     font-weight: bold;
 }
 
+.message{
+    margin-top: 40px;
+    background-color: #b7d64a;
+}
+
 
 
 
@@ -793,6 +798,9 @@ FIN ACCUEIL - BLOC AGENCE
 
 }
 
+.newsletter{
+    text-align: center;
+}
 
 @media (max-width : 767px) {
     .side-nav li > .userView{
