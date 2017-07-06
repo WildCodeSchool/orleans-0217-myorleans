@@ -26,14 +26,23 @@ class ArticleController extends Controller
      * @Route("/", name="admin_article_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
         $articles = $em->getRepository('MyOrleansBundle:Article')->findAll();
 
+        /**
+         * @var $pagination "Knp\Component\Pager\Paginator"
+         * */
+        $pagination = $this->get('knp_paginator');
+        $results = $pagination->paginate(
+            $articles,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
+
         return $this->render('article/index.html.twig', array(
-            'articles' => $articles,
+            'articles' => $results,
         ));
     }
 
