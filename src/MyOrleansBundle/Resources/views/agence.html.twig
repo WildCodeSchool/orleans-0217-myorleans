@@ -75,7 +75,7 @@
                                         {{ evenement.dateDebut|date('Y') }}</h5>
                                     <p></p>{{ evenement.description }}
                                     {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
-                                    <img class="responsive-img" src="{{ asset('uploads/'~media.lien) }}">
+                                    <img class="responsive-img" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_timeline') }}">
                                     {% endfor %}
                                     <a class="waves-effect waves-light btn white" data-toggle="modal" data-id="{{ evenement.id }}"
                                        href="#modal-{{ evenement.id }}">VOIR LES PHOTOS</a>
@@ -94,7 +94,7 @@
                                     </time>
                                     <p></p>{{ evenement.description }}
                                     {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
-                                        <img class="responsive-img" src="{{ asset('uploads/'~media.lien) }}">
+                                        <img class="responsive-img" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_timeline')  }}">
                                     {% endfor %}
                                     <a class="button-collapse waves-effect waves-light btn" data-activates="slide-out">JE M'INSCRIS</a>
                                 </div>
@@ -246,8 +246,9 @@
 
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
-            <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
             {{ parent() }}
+
+            <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
             <script>
                 $('.button-collapse').sideNav({
                         edge: 'right', // Choose the horizontal origin
