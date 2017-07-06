@@ -183,8 +183,9 @@ body {
 
 }
 
-.pictoParcours {;
+.pictoParcours {
     padding-bottom: 20px;
+    position: relative;
 }
 
 .pictoParcours a i {
