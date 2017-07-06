@@ -1,6 +1,13 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
     {% block content %}
+
+        <!--logo dde de documentation-->
+        <div class="breadcrumb">
+            <a href="#" data-activates="slide-out" class="button-collapse pulse-button">
+                <i class="material-icons">message</i></a>
+        </div>
+        <!--fin logo dde de documentation-->
         <div class="row agencyVideo">
             <div class="col s12">
                 {% for cover in cover if cover.page == 'agence_cover' %}
@@ -35,9 +42,7 @@
                                 <div class="blockStaff">
                                     {% if collaborateur.media.lien is defined  %}
                                     <div class="imgStaff">
-
                                         <img src="{{ asset('uploads/'~collaborateur.media.lien ) }}" alt="">
-
                                     </div>
                                     {% endif %}
                                     <div class="infoStaff">
@@ -73,6 +78,7 @@
                                 {% for media in evenement.medias if media.typeMedia == 'image-cover' %}
                                     <img class="responsive-img" src="{{ asset('uploads/'~media.lien) }}">
                                 {% endfor %}
+
                             </div>
                         </li>
                     {% endfor %}
@@ -109,11 +115,113 @@
             </div>
         </div>
 
+        <!-- début formulaire de contact -->
+        <form method="post" action="">
+            <div id="slide-out" class="side-nav">
+                <div class="userView">
+                    <h3 align="center">Contactez nous !</h3>
+                    <h4 align="center">{{ telephone_number }}</h4>
+                    {{ form_start(form) }}
+                    <div class="row">
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form_label(form.nom) }}
+                            {{ form_widget(form.nom) }}
+                            {{ form_errors(form.nom) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form_label(form.prenom) }}
+                            {{ form_widget(form.prenom) }}
+                            {{ form_errors(form.prenom) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">email</i>
+                            {{ form_label(form.email) }}
+                            {{ form_widget(form.email) }}
+                            {{ form_errors(form.email) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">phone</i>
+                            {{ form_label(form.telephone) }}
+                            {{ form_widget(form.telephone) }}
+                            {{ form_errors(form.telephone) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">my_location</i>
+                            {{ form_label(form.codePostal) }}
+                            {{ form_widget(form.codePostal) }}
+                            {{ form_errors(form.codePostal) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">location_on</i>
+                            {{ form_label(form.ville) }}
+                            {{ form_widget(form.ville) }}
+                            {{ form_errors(form.ville) }}
+                        </div>
+
+                        <div class="input-field col l12 m12 s12">
+                            <i class="material-icons prefix">my_location</i>
+                            {{ form_label(form.adresse) }}
+                            {{ form_widget(form.adresse) }}
+                            {{ form_errors(form.adresse) }}
+                        </div>
+
+                        <div class="input-field col l12 m12 s12">
+                            <i class="material-icons prefix">info_outline</i>
+
+                            {{ form_widget(form.sujet) }}
+                            {{ form_errors(form.sujet) }}
+                        </div>
+
+                        <div class="input-field col l12 m12 s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            {{ form_label(form.message) }}
+                            {{ form_widget(form.message) }}
+                            {{ form_errors(form.message) }}
+                        </div>
+
+                        <div class="row center">
+                            <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+
+                            {{ form_widget(form.newsletter) }}
+                            {{ form_errors(form.newsletter) }}
+                        </div>
+                    </div>
+
+                    <div class="input-field col l12">
+                        {{ form_row(form.envoyer) }}
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+
+        </form>
+
+        <!--fin formulaire de contact-->
+
 
         {% block javascripts %}
-
+            {{ parent() }}
             <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
             <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
-            {{ parent() }}
+            <script>
+
+                //formulaire de contact
+                $('.button-collapse').sideNav({
+                        edge: 'right', // Choose the horizontal origin
+                        draggable: false, // Choose whether you can drag to open on touch screens
+                        closeOnClick: true
+                    }
+                );
+            </script>
         {% endblock %}
     {% endblock %}

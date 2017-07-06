@@ -111,7 +111,7 @@ nav .dropdown-button {
 }
 
 .logo {
-    height: 50px;
+    height: 80px;
     margin-top: 7px;
 }
 
@@ -364,6 +364,11 @@ body {
     text-align: right;
 }
 
+.message{
+    margin-top: 40px;
+    background-color: #b7d64a;
+}
+
 @media (max-width : 767px) {
     .side-nav li > .userView{
         width: 100%;
@@ -512,6 +517,15 @@ body {
 .breadcrumb a {
     text-decoration: none;
     color:white;
+}
+
+.icon_style{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: white;
+    cursor:pointer;
 }
 
 

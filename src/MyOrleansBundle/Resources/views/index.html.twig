@@ -145,7 +145,9 @@
                             {{ form_end(simpleSearch) }}
                         {% endif %}
 
+
                     </div>
+
                 </div>
 
             </div>
@@ -225,15 +227,16 @@
             </div>
         </div>
 
+
         <!-- Modal Trigger -->
         <div class="row">
             <div class="col s12 center">
                 <div class="row carouselAgence">
                     <div class="col s12 m10 l10 offset-l1">
-                        <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
+                        <p>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
                             clients.
                             Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
-                            meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
+                            meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </p>
                         <div class="carousel center-align">
                             {% for collaborateur in collaborateurs %}
                                 {% if collaborateur.media.lien is defined %}
@@ -245,6 +248,7 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
+
 
                     </div>
                 </div>
@@ -386,12 +390,15 @@
         </div>
     </footer>
 
+
     <!-- début formulaire de contact -->
     <form method="post" action="">
         <div id="slide-out" class="side-nav">
             <div class="userView">
                 <h3 align="center">Contactez nous !</h3>
                 <h4 align="center">{{ telephone_number }}</h4>
+
+
                 {{ form_start(form) }}
                 <div class="row">
 
@@ -444,6 +451,12 @@
                         {{ form_errors(form.adresse) }}
                     </div>
 
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+
+                        {{ form_widget(form.sujet) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
 
                     <div class="input-field col l12 m12 s12">
                         <i class="material-icons prefix">mode_edit</i>
@@ -453,17 +466,15 @@
                     </div>
 
                     <div class="row center">
-                        <p style="text-align: center">Je souhaite m'abonner à la newsletter?</p>
+                        <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
 
                         {{ form_widget(form.newsletter) }}
                         {{ form_errors(form.newsletter) }}
                     </div>
                 </div>
 
-                <div class="row center">
-                    <div class="input-field col l12">
-                        {{ form_row(form.envoyer) }}
-                    </div>
+                <div class="input-field col l12">
+                    {{ form_row(form.envoyer) }}
                 </div>
 
                 {{ form_end(form) }}
@@ -472,8 +483,8 @@
         </div>
 
     </form>
-    <!--fin formulaire de contact-->
 
+    <!--fin formulaire de contact-->
 
 {% endblock %}
 
