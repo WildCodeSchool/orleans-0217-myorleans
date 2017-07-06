@@ -73,27 +73,25 @@
                                     <h4>{{ evenement.nom }}</h4>
                                     <h5>{{ evenement.dateDebut|date('j F Y') }}</h5>
                                     <p></p>{{ evenement.description }}
-                                    <img class="responsive-img" src="{{ asset('uploads/'~evenement.media.lien) }}">
+                                    {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
+                                    <img class="responsive-img" src="{{ asset('uploads/'~media.lien) }}">
+                                    {% endfor %}
                                     <a class="waves-effect waves-light btn white" data-toggle="modal" data-id="{{ evenement.id }}"
                                        href="#modal-{{ evenement.id }}">VOIR LES PHOTOS</a>
                                 </div>
                             </li>
 
                             <!-- Modal Structure -->
-                            <div id="modal-{{ evenement.id }}" class="modal">
+                           {# <div id="modal-{{ evenement.id }}" class="modal">
                                 <div class="modal-content">
                                     <h4>Photos de l'événement {{ evenement.nom }}</h4>
-                                    <div class="carousel carousel-slider">
-                                        {% set count = 0 %}
-                                        {% for media in evenement.medias if media.typeMedia.nom == "image" %}
-                                        <a class="carousel-item" href="{{ count+1 }}"><img src="{{ asset('uploads/'~evenement.media.lien) }}"></a>
-                                        {% endfor %}
-                                    </div>
+                                    {{ render(controller('MyOrleansBundle:Carrousel:affichageCarrousel',
+                                    {'id': evenement.id })) }}
                                 </div>
                                 <div class="modal-footer">
                                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
                                 </div>
-                            </div>
+                            </div>#}
 
                         {% else %}
                             <li>
@@ -105,7 +103,9 @@
                                         </span>
                                     </time>
                                     <p></p>{{ evenement.description }}
-                                    <img class="responsive-img" src="{{ asset('uploads/'~evenement.media.lien) }}">
+                                    {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
+                                        <img class="responsive-img" src="{{ asset('uploads/'~media.lien) }}">
+                                    {% endfor %}
                                     <a class="button-collapse waves-effect waves-light btn" data-activates="slide-out">JE M'INSCRIS</a>
                                 </div>
                             </li>
@@ -244,6 +244,7 @@
                         closeOnClick: true
                     }
                 );
+                $('.carousel.carousel-slider').carousel({fullWidth: true});
 
                 $(document).ready(function(){
                     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered

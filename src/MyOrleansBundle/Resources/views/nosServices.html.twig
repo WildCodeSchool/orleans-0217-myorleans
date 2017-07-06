@@ -32,9 +32,9 @@
                     <div class="col s12 m6 l6">
                         <div data-aos="fade-up-left">
                             {% for media in service.medias %}
-                                {% if media.typeMedia.nom == 'image' %}
+                                {% if media.typeMedia.nom == 'image-cover' %}
 
-                                    <img src="{{ asset('img/'~media.lien) }}" class="img-service responsive-img">
+                                    <img src="{{ asset('uploads/'~media.lien) }}" class="img-service responsive-img">
 
                                 {% elseif media.typeMedia.nom == 'video' %}
 
@@ -55,8 +55,8 @@
 
                         <div data-aos="fade-up-right">
                             {% for media in service.medias %}
-                                {% if media.typeMedia.nom == 'image' %}
-                                    <img src="{{ asset('img/'~media.lien) }}" class="img-service responsive-img">
+                                {% if media.typeMedia.nom == 'image-cover' %}
+                                    <img src="{{ asset('uploads/'~media.lien) }}" class="img-service responsive-img">
                                 {% elseif media.typeMedia.nom == 'video' %}
                                     <div class="video-container">
                                         <iframe width="560" height="315" src="{{ media.lien }}" frameborder="0"
