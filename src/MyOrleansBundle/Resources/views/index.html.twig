@@ -131,11 +131,13 @@
                             <div class="formButton col s12 m12 l4 offset-l4">
                                 {{ form_widget(simpleSearch.investBtn) }}
                                 {{ form_widget(simpleSearch._token) }}
+                                </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
                             </div>
                         {% elseif parcours == 'residence' %}
                             <div class="formButton col s12 m12 l4 offset-l4">
                                 {{ form_widget(simpleSearch.resPrincipaleBtn) }}
                                 {{ form_widget(simpleSearch._token) }}
+                                </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
                             </div>
                         {% else %}
                             <div class="formButton col s12 m12 l4 offset-l1">
@@ -176,7 +178,7 @@
                                     <div class="col s12 l12">
                                         <div class="card">
                                             <div class="card-image">
-                                                {% for media in resTwoFav.medias if media.typeMedia.nom == 'image' %}
+                                                {% for media in resTwoFav.medias if media.typeMedia.nom == 'image-cover' %}
                                                     <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
                                                          alt="{{ resTwoFav.nom }}">
                                                 {% endfor %}
@@ -200,7 +202,7 @@
                         <h3 class="h3-testimonial center-align"> Ce que les clients pensent de nous</h3>
                         <div class="col m8 offset-m2 col s12">
                             <div class="owl-carousel owl-theme owl-responsive-1000 owl-loaded">
-                                {% for testimonial in testimonials if testimonial.theme == 'avis' %}
+                                {% for testimonial in testimonials if testimonial.theme == 'Achat' %}
                                     <div class="item cloned">
                                         <div>
                                             <div class="box_overlay">
@@ -271,7 +273,7 @@
                 <h3>L'actualité</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
+                        {% for media in actu[0].medias if media.typeMedia.nom == 'image-cover' %}
                             <img class="activator"
                                  src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
                         {% endfor %}
@@ -296,7 +298,7 @@
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
 
-                        {% for media in event[0].medias if media.typeMedia.nom == 'image' %}
+                        {% for media in event[0].medias if media.typeMedia.nom == 'image-cover' %}
                             <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
                         {% endfor %}
                     </div>

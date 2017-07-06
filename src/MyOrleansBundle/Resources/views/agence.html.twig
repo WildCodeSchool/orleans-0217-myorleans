@@ -70,7 +70,7 @@
                                 <time>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('j-m-Y') }}{% endif %}</time>
                                 {{ evenement.nom }}<br>
                                 {{ evenement.description }}
-                                {% for media in evenement.medias if media.typeMedia == 'image' %}
+                                {% for media in evenement.medias if media.typeMedia == 'image-cover' %}
                                     <img class="responsive-img" src="{{ asset('uploads/'~media.lien) }}">
                                 {% endfor %}
                             </div>

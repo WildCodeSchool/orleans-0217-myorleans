@@ -11,7 +11,7 @@
 
     <!--grande image du haut-->
     <div class="header-image">
-        <img class="img-header" src="{{ asset('img/orleans2.jpg') }}";
+        <img class="img-header" src="{{ asset('img/orleans2.jpg') }}"
              alt="photo interieur appartement"/>
     </div>
 
@@ -178,7 +178,7 @@
 
                         <div class="col s12 m6 l6">
                             <div data-aos="fade-up-left">
-                                {% for media in article.medias if media.typeMedia.nom == "image"%}
+                                {% for media in article.medias if media.typeMedia.nom == "image-cover"%}
 
                                 <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
                                      alt="image fiche conseil"/>
@@ -194,7 +194,7 @@
                     <div class="row">
                         <div class="col s12 m6 l6">
                             <div data-aos="fade-up-right">
-                                {% for media in article.medias if media.typeMedia.nom == "image"%}
+                                {% for media in article.medias if media.typeMedia.nom == "image-cover"%}
 
                                 <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
                                      alt="image fiche conseil"/>
