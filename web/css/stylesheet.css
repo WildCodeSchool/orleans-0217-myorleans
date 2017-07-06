@@ -1116,6 +1116,9 @@ transition:color 250ms ease-out;
     height: 400px !important;
 }
 
+.modal {
+    max-height: 80%;
+}
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -1131,6 +1134,10 @@ transition:color 250ms ease-out;
     transition: all 1s;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+ .timeline ol .slider li:not(:last-child)::after {
+    display: none;
 }
 
 .timeline ol li {

@@ -1,8 +1,9 @@
-<div class="carousel carousel-slider">
-    {% set count = 0 %}
-    {% for media in evenement.medias if media.typeMedia.nom == "image" %}
-        <a class="carousel-item" href="#{{ count+1 }}!">
-        <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_images_carrousel') }}" alt="photo-événement">
-        </a>
-    {% endfor %}
+<div class="slider">
+        <ul class="slides">
+            {% for media in evenement.medias if media.typeMedia.nom == "image" %}
+                <li>
+                        <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_images_carrousel') }}" alt="photo-événement">
+                </li>
+            {% endfor %}
+        </ul>
 </div>

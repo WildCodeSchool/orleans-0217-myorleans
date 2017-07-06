@@ -30,6 +30,21 @@ class AgenceController extends Controller
             $parcours = $session->get('parcours');
         }
 
+        $mois = [
+            '01' => 'janvier',
+            '02' => 'février',
+            '03' => 'mars',
+            '04' => 'avril',
+            '05' => 'mai',
+            '06' => 'juin',
+            '07' => 'juillet',
+            '08' => 'août',
+            '09' => 'septembre',
+            '10' => 'octobre',
+            '11' => 'novembre',
+            '12' => 'décembre',
+        ];
+
         $client = new Client();
         $telephone_number = $this->getParameter('telephone_number');
         $contactForm = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
@@ -70,6 +85,7 @@ class AgenceController extends Controller
         return $this->render('MyOrleansBundle::agence.html.twig',
             [
                 'telephone_number' => $telephone_number,
+                'mois' => $mois,
                 'parcours' => $parcours,
                 'partenaires' => $partenaires,
                 'collaborateurs'=>$collaborateurs,
