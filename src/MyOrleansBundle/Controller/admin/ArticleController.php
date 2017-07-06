@@ -29,7 +29,6 @@ class ArticleController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $articles = $em->getRepository('MyOrleansBundle:Article')->findAll();
 
         return $this->render('article/index.html.twig', array(
