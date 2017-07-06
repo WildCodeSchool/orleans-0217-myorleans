@@ -13,18 +13,32 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_label(edit_form.titre, "Titre de l'article:") }}
-                            {{ form_widget(edit_form.titre) }}
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.titre, "Titre de l'article:") }}
+                                    {{ form_widget(edit_form.titre) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.residence, 'Résidence lié: ') }}
+                                    {{ form_widget(edit_form.residence) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.typeArticle, 'Type de l\'article: ') }}
+                                    {{ form_widget(edit_form.typeArticle) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.date, 'Date: ') }}
+                                    {{ form_widget(edit_form.date) }}
+                                </div>
+                            </div>
                             {{ form_label(edit_form.texte, 'Texte de l\'article: ') }}
                             {{ form_widget(edit_form.texte) }}
-                            {{ form_label(edit_form.date, 'Date: ') }}
-                            {{ form_widget(edit_form.date) }}
-                            {{ form_label(edit_form.residence, 'Résidence lié: ') }}
-                            {{ form_widget(edit_form.residence) }}
+
                             {{ form_label(edit_form.tags, 'Tags: ') }}
                             {{ form_widget(edit_form.tags) }}
-                            {{ form_label(edit_form.typeArticle, 'Type de l\'article: ') }}
-                            {{ form_widget(edit_form.typeArticle) }}
+
                             {% for media in article.medias %}
                                 {% if media.id != null %}
                                     <p class="imgUploader"><img class="responsive-img"

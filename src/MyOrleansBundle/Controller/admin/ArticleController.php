@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Article;
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\Tag;
 use MyOrleansBundle\Form\ArticleType;
 use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -48,6 +49,9 @@ class ArticleController extends Controller
         $article = new Article();
         $media = new Media();
         $article->getMedias()->add($media);
+        $tag = new Tag();
+        $article->getTags()->add($tag);
+
         $form = $this->createForm('MyOrleansBundle\Form\ArticleType', $article);
         $form->handleRequest($request);
 
