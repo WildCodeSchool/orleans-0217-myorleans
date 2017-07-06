@@ -146,7 +146,7 @@
 
                 {% elseif temoignage.id is even %}
                     <div class="col s12 m6 l6">
-                        <div data-aos="fade-up-left">
+                        <di data-aos="fade-up-left">
                             <div class="boxi">
                                 <h3>{{ temoignage.theme }}</h3>
                                 <p>{{ temoignage.message }}</p>
@@ -156,7 +156,7 @@
                                 <p class="temoignage">{{ temoignage.date|date("m/d/y") }}</p>
 
                             </div>
-                        </div>
+                        </di>
                     </div>
                 {% endif %}
             {% endfor %}
@@ -166,12 +166,18 @@
     </div>
     <!-- Fin troisième block-->
 
+
+
+
+
     <!-- début formulaire de contact -->
     <form method="post" action="">
         <div id="slide-out" class="side-nav">
             <div class="userView">
                 <h3 align="center">Contactez nous !</h3>
                 <h4 align="center">{{ telephone_number }}</h4>
+
+
                 {{ form_start(form) }}
                 <div class="row">
 
@@ -224,6 +230,12 @@
                         {{ form_errors(form.adresse) }}
                     </div>
 
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+
+                        {{ form_widget(form.sujet) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
 
                     <div class="input-field col l12 m12 s12">
                         <i class="material-icons prefix">mode_edit</i>
@@ -255,6 +267,7 @@
 
 
 {% endblock %}
+
 
     {% block javascripts %}
 

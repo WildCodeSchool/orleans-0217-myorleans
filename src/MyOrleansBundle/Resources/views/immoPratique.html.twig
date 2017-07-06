@@ -4,8 +4,8 @@
 
     <!--logo dde de documentation-->
     <div class="breadcrumb">
-        <a href="#" data-activates="slide-out" class="button-collapse pulse-button"><i
-                    class="material-icons">message</i></a>
+        <a href="#" data-activates="slide-out" class="button-collapse pulse-button">
+            <i class="material-icons">message</i></a>
     </div>
     <!--fin logo dde de documentation-->
 
@@ -278,6 +278,12 @@
                         {{ form_errors(form.adresse) }}
                     </div>
 
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+
+                        {{ form_widget(form.sujet) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
 
                     <div class="input-field col l12 m12 s12">
                         <i class="material-icons prefix">mode_edit</i>
@@ -308,6 +314,8 @@
     <!--fin formulaire de contact-->
 
 
+
+
     {% block javascripts %}
         {{ parent() }}
         <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
@@ -320,6 +328,10 @@
                     closeOnClick: true
                 }
             );
+            $('#alert_close').click(function(){
+                $( "#alert_box" ).fadeOut( "slow", function() {
+                });
+            });
 
         </script>
     {% endblock %}

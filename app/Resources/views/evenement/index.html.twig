@@ -36,10 +36,10 @@
                                         <td>{{ evenement.adresse }}</td>
                                         <td>{{ evenement.codePostal }}</td>
                                         <td>{{ evenement.ville }}</td>
-                                        <td>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('j-m-Y') }}{% endif %}</td>
-                                        <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('j-m-Y') }}{% endif %}</td>
-                                        <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i:s') }}{% endif %}</td>
-                                        <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('H:i:s') }}{% endif %}</td>
+                                        <td>{{ evenement.dateDebut|date('j-m-Y') |default('') }} </td>
+                                        <td>{{ evenement.dateFin|date('j-m-Y') |default('') }} </td>                                        <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('j-m-Y') }}{% endif %}</td>
+                                        <td>{{ evenement.heureDebut|date('j-m-Y') |default('') }} </td>
+                                        <td>{{ evenement.heureFin|date('j-m-Y') |default('') }} </td>
                                         <td>{{ evenement.description }}</td>
                                         <td>
                                             <a href="{{ path('admin_evenement_show', { 'id': evenement.id }) }}"><i
@@ -71,4 +71,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
