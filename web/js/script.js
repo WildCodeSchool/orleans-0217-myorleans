@@ -2,6 +2,13 @@
 
 $(document).ready(function () {
     $('.parallax').parallax();
+
+    $('.carousel').carousel({
+        indicators: true,
+        dist: 0,
+        shift: 20,
+        duration: 100
+    });
 });
 
 $(document).ready(function () {
