@@ -68,6 +68,8 @@ class AgenceController extends Controller
             $em->persist($client);
             $em->flush();
 
+            $this->addFlash('success', 'votre message a bien été envoyé');
+
             return $this->redirectToRoute('agence');
         }
 
