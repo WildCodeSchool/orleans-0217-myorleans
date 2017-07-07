@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Prestation;
+use MyOrleansBundle\Form\PrestationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,14 +22,24 @@ class PrestationController extends Controller
      * @Route("/", name="admin_prestation_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $prestations = $em->getRepository('MyOrleansBundle:Prestation')->findAll();
 
+        /**
+         * @var $pagination "Knp\Component\Pager\Paginator"
+         * */
+        $pagination = $this->get('knp_paginator');
+        $results = $pagination->paginate(
+            $prestations,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
+
         return $this->render('prestation/index.html.twig', array(
-            'prestations' => $prestations,
+            'prestations' => $results,
         ));
     }
 
@@ -41,7 +52,7 @@ class PrestationController extends Controller
     public function newAction(Request $request)
     {
         $prestation = new Prestation();
-        $form = $this->createForm('MyOrleansBundle\Form\PrestationType', $prestation);
+        $form = $this->createForm(PrestationType::class, $prestation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -483,6 +483,12 @@
                         {{ form_errors(form.adresse) }}
                     </div>
 
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+
+                        {{ form_widget(form.sujet) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
 
                     <div class="input-field col l12 m12 s12">
                         <i class="material-icons prefix">mode_edit</i>
@@ -524,6 +530,11 @@
     <script src="{{ asset('js/jquery.circliful.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
     <script>
+
+        $(document).ready(function(){
+            $('.collapsible').collapsible();
+        });
+
         AOS.init();
         //formulaire de contact
         $('.button-collapse').sideNav({
@@ -532,6 +543,7 @@
                 closeOnClick: true
             }
         );
+
     </script>
 {% endblock %}
 

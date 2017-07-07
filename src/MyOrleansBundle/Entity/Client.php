@@ -45,7 +45,7 @@ class Client
     /**
      * @var string
      *
-     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
+     * @ORM\Column(name="telephone", type="string", columnDefinition="CHAR(10)"), lenght=10 nullable=true)
      */
     private $telephone;
 
@@ -57,9 +57,9 @@ class Client
     private $adresse;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="code_postal", type="integer", nullable=true)
+     * @ORM\Column(name="codePostal", type="string", columnDefinition="CHAR(5)"), lenght=5 nullable=true)
      */
     private $codePostal;
 
@@ -70,6 +70,7 @@ class Client
      */
     private $ville;
 
+
     /**
      * @var int
      *
@@ -77,6 +78,12 @@ class Client
      */
     private $newsletter;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sujet", type="string", nullable=true)
+     */
+    private $sujet;
 
     /**
      * @var string
@@ -309,5 +316,29 @@ class Client
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Set sujet
+     *
+     * @param string $sujet
+     *
+     * @return Client
+     */
+    public function setSujet($sujet)
+    {
+        $this->sujet = $sujet;
+
+        return $this;
+    }
+
+    /**
+     * Get sujet
+     *
+     * @return string
+     */
+    public function getSujet()
+    {
+        return $this->sujet;
     }
 }
