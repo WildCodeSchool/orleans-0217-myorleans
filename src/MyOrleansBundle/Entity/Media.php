@@ -59,6 +59,10 @@ class Media
      */
     private $partenaire;
 
+    /**
+     * @ORM\OneToOne(targetEntity="CategoriePresta", mappedBy="media")
+     */
+    private $categorie_presta;
 
     /**
      * @ORM\ManyToOne(targetEntity="Service", inversedBy="medias")
@@ -150,6 +154,7 @@ class Media
     {
         $this->residences = new ArrayCollection();
         $this->flats = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
 
@@ -401,6 +406,22 @@ class Media
     public function setCollaborateur($collaborateur)
     {
         $this->collaborateur = $collaborateur;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoriePresta()
+    {
+        return $this->categorie_presta;
+    }
+
+    /**
+     * @param mixed $categorie_presta
+     */
+    public function setCategoriePresta($categorie_presta)
+    {
+        $this->categorie_presta = $categorie_presta;
     }
 
 

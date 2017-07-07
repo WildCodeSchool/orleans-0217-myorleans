@@ -94,6 +94,13 @@ services:
             - { name: doctrine.event_listener, event: postLoad }
             - { name: doctrine.event_listener, event: preRemove }
 
+    MyOrleansBundle\EventListener\CategoriePrestationUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }
+            - { name: doctrine.event_listener, event: preRemove }
+
     twig.extension.text:
         class: Twig_Extensions_Extension_Text
         tags:
