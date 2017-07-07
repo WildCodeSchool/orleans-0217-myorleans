@@ -34,42 +34,8 @@
             }
         }
 
-        for (var j = 0; j < el.length; j++) {
-            el[i].style.height = counter + "px";
-        }
-
-    }
-
-
-    // ANIMATE TIMELINE
-    function animateTl(scrolling, el, tl) {
-        var counter = 0;
         for (var i = 0; i < el.length; i++) {
-            el[i].addEventListener("click", function () {
-                if (!arrowPrev.disabled) {
-                    arrowPrev.disabled = true;
-                }
-                if (!arrowNext.disabled) {
-                    arrowNext.disabled = true;
-                }
-                const sign = this.classList.contains("arrow__prev") ? "" : "-";
-                if (counter === 0) {
-                    tl.style.transform = "translateX(-" + scrolling + "px)";
-                } else {
-                    const tlStyle = getComputedStyle(tl);
-                    // add more browser prefixes if needed here
-                    const tlTransform = tlStyle.getPropertyValue("-webkit-transform") || tlStyle.getPropertyValue("transform");
-                    const values = parseInt(tlTransform.split(",")[4]) + parseInt("" + sign + scrolling);
-                    tl.style.transform = "translateX(" + values + "px)";
-                }
-                counter++;
-
-                setTimeout(function () {
-                    isElementInViewport(firstItem) ? setBtnState(arrowPrev) : setBtnState(arrowPrev, false);
-                    isElementInViewport(lastItem) ? setBtnState(arrowNext) : setBtnState(arrowNext, false);
-                }, 1100);
-
-            });
+            el[i].style.height = counter + "px";
         }
 
     }
@@ -98,6 +64,34 @@
             }
             el.disabled = false;
         }
+    }
+
+
+    // ANIMATE TIMELINE
+    function animateTl(scrolling, el, tl) {
+        var counter = 0;
+        for (var i = 0; i < el.length; i++) {
+            el[i].addEventListener("click", function () {
+                const sign = this.classList.contains("arrow__prev") ? "" : "-";
+                if (counter === 0) {
+                    tl.style.transform = "translateX(-" + scrolling + "px)";
+                } else {
+                    const tlStyle = getComputedStyle(tl);
+                    // add more browser prefixes if needed here
+                    const tlTransform = tlStyle.getPropertyValue("-webkit-transform") || tlStyle.getPropertyValue("transform");
+                    const values = parseInt(tlTransform.split(",")[4]) + parseInt("" + sign + scrolling);
+                    tl.style.transform = "translateX(" + values + "px)";
+                }
+                counter++;
+
+                setTimeout(function () {
+                    isElementInViewport(firstItem) ? setBtnState(arrowPrev) : setBtnState(arrowPrev, false);
+                    isElementInViewport(lastItem) ? setBtnState(arrowNext) : setBtnState(arrowNext, false);
+                }, 1100);
+
+            });
+        }
+
     }
 
     // ADD SWIPE SUPPORT FOR TOUCH DEVICES
