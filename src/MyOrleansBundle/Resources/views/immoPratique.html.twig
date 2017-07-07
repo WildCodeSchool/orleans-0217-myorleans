@@ -44,7 +44,7 @@
 
         <h2 class="subtitle fancy" id="conseils"><span>Nos fiches conseils</span></h2>
 
-        {% for article in articles if article.typeArticle.nom  == 'conseil' %}
+        {% for article in articles if article.typeArticle.nom  == 'conseils' %}
             {% for media in article.medias %}
                 {% if article.id is odd %}
                     <div class="row">
