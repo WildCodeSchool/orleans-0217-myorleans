@@ -2,7 +2,10 @@
 
 namespace MyOrleansBundle\Form;
 
+use MyOrleansBundle\Entity\TypePresta;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,8 +17,9 @@ class PrestationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomPrestation')
-            ->add('type_prestation');
+            ->add('nomPrestation', TextType::class)
+            ->add('type_prestation', TypePrestaType::class
+            );
     }
     
     /**

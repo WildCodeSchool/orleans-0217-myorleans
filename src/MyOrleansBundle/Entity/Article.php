@@ -2,6 +2,7 @@
 
 namespace MyOrleansBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
@@ -61,7 +62,7 @@ class Article
     private $residence;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="articles", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Tag",cascade={"persist"})
      * @JoinTable(name="article_tag")
      */
     private $tags;
@@ -163,6 +164,7 @@ class Article
     public function __construct()
     {
         $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -273,7 +275,7 @@ class Article
     public function addTag(\MyOrleansBundle\Entity\Tag $tag)
     {
         $this->tags[] = $tag;
-
+        $tag->setArticles($this);
         return $this;
     }
 
