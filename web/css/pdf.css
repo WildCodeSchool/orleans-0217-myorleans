@@ -3,7 +3,9 @@ html, body {
     height: 100%;
     width: 100%;
 }
-
+body {
+    font-size: 12px;
+}
 h1 {
     font-size: 22px;
     text-align: center;
@@ -23,7 +25,7 @@ h2 {
     overflow: hidden;
     text-align: center;
     color: grey;
-    font-size: 36px;
+    font-size: 20px;
 }
 
 h2 span {
@@ -53,12 +55,12 @@ h2 span:after {
 }
 
 h3 {
-    font-size: 28px;
+    font-size: 16px;
     text-align: center;
 }
 
 p {
-    font-size: 16px;
+    font-size: 12px;
 }
 /* --------------------------------------------------------------------*/
 /* ------------------------------ BODY --------------------------------*/
@@ -126,7 +128,17 @@ body {
 /* --------------------------------------------------------------------*/
 
 .offre-residence td {
-    border: 1px solid black;
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 50px;
+    padding: 10px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    color: #808080;
+}
+.offre{
+    color: #EF562D;
 }
 
 .lieu-residence{
@@ -163,9 +175,9 @@ body {
     color: rgb(192,192,192);
 }
 
-.content-residence{
+/*.content-residence{
     padding-top: 20px;
-}
+}*/
 
 .accordeon-residence{
     padding-bottom: 30px;
@@ -242,42 +254,119 @@ td{
 /* --------------------------------------------------------------------*/
 /* ------------------------ PAGE APPARTEMENT --------------------------*/
 /* --------------------------------------------------------------------*/
-.content-appartement{
-    padding-top: 20px;
-}
-
-.info-apt {
+.contacter{
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
-    background-color: white;
-    margin-top: -10px;
-    padding: 0 10px 10px 10px;
+    background-color: rgb(255,255,255);
+    padding: 10px;
+    margin-top: 10px;
+    color: #808080;
+    text-align: center;
 }
+.contacter > h2{
+    font-size: 14px;
+}
+
+.content-appartement{
+    padding-top: 10px;
+}
+
+.rang-presta{
+    padding: 10px;
+    padding-left: 50px;
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    height:200px;
+
+/*    margin-top: 10px;*/
+
+}
+.photo-apt > img{
+    position: relative;
+    width: 580px;
+    margin-left: 60px;
+}
+.info-apt {
+    position: absolute;
+    top: 150px;
+    right: 60px;
+    width: 200px;
+    height: 210px;
+    z-index: 1;
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 70px;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+.info-apt > h3{
+    font-size: 14px;
+    line-height: 2px;
+}
+
+.plan-apt > img{
+    width: 600px;
+}
+.photo-residence > img{
+    width: 750px;
+}
+.prestation > p{
+    font-size: 10px;
+}
+
 .icon-apt{
-    width: 2.5em;
-    height: 2.5em;
+    width: 1.5em;
+    height: 1.5em;
+    padding-top: 10px;
 }
 
-.print{
-    width: 4rem;
-    height: 4rem;
+.icon-residence{
+    width: 1.5em;
+    height: 1.5em;
+    padding-top: 10px;
 }
 
-.icon-left{
-    text-align: left;
+
+.rapel-residence{
+    padding: 20px;
+
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    height:200px;
+}
+.rapel-residence > p{
+    font-size: 10px;
 }
 
-.plan{
-    width:100%;
+.prestations-residence{
+    padding: 20px;
+
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    height:200px;
 }
-/*.photo-apt{
-    width: ;
+
+
+
+.box-notesite{
+    margin: 40px;
+}
+
+/*.photo-residence >img{
+    width: 800px;
 }*/
+
 
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE APPARTEMENT --------------------------*/
 /* --------------------------------------------------------------------*/
+
+
 /* bloc pour les compteurs sur les pages rÃ©sidences */
 
 .notesite {
@@ -285,20 +374,20 @@ td{
     position: relative;
     width: 1em;
     height: 1em;
-    font-size: 140px;
+    font-size: 100px;
     cursor: default;
 }
 .notesite>.percent {
     position: absolute;
-    top: 30px;
     left: 0;
     width: 100%;
-    font-size: 50px;
     text-align: center;
     z-index: 2;
+    top: 25px;
+    font-size: 35px;
 }
 .notesite>.percent .dec {
-    font-size: 30px;
+    font-size: 20px;
 }
 .notesite>#slice {
     position: absolute;
@@ -382,7 +471,7 @@ li.total .notesite:before {
     width: 100%;
     list-style: none;
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 12px;
     text-align: center;
 }
 .list-legend.style2 ul {

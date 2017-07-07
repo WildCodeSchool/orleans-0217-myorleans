@@ -27,6 +27,7 @@ use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypePresta;
 use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Form\SimpleSearchType;
+use MyOrleansBundle\Service\CalculateurCaracteristiquesResidence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,14 +41,28 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class ResidencesController extends Controller
 {
     /**
-     * @Route("/residences/{id")
+     * @Route("/residences/{id}")
      */
-    public function residence($id, SessionInterface $session, Request $request)
+    public function residence($id, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
     {
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
+
+        $em = $this->getDoctrine()->getManager();
+        $residence = $em->getRepository(Residence::class)->find($id);
+        $media = $em->getRepository(Media::class)->find($id);
+
+
+//        $flats = $residence->getFlats(Flat::class)->findAll();
+
+        $freeFlat= $calculator->calculFlatDispo($residence);
+
+/*        $prestas = $em->getRepository(Prestation::class)->findAll();
+        $typePrestas = $em->getRepository(TypePresta::class)->findAll();
+        $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();*/
+
 
         // Formulaire de contact
         $client = new  Client();
@@ -81,37 +96,18 @@ class ResidencesController extends Controller
         }
 
         return $this->render('MyOrleansBundle::residence.html.twig', [
+            'residence' => $residence,
+/*            'flats' => $flats,*/
+/*            'count' => $count,*/
+            'media' => $media,
+/*            'prestas' => $prestas,
+            'typePrestas' => $typePrestas,
+            'categoriePrestas' => $categoriePrestas,*/
             'parcours' => $parcours,
             'telephone_number' => $telephoneNumber,
+            'freeFlat'=>$freeFlat,
             'form' => $formulaire->createView()
         ]);
-
-        $em = $this->getDoctrine()->getManager();
-        $residence = $em->getRepository(Residence::class)->find($id);
-        /*        $media = $em->getRepository(Media::class)->find($id);*/
-
-        $count = 0;
-        foreach ($flats as $flat){
-            if ($flat->getStatut() == 'DISPONIBLE'){
-                $count++;
-            }
-        }
-
-        $flats = $residence->getFlats();
-        $prestas = $em->getRepository(Prestation::class)->findAll();
-        $typePrestas = $em->getRepository(TypePresta::class)->findAll();
-        $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();
-        return $this->render('MyOrleansBundle::residence.html.twig',[
-            'residence'=>$residence,
-            'flats'=>$flats,
-            'count' => $count,
-            'media' => $media,
-            'prestas'=>$prestas,
-            'typePrestas'=>$typePrestas,
-            'categoriePrestas'=>$categoriePrestas,
-        ]);
-
-
 
 
     }

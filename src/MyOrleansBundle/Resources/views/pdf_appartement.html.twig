@@ -12,211 +12,271 @@
 </head>
 <body>
 
-    <div class="center">
-        <a href="{{ path("home") }}" class="brand-logo">
+
+<div class="container">
+    <div class="row">
+        <div class="col s3 center contacter">
+            <h2 class="telephone">{{ telephone_number }}</h2>
+        </div>
+        <div class="col s6 center">
             <img class="logo" src="{{ absolute_url(asset('img/logo_myorleans.png')) }}" alt="logo de l'entreprise"/>
-        </a>
+        </div>
+        <div class="col s3 center contacter">
+            <h2 class="mail">{{ mail_agence }}</h2>
+        </div>
     </div>
-    <div id="content" class="content-appartement">
-        <div class="container-fluid">
-            <div class="row center">
-                <div class="col s12 l12 m10">
-                    <h2>
-                        <span>Le Pryvé</span>
-                    </h2>
+</div>
+<div id="content" class="content-appartement">
+    <div class="container-fluid">
+        <div class="row center">
+            <div class="col s12">
+                <h2>
+                    <span>Le Pryvé - Appartement Ref PRY13 - Type2</span>
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="photoinfo-apt">
+    <div class="photo-apt">
+        <img src="{{ absolute_url(asset('img/apt-neuf.jpg')) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
+    </div>
+    <div class="info-apt">
+        <h3>St Pryvé St Mesmin</h3>
+        <h3>Appartement Neuf</h3>
+        <h3>37 m2</h3>
+        <h3>137 200 €</h3>
+    </div>
+</div>
+<h3>Les Détails de l'appartement</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col s6">
+            <div class="rang-presta">
+                <div class="row">
+                    <div class="col s2 icon-prestation">
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/floor.png')) }}"
+                             alt="revetement">
+                    </div>
+                    <div class="col s10 prestation">
+                        <p>Revetment Sol Salle de bains : Carrelage</p>
+                        <p>Revetment Sol Chambre : Parquet</p>
+                        <p>Revetment Séjour : Carrelage</p>
+                    </div>
+                    <div class="col s2 icon-prestation">
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/Parking.png')) }}"
+                             alt="stationnement voiture">
+                    </div>
+                    <div class="col s10 prestation">
+                        <p>1 Parking en sous-sol et</p>
+                        <p>1 Parking exterieur</p>
+                    </div>
+                    <div class="col s2 icon-prestation">
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/surface.png')) }}"
+                             alt="surfaces">
+                    </div>
+                    <div class="col s10 prestation">
+                        <p>Surface Habitable : 38 m2</p>
+                        <p>Surface Séjour : 19 m2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s6">
+            <div class="rang-presta">
+                <div class="row">
+                    <div class="col s2 icon-prestation">
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/agenda.png')) }}"
+                             alt="date de livraison">
+                    </div>
+                    <div class="col s10 prestation">
+                        <p>livraison 2ème semestre 2017</p>
+                    </div>
+                    <div class="col s2 icon-prestation">
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/boussole.png')) }}"
+                             alt="exposition séjour">
+                    </div>
+                    <div class="col s10 prestation">
+                        <p>Exposition du séjour : Nord Ouest</p>
+                    </div>
+                    <div class="col s2 icon-prestation">
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/chauffage.png')) }}"
+                             alt="type de chauffage">
+                    </div>
+                    <div class="col s10 prestation">
+                        <p>Chauffage gaz collectif</p>
+                    </div>
+                    <div class="col s2 icon-prestation">
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/menuiserie.png')) }}"
+                             alt="type de menuiseries">
+                    </div>
+                    <div class="col s10 prestation">
+                        <p>Menuiseries : PVC</p>
+                    </div>
+                    <div class="col s2 icon-prestation">
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/room.png')) }}"
+                             alt="nombre de pièces">
+                    </div>
+                    <div class="col s10 prestation">
+                        <p>Nombre de Pièces : 2</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="row center photoinfo-apt">
-        <div class="col offset-l1 s5">
-            <div data-aos="fade-right">
-                <img src="{{ absolute_url(asset('img/apt-neuf.jpg')) }}" class="photo-apt" alt="photo-appart"/>
-            </div>
-        </div>
-        <div data-aos="fade-left" class="col s5">
-            <div class="info-apt">
-                <h3>St Pryvé St Mesmin</h3>
-                <h3>Appartement Neuf</h3>
-                <h3>(Ref PRY13) Type2</h3>
-                <h3>37 m2</h3>
-                <h3>137 200 €</h3>
+<div class="plan-apt center">
+
+    <h3 class="titre-plan">Plans de l'appartement</h3>
+    <img class="plan" src="{{ absolute_url(asset('img/plan.jpg')) }}" alt="plan"/>
+</div>
+
+<div id="content" class="content-appartement">
+    <div class="container-fluid">
+        <div class="row center">
+            <div class="col s12">
+                <h2>
+                    <span>La Résidence : Le Pryvé </span>
+                </h2>
             </div>
         </div>
     </div>
-    <div class="row center">
-        <div class="col s12">
-            <img class="plan" src="{{ absolute_url(asset('img/plan.jpg')) }}" alt="plan"/>
-        </div>
-    </div>
+</div>
+
+<div class="photo-residence center">
+    <img src="{{ absolute_url(asset('img/leflores.jpeg')) }}" alt="photo-residence"/>
+</div>
+
+
+<div class="container">
     <div class="row">
         <div class="box-notesite">
             <div class="row">
-                <li>
-                <li class="design col s3">
-                    <div class="notesite" id="note_0" data-note="9.30"></div>
-                    <br/>
-                    <div class="list-legend">
-                        <div class="row center-align">
-                            <ul>
-                                <li class="design col m12">transports</li>
-                            </ul>
+                <ul>
+                    <li class="design col s3">
+                        <div class="notesite" id="note_0" data-note="9.30"></div>
+                        <br/>
+                        <div class="list-legend">
+                            <div class="row center-align">
+                                <ul>
+                                    <li class="design col m12">transports</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="content col s3">
-                    <div class="notesite" id="note_3" data-note="8.70"></div>
-                    <br/>
-                    <div class="list-legend">
-                        <div class="row">
-                            <ul>
-                                <li class="design col m12">commerces</li>
-                            </ul>
+                    </li>
+                    <li class="content col s3">
+                        <div class="notesite" id="note_3" data-note="8.70"></div>
+                        <br/>
+                        <div class="list-legend">
+                            <div class="row">
+                                <ul>
+                                    <li class="design col m12">commerces</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="creativity col s3">
-                    <div class="notesite" id="note_1" data-note="9.80"></div>
-                    <div class="list-legend">
-                        <div class="row">
-                            <ul>
-                                <li class="design col m12">services</li>
-                            </ul>
+                    </li>
+                    <li class="creativity col s3">
+                        <div class="notesite" id="note_1" data-note="9.80"></div>
+                        <div class="list-legend">
+                            <div class="row">
+                                <ul>
+                                    <li class="design col m12">services</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="usability col s3">
-                    <div class="notesite" id="note_2" data-note="9.20"></div>
-                    <div class="list-legend">
-                        <div class="row">
-                            <ul>
-                                <li class="design col m12">esthétisme</li>
-                            </ul>
+                    </li>
+                    <li class="usability col s3">
+                        <div class="notesite" id="note_2" data-note="9.20"></div>
+                        <div class="list-legend">
+                            <div class="row">
+                                <ul>
+                                    <li class="design col m12">esthétisme</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
+                    </li>
+                    <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
                 </ul>
             </div>
 
         </div>
     </div>
+</div>
+
+<div class="container">
     <div class="row">
-        <div class="col offset-l1 l10 center">
-            <div class="row">
-                <div class="col offset-l1 s10">
-                    <h3>La Residence</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-                <div class="col s10">
-                    <h3>Les Prestations</h3>
-                    <div class="row icon-left">
-                        <div class="col offset-l1 s5">
-                            <img class="icon-residence"
-                                 src="{{ absolute_url(asset('img/icons/Wheelchair_Accessible.png')) }}"
-                                 alt="acces handicape"/>Accessibiité<br/>
-                            <img class="icon-residence"
-                                 src="{{ absolute_url(asset('img/icons/shopping-cart.png')) }}"
-                                 alt="commerces"/>Commerces<br/>
+        <div class="col s6">
+            <div class="rapel-residence text-justify">
+                <h3>La Residence</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </div>
+        <div class="col s6">
+            <div class="prestations-residence">
+                <h3>Les Prestations</h3>
+                <div class="row">
+                    <div class="col s6">
+                        <div class="row">
+                            <div class="col s2 icon-prestation">
+                                <img class="icon-residence"
+                                     src="{{ absolute_url(asset('img/icons/Wheelchair_Accessible.png')) }}"
+                                     alt="acces handicape"/>
+                            </div>
+                            <div class="col s10 prestation">
+                                <p>Accessibiité</p>
+                            </div>
+
+                            <div class="col s2 icon-prestation">
+                                <img class="icon-residence"
+                                     src="{{ absolute_url(asset('img/icons/shopping-cart.png')) }}"
+                                     alt="commerces"/>
+                            </div>
+                            <div class="col s10 prestation">
+                                <p>Commerces</p>
+                            </div>
                         </div>
-                        <div class="col s5">
-                            <img class="icon-residence"
-                                 src="{{ absolute_url(asset('img/icons/smoking_not_allowed.png')) }}"
-                                 alt="non fumeur"/>Non Fumeur<br/>
-                            <img class="icon-residence" src="{{ absolute_url(asset('img/icons/finance.png')) }}"
-                                 alt="éligibilité loi pinel"/>Eligible Loi Pinel
+                    </div>
+                    <div class="col s6">
+                        <div class="row">
+                            <div class="col s2 icon-prestation">
+                                <img class="icon-residence"
+                                     src="{{ absolute_url(asset('img/icons/smoking_not_allowed.png')) }}"
+                                     alt="non fumeur"/>
+                            </div>
+                            <div class="col s10 prestation">
+                                <p>Non Fumeur</p>
+                            </div>
+                            <div class="col s2 icon-prestation">
+                                <img class="icon-residence"
+                                     src="{{ absolute_url(asset('img/icons/finance.png')) }}"
+                                     alt="éligibilité loi pinel"/>
+                            </div>
+                            <div class="col s10 prestation">
+                                <p>Eligible Loi Pinel</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col s12 center">
-                <h3>Les Détails de l'appartement</h3>
-            </div>
-            <div class="col offset-l1 s10">
-                <div class="col s1 prestations">
-                    <img class="icon-apt" src="{{ absolute_url(asset('img/icons/floor.png')) }}" alt="revetement">
-                </div>
-                <div class="col s5 prestations">
-                    <p>Revetment Sol Salle de bains : Carrelage</p>
-                    <p>Revetment Sol Chambre : Parquet</p>
-                    <p>Revetment Séjour : Carrelage</p>
-                </div>
-                <div class="col s1 prestations">
-                    <img class="icon-apt" src="{{ absolute_url(asset('img/icons/Parking.png')) }}"
-                         alt="stationnement voiture">
-                </div>
-                <div class="col s5 prestations">
-                    <p>1 Parking en sous-sol et</p>
-                    <p>1 Parking exterieur</p>
-                </div>
-                <div class="col s1 prestations">
-                    <img class="icon-apt" src="{{ absolute_url(asset('img/icons/surface.png')) }}" alt="surfaces">
-                </div>
-                <div class="col s5 prestations">
-                    <p>Surface Habitable : 38 m2</p>
-                    <p>Surface Séjour : 19 m2</p>
-                </div>
-                <div class="col s1 prestations">
-                    <img class="icon-apt" src="{{ absolute_url(asset('img/icons/agenda.png')) }}"
-                         alt="date de livraison">
-                </div>
-                <div class="col s5 prestations">
-                    <p>livraison 2ème semestre 2017</p>
-                </div>
-                <div class="col s1 prestations">
-                    <img class="icon-apt" src="{{ absolute_url(asset('img/icons/boussole.png')) }}"
-                         alt="exposition séjour">
-                </div>
-                <div class="col s5 prestations">
-                    <p>Exposition du séjour : Nord Ouest</p>
-                </div>
-                <div class="col s1 prestations">
-                    <img class="icon-apt" src="{{ absolute_url(asset('img/icons/chauffage.png')) }}"
-                         alt="type de chauffage">
-                </div>
-                <div class="col s5 prestations">
-                    <p>Chauffage gaz collectif</p>
-                </div>
+</div>
 
-
-                <div class="col s1 prestations">
-                    <img class="icon-apt" src="{{ absolute_url(asset('img/icons/menuiserie.png')) }}"
-                         alt="type de menuiseries">
-                </div>
-                <div class="col s5 prestations">
-                    <p>Menuiseries : PVC</p>
-                </div>
-
-                <div class="col s1 prestations">
-                    <img class="icon-apt" src="{{ absolute_url(asset('img/icons/room.png')) }}"
-                         alt="nombre de pièces">
-                </div>
-                <div class="col s5 prestations">
-                    <p>Nombre de Pièces : 2</p>
-                </div>
-
-            </div>
-        </div>
-    </div>
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="{{ absolute_url(asset('js/jquery-3.1.1.min.js')) }}"></script>
 <script type="text/javascript" src="{{ absolute_url(asset('js/materialize.min.js')) }}"></script>
 <script src="{{ absolute_url(asset('js/testcompteurpdf.js')) }}"></script>
 <script src="{{ absolute_url(asset('js/jquery.circliful.min.js')) }}"></script>
-
 
 
 </body>

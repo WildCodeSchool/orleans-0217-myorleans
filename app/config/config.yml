@@ -155,3 +155,9 @@ liip_imagine:
                     size: [ 1920, 450 ]
                     start: [ 000, 300 ]
 
+        thumb_pdf_photo_residence:
+            filters:
+                thumbail:
+                    size: [620, 400]
+                    mode: outband
+

@@ -33,12 +33,15 @@ class PdfController extends Controller
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
-
-
+        $mailagence = $this->getParameter('mail_agence');
+        $telephoneNumber = $this->getParameter('telephone_number');
         $mappy = $this->get("knp_snappy.pdf");
         $html = $this->renderView('MyOrleansBundle::pdf_appartement.html.twig', array(
             'Flat' => $flat,
-            'parcours'=>$parcours
+            'parcours'=>$parcours,
+            'telephone_number' => $telephoneNumber,
+            'mail_agence'=>$mailagence,
+
         ));
 
         $filename = "appartement-".$flat->getReference().".pdf";
@@ -65,11 +68,14 @@ class PdfController extends Controller
             $parcours = $session->get('parcours');
         }
 
-
+        $mailagence = $this->getParameter('mail_agence');
+        $telephoneNumber = $this->getParameter('telephone_number');
         $mappy = $this->get("knp_snappy.pdf");
         $html = $this->renderView('MyOrleansBundle::pdf_residence.html.twig', array(
             'Residence' => $residence,
-            'parcours'=>$parcours
+            'parcours'=>$parcours,
+            'telephone_number' => $telephoneNumber,
+            'mail_agence'=>$mailagence,
         ));
 
         $filename = "residence-".$residence->getNom().".pdf";
