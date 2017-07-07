@@ -13,9 +13,25 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_widget(edit_form) }}
+                            {{ form_label(edit_form.type, 'Type du service:') }}
+                            {{ form_widget(edit_form.type) }}
+                            {{ form_label(edit_form.description, 'Description du service:') }}
+                            {{ form_widget(edit_form.description) }}
+                            {% if service.media.lien is defined %}
+
+                                <p class="imgUploader"><img class="responsive-img"
+                                        src="{{ asset('uploads/'~service.media.lien) }}"
+                                        alt="{{ service.type }}"/>
+                                    <a href="{{ path('service_media_delete', {"id" : service.id}) }}">Supprimer</a>
+                                </p>
+                            {% else %}
+                                <h3>Veuillez charger une nouvelle image.</h3>
+                                <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du media.</p>
+                                {{ form_widget(edit_form.media) }}
+                            {% endif %}
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
-                            {{ form_end(edit_form) }}
+                            {{ form_widget(edit_form._token) }}
+                            </form>
 
                             <ul>
                                 <li>

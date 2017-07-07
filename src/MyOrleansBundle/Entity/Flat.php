@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Flat
@@ -83,12 +84,13 @@ class Flat
     private $typeLogement;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Residence", inversedBy="flats")
+     * @ORM\ManyToOne(targetEntity="Residence", inversedBy="flats", cascade={"persist"})
      */
     private $residence;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Media")
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
+     * @JoinTable(name="flat_media")
      */
     private $medias;
 

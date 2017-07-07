@@ -13,22 +13,93 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_widget(edit_form) }}
-                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
-                            {{ form_end(edit_form) }}
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.titre, "Titre de l'article:") }}
+                                    {{ form_widget(edit_form.titre) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.residence, 'Résidence lié: ') }}
+                                    {{ form_widget(edit_form.residence) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.typeArticle, 'Type de l\'article: ') }}
+                                    {{ form_widget(edit_form.typeArticle) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.date, 'Date: ') }}
+                                    {{ form_widget(edit_form.date) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                {{ form_label(edit_form.texte, 'Texte de l\'article: ') }}
+                                {{ form_widget(edit_form.texte) }}
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    <h4>Les tags actuellement reliés à votre article</h4>
+                                    {% for tag in article.tags %}
+                                        {% if tag.id != null %}
+                                            <div class="chip">
+                                                {{ tag.nom }}
+                                                <a href="{{ path('article_tag_delete', {"id" : article.id, "tag_id" : tag.id}) }}"><i
+                                                            class="close material-icons">close</i></a>
+                                            </div>
+                                        {% else %}
+                                            <h4>Modifier vos tags actuels ou ajoutez</h4>
+                                            <p>Mettez les premières lettres de vos tags en majuscule</p>
+                                            {{ form_row(edit_form.tags) }}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {#<a href="#" id="add-another-tag">Ajouter un tag</a>#}
+                                    <a class="btn-floating btn-large waves-effect waves-light teal lighten-4" id="add-another-tag"><i
+                                                class="material-icons">add</i></a>
+                                </div>
+                                <div class="col s6">
+                                    <h4>Les medias actuellement reliés à votre article</h4>
+                                    {% for media in article.medias %}
+                                        {% if media.id != null %}
+                                            <p class="imgUploader"><img class="responsive-img"
+                                                                        src="{{ asset('uploads/'~media.lien) }}"/>
+                                                <a href="{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}">Supprimer</a>
+                                            </p>
+                                        {% else %}
+                                            <h4>Veuillez charger une nouvelle image.</h4>
+                                            <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le
+                                                type
+                                                du
+                                                media.</p>
+                                            {{ form_row(edit_form.medias) }}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
+                                       id="add-another-media"><i
+                                                class="material-icons">file_upload</i></a>
 
-                            <ul>
-                                <li>
-                                    <a href="{{ path('admin_article_index') }}"><i class="material-icons">keyboard_return</i>Retour
-                                        à la liste des articles</a>
-                                </li>
-                                <li>
-                                    {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete"
-                                           class="waves-effect waves-light btn-large red pull-right">
-                                    {{ form_end(delete_form) }}
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input class="waves-effect waves-light btn-large light-green" type="submit"
+                                       value="Modifier"/>
+                                {{ form_widget(edit_form._token) }}
+                                </form>
+                            </div>
+                            <div class="row">
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('admin_article_index') }}"><i class="material-icons">keyboard_return</i>Retour
+                                            à la liste des articles</a>
+                                    </li>
+                                    <li>
+                                        {{ form_start(delete_form) }}
+                                        <input type="submit" value="Delete"
+                                               class="waves-effect waves-light btn-large red pull-right">
+                                        {{ form_end(delete_form) }}
+                                    </li>
+                                </ul>
+                            </div>
 
                         </div>
                     </div>
@@ -37,4 +108,45 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        // keep track of how many email fields have been rendered
+        var mediaCount = '{{ edit_form.medias|length }}';
+        jQuery(document).ready(function () {
+            jQuery('#add-another-media').click(function (e) { // appbundle_products_add-product
+                e.preventDefault();
+                var mediaList = jQuery('#{{ edit_form.medias.vars.id }}');
+
+                var newWidget = mediaList.attr('data-prototype');
+                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
+                newWidget = newWidget.replace(/__name__/g, mediaCount);
+                mediaCount++;
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(mediaList);
+
+            });
+        });
+
+        var tagCount = '{{ edit_form.tags|length }}';
+
+        jQuery(document).ready(function () {
+            jQuery('#add-another-tag').click(function (e) { // appbundle_products_add-product
+                e.preventDefault();
+                var tagList = jQuery('#{{ edit_form.tags.vars.id }}');
+
+                var newWidget = tagList.attr('data-prototype');
+                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
+                newWidget = newWidget.replace(/__name__/g, tagCount);
+                tagCount++;
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(tagList);
+
+            });
+        });
+    </script>
 {% endblock %}

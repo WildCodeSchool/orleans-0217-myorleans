@@ -76,7 +76,7 @@
                 </div>
                 <div class="col s12 m6 l3">
                     <div class="row no-margin-bottom">
-                        <h2 class="titre-recherche">Investissement</h2>
+                        <h2 class="titre-recherche">Votre objectif</h2>
                         <div class="row no-margin-bottom">
                             <div class="col s6">
                                 {{ form_widget(completeSearch.objectif) }}
@@ -201,16 +201,17 @@
                                     <p>Not the same lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                                         lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
                                 {% elseif objectif == 'Residence Principale' %}
-                                    <h4>Les parcours immobiliers</h4>
+                                    <h4>Envie d'investir ? Découvrez nos services</h4>
                                     <p>Not the same lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                                         lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
                                 {% endif %}
                             </div>
                             <div class="card-action center">
                                 {% if objectif == 'investir' %}
-                                    <a href="{{ path("nosservices") }}">Découvrez les services</a>
+                                    <a href="{{ path("nos_services") }}">Découvrez les services</a>
                                 {% elseif objectif == 'Residence Principale' %}
-                                    <a href="{{ path("parcoursimmo") }}">Découvrez les parcours</a>
+                                    {# A modifier lorsque la page Parcours Immobiliers sera créée #}
+                                    <a href="{{ path("nosservices") }}">Découvrez les parcours</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -231,7 +232,7 @@
                                         lorem ipsum lorem ipsum lorem ipsum.</p>
                                 </div>
                                 <div class="card-action center">
-                                    <a href="{{ path('nosservices') }}">Découvrez les autres packs</a>
+                                    <a href="{{ path('nos_services') }}">Découvrez les autres packs</a>
                                 </div>
                             </div>
                         </div>
@@ -245,7 +246,7 @@
                     <div class="col s12 offset-m1 m10">
                         <div class="card large">
                             <div class="card-image">
-                                {% for media in article.medias if media.typeMedia.nom == 'image' %}
+                                {% for media in article.medias if media.typeMedia.nom == 'image-cover' %}
                                     <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
                                 {% endfor %}
                             </div>
@@ -283,14 +284,18 @@
                             });
 
                             var infowindow = new google.maps.InfoWindow();
-
+                            var iconBase = 'img/';
                             var marker, i;
 
                             for (i = 0; i < locations.length; i++) {
+
+
                                 marker = new google.maps.Marker({
                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                    map: map
+                                    map: map,
+                                    icon: iconBase + 'marker.png'
                                 });
+
 
                                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                                     return function() {

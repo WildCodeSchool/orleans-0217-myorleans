@@ -364,6 +364,11 @@ body {
     text-align: right;
 }
 
+.message{
+    margin-top: 40px;
+    background-color: #b7d64a;
+}
+
 @media (max-width : 767px) {
     .side-nav li > .userView{
         width: 100%;
@@ -514,6 +519,15 @@ body {
     color:white;
 }
 
+.icon_style{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: white;
+    cursor:pointer;
+}
+
 
 
 
@@ -522,9 +536,18 @@ body {
 /* --------------------------------------------------------------------*/
 
 .offre-residence td {
-    border: 1px solid black;
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 50px;
+    padding: 10px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    color: #808080;
 }
-
+.offre{
+    color: #EF562D;
+}
 .lieu-residence{
     color: rgb(192,192,192);
 }
@@ -659,16 +682,21 @@ td{
     padding-top: 20px;
 }
 
+.photoinfo-apt{
+    margin: 60px;
+}
 .info-apt {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
-    background-color: white;
-    margin-top: -10px;
-    padding: 0 10px 10px 10px;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+/*    width: 400px;*/
 }
 .icon-apt{
     width: 2.5em;
     height: 2.5em;
+    margin-top: 10px;
 }
 
 .print{
@@ -679,10 +707,45 @@ td{
 .icon-left{
     text-align: left;
 }
-/*.photo-apt{
-    width: ;
-}*/
 
+.rapel-residence{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.descriptif-residence{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.prestations-residence{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.rang-presta{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin: auto;
+    padding: 10px;
+/*    width: 600px;*/
+    height: 350px;
+}
+.icon-prestation{
+    margin: auto;
+}
+
+.prestation{
+    margin:auto;
+}
+@media screen and (max-width: 767px ){
+
+
+}
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE APPARTEMENT --------------------------*/
@@ -1063,17 +1126,84 @@ transition:color 250ms ease-out;
 }
 .partenaires a img{
     margin: auto;
-    max-height: 100%;
-    max-width: 80%;
+    width: 100%;
     opacity: .65;
     filter: grayscale(1);
 }
 
+.partenaires a img:hover{
+
+    filter: none;
+}
 
 /**************************   TIMELINE   **************************/
 
-/* TIMELINE
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* TIMELINE */
+
+.event {
+    box-shadow: 1px 1px 3px #c2c2c2;
+}
+
+.past-event {
+    background-color: #f7f7f7;
+}
+
+.past-event time, .past-event h4, .past-event p, .past-event h5 {
+    color: #c2c2c2;
+}
+
+.past-event h4 {
+    margin-top: 10px;
+}
+
+.past-event h5 {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.past-event a {
+    color: #a5ca2a;
+    margin-top: 5px;
+}
+
+.future-event {
+    background-color: #ffffff;
+}
+
+.future-event time {
+    margin-top: 0;
+    color: #444444;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.future-event time span {
+    color: #c2c2c2;
+}
+
+.future-event h4 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #a5ca2a;
+}
+
+.future-event p {
+    color: #444444;
+}
+
+.future-event a {
+    margin-top: 5px;
+}
+
+.carousel-slider {
+    height: 400px !important;
+}
+
+.modal {
+    max-height: 80%;
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .timeline {
     white-space: nowrap;
@@ -1083,19 +1213,27 @@ transition:color 250ms ease-out;
 .timeline ol {
     font-size: 0;
     width: 100vw;
-    padding: 250px 0;
+    padding: 300px 0 320px 0;
     transition: all 1s;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+ .timeline ol .slider li:not(:last-child)::after {
+    display: none;
 }
 
 .timeline ol li {
     position: relative;
     display: inline-block;
     list-style-type: none;
-    width: 180px;
+    width: 200px;
     height: 3px;
     background:grey;
+}
+
+.timeline ol li:first-child {
+    width: 80px;
 }
 
 .timeline ol li:last-child {
@@ -1122,7 +1260,7 @@ transition:color 250ms ease-out;
 .timeline ol li div {
     position: absolute;
     left: calc(100% + 7px);
-    width: 280px;
+    width: 320px;
     padding: 15px;
     font-size: 1rem;
     white-space: normal;

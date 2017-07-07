@@ -26,6 +26,16 @@
         </div>
         <div class="container">
             <div class="row">
+                <div class="col offset-l1 l5 s10">
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la
+                        documentation</a>
+                </div>
+
+                <div id="editor" class="col offset-l1 l5 s10">
+                    <a class="waves-effect waves-light btn" href="{{ path('residence_pdf', { 'id': 1}) }}"><i id="cmd" class="material-icons left">print</i>Imprimer cette page</a>
+                </div>
+            </div>
+            <div class="row">
                 <div class="undervideo-residence">
                     <div class="col l6 s12">
                         <h2><span>{{ residence.nom }}</span></h2>
@@ -34,15 +44,15 @@
                     <div class="col l6 s12">
                         <table class="offre-residence">
                             <tr>
-                                <td><strong>Offre</strong><br/><span
-                                            class="subtab-residence">{{ residence.dateLivraison }}</span></td>
-                                <td><strong>Prix</strong><br/><span class="subtab-residence">à partir de 90 000 €</span>
+
+                                <td><strong>Offre du moment</strong><br/><span class="subtab-residence"><strong class="offre">Frais de notaires Offerts</strong></span></td>
+                                <td><strong>Prix</strong><br/><span class="subtab-residence"><strong>à partir de 90 000 €</strong></span>
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong>Date de livraison</strong><br/><span class="subtab-residence">{{ residence.dateLivraison }}</span>
+                                <td><strong>Date de livraison</strong><br/><span class="subtab-residence"><strong>1er semèstre 2018</strong></span>
                                 </td>
-                                <td><strong>Nb. Pièces</strong><br/><span class="subtab-residence">du T1 au T5</span>
+                                <td><strong>Nb. Pièces</strong><br/><span class="subtab-residence"><strong>du T1 au T5</strong></span>
                                 </td>
                             </tr>
                         </table>
@@ -99,20 +109,71 @@
 
                 </div>
             </div>
-            <div class="row justify">
-                <div class="col l6 s12">
-                    <h2>La Residence</h2>
-                    <p>
-                        {{ residence.description }}
-                    </p>
-                </div>
-                <div class="col l6 s12">
-                    <h2>Les Prestations</h2>
 
-                    <img class="icon-residence" src="{{ asset(media.lien) }}" alt="acces handicape"/>Accessibiité<br/>
-                    <img class="icon-residence" src="{{ asset('img/icons/shopping-cart.png') }}" alt="commerces"/>Commerces<br/>
-                    <img class="icon-residence" src="{{ asset('img/icons/smoking_not_allowed.png') }}"
-                         alt="non fumeur"/>Non Fumeur<br/>
+            <div class="container">
+                <div class="row">
+                    <div class="col s6">
+                        <div class="rapel-residence text-justify">
+                            <h3>La Residence</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="prestations-residence">
+                            <h3>Les Prestations</h3>
+                            <div class="row">
+                                <div class="col s6">
+                                    <div class="row">
+                                        <div class="col s2 icon-prestation">
+                                            <img class="icon-residence"
+                                                 src="{{ absolute_url(asset('img/icons/Wheelchair_Accessible.png')) }}"
+                                                 alt="acces handicape"/>
+                                        </div>
+                                        <div class="col s10 prestation">
+                                            <p>Accessibiité</p>
+                                        </div>
+
+                                        <div class="col s2 icon-prestation">
+                                            <img class="icon-residence"
+                                                 src="{{ absolute_url(asset('img/icons/shopping-cart.png')) }}"
+                                                 alt="commerces"/>
+                                        </div>
+                                        <div class="col s10 prestation">
+                                            <p>Commerces</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="row">
+                                        <div class="col s2 icon-prestation">
+                                            <img class="icon-residence"
+                                                 src="{{ absolute_url(asset('img/icons/smoking_not_allowed.png')) }}"
+                                                 alt="non fumeur"/>
+                                        </div>
+                                        <div class="col s10 prestation">
+                                            <p>Non Fumeur</p>
+                                        </div>
+                                        <div class="col s2 icon-prestation">
+                                            <img class="icon-residence"
+                                                 src="{{ absolute_url(asset('img/icons/finance.png')) }}"
+                                                 alt="éligibilité loi pinel"/>
+                                        </div>
+                                        <div class="col s10 prestation">
+                                            <p>Eligible Loi Pinel</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="row">
@@ -155,11 +216,8 @@
         <div class="container">
             <div class="row">
 
-                <div class="col l12">
-                    <h3>Nombre de logements disponibles : {{ count }}</h3>
-
-
-
+                <div class="col s12">
+                    <h3>Nombre de logements disponibles : {{ freeFlat }}</h3>
                     <h3 class="consulter-residence">Consultez nos biens disponibles</h3>
                 </div>
             </div>
@@ -405,6 +463,12 @@
                         {{ form_errors(form.adresse) }}
                     </div>
 
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+
+                        {{ form_widget(form.sujet) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
 
                     <div class="input-field col l12 m12 s12">
                         <i class="material-icons prefix">mode_edit</i>
@@ -444,9 +508,13 @@
     {{ parent() }}
     <script src="{{ asset('js/testcompteur.js') }}"></script>
     <script src="{{ asset('js/jquery.circliful.min.js') }}"></script>
-    {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
     <script>
+
+        $(document).ready(function(){
+            $('.collapsible').collapsible();
+        });
+
         AOS.init();
         //formulaire de contact
         $('.button-collapse').sideNav({
@@ -455,6 +523,7 @@
                 closeOnClick: true
             }
         );
+
     </script>
 {% endblock %}
 

@@ -71,8 +71,14 @@ class NosServicesController extends Controller
 
             $mailer->send($message);
 
+
+
             $em->persist($client);
             $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
+
+
 
             return $this->redirectToRoute('nos_services');
         }
