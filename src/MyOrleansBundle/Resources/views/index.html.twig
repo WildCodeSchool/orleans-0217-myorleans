@@ -79,7 +79,6 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nos_services") }}">Nos services</a></li>
-
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
@@ -87,7 +86,6 @@
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
                         <li><a href="{{ path("nos_services") }}">Nos services</a></li>
-
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
@@ -129,11 +127,13 @@
                             <div class="formButton col s12 m12 l4 offset-l4">
                                 {{ form_widget(simpleSearch.investBtn) }}
                                 {{ form_widget(simpleSearch._token) }}
+                                </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
                             </div>
                         {% elseif parcours == 'residence' %}
                             <div class="formButton col s12 m12 l4 offset-l4">
                                 {{ form_widget(simpleSearch.resPrincipaleBtn) }}
                                 {{ form_widget(simpleSearch._token) }}
+                                </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
                             </div>
                         {% else %}
                             <div class="formButton col s12 m12 l4 offset-l1">
@@ -176,7 +176,7 @@
                                     <div class="col s12 l12">
                                         <div class="card">
                                             <div class="card-image">
-                                                {% for media in resTwoFav.medias if media.typeMedia.nom == 'image' %}
+                                                {% for media in resTwoFav.medias if media.typeMedia.nom == 'image-cover' %}
                                                     <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
                                                          alt="{{ resTwoFav.nom }}">
                                                 {% endfor %}
@@ -200,7 +200,7 @@
                         <h3 class="h3-testimonial center-align"> Ce que les clients pensent de nous</h3>
                         <div class="col m8 offset-m2 col s12">
                             <div class="owl-carousel owl-theme owl-responsive-1000 owl-loaded">
-                                {% for testimonial in testimonials if testimonial.theme == 'avis' %}
+                                {% for testimonial in testimonials if testimonial.theme == 'Achat' %}
                                     <div class="item cloned">
                                         <div>
                                             <div class="box_overlay">
@@ -228,7 +228,6 @@
         </div>
 
 
-
         <!-- Modal Trigger -->
         <div class="row">
             <div class="col s12 center">
@@ -252,12 +251,20 @@
 
 
                     </div>
-                    <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter button-collapse"
-                       href="#" data-activates="slide-out">
-                        <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter</a>
+                </div>
+
+                <!-- Modal Trigger -->
+                <div class="row">
+                    <div class="col s12 center">
+                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
+                           href="#modal1">
+                            <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+
         </div>
 
 
@@ -266,7 +273,7 @@
                 <h3>L'actualité</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
+                        {% for media in actu[0].medias if media.typeMedia.nom == 'image-cover' %}
                             <img class="activator"
                                  src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
                         {% endfor %}
@@ -291,7 +298,7 @@
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
 
-                        {% for media in event[0].medias if media.typeMedia.nom == 'image' %}
+                        {% for media in event[0].medias if media.typeMedia.nom == 'image-cover' %}
                             <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
                         {% endfor %}
                     </div>

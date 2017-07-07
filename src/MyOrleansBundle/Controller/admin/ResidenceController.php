@@ -28,13 +28,23 @@ class ResidenceController extends Controller
      * @Route("/", name="admin_residence_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $residences = $em->getRepository('MyOrleansBundle:Residence')->findAll();
 
+        /**
+         * @var $pagination "Knp\Component\Pager\Paginator"
+         * */
+        $pagination = $this->get('knp_paginator');
+        $results = $pagination->paginate(
+            $residences,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
+
         return $this->render('residence/index.html.twig', array(
-            'residences' => $residences,
+            'residences' => $results,
         ));
     }
 
