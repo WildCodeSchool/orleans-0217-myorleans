@@ -1,6 +1,7 @@
 {% if pageCount > 1 %}
     <ul class="pagination">
 
+
         {# application d'une classe disabled sur le bouton previous si on se trouve sur la premiere page #}
         {% if previous is defined %}
             <li>
@@ -14,7 +15,6 @@
             </li>
         {% endif %}
 
-
         {% for page in pagesInRange %}
             {% if page != current %}
                 <li class="waves-effect">
@@ -25,6 +25,7 @@
                     <a href="#!">{{ page }}</a>
                 </li>
             {% endif %}
+
         {% endfor %}
 
 

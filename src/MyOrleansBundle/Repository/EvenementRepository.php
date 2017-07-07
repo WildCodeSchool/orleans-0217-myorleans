@@ -13,7 +13,7 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
     public function findOneEvent()
     {
         $qb = $this->createQueryBuilder('e')
-            ->orderBy('e.id', 'DESC')
+            ->orderBy('e.d', 'DESC')
             ->setMaxResults(1);
         return $qb->getQuery()->getResult();
     }
@@ -21,8 +21,8 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
     public function findAll()
     {
         $qb = $this->createQueryBuilder('e')
-            ->orderBy('e.id', 'DESC')
-            ->setMaxResults(10);
+            ->orderBy('e.dateDebut', 'ASC')
+            ->setMaxResults(8);
         return $qb->getQuery()->getResult();
     }
 }
