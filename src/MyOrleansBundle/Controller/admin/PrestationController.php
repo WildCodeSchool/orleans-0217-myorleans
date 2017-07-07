@@ -21,14 +21,24 @@ class PrestationController extends Controller
      * @Route("/", name="admin_prestation_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $prestations = $em->getRepository('MyOrleansBundle:Prestation')->findAll();
 
+        /**
+         * @var $pagination "Knp\Component\Pager\Paginator"
+         * */
+        $pagination = $this->get('knp_paginator');
+        $results = $pagination->paginate(
+            $prestations,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
+
         return $this->render('prestation/index.html.twig', array(
-            'prestations' => $prestations,
+            'prestations' => $results,
         ));
     }
 

@@ -48,8 +48,9 @@ class ImmoPratiqueController extends Controller
 
             $message = new \Swift_Message('Nouveau message de my-orleans.com');
             $message
+                ->setFrom($client->getEmail())
                 ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
+
 
                 ->setBody(
                     $this->renderView(
@@ -64,6 +65,8 @@ class ImmoPratiqueController extends Controller
 
             $em->persist($client);
             $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
 
             return $this->redirectToRoute('immo_pratique');
         }

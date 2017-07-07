@@ -25,6 +25,8 @@ class AgenceController extends Controller
      */
     public function agencyAction(SessionInterface $session, Request $request)
     {
+        $client = new Client();
+
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
@@ -45,12 +47,11 @@ class AgenceController extends Controller
             '12' => 'décembre',
         ];
 
-        $client = new Client();
+        $em = $this->getDoctrine()->getManager();
+      
         $telephone_number = $this->getParameter('telephone_number');
         $contactForm = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $contactForm->handleRequest($request);
-
-        $em = $this->getDoctrine()->getManager();
 
         $partenaires = $em->getRepository(Partenaire::class)->findAll();
         $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
@@ -79,7 +80,7 @@ class AgenceController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('nos_services');
+            return $this->redirectToRoute('agence');
         }
 
         return $this->render('MyOrleansBundle::agence.html.twig',
@@ -90,8 +91,9 @@ class AgenceController extends Controller
                 'partenaires' => $partenaires,
                 'collaborateurs'=>$collaborateurs,
                 'evenements'=>$evenements,
-                'cover'=>$cover,
                 'contactForm' => $contactForm->createView()
+                'cover'=>$cover,
+
             ]
         );
     }

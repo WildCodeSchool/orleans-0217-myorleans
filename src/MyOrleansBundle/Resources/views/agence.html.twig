@@ -1,6 +1,13 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
     {% block content %}
+
+        <!--logo dde de documentation-->
+        <div class="breadcrumb">
+            <a href="#" data-activates="slide-out" class="button-collapse pulse-button">
+                <i class="material-icons">message</i></a>
+        </div>
+        <!--fin logo dde de documentation-->
         <div class="row agencyVideo">
             <div class="col s12">
                 {% for cover in cover if cover.page == 'agence_cover' %}
@@ -36,9 +43,7 @@
                                 <div class="blockStaff">
                                     {% if collaborateur.media.lien is defined  %}
                                     <div class="imgStaff">
-
                                         <img src="{{ asset('uploads/'~collaborateur.media.lien ) }}" alt="">
-
                                     </div>
                                     {% endif %}
                                     <div class="infoStaff">
@@ -240,6 +245,7 @@
 
                             {{ form_widget(contactForm.newsletter) }}
                             {{ form_errors(contactForm.newsletter) }}
+
                         </div>
                     </div>
 
@@ -248,6 +254,7 @@
                     </div>
 
                     {{ form_end(contactForm) }}
+
                 </div>
 
             </div>
@@ -263,6 +270,7 @@
 
             <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
             <script>
+
                 $('.button-collapse').sideNav({
                         edge: 'right', // Choose the horizontal origin
                         draggable: false, // Choose whether you can drag to open on touch screens
@@ -275,6 +283,7 @@
                 });
 
             </script>
+
 
         {% endblock %}
     {% endblock %}
