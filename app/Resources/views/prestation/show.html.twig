@@ -16,11 +16,11 @@
                                 <tbody>
                                 <tr>
                                     <th>Id</th>
-                                    <td>{{ presta.id }}</td>
+                                    <td>{{ prestation.id }}</td>
                                 </tr>
                                 <tr>
                                     <th>Prestation</th>
-                                    <td>{{ presta.nomPrestation }}</td>
+                                    <td>{{ prestation.nomPrestation }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -30,13 +30,13 @@
                                     <a href="{{ path('admin_prestation_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des prestations</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('admin_prestation_edit', { 'id': presta.id }) }}"><i
+                                    <a href="{{ path('admin_prestation_edit', { 'id':prestation.id }) }}"><i
                                                 class="material-icons">build</i>Éditer cette prestation</a>
                                 </li>
 
                                 <li>
                                     {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
+                                    <input type="submit" value="Supprimer" class="waves-effect waves-light btn-large red pull-right">
                                     {{ form_end(delete_form) }}
                                 </li>
                             </ul>

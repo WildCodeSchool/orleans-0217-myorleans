@@ -119,6 +119,22 @@ class CategoriePrestaController extends Controller
         return $this->redirectToRoute('admin_categorie-presta_index');
     }
 
+    /**
+     * Deletes a categorie prestation media.
+     *
+     * @Route("/{id}/delete_media", name="categorie-presta_media_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMediaAction(CategoriePresta $categoriePresta)
+    {
+        $path = $categoriePresta->getMedia()->getLien();
+        $em = $this->getDoctrine()->getManager();
+        $categoriePresta->setMedia(null);
+        $em->flush();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        return $this->redirectToRoute('admin_categorie-presta_edit', array('id' => $categoriePresta->getId()));
+    }
+
 
     /**
      * Creates a form to delete a categoriepresta entity.
