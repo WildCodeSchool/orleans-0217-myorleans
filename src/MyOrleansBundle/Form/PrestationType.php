@@ -17,8 +17,11 @@ class PrestationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomPrestation', TextType::class)
-            ->add('type_prestation', TypePrestaType::class
+            ->add('nom_prestation', TextType::class)
+            ->add('type_prestation', EntityType::class,[
+                    'class' => TypePresta::class,
+                    'choice_label' => 'nomType'
+                ]
             );
     }
     

@@ -88,26 +88,12 @@ class CollaborateurController extends Controller
     public function editAction(Request $request, Collaborateur $collaborateur, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($collaborateur);
-        /*
-        $collaborateur->setMedia(
-            new Media($this->getParameter('upload_directory') . '/' .
-                $collaborateur->getMedia()->getLien()
-            )
-        );
-        */
 
         $editForm = $this->createForm(CollaborateurType::class, $collaborateur);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-/*
-            $media = $collaborateur->getMedia();
 
-            $file = $media->getLien();
-            if ($file) {
-                $filename = $fileUploader->upload($file);
-                $media->setLien($filename);
-            }*/
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_collaborateur_show', array('id' => $collaborateur->getId()));
