@@ -1,6 +1,8 @@
 {% if pageCount > 1 %}
     <ul class="pagination">
 
+
+        {# application d'une classe disabled sur le bouton previous si on se trouve sur la premiere page #}
         {% if previous is defined %}
             <li>
                 <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
@@ -11,22 +13,6 @@
             <li class="disabled">
                 <a href="#!"><i class="material-icons">chevron_left</i></a>
             </li>
-        {% endif %}
-        {% if startPage > 1 %}
-            <li class="waves-effect">
-                <a href="{{ path(route, query|merge({(pageParameterName): 1})) }}">1</a>
-            </li>
-            {% if startPage == 3 %}
-                <li class="waves-effect">
-                    <a href="{{ path(route, query|merge({(pageParameterName): 2})) }}">2</a>
-                </li>
-            {% elseif startPage != 2 %}
-                <li class="disabled">
-                    <a href="#!">
-                        <span>&hellip;</span>
-                    </a>
-                </li>
-            {% endif %}
         {% endif %}
 
         {% for page in pagesInRange %}
@@ -42,22 +28,8 @@
 
         {% endfor %}
 
-        {% if pageCount > endPage %}
-            {% if pageCount > (endPage + 1) %}
-                {% if pageCount > (endPage + 2) %}
-                    <li class="disabled">
-                        <span>&hellip;</span>
-                    </li>
-                {% else %}
-                    <li class="waves-effect">
-                        <a href="{{ path(route, query|merge({(pageParameterName): (pageCount - 1)})) }}">{{ pageCount -1 }}</a>
-                    </li>
-                {% endif %}
-            {% endif %}
-            <li class="waves-effect">
-                <a href="{{ path(route, query|merge({(pageParameterName): pageCount})) }}">{{ pageCount }}</a>
-            </li>
-        {% endif %}
+
+        {# application d'une classe disabled sur le bouton next si on se trouve sur la derniere page #}
         {% if next is defined %}
             <li>
                 <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">

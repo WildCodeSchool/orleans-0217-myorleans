@@ -1,4 +1,4 @@
-¬{% extends '::layout_admin.html.twig' %}
+{% extends '::layout_admin.html.twig' %}
 
 {% block content %}
 
@@ -20,7 +20,7 @@
                                 </tr>
                                 <tr>
                                     <th>Nom</th>
-                                    <td>{{ typePresta.nom }}</td>
+                                    <td>{{ typePresta.nomType }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -37,7 +37,7 @@
 
                                 <li>
                                     {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete"
+                                    <input type="submit" value="Supprimer"
                                            class="waves-effect waves-light btn-large red pull-right">
                                     {{ form_end(delete_form) }}
                                 </li>

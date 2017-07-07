@@ -18,7 +18,11 @@ class TypePrestaType extends AbstractType
     {
         $builder
             ->add('nomType', TextType::class)
-            ->add('categorie_presta', CategoriePrestaType::class);
+            ->add('categorie_presta', EntityType::class ,[
+                    'class' => CategoriePresta::class,
+                    'choice_label' => 'nomCategorie'
+                ]
+            );
     }
     
     /**
