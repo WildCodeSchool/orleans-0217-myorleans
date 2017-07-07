@@ -29,13 +29,6 @@ class CategoriePresta
     private $nomCategorie;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="ordre_affichage", type="integer", nullable=true)
-     */
-    private $ordreAffichage;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Flat", inversedBy="categoriePrestas")
      */
     private $flat;
@@ -46,7 +39,7 @@ class CategoriePresta
     private $residence;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media")
+     * @ORM\OneToOne(targetEntity="Media",inversedBy="categorie_presta", cascade={"persist"})
      */
     private $media;
 
@@ -90,21 +83,7 @@ class CategoriePresta
         $this->nomCategorie = $nomCategorie;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOrdreAffichage()
-    {
-        return $this->ordreAffichage;
-    }
 
-    /**
-     * @param mixed $ordreAffichage
-     */
-    public function setOrdreAffichage($ordreAffichage)
-    {
-        $this->ordreAffichage = $ordreAffichage;
-    }
 
     /**
      * @return mixed

@@ -24,7 +24,7 @@ class Prestation
     /**
      * @var float
      *
-     * @ORM\Column(name="nom_prestation", type="float", nullable=true)
+     * @ORM\Column(name="nom_prestation", type="string", length=255, nullable=true)
      */
     private $nomPrestation;
 
