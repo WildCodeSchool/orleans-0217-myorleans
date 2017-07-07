@@ -1060,12 +1060,15 @@ transition:color 250ms ease-out;
 }
 .partenaires a img{
     margin: auto;
-    max-height: 100%;
-    max-width: 80%;
+    width: 100%;
     opacity: .65;
     filter: grayscale(1);
 }
 
+.partenaires a img:hover{
+
+    filter: none;
+}
 
 /**************************   TIMELINE   **************************/
 

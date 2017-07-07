@@ -101,7 +101,7 @@
                 <div class="col s12 l10 offset-l1">
                     <div class="row center">
                         {% for partenaire in partenaires %}
-                            <div class="col s3 l1">
+                            <div class="col s3 l2">
                                 {% if partenaire.media.lien is defined  %}
                                 <a href="{{ partenaire.url }}" target="_blank">
                                     <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.lien) }}"

@@ -183,8 +183,9 @@ body {
 
 }
 
-.pictoParcours {;
+.pictoParcours {
     padding-bottom: 20px;
+    position: relative;
 }
 
 .pictoParcours a i {
@@ -336,6 +337,8 @@ ACCUEIL - EFFET PARALLAX  ======================================================
     border-radius: 3px;
     position: relative;
     text-align: left;
+    overflow: hidden;
+    height: auto;
 }
 
 .box_overlay, .pic h4 {
