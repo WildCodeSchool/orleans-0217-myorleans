@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Article;
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\Tag;
 use MyOrleansBundle\Form\ArticleType;
 use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -57,6 +58,9 @@ class ArticleController extends Controller
         $article = new Article();
         $media = new Media();
         $article->getMedias()->add($media);
+        $tag = new Tag();
+        $article->getTags()->add($tag);
+
         $form = $this->createForm('MyOrleansBundle\Form\ArticleType', $article);
         $form->handleRequest($request);
 
@@ -104,6 +108,12 @@ class ArticleController extends Controller
             $media = new Media();
             $article->getMedias()->add($media);
         }
+
+        if(!empty($article->getTags())) {
+            $tag = new Tag();
+            $article->getTags()->add($tag);
+        }
+
         $editForm = $this->createForm(ArticleType::class, $article);
         $editForm->handleRequest($request);
 
@@ -163,6 +173,27 @@ class ArticleController extends Controller
         return $this->redirectToRoute('admin_article_edit', array('id' => $article->getId()));
     }
 
+
+    /**
+     * Deletes a article tag.
+     *
+     * @Route("/{id}/delete_tag/{tag_id}", name="article_tag_delete")
+     * @ParamConverter("article", class="MyOrleansBundle:Article", options={"id" = "id"})
+     * @ParamConverter("tag", class="MyOrleansBundle:Tag", options={"id" = "tag_id"})
+     * @Method({"GET", "POST"})
+     */
+    public function deleteTagAction(Article $article, Tag $tag)
+    {
+        //$articles = $media->getArticles();
+        $em = $this->getDoctrine()->getManager();
+
+        $path = $tag->getNom();
+        $article->removeTag($tag);
+        $em->remove($tag);
+
+        $em->flush();
+        return $this->redirectToRoute('admin_article_edit', array('id' => $article->getId()));
+    }
 
     /**
      * Creates a form to delete a article entity.
