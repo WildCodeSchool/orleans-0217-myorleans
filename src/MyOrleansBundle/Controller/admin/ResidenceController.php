@@ -74,7 +74,8 @@ class ResidenceController extends Controller
         }
 
         return $this->render('residence/new.html.twig', array(
-            'form' => $form->createView(),
+            'residence' => $residence,
+            'form' => $form->createView()
         ));
     }
 

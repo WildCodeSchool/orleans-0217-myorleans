@@ -8,28 +8,135 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title"> Créer une nouvelle résidence</h4>
+                            <h4 class="title">Créer une nouvelle résidence</h4>
                         </div>
                         <div class="card-content table-responsive">
 
                             {{ form_start(form) }}
-                            {{ form_widget(form) }}
-                            <a href="#" id="add-another-media">Ajouter un média</a>
-                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Create"/>
-                            {{ form_end(form) }}
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.nom, "Nom de la résidence:") }}
+                                    {{ form_widget(form.nom) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.favoris, 'Favoris: ') }}
+                                    {{ form_widget(form.favoris) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.adresse, 'Adresse: ') }}
+                                    {{ form_widget(form.adresse) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.quartier, 'Quartier: ') }}
+                                    {{ form_widget(form.quartier) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.ville, 'Ville: ') }}
+                                    {{ form_widget(form.ville) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.codePostal, 'Code Postal: ') }}
+                                    {{ form_widget(form.codePostal) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.latitude, 'Latitude: ') }}
+                                    {{ form_widget(form.latitude) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.longitude, 'Longitude: ') }}
+                                    {{ form_widget(form.longitude) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.dateLivraison, 'Date de livraison: ') }}
+                                    {{ form_widget(form.dateLivraison) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.accroche, 'Accroche: ') }}
+                                    {{ form_widget(form.accroche) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.nbTotalLogements, 'Nombre total de logements: ') }}
+                                    {{ form_widget(form.nbTotalLogements) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.noteTransports, 'Note transport: ') }}
+                                    {{ form_widget(form.noteTransports) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.noteServices, 'Note service: ') }}
+                                    {{ form_widget(form.noteServices) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.noteEsthetisme, 'Note esthétisme: ') }}
+                                    {{ form_widget(form.noteEsthetisme) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(form.description, 'Description: ') }}
+                                    {{ form_widget(form.description) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {% for media in residence.medias %}
+                                        {% if media.id != null %}
+                                            <div class="col s4">
+                                                <p class="imgUploader"><img class="responsive-img"
+                                                                            src="{{ asset('uploads/'~media.lien) }}"/>
+                                                    <a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
+                                                </p>
+                                            </div>
+                                        {% else %}
+                                            <h3>Veuillez charger une nouvelle image.</h3>
+                                            <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le
+                                                type du
+                                                media.</p>
+                                            {{ form_widget(form.medias) }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
+                                   id="add-another-media"><i
+                                            class="material-icons">add</i></a>
+
+
+                            </div>
+                            <div class="row">
+                                <input class="waves-effect waves-light btn-large light-green" type="submit"
+                                       value="Modifier"/>
+                                {{ form_widget(form._token) }}
+                                </form>
+
+                            </div>
 
                             <ul>
                                 <li>
-                                    <a href="{{ path('admin_residence_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des résidences</a>
+                                    <a href="{{ path('admin_residence_index') }}"><i
+                                                class="material-icons">keyboard_return</i>Retour
+                                        à la liste des résidences</a>
                                 </li>
                             </ul>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 {% endblock %}
 
 
