@@ -48,19 +48,24 @@ class Media
     private $residences;
 
     /**
-     * @ORM\OneToOne(targetEntity="Evenement", mappedBy="media")
+     * @ORM\ManyToOne(targetEntity="Evenement", inversedBy="medias", cascade={"persist"})
+     *
      */
     private $evenement;
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media")
      */
     private $partenaire;
 
+    /**
+     * @ORM\OneToOne(targetEntity="CategoriePresta", mappedBy="media")
+     */
+    private $categorie_presta;
 
     /**
-     * @ORM\OneToOne(targetEntity="Service", mappedBy="media")
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="medias")
      */
     private $service;
 
@@ -149,6 +154,7 @@ class Media
     {
         $this->residences = new ArrayCollection();
         $this->flats = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
 
@@ -348,7 +354,6 @@ class Media
     public function addResidence(\MyOrleansBundle\Entity\Residence $residence)
     {
         $this->residences[] = $residence;
-
         return $this;
     }
 
@@ -401,6 +406,22 @@ class Media
     public function setCollaborateur($collaborateur)
     {
         $this->collaborateur = $collaborateur;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoriePresta()
+    {
+        return $this->categorie_presta;
+    }
+
+    /**
+     * @param mixed $categorie_presta
+     */
+    public function setCategoriePresta($categorie_presta)
+    {
+        $this->categorie_presta = $categorie_presta;
     }
 
 

@@ -3,12 +3,17 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Flat;
+use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Form\FlatType;
+use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 
 /**
  * Flat controller.
@@ -23,14 +28,24 @@ class FlatController extends Controller
      * @Route("/", name="admin_flat_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $flats = $em->getRepository('MyOrleansBundle:Flat')->findAll();
 
+        /**
+         * @var $pagination "Knp\Component\Pager\Paginator"
+         * */
+        $pagination = $this->get('knp_paginator');
+        $results = $pagination->paginate(
+            $flats,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
+
         return $this->render('flat/index.html.twig', array(
-            'flats' => $flats,
+            'flats' => $results,
         ));
     }
 
@@ -40,14 +55,17 @@ class FlatController extends Controller
      * @Route("/new", name="admin_flat_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $flat = new Flat();
-        $form = $this->createForm('MyOrleansBundle\Form\FlatType', $flat);
+        $media = new Media();
+        $flat->getMedias()->add($media);
+        $form = $this->createForm(FlatType::class, $flat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($flat);
             $em->flush();
 
@@ -68,7 +86,7 @@ class FlatController extends Controller
      */
     public function pdfAction(Flat $flat)
     {
-        $pageUrl = $this->generateUrl('admin_flat_show', ['flat' => $flat], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
+        $pageUrl = $this->generateUrl('admin_flat_show', ['id' => $flat->getId()], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
 
         return new Response(
             $this->get('knp_snappy.pdf')->getOutput($pageUrl),
@@ -109,13 +127,18 @@ class FlatController extends Controller
      * @Route("/{id}/edit", name="admin_flat_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Flat $flat)
+    public function editAction(Request $request, Flat $flat, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($flat);
+        if (!empty($flat->getMedias())) {
+            $media = new Media();
+            $flat->getMedias()->add($media);
+        }
         $editForm = $this->createForm('MyOrleansBundle\Form\FlatType', $flat);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_flat_edit', array('id' => $flat->getId()));
@@ -149,6 +172,27 @@ class FlatController extends Controller
     }
 
     /**
+     * Deletes a flat media.
+     *
+     * @Route("/{id}/delete_media/{media_id}", name="flat_media_delete")
+     * @ParamConverter("flat", class="MyOrleansBundle:Flat", options={"id" = "id"})
+     * @ParamConverter("media", class="MyOrleansBundle:Media", options={"id" = "media_id"})
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Flat $flat, Media $media)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $path = $media->getLien();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        $flat->removeMedia($media);
+        $em->remove($media);
+
+        $em->flush();
+        return $this->redirectToRoute('admin_flat_edit', array('id' => $flat->getId()));
+    }
+
+    /**
      * Creates a form to delete a flat entity.
      *
      * @param Flat $flat The flat entity
@@ -160,7 +204,6 @@ class FlatController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_flat_delete', array('id' => $flat->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

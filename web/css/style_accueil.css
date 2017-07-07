@@ -180,10 +180,12 @@ body {
     height: auto;
     padding-bottom: 50px;
     border-bottom: 5px solid #a5ca2a;
+
 }
 
-.pictoParcours {;
+.pictoParcours {
     padding-bottom: 20px;
+    position: relative;
 }
 
 .pictoParcours a i {
@@ -335,6 +337,8 @@ ACCUEIL - EFFET PARALLAX  ======================================================
     border-radius: 3px;
     position: relative;
     text-align: left;
+    overflow: hidden;
+    height: auto;
 }
 
 .box_overlay, .pic h4 {
@@ -777,5 +781,31 @@ FIN ACCUEIL - BLOC AGENCE
 
     .footer-copyright p{
         font-size: 12px;
+    }
+}
+
+/* --------------------------------------------------------------------*/
+/* ------------------------------ FORMULAIRE DE CONTACT ---------------------*/
+/* --------------------------------------------------------------------*/
+
+.side-nav{
+    width: 600px;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding-bottom: 50px;
+
+}
+
+
+@media (max-width : 767px) {
+    .side-nav li > .userView{
+        width: 100%;
+    }
+    .side-nav{
+        width: 300px;
+    }
+
+    .barre-recherche{
+        visibility: hidden;
     }
 }

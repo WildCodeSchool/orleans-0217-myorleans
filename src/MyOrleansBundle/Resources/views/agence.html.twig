@@ -1,14 +1,22 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
     {% block content %}
+
+        <!--logo dde de documentation-->
+        <div class="breadcrumb">
+            <a href="#" data-activates="slide-out" class="button-collapse pulse-button">
+                <i class="material-icons">message</i></a>
+        </div>
+        <!--fin logo dde de documentation-->
         <div class="row agencyVideo">
             <div class="col s12">
                 {% for cover in cover if cover.page == 'agence_cover' %}
-                <iframe id="myIframe" src="{{ cover.lien }}" frameborder="0"
-                        allowfullscreen></iframe>
+                    <iframe id="myIframe" src="{{ cover.lien }}" frameborder="0"
+                            allowfullscreen></iframe>
                 {% endfor %}
             </div>
         </div>
+
         <div class="container">
             <div class="row center countRow">
                 <h2 class="fancy"><span>Nos chiffres</span></h2>
@@ -33,9 +41,11 @@
                         {% for collaborateur in collaborateurs %}
                             <div class="col l4 s12">
                                 <div class="blockStaff">
+                                    {% if collaborateur.media.lien is defined  %}
                                     <div class="imgStaff">
-                                        <img src="{{ asset('img/equipe/'~collaborateur.media.lien ) }}" alt="">
+                                        <img src="{{ asset('uploads/'~collaborateur.media.lien ) }}" alt="">
                                     </div>
+                                    {% endif %}
                                     <div class="infoStaff">
                                         <h3>{{ collaborateur.prenom }} {{ collaborateur.nom }}</h3>
                                         <h4>{{ collaborateur.fonction }}</h4>
@@ -58,42 +68,104 @@
             <div class="row center">
                 <h2 class="fancy"><span>Nos événements</span></h2>
             </div>
-            <section class="timeline">
-                <ol>
-                    {% for evenement in evenements %}
-                    <li>
-                        <div>
-                            <time>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('j-m-Y') }}{% endif %}</time>
-                            {{ evenement.nom }}<br>
-                            {{ evenement.description }}
-                            <img class="responsive-img" src="{{ asset('uploads/'~evenement.media.lien) }}">
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <section class="timeline">
+
+                        <ol>
+                            {% for evenement in evenements %}
+
+                                {% if evenement.dateDebut|date("Ymd") < "now"|date("Ymd") %}
+
+                                    <li>
+                                        <div class="event past-event center">
+                                            <h4>{{ evenement.nom }}</h4>
+                                            <h5>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
+                                                {{ evenement.dateDebut|date('Y') }}</h5>
+                                            <p></p>{{ evenement.description }}
+                                            {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
+                                                <img class="responsive-img" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_timeline') }}">
+                                            {% endfor %}
+                                            <a class="waves-effect waves-light btn white" data-toggle="modal" data-id="{{ evenement.id }}"
+                                               href="#modal-{{ evenement.id }}">VOIR LES PHOTOS</a>
+                                        </div>
+                                    </li>
+
+                                {% else %}
+                                    <li>
+                                        <div class="event future-event center">
+                                            <h4>{{ evenement.nom }}</h4>
+                                            <time>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
+                                                {{ evenement.dateDebut|date('Y') }} |
+                                                <span>
+                                        {{ evenement.heureDebut|date('H:m') }} - {{ evenement.heureFin|date('H:m') }}
+                                        </span>
+                                            </time>
+                                            <p></p>{{ evenement.description }}
+                                            {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
+                                                <img class="responsive-img" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_timeline')  }}">
+                                            {% endfor %}
+                                            <a class="button-collapse waves-effect waves-light btn" data-activates="slide-out">JE M'INSCRIS</a>
+                                        </div>
+                                    </li>
+
+                                {% endif %}
+
+                            {% endfor %}
+                            <li></li>
+                        </ol>
+
+                        {# On place les modals dans une boucle a part, sinon cela compromet le css de la timeline  #}
+                        {% for evenement in evenements %}
+
+                            {% if evenement.dateDebut|date("Ymd") < "now"|date("Ymd") %}
+                                <!-- Modal Structure -->
+                                <div id="modal-{{ evenement.id }}" class="modal">
+                                    <div class="modal-content center">
+                                        <h3>Photos de l'événement {{ evenement.nom }}</h3>
+                                        {{ render(controller('MyOrleansBundle:Carrousel:affichageCarrousel',
+                                        {'id': evenement.id })) }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class="modal-action modal-close waves-effect waves-light grey lighten-2 btn-flat">Fermer</a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+
+
+                        <div class="arrows">
+                            <button class="arrow arrow__prev disabled btn-floating btn-large light-green"
+                                    disabled>
+                                <i class="medium material-icons">keyboard_arrow_left</i>
+                            </button>
+                            <button class="arrow arrow__next btn-floating btn-large light-green">
+                                <i class="medium material-icons">keyboard_arrow_right</i>
+                            </button>
                         </div>
-                    </li>
-                    {% endfor %}
-                    <li></li>
-                </ol>
-
-                <div class="arrows">
-                    <button class="arrow arrow__prev disabled btn-floating btn-large waves-effect waves-light light-green"
-                            disabled>
-                        <i class="medium material-icons">keyboard_arrow_left</i>
-                    </button>
-                    <button class="arrow arrow__next  btn-floating btn-large waves-effect waves-light light-green">
-                        <i class="medium material-icons">keyboard_arrow_right</i>
-                    </button>
+                    </section>
                 </div>
-            </section>
+            </div>
 
+        </div>
+
+        <div class="container">
             <div class="row  partenaires">
                 <h2 class="fancy"><span>Nos partenaires</span></h2>
                 <div class="col s12 l10 offset-l1">
                     <div class="row center">
                         {% for partenaire in partenaires %}
-                            <div class="col s3 l1">
+                            <div class="col s3 l2">
+                                {% if partenaire.media.lien is defined  %}
                                 <a href="{{ partenaire.url }}" target="_blank">
                                     <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.lien) }}"
                                          alt="{{ partenaire.nom }}">
                                 </a>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>
@@ -102,10 +174,116 @@
         </div>
 
 
-        {% block javascripts %}
+        <!-- début formulaire de contact -->
+        <form method="post" action="">
+            <div id="slide-out" class="side-nav">
+                <div class="userView">
+                    <h3 align="center">Contactez nous !</h3>
+                    <h4 align="center">{{ telephone_number }}</h4>
+                    {{ form_start(contactForm) }}
+                    <div class="row">
 
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form_label(contactForm.nom) }}
+                            {{ form_widget(contactForm.nom) }}
+                            {{ form_errors(contactForm.nom) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form_label(contactForm.prenom) }}
+                            {{ form_widget(contactForm.prenom) }}
+                            {{ form_errors(contactForm.prenom) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">email</i>
+                            {{ form_label(contactForm.email) }}
+                            {{ form_widget(contactForm.email) }}
+                            {{ form_errors(contactForm.email) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">phone</i>
+                            {{ form_label(contactForm.telephone) }}
+                            {{ form_widget(contactForm.telephone) }}
+                            {{ form_errors(contactForm.telephone) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">my_location</i>
+                            {{ form_label(contactForm.codePostal) }}
+                            {{ form_widget(contactForm.codePostal) }}
+                            {{ form_errors(contactForm.codePostal) }}
+                        </div>
+
+                        <div class="input-field col l6 m6 s12">
+                            <i class="material-icons prefix">location_on</i>
+                            {{ form_label(contactForm.ville) }}
+                            {{ form_widget(contactForm.ville) }}
+                            {{ form_errors(contactForm.ville) }}
+                        </div>
+
+                        <div class="input-field col l12 m12 s12">
+                            <i class="material-icons prefix">my_location</i>
+                            {{ form_label(contactForm.adresse) }}
+                            {{ form_widget(contactForm.adresse) }}
+                            {{ form_errors(contactForm.adresse) }}
+                        </div>
+
+
+                        <div class="input-field col l12 m12 s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            {{ form_label(contactForm.message) }}
+                            {{ form_widget(contactForm.message) }}
+                            {{ form_errors(contactForm.message) }}
+                        </div>
+
+                        <div class="row center">
+                            <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+
+                            {{ form_widget(contactForm.newsletter) }}
+                            {{ form_errors(contactForm.newsletter) }}
+
+                        </div>
+                    </div>
+
+                    <div class="input-field col l12">
+                        {{ form_row(contactForm.envoyer) }}
+                    </div>
+
+                    {{ form_end(contactForm) }}
+
+                </div>
+
+            </div>
+
+        </form>
+
+        <!--fin formulaire de contact-->
+
+
+        {% block javascripts %}
             <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
-            <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
             {{ parent() }}
+
+            <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
+            <script>
+
+                $('.button-collapse').sideNav({
+                        edge: 'right', // Choose the horizontal origin
+                        draggable: false, // Choose whether you can drag to open on touch screens
+                        closeOnClick: true
+                    }
+                );
+
+                $(function(){
+                    $('.slider').slider();
+                });
+
+            </script>
+
+
         {% endblock %}
     {% endblock %}

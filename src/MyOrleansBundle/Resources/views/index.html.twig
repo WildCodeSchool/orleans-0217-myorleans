@@ -19,24 +19,28 @@
         </div>
         <div class="row center">
             {% if parcours == 'investisseur' %}
-            <div class="col s6 l6 offset-l3 pictoParcours pictoInvest">
-                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}" class="profil-investisseur">
-                    <i class="fa fa-calculator" aria-hidden="true"></i></a>
-            </div>
+                <div class="col s6 l6 offset-l3 pictoParcours pictoInvest">
+                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
+                       class="profil-investisseur">
+                        <i class="fa fa-calculator" aria-hidden="true"></i></a>
+                </div>
             {% elseif parcours == 'residence' %}
-            <div class="col s6 l6 offset-l3 pictoParcours pictoResidence">
-                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}" class="profil-residence">
-                    <i class="fa fa-home" aria-hidden="true"></i></a>
-            </div>
+                <div class="col s6 l6 offset-l3 pictoParcours pictoResidence">
+                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
+                       class="profil-residence">
+                        <i class="fa fa-home" aria-hidden="true"></i></a>
+                </div>
             {% else %}
-            <div class="col s6 l5 offset-l1 pictoParcours pictoInvest">
-                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}" class="profil-investisseur">
-                    <i class="fa fa-calculator" aria-hidden="true"></i></a>
-            </div>
-            <div class="col s6 l5 pictoParcours pictoResidence">
-                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}" class="profil-residence">
-                    <i class="fa fa-home" aria-hidden="true"></i></a>
-            </div>
+                <div class="col s6 l5 offset-l1 pictoParcours pictoInvest">
+                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
+                       class="profil-investisseur">
+                        <i class="fa fa-calculator" aria-hidden="true"></i></a>
+                </div>
+                <div class="col s6 l5 pictoParcours pictoResidence">
+                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
+                       class="profil-residence">
+                        <i class="fa fa-home" aria-hidden="true"></i></a>
+                </div>
             {% endif %}
         </div>
     </div>
@@ -53,17 +57,19 @@
 
                     <ul class="center">
                         {% if parcours == 'investisseur' %}
-                        <li>
-                            <div class="icone-profil icone-investisseur">
-                                <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"><i class="fa fa-calculator" aria-hidden="true"></i>  Changer de parcours</a>
-                            </div>
-                        </li>
+                            <li>
+                                <div class="icone-profil icone-investisseur">
+                                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"><i
+                                                class="fa fa-calculator" aria-hidden="true"></i> Changer de parcours</a>
+                                </div>
+                            </li>
                         {% elseif parcours == 'residence' %}
-                        <li>
-                            <div class="icone-profil icone-residence">
-                                <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"><i class="fa fa-home" aria-hidden="true"></i>  Changer de parcours</a>
-                            </div>
-                        </li>
+                            <li>
+                                <div class="icone-profil icone-residence">
+                                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"><i
+                                                class="fa fa-home" aria-hidden="true"></i> Changer de parcours</a>
+                                </div>
+                            </li>
                         {% elseif parcours == null %}
                         {% endif %}
                     </ul>
@@ -72,16 +78,16 @@
                                 class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
-                        <li><a href="{{ path("nosservices") }}">Nos services</a></li>
+                        <li><a href="{{ path("nos_services") }}">Nos services</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
-                        <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
+                        <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                     <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
                         <li><a href="{{ path("nosbiens") }}">Nos biens</a></li>
-                        <li><a href="{{ path("nosservices") }}">Nos services</a></li>
+                        <li><a href="{{ path("nos_services") }}">Nos services</a></li>
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
-                        <li><a href="{{ path("immopratique") }}">L'immobilier pratique</a></li>
+                        <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
                     </ul>
                 </div>
@@ -89,43 +95,49 @@
         </div>
     </header>
 
+
     {% block content %}
 
+
         <section id="content">
-            <div>
-                <div class="row">
-                    <div class="col s12 l10 offset-l1 formSearch z-depth-3">
-                        <div class="row">
-                            <h1>
-                                <span>Recherchez votre bien immobilier neuf</span>
-                            </h1>
-                        </div>
-                        {{ form_start(simpleSearch) }}
-                        <div class="row">
-                            <div class="input-field col s4 offset-s1">
-                                {{ form_label(simpleSearch.ville, 'Localisation') }}
-                                {{ form_widget(simpleSearch.ville) }}
-                                {{ form_errors(simpleSearch.ville) }}
-                            </div>
 
-                            <div class="input-field col s4 offset-s1">
-                                {{ form_widget(simpleSearch.type) }}
-                                {{ form_errors(simpleSearch.type) }}
-                            </div>
+            <div class="row">
+                <div class="col s12 l10 offset-l1 formSearch z-depth-3">
+                    <div class="row">
+                        <h1>
+                            <span>Recherchez votre bien immobilier neuf</span>
+                        </h1>
+                    </div>
+                    {{ form_start(simpleSearch) }}
+                    <div class="row">
+                        <div class="input-field col s4 offset-s1">
+                            {{ form_label(simpleSearch.ville, 'Localisation') }}
+                            {{ form_widget(simpleSearch.ville) }}
+                            {{ form_errors(simpleSearch.ville) }}
                         </div>
-                        <div class="row center">
 
-                            {% if parcours == 'investisseur' %}
+                        <div class="input-field col s4 offset-s1">
+                            {{ form_widget(simpleSearch.type) }}
+                            {{ form_errors(simpleSearch.type) }}
+                        </div>
+                    </div>
+                    <div class="row center">
+
+                        {% if parcours == 'investisseur' %}
                             <div class="formButton col s12 m12 l4 offset-l4">
                                 {{ form_widget(simpleSearch.investBtn) }}
                                 {{ form_widget(simpleSearch._token) }}
+
+                                </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
                             </div>
-                            {% elseif parcours == 'residence' %}
+                        {% elseif parcours == 'residence' %}
                             <div class="formButton col s12 m12 l4 offset-l4">
                                 {{ form_widget(simpleSearch.resPrincipaleBtn) }}
                                 {{ form_widget(simpleSearch._token) }}
+
+                                </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
                             </div>
-                            {% else %}
+                        {% else %}
                             <div class="formButton col s12 m12 l4 offset-l1">
                                 {{ form_widget(simpleSearch.investBtn) }}
                             </div>
@@ -133,14 +145,18 @@
                                 {{ form_widget(simpleSearch.resPrincipaleBtn) }}
                             </div>
                             {{ form_end(simpleSearch) }}
-                            {% endif %}
+                        {% endif %}
 
-                        </div>
 
                     </div>
+
                 </div>
+
             </div>
+
+
         </section>
+
         <div class="container-fluid">
             <div class="section white">
                 <div class="row container">
@@ -153,7 +169,7 @@
                             <div class="col s12 l6">
                                 {% for residence in residenceFav %}
                                     {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidenceHome',
-                                                        {'id': residence.id })) }}
+                                    {'id': residence.id })) }}
                                 {% endfor %}
                             </div>
 
@@ -162,8 +178,8 @@
                                     <div class="col s12 l12">
                                         <div class="card">
                                             <div class="card-image">
-                                                {% for media in resTwoFav.medias if media.typeMedia.nom == 'image' %}
-                                                    <img src="{{ asset('img/'~media.lien) }}" class="responsive-img"
+                                                {% for media in resTwoFav.medias if media.typeMedia.nom == 'image-cover' %}
+                                                    <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
                                                          alt="{{ resTwoFav.nom }}">
                                                 {% endfor %}
                                                 <span class="card-title">{{ resTwoFav.nom }}</span>
@@ -186,7 +202,7 @@
                         <h3 class="h3-testimonial center-align"> Ce que les clients pensent de nous</h3>
                         <div class="col m8 offset-m2 col s12">
                             <div class="owl-carousel owl-theme owl-responsive-1000 owl-loaded">
-                                {% for testimonial in testimonials if testimonial.theme == 'avis' %}
+                                {% for testimonial in testimonials if testimonial.theme == 'Achat' %}
                                     <div class="item cloned">
                                         <div>
                                             <div class="box_overlay">
@@ -214,67 +230,43 @@
         </div>
 
 
-        <div class="row carouselAgence">
-            <div class="col s12 m10 l10 offset-l1">
-                <h3>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
-                    clients.
-                    Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
-                    meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </h3>
-                <div class="carousel">
-                    {% for collaborateur in collaborateurs %}
-                        <a class="carousel-item" href="#one!"><img
-                                    src="{{ asset('img/equipe/'~collaborateur.media.lien) }}">
-                            <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
-                                <br><span>{{ collaborateur.fonction }}</span></p>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
+        <!-- Modal Trigger -->
+        <div class="row">
+            <div class="col s12 center">
+                <div class="row carouselAgence">
+                    <div class="col s12 m10 l10 offset-l1">
+                        <p>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
+                            clients.
+                            Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
+                            meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </p>
+                        <div class="carousel center-align">
+                            {% for collaborateur in collaborateurs %}
+                                {% if collaborateur.media.lien is defined %}
+                                    <a class="carousel-item" href="#one!"><img
+                                                src="{{ asset('uploads/'~collaborateur.media.lien) }}">
+                                        <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
+                                            <br><span>{{ collaborateur.fonction }}</span></p>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
 
-            <!-- Modal Trigger -->
-            <div class="row">
-                <div class="col s12 center">
-                    <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
-                       href="#modal1">
-                        <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
-                    </a>
-                </div>
-            </div>
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal modal-fixed-footer">
-                <div class="modal-content black-text">
-                    <h3> Inscrivez-vous !</h3>
 
-                    <div class="row">
-                        <form class="col s12">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="first_name" type="text" class="validate">
-                                    <label for="first_name">Nom </label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="last_name" type="text" class="validate">
-                                    <label for="last_name">Prénom</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12">
-                                    <div class="input-field inline">
-                                        <input id="email" type="email" class="validate">
-                                        <label for="email" data-error="wrong" data-success="right">Email</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     </div>
-
-
                 </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Je
-                        m'inscris</a>
+
+                <!-- Modal Trigger -->
+                <div class="row">
+                    <div class="col s12 center">
+                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
+                           href="#modal1">
+                            <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
+                        </a>
+                    </div>
                 </div>
             </div>
+        </div>
+
         </div>
 
 
@@ -283,11 +275,13 @@
                 <h3>L'actualité</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        {% for media in actu[0].medias if media.typeMedia.nom == 'image' %}
-                            <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
+                        {% for media in actu[0].medias if media.typeMedia.nom == 'image-cover' %}
+                            <img class="activator"
+                                 src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
                         {% endfor %}
                     </div>
                     <div class="card-content">
+
                         <span class="card-title activator grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">add</i></span>
                         <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
@@ -305,7 +299,10 @@
                 <h3>L'événement</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ asset('img/'~event[0].media.lien) }}">
+
+                        {% for media in event[0].medias if media.typeMedia.nom == 'image-cover' %}
+                            <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
+                        {% endfor %}
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
@@ -321,7 +318,7 @@
                 </div>
             </div>
         </div>
-        </div>
+
     {% endblock %}
 
 
@@ -337,7 +334,8 @@
                     <h5 class="white-text">Suivez-nous</h5>
                     <div class="row">
                         <div class="col s1">
-                            <a href="https://www.facebook.com/myorleans/?ref=page_internal" target="_blank">
+                            <a href="https://www.facebook.com/myorleans/?ref=page_internal"
+                               target="_blank">
                                 <div class="social-btn">
                                     <i class="fa fa-facebook fa-3x fb-social" aria-hidden="true"></i>
                                 </div>
@@ -351,7 +349,8 @@
                             </a>
                         </div>
                         <div class="col offset-s1 s1">
-                            <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ" target="_blank">
+                            <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ"
+                               target="_blank">
                                 <div class="social-btn">
                                     <i class="fa fa-youtube fa-3x icon-social" aria-hidden="true"></i>
                                 </div>
@@ -362,7 +361,8 @@
                 <div class="col l5 offset-l1 s12 footer-right-side">
                     <h5 class="white-text">Contactez-nous</h5>
                     <p class="p-footer-phone no-margin-bottom"><span><i
-                                    class="small material-icons align-icon">phone</i></span><a href="tel:+33238759447">02
+                                    class="small material-icons align-icon">phone</i></span><a
+                                href="tel:+33238759447">02
                             38 75 94
                             47</a></p>
                     <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13,
@@ -379,8 +379,10 @@
                         <p>© 2017 My-Orléans</p>
                     </div>
                     <div class="col s8 center">
-                        <p><a class="grey-text text-lighten-4 ml-padding-right" href="#!">Mentions légales</a>
-                            <a class="grey-text text-lighten-4" href="#!">Frais et honoraires de gestion</a></p>
+                        <p><a class="grey-text text-lighten-4 ml-padding-right" href="#!">Mentions
+                                légales</a>
+                            <a class="grey-text text-lighten-4" href="#!">Frais et honoraires de
+                                gestion</a></p>
                     </div>
                     <div class="col s2">
                         <p><a class="grey-text text-lighten-4" href="#!">Wild Code School</a></p>
@@ -390,57 +392,161 @@
         </div>
     </footer>
 
+
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav">
+            <div class="userView">
+                <h3 align="center">Contactez nous !</h3>
+                <h4 align="center">{{ telephone_number }}</h4>
+
+
+                {{ form_start(form) }}
+                <div class="row">
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.prenom) }}
+                        {{ form_widget(form.prenom) }}
+                        {{ form_errors(form.prenom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">location_on</i>
+                        {{ form_label(form.ville) }}
+                        {{ form_widget(form.ville) }}
+                        {{ form_errors(form.ville) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.adresse) }}
+                        {{ form_widget(form.adresse) }}
+                        {{ form_errors(form.adresse) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+
+                        {{ form_widget(form.sujet) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+
+                    <div class="row center">
+                        <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
+                    </div>
+                </div>
+
+                <div class="input-field col l12">
+                    {{ form_row(form.envoyer) }}
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+
+    </form>
+
+    <!--fin formulaire de contact-->
+
 {% endblock %}
 
-    {% block javascripts %}
-        {{ parent() }}
+                    {% block javascripts %}
+                        {{ parent() }}
 
-        <script type="text/javascript" src="{{ asset("js/carousel-testimonial.js") }}"></script>
-        <script type="text/javascript" src="{{ asset('owlcarousel/owl.carousel.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
+                        <script type="text/javascript" src="{{ asset("js/carousel-testimonial.js") }}"></script>
+                        <script type="text/javascript" src="{{ asset('owlcarousel/owl.carousel.js') }}"></script>
+                        <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+                        <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
 
-        <script type="text/javascript">
-            $(document).ready(function () {
+                        <script type="text/javascript">
+                            $(document).ready(function () {
 
-                // hide #back-top first
-                $("#back-top").hide();
+                                // hide #back-top first
+                                $("#back-top").hide();
 
-                // fade in #back-top
-                $(function () {
-                    $(window).scroll(function () {
-                        if ($(this).scrollTop() > 100) {
-                            $('#back-top').fadeIn();
-                        } else {
-                            $('#back-top').fadeOut();
-                        }
-                    });
+                                // fade in #back-top
+                                $(function () {
+                                    $(window).scroll(function () {
+                                        if ($(this).scrollTop() > 100) {
+                                            $('#back-top').fadeIn();
+                                        } else {
+                                            $('#back-top').fadeOut();
+                                        }
+                                    });
 
-                    // scroll body to 0px on click
-                    $('#back-top a').click(function () {
-                        $('body,html').animate({
-                            scrollTop: 0
-                        }, 800);
-                        return false;
-                    });
-                });
+                                    // scroll body to 0px on click
+                                    $('#back-top a').click(function () {
+                                        $('body,html').animate({
+                                            scrollTop: 0
+                                        }, 800);
+                                        return false;
+                                    });
+                                });
 
 
-                $('input.autocomplete').autocomplete({
-                    data: {
-                        {% for ville in villes %}
-                            "{{ ville.nom }}" : null,
-                        {% endfor %}
-                    },
-                    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                    onAutocomplete: function (val) {
-                        // Callback function when value is autcompleted.
-                    },
-                    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+                                $('input.autocomplete').autocomplete({
+                                    data: {
+                                        {% for ville in villes %}
+                                        "{{ ville.nom }}": null,
+                                        {% endfor %}
+                                    },
+                                    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                                    onAutocomplete: function (val) {
+                                        // Callback function when value is autcompleted.
+                                    },
+                                    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
 
-                });
 
-            });
-        </script>
+                                });
 
-    {% endblock %}
+                                $('.button-collapse').sideNav({
+                                        edge: 'right', // Choose the horizontal origin
+                                        draggable: false, // Choose whether you can drag to open on touch screens
+                                        closeOnClick: true
+                                    }
+                                );
+
+                            });
+                        </script>
+
+                    {% endblock %}

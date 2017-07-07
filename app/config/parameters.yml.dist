@@ -15,11 +15,14 @@ parameters:
     mailer_user: ~
     mailer_password: ~
     mailer_encryption: ~
+    telephone_number: 02.38.75.94.47
+
     mailer_sender_name: MyOrléans
     parcours_investisseur: investisseur
     parcours_residence: residence
 
+
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
 
-    upload_directory: '%kernel.project_dir%/../web/uploads'
+    upload_directory: '%kernel.root_dir%/../web/uploads'

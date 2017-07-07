@@ -41,17 +41,21 @@
                                         class="material-icons">settings</i></div>
                             <div class="collapsible-body">
                                 <a href="{{ path("admin_residence_index") }}">
-
                                     <p>Résidences</p>
                                 </a><br>
                                 <a href="{{ path("admin_flat_index") }}">
-
                                     <p>Biens</p>
                                 </a><br>
                                 <a href="{{ path("admin_prestation_index") }}">
-
                                     <p>Prestations</p>
                                 </a>
+                                <a href="{{ path("admin_categorie-presta_index") }}">
+                                    <p>Catégorie prestation</p>
+                                </a>
+                                <a href="{{ path("admin_typepresta_index") }}">
+                                    <p>Type prestation</p>
+                                </a>
+
                             </div>
                         </li>
                         <li>
@@ -73,6 +77,9 @@
                                 <a href="{{ path("admin_client_index") }}">
                                     <p>Clients</p>
                                 </a><br>
+                                <a href="{{ path("admin_temoignage_index") }}">
+                                    <p>Témoignages</p>
+                                </a><br>
                                 <a href="{{ path("admin_collaborateur_index") }}">
                                     <p>Membres de l'agence</p>
                                 </a><br>
@@ -81,7 +88,15 @@
                                 </a><br>
                             </div>
                         </li>
-
+                        <hr>
+                        <li>
+                            <div class="active collapsible-header">
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    <i class="material-icons">power_settings_new</i>
+                                    <p>Déconnexion</p>
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

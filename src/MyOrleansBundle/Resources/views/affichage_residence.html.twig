@@ -2,8 +2,10 @@
     <div class="card large">
         <div class="card-image">
 
-            {% for media in residence.medias if media.typeMedia.nom == 'image' %}
-                <img src="{{ asset('img/'~media.lien) }}">
+            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+
+                <img src="{{ asset('uploads/'~media.lien) }}">
+
             {% endfor %}
 
         </div>
