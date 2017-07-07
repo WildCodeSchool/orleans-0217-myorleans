@@ -1,7 +1,7 @@
 <div class="card large">
     <div class="card-image">
 
-        {% for media in residence.medias if media.typeMedia.nom == 'image' %}
+        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
             <img src="{{ asset('img/'~media.lien) | imagine_filter('thumb_residence') }}">
         {% endfor %}
 

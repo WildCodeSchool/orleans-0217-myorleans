@@ -25,13 +25,12 @@ class Tag
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=45)
+     * @ORM\Column(name="nom", type="string", length=45, nullable=true)
      */
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article", inversedBy="tags")
-     * @JoinTable(name="article_tag")
+     * @ORM\ManyToMany(targetEntity="Article", cascade={"persist"})
      *
      */
     private $articles;

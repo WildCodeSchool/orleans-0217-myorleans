@@ -20,14 +20,24 @@ class TemoignageController extends Controller
      * @Route("/", name="admin_temoignage_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $temoignages = $em->getRepository('MyOrleansBundle:Temoignage')->findAll();
 
+        /**
+         * @var $pagination "Knp\Component\Pager\Paginator"
+         * */
+        $pagination = $this->get('knp_paginator');
+        $results = $pagination->paginate(
+            $temoignages,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
+
         return $this->render('temoignage/index.html.twig', array(
-            'temoignages' => $temoignages,
+            'temoignages' => $results,
         ));
     }
 
