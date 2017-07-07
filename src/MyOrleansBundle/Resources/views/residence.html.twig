@@ -9,6 +9,8 @@
 {% endblock %}
 
 {% block content %}
+
+
     <!--logo dde de documentation-->
     <div class="breadcrumb">
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
@@ -371,6 +373,13 @@
     </div>
 
 
+
+
+
+
+
+
+
     <!-- début formulaire de contact -->
     <form method="post" action="">
         <div id="slide-out" class="side-nav">
@@ -464,7 +473,29 @@
 
     <!--fin formulaire de contact-->
 
+<!--Partage reseaux sociaux-->
+<div class="container">
+    <div class="row center">
+        <p class="partage">Vous avez aimez cette résidence? N'hésitez pas à le partager à vos amis: </p>
+        <div class="col l4 m4 s12">
+            <a class="twitter-share-button"
+               href="https://twitter.com/intent/tweet?text=Hello%20world"
+               data-size="large">
+                Tweet</a>
+        </div>
 
+        <div class="col l4 m4 s12">
+
+            <div class="fb-share-button" data-href="http://localhost:8000/residences" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2Fresidences&amp;src=sdkpreparse">Partager</a></div>
+        </div>
+
+        <div class="col l4 m4 s12">
+            <a class="waves-effect waves-light btn" href="mailto:?to=adresse1@serveur.com%2C%20adresse2@serveur.com &cc=adresseCopie@serveur.com &subject=Sujet%20du%20message">Envoyez à un ami par mail </a>
+
+        </div>
+    </div>
+</div>
+        <!--fin partage reseaux sociaux-->
 
 {% endblock %}
 
@@ -475,11 +506,7 @@
     <script src="{{ asset('js/testcompteur.js') }}"></script>
     <script src="{{ asset('js/jquery.circliful.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
-    <script>
-
-        $(document).ready(function(){
-            $('.collapsible').collapsible();
-        });
+<script>
 
         AOS.init();
         //formulaire de contact
@@ -489,6 +516,9 @@
                 closeOnClick: true
             }
         );
+
+
+
 
     </script>
 {% endblock %}
