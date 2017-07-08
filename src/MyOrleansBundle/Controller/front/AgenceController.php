@@ -91,9 +91,8 @@ class AgenceController extends Controller
                 'partenaires' => $partenaires,
                 'collaborateurs'=>$collaborateurs,
                 'evenements'=>$evenements,
-                'contactForm' => $contactForm->createView()
                 'cover'=>$cover,
-
+                'contactForm' => $contactForm->createView()
             ]
         );
     }
