@@ -10,23 +10,98 @@
                         <div class="card-header light-green">
                             <h4 class="title"> Créer un nouveau bien</h4>
                         </div>
+
                         <div class="card-content table-responsive">
 
                             {{ form_start(form) }}
-                            {{ form_widget(form) }}
-                            <a href="#" id="add-another-media">Ajouter un média</a>
-                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Create"/>
-                            {{ form_end(form) }}
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.reference, "Référence du bien:") }}
+                                    {{ form_widget(form.reference) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.typeLogement, 'Type du logement: ') }}
+                                    {{ form_widget(form.typeLogement) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.surface, 'Surface: ') }}
+                                    {{ form_widget(form.surface) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.nbPiece, 'Nombre de pièce: ') }}
+                                    {{ form_widget(form.nbPiece) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.prix, 'Prix: ') }}
+                                    {{ form_widget(form.prix) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.statut, 'Le bien est-il disponible ou vendu ?  ') }}
+                                    {{ form_widget(form.statut) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.prestationComplementaire, 'Prestations complémentaires: ') }}
+                                    {{ form_widget(form.prestationComplementaire) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.residence, 'Résidence liée: ') }}
+                                    {{ form_widget(form.residence) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(form.description, 'Description du bien: ') }}
+                                    {{ form_widget(form.description) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {% for media in flat.medias %}
+                                        {% if media.id != null %}
+                                            <div class="col s4">
+                                                <p class="imgUploader"><img class="responsive-img"
+                                                                            src="{{ asset('uploads/'~media.lien) }}"/>
+                                                    <a href="{{ path('flat_media_delete', {"id" : flat.id, "media_id" : media.id}) }}">Supprimer</a>
+                                                </p>
+                                            </div>
+                                        {% else %}
+                                            <h3>Veuillez charger une nouvelle image.</h3>
+                                            <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le
+                                                type du
+                                                media.</p>
+                                            {{ form_widget(form.medias) }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
+                                   id="add-another-media"><i
+                                            class="material-icons">add</i></a>
+
+
+                            </div>
+                            <div class="row">
+                                <input class="waves-effect waves-light btn-large light-green" type="submit"
+                                       value="Créer"/>
+                                {{ form_widget(form._token) }}
+                                </form>
+
+                            </div>
 
                             <ul>
                                 <li>
                                     <a href="{{ path('admin_flat_index') }}"><i
-                                                class="material-icons">keyboard_return</i>Retour à la liste des
-                                        biense</a>
+                                                class="material-icons">keyboard_return</i>Retour
+                                        à la liste des biens</a>
                                 </li>
                             </ul>
-
                         </div>
+
                     </div>
                 </div>
             </div>
