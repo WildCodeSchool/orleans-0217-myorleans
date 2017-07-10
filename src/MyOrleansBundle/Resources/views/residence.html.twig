@@ -11,7 +11,6 @@
 {% block content %}
 
 
-
     <!--logo dde de documentation-->
     <div class="breadcrumb">
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
@@ -32,27 +31,32 @@
                 </div>
 
                 <div id="editor" class="col offset-l1 l5 s10">
-                    <a class="waves-effect waves-light btn" href="{{ path('residence_pdf', { 'id': 1}) }}"><i id="cmd" class="material-icons left">print</i>Imprimer cette page</a>
+                    <a class="waves-effect waves-light btn" href="{{ path('residence_pdf', { 'id': 1}) }}"><i id="cmd"
+                                                                                                              class="material-icons left">print</i>Imprimer
+                        cette page</a>
                 </div>
             </div>
             <div class="row">
                 <div class="undervideo-residence">
                     <div class="col l6 s12">
                         <h2><span>{{ residence.nom }}</span></h2>
-                        <h2 class="lieu-residence">à {{ residence.ville }}</h2>
+                        <h2 class="lieu-residence">à {{ residence.ville.id }}</h2>
                     </div>
                     <div class="col l6 s12">
                         <table class="offre-residence">
                             <tr>
 
-                                <td><strong>Offre du moment</strong><br/><span class="subtab-residence"><strong class="offre">Frais de notaires Offerts</strong></span></td>
-                                <td><strong>Prix</strong><br/><span class="subtab-residence"><strong>à partir de 90 000 €</strong></span>
+                                <td><strong>Offre du moment</strong><br/><span class="subtab-residence"><strong
+                                                class="offre">Frais de notaires Offerts</strong></span></td>
+                                <td><strong>Prix</strong><br/><span
+                                            class="subtab-residence"><strong>à partir de 90 000 €</strong></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td><strong>Date de livraison</strong><br/><span class="subtab-residence"><strong>1er semèstre 2018</strong></span>
                                 </td>
-                                <td><strong>Nb. Pièces</strong><br/><span class="subtab-residence"><strong>du T1 au T5</strong></span>
+                                <td><strong>Nb. Pièces</strong><br/><span
+                                            class="subtab-residence"><strong>du T1 au T5</strong></span>
                                 </td>
                             </tr>
                         </table>
@@ -62,49 +66,51 @@
             <div class="row">
                 <div class="box-notesite">
                     <div class="row">
-                    <li>
-                        <li class="design col m3 s6">
-                            <div class="notesite" id="note_0" data-note="9.30"></div><br/>
-                            <div class="list-legend">
-                                <div class="row center-align">
-                                    <ul>
-                                        <li class="design col m12">transports</li>
-                                    </ul>
+                        <ul>
+                            <li class="design col m3 s6">
+                                <div class="notesite" id="note_0" data-note="9.30"></div>
+                                <br/>
+                                <div class="list-legend">
+                                    <div class="row center-align">
+                                        <ul>
+                                            <li class="design col m12">transports</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="content col m3 s6">
-                            <div class="notesite" id="note_3" data-note="8.70"></div><br/>
-                            <div class="list-legend">
-                                <div class="row">
-                                    <ul>
-                                        <li class="design col m12">commerces</li>
-                                    </ul>
+                            </li>
+                            <li class="content col m3 s6">
+                                <div class="notesite" id="note_3" data-note="8.70"></div>
+                                <br/>
+                                <div class="list-legend">
+                                    <div class="row">
+                                        <ul>
+                                            <li class="design col m12">commerces</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="creativity col m3 s6">
-                            <div class="notesite" id="note_1" data-note="9.80"></div>
-                            <div class="list-legend">
-                                <div class="row">
-                                    <ul>
-                                        <li class="design col m12">services</li>
-                                    </ul>
+                            </li>
+                            <li class="creativity col m3 s6">
+                                <div class="notesite" id="note_1" data-note="9.80"></div>
+                                <div class="list-legend">
+                                    <div class="row">
+                                        <ul>
+                                            <li class="design col m12">services</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="usability col m3 s6">
-                            <div class="notesite" id="note_2" data-note="9.20"></div>
-                            <div class="list-legend">
-                                <div class="row">
-                                    <ul>
-                                        <li class="design col m12">esthétisme</li>
-                                    </ul>
+                            </li>
+                            <li class="usability col m3 s6">
+                                <div class="notesite" id="note_2" data-note="9.20"></div>
+                                <div class="list-legend">
+                                    <div class="row">
+                                        <ul>
+                                            <li class="design col m12">esthétisme</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
-                    </ul>
+                            </li>
+                            <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
+                        </ul>
                     </div>
 
                 </div>
@@ -203,10 +209,10 @@
                 <div class="col s12">
                     <div class="citation-residence">
                         <p>
-                            {{ residence.citation }}
+                            {{ residence.accroche }}
                         </p>
                         <p class="pinel-residence">
-                            {{ residence.pinel }}
+                            {#                            {{ residence.pinel }}#}
                         </p>
                     </div>
                 </div>
@@ -240,20 +246,23 @@
                                         </thead>
 
                                         <tbody>
-                                        {% for flat in flats if flat.type == 'T1' %}
-                                            <tr>
-                                                <td>{{ flat.reference }}</td>
-                                                <td>{{ flat.type }}</td>
-                                                <td>{{ flat.surface }}m2</td>
-                                                <td>{{ flat.prix }} €</td>
-                                                {% if flat.statut == 'VENDU' %}
-                                                    <td class="waves-effect waves-light btn btn-vendu">
-                                                        <strong>Vendu</strong></td>
-                                                {% else %}
-                                                    <td><a class="waves-effect waves-light btn btn-residence">Voir</a>
-                                                    </td>
-                                                {% endif %}
-                                            </tr>
+                                        {% for flat in flats %}
+                                            {% if flat.type_logement.nom == 'T1' %}
+                                                <tr>
+                                                    <td>{{ flat.reference }}</td>
+                                                    <td>{{ flat.type_logement.nom }}</td>
+                                                    <td>{{ flat.surface }}m2</td>
+                                                    <td>{{ flat.prix }} €</td>
+                                                    {% if flat.statut == 1 %}
+                                                        <td class="waves-effect waves-light btn btn-vendu">
+                                                            <strong>Vendu</strong></td>
+                                                    {% else %}
+                                                        <td>
+                                                            <a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                        </td>
+                                                    {% endif %}
+                                                </tr>
+                                            {% endif %}
                                         {% endfor %}
                                         </tbody>
                                     </table>
@@ -274,20 +283,23 @@
                                         </thead>
 
                                         <tbody>
-                                        {% for flat in flats if flat.type == 'T2' %}
-                                            <tr>
-                                                <td>{{ flat.reference }}</td>
-                                                <td>{{ flat.type }}</td>
-                                                <td>{{ flat.surface }}m2</td>
-                                                <td>{{ flat.prix }} €</td>
-                                                {% if flat.statut == 'VENDU' %}
-                                                    <td class="waves-effect waves-light btn btn-vendu">
-                                                        <strong>Vendu</strong></td>
-                                                {% else %}
-                                                    <td><a class="waves-effect waves-light btn btn-residence">Voir</a>
-                                                    </td>
-                                                {% endif %}
-                                            </tr>
+                                        {% for flat in flats %}
+                                            {% if flat.type_logement.nom == 'T2' %}
+                                                <tr>
+                                                    <td>{{ flat.reference }}</td>
+                                                    <td>{{ flat.type_logement.nom }}</td>
+                                                    <td>{{ flat.surface }}m2</td>
+                                                    <td>{{ flat.prix }} €</td>
+                                                    {% if flat.statut == 1 %}
+                                                        <td class="waves-effect waves-light btn btn-vendu">
+                                                            <strong>Vendu</strong></td>
+                                                    {% else %}
+                                                        <td>
+                                                            <a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                        </td>
+                                                    {% endif %}
+                                                </tr>
+                                            {% endif %}
                                         {% endfor %}
                                         </tbody>
                                     </table>
@@ -308,27 +320,30 @@
                                         </thead>
 
                                         <tbody>
-                                        {% for flat in flats if flat.type == 'T3' %}
-                                            <tr>
-                                                <td>{{ flat.reference }}</td>
-                                                <td>{{ flat.type }}</td>
-                                                <td>{{ flat.surface }}m2</td>
-                                                <td>{{ flat.prix }} €</td>
-                                                {% if flat.statut == 'VENDU' %}
-                                                    <td class="waves-effect waves-light btn btn-vendu">
-                                                        <strong>Vendu</strong></td>
-                                                {% else %}
-                                                    <td><a class="waves-effect waves-light btn btn-residence">Voir</a>
-                                                    </td>
-                                                {% endif %}
-                                            </tr>
+                                        {% for flat in flats %}
+                                            {% if flat.type_logement.nom == 'T3' %}
+                                                <tr>
+                                                    <td>{{ flat.reference }}</td>
+                                                    <td>{{ flat.type_logement.nom }}</td>
+                                                    <td>{{ flat.surface }}m2</td>
+                                                    <td>{{ flat.prix }} €</td>
+                                                    {% if flat.statut == 1 %}
+                                                        <td class="waves-effect waves-light btn btn-vendu">
+                                                            <strong>Vendu</strong></td>
+                                                    {% else %}
+                                                        <td>
+                                                            <a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                        </td>
+                                                    {% endif %}
+                                                </tr>
+                                            {% endif %}
                                         {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
                             </li>
                             <li>
-                                <div class="collapsible-header">T4</div>
+                                <div class="collapsible-header">T4 et plus</div>
                                 <div class="collapsible-body">
                                     <table class="stripped">
                                         <thead>
@@ -342,54 +357,23 @@
                                         </thead>
 
                                         <tbody>
-                                        {% for flat in flats if flat.type == 'T4' %}
-                                            <tr>
-                                                <td>{{ flat.reference }}</td>
-                                                <td>{{ flat.type }}</td>
-                                                <td>{{ flat.surface }}m2</td>
-                                                <td>{{ flat.prix }} €</td>
-                                                {% if flat.statut == 'VENDU' %}
-                                                    <td class="waves-effect waves-light btn btn-vendu">
-                                                        <strong>Vendu</strong></td>
-                                                {% else %}
-                                                    <td><a class="waves-effect waves-light btn btn-residence">Voir</a>
-                                                    </td>
-                                                {% endif %}
-                                            </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="collapsible-header">T5 et plus</div>
-                                <div class="collapsible-body">
-                                    <table class="stripped">
-                                        <thead>
-                                        <tr>
-                                            <th>Référence</th>
-                                            <th>Type</th>
-                                            <th>Surface</th>
-                                            <th>Prix</th>
-                                            <th>Fiche</th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        {% for flat in flats if flat.type == 'T5' or flat.type == 'T6' or flat.type == 'T7' or  flat.type == 'T8' %}
-                                            <tr>
-                                                <td>{{ flat.reference }}</td>
-                                                <td>{{ flat.type }}</td>
-                                                <td>{{ flat.surface }}m2</td>
-                                                <td>{{ flat.prix }} €</td>
-                                                {% if flat.statut == 'VENDU' %}
-                                                    <td class="waves-effect waves-light btn btn-vendu">
-                                                        <strong>Vendu</strong></td>
-                                                {% else %}
-                                                    <td><a class="waves-effect waves-light btn btn-residence">Voir</a>
-                                                    </td>
-                                                {% endif %}
-                                            </tr>
+                                        {% for flat in flats %}
+                                            {% if flat.type_logement.nom == 'T4' %}
+                                                <tr>
+                                                    <td>{{ flat.reference }}</td>
+                                                    <td>{{ flat.type_logement.nom }}</td>
+                                                    <td>{{ flat.surface }}m2</td>
+                                                    <td>{{ flat.prix }} €</td>
+                                                    {% if flat.statut == 1 %}
+                                                        <td class="waves-effect waves-light btn btn-vendu">
+                                                            <strong>Vendu</strong></td>
+                                                    {% else %}
+                                                        <td>
+                                                            <a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                        </td>
+                                                    {% endif %}
+                                                </tr>
+                                            {% endif %}
                                         {% endfor %}
                                         </tbody>
                                     </table>
@@ -499,7 +483,6 @@
     <!--fin formulaire de contact-->
 
 
-
 {% endblock %}
 
 
@@ -511,7 +494,7 @@
     <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
     <script>
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('.collapsible').collapsible();
         });
 

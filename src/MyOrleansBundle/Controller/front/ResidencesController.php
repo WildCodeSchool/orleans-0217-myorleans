@@ -24,6 +24,7 @@ use MyOrleansBundle\Entity\Prestation;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\TypeLogement;
 use MyOrleansBundle\Entity\TypePresta;
 use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Form\SimpleSearchType;
@@ -54,15 +55,15 @@ class ResidencesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $residence = $em->getRepository(Residence::class)->find($id);
         $media = $em->getRepository(Media::class)->find($id);
+        $flats = $em->getRepository(Flat::class)->findAll();
+        $typelogment = $em->getRepository(TypeLogement::class)->findAll();
 
 
 //        $flats = $residence->getFlats(Flat::class)->findAll();
 
         $freeFlat= $calculator->calculFlatDispo($residence);
 
-/*        $prestas = $em->getRepository(Prestation::class)->findAll();
-        $typePrestas = $em->getRepository(TypePresta::class)->findAll();
-        $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();*/
+
 
 
         // Formulaire de contact
@@ -98,15 +99,12 @@ class ResidencesController extends Controller
 
         return $this->render('MyOrleansBundle::residence.html.twig', [
             'residence' => $residence,
-/*            'flats' => $flats,*/
-/*            'count' => $count,*/
+            'flats' => $flats,
             'media' => $media,
-/*            'prestas' => $prestas,
-            'typePrestas' => $typePrestas,
-            'categoriePrestas' => $categoriePrestas,*/
             'parcours' => $parcours,
             'telephone_number' => $telephoneNumber,
             'freeFlat'=>$freeFlat,
+            'type_logement'=>$typelogment,
             'form' => $formulaire->createView()
         ]);
 

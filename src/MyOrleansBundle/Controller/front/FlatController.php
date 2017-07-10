@@ -23,6 +23,7 @@ use MyOrleansBundle\Entity\Pack;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\TypeLogement;
 use MyOrleansBundle\Entity\TypePresta;
 use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Form\SimpleSearchType;
@@ -52,9 +53,7 @@ class FlatController extends Controller
         $em = $this->getDoctrine()->getManager();
         $flat = $em->getRepository(Flat::class)->find($id);
         $residence = $em->getRepository(Residence::class)->find($id);
-        /*        $prestas = $em->getRepository(Presta::class)->findAll();
-                $typePrestas = $em->getRepository(TypePresta::class)->findAll();
-                $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();*/
+        $typelogement = $em->getRepository(TypeLogement::class)->findAll();
 
 
         // Formulaire de contact
@@ -93,11 +92,9 @@ class FlatController extends Controller
                 'parcours'=>$parcours,
                 'residence'=>$residence,
                 'telephone_number' => $telephoneNumber,
+                'type_logment' => $typelogement,
                 'form' => $formulaire->createView()
 
-                /*            'prestas'=>$prestas,
-                            'typePrestas'=>$typePrestas,
-                            'categoriePrestas'=>$categoriePrestas,*/
             ]);
         }
 
