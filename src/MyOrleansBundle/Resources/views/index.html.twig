@@ -10,6 +10,11 @@
 {% endblock %}
 
 {% block body %}
+    <div class="breadcrumb">
+        <a href="#Inscription-newsletter" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
+    </div>
+    <!--fin logo dde de documentation-->
+
 
     <div id="GrandeIntro">
         <div class="row center logoIntro">
@@ -44,6 +49,7 @@
             {% endif %}
         </div>
     </div>
+    <!--logo dde de documentation-->
 
     <div class="container-fluid" id="siteWrapper">
     <header>
@@ -93,8 +99,30 @@
                 </div>
             </nav>
         </div>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="row" id="alert_box">
+                    <div class="col s12 m6 l4 offset-l4">
+                        <div class="card message">
+                            <div class="row message center-align">
+                                <div class="col s12 m10">
+                                    <div class="card-content white-text">
+                                        {{ message }}
+                                    </div>
+                                </div>
+                                <div class="col s12 m2">
+                                    <i class="fa fa-times icon_style" id="alert_close" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
     </header>
 
+    <!--logo dde de documentation-->
 
     {% block content %}
 
@@ -258,8 +286,8 @@
                 <!-- Modal Trigger -->
                 <div class="row">
                     <div class="col s12 center">
-                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
-                           href="#modal1">
+                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter button-collapse"
+                           href="#" data-activates="slide-out">
                             <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
                         </a>
                     </div>
@@ -454,6 +482,7 @@
                     </div>
 
                     <div class="input-field col l12 m12 s12">
+                        <p class="newsletter" id="Inscription-newsletter">Quel est l'objet de votre message?</p>
                         <i class="material-icons prefix">info_outline</i>
 
                         {{ form_widget(form.sujet) }}
@@ -467,17 +496,18 @@
                         {{ form_errors(form.message) }}
                     </div>
 
-                    <div class="row center">
+                    <div class="row newsletter">
                         <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
 
                         {{ form_widget(form.newsletter) }}
                         {{ form_errors(form.newsletter) }}
-                    </div>
-                </div>
 
-                <div class="input-field col l12">
+                    </div>
+
+                    <div class="row newsletter">
                     {{ form_row(form.envoyer) }}
                 </div>
+                    </div>
 
                 {{ form_end(form) }}
             </div>

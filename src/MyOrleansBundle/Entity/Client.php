@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Client
 {
+    const SUJET_INFO_RESID_PRINC = 1;
+    const SUJET_INFO_APPART = 2;
+    const SUJET_INSCRIPT_EVENT = 3;
+    const SUJET_INSCR_NEWSLETTER = 4;
+    const SUJET_SERVICES = 5;
+
     /**
      * @var int
      *

@@ -111,7 +111,9 @@ nav .dropdown-button {
 }
 
 .logo {
+
     height: 50px;
+
     margin-top: 7px;
 }
 
@@ -443,7 +445,7 @@ body {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
     margin-top: -10px;
-    padding: 0 10px 10px 10px;
+    padding: 10px 10px 25px 10px;
     background-color: white;
 }
 
@@ -654,6 +656,11 @@ td{
     }
 }
 
+
+
+.partage{
+    font-size: 20px;
+}
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE RESIDENCE --------------------------*/
 /* --------------------------------------------------------------------*/

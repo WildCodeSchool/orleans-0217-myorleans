@@ -9,6 +9,7 @@
 namespace MyOrleansBundle\Form;
 
 
+use MyOrleansBundle\Entity\Client;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -32,8 +33,11 @@ class FormulaireType extends AbstractType
             ->add('ville', TextType::class)
             ->add('adresse', TextType::class)
             ->add('sujet', ChoiceType::class, [
-                'choices' => ['Objet du message?'=> 0, 'Residence principale' => 1, 'Investissement' => 2, 'Services' => 3, 'Autres' =>4],
-                'empty_data' => 'Objet du message?',
+                'choices' => ['Infos-residence-principale' => Client::SUJET_INFO_RESID_PRINC,
+                                'Infos-appartement' => Client::SUJET_INFO_APPART,
+                                'Inscription-événement' => Client::SUJET_INSCRIPT_EVENT,
+                                'Inscription-newsletter' => Client::SUJET_INSCR_NEWSLETTER,
+                                'Services' => Client::SUJET_SERVICES],
                 'expanded' => false,
                 'multiple' => false
             ])
