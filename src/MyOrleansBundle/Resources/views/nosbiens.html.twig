@@ -76,7 +76,7 @@
                 </div>
                 <div class="col s12 m6 l3">
                     <div class="row no-margin-bottom">
-                        <h2 class="titre-recherche">Investissement</h2>
+                        <h2 class="titre-recherche">Votre objectif</h2>
                         <div class="row no-margin-bottom">
                             <div class="col s6">
                                 {{ form_widget(completeSearch.objectif) }}
@@ -284,14 +284,18 @@
                             });
 
                             var infowindow = new google.maps.InfoWindow();
-
+                            var iconBase = 'img/';
                             var marker, i;
 
                             for (i = 0; i < locations.length; i++) {
+
+
                                 marker = new google.maps.Marker({
                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                    map: map
+                                    map: map,
+                                    icon: iconBase + 'marker.png'
                                 });
+
 
                                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                                     return function() {

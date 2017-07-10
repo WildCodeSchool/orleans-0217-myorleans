@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Prestation;
+use MyOrleansBundle\Form\PrestationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -51,7 +52,7 @@ class PrestationController extends Controller
     public function newAction(Request $request)
     {
         $prestation = new Prestation();
-        $form = $this->createForm('MyOrleansBundle\Form\PrestationType', $prestation);
+        $form = $this->createForm(PrestationType::class, $prestation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

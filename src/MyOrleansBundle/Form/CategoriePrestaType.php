@@ -19,7 +19,6 @@ class CategoriePrestaType extends AbstractType
     {
         $builder
             ->add('nomCategorie', TextType::class)
-            ->add('ordreAffichage', TextType::class)
             ->add('flat', EntityType::class, [
                 'class' => Flat::class,
                 'choice_label' => 'reference'

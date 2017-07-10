@@ -155,12 +155,14 @@
                             <div class="formButton col s12 m12 l4 offset-l4">
                                 {{ form_widget(simpleSearch.investBtn) }}
                                 {{ form_widget(simpleSearch._token) }}
+
                                 </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
                             </div>
                         {% elseif parcours == 'residence' %}
                             <div class="formButton col s12 m12 l4 offset-l4">
                                 {{ form_widget(simpleSearch.resPrincipaleBtn) }}
                                 {{ form_widget(simpleSearch._token) }}
+
                                 </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
                             </div>
                         {% else %}
