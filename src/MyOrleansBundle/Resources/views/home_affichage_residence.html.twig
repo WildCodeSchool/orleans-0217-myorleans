@@ -1,8 +1,11 @@
 <div class="card mosaic-container">
     <div class="card-image">
+        {% if residence.medias is not defined %}
+        {% else %}
         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
             <img src="{{ asset('uploads/'~media.lien) }}">
         {% endfor %}
+        {% endif %}
     </div>
     <div class="card-content">
         <div class="row grille-infos">
