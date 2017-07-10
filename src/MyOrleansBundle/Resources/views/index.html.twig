@@ -429,8 +429,6 @@
             <div class="userView">
                 <h3 align="center">Contactez nous !</h3>
                 <h4 align="center">{{ telephone_number }}</h4>
-
-
                 {{ form_start(form) }}
                 <div class="row">
 
@@ -484,7 +482,7 @@
                     </div>
 
                     <div class="input-field col l12 m12 s12">
-                        <p class="newsletter" id="Inscription-newsletter">Quel est l'objet de votre message?</p>
+                        <p class="newsletter">Quel est l'objet de votre message?</p>
                         <i class="material-icons prefix">info_outline</i>
 
                         {{ form_widget(form.sujet) }}
@@ -498,18 +496,17 @@
                         {{ form_errors(form.message) }}
                     </div>
 
-                    <div class="row newsletter">
+                    <div class="row center">
                         <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
 
                         {{ form_widget(form.newsletter) }}
                         {{ form_errors(form.newsletter) }}
-
                     </div>
+                </div>
 
-                    <div class="row newsletter">
+                <div class="input-field col l12">
                     {{ form_row(form.envoyer) }}
                 </div>
-                    </div>
 
                 {{ form_end(form) }}
             </div>
@@ -519,7 +516,6 @@
     </form>
 
     <!--fin formulaire de contact-->
-
 {% endblock %}
 
                     {% block javascripts %}
