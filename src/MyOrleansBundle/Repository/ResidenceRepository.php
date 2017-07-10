@@ -27,6 +27,33 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->join('f.typeLogement', 't');
         }
 
+        $qb->andWhere('flts.statut = 1')
+            ->join('r.flats', 'flts');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function simpleSuggestedSearch($ville, $type)
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        if (!empty($ville)) {
+            $qb->where('v.nom != :ville')
+                ->setParameter('ville', $ville)
+                ->join('r.ville', 'v');
+        }
+
+        if (!empty($type)) {
+            $qb->andWhere('t.nom != :type')
+                ->setParameter('type', $type)
+                ->join('r.flats', 'f')
+                ->join('f.typeLogement', 't');
+        }
+
+        $qb->andWhere('flts.statut = 1')
+            ->join('r.flats', 'flts')
+            ->setMaxResults(2);
+
         return $qb->getQuery()->getResult();
     }
 
@@ -84,16 +111,65 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->join('r.flats', 'fts');
         }
 
-// En attente validation client de la suppression de ce critere
-//        if (!empty($nbPieces)) {
-//            $qb->andWhere('t.nbPiece >= :nbPieces')
-//                ->setParameter('nbPieces', $nbPieces)
-//                ->join('r.flats', 'f');
-//        }
-
         $qb->andWhere('flts.statut = 1')
             ->join('r.flats', 'flts');
 
+        return $qb->getQuery()->getResult();
+    }
+
+    public function completeSuggestedSearch($ville, $quartier, $type, $surfaceMin, $surfaceMax, $budgetMin, $budgetMax)
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        if (!empty($quartier)) {
+            $qb->where('v.nom = :ville')
+                ->setParameter('ville', 'Orléans')
+                ->join('r.ville', 'v')
+                ->andWhere('q.nom != :quartier')
+                ->setParameter('quartier', $quartier)
+                ->join('r.quartier', 'q');
+        }
+
+        if (!empty($ville) && empty($quartier)) {
+            $qb->where('v.nom != :ville')
+                ->setParameter('ville', $ville)
+                ->join('r.ville', 'v');
+        }
+
+        if (!empty($type)) {
+            $qb->andWhere('t.nom != :type')
+                ->setParameter('type', $type)
+                ->join('r.flats', 'f')
+                ->join('f.typeLogement', 't');
+        }
+
+        if (!empty($surfaceMin)) {
+            $qb->andWhere('fl.surface != :surfaceMin')
+                ->setParameter('surfaceMin', $surfaceMin)
+                ->join('r.flats', 'fl');
+        }
+
+        if (!empty($surfaceMax)) {
+            $qb->andWhere('fla.surface != :surfaceMax')
+                ->setParameter('surfaceMax', $surfaceMax)
+                ->join('r.flats', 'fla');
+        }
+
+        if (!empty($budgetMin)) {
+            $qb->andWhere('ft.prix != :budgetMin')
+                ->setParameter('budgetMin', $budgetMin)
+                ->join('r.flats', 'ft');
+        }
+
+        if (!empty($budgetMax)) {
+            $qb->andWhere('fts.prix != :budgetMax ')
+                ->setParameter('budgetMax', $budgetMax)
+                ->join('r.flats', 'fts');
+        }
+
+        $qb->andWhere('flts.statut = 1')
+            ->join('r.flats', 'flts')
+            ->setMaxResults(2);
 
         return $qb->getQuery()->getResult();
     }

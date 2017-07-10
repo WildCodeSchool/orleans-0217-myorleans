@@ -211,6 +211,9 @@ body {
 
 /* ------------------------ Page Nos Biens ----------------------------*/
 
+.page-nosbiens h1 {
+    font-size: 36px;
+}
 
 .page-nosbiens h2 {
     font-size:20px;

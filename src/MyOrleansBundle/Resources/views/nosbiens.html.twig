@@ -166,9 +166,20 @@
             <div class="col s12 l7 xl8 liste-biens">
 
                 <div class="row center no-margin-bottom">
-{#                    {% set nb_res = residences|length %}
-                    {% if  %}#}
-                    <h1 class="section-title">{{ message }}</h1>
+                    {% set nb_res = residences|length %}
+
+                    {% if noResult == 1 %}
+                    <h1 class="section-title">
+                        Aucune résidence ne correspond à votre recherche.<br/>Découvrez les biens suggérés.
+                    </h1>
+                    {% else %}
+                    <h1 class="section-title">
+                        {% transchoice nb_res %}
+                        {1} 1 résidence correspond à votre recherche|
+                        ]1,Inf[ %count% résidences correspondent à votre recherche.
+                        {% endtranschoice %}
+                    </h1>
+                    {% endif %}
                 </div>
 
                 <div class="row">
@@ -180,6 +191,25 @@
                     {% endfor %}
 
                 </div>
+
+                {% if suggestionActive == 1 and noResult == 0 %}
+                <div class="row suggestion-biens">
+                    {% set nb_res_suggerees = residencesSuggerees|length %}
+
+                        {% transchoice nb_res_suggerees %}
+                        {1} <h3>D'autres biens pourraient vous intéresser dans cette résidence</h3>|
+                        ]1,Inf[ <h3>D'autres biens pourraient vous intéresser dans ces résidences</h3>
+                        {% endtranschoice %}
+
+                        {% for residence in residencesSuggerees %}
+
+                            {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidence', {'id': residence.id })) }}
+
+                        {% endfor %}
+                </div>
+                {% else %}
+
+                {% endif %}
 
                 <div class="row titre-contenu-associe">
                     {% if objectif == 'investir' %}
