@@ -13,17 +13,21 @@
         <p><strong>Ville:</strong> {{ client.ville }}</p>
         <p><strong>Adresse:</strong> {{ client.adresse }}</p>
 
-        <p><strong>:
+        <p><strong>Sujet:</strong>
             {% if client.sujet == 1 %}
-                Residence principale
+                Infos résidence principale
             {% elseif client.sujet == 2 %}
-                Investissement
+                Infos appartement
             {% elseif client.sujet == 3 %}
+                Inscription événement
+            {% elseif client.sujet == 4 %}
+                Inscription Newsletter
+            {% elseif client.sujet == 5 %}
                 Services
             {% else %}
                 Autres
             {% endif %}
-            </strong></p>
+        </p>
 
         <p><strong>Message:</strong> {{ client.message }}</p>
 
