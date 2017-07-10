@@ -67,6 +67,23 @@ class ResidenceController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            // gestion des coord gps
+            if (!empty($residence->getAdresse()) &&
+                !empty($residence->getCodePostal()) &&
+                !empty($residence->getVille())) {
+                $query = sprintf('https://maps.googleapis.com/maps/api/geocode/json?address=%s %s %s&key=%s',
+                                    urlencode($residence->getAdresse()),
+                                    urlencode($residence->getCodePostal()),
+                                    urlencode($residence->getVille()),
+                                    $this->getParameter('GoogleApiKey'));
+                if (false == $jsonData = file_get_contents($query)) {
+                    throw new \RuntimeException("Impossible de joindre l'api de geolocalisation");
+                }
+                $arrayData = json_decode($jsonData);
+                $residence->setLatitude($arrayData['results']['geometry']['location']['lat']);
+                $residence->setLongitude($arrayData['results']['geometry']['location']['lng']);
+            }
+
             $em->persist($residence);
             $em->flush();
 
