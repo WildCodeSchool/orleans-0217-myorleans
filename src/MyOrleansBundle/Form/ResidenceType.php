@@ -37,8 +37,6 @@ class ResidenceType extends AbstractType
                 'class' => Quartier::class,
                 'choice_label' => 'nom'
             ])
-            ->add('latitude', NumberType::class, ['required' => false])
-            ->add('longitude', NumberType::class, ['required' => false])
             ->add('dateLivraison', TextType::class, ['required' => false])
             ->add('description', TextareaType::class, ['required' => false])
             ->add('nbTotalLogements', NumberType::class, ['required' => false])
