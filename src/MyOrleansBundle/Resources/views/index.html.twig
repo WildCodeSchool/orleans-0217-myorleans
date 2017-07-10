@@ -301,6 +301,7 @@
 
 
         <div class="row">
+            {% if actu is not empty %}
             <div class="col s12 l6">
                 <h3>L'actualité</h3>
                 <div class="card small">
@@ -324,7 +325,9 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
 
+            {% if event is not empty %}
             <div class="col s12 l6">
                 <h3>L'événement</h3>
                 <div class="card small">
@@ -347,6 +350,8 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
+
         </div>
 
     {% endblock %}

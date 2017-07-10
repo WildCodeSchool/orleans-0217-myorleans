@@ -108,7 +108,6 @@ class HomeController extends Controller
             null,
             ['action' => $this->generateUrl('nosbiens')]);
 
-
         return $this->render('MyOrleansBundle::index.html.twig', [
             'parcours' => $parcours,
             'simpleSearch' => $simpleSearch->createView(),
@@ -122,7 +121,6 @@ class HomeController extends Controller
             'testimonials' => $testimonials,
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
-
 
         ]);
     }
