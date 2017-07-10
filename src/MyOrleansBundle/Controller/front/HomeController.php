@@ -53,6 +53,7 @@ class HomeController extends Controller
         // Formulaire de contact
         $client = new Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->get('sujet')->setData(Client::SUJET_INSCR_NEWSLETTER);
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -137,6 +138,7 @@ class HomeController extends Controller
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->get('sujet')->setData(Client::SUJET_INFO_RESID_PRINC);
         $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire->handleRequest($request);
 
@@ -192,6 +194,7 @@ class HomeController extends Controller
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->get('sujet')->setData(Client::SUJET_INFO_APPART);
         $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire->handleRequest($request);
 
