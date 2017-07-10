@@ -264,6 +264,11 @@ body {
     font-weight: bold;
 }
 
+.message{
+    margin-top: 40px;
+    background-color: #b7d64a;
+}
+
 
 
 
@@ -796,6 +801,9 @@ FIN ACCUEIL - BLOC AGENCE
 
 }
 
+.newsletter{
+    text-align: center;
+}
 
 @media (max-width : 767px) {
     .side-nav li > .userView{
@@ -808,4 +816,27 @@ FIN ACCUEIL - BLOC AGENCE
     .barre-recherche{
         visibility: hidden;
     }
+}
+
+.breadcrumb {
+    /*centering*/
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+    background-color: #b7d64a;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-top: 25px;
+    position: fixed;
+    right: 20px;
+    padding: 10px;
+    z-index: 200;
+    -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+
+    animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color:white;
 }
