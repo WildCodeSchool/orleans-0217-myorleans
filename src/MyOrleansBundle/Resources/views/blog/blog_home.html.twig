@@ -61,7 +61,8 @@
                     <p>{{ article.texte | truncate(20, true, '...') }}</p>
 
                     {% for tag in article.tags  %}
-                    <div class="chip">
+
+                        <div class="chip">
                         {{ tag.nom }}
                     </div>
                     {% endfor %}
