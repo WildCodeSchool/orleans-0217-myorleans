@@ -118,21 +118,6 @@ class Residence
      */
     private $noteEsthetisme;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="citation", type="text", nullable=true)
-     */
-/*    private $citation;*/
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="pinel", type="string", length=45, nullable=true)
-     */
-/*    private $pinel;*/
-
-
 
     /**
      * @var int

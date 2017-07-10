@@ -42,7 +42,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class ResidencesController extends Controller
 {
     /**
-     * @Route("/residences/{id}")
+     * @Route("/residences/{id}", name="residences")
      */
     public function residence($id, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
     {
@@ -57,6 +57,10 @@ class ResidencesController extends Controller
         $media = $em->getRepository(Media::class)->find($id);
         $flats = $em->getRepository(Flat::class)->findAll();
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
+        $type_t1 = $this->getParameter('typeLogementT1');
+        $type_t2 = $this->getParameter('typeLogementT2');
+        $type_t3 = $this->getParameter('typeLogementT3');
+        $type_t4 = $this->getParameter('typeLogementT4');
 
 
 //        $flats = $residence->getFlats(Flat::class)->findAll();
@@ -105,6 +109,10 @@ class ResidencesController extends Controller
             'telephone_number' => $telephoneNumber,
             'freeFlat'=>$freeFlat,
             'type_logement'=>$typelogment,
+            'typeLogementT1' => $type_t1,
+            'typeLogementT2' => $type_t2,
+            'typeLogementT3' => $type_t3,
+            'typeLogementT4' => $type_t4,
             'form' => $formulaire->createView()
         ]);
 

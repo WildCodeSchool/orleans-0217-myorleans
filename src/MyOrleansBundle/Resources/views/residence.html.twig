@@ -19,9 +19,17 @@
 
     <div class="content-residence">
         <div class="video-container">
-            <iframe width="853" height="480" src="{{ asset(media.lien) }}" frameborder="0"
-                    allowfullscreen></iframe>
-
+            {% for media in residence.medias %}
+                {% if media.typeMedia.nom == 'video' %}
+            <video width="800" height="400" controls>
+                <source src="{{ asset('uploads/'~media.lien) }}" type="video/mp4">
+                <source src="{{ asset('uploads/'~media.lien) }}" type="video/ogg">
+                <source src="{{ asset('uploads/'~media.lien) }}" type="video/webm">
+            </video>
+            {% else %}
+            <img src="{{ asset('uploads/'~media.lien) }}" alt="photo_residence"/>
+            {% endif %}
+            {% endfor %}
         </div>
         <div class="container">
             <div class="row">
@@ -31,16 +39,15 @@
                 </div>
 
                 <div id="editor" class="col offset-l1 l5 s10">
-                    <a class="waves-effect waves-light btn" href="{{ path('residence_pdf', { 'id': 1}) }}"><i id="cmd"
-                                                                                                              class="material-icons left">print</i>Imprimer
-                        cette page</a>
+                    <a class="waves-effect waves-light btn" href="{{ path('residence_pdf', { 'id': residence.id }) }}"><i id="cmd"
+                      class="material-icons left">print</i>Imprimer cette page</a>
                 </div>
             </div>
             <div class="row">
                 <div class="undervideo-residence">
                     <div class="col l6 s12">
                         <h2><span>{{ residence.nom }}</span></h2>
-                        <h2 class="lieu-residence">à {{ residence.ville.id }}</h2>
+                        <h2 class="lieu-residence">à {{ residence.ville.nom }}</h2>
                     </div>
                     <div class="col l6 s12">
                         <table class="offre-residence">
@@ -53,7 +60,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong>Date de livraison</strong><br/><span class="subtab-residence"><strong>1er semèstre 2018</strong></span>
+                                <td><strong>Date de livraison</strong><br/><span class="subtab-residence"><strong>{{ residence.dateLivraison }}</strong></span>
                                 </td>
                                 <td><strong>Nb. Pièces</strong><br/><span
                                             class="subtab-residence"><strong>du T1 au T5</strong></span>
@@ -68,7 +75,7 @@
                     <div class="row">
                         <ul>
                             <li class="design col m3 s6">
-                                <div class="notesite" id="note_0" data-note="9.30"></div>
+                                <div class="notesite" id="note_0" data-note="{{ residence.noteTransports }}"></div>
                                 <br/>
                                 <div class="list-legend">
                                     <div class="row center-align">
@@ -79,7 +86,7 @@
                                 </div>
                             </li>
                             <li class="content col m3 s6">
-                                <div class="notesite" id="note_3" data-note="8.70"></div>
+                                <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces }}"></div>
                                 <br/>
                                 <div class="list-legend">
                                     <div class="row">
@@ -90,7 +97,7 @@
                                 </div>
                             </li>
                             <li class="creativity col m3 s6">
-                                <div class="notesite" id="note_1" data-note="9.80"></div>
+                                <div class="notesite" id="note_1" data-note="{{ residence.noteServices }}"></div>
                                 <div class="list-legend">
                                     <div class="row">
                                         <ul>
@@ -100,7 +107,7 @@
                                 </div>
                             </li>
                             <li class="usability col m3 s6">
-                                <div class="notesite" id="note_2" data-note="9.20"></div>
+                                <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme }}"></div>
                                 <div class="list-legend">
                                     <div class="row">
                                         <ul>
@@ -118,37 +125,33 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col s6">
+                    <div class="col s12">
                         <div class="rapel-residence text-justify">
                             <h3>La Residence</h3>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                {{ residence.description }}
                             </p>
                         </div>
                     </div>
-                    <div class="col s6">
+{#                    <div class="col s6">
                         <div class="prestations-residence">
                             <h3>Les Prestations</h3>
                             <div class="row">
                                 <div class="col s6">
                                     <div class="row">
+                                        {% for categoriePresta in residence.categoriePrestas %}
                                         <div class="col s2 icon-prestation">
                                             <img class="icon-residence"
-                                                 src="{{ absolute_url(asset('img/icons/Wheelchair_Accessible.png')) }}"
+                                                 src="{{ (asset('uploads/'~categoriePresta.media)) }}"
                                                  alt="acces handicape"/>
                                         </div>
                                         <div class="col s10 prestation">
-                                            <p>Accessibiité</p>
+                                            <p>{{  }}</p>
                                         </div>
 
                                         <div class="col s2 icon-prestation">
                                             <img class="icon-residence"
-                                                 src="{{ absolute_url(asset('img/icons/shopping-cart.png')) }}"
+                                                 src="{{ (asset(media.lien)) }}"
                                                  alt="commerces"/>
                                         </div>
                                         <div class="col s10 prestation">
@@ -160,7 +163,7 @@
                                     <div class="row">
                                         <div class="col s2 icon-prestation">
                                             <img class="icon-residence"
-                                                 src="{{ absolute_url(asset('img/icons/smoking_not_allowed.png')) }}"
+                                                 src="{{ (asset(media.lien)) }}"
                                                  alt="non fumeur"/>
                                         </div>
                                         <div class="col s10 prestation">
@@ -168,7 +171,7 @@
                                         </div>
                                         <div class="col s2 icon-prestation">
                                             <img class="icon-residence"
-                                                 src="{{ absolute_url(asset('img/icons/finance.png')) }}"
+                                                 src="{{ (asset(media.lien)) }}"
                                                  alt="éligibilité loi pinel"/>
                                         </div>
                                         <div class="col s10 prestation">
@@ -178,7 +181,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>#}
 
                 </div>
             </div>
@@ -187,7 +190,7 @@
                     <div id="map-residences"></div>
                     <script>
                         function initMap() {
-                            var uluru = {lat: 47.9088035, lng: 1.8913519999999835};
+                            var uluru = {lat: {{ residence.latitude }}, lng: {{ residence.longitude }};
                             var map = new google.maps.Map(document.getElementById('map-residences'), {
                                 zoom: 15,
                                 center: uluru
@@ -223,7 +226,7 @@
             <div class="row">
 
                 <div class="col s12">
-                    <h3>Nombre de logements disponibles : {{ freeFlat }}</h3>
+                    <h3>Nombre de logements disponibles : {{ freeFlat }} sur {{ residence.nbTotalLogements }}</h3>
                     <h3 class="consulter-residence">Consultez nos biens disponibles</h3>
                 </div>
             </div>
@@ -232,7 +235,7 @@
                     <div class="accordeon-residence">
                         <ul class="collapsible popout" data-collapsible="accordion">
                             <li>
-                                <div class="collapsible-header">T1</div>
+                                <div class="collapsible-header">{{ typeLogementT1 }}</div>
                                 <div class="collapsible-body">
                                     <table class="stripped">
                                         <thead>
@@ -247,10 +250,10 @@
 
                                         <tbody>
                                         {% for flat in flats %}
-                                            {% if flat.type_logement.nom == 'T1' %}
+                                            {% if flat.typeLogement.nom == typeLogementT1 %}
                                                 <tr>
                                                     <td>{{ flat.reference }}</td>
-                                                    <td>{{ flat.type_logement.nom }}</td>
+                                                    <td>{{ flat.typeLogement.nom }}</td>
                                                     <td>{{ flat.surface }}m2</td>
                                                     <td>{{ flat.prix }} €</td>
                                                     {% if flat.statut == 1 %}
@@ -258,7 +261,7 @@
                                                             <strong>Vendu</strong></td>
                                                     {% else %}
                                                         <td>
-                                                            <a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                            <a href="{{ path('appartement', { 'id': flat.id }) }}" class="waves-effect waves-light btn btn-residence">Voir</a>
                                                         </td>
                                                     {% endif %}
                                                 </tr>
@@ -269,7 +272,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="collapsible-header">T2</div>
+                                <div class="collapsible-header">{{ typeLogementT2 }}</div>
                                 <div class="collapsible-body">
                                     <table class="stripped">
                                         <thead>
@@ -284,10 +287,10 @@
 
                                         <tbody>
                                         {% for flat in flats %}
-                                            {% if flat.type_logement.nom == 'T2' %}
+                                            {% if flat.typeLogement.nom == typeLogementT2 %}
                                                 <tr>
                                                     <td>{{ flat.reference }}</td>
-                                                    <td>{{ flat.type_logement.nom }}</td>
+                                                    <td>{{ flat.typeLogement.nom }}</td>
                                                     <td>{{ flat.surface }}m2</td>
                                                     <td>{{ flat.prix }} €</td>
                                                     {% if flat.statut == 1 %}
@@ -295,7 +298,7 @@
                                                             <strong>Vendu</strong></td>
                                                     {% else %}
                                                         <td>
-                                                            <a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                            <a href="{{ path('appartement', { 'id': flat.id }) }}" class="waves-effect waves-light btn btn-residence">Voir</a>
                                                         </td>
                                                     {% endif %}
                                                 </tr>
@@ -306,7 +309,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="collapsible-header">T3</div>
+                                <div class="collapsible-header">{{ typeLogementT3 }}</div>
                                 <div class="collapsible-body">
                                     <table class="stripped">
                                         <thead>
@@ -321,10 +324,10 @@
 
                                         <tbody>
                                         {% for flat in flats %}
-                                            {% if flat.type_logement.nom == 'T3' %}
+                                            {% if flat.typeLogement.nom == typeLogementT3 %}
                                                 <tr>
                                                     <td>{{ flat.reference }}</td>
-                                                    <td>{{ flat.type_logement.nom }}</td>
+                                                    <td>{{ flat.typeLogement.nom }}</td>
                                                     <td>{{ flat.surface }}m2</td>
                                                     <td>{{ flat.prix }} €</td>
                                                     {% if flat.statut == 1 %}
@@ -332,7 +335,7 @@
                                                             <strong>Vendu</strong></td>
                                                     {% else %}
                                                         <td>
-                                                            <a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                            <a href="{{ path('appartement', { 'id': flat.id }) }}" class="waves-effect waves-light btn btn-residence">Voir</a>
                                                         </td>
                                                     {% endif %}
                                                 </tr>
@@ -343,7 +346,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="collapsible-header">T4 et plus</div>
+                                <div class="collapsible-header">{{ typeLogementT4 }}</div>
                                 <div class="collapsible-body">
                                     <table class="stripped">
                                         <thead>
@@ -358,10 +361,10 @@
 
                                         <tbody>
                                         {% for flat in flats %}
-                                            {% if flat.type_logement.nom == 'T4' %}
+                                            {% if flat.typeLogement.nom == typeLogementT4 %}
                                                 <tr>
                                                     <td>{{ flat.reference }}</td>
-                                                    <td>{{ flat.type_logement.nom }}</td>
+                                                    <td>{{ flat.typeLogement.nom }}</td>
                                                     <td>{{ flat.surface }}m2</td>
                                                     <td>{{ flat.prix }} €</td>
                                                     {% if flat.statut == 1 %}
@@ -369,7 +372,7 @@
                                                             <strong>Vendu</strong></td>
                                                     {% else %}
                                                         <td>
-                                                            <a class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                            <a href="{{ path('appartement', { 'id': flat.id }) }}" class="waves-effect waves-light btn btn-residence">Voir</a>
                                                         </td>
                                                     {% endif %}
                                                 </tr>
@@ -386,7 +389,7 @@
         </div>
     </div>
 
-    </div>
+
 
 
     <!-- début formulaire de contact -->

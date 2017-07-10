@@ -40,7 +40,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class FlatController extends Controller
 {
     /**
-     * @Route("/appartement/{id}")
+     * @Route("/appartement/{id}", name="appartement")
      */
     public function flat($id, SessionInterface $session, Request $request)
     {
@@ -53,7 +53,13 @@ class FlatController extends Controller
         $em = $this->getDoctrine()->getManager();
         $flat = $em->getRepository(Flat::class)->find($id);
         $residence = $em->getRepository(Residence::class)->find($id);
-        $typelogement = $em->getRepository(TypeLogement::class)->findAll();
+        $typelogement = $em->get(TypeLogement::class)->findAll();
+
+
+        $type_t1 = $this->getParameter('typeLogementT1');
+        $type_t2 = $this->getParameter('typeLogementT2');
+        $type_t3 = $this->getParameter('typeLogementT3');
+        $type_t4 = $this->getParameter('typeLogementT4+');
 
 
         // Formulaire de contact
@@ -93,6 +99,10 @@ class FlatController extends Controller
                 'residence'=>$residence,
                 'telephone_number' => $telephoneNumber,
                 'type_logment' => $typelogement,
+                'typeLogementT1' => $type_t1,
+                'typeLogementT2' => $type_t2,
+                'typeLogementT3' => $type_t3,
+                'typeLogementT4' => $type_t4,
                 'form' => $formulaire->createView()
 
             ]);
