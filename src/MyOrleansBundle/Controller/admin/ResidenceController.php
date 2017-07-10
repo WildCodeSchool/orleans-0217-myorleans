@@ -68,12 +68,9 @@ class ResidenceController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             // gestion des coord gps uniquement si l'adresse est saisie
-            // et que les coord Gps ne le sont pas.
             if (!empty($residence->getAdresse()) &&
                 !empty($residence->getCodePostal()) &&
-                !empty($residence->getVille()) &&
-                empty($residence->getLatitude() &&
-                empty($residence->getLongitude()))) {
+                !empty($residence->getVille())) {
                 $query = sprintf('https://maps.googleapis.com/maps/api/geocode/json?address=%s+%s+%s&key=%s',
                                     urlencode($residence->getAdresse()),
                                     urlencode($residence->getCodePostal()),
