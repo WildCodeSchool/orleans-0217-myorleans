@@ -9,23 +9,24 @@
 namespace MyOrleansBundle\DataFixtures\ORM;
 
 
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\Tag;
 use MyOrleansBundle\Entity\TypeArticle;
 use MyOrleansBundle\Entity\Ville;
 
-class LoadResidenceData implements FixtureInterface
+class LoadResidenceData extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $ville = new Ville();
-
         $res = new Residence();
         $res->setNom('Dunois');
         $res->setAdresse('1 rue Bannier');
         $res->setCodePostal('45000');
+        $res->setVille($this->getReference('ville1'));
 
         $manager->persist($res);
 
@@ -33,6 +34,7 @@ class LoadResidenceData implements FixtureInterface
         $res2->setNom('Coté Sud');
         $res2->setAdresse('12, rue Emile Zola');
         $res2->setCodePostal('45000');
+        $res2->setVille($this->getReference('ville1'));
 
         $manager->persist($res2);
 
@@ -40,6 +42,7 @@ class LoadResidenceData implements FixtureInterface
         $res3->setNom('Les Terrasses du Loiret');
         $res3->setAdresse('1 rue du Champ de Mars');
         $res3->setCodePostal('45000');
+        $res3->setVille($this->getReference('ville1'));
 
         $manager->persist($res3);
 
@@ -47,12 +50,18 @@ class LoadResidenceData implements FixtureInterface
         $res4->setNom('Private');
         $res4->setAdresse('1 rue de Montauban');
         $res4->setCodePostal('45000');
+        $res4->setVille($this->getReference('ville1'));
 
         $manager->persist($res4);
 
 
         $manager->flush();
 
+    }
+
+    public function getOrder()
+    {
+        return 2;
     }
 
 }

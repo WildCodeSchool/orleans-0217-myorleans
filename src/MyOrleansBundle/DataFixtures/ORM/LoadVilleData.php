@@ -9,12 +9,14 @@
 namespace MyOrleansBundle\DataFixtures\ORM;
 
 
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MyOrleansBundle\Entity\TypeArticle;
 use MyOrleansBundle\Entity\Ville;
 
-class LoadVilleData implements FixtureInterface
+class LoadVilleData extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -32,8 +34,17 @@ class LoadVilleData implements FixtureInterface
         $manager->persist($ville2);
         $manager->persist($ville3);
 
+        $this->addReference('ville1', $ville1);
+        $this->addReference('ville2', $ville2);
+        $this->addReference('ville3', $ville3);
+
         $manager->flush();
 
+    }
+
+    public function getOrder()
+    {
+        return 1;
     }
 
 }
