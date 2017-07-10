@@ -162,25 +162,15 @@ class NosBiensController extends Controller
             $objectif = "investir";
 
             $data = $completeSearch->getData();
-            $ville = $data['ville'];
-            $quartier = $data['quartier'];
-            $type = $data['type'];
-            $surfaceMin = $data['surfaceMin'];
-            $surfaceMax = $data['surfaceMax'];
-            $nbChambres = $data['nbChambres'];
-            $budgetMin = $data['budgetMin'];
-            $budgetMax = $data['budgetMax'];
 
-            $residences = $em->getRepository(Residence::class)->completeSearch($ville, $quartier, $type, $surfaceMin,
-                                                                                $surfaceMax, $nbChambres, $budgetMin,
-                                                                                $budgetMax);
+            $residences = $em->getRepository(Residence::class)->completeSearch($data);
 
             // recherche des biens suggeres
-            if ($ville != null || $quartier != null || $type != null || $surfaceMin != null || $surfaceMax != null ||
-                $budgetMin != null || $budgetMax != null) {
+            if ($data != null ) {
                 $residencesSuggerees = $em -> getRepository(Residence::class)
-                    ->completeSuggestedSearch($ville, $quartier, $type, $surfaceMin, $surfaceMax, $budgetMin, $budgetMax);
+                    ->completeSuggestedSearch($data);
             }
+
 
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {

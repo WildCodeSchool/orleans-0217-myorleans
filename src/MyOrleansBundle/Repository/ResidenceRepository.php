@@ -58,56 +58,56 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
-    public function completeSearch($ville, $quartier, $type, $surfaceMin, $surfaceMax, $nbChambres, $budgetMin, $budgetMax)
+    public function completeSearch($data)
     {
         $qb = $this->createQueryBuilder('r');
 
-        if (!empty($ville)) {
+        if (!empty($data['ville'])) {
             $qb->andWhere('v.nom LIKE :ville')
-                ->setParameter('ville', '%'.$ville.'%')
+                ->setParameter('ville', '%'.$data['ville'].'%')
                 ->join('r.ville', 'v');
         }
 
-        if (!empty($quartier)) {
+        if (!empty($data['quartier'])) {
             $qb->andWhere('q.nom LIKE :quartier')
-                ->setParameter('quartier', '%'.$quartier.'%')
+                ->setParameter('quartier', '%'.$data['quartier'].'%')
                 ->join('r.quartier', 'q');
         }
 
-        if (!empty($type)) {
+        if (!empty($data['type'])) {
             $qb->andWhere('t.nom = :type')
-                ->setParameter('type', $type)
+                ->setParameter('type', $data['type'])
                 ->join('r.flats', 'f')
                 ->join('f.typeLogement', 't');
         }
 
-        if (!empty($surfaceMin)) {
+        if (!empty($data['surfaceMin'])) {
             $qb->andWhere('fl.surface >= :surfaceMin')
-                ->setParameter('surfaceMin', $surfaceMin)
+                ->setParameter('surfaceMin', $data['surfaceMin'])
                 ->join('r.flats', 'fl');
         }
 
-        if (!empty($surfaceMax)) {
+        if (!empty($data['surfaceMax'])) {
             $qb->andWhere('fla.surface <= :surfaceMax')
-                ->setParameter('surfaceMax', $surfaceMax)
+                ->setParameter('surfaceMax', $data['surfaceMax'])
                 ->join('r.flats', 'fla');
         }
 
-        if (!empty($nbChambres)) {
+        if (!empty($data['nbChambres'])) {
             $qb->andWhere('flt.nbChambre >= :nbChambres')
-                ->setParameter('nbChambres', $nbChambres)
+                ->setParameter('nbChambres', $data['nbChambres'])
                 ->join('r.flats', 'flt');
         }
 
-        if (!empty($budgetMin)) {
+        if (!empty($data['budgetMin'])) {
             $qb->andWhere('ft.prix >= :budgetMin')
-                ->setParameter('budgetMin', $budgetMin)
+                ->setParameter('budgetMin', $data['budgetMin'])
                 ->join('r.flats', 'ft');
         }
 
-        if (!empty($budgetMax)) {
+        if (!empty($data['budgetMax'])) {
             $qb->andWhere('fts.prix < :budgetMax ')
-                ->setParameter('budgetMax', $budgetMax)
+                ->setParameter('budgetMax', $data['budgetMax'])
                 ->join('r.flats', 'fts');
         }
 
@@ -117,59 +117,58 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function completeSuggestedSearch($ville, $quartier, $type, $surfaceMin, $surfaceMax, $budgetMin, $budgetMax)
+    public function completeSuggestedSearch($data)
     {
         $qb = $this->createQueryBuilder('r');
 
-        if (!empty($quartier)) {
+        if (!empty($data['quartier'])) {
             $qb->where('v.nom = :ville')
                 ->setParameter('ville', 'Orléans')
                 ->join('r.ville', 'v')
                 ->andWhere('q.nom != :quartier')
-                ->setParameter('quartier', $quartier)
+                ->setParameter('quartier', $data['quartier'])
                 ->join('r.quartier', 'q');
         }
 
-        if (!empty($ville) && empty($quartier)) {
+        if (!empty($data['ville']) && empty($data['quartier'])) {
             $qb->where('v.nom != :ville')
-                ->setParameter('ville', $ville)
+                ->setParameter('ville', $data['ville'])
                 ->join('r.ville', 'v');
         }
 
-        if (!empty($type)) {
+        if (!empty($data['type'])) {
             $qb->andWhere('t.nom != :type')
-                ->setParameter('type', $type)
+                ->setParameter('type', $data['type'])
                 ->join('r.flats', 'f')
                 ->join('f.typeLogement', 't');
         }
 
-        if (!empty($surfaceMin)) {
+        if (!empty($data['surfaceMin'])) {
             $qb->andWhere('fl.surface != :surfaceMin')
-                ->setParameter('surfaceMin', $surfaceMin)
+                ->setParameter('surfaceMin', $data['surfaceMin'])
                 ->join('r.flats', 'fl');
         }
 
-        if (!empty($surfaceMax)) {
+        if (!empty($data['surfaceMax'])) {
             $qb->andWhere('fla.surface != :surfaceMax')
-                ->setParameter('surfaceMax', $surfaceMax)
+                ->setParameter('surfaceMax', $data['surfaceMax'])
                 ->join('r.flats', 'fla');
         }
 
-        if (!empty($budgetMin)) {
+        if (!empty($data['budgetMin'])) {
             $qb->andWhere('ft.prix != :budgetMin')
-                ->setParameter('budgetMin', $budgetMin)
+                ->setParameter('budgetMin', $data['budgetMin'])
                 ->join('r.flats', 'ft');
         }
 
-        if (!empty($budgetMax)) {
+        if (!empty($data['budgetMax'])) {
             $qb->andWhere('fts.prix != :budgetMax ')
-                ->setParameter('budgetMax', $budgetMax)
+                ->setParameter('budgetMax', $data['budgetMax'])
                 ->join('r.flats', 'fts');
         }
 
         $qb->andWhere('flts.statut = 1')
-            ->join('r.flats', 'flts')
-            ->setMaxResults(2);
+            ->join('r.flats', 'flts');
 
         return $qb->getQuery()->getResult();
     }
