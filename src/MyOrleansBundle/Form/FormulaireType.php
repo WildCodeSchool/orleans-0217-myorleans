@@ -33,11 +33,12 @@ class FormulaireType extends AbstractType
             ->add('ville', TextType::class)
             ->add('adresse', TextType::class)
             ->add('sujet', ChoiceType::class, [
-                'choices' => ['Infos-residence-principale' => Client::SUJET_INFO_RESID_PRINC,
-                                'Infos-appartement' => Client::SUJET_INFO_APPART,
-                                'Inscription-événement' => Client::SUJET_INSCRIPT_EVENT,
-                                'Inscription-newsletter' => Client::SUJET_INSCR_NEWSLETTER,
-                                'Services' => Client::SUJET_SERVICES],
+                'choices' => ['Infos residence principale' => Client::SUJET_INFO_RESID_PRINC,
+                                'Infos appartement' => Client::SUJET_INFO_APPART,
+                                'Inscription événement' => Client::SUJET_INSCRIPT_EVENT,
+                                'Inscription newsletter' => Client::SUJET_INSCR_NEWSLETTER,
+                                'Infos services' => Client::SUJET_SERVICES,
+                                'Autres' => Client::SUJET_AUTRES],
                 'expanded' => false,
                 'multiple' => false
             ])

@@ -17,6 +17,7 @@ class Client
     const SUJET_INSCRIPT_EVENT = 3;
     const SUJET_INSCR_NEWSLETTER = 4;
     const SUJET_SERVICES = 5;
+    const SUJET_AUTRES = 6;
 
     /**
      * @var int
