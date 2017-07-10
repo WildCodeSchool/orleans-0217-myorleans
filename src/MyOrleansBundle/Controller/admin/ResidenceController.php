@@ -74,7 +74,7 @@ class ResidenceController extends Controller
                 $query = sprintf('https://maps.googleapis.com/maps/api/geocode/json?address=%s %s %s&key=%s',
                                     urlencode($residence->getAdresse()),
                                     urlencode($residence->getCodePostal()),
-                                    urlencode($residence->getVille()),
+                                    urlencode($residence->getVille()->getNom()),
                                     $this->getParameter('GoogleApiKey'));
                 if (false == $jsonData = file_get_contents($query)) {
                     throw new \RuntimeException("Impossible de joindre l'api de geolocalisation");
