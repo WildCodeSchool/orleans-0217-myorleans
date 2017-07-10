@@ -24,7 +24,11 @@
             </div>
             <div class="col s4">
                 <h4>Prix</h4>
-                <p>A partir de {{ prixMin }}€</p>
+                {% if residence.affichagePrix == 1 %}
+                    <p>A partir de {{ prixMin }}€</p>
+                {% else %}
+                    <p>Nous contacter</p>
+                {% endif %}
                 <br/>
                 <h4>Disponibilité</h4>
                 <p>{{ flatsDispo }} logement(s)</p>

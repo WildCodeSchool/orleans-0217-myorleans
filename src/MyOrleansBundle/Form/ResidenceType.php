@@ -52,6 +52,18 @@ class ResidenceType extends AbstractType
                     'Non' => '0'
                 ]
             ])
+            ->add('affichagePrix',ChoiceType::class, [
+                'choices' => [
+                    'Oui' => '1',
+                    'Non' => '0'
+                ]
+            ])
+            ->add('eligibilitePinel',ChoiceType::class, [
+                'choices' => [
+                    'Oui' => '1',
+                    'Non' => '0'
+                ]
+            ])
             ->add('accroche', TextareaType::class)
             ->add('medias', CollectionType::class,
                 array(

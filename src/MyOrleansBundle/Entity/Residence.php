@@ -140,6 +140,13 @@ class Residence
     private $eligibilitePinel;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="affichage_prix", type="integer", nullable=false)
+     */
+    private $affichagePrix;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
      * @JoinTable(name="residence_media")
      *
@@ -678,6 +685,24 @@ class Residence
     {
         return $this->ville;
     }
+
+    /**
+     * @return int
+     */
+    public function getAffichagePrix()
+    {
+        return $this->affichagePrix;
+    }
+
+    /**
+     * @param int $affichagePrix
+     */
+    public function setAffichagePrix(int $affichagePrix)
+    {
+        $this->affichagePrix = $affichagePrix;
+    }
+
+
 
 
 

@@ -14,7 +14,11 @@
             </div>
             <div class="col s4 right-content">
                 <h4>Prix</h4>
-                <p>Dès {{ prixMin }} €</p>
+                {% if residence.affichagePrix == 1 %}
+                    <p>Dès {{ prixMin }}€</p>
+                {% else %}
+                    <p>Nous contacter</p>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -19,6 +19,7 @@
                             {{ form_widget(edit_form.adresse) }}
                             {{ form_label(edit_form.ville, 'Ville: ') }}
                             {{ form_widget(edit_form.ville) }}
+                            <br/>
                             {{ form_label(edit_form.quartier, 'Quartier: ') }}
                             {{ form_widget(edit_form.quartier) }}
                             {{ form_label(edit_form.codePostal, 'Code Postal: ') }}
@@ -41,8 +42,16 @@
                             {{ form_widget(edit_form.noteEsthetisme) }}
                             {{ form_label(edit_form.favoris, 'Favoris: ') }}
                             {{ form_widget(edit_form.favoris) }}
+                            <br/>
+                            {{ form_label(edit_form.affichagePrix, 'Affichage du Prix: ') }}
+                            {{ form_widget(edit_form.affichagePrix) }}
+                            <br/>
+                            {{ form_label(edit_form.eligibilitePinel, 'Eligibilité Loi Pinel: ') }}
+                            {{ form_widget(edit_form.eligibilitePinel) }}
+                            <br/>
                             {{ form_label(edit_form.accroche, 'Accroche: ') }}
                             {{ form_widget(edit_form.accroche) }}
+                            {{ form_label(edit_form.medias, 'Media: ') }}
                             {% for media in residence.medias %}
                                 {% if media.id != null %}
                                     <p class="imgUploader"><img class="responsive-img"
