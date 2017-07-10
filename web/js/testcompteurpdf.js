@@ -41,7 +41,7 @@ function stopNote(d, b) {
     }
 }
 $(document).ready(function () {
-    timerSeconds = 4;
+    timerSeconds = 0.1;
     timerFinish = new Date().getTime() + (timerSeconds * 1000);
     $(".notesite").each(function (a) {
         note = $("#note_" + a).data("note");

@@ -84,8 +84,9 @@ class FlatController extends Controller
      * @Route("/pdf/{id}", name="flat_pdf")
      * @Method("GET")
      */
-    public function pdfAction(Flat $flat)
+/*    public function pdfAction(Flat $flat)
     {
+
         $pageUrl = $this->generateUrl('admin_flat_show', ['id' => $flat->getId()], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
 
         return new Response(
@@ -96,7 +97,8 @@ class FlatController extends Controller
                 'Content-Disposition'   => 'attachment; filename="file.pdf"'
             )
         );
-    }
+
+    }*/
 
     public function pdfReturnAction($id)
     {

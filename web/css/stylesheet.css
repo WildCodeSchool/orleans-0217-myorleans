@@ -538,9 +538,18 @@ body {
 /* --------------------------------------------------------------------*/
 
 .offre-residence td {
-    border: 1px solid black;
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 50px;
+    padding: 10px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    color: #808080;
 }
-
+.offre{
+    color: #EF562D;
+}
 .lieu-residence{
     color: rgb(192,192,192);
 }
@@ -663,16 +672,21 @@ td{
     padding-top: 20px;
 }
 
+.photoinfo-apt{
+    margin: 60px;
+}
 .info-apt {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
-    background-color: white;
-    margin-top: -10px;
-    padding: 0 10px 10px 10px;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+/*    width: 400px;*/
 }
 .icon-apt{
     width: 2.5em;
     height: 2.5em;
+    margin-top: 10px;
 }
 
 .print{
@@ -683,10 +697,45 @@ td{
 .icon-left{
     text-align: left;
 }
-/*.photo-apt{
-    width: ;
-}*/
 
+.rapel-residence{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.descriptif-residence{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.prestations-residence{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.rang-presta{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin: auto;
+    padding: 10px;
+/*    width: 600px;*/
+    height: 350px;
+}
+.icon-prestation{
+    margin: auto;
+}
+
+.prestation{
+    margin:auto;
+}
+@media screen and (max-width: 767px ){
+
+
+}
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE APPARTEMENT --------------------------*/

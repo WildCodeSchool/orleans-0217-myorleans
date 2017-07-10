@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+
+    <link rel="stylesheet" href="{{ absolute_url(asset('css/materialize.min.css')) }}" media="screen,projection"/>
+    <link href="{{ absolute_url(asset('css/pdf.css')) }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ absolute_url(asset('css/font-awesome.min.css')) }}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col s3 center contacter">
+            <h2 class="telephone">{{ telephone_number }}</h2>
+        </div>
+        <div class="col s6 center">
+            <img class="logo" src="{{ absolute_url(asset('img/logo_myorleans.png')) }}" alt="logo de l'entreprise"/>
+        </div>
+        <div class="col s3 center contacter">
+            <h2 class="mail">{{ mail_agence }}</h2>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="row">
+                <div class="undervideo-residence">
+                    <div class="co s12">
+                        <h2><span>Le Pryvé</span></h2>
+                        <h2 class="lieu-residence">à St Pryvé St Mesmin</h2>
+                    </div>
+                    <div class=" col s12 photo-residence center">
+                        <img src="{{ absolute_url(asset('img/leflores.jpeg'))}}"  alt="photo-residence"/>
+                    </div>
+                    <div class="col s12">
+                        <table class="offre-residence">
+                            <tr>
+                                <td><strong>Offre du moment</strong><br/><span class="subtab-residence"><strong class="offre">Frais de notaires Offerts</strong></span></td>
+                                <td><strong>Prix</strong><br/><span class="subtab-residence"><strong>à partir de 90 000 €</strong></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date de livraison</strong><br/><span class="subtab-residence"><strong>1er semèstre 2018</strong></span>
+                                </td>
+                                <td><strong>Nb. Pièces</strong><br/><span class="subtab-residence"><strong>du T1 au T5</strong></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <h3>Nombre de logements disponibles : 30 sur 60</h3>
+                </div>
+            </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <div class="citation-residence">
+                            <p>
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                            </p>
+                            <p class="pinel-residence">
+                                Eligible Loi Pinel
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="box-notesite">
+                    <div class="row">
+                    <li>
+                        <li class="design col s3">
+                            <div class="notesite" id="note_0" data-note="9.30"></div><br/>
+                            <div class="list-legend">
+                                <div class="row center-align">
+                                    <ul>
+                                        <li class="design col m12">transports</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="content col s3">
+                            <div class="notesite" id="note_3" data-note="8.70"></div><br/>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">commerces</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="creativity col s3">
+                            <div class="notesite" id="note_1" data-note="9.80"></div>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">services</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="usability col s3">
+                            <div class="notesite" id="note_2" data-note="9.20"></div>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">esthétisme</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
+                    </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col s6">
+                        <div class="rapel-residence text-justify">
+                            <h3>La Residence</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="prestations-residence">
+                            <h3>Les Prestations</h3>
+                            <div class="row">
+                                <div class="col s6">
+                                    <div class="row">
+                                        <div class="col s2 icon-prestation">
+                                            <img class="icon-residence"
+                                                 src="{{ absolute_url(asset('img/icons/Wheelchair_Accessible.png')) }}"
+                                                 alt="acces handicape"/>
+                                        </div>
+                                        <div class="col s10 prestation">
+                                            <p>Accessibiité</p>
+                                        </div>
+
+                                        <div class="col s2 icon-prestation">
+                                            <img class="icon-residence"
+                                                 src="{{ absolute_url(asset('img/icons/shopping-cart.png')) }}"
+                                                 alt="commerces"/>
+                                        </div>
+                                        <div class="col s10 prestation">
+                                            <p>Commerces</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="row">
+                                        <div class="col s2 icon-prestation">
+                                            <img class="icon-residence"
+                                                 src="{{ absolute_url(asset('img/icons/smoking_not_allowed.png')) }}"
+                                                 alt="non fumeur"/>
+                                        </div>
+                                        <div class="col s10 prestation">
+                                            <p>Non Fumeur</p>
+                                        </div>
+                                        <div class="col s2 icon-prestation">
+                                            <img class="icon-residence"
+                                                 src="{{ absolute_url(asset('img/icons/finance.png')) }}"
+                                                 alt="éligibilité loi pinel"/>
+                                        </div>
+                                        <div class="col s10 prestation">
+                                            <p>Eligible Loi Pinel</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="hide-on-small-only">
+                    <div id="map-residences"></div>
+                    <script>
+                        function initMap() {
+                            var uluru = {lat: 47.9088035, lng: 1.8913519999999835};
+                            var map = new google.maps.Map(document.getElementById('map-residences'), {
+                                zoom: 15,
+                                center: uluru
+                            });
+                            var marker = new google.maps.Marker({
+                                position: uluru,
+                                map: map
+                            });
+                        }
+                    </script>
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col s12">
+                        <ul>
+                            <li>
+                                <h3>T1</h3>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>Référence</th>
+                                            <th>Type</th>
+                                            <th>Surface</th>
+                                            <th>Prix</th>
+                                            <th>Disponibilté</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr>
+                                            <td>PRY13</td>
+                                            <td>T1</td>
+                                            <td>38m2</td>
+                                            <td>130 700 €</td>
+                                            <td>VENDU</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PRY13</td>
+                                            <td>T1</td>
+                                            <td>38m2</td>
+                                            <td>130 700 €</td>
+                                            <td>DISPONIBLE</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PRY13</td>
+                                            <td>T1</td>
+                                            <td>38m2</td>
+                                            <td>130 700 €</td>
+                                            <td>VENDU</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                            </li>
+                            <h3>T2</h3>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Référence</th>
+                                    <th>Type</th>
+                                    <th>Surface</th>
+                                    <th>Prix</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td>PRY13</td>
+                                    <td>T2</td>
+                                    <td>38m2</td>
+                                    <td>130 700 €</td>
+                                </tr>
+                                <tr>
+                                    <td>PRY13</td>
+                                    <td>T2</td>
+                                    <td>38m2</td>
+                                    <td>130 700 €</td>
+                                </tr>
+                                <tr>
+                                    <td>PRY13</td>
+                                    <td>T2</td>
+                                    <td>38m2</td>
+                                    <td>130 700 €</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            </li>
+                            <h3>T3</h3>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Référence</th>
+                                    <th>Type</th>
+                                    <th>Surface</th>
+                                    <th>Prix</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td>PRY13</td>
+                                    <td>T3</td>
+                                    <td>38m2</td>
+                                    <td>130 700 €</td>
+                                </tr>
+                                <tr>
+                                    <td>PRY13</td>
+                                    <td>T3</td>
+                                    <td>38m2</td>
+                                    <td>130 700 €</td>
+                                </tr>
+                                <tr>
+                                    <td>PRY13</td>
+                                    <td>T3</td>
+                                    <td>38m2</td>
+                                    <td>130 700 €</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            </li>
+                            <h3>T4 et plus</h3>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Référence</th>
+                                    <th>Type</th>
+                                    <th>Surface</th>
+                                    <th>Prix</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td>PRY13</td>
+                                    <td>T4</td>
+                                    <td>38m2</td>
+                                    <td>130 700 €</td>
+                                </tr>
+                                <tr>
+                                    <td>PRY13</td>
+                                    <td>T4</td>
+                                    <td>38m2</td>
+                                    <td>130 700 €</td>
+                                </tr>
+                                <tr>
+                                    <td>PRY13</td>
+                                    <td>T5</td>
+                                    <td>38m2</td>
+                                    <td>130 700 €</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            </li>
+
+                        </ul>
+            </div>
+            </div>
+                    </div>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="{{ absolute_url(asset('js/jquery-3.1.1.min.js')) }}"></script>
+    <script type="text/javascript" src="{{ absolute_url(asset('js/materialize.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('js/testcompteurpdf.js')) }}"></script>
+    <script src="{{ absolute_url(asset('js/jquery.circliful.min.js')) }}"></script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
