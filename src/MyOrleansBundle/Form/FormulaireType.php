@@ -32,11 +32,11 @@ class FormulaireType extends AbstractType
             ->add('ville', TextType::class)
             ->add('adresse', TextType::class)
             ->add('sujet', ChoiceType::class, [
-                'choices' => ['Infos residence principale' => 1,
-                                'Infos appartement' => 2,
-                                'Inscription événement' => 3,
-                                'Inscription newsletter' =>4,
-                                'Gestion locative' =>5,
+                'choices' => ['Infos-residence-principale' => 1,
+                                'Infos-appartement' => 2,
+                                'Inscription-événement' => 3,
+                                'Inscription-newsletter' =>4,
+                                'Gestion-locative' =>5,
                                 'Location' =>6],
                 'expanded' => false,
                 'multiple' => false
