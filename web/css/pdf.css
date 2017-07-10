@@ -62,9 +62,9 @@ h3 {
 p {
     font-size: 12px;
 }
-/* --------------------------------------------------------------------*/
+
 /* ------------------------------ BODY --------------------------------*/
-/* --------------------------------------------------------------------*/
+
 body {
     font-family: Helvetica;
 }
@@ -123,9 +123,8 @@ body {
 .no-padding-right {
     padding-right: 0;
 }
-/* --------------------------------------------------------------------*/
+
 /* ------------------------ PAGE RESIDENCE --------------------------*/
-/* --------------------------------------------------------------------*/
 
 .offre-residence td {
     border-radius: 2px;
@@ -175,10 +174,6 @@ body {
     color: rgb(192,192,192);
 }
 
-/*.content-residence{
-    padding-top: 20px;
-}*/
-
 .accordeon-residence{
     padding-bottom: 30px;
 }
@@ -209,51 +204,8 @@ td{
     padding-bottom: 50px;
 }
 
-@media (max-width: 400px){
-
-    .collapsible-body td {
-        font-size: 12px;
-        padding: 2px;
-    }
-    .collapsible-body th {
-        font-size: 12px;
-        padding: 2px;
-    }
-    .btn-residence{
-        font-size: 10px;
-        line-height: 25px;
-
-        width: 40px;
-        height: 25px;
-        padding: 0px 0px 0px 0px;
-    }
-}
-@media (min-width: 400px) and (max-width: 540px){
-
-    .collapsible-body td {
-        font-size: 14px;
-        padding: 2px;
-    }
-    .collapsible-body th {
-        font-size: 14px;
-        padding: 2px;
-    }
-    .btn-residence{
-        font-size: 14px;
-        line-height: 25px;
-        width: 60px;
-        height: 25px;
-        padding: 0px 0px 0px 0px;
-    }
-}
-
-/* --------------------------------------------------------------------*/
-/* ------------------------ FIN PAGE RESIDENCE --------------------------*/
-/* --------------------------------------------------------------------*/
-
-/* --------------------------------------------------------------------*/
 /* ------------------------ PAGE APPARTEMENT --------------------------*/
-/* --------------------------------------------------------------------*/
+
 .contacter{
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
@@ -278,10 +230,8 @@ td{
     box-shadow: 1px 1px 10px #c2c2c2;
     background-color: rgb(255,255,255);
     height:200px;
-
-/*    margin-top: 10px;*/
-
 }
+
 .photo-apt > img{
     position: relative;
     width: 580px;
@@ -355,17 +305,6 @@ td{
 .box-notesite{
     margin: 40px;
 }
-
-/*.photo-residence >img{
-    width: 800px;
-}*/
-
-
-
-/* --------------------------------------------------------------------*/
-/* ------------------------ FIN PAGE APPARTEMENT --------------------------*/
-/* --------------------------------------------------------------------*/
-
 
 /* bloc pour les compteurs sur les pages rÃ©sidences */
 

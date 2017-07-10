@@ -67,9 +67,6 @@ class ResidencesController extends Controller
 
         $freeFlat= $calculator->calculFlatDispo($residence);
 
-
-
-
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
