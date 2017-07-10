@@ -132,7 +132,8 @@ class HomeController extends Controller
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
-
+        $em = $this->getDoctrine()->getManager();
+        $residences = $em->getRepository(Residence::class)->findAll();
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
@@ -168,6 +169,7 @@ class HomeController extends Controller
 
         return $this->render('MyOrleansBundle::residence.html.twig', [
             'parcours' => $parcours,
+            'residences' => $residences,
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
         ]);
@@ -176,7 +178,7 @@ class HomeController extends Controller
 
 
     /**
-     * @Route("/appartement")
+     * @Route("/appartement", name= "appartement")
      */
     public function flat(SessionInterface $session, Request $request)
     {
@@ -185,6 +187,8 @@ class HomeController extends Controller
             $parcours = $session->get('parcours');
         }
 
+        $em = $this->getDoctrine()->getManager();
+        $appartement = $em->getRepository(Flat::class)->findAll();
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
@@ -220,6 +224,7 @@ class HomeController extends Controller
         }
         return $this->render('MyOrleansBundle::appartement.html.twig', [
             'parcours' => $parcours,
+            'appartement' =>$appartement,
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
         ]);
