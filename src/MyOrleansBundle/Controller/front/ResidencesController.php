@@ -59,11 +59,6 @@ class ResidencesController extends Controller
 
         $freeFlat= $calculator->calculFlatDispo($residence);
 
-/*        $prestas = $em->getRepository(Prestation::class)->findAll();
-        $typePrestas = $em->getRepository(TypePresta::class)->findAll();
-        $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();*/
-
-
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
@@ -97,12 +92,7 @@ class ResidencesController extends Controller
 
         return $this->render('MyOrleansBundle::residence.html.twig', [
             'residence' => $residence,
-/*            'flats' => $flats,*/
-/*            'count' => $count,*/
             'media' => $media,
-/*            'prestas' => $prestas,
-            'typePrestas' => $typePrestas,
-            'categoriePrestas' => $categoriePrestas,*/
             'parcours' => $parcours,
             'telephone_number' => $telephoneNumber,
             'freeFlat'=>$freeFlat,

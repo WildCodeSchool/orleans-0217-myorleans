@@ -52,10 +52,6 @@ class FlatController extends Controller
         $em = $this->getDoctrine()->getManager();
         $flat = $em->getRepository(Flat::class)->find($id);
         $residence = $em->getRepository(Residence::class)->find($id);
-        /*        $prestas = $em->getRepository(Presta::class)->findAll();
-                $typePrestas = $em->getRepository(TypePresta::class)->findAll();
-                $categoriePrestas = $em->getRepository(CategoriePresta::class)->findAll();*/
-
 
         // Formulaire de contact
 
@@ -94,10 +90,6 @@ class FlatController extends Controller
                 'residence'=>$residence,
                 'telephone_number' => $telephoneNumber,
                 'form' => $formulaire->createView()
-
-                /*            'prestas'=>$prestas,
-                            'typePrestas'=>$typePrestas,
-                            'categoriePrestas'=>$categoriePrestas,*/
             ]);
         }
 
