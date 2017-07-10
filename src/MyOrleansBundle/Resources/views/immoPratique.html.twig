@@ -44,7 +44,7 @@
 
         <h2 class="subtitle fancy" id="conseils"><span>Nos fiches conseils</span></h2>
 
-        {% for article in articles if article.typeArticle.nom  == 'conseil' %}
+        {% for article in articles if article.typeArticle.nom  == 'conseils' %}
             {% for media in article.medias %}
                 {% if article.id is odd %}
                     <div class="row">
@@ -279,6 +279,7 @@
                     </div>
 
                     <div class="input-field col l12 m12 s12">
+                        <p class="newsletter">Quel est l'objet de votre message?</p>
                         <i class="material-icons prefix">info_outline</i>
 
                         {{ form_widget(form.sujet) }}

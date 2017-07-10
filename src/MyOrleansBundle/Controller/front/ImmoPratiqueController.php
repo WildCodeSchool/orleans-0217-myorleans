@@ -36,6 +36,7 @@ class ImmoPratiqueController extends Controller
         $em = $this->getDoctrine()->getManager();
         $client = new Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
         $articles = $em->getRepository(Article::class)->findAll();
         $telephoneNumber = $this->getParameter('telephone_number');
 

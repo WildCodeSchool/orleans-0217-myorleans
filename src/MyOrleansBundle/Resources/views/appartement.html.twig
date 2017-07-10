@@ -288,6 +288,7 @@
                     </div>
 
                     <div class="input-field col l12 m12 s12">
+                        <p class="newsletter">Quel est l'objet de votre message?</p>
                         <i class="material-icons prefix">info_outline</i>
 
                         {{ form_widget(form.sujet) }}
@@ -322,12 +323,35 @@
 
     <!--fin formulaire de contact-->
 
+    <!--Partage reseaux sociaux-->
+    <div class="container">
+        <div class="row center">
+            <p class="partage">Vous avez aimé cet appartement? N'hésitez pas à le partager à vos amis: </p>
+            <div class="col l4 m4 s12">
+                <a class="twitter-share-button"
+                   href="https://twitter.com/intent/tweet?text=Hello%20world"
+                   data-size="large">
+                    Tweet</a>
+            </div>
+
+            <div class="col l4 m4 s12">
+                <div class="fb-share-button" data-href="{{ absolute_url( path('appartement', { 'id': appartement.id })) }}" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="{{ absolute_url( path('appartement', { 'id': appartement.id }))|url_encode }}">Partager</a></div>
+            </div>
+#}
+            <div class="col l4 m4 s12">
+                <a class="waves-effect waves-light btn" href="mailto:?to= &subject=Appartement%20my%20Orleans">Envoyez à un ami par mail </a>
+
+            </div>
+        </div>
+    </div>
+    <!--fin partage reseaux sociaux-->
 
 
 
     {% block javascripts %}
         {{ parent() }}
         <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
         <script>
             AOS.init();
             //formulaire de contact
