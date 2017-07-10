@@ -244,11 +244,14 @@
 
                 <div class="row contenu-associe">
                     <div class="col s12 offset-m1 m10">
+                        {% if article is not empty %}
                         <div class="card large">
                             <div class="card-image">
+                                {% if article.medias is defined %}
                                 {% for media in article.medias if media.typeMedia.nom == 'image-cover' %}
                                     <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
                                 {% endfor %}
+                                {% endif %}
                             </div>
                             <div class="card-content">
                                 <h4>{{ article.titre }}</h4>
@@ -258,6 +261,7 @@
                                 <a href="{{ path('blog-article', { 'id': article.id }) }}">Lire l'article</a>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
