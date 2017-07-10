@@ -15,15 +15,21 @@
 
         <p><strong>Sujet:</strong>
             {% if client.sujet == 1 %}
-                Residence principale
+                Infos résidence principale
             {% elseif client.sujet == 2 %}
-                Investissement
+                Infos appartement
             {% elseif client.sujet == 3 %}
-                Services
+                Inscription événement
+            {% elseif client.sujet == 4 %}
+                Inscription Newsletter
+            {% elseif client.sujet == 5 %}
+                Gestion location
+            {% elseif client.sujet == 6 %}
+                Location
             {% else %}
                 Autres
             {% endif %}
-                    </p>
+        </p>
 
         <p><strong>Message:</strong> {{ client.message }}</p>
 
