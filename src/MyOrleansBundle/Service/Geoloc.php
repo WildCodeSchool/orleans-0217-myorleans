@@ -38,7 +38,7 @@ class Geoloc
         $arrayData = json_decode($jsonData, true);
 
         // Si trop de resultats on ne peut pas choisir...
-        if (count($arrayData['results']) > 1) {
+        if (count($arrayData['results']) > 1 || 0 === count($arrayData['results'])) {
             throw new \RuntimeException("L'adresse n'est pas assez précise, il est impossible de déterminer les coordonnées GPS.");
         }
 

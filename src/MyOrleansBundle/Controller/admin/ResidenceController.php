@@ -76,7 +76,7 @@ class ResidenceController extends Controller
                 try {
                     $geoloc->updateCoord($residence, $this->getParameter('GoogleApiKey'));
                 } catch (\RuntimeException $e) {
-                    $this->addFlash('error', $e->getMessage() . '<br />Les coordonnées GPS ne seront pas mise à jour.');
+                    $this->addFlash('danger', $e->getMessage() . ' Les coordonnées GPS ne seront pas mises à jour.');
                 }
             }
 
@@ -126,9 +126,10 @@ class ResidenceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             try {
+                // on maj les coord gps dans tous les cas
                 $geoloc->updateCoord($residence, $this->getParameter('GoogleApiKey'));
             } catch (\RuntimeException $e) {
-                $this->addFlash('error', $e->getMessage() . '<br />Les coordonnées GPS ne seront pas mise à jour.');
+                $this->addFlash('danger', $e->getMessage() . ' Les coordonnées GPS ne seront pas mises à jour.');
             }
 
             $this->getDoctrine()->getManager()->flush();
