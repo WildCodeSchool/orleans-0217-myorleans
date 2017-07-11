@@ -126,13 +126,15 @@ class HomeController extends Controller
      * @Route("/residences", name="residences")
      */
 
-    public function residence(SessionInterface $session, Request $request)
+    public function residence(SessionInterface $session, Request $request, Residence $residence)
     {
 
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
+        $titre = $residence->getSlug();
+
         $em = $this->getDoctrine()->getManager();
         $residences = $em->getRepository(Residence::class)->findAll();
         // Formulaire de contact
@@ -168,6 +170,9 @@ class HomeController extends Controller
             $this->addFlash('success', 'votre message a bien été envoyé');
             return $this->redirectToRoute('residences');
         }
+        $url = $this->generateUrl('residences',
+            ['slug' => $titre]);
+
 
         return $this->render('MyOrleansBundle::residence.html.twig', [
             'parcours' => $parcours,
@@ -182,7 +187,7 @@ class HomeController extends Controller
     /**
      * @Route("/appartement", name= "appartement")
      */
-    public function flat(SessionInterface $session, Request $request)
+    public function flat(SessionInterface $session, Request $request, Flat $flat)
     {
         $parcours = null;
         if ($session->has('parcours')) {
@@ -191,9 +196,13 @@ class HomeController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $appartement = $em->getRepository(Flat::class)->findAll();
+
+        $titre = $flat->getSlug();
         // Formulaire de contact
         $client = new  Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+
+        //modification du champ sujet du formulaire de contact
         $formulaire->get('sujet')->setData(Client::SUJET_INFO_APPART);
         $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire->handleRequest($request);
@@ -224,7 +233,13 @@ class HomeController extends Controller
 
             $this->addFlash('success', 'votre message a bien été envoyé');
             return $this->redirectToRoute('appartement');
+
+
         }
+        //generation slug
+        $url = $this->generateUrl('appartement',
+            ['slug' => $titre]);
+
         return $this->render('MyOrleansBundle::appartement.html.twig', [
             'parcours' => $parcours,
             'appartement' =>$appartement,
