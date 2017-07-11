@@ -25,7 +25,11 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('titre', TextType::class)
-            ->add('texte', TextareaType::class)
+            ->add('texte', TextareaType::class, [
+                "attr" => [
+                    "class" => "materialize ckeditor"
+                ]
+            ])
             ->add('date', DateTimeType::class)
             ->add('residence', EntityType::class, [
                 'class' => Residence::class,
