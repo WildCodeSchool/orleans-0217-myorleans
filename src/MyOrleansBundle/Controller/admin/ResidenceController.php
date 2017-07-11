@@ -80,6 +80,13 @@ class ResidenceController extends Controller
                 }
             }
 
+            if (empty($residence->getMedias())) {
+                $media = new Media();
+                $media->setLien('default.jpg');
+
+                $residence->addMedia($media);
+            }
+
             $em->persist($residence);
             $em->flush();
 
