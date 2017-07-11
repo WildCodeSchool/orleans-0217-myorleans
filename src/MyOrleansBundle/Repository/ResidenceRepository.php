@@ -106,7 +106,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
         }
 
         if (!empty($data['budgetMax'])) {
-            $qb->andWhere('fts.prix < :budgetMax ')
+            $qb->andWhere('fts.prix <= :budgetMax ')
                 ->setParameter('budgetMax', $data['budgetMax'])
                 ->join('r.flats', 'fts');
         }
@@ -168,7 +168,8 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
         }
 
         $qb->andWhere('flts.statut = 1')
-            ->join('r.flats', 'flts');
+            ->join('r.flats', 'flts')
+            ->setMaxResults(2);
 
         return $qb->getQuery()->getResult();
     }

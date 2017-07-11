@@ -165,6 +165,11 @@ class NosBiensController extends Controller
 
             $residences = $em->getRepository(Residence::class)->completeSearch($data);
 
+            // Generation du derier article avec le tag 'Investissement'
+            $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
+            $article = $article[0];
+            // Fin contenu associe
+
             // recherche des biens suggeres
             if ($data != null ) {
                 $residencesSuggerees = $em -> getRepository(Residence::class)
@@ -185,24 +190,15 @@ class NosBiensController extends Controller
                 $article = $article[0];
 
                 $objectif = "Residence Principale";
-
                 $session->set('parcours', $this->getParameter('parcours_residence'));
-
             }
 
             if (isset($data['objectif']) && $objectif == 'investir') {
                 $session->set('parcours', $this->getParameter('parcours_investisseur'));
-
             }
 
             // Parametrage du parcours visiteur
             $parcours = $session->get('parcours');
-
-            // Generation du derier article avec le tag 'Investissement'
-            $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
-            $article = $article[0];
-
-            // Fin contenu associe
 
             return $this->render('MyOrleansBundle::nosbiens.html.twig',[
                 'parcours' => $parcours,
