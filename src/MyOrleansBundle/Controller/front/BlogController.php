@@ -58,6 +58,7 @@ class BlogController extends Controller
         return $this->render('MyOrleansBundle:blog:blog_article.html.twig',[
                 'article' => $article,
                 'residence' => $residence,
+                'slug' => $titre,
                 'articlesAssocies' => $articlesAssocies
         ]);
     }

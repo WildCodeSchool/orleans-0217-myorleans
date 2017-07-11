@@ -652,7 +652,7 @@ class Residence
         return $this->ville;
     }
 
-    /**
+ /*   *
      * @param bool $favoris
      * @return Residence
      */
@@ -685,9 +685,6 @@ class Residence
 
 
 
-
-
-
     /**
      * Get favoris
      *
@@ -716,6 +713,8 @@ class Residence
     public function getAffichagePrix()
     {
         return $this->affichagePrix;
+
+    }
 
 
     /**

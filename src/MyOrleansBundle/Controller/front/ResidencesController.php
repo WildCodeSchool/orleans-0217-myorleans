@@ -41,14 +41,16 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class ResidencesController extends Controller
 {
     /**
-     * @Route("/residences/{id}", name="residences")
+     * @Route("/residences/{slug}", name="residences")
      */
-    public function residence($id, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
+    public function residence($id, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator, Residence $residence)
     {
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
+
+        $titre = $residence->getSlug();
 
         $em = $this->getDoctrine()->getManager();
         $residence = $em->getRepository(Residence::class)->find($id);
@@ -90,12 +92,15 @@ class ResidencesController extends Controller
             return $this->redirectToRoute('residences');
         }
 
+        $url = $this->generateUrl('residences',
+            ['slug' => $titre]);
         return $this->render('MyOrleansBundle::residence.html.twig', [
             'residence' => $residence,
             'media' => $media,
             'parcours' => $parcours,
             'telephone_number' => $telephoneNumber,
             'freeFlat'=>$freeFlat,
+            'slug' => $titre,
             'form' => $formulaire->createView()
         ]);
 
