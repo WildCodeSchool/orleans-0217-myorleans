@@ -37,11 +37,12 @@ class BlogController extends Controller
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/blog/{id}", name="blog-article")
+     * @Route("/blog/{slug}", name="blog-article")
      */
     public function afficherArticleAction(Article $article)
     {
         $residence = $article->getResidence();
+        $titre = $article->getTitre();
 
         //Recuperation des tags de l'article et selection du premier tag
         $tags = $article->getTags();
@@ -50,6 +51,9 @@ class BlogController extends Controller
         //Fin recuperation du tag
         $em = $this->getDoctrine()->getManager();
         $articlesAssocies = $em->getRepository(Article::class)->articleByTag($tag, 2);
+
+        $url = $this->generateUrl('blog-article',
+            [ 'slug' => $titre]);
 
         return $this->render('MyOrleansBundle:blog:blog_article.html.twig',[
                 'article' => $article,

@@ -73,6 +73,12 @@ class Article
     private $typeArticle;
 
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
 
     /**
      * Get id
@@ -287,5 +293,29 @@ class Article
     public function removeTag(\MyOrleansBundle\Entity\Tag $tag)
     {
         $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Article
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
