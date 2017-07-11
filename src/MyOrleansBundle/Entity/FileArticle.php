@@ -138,9 +138,7 @@ class FileArticle
             return;
         }
 
-/*        var_dump($this->getUploadRootDir());die();*/
         $file_name = $this->getName();
-//        $file_name = $this->file->getClientOriginalName();
         // la méthode « move » prend comme arguments le répertoire cible et
         // le nom de fichier cible où le fichier doit être déplacé
         if (!file_exists($this->getUploadRootDir())) {
