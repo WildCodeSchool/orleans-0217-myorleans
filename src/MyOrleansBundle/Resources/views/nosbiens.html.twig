@@ -288,7 +288,7 @@
                                 <p>{{ article.texte | truncate(100, true, '...') }}</p>
                             </div>
                             <div class="card-action center">
-                                <a href="{{ path('blog-article', { 'slug': article.slug }) }}">Lire l'article</a>
+                                <a href="{{ path('blog-article', {id: article.id,  'slug': article.slug }) }}">Lire l'article</a>
                             </div>
                         </div>
                         {% endif %}

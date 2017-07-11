@@ -108,7 +108,7 @@
                                 {% endfor %}
 
                                 <div class="row lien-article">
-                                    <a href="{{ path('blog-article', { 'slug': article.slug }) }}">LIRE L'ARTICLE</a>
+                                    <a href="{{ path('blog-article', { 'id': article.id, 'slug': article.slug }) }}">LIRE L'ARTICLE</a>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,6 @@
 
     </div>
 
-</div>
 
 
 
