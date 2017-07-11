@@ -119,9 +119,9 @@ class Residence
     private $noteEsthetisme;
 
     /**
-     * @var int
+     * @var bool
      *
-     * @ORM\Column(name="favoris", type="integer", nullable=true)
+     * @ORM\Column(name="favoris", type="boolean", nullable=true)
      */
     private $favoris;
 
@@ -133,11 +133,19 @@ class Residence
     private $accroche;
 
     /**
+     * @var bool
      *
-     * @ENUM ({"Eligible", "Non-éligible"})
+     * @ORM\Column(name="eligibilite_pinel", type="boolean", nullable=true)
      *
      */
     private $eligibilitePinel;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="affichage_prix", type="boolean", nullable=false)
+     */
+    private $affichagePrix;
 
     /**
      * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
@@ -479,30 +487,6 @@ class Residence
     }
 
     /**
-     * Set favoris
-     *
-     * @param integer $favoris
-     *
-     * @return Residence
-     */
-    public function setFavoris($favoris)
-    {
-        $this->favoris = $favoris;
-
-        return $this;
-    }
-
-    /**
-     * Get favoris
-     *
-     * @return int
-     */
-    public function getFavoris()
-    {
-        return $this->favoris;
-    }
-
-    /**
      * @return mixed
      */
     public function getAccroche()
@@ -516,22 +500,6 @@ class Residence
     public function setAccroche($accroche)
     {
         $this->accroche = $accroche;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEligibilitePinel()
-    {
-        return $this->eligibilitePinel;
-    }
-
-    /**
-     * @param mixed $eligibilitePinel
-     */
-    public function setEligibilitePinel($eligibilitePinel)
-    {
-        $this->eligibilitePinel = $eligibilitePinel;
     }
 
 
@@ -679,6 +647,69 @@ class Residence
         return $this->ville;
     }
 
+    /**
+     * @param bool $favoris
+     * @return Residence
+     */
+    public function setFavoris(bool $favoris): Residence
+    {
+        $this->favoris = $favoris;
+        return $this;
+    }
+
+    /**
+     * @param bool $eligibilitePinel
+     * @return Residence
+     */
+    public function setEligibilitePinel(bool $eligibilitePinel): Residence
+    {
+        $this->eligibilitePinel = $eligibilitePinel;
+        return $this;
+    }
+
+    /**
+     * @param bool $affichagePrix
+     * @return Residence
+     */
+    public function setAffichagePrix(bool $affichagePrix): Residence
+    {
+        $this->affichagePrix = $affichagePrix;
+        return $this;
+    }
 
 
+
+
+
+
+
+    /**
+     * Get favoris
+     *
+     * @return boolean
+     */
+    public function getFavoris()
+    {
+        return $this->favoris;
+    }
+
+    /**
+     * Get eligibilitePinel
+     *
+     * @return boolean
+     */
+    public function getEligibilitePinel()
+    {
+        return $this->eligibilitePinel;
+    }
+
+    /**
+     * Get affichagePrix
+     *
+     * @return boolean
+     */
+    public function getAffichagePrix()
+    {
+        return $this->affichagePrix;
+    }
 }
