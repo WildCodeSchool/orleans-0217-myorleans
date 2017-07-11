@@ -27,6 +27,7 @@ class LoadResidenceData extends AbstractFixture implements OrderedFixtureInterfa
         $res->setAdresse('1 rue Bannier');
         $res->setCodePostal('45000');
         $res->setVille($this->getReference('ville1'));
+        $res->setAffichagePrix(true);
 
         $manager->persist($res);
 
@@ -35,6 +36,7 @@ class LoadResidenceData extends AbstractFixture implements OrderedFixtureInterfa
         $res2->setAdresse('12, rue Emile Zola');
         $res2->setCodePostal('45000');
         $res2->setVille($this->getReference('ville1'));
+        $res2->setAffichagePrix(true);
 
         $manager->persist($res2);
 
@@ -43,6 +45,7 @@ class LoadResidenceData extends AbstractFixture implements OrderedFixtureInterfa
         $res3->setAdresse('1 rue du Champ de Mars');
         $res3->setCodePostal('45000');
         $res3->setVille($this->getReference('ville1'));
+        $res3->setAffichagePrix(true);
 
         $manager->persist($res3);
 
@@ -51,6 +54,7 @@ class LoadResidenceData extends AbstractFixture implements OrderedFixtureInterfa
         $res4->setAdresse('1 rue de Montauban');
         $res4->setCodePostal('45000');
         $res4->setVille($this->getReference('ville1'));
+        $res4->setAffichagePrix(true);
 
         $manager->persist($res4);
 
