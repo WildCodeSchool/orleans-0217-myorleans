@@ -80,11 +80,10 @@ class ResidenceController extends Controller
                 }
             }
 
-            if (empty($residence->getMedias())) {
-                $media = new Media();
+            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            $media = $residence->getMedias()->first();
+            if (is_null($media->getId())) {
                 $media->setLien('default.jpg');
-
-                $residence->addMedia($media);
             }
 
             $em->persist($residence);
