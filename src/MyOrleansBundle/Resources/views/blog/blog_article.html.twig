@@ -44,7 +44,7 @@
         </div>
 
         <div class="row">
-            {{ article.texte }}
+            {{ article.texte | raw }}
         </div>
 
         <hr class="separe">
@@ -99,7 +99,7 @@
                             </div>
                             <div class="infoArticle">
                                 <h4 class="white-text">{{ article.titre }}</h4>
-                                <p>{{ article.texte | truncate(20, true, '...') }}</p>
+                                <p>{{ article.texte | truncate(20, true, '...') | raw }}</p>
 
                                 {% for tag in article.tags %}
                                 <div class="chip">
