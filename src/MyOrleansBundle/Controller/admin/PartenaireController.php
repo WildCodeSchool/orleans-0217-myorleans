@@ -102,7 +102,7 @@ class PartenaireController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_partenaire_edit', array('id' => $partenaire->getId()));
+            return $this->redirectToRoute('admin_partenaire_index', array('id' => $partenaire->getId()));
         }
 
         return $this->render('partenaire/edit.html.twig', array(

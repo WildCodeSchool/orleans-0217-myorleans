@@ -102,12 +102,7 @@ class Flat
     private $categoriePrestas;
 
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string")
-     */
-    private $slug;
+
 
 
     /**
@@ -428,27 +423,5 @@ class Flat
         $this->categoriePrestas->removeElement($categoriePresta);
     }
 
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Flat
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
 
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
 }

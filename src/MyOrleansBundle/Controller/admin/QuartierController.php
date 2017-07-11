@@ -76,7 +76,7 @@ class QuartierController extends Controller
     /**
      * Displays a form to edit an existing quartier entity.
      *
-     * @Route("/{id}/edit", name="admin_quartier_edit")
+     * @Route("/{id}/edit", name="admin_quartier_index")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Quartier $quartier)

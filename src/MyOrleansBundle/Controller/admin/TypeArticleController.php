@@ -88,7 +88,7 @@ class TypeArticleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_typearticle_edit', array('id' => $typeArticle->getId()));
+            return $this->redirectToRoute('admin_typearticle_index', array('id' => $typeArticle->getId()));
         }
 
         return $this->render('typearticle/edit.html.twig', array(

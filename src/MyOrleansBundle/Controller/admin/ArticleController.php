@@ -120,7 +120,7 @@ class ArticleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('admin_article_edit', array('id' => $article->getId()));
+            return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
         }
 
         return $this->render('article/edit.html.twig', array(
