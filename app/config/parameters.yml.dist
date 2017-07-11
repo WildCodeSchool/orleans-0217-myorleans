@@ -20,8 +20,6 @@ parameters:
     mailer_sender_name: MyOrléans
     parcours_investisseur: investisseur
     parcours_residence: residence
-    GoogleApiKey: AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU
-
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt

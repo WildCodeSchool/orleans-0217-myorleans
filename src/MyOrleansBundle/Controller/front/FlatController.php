@@ -39,7 +39,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class FlatController extends Controller
 {
     /**
-     * @Route("/appartement/{id}")
+     * @Route("/appartement/{id}", name="appartement")
      */
     public function flat($id, SessionInterface $session, Request $request)
     {
@@ -48,6 +48,8 @@ class FlatController extends Controller
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
+
+
 
         $em = $this->getDoctrine()->getManager();
         $flat = $em->getRepository(Flat::class)->find($id);
@@ -84,6 +86,9 @@ class FlatController extends Controller
             $em->flush();
             return $this->redirectToRoute('appartement');
         }
+
+
+
             return $this->render('MyOrleansBundle::appartement.html.twig',[
                 'flat'=>$flat,
                 'parcours'=>$parcours,
