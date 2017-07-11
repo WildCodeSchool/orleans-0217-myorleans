@@ -7,6 +7,7 @@ use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\ResidenceType;
 use MyOrleansBundle\Service\FileUploader;
+use MyOrleansBundle\Service\Geoloc;
 use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -54,7 +55,7 @@ class ResidenceController extends Controller
      * @Route("/new", name="admin_residence_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader, Geoloc $geoloc)
     {
 
         $residence = new Residence();
@@ -66,6 +67,18 @@ class ResidenceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // gestion des coord gps uniquement si l'adresse est saisie
+            if (!empty($residence->getAdresse()) &&
+                !empty($residence->getCodePostal()) &&
+                !empty($residence->getVille())) {
+
+                try {
+                    $geoloc->updateCoord($residence, $this->getParameter('GoogleApiKey'));
+                } catch (\RuntimeException $e) {
+                    $this->addFlash('danger', $e->getMessage() . ' Les coordonnées GPS ne seront pas mises à jour.');
+                }
+            }
 
             $em->persist($residence);
             $em->flush();
@@ -100,7 +113,7 @@ class ResidenceController extends Controller
      * @Route("/{id}/edit", name="admin_residence_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Residence $residence)
+    public function editAction(Request $request, Residence $residence, FileUploader $fileUploader, Geoloc $geoloc)
     {
         $deleteForm = $this->createDeleteForm($residence);
         if ($residence->getMedias()->isEmpty()) {
@@ -112,6 +125,12 @@ class ResidenceController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
+            try {
+                // on maj les coord gps dans tous les cas
+                $geoloc->updateCoord($residence, $this->getParameter('GoogleApiKey'));
+            } catch (\RuntimeException $e) {
+                $this->addFlash('danger', $e->getMessage() . ' Les coordonnées GPS ne seront pas mises à jour.');
+            }
 
             $this->getDoctrine()->getManager()->flush();
 
