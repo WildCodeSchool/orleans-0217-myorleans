@@ -137,7 +137,7 @@ class NosBiensController extends Controller
             'villes' => $villes,
             'quartiers' => $quartiers,
             'objectif' => $objectif,
-            'article' => $article,
+            'article' => $article ?? null,
             'noResult' => $noResult
         ]);
 
