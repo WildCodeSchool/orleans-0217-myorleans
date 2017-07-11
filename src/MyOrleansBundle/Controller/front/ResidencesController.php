@@ -41,7 +41,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class ResidencesController extends Controller
 {
     /**
-     * @Route("/residences/{id}")
+     * @Route("/residences/{id}", name="residences")
      */
     public function residence($id, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
     {

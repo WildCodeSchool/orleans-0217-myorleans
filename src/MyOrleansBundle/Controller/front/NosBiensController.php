@@ -59,8 +59,10 @@ class NosBiensController extends Controller
         $quartiers = $em->getRepository(Quartier::class)->findAll();
 
         // Generation du dernier article avec le tag 'Investissement'
-        $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
-        $article = $article[0];
+        $articles = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
+        if (!empty($articles)) {
+            $article = $articles[0];
+        }
 
         // Generation du moteur de recherche simplifie
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType', null, ['action' => $this->generateUrl('nosbiens')]);
