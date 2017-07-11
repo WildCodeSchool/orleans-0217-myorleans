@@ -33,14 +33,17 @@ class ImmoPratiqueController extends Controller
             $parcours = $session->get('parcours');
         }
 
+        $telephoneNumber = $this->getParameter('telephone_number');
+
         $em = $this->getDoctrine()->getManager();
         $client = new Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
-        $articles = $em->getRepository(Article::class)->findAll();
-        $telephoneNumber = $this->getParameter('telephone_number');
-
         $formulaire->handleRequest($request);
+
+        $articlesActu = $em->getRepository(Article::class)->ArticleByType("actu", 2);
+        $articlesConseils = $em->getRepository(Article::class)->ArticleByType("conseils", 2);
+        $articlesDossier = $em->getRepository(Article::class)->ArticleByType("dossier", 2);
 
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -74,7 +77,9 @@ class ImmoPratiqueController extends Controller
 
         return $this->render('MyOrleansBundle::immoPratique.html.twig', [
 
-            'articles' => $articles,
+            'articlesActu' => $articlesActu,
+            'articlesConseils' => $articlesConseils,
+            'articlesDossier' => $articlesDossier,
             'parcours' => $parcours,
             'telephone_number' =>$telephoneNumber,
             'form' => $formulaire->createView()
