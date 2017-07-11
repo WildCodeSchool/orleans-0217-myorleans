@@ -306,7 +306,7 @@
                 <h3>L'actualité</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        {{ dump(actu) }}
+
                         {% for media in actu[0].medias if media.typeMedia.nom == 'image-cover' %}
                             <img class="activator"
                                  src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
@@ -324,7 +324,7 @@
                                     class="material-icons right">close</i></span>
                         <p>{{ actu[0].texte | truncate(10, true, '...') | raw }}</p>
                         <div class="center">
-                            {#<a class="waves-effect waves-light btn-large light-green" href="{{ path('blog-article', { 'slug': actu[0].slug }) }}">Lire l'article</a>#}
+                            <a class="waves-effect waves-light btn-large light-green" href="{{ path('blog-article', { 'slug': actu[0].slug }) }}">Lire l'article</a>
                         </div>
                     </div>
                 </div>
@@ -352,7 +352,7 @@
                                     class="material-icons right">close</i></span>
                         <p>{{ event[0].description }}</p>
                         <div class="center">
-                            {#<a class="waves-effect waves-light btn-large light-green" href="{{ path('agence') }}">Découvrir l'événement</a>#}
+                            <a class="waves-effect waves-light btn-large light-green" href="{{ path('agence') }}">Découvrir l'événement</a>
                         </div>
                     </div>
                 </div>
