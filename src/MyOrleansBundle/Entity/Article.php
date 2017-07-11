@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * Article
@@ -75,7 +77,7 @@ class Article
 
     /**
      * @var string
-     *
+     * @Gedmo\Slug(fields={"titre"})
      * @ORM\Column(name="slug", type="string")
      */
     private $slug;

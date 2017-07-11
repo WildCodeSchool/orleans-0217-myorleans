@@ -41,7 +41,7 @@ class FlatController extends Controller
     /**
      * @Route("/appartement/{id}", name="appartement")
      */
-    public function flat($id, SessionInterface $session, Request $request, Flat $flat)
+    public function flat($id, SessionInterface $session, Request $request)
     {
         $client = new  Client();
         $parcours = null;

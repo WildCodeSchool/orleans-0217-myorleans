@@ -5,6 +5,7 @@ namespace MyOrleansBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
 /**
@@ -167,7 +168,7 @@ class Residence
 
     /**
      * @var string
-     *
+     * @Gedmo\Slug(fields={"nom"})
      * @ORM\Column(name="slug", type="string")
      */
     private $slug;
