@@ -172,7 +172,7 @@
                             <div data-aos="fade-up-right">
                                 <div class="boxi">
                                     <h4>{{ article.titre }}</h4>
-                                    <p>{{ article.texte }}</p>
+                                    <p>{{ article.texte | raw }}</p>
                                     <div class="center lien-article">
                                         <a href="#">LIRE L'ARTICLE</a>
                                     </div>
@@ -209,7 +209,7 @@
                             <div data-aos="fade-up-left">
                                 <div class="boxi">
                                     <h4>{{ article.titre }}</h4>
-                                    <p>{{ article.texte }}</p>
+                                    <p>{{ article.texte | raw }}</p>
                                     <div class="center lien-article">
                                         <a href="#">LIRE L'ARTICLE</a>
                                     </div>
