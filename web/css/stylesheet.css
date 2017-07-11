@@ -540,6 +540,7 @@ body {
 /* ------------------------ PAGE RESIDENCE --------------------------*/
 /* --------------------------------------------------------------------*/
 
+
 .offre-residence td {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
@@ -578,6 +579,14 @@ body {
     font-size: 2em;
     padding: 20px;
     width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.dispo{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .pinel-residence{
@@ -602,7 +611,7 @@ body {
 }
 
 .content-residence{
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 .accordeon-residence{
@@ -642,7 +651,8 @@ td{
 #map-residences {
     width:100%;
     margin: auto;
-
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .notation{
@@ -735,8 +745,11 @@ td{
 }
 
 .rapel-residence{
-    margin-left: 100px;
-    margin-right: 100px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .descriptif-residence{

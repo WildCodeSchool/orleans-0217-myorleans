@@ -25,6 +25,7 @@ use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypeLogement;
+use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Entity\TypePresta;
 use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Form\SimpleSearchType;
@@ -44,19 +45,15 @@ class ResidencesController extends Controller
     /**
      * @Route("/residences/{id}", name="residences")
      */
-    public function residence($id, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculateur)
+    public function residence(Residence $residence, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculateur)
     {
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
 
-
         $em = $this->getDoctrine()->getManager();
-        $residence = $em->getRepository(Residence::class)->find($id);
-        $residences = $em->getRepository(Residence::class)->findAll();
-        $media = $em->getRepository(Media::class)->find($id);
-        $flats = $em->getRepository(Flat::class)->findAll();
+        $flats = $em->getRepository(Flat::class)->findByResidence($residence);
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
         $type_t1 = $this->getParameter('typeLogementT1');
         $type_t2 = $this->getParameter('typeLogementT2');
@@ -65,6 +62,16 @@ class ResidencesController extends Controller
         $prixMin = $calculateur->calculPrix($residence);
         $flatsDispo = $calculateur->calculFlatDispo($residence);
         $typeMinMax = $calculateur->calculSizes($residence);
+
+        $medias = $residence->getMedias();
+        $mediaDefine = [];
+        foreach ($medias as $media) {
+            if ($media->getTypeMedia()->getNom() == 'video') {
+                $mediaDefine['video'] = $media;
+            } elseif ($media->getTypeMedia()->getNom() == 'image') {
+                $mediaDefine['image'] = $media;
+            }
+        }
 
         // Formulaire de contact
         $client = new  Client();
@@ -99,10 +106,9 @@ class ResidencesController extends Controller
 
         return $this->render('MyOrleansBundle::residence.html.twig', [
             'residence' => $residence,
-            'residences' => $residences,
             'flats' => $flats,
-            'media' => $media,
             'parcours' => $parcours,
+            'media' => $mediaDefine,
             'telephone_number' => $telephoneNumber,
             'prixMin' => $prixMin,
             'flatsDispo' => $flatsDispo,

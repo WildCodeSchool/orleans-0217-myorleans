@@ -10,8 +10,5 @@ namespace MyOrleansBundle\Repository;
  */
 class FlatRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function searchById($id)
-    {
 
-    }
 }

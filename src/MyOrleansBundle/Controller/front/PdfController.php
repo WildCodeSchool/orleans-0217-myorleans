@@ -31,17 +31,14 @@ class PdfController extends Controller
      * @Route("/pdf/flat/{id}", name="flat_pdf")
      * @Method("GET")
      */
-    public function pdfFlatAction($id, Flat $flat, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculateur)
+    public function pdfFlatAction(Flat $flat, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculateur)
     {
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
         $em = $this->getDoctrine()->getManager();
-        $residence = $em->getRepository(Residence::class)->find($id);
-        $residences = $em->getRepository(Residence::class)->findAll();
-        $media = $em->getRepository(Media::class)->find($id);
-        $flats = $em->getRepository(Flat::class)->findAll();
+        $residence = $flat->getResidence();
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
         $type_t1 = $this->getParameter('typeLogementT1');
         $type_t2 = $this->getParameter('typeLogementT2');
@@ -55,9 +52,6 @@ class PdfController extends Controller
         $mappy = $this->get("knp_snappy.pdf");
         $html = $this->renderView('MyOrleansBundle::pdf_appartement.html.twig', array(
             'residence' => $residence,
-            'residences' => $residences,
-            'flats' => $flats,
-            'media' => $media,
             'prixMin' => $prixMin,
             'flatsDispo' => $flatsDispo,
             'typeMin' => $typeMinMax[0],
@@ -91,17 +85,14 @@ class PdfController extends Controller
      * @Route("/pdf/residence/{id}", name="residence_pdf")
      * @Method("GET")
      */
-    public function pdfResidenceAction($id,Residence $residence, SessionInterface $session, CalculateurCaracteristiquesResidence $calculateur)
+    public function pdfResidenceAction(Residence $residence, SessionInterface $session, CalculateurCaracteristiquesResidence $calculateur)
     {
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
         $em = $this->getDoctrine()->getManager();
-        $residence = $em->getRepository(Residence::class)->find($id);
-        $residences = $em->getRepository(Residence::class)->findAll();
-        $media = $em->getRepository(Media::class)->find($id);
-        $flats = $em->getRepository(Flat::class)->findAll();
+        $flats = $em->getRepository(Flat::class)->findByResidence($residence);
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
         $typebien = $em->getRepository(TypeBien::class)->findAll();
         $type_t1 = $this->getParameter('typeLogementT1');
@@ -116,10 +107,7 @@ class PdfController extends Controller
         $telephoneNumber = $this->getParameter('telephone_number');
         $mappy = $this->get("knp_snappy.pdf");
         $html = $this->renderView('MyOrleansBundle::pdf_residence.html.twig', array(
-            'residence' => $residence,
-            'residences' => $residences,
             'flats' => $flats,
-            'media' => $media,
             'prixMin' => $prixMin,
             'flatsDispo' => $flatsDispo,
             'typeMin' => $typeMinMax[0],
@@ -139,13 +127,13 @@ class PdfController extends Controller
 
         $filename = "residence-".$residence->getNom().".pdf";
 
-        return new Response($html);
-/*            $mappy->getOutputFromHtml($html),
+        return new Response(
+            $mappy->getOutputFromHtml($html),
             200,
             [
                 'Content-Type' => 'application/pdf',
                 'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
-            ]);*/
+            ]);
 
     }
 }

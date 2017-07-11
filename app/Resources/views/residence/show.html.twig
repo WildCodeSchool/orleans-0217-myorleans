@@ -1,7 +1,3 @@
-{% extends 'base.html.twig' %}
-
-
-
 {% extends '::layout_admin.html.twig' %}
 
 {% block content %}
@@ -188,10 +184,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('residence_index') }}">Back to the list</a>
+            <a href="{{ path('admin_residence_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('residence_edit', { 'id': residence.id }) }}">Edit</a>
+            <a href="{{ path('admin_residence_edit', { 'id': residence.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

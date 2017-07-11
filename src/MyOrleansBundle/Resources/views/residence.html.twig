@@ -11,141 +11,149 @@
 {% block content %}
 
 
-    <!--logo dde de documentation-->
-    <div class="breadcrumb">
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
-    </div>
-    <!--fin logo dde de documentation-->
+<!--logo dde de documentation-->
+<div class="breadcrumb">
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
+</div>
+<!--fin logo dde de documentation-->
 
-    <div class="content-residence">
-        <div class="video-container center">
-            {% for media in residence.medias %}
-                {% if media.typeMedia.nom == 'video' %}
-                    <video width="1800" height="900" controls>
-                        <source src="{{ asset('uploads/'~media.lien) }}" type="video/mp4">
-                        <source src="{{ asset('uploads/'~media.lien) }}" type="video/ogg">
-                        <source src="{{ asset('uploads/'~media.lien) }}" type="video/webm">
-                    </video>
-                {% else %}
-                    <img src="{{ asset('uploads/'~media.lien) }}" alt="photo_residence"/>
+<div class="content-residence">
+    <div class="container-fluid center">
+        <div class="row">
+            <div class="col s12">
+
+                {% if media['video'] is defined and  media['video'] != null %}
+                    {% set video = true %}
+                    <div class="video-residence">
+                        <video width="90%" controls>
+                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/mp4">
+                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/ogg">
+                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/webm">
+                        </video>
+                    </div>
+                {% elseif media['image'] is defined and  media['image'] != null and  video is not defined %}
+                    <img src="{{ asset('uploads/'~media['image'].lien) }}" alt="photo_residence"/>
                 {% endif %}
-            {% endfor %}
+            </div>
         </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="buttondocprint">
+            <div class="col offset-s1 s5">
+                <a class="waves-effect waves-light btn button-collapse" data-activates="slide-out"><i
+                            class="material-icons left">message</i>Demander la
+                    documentation</a>
+            </div>
+
+            <div id="editor" class="col offset-s1 s5">
+                <a class="waves-effect waves-light btn"
+                   href="{{ path('residence_pdf', { 'id': residence.id }) }}">
+                    <i id="cmd" class="material-icons left">print</i>Imprimer cette page</a>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="undervideo-residence">
+                <div class="col l6 s12">
+                    <h2><span>{{ residence.nom }}</span></h2>
+                    <h2 class="lieu-residence">à {{ residence.ville.nom }}</h2>
+                </div>
+                <div class="col l6 s12">
+                    <table class="offre-residence">
+                        <tr>
+
+                            <td><strong>Offre du moment</strong><br/><span class="subtab-residence"><strong
+                                            class="offre">{{ residence.offre }}</strong></span></td>
+                            <td><strong>Prix</strong><br/><span
+                                        class="subtab-residence"><strong>à partir {{ prixMin }} €</strong></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date de livraison</strong><br/><span
+                                        class="subtab-residence"><strong>{{ residence.dateLivraison }}</strong></span>
+                            </td>
+                            <td><strong>Nb. Pièces</strong><br/><span
+                                        class="subtab-residence"><strong>Du {{ typeMin }}
+                                        au {{ typeMax }}</strong></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <h3>Nombre de logements disponibles : {{ flatsDispo }} sur {{ residence.nbTotalLogements }}</h3>
+                <h3 class="consulter-residence"><a href="#consult">Consultez nos biens disponibles</a></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box-notesite">
+                <div class="row">
+                    <ul>
+                        <li class="design col m3 s6">
+                            <div class="notesite" id="note_0" data-note="{{ residence.noteTransports }}"></div>
+                            <br/>
+                            <div class="list-legend">
+                                <div class="row center-align">
+                                    <ul>
+                                        <li class="design col m12">transports</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="content col m3 s6">
+                            <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces }}"></div>
+                            <br/>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">commerces</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="creativity col m3 s6">
+                            <div class="notesite" id="note_1" data-note="{{ residence.noteServices }}"></div>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">services</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="usability col m3 s6">
+                            <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme }}"></div>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">esthétisme</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
         <div class="container">
             <div class="row">
-                <div class="col offset-l1 l5 s10">
-                    <a class="waves-effect waves-light btn button-collapse" data-activates="slide-out"><i
-                                class="material-icons left">message</i>Demander la
-                        documentation</a>
-                </div>
-
-                <div id="editor" class="col offset-l1 l5 s10">
-                    <a class="waves-effect waves-light btn"
-                       href="{{ path('residence_pdf', { 'id': residence.id }) }}"><i id="cmd"
-                                                                                     class="material-icons left">print</i>Imprimer
-                        cette page</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="undervideo-residence">
-                    <div class="col l6 s12">
-                        <h2><span>{{ residence.nom }}</span></h2>
-                        <h2 class="lieu-residence">à {{ residence.ville.nom }}</h2>
-                    </div>
-                    <div class="col l6 s12">
-                        <table class="offre-residence">
-                            <tr>
-
-                                <td><strong>Offre du moment</strong><br/><span class="subtab-residence"><strong
-                                                class="offre">{{ residence.offre }}</strong></span></td>
-                                <td><strong>Prix</strong><br/><span
-                                            class="subtab-residence"><strong>à partir {{ prixMin }} €</strong></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Date de livraison</strong><br/><span
-                                            class="subtab-residence"><strong>{{ residence.dateLivraison }}</strong></span>
-                                </td>
-                                <td><strong>Nb. Pièces</strong><br/><span
-                                            class="subtab-residence"><strong>Du {{ typeMin }} au {{ typeMax }}</strong></span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col s12">
-                    <h3>Nombre de logements disponibles : {{ flatsDispo }} sur {{ residence.nbTotalLogements }}</h3>
-                    <h3 class="consulter-residence"><a href="#consult">Consultez nos biens disponibles</a></h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="box-notesite">
-                    <div class="row">
-                        <ul>
-                            <li class="design col m3 s6">
-                                <div class="notesite" id="note_0" data-note="{{ residence.noteTransports }}"></div>
-                                <br/>
-                                <div class="list-legend">
-                                    <div class="row center-align">
-                                        <ul>
-                                            <li class="design col m12">transports</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="content col m3 s6">
-                                <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces }}"></div>
-                                <br/>
-                                <div class="list-legend">
-                                    <div class="row">
-                                        <ul>
-                                            <li class="design col m12">commerces</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="creativity col m3 s6">
-                                <div class="notesite" id="note_1" data-note="{{ residence.noteServices }}"></div>
-                                <div class="list-legend">
-                                    <div class="row">
-                                        <ul>
-                                            <li class="design col m12">services</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="usability col m3 s6">
-                                <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme }}"></div>
-                                <div class="list-legend">
-                                    <div class="row">
-                                        <ul>
-                                            <li class="design col m12">esthétisme</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col s12">
-                        <div class="rapel-residence text-justify">
-                            <h3>La Residence</h3>
-                            <p>
-                                {{ residence.description }}
-                            </p>
-                        </div>
+                    <div class="rapel-residence text-justify">
+                        <h3>La Residence</h3>
+                        <p>
+                            {{ residence.description }}
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
+        </div>
+        <div class="container-fluid">
             <div class="row">
                 <div class="col s12">
                     <div class="hide-on-small-only">
@@ -187,12 +195,14 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
 
         <div class="container">
             <div class="col s12">
-                <h3>Nombre de logements disponibles : {{ flatsDispo }} sur {{ residence.nbTotalLogements }}</h3>
-                <h3 class="consulter-residence">Consultez nos biens disponibles</h3>
+                <div class="dispo">
+                    <h3>Nombre de logements disponibles : {{ flatsDispo }} sur {{ residence.nbTotalLogements }}</h3>
+                    <h3 class="consulter-residence">Consultez nos biens disponibles</h3>
+                </div>
             </div>
             <div class="row">
                 <div class="col s12">
@@ -475,33 +485,33 @@
     </div>
     <!--fin partage reseaux sociaux-->
 
-{% endblock %}
+    {% endblock %}
 
 
 
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/testcompteur.js') }}"></script>
-    <script src="{{ asset('js/jquery.circliful.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
-    <script>
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('js/testcompteur.js') }}"></script>
+        <script src="{{ asset('js/jquery.circliful.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>
+        <script>
 
-        $(document).ready(function () {
-            $('.collapsible').collapsible();
-        });
-    </script>
-    <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
-    <script>
-        AOS.init();
-        //formulaire de contact
-        $('.button-collapse').sideNav({
-                edge: 'right', // Choose the horizontal origin
-                draggable: false, // Choose whether you can drag to open on touch screens
-                closeOnClick: true
-            }
-        );
-    </script>
-{% endblock %}
+            $(document).ready(function () {
+                $('.collapsible').collapsible();
+            });
+        </script>
+        <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
+        <script>
+            AOS.init();
+            //formulaire de contact
+            $('.button-collapse').sideNav({
+                    edge: 'right', // Choose the horizontal origin
+                    draggable: false, // Choose whether you can drag to open on touch screens
+                    closeOnClick: true
+                }
+            );
+        </script>
+    {% endblock %}
 
 
 

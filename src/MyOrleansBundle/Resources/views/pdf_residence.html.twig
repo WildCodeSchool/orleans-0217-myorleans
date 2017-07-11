@@ -30,9 +30,11 @@
                 <h2><span>{{ residence.nom }}</span></h2>
                 <h2 class="lieu-residence">à {{ residence.ville.nom }}</h2>
             </div>
-            <div class=" col s12 photo-residence center">
-                {#<img src="{{ absolute_url(asset('uploads/'~media.lien)) }}" alt="photo_residence"/>#}
-            </div>
+            {% for media in residence.medias %}
+                {% if media.typeMedia.nom == 'image' %}
+                    <img src="{{ asset('uploads/'~media.lien) }}" alt="photo_residence"/>
+                {% endif %}
+            {% endfor %}
             <div class="col s12">
                 <table class="offre-residence">
                     <tr>
@@ -143,7 +145,7 @@
         <div class="col s12 center">
             <div>
                 <div id="map-residences"></div>
-                <img src="{{ absolute_url(asset('https://maps.googleapis.com/maps/api/staticmap?center='~residence.latitude~','~residence.longitude~',&zoom=12&size=800x400&key='~googlemap_static_map_key))}}"
+                <img src="{{ absolute_url(asset('https://maps.googleapis.com/maps/api/staticmap?center='~residence.latitude~','~residence.longitude~'&markers=color:red%7Clabel:C%7C'~residence.latitude~','~residence.longitude~'&zoom=14&size=1200x600&key='~googlemap_static_map_key))}}"
                      alt="carte_residence"/>
 
             </div>
