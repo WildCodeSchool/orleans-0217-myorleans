@@ -24,7 +24,7 @@
             </div>
             <div class="col s4">
                 <h4>Prix</h4>
-                {% if residence.affichagePrix == 1 %}
+                {% if residence.affichagePrix %}
                     <p>A partir de {{ prixMin }}€</p>
                 {% else %}
                     <p>Nous contacter</p>

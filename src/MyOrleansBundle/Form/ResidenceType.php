@@ -48,20 +48,20 @@ class ResidenceType extends AbstractType
             ->add('noteEsthetisme', NumberType::class)
             ->add('favoris', ChoiceType::class, [
                 'choices' => [
-                    'Oui' => '1',
-                    'Non' => '0'
+                    'Oui' => true,
+                    'Non' => false
                 ]
             ])
             ->add('affichagePrix',ChoiceType::class, [
                 'choices' => [
-                    'Oui' => '1',
-                    'Non' => '0'
+                    'Oui' => true,
+                    'Non' => false
                 ]
             ])
             ->add('eligibilitePinel',ChoiceType::class, [
                 'choices' => [
-                    'Oui' => '1',
-                    'Non' => '0'
+                    'Oui' => true,
+                    'Non' => false
                 ]
             ])
             ->add('accroche', TextareaType::class)
