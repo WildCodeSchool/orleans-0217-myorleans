@@ -9,49 +9,55 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title">Liste des biens</h4>
+                            <h4 class="title">Liste des biens pour la résidence {{ residence.nom }}</h4>
                         </div>
                         <div class="card-content table-responsive">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Reference</th>
-                                    <th>Prix</th>
-                                    <th>Surface</th>
-                                    <th>Nbpiece</th>
-                                    <th>Description</th>
-                                    <th>Prestationcomplementaire</th>
-                                    <th>Statut</th>
-                                    <th>Aperçu</th>
-                                    <th>Éditer</th>
-                                </thead>
-                                <tbody>
-
-                                {% for flat in flats %}
+                            {% if flats is not empty %}
+                                <table class="table">
+                                    <thead>
                                     <tr>
-                                        <td><a href="{{ path('admin_flat_show', { 'id': flat.id }) }}">{{ flat.id }}</a></td>
-                                        <td>{{ flat.reference }}</td>
-                                        <td>{{ flat.prix }}</td>
-                                        <td>{{ flat.surface }}</td>
-                                        <td>{{ flat.nbPiece }}</td>
-                                        <td>{{ flat.description }}</td>
-                                        <td>{{ flat.prestationComplementaire }}</td>
-                                        <td>{{ flat.statut }}</td>
-                                        <td>
-                                            <a href="{{ path('admin_flat_show', { 'id': flat.id }) }}"><i
-                                                        class="material-icons">remove_red_eye</i></a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('admin_flat_edit', { 'id': flat.id }) }}"><i
-                                                        class="material-icons">build</i></a>
-                                        </td>
-                                    </tr>
+                                        <th>Id</th>
+                                        <th>Reference</th>
+                                        <th>Prix</th>
+                                        <th>Surface</th>
+                                        <th>Nbpiece</th>
+                                        <th>Description</th>
+                                        <th>Prestationcomplementaire</th>
+                                        <th>Statut</th>
+                                        <th>Aperçu</th>
+                                        <th>Éditer</th>
+                                    </thead>
+                                    <tbody>
 
-                                {% endfor %}
+                                    {% for flat in flats %}
+                                        <tr>
+                                            <td>
+                                                <a href="{{ path('admin_flat_show', { 'id': flat.id }) }}">{{ flat.id }}</a>
+                                            </td>
+                                            <td>{{ flat.reference }}</td>
+                                            <td>{{ flat.prix }}</td>
+                                            <td>{{ flat.surface }}</td>
+                                            <td>{{ flat.nbPiece }}</td>
+                                            <td>{{ flat.description }}</td>
+                                            <td>{{ flat.prestationComplementaire }}</td>
+                                            <td>{{ flat.statut }}</td>
+                                            <td>
+                                                <a href="{{ path('admin_flat_show', { 'id': flat.id }) }}"><i
+                                                            class="material-icons">remove_red_eye</i></a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ path('admin_flat_edit', { 'id': flat.id }) }}"><i
+                                                            class="material-icons">build</i></a>
+                                            </td>
+                                        </tr>
 
-                                </tbody>
-                            </table>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <div class="alert alert-danger">Il n'y a pas encore de bien pour cette résidence</div>
+                            {% endif %}
                             <hr>
                             <div class="navigation center">
                                 {{ knp_pagination_render(flats, 'MyOrleansBundle::pagination.html.twig') }}
@@ -59,10 +65,14 @@
                             <ul>
                                 <li>
 
-                                    <a href="{{ path('admin_flat_new') }}"
+                                    <a href="{{ path('admin_flat_new', {'id': residence.id}) }}"
                                        class="btn-floating btn-large waves-effect waves-light light-green"><i
                                                 class="material-icons">add</i>Ajouter un bien</a>
                                 </li>
+                                <li>
+                                    <a href="{{ path('admin_residence_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des résidences</a>
+                                </li>
+
                             </ul>
                         </div>
                     </div>

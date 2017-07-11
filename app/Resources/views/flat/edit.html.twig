@@ -1,4 +1,4 @@
-{% extends '::layout_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
 {% block content %}
 
@@ -8,11 +8,12 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title">Modifier ce bien </h4>
+                            <h4 class="title">Modifier ce bien de la résidence {{ flat.residence.nom }} </h4>
                         </div>
                         <div class="card-content table-responsive">
+                            {{ form_start(edit_form) }}
                             <div class="row">
-                                {{ form_start(edit_form) }}
+
                                 {{ form_label(edit_form.reference, "Référence du bien:") }}
                                 {{ form_widget(edit_form.reference) }}
                                 {{ form_label(edit_form.prix, 'Prix: ') }}
@@ -28,9 +29,7 @@
                                 {{ form_label(edit_form.statut, 'Statut du bien: ') }}
                                 {{ form_widget(edit_form.statut) }}
                                 {{ form_label(edit_form.typeLogement, 'Type du Logement: ') }}
-                                {{ form_widget(edit_form.typeLogement) }}
-                                {{ form_label(edit_form.residence, 'Residence: ') }}
-                                {{ form_widget(edit_form.residence) }}
+
                             </div>
                             {% for media in flat.medias %}
                                 {% if media.id != null %}
@@ -45,13 +44,14 @@
                                     {{ form_widget(edit_form.medias) }}
                                 {% endif %}
                             {% endfor %}
-                            <a href="#" id="add-another-media">Ajouter un média</a>
-                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
+                            <p><a href="#" id="add-another-media">Ajouter un média</a></p>
+                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit" />
                             {{ form_widget(edit_form._token) }}
                             </form>
+
                             <ul>
                                 <li>
-                                    <a href="{{ path('admin_flat_index') }}"><i
+                                    <a href="{{ path('admin_flat_index', {'id':flat.residence.id}) }}"><i
                                                 class="material-icons">keyboard_return</i>Retour à la liste des
                                         biens</a>
                                 </li>

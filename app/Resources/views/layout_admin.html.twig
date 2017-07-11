@@ -42,10 +42,7 @@
                             <div class="collapsible-body">
                                 <a href="{{ path("admin_residence_index") }}">
                                     <p>Résidences</p>
-                                </a><br>
-                                <a href="{{ path("admin_flat_index") }}">
-                                    <p>Biens</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_prestation_index") }}">
                                     <p>Prestations</p>
                                 </a>
@@ -116,6 +113,14 @@
                 </nav>
                 {% endblock %}
 
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
                 {% block content %}
 
                 {% endblock %}
@@ -148,12 +153,16 @@
                     demo.initDashboardPageCharts();
                     $('select').material_select();
 
-                });
-
-
-                $(document).ready(function () {
                     $('.collapsible').collapsible();
+
+                    $('#alert_close').click(function(){
+                        $( "#alert_box" ).fadeOut( "slow", function() {
+                        });
+                    });
                 });
             </script>
+            <script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+
+            <script>CKEDITOR.replace( textarea )</script>
 
         {% endblock %}

@@ -301,6 +301,7 @@
 
 
         <div class="row">
+            {% if actu is not empty %}
             <div class="col s12 l6">
                 <h3>L'actualité</h3>
                 <div class="card small">
@@ -315,16 +316,21 @@
                         <span class="card-title activator grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">add</i></span>
                         <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
-                        <p class="truncate">{{ actu[0].texte }}</p>
+                        <p class="truncate">{{ actu[0].texte | truncate(10, true, '...') | raw }}</p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">close</i></span>
-                        <p>{{ actu[0].texte }}</p>
+                        <p>{{ actu[0].texte | truncate(10, true, '...') | raw }}</p>
+                        <div class="center">
+                            <a class="waves-effect waves-light btn-large light-green" href="{{ path('blog-article', { 'id': actu[0].id }) }}">Lire l'article</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
 
+            {% if event is not empty %}
             <div class="col s12 l6">
                 <h3>L'événement</h3>
                 <div class="card small">
@@ -344,9 +350,14 @@
                         <span class="card-title grey-text text-darken-4">{{ event[0].nom }}<i
                                     class="material-icons right">close</i></span>
                         <p>{{ event[0].description }}</p>
+                        <div class="center">
+                            <a class="waves-effect waves-light btn-large light-green" href="{{ path('agence') }}">Découvrir l'événement</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
+
         </div>
 
     {% endblock %}
