@@ -38,6 +38,21 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function articleByType($type, $nbArticles)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->select('a')
+            ->join('a.typeArticle', 't')
+            ->addSelect('t')
+            ->where('t.nom = :type')
+            ->setParameter('type', $type)
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults($nbArticles);
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function findLatestArticles($limit = Article::NUM_ARTICLES)
     {
         $qb = $this->createQueryBuilder('a');
