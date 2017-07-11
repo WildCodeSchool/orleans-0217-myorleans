@@ -72,6 +72,12 @@ class Article
      */
     private $typeArticle;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fichier", type="string")
+     */
+    private $fichierAssocie;
 
 
     /**
@@ -288,4 +294,23 @@ class Article
     {
         $this->tags->removeElement($tag);
     }
+
+    /**
+     * @return string
+     */
+    public function getFichierAssocie()
+    {
+        return $this->fichierAssocie;
+    }
+
+    /**
+     * @param string $fichierAssocie
+     */
+    public function setFichierAssocie(string $fichierAssocie)
+    {
+        $this->fichierAssocie = $fichierAssocie;
+    }
+
+
+
 }

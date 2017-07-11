@@ -26,6 +26,12 @@
                                 <div class="col s6">
                                     {{ form_label(form.typeArticle, 'Type de l\'article: ') }}
                                     {{ form_widget(form.typeArticle) }}
+
+                                    <div class="padding-top">
+                                        {{ form_label(form.fichierAssocie, 'Charger un fichier associé à cet article: ') }}
+                                        {{ form_widget(form.fichierAssocie) }}
+                                    </div>
+
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(form.date, 'Date: ') }}
@@ -77,8 +83,8 @@
 
                             <input class="waves-effect waves-light btn-large light-green" type="submit"
                                    value="Ajouter"/>
-                            {{ form_widget(form._token) }}
-                            </form>
+                            {{ form_end(form) }}
+
 
                             <ul>
                                 <li>
