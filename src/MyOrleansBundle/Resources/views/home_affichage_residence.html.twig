@@ -1,9 +1,9 @@
 <div class="card mosaic-container">
     <div class="card-image">
-        {% if residence.medias is defined %}
-        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-            <img src="{{ asset('uploads/'~media.lien) }}">
-        {% endfor %}
+        {% if residence.medias is not empty %}
+            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                <img src="{{ asset('uploads/'~media.lien) }}">
+            {% endfor %}
         {% endif %}
     </div>
     <div class="card-content">

@@ -1,12 +1,12 @@
 <div class="col s12 xl6">
     <div class="card large">
         <div class="card-image">
-            {% if residence.medias is defined %}
-            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+            {% if residence.medias is not empty %}
+                {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
 
-                <img src="{{ asset('uploads/'~media.lien) }}">
+                    <img src="{{ asset('uploads/'~media.lien) }}">
 
-            {% endfor %}
+                {% endfor %}
             {% endif %}
 
         </div>
