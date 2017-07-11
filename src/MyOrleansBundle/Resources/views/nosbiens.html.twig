@@ -285,7 +285,7 @@
                             </div>
                             <div class="card-content">
                                 <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte | truncate(100, true, '...') }}</p>
+                                <p>{{ article.texte | truncate(10, true, '...') | raw }}</p>
                             </div>
                             <div class="card-action center">
                                 <a href="{{ path('blog-article', {id: article.id,  'slug': article.slug }) }}">Lire l'article</a>
