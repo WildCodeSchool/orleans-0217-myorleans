@@ -8,42 +8,22 @@
 
 namespace MyOrleansBundle\Controller\front;
 
-
-use MyOrleansBundle\Entity\Article;
-
-use MyOrleansBundle\Entity\CategoriePresta;
-use MyOrleansBundle\Entity\Flat;
-use MyOrleansBundle\Entity\Media;
-
 use MyOrleansBundle\Entity\Client;
-use MyOrleansBundle\Entity\Collaborateur;
-use MyOrleansBundle\Entity\Evenement;
-
-use MyOrleansBundle\Entity\Pack;
-use MyOrleansBundle\Entity\Prestation;
-use MyOrleansBundle\Entity\Service;
-use MyOrleansBundle\Entity\Temoignage;
 use MyOrleansBundle\Entity\Residence;
-use MyOrleansBundle\Entity\TypePresta;
-use MyOrleansBundle\Entity\Ville;
-use MyOrleansBundle\Form\SimpleSearchType;
 use MyOrleansBundle\Service\CalculateurCaracteristiquesResidence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class ResidencesController extends Controller
 {
     /**
-     * @Route("/residences/{id}/{slug}", name="residences")
+     * @Route("/residences/{slug}", name="residences")
+     * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"slug" = "slug"})
      */
-    public function residence(Residence $residence, $slug, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
+    public function residence(Residence $residence, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
     {
         $parcours = null;
         if ($session->has('parcours')) {
