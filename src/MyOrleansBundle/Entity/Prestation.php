@@ -29,7 +29,7 @@ class Prestation
     private $nomPrestation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypePresta", inversedBy="prestations")
+     * @ORM\ManyToOne(targetEntity="TypePresta", inversedBy="prestas")
      */
     private $type_prestation;
 

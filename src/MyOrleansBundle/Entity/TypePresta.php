@@ -34,7 +34,7 @@ class TypePresta
     private $categorie_presta;
 
     /**
-     * @ORM\OneToMany(targetEntity="Prestation", mappedBy="type_presta")
+     * @ORM\OneToMany(targetEntity="Prestation", mappedBy="type_prestation")
      */
     private $prestas;
 
