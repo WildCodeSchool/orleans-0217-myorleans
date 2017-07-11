@@ -41,21 +41,14 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class ResidencesController extends Controller
 {
     /**
-     * @Route("/residences/{id}", name="residences")
+     * @Route("/residences/{id}/{slug}", name="residences")
      */
-    public function residence($id, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
+    public function residence(Residence $residence, $slug, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
     {
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
-
-        $em = $this->getDoctrine()->getManager();
-        $residence = $em->getRepository(Residence::class)->find($id);
-        $media = $em->getRepository(Media::class)->find($id);
-
-
-//        $flats = $residence->getFlats(Flat::class)->findAll();
 
         $freeFlat= $calculator->calculFlatDispo($residence);
 
@@ -92,7 +85,6 @@ class ResidencesController extends Controller
 
         return $this->render('MyOrleansBundle::residence.html.twig', [
             'residence' => $residence,
-            'media' => $media,
             'parcours' => $parcours,
             'telephone_number' => $telephoneNumber,
             'freeFlat'=>$freeFlat,

@@ -31,17 +31,18 @@ class BlogController extends Controller
         $articles = $em->getRepository(Article::class)->findLatestArticles();
 
         return $this->render('MyOrleansBundle:blog:blog_home.html.twig', [
-                    'articles' => $articles
+            'articles' => $articles
         ]);
     }
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/blog/{id}", name="blog-article")
+     * @Route("/blog/{id}/{slug}", name="blog-article")
      */
-    public function afficherArticleAction(Article $article)
+    public function afficherArticleAction(Article $article, $slug)
     {
         $residence = $article->getResidence();
+
 
         //Recuperation des tags de l'article et selection du premier tag
         $tags = $article->getTags();
@@ -51,10 +52,13 @@ class BlogController extends Controller
         $em = $this->getDoctrine()->getManager();
         $articlesAssocies = $em->getRepository(Article::class)->articleByTag($tag, 2);
 
+
+
         return $this->render('MyOrleansBundle:blog:blog_article.html.twig',[
-                'article' => $article,
-                'residence' => $residence,
-                'articlesAssocies' => $articlesAssocies
+            'article' => $article,
+            'residence' => $residence,
+
+            'articlesAssocies' => $articlesAssocies
         ]);
     }
 

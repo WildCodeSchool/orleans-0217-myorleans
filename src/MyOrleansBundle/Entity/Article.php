@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * Article
@@ -73,6 +75,12 @@ class Article
     private $typeArticle;
 
 
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"titre"})
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
 
     /**
      * Get id
@@ -287,5 +295,29 @@ class Article
     public function removeTag(\MyOrleansBundle\Entity\Tag $tag)
     {
         $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Article
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
