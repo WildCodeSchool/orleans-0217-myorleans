@@ -88,7 +88,7 @@ class TagController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_tag_edit', array('id' => $tag->getId()));
+            return $this->redirectToRoute('admin_tag_index', array('id' => $tag->getId()));
         }
 
         return $this->render('tag/edit.html.twig', array(

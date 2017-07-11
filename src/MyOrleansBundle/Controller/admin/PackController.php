@@ -92,7 +92,7 @@ class PackController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_pack_edit', array('id' => $pack->getId()));
+            return $this->redirectToRoute('admin_pack_index', array('id' => $pack->getId()));
         }
 
         return $this->render('pack/edit.html.twig', array(

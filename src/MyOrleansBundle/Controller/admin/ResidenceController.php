@@ -134,7 +134,7 @@ class ResidenceController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_residence_edit', array('id' => $residence->getId()));
+            return $this->redirectToRoute('admin_residence_index', array('id' => $residence->getId()));
         }
 
         return $this->render('residence/edit.html.twig', array(
