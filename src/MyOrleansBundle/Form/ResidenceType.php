@@ -37,19 +37,29 @@ class ResidenceType extends AbstractType
                 'class' => Quartier::class,
                 'choice_label' => 'nom'
             ])
-            ->add('latitude', NumberType::class)
-            ->add('longitude', NumberType::class)
-            ->add('dateLivraison', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('nbTotalLogements', NumberType::class)
-            ->add('noteTransports', NumberType::class)
-            ->add('noteCommerces', NumberType::class)
-            ->add('noteServices', NumberType::class)
-            ->add('noteEsthetisme', NumberType::class)
+            ->add('dateLivraison', TextType::class, ['required' => false])
+            ->add('description', TextareaType::class, ['required' => false])
+            ->add('nbTotalLogements', NumberType::class, ['required' => false])
+            ->add('noteTransports', NumberType::class, ['required' => false])
+            ->add('noteCommerces', NumberType::class, ['required' => false])
+            ->add('noteServices', NumberType::class, ['required' => false])
+            ->add('noteEsthetisme', NumberType::class, ['required' => false])
             ->add('favoris', ChoiceType::class, [
                 'choices' => [
-                    'Oui' => '1',
-                    'Non' => '0'
+                    'Oui' => true,
+                    'Non' => false
+                ]
+            ])
+            ->add('affichagePrix',ChoiceType::class, [
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false
+                ]
+            ])
+            ->add('eligibilitePinel',ChoiceType::class, [
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false
                 ]
             ])
             ->add('accroche', TextareaType::class)

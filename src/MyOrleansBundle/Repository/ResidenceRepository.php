@@ -27,73 +27,149 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->join('f.typeLogement', 't');
         }
 
+        $qb->andWhere('flts.statut = 1')
+            ->join('r.flats', 'flts');
+
         return $qb->getQuery()->getResult();
     }
 
-
-    public function completeSearch($ville, $quartier, $type, $surfaceMin, $surfaceMax, $nbChambres, $budgetMin, $budgetMax)
+    public function simpleSuggestedSearch($ville, $type)
     {
         $qb = $this->createQueryBuilder('r');
 
         if (!empty($ville)) {
-            $qb->andWhere('v.nom LIKE :ville')
-                ->setParameter('ville', '%'.$ville.'%')
+            $qb->where('v.nom != :ville')
+                ->setParameter('ville', $ville)
                 ->join('r.ville', 'v');
         }
 
-        if (!empty($quartier)) {
-            $qb->andWhere('q.nom LIKE :quartier')
-                ->setParameter('quartier', '%'.$quartier.'%')
-                ->join('r.quartier', 'q');
-        }
-
         if (!empty($type)) {
-            $qb->andWhere('t.nom = :type')
+            $qb->andWhere('t.nom != :type')
                 ->setParameter('type', $type)
                 ->join('r.flats', 'f')
                 ->join('f.typeLogement', 't');
         }
 
-        if (!empty($surfaceMin)) {
+        $qb->andWhere('flts.statut = 1')
+            ->join('r.flats', 'flts')
+            ->setMaxResults(2);
+
+        return $qb->getQuery()->getResult();
+    }
+
+
+    public function completeSearch($data)
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        if (!empty($data['ville'])) {
+            $qb->andWhere('v.nom LIKE :ville')
+                ->setParameter('ville', '%'.$data['ville'].'%')
+                ->join('r.ville', 'v');
+        }
+
+        if (!empty($data['quartier'])) {
+            $qb->andWhere('q.nom LIKE :quartier')
+                ->setParameter('quartier', '%'.$data['quartier'].'%')
+                ->join('r.quartier', 'q');
+        }
+
+        if (!empty($data['type'])) {
+            $qb->andWhere('t.nom = :type')
+                ->setParameter('type', $data['type'])
+                ->join('r.flats', 'f')
+                ->join('f.typeLogement', 't');
+        }
+
+        if (!empty($data['surfaceMin'])) {
             $qb->andWhere('fl.surface >= :surfaceMin')
-                ->setParameter('surfaceMin', $surfaceMin)
+                ->setParameter('surfaceMin', $data['surfaceMin'])
                 ->join('r.flats', 'fl');
         }
 
-        if (!empty($surfaceMax)) {
+        if (!empty($data['surfaceMax'])) {
             $qb->andWhere('fla.surface <= :surfaceMax')
-                ->setParameter('surfaceMax', $surfaceMax)
+                ->setParameter('surfaceMax', $data['surfaceMax'])
                 ->join('r.flats', 'fla');
         }
 
-        if (!empty($nbChambres)) {
+        if (!empty($data['nbChambres'])) {
             $qb->andWhere('flt.nbChambre >= :nbChambres')
-                ->setParameter('nbChambres', $nbChambres)
+                ->setParameter('nbChambres', $data['nbChambres'])
                 ->join('r.flats', 'flt');
         }
 
-        if (!empty($budgetMin)) {
+        if (!empty($data['budgetMin'])) {
             $qb->andWhere('ft.prix >= :budgetMin')
-                ->setParameter('budgetMin', $budgetMin)
+                ->setParameter('budgetMin', $data['budgetMin'])
                 ->join('r.flats', 'ft');
         }
 
-        if (!empty($budgetMax)) {
-            $qb->andWhere('fts.prix < :budgetMax ')
-                ->setParameter('budgetMax', $budgetMax)
+        if (!empty($data['budgetMax'])) {
+            $qb->andWhere('fts.prix <= :budgetMax ')
+                ->setParameter('budgetMax', $data['budgetMax'])
                 ->join('r.flats', 'fts');
         }
-
-// En attente validation client de la suppression de ce critere
-//        if (!empty($nbPieces)) {
-//            $qb->andWhere('t.nbPiece >= :nbPieces')
-//                ->setParameter('nbPieces', $nbPieces)
-//                ->join('r.flats', 'f');
-//        }
 
         $qb->andWhere('flts.statut = 1')
             ->join('r.flats', 'flts');
 
+        return $qb->getQuery()->getResult();
+    }
+
+    public function completeSuggestedSearch($data)
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        if (!empty($data['quartier'])) {
+            $qb->where('v.nom = :ville')
+                ->setParameter('ville', 'Orléans')
+                ->join('r.ville', 'v')
+                ->andWhere('q.nom != :quartier')
+                ->setParameter('quartier', $data['quartier'])
+                ->join('r.quartier', 'q');
+        }
+
+        if (!empty($data['ville']) && empty($data['quartier'])) {
+            $qb->where('v.nom != :ville')
+                ->setParameter('ville', $data['ville'])
+                ->join('r.ville', 'v');
+        }
+
+        if (!empty($data['type'])) {
+            $qb->andWhere('t.nom != :type')
+                ->setParameter('type', $data['type'])
+                ->join('r.flats', 'f')
+                ->join('f.typeLogement', 't');
+        }
+
+        if (!empty($data['surfaceMin'])) {
+            $qb->andWhere('fl.surface != :surfaceMin')
+                ->setParameter('surfaceMin', $data['surfaceMin'])
+                ->join('r.flats', 'fl');
+        }
+
+        if (!empty($data['surfaceMax'])) {
+            $qb->andWhere('fla.surface != :surfaceMax')
+                ->setParameter('surfaceMax', $data['surfaceMax'])
+                ->join('r.flats', 'fla');
+        }
+
+        if (!empty($data['budgetMin'])) {
+            $qb->andWhere('ft.prix != :budgetMin')
+                ->setParameter('budgetMin', $data['budgetMin'])
+                ->join('r.flats', 'ft');
+        }
+
+        if (!empty($data['budgetMax'])) {
+            $qb->andWhere('fts.prix != :budgetMax ')
+                ->setParameter('budgetMax', $data['budgetMax'])
+                ->join('r.flats', 'fts');
+        }
+
+        $qb->andWhere('flts.statut = 1')
+            ->join('r.flats', 'flts')
+            ->setMaxResults(2);
 
         return $qb->getQuery()->getResult();
     }

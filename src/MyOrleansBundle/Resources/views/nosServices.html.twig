@@ -176,8 +176,6 @@
             <div class="userView">
                 <h3 align="center">Contactez nous !</h3>
                 <h4 align="center">{{ telephone_number }}</h4>
-
-
                 {{ form_start(form) }}
                 <div class="row">
 
@@ -231,6 +229,7 @@
                     </div>
 
                     <div class="input-field col l12 m12 s12">
+                        <p class="newsletter">Quel est l'objet de votre message?</p>
                         <i class="material-icons prefix">info_outline</i>
 
                         {{ form_widget(form.sujet) }}
