@@ -31,7 +31,7 @@ class BlogController extends Controller
         $articles = $em->getRepository(Article::class)->findLatestArticles();
 
         return $this->render('MyOrleansBundle:blog:blog_home.html.twig', [
-                    'articles' => $articles
+            'articles' => $articles
         ]);
     }
 
@@ -42,7 +42,7 @@ class BlogController extends Controller
     public function afficherArticleAction(Article $article, $slug)
     {
         $residence = $article->getResidence();
-        $titre = $article->getTitre();
+
 
         //Recuperation des tags de l'article et selection du premier tag
         $tags = $article->getTags();
@@ -55,10 +55,10 @@ class BlogController extends Controller
 
 
         return $this->render('MyOrleansBundle:blog:blog_article.html.twig',[
-                'article' => $article,
-                'residence' => $residence,
+            'article' => $article,
+            'residence' => $residence,
 
-                'articlesAssocies' => $articlesAssocies
+            'articlesAssocies' => $articlesAssocies
         ]);
     }
 

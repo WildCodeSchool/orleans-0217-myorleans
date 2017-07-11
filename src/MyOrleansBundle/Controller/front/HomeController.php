@@ -123,12 +123,8 @@ class HomeController extends Controller
             'form' => $formulaire->createView()
 
 
-
         ]);
     }
-
-    /*-----------------------------------------------*/
-
 
 
     /**
