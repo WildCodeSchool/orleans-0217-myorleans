@@ -7,6 +7,7 @@ use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\ResidenceType;
 use MyOrleansBundle\Service\FileUploader;
+use MyOrleansBundle\Service\Geoloc;
 use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -54,7 +55,7 @@ class ResidenceController extends Controller
      * @Route("/new", name="admin_residence_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request, FileUploader $fileUploader, Geoloc $geoloc)
     {
 
         $residence = new Residence();
@@ -71,26 +72,12 @@ class ResidenceController extends Controller
             if (!empty($residence->getAdresse()) &&
                 !empty($residence->getCodePostal()) &&
                 !empty($residence->getVille())) {
-                $query = sprintf('https://maps.googleapis.com/maps/api/geocode/json?address=%s+%s+%s&key=%s',
-                                    urlencode($residence->getAdresse()),
-                                    urlencode($residence->getCodePostal()),
-                                    urlencode($residence->getVille()->getNom()),
-                                    $this->getParameter('GoogleApiKey'));
-                if (0 == ini_get('allow_url_fopen')) {
-                    throw new \RuntimeException("Erreur configuration projet.");
-                }
-                if (false == $jsonData = file_get_contents($query)) {
-                    throw new \RuntimeException("Impossible de joindre l'api de geolocalisation");
-                }
-                $arrayData = json_decode($jsonData, true);
 
-                // Si trop de resultats on plante (ou flashbag ??)
-                if (count($arrayData['results']) > 1) {
-                    throw new \RuntimeException("L'adresse n'est pas assez précise, il est impossible de déterminer les coordonnées GPS.");
+                try {
+                    $geoloc->updateCoord($residence, $this->getParameter('GoogleApiKey'));
+                } catch (\RuntimeException $e) {
+                    $this->addFlash('error', $e->getMessage() . '<br />Les coordonnées GPS ne seront pas mise à jour.');
                 }
-
-                $residence->setLatitude($arrayData['results'][0]['geometry']['location']['lat']);
-                $residence->setLongitude($arrayData['results'][0]['geometry']['location']['lng']);
             }
 
             $em->persist($residence);
@@ -126,7 +113,7 @@ class ResidenceController extends Controller
      * @Route("/{id}/edit", name="admin_residence_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Residence $residence, FileUploader $fileUploader)
+    public function editAction(Request $request, Residence $residence, FileUploader $fileUploader, Geoloc $geoloc)
     {
         $deleteForm = $this->createDeleteForm($residence);
         if ($residence->getMedias()->isEmpty()) {
@@ -138,6 +125,11 @@ class ResidenceController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
+            try {
+                $geoloc->updateCoord($residence, $this->getParameter('GoogleApiKey'));
+            } catch (\RuntimeException $e) {
+                $this->addFlash('error', $e->getMessage() . '<br />Les coordonnées GPS ne seront pas mise à jour.');
+            }
 
             $this->getDoctrine()->getManager()->flush();
 
