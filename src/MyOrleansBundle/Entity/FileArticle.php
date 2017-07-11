@@ -103,7 +103,7 @@ class FileArticle
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 
     protected function getUploadDir()
@@ -137,6 +137,8 @@ class FileArticle
         if (null === $this->file) {
             return;
         }
+
+/*        var_dump($this->getUploadRootDir());die();*/
         $file_name = $this->getName();
 //        $file_name = $this->file->getClientOriginalName();
         // la méthode « move » prend comme arguments le répertoire cible et

@@ -68,8 +68,7 @@ class ArticleController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $data = $form->getData();
-            $file = $data['fichierAssocie'];
+            $file = $form['fichierAssocie']->getData();
 
             $em->persist($article);
             $em->flush();
@@ -77,9 +76,8 @@ class ArticleController extends Controller
             $fileArticle = new FileArticle();
             $fileArticle->setFile($file);
             $fileArticle->setArticle($article);
-            $fileArticle->setPath($file->getPathName());
             $fileArticle->setName($file);
-
+            $fileArticle->setPath($fileArticle->getWebPath().$fileArticle->getName());
             $fileArticle->upload();
 
             $em->persist($fileArticle);
