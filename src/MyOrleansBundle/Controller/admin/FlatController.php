@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Form\FlatType;
 use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,14 +26,14 @@ class FlatController extends Controller
     /**
      * Lists all flat entities.
      *
-     * @Route("/", name="admin_flat_index")
+     * @Route("/list/{id}", name="admin_flat_index")
      * @Method("GET")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Residence $residence, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $flats = $em->getRepository('MyOrleansBundle:Flat')->findAll();
+        $flats = $em->getRepository('MyOrleansBundle:Flat')->findByResidence($residence);
 
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"
@@ -45,17 +46,18 @@ class FlatController extends Controller
         );
 
         return $this->render('flat/index.html.twig', array(
-            'flats' => $results,
+            'flats'     => $results,
+            'residence' => $residence,
         ));
     }
 
     /**
      * Creates a new flat entity.
      *
-     * @Route("/new", name="admin_flat_new")
+     * @Route("/new/{id}", name="admin_flat_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Residence $residence, Request $request)
     {
         $flat = new Flat();
         $media = new Media();
@@ -65,16 +67,17 @@ class FlatController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
+            $flat->setResidence($residence);
             $em->persist($flat);
             $em->flush();
 
-            return $this->redirectToRoute('admin_flat_show', array('id' => $flat->getId()));
+            return $this->redirectToRoute('admin_flat_index', array('id' => $flat->getResidence()->getId()));
         }
 
         return $this->render('flat/new.html.twig', array(
-            'flat' => $flat,
-            'form' => $form->createView(),
+            'flat'      => $flat,
+            'residence' => $residence,
+            'form'      => $form->createView(),
         ));
     }
 
@@ -84,21 +87,21 @@ class FlatController extends Controller
      * @Route("/pdf/{id}", name="flat_pdf")
      * @Method("GET")
      */
-/*    public function pdfAction(Flat $flat)
-    {
+    /*    public function pdfAction(Flat $flat)
+        {
 
-        $pageUrl = $this->generateUrl('admin_flat_show', ['id' => $flat->getId()], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
+            $pageUrl = $this->generateUrl('admin_flat_show', ['id' => $flat->getId()], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
 
-        return new Response(
-            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="file.pdf"'
-            )
-        );
+            return new Response(
+                $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+                200,
+                array(
+                    'Content-Type'          => 'application/pdf',
+                    'Content-Disposition'   => 'attachment; filename="file.pdf"'
+                )
+            );
 
-    }*/
+        }*/
 
     public function pdfReturnAction($id)
     {
@@ -116,12 +119,27 @@ class FlatController extends Controller
     {
         $deleteForm = $this->createDeleteForm($flat);
 
-        return $this->render('flat/show.html.twig', array(
-            'flat' => $flat,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render('flat/show.html.twig', [
+                'flat'        => $flat,
+                'delete_form' => $deleteForm->createView(),
+            ]
+        );
     }
 
+    /**
+     * Creates a form to delete a flat entity.
+     *
+     * @param Flat $flat The flat entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Flat $flat)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_flat_delete', array('id' => $flat->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
+    }
 
     /**
      * Displays a form to edit an existing flat entity.
@@ -129,13 +147,9 @@ class FlatController extends Controller
      * @Route("/{id}/edit", name="admin_flat_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Flat $flat, FileUploader $fileUploader)
+    public function editAction(Request $request, Flat $flat)
     {
         $deleteForm = $this->createDeleteForm($flat);
-        if (!empty($flat->getMedias())) {
-            $media = new Media();
-            $flat->getMedias()->add($media);
-        }
         $editForm = $this->createForm('MyOrleansBundle\Form\FlatType', $flat);
         $editForm->handleRequest($request);
 
@@ -143,12 +157,12 @@ class FlatController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_flat_edit', array('id' => $flat->getId()));
+            return $this->redirectToRoute('admin_flat_index', array('id' => $flat->getResidence()->getId()));
         }
 
         return $this->render('flat/edit.html.twig', array(
-            'flat' => $flat,
-            'edit_form' => $editForm->createView(),
+            'flat'        => $flat,
+            'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -163,6 +177,7 @@ class FlatController extends Controller
     {
         $form = $this->createDeleteForm($flat);
         $form->handleRequest($request);
+        $residence_id = $flat->getResidence()->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -170,7 +185,7 @@ class FlatController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_flat_index');
+        return $this->redirectToRoute('admin_flat_index', ['id' => $residence_id]);
     }
 
     /**
@@ -191,21 +206,7 @@ class FlatController extends Controller
         $em->remove($media);
 
         $em->flush();
-        return $this->redirectToRoute('admin_flat_edit', array('id' => $flat->getId()));
-    }
 
-    /**
-     * Creates a form to delete a flat entity.
-     *
-     * @param Flat $flat The flat entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Flat $flat)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_flat_delete', array('id' => $flat->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
+        return $this->redirectToRoute('admin_flat_edit', array('id' => $flat->getId()));
     }
 }

@@ -54,7 +54,7 @@ class ResidenceController extends Controller
      * @Route("/new", name="admin_residence_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request)
     {
 
         $residence = new Residence();
@@ -70,7 +70,7 @@ class ResidenceController extends Controller
             $em->persist($residence);
             $em->flush();
 
-            return $this->redirectToRoute('admin_residence_show', array('id' => $residence->getId()));
+            return $this->redirectToRoute('admin_residence_index');
         }
 
         return $this->render('residence/new.html.twig', array(
@@ -100,7 +100,7 @@ class ResidenceController extends Controller
      * @Route("/{id}/edit", name="admin_residence_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Residence $residence, FileUploader $fileUploader)
+    public function editAction(Request $request, Residence $residence)
     {
         $deleteForm = $this->createDeleteForm($residence);
         if ($residence->getMedias()->isEmpty()) {
