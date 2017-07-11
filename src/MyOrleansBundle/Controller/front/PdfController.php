@@ -11,6 +11,8 @@ namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\TypeBien;
+use MyOrleansBundle\Entity\TypeLogement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,17 +29,27 @@ class PdfController extends Controller
      * @Route("/pdf/flat/{id}", name="flat_pdf")
      * @Method("GET")
      */
-    public function pdfFlatAction(Flat $flat, SessionInterface $session)
+    public function pdfFlatAction($id, Flat $flat, SessionInterface $session, Request $request)
     {
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
+        $em = $this->getDoctrine()->getManager();
+        $flat = $em->getRepository(Flat::class)->find($id);
+        $flats = $em->getRepository(Flat::class)->findAll();
+        $residence = $em->getRepository(Residence::class)->find($id);
+        $typeBien = $em->getRepository(TypeBien::class)->findAll();
+        $typeLogement = $em->getRepository(TypeLogement::class)->findAll();
         $mailagence = $this->getParameter('mail_agence');
         $telephoneNumber = $this->getParameter('telephone_number');
         $mappy = $this->get("knp_snappy.pdf");
         $html = $this->renderView('MyOrleansBundle::pdf_appartement.html.twig', array(
-            'Flat' => $flat,
+            'flat' => $flat,
+            'flats' => $flats,
+            'residence' => $residence,
+            'type_bien' => $typeBien,
+            'type_Logement' => $typeLogement,
             'parcours'=>$parcours,
             'telephone_number' => $telephoneNumber,
             'mail_agence'=>$mailagence,

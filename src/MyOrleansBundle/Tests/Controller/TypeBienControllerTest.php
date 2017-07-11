@@ -4,7 +4,7 @@ namespace MyOrleansBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ResidenceControllerTest extends WebTestCase
+class TypeBienControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -13,13 +13,13 @@ class ResidenceControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/residence/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /residence/");
+        $crawler = $client->request('GET', '/typebien/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /typebien/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'myorleansbundle_residence[field_name]'  => 'Test',
+            'myorleansbundle_typebien[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class ResidenceControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Update')->form(array(
-            'myorleansbundle_residence[field_name]'  => 'Foo',
+            'myorleansbundle_typebien[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 

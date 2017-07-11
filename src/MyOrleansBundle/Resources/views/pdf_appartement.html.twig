@@ -28,7 +28,9 @@
         <div class="row center">
             <div class="col s12">
                 <h2>
-                    <span>Le Pryvé - Appartement Ref PRY13 - Type2</span>
+                    {% for flat in flats %}
+                    <span>{{ residence.nom }} - {{ flat.typeBien.nom }} Ref {{ flat.reference }} - {{ flat.typeLogement.nom }}</span>
+                    {% endfor %}
                 </h2>
             </div>
         </div>

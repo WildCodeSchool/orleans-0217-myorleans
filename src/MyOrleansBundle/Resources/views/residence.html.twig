@@ -18,10 +18,10 @@
     <!--fin logo dde de documentation-->
 
     <div class="content-residence">
-        <div class="video-container">
+        <div class="video-container center">
             {% for media in residence.medias %}
                 {% if media.typeMedia.nom == 'video' %}
-            <video width="800" height="400" controls>
+            <video width="1800" height="900" controls>
                 <source src="{{ asset('uploads/'~media.lien) }}" type="video/mp4">
                 <source src="{{ asset('uploads/'~media.lien) }}" type="video/ogg">
                 <source src="{{ asset('uploads/'~media.lien) }}" type="video/webm">
@@ -34,7 +34,7 @@
         <div class="container">
             <div class="row">
                 <div class="col offset-l1 l5 s10">
-                    <a class="waves-effect waves-light btn"><i class="material-icons left">message</i>Demander la
+                    <a class="waves-effect waves-light btn button-collapse" data-activates="slide-out"><i class="material-icons left">message</i>Demander la
                         documentation</a>
                 </div>
 
@@ -190,7 +190,10 @@
                     <div id="map-residences"></div>
                     <script>
                         function initMap() {
+                            {% for residence in residences %}
+                        }
                             var uluru = {lat: {{ residence.latitude }}, lng: {{ residence.longitude }};
+                        {% endfor %}
                             var map = new google.maps.Map(document.getElementById('map-residences'), {
                                 zoom: 15,
                                 center: uluru
@@ -494,9 +497,9 @@
                 Tweet</a>
         </div>
 
-        <div class="col l4 m4 s12">
+{#        <div class="col l4 m4 s12">
             <div class="fb-share-button" data-href="{{ absolute_url( path('residences', { 'id': residences.id })) }}" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="{{ absolute_url( path('residences', { 'id': residences.id }))|url_encode }}">Partager</a></div>
-        </div>
+        </div>#}
 
         <div class="col l4 m4 s12">
             <a class="waves-effect waves-light btn" href="mailto:?to= &subject=Residences%20my%20Orleans">Envoyez à un ami par mail </a>

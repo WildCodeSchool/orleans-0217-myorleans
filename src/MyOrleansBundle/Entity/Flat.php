@@ -79,6 +79,11 @@ class Flat
     private $statut;
 
     /**
+     * @ORM\ManyToOne(targetEntity="TypeBien", inversedBy="flats")
+     */
+    private $typeBien;
+
+    /**
      * @ORM\ManyToOne(targetEntity="TypeLogement", inversedBy="flats")
      */
     private $typeLogement;
@@ -295,6 +300,22 @@ class Flat
     public function __construct()
     {
         $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeBien()
+    {
+        return $this->typebien;
+    }
+
+    /**
+     * @param mixed $typebien
+     */
+    public function setTypeBien($typebien)
+    {
+        $this->typebien = $typebien;
     }
 
     /**

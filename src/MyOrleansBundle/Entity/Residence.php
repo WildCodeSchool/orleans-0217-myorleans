@@ -118,6 +118,16 @@ class Residence
      */
     private $noteEsthetisme;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="offre", type="string", nullable=true)
+     */
+    private $offre;
+
+    /**
+     * @return mixed
+     */
 
     /**
      * @var int
@@ -477,6 +487,19 @@ class Residence
     public function getNoteEsthetisme()
     {
         return $this->noteEsthetisme;
+    }
+
+    public function getOffre()
+    {
+        return $this->offre;
+    }
+
+    /**
+     * @param mixed $offre
+     */
+    public function setOffre($offre)
+    {
+        $this->offre = $offre;
     }
 
     /**

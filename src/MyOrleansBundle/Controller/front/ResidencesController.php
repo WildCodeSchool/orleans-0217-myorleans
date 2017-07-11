@@ -54,6 +54,7 @@ class ResidencesController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $residence = $em->getRepository(Residence::class)->find($id);
+        $residences = $em->getRepository(Residence::class)->findAll();
         $media = $em->getRepository(Media::class)->find($id);
         $flats = $em->getRepository(Flat::class)->findAll();
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
@@ -100,6 +101,7 @@ class ResidencesController extends Controller
 
         return $this->render('MyOrleansBundle::residence.html.twig', [
             'residence' => $residence,
+            'residences' => $residences,
             'flats' => $flats,
             'media' => $media,
             'parcours' => $parcours,
