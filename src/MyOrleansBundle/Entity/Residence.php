@@ -126,10 +126,6 @@ class Residence
     private $offre;
 
     /**
-     * @return mixed
-     */
-
-    /**
      * @var int
      *
      * @ORM\Column(name="favoris", type="integer", nullable=true)
@@ -145,7 +141,9 @@ class Residence
 
     /**
      *
-     * @ENUM ({"Eligible", "Non-éligible"})
+     * @var bool
+     *
+     * @ORM\Column(name="pinel", type="boolean", nullable=true)
      *
      */
     private $eligibilitePinel;
@@ -489,6 +487,9 @@ class Residence
         return $this->noteEsthetisme;
     }
 
+    /**
+     * @return mixed
+     */
     public function getOffre()
     {
         return $this->offre;

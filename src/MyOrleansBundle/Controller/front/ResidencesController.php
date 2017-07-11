@@ -44,7 +44,7 @@ class ResidencesController extends Controller
     /**
      * @Route("/residences/{id}", name="residences")
      */
-    public function residence($id, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
+    public function residence($id, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculateur)
     {
         $parcours = null;
         if ($session->has('parcours')) {
@@ -62,11 +62,9 @@ class ResidencesController extends Controller
         $type_t2 = $this->getParameter('typeLogementT2');
         $type_t3 = $this->getParameter('typeLogementT3');
         $type_t4 = $this->getParameter('typeLogementT4');
-
-
-//        $flats = $residence->getFlats(Flat::class)->findAll();
-
-        $freeFlat= $calculator->calculFlatDispo($residence);
+        $prixMin = $calculateur->calculPrix($residence);
+        $flatsDispo = $calculateur->calculFlatDispo($residence);
+        $typeMinMax = $calculateur->calculSizes($residence);
 
         // Formulaire de contact
         $client = new  Client();
@@ -106,7 +104,10 @@ class ResidencesController extends Controller
             'media' => $media,
             'parcours' => $parcours,
             'telephone_number' => $telephoneNumber,
-            'freeFlat'=>$freeFlat,
+            'prixMin' => $prixMin,
+            'flatsDispo' => $flatsDispo,
+            'typeMin' => $typeMinMax[0],
+            'typeMax' => $typeMinMax[1],
             'type_logement'=>$typelogment,
             'typeLogementT1' => $type_t1,
             'typeLogementT2' => $type_t2,

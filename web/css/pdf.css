@@ -204,6 +204,25 @@ td{
     padding-bottom: 50px;
 }
 
+.btn-vendu{
+    background-color: #FFFFF1 !important;
+    color : #EF562D;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+#map-residences {
+    width:100%;
+    margin: auto;
+
+}
+
 /* ------------------------ PAGE APPARTEMENT --------------------------*/
 
 .contacter{
@@ -288,7 +307,7 @@ td{
     height:200px;
 }
 .rapel-residence > p{
-    font-size: 10px;
+    font-size: 16px;
 }
 
 .prestations-residence{
