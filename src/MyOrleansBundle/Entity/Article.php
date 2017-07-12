@@ -320,7 +320,7 @@ class Article
     }
 
 
-
+    /**
      * Set slug
      *
      * @param string $slug
