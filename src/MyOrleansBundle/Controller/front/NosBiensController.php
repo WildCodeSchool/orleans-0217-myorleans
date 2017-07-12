@@ -28,7 +28,7 @@ use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 class NosBiensController extends Controller
 {
     /**
-     * @Route("/nos-biens", name="nosbiens")
+     * @Route("/nos_biens", name="nosbiens")
      */
     public function nosBiensAction(Request $request, SessionInterface $session)
     {

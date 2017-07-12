@@ -80,6 +80,12 @@ class ResidenceController extends Controller
                 }
             }
 
+            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            $media = $residence->getMedias()->first();
+            if (is_null($media->getId())) {
+                $media->setLien('default.jpg');
+            }
+
             $em->persist($residence);
             $em->flush();
 
@@ -134,7 +140,7 @@ class ResidenceController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_residence_edit', array('id' => $residence->getId()));
+            return $this->redirectToRoute('admin_residence_index', array('id' => $residence->getId()));
         }
 
         return $this->render('residence/edit.html.twig', array(

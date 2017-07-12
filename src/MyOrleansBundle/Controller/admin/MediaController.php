@@ -90,7 +90,7 @@ class MediaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_media_edit', array('id' => $media->getId()));
+            return $this->redirectToRoute('admin_media_index', array('id' => $media->getId()));
         }
 
         return $this->render('media/edit.html.twig', array(

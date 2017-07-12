@@ -21,6 +21,9 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new \Liip\ImagineBundle\LiipImagineBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle()
+
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -5,6 +5,7 @@ namespace MyOrleansBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
 /**
@@ -172,7 +173,12 @@ class Residence
     private $categoriePrestas;
 
 
-
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"nom"})
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
 
 
     /**
@@ -719,7 +725,6 @@ class Residence
         return $this->ville;
     }
 
-
     /**
      * @param bool $favoris
      * @return Residence
@@ -753,9 +758,6 @@ class Residence
 
 
 
-
-
-
     /**
      * Get favoris
      *
@@ -784,6 +786,33 @@ class Residence
     public function getAffichagePrix()
     {
         return $this->affichagePrix;
+
+    }
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Residence
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+
     }
 
 }

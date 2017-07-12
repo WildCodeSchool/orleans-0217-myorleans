@@ -53,7 +53,7 @@
                                 <h4>{{ article.titre }}</h4>
                                 <p>{{ article.texte }}</p>
                                 <div class="center">
-                                    <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>
+                                    <a href="{{ path('download', {'id': article.id}) }}" class="waves-effect waves-light btn"><i class="material-icons left">print</i>
                                         Télécharger la fiche</a>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                 <h4>{{ article.titre }}</h4>
                                 <p>{{ article.texte }}</p>
                                 <div class="center">
-                                    <a class="waves-effect waves-light btn"><i class="material-icons left">print</i>
+                                    <a href="{{ path('download', {'id': article.id}) }}" class="waves-effect waves-light btn"><i class="material-icons left">print</i>
                                         Télécharger la fiche</a>
                                 </div>
                             </div>

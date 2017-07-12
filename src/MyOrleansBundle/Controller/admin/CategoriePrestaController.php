@@ -89,7 +89,7 @@ class CategoriePrestaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_categorie-presta_edit', array('id' => $categoriepresta->getId()));
+            return $this->redirectToRoute('admin_categorie-presta_index', array('id' => $categoriepresta->getId()));
         }
 
         return $this->render('categoriepresta/edit.html.twig', array(

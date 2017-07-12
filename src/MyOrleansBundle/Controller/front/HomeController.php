@@ -106,6 +106,8 @@ class HomeController extends Controller
             null,
             ['action' => $this->generateUrl('nosbiens')]);
 
+                
+
         return $this->render('MyOrleansBundle::index.html.twig', [
             'parcours' => $parcours,
             'simpleSearch' => $simpleSearch->createView(),
@@ -120,21 +122,7 @@ class HomeController extends Controller
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
 
-        ]);
-    }
 
-    /**
-     * @Route("/parcours-immobilier", name="parcoursimmo")
-     */
-    public function parcoursImmoAction(SessionInterface $session)
-    {
-        $parcours = null;
-        if ($session->has('parcours')) {
-            $parcours = $session->get('parcours');
-        }
-
-        return $this->render('MyOrleansBundle::parcoursimmo.html.twig', [
-            'parcours' => $parcours
         ]);
     }
 

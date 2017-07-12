@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use MyOrleansBundle\Repository\ArticleRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class BlogController extends Controller
 {
@@ -31,13 +32,14 @@ class BlogController extends Controller
         $articles = $em->getRepository(Article::class)->findLatestArticles();
 
         return $this->render('MyOrleansBundle:blog:blog_home.html.twig', [
-                    'articles' => $articles
+            'articles' => $articles
         ]);
     }
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/blog/{id}", name="blog-article")
+     * @Route("/blog/{slug}", name="blog-article")
+     * @ParamConverter("article", class="MyOrleansBundle:Article", options={"slug" = "slug"})
      */
     public function afficherArticleAction(Article $article)
     {
@@ -51,10 +53,13 @@ class BlogController extends Controller
         $em = $this->getDoctrine()->getManager();
         $articlesAssocies = $em->getRepository(Article::class)->articleByTag($tag, 2);
 
+
+
         return $this->render('MyOrleansBundle:blog:blog_article.html.twig',[
-                'article' => $article,
-                'residence' => $residence,
-                'articlesAssocies' => $articlesAssocies
+            'article' => $article,
+            'residence' => $residence,
+
+            'articlesAssocies' => $articlesAssocies
         ]);
     }
 

@@ -97,7 +97,7 @@ class ClientController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_client_edit', array('id' => $client->getId()));
+            return $this->redirectToRoute('admin_client_index', array('id' => $client->getId()));
         }
 
         return $this->render('client/edit.html.twig', array(
