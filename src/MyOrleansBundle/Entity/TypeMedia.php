@@ -33,7 +33,6 @@ class TypeMedia
      */
     private $medias;
 
-
     /**
      * Get id
      *

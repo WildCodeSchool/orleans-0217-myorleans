@@ -120,7 +120,14 @@ class Residence
     private $noteEsthetisme;
 
     /**
-     * @var bool
+     * @var string
+     *
+     * @ORM\Column(name="offre", type="string", nullable=true)
+     */
+    private $offre;
+
+    /**
+     * @var int
      *
      * @ORM\Column(name="favoris", type="boolean", nullable=true)
      */
@@ -495,6 +502,23 @@ class Residence
     /**
      * @return mixed
      */
+    public function getOffre()
+    {
+        return $this->offre;
+    }
+
+    /**
+     * @param mixed $offre
+     */
+    public function setOffre($offre)
+    {
+        $this->offre = $offre;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getAccroche()
     {
         return $this->accroche;
@@ -644,6 +668,54 @@ class Residence
     }
 
     /**
+     * Set citation
+     *
+     * @param string $citation
+     *
+     * @return Residence
+     */
+    public function setCitation($citation)
+    {
+        $this->citation = $citation;
+
+        return $this;
+    }
+
+    /**
+     * Get citation
+     *
+     * @return string
+     */
+    public function getCitation()
+    {
+        return $this->citation;
+    }
+
+    /**
+     * Set pinel
+     *
+     * @param string $pinel
+     *
+     * @return Residence
+     */
+    public function setPinel($pinel)
+    {
+        $this->pinel = $pinel;
+
+        return $this;
+    }
+
+    /**
+     * Get pinel
+     *
+     * @return string
+     */
+    public function getPinel()
+    {
+        return $this->pinel;
+    }
+
+    /**
      * Get ville
      *
      * @return \MyOrleansBundle\Entity\Ville
@@ -653,7 +725,7 @@ class Residence
         return $this->ville;
     }
 
- /*   *
+    /**
      * @param bool $favoris
      * @return Residence
      */
@@ -742,4 +814,5 @@ class Residence
         return $this->slug;
 
     }
+
 }

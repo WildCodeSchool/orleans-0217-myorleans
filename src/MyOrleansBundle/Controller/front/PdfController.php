@@ -10,7 +10,11 @@ namespace MyOrleansBundle\Controller\front;
 
 
 use MyOrleansBundle\Entity\Flat;
+use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\TypeBien;
+use MyOrleansBundle\Entity\TypeLogement;
+use MyOrleansBundle\Service\CalculateurCaracteristiquesResidence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,19 +31,45 @@ class PdfController extends Controller
      * @Route("/pdf/flat/{id}", name="flat_pdf")
      * @Method("GET")
      */
-    public function pdfFlatAction(Flat $flat, SessionInterface $session)
+    public function pdfFlatAction(Flat $flat, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculateur)
     {
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
+        $em = $this->getDoctrine()->getManager();
+
+        $residence = $flat->getResidence();
+        $typelogement = $em->getRepository(TypeLogement::class)->findAll();
+        $typebien = $em->getRepository(TypeBien::class)->findAll();
+        $prixMin = $calculateur->calculPrix($residence);
+        $flatsDispo = $calculateur->calculFlatDispo($residence);
+        $typeMinMax = $calculateur->calculSizes($residence);
         $mailagence = $this->getParameter('mail_agence');
         $telephoneNumber = $this->getParameter('telephone_number');
         $mappy = $this->get("knp_snappy.pdf");
+
+        $medias = $flat->getMedias();
+        $mediaDefine = [];
+        foreach ($medias as $media) {
+            if ($media->getTypeMedia()->getNom() == 'image') {
+                $mediaDefine['image'] = $media;
+            }elseif ($media->getTypeMedia()->getNom() == 'plans') {
+                $mediaDefine['plans'] = $media;
+            }
+        }
+
         $html = $this->renderView('MyOrleansBundle::pdf_appartement.html.twig', array(
-            'Flat' => $flat,
+            'flat'=>$flat,
             'parcours'=>$parcours,
+            'residence'=>$residence,
+            'media' => $mediaDefine,
             'telephone_number' => $telephoneNumber,
+            'type_bien'=>$typebien,
+            'prixMin' => $prixMin,
+            'flatsDispo' => $flatsDispo,
+            'typeMin' => $typeMinMax[0],
+            'typeMax' => $typeMinMax[1],
             'mail_agence'=>$mailagence,
 
         ));
@@ -61,21 +91,49 @@ class PdfController extends Controller
      * @Route("/pdf/residence/{id}", name="residence_pdf")
      * @Method("GET")
      */
-    public function pdfResidenceAction(Residence $residence, SessionInterface $session)
+    public function pdfResidenceAction(Residence $residence, SessionInterface $session, CalculateurCaracteristiquesResidence $calculateur)
     {
         $parcours = null;
         if ($session->has('parcours')) {
             $parcours = $session->get('parcours');
         }
-
+        $em = $this->getDoctrine()->getManager();
+        $flats = $em->getRepository(Flat::class)->findByResidence($residence);
+        $typelogment = $em->getRepository(TypeLogement::class)->findAll();
+        $typebien = $em->getRepository(TypeBien::class)->findAll();
+        $prixMin = $calculateur->calculPrix($residence);
+        $flatsDispo = $calculateur->calculFlatDispo($residence);
+        $typeMinMax = $calculateur->calculSizes($residence);
         $mailagence = $this->getParameter('mail_agence');
+        $googlemapstatickey = $this->getParameter('googlemap_static_map_key');
         $telephoneNumber = $this->getParameter('telephone_number');
         $mappy = $this->get("knp_snappy.pdf");
+
+        $medias = $residence->getMedias();
+        $mediaDefine = [];
+        foreach ($medias as $media) {
+            if ($media->getTypeMedia()->getNom() == 'video') {
+                $mediaDefine['video'] = $media;
+            } elseif ($media->getTypeMedia()->getNom() == 'image') {
+                $mediaDefine['image'] = $media;
+            }
+        }
+
         $html = $this->renderView('MyOrleansBundle::pdf_residence.html.twig', array(
-            'Residence' => $residence,
-            'parcours'=>$parcours,
+            'residence' => $residence,
+            'flats' => $flats,
+            'parcours' => $parcours,
+            'media' => $mediaDefine,
             'telephone_number' => $telephoneNumber,
+            'prixMin' => $prixMin,
+            'flatsDispo' => $flatsDispo,
+            'typeMin' => $typeMinMax[0],
+            'typeMax' => $typeMinMax[1],
+            'typeLogement'=>$typelogment,
+            'type_bien'=>$typebien,
             'mail_agence'=>$mailagence,
+            'googlemap_static_map_key'=>$googlemapstatickey,
+
         ));
 
         $filename = "residence-".$residence->getNom().".pdf";
