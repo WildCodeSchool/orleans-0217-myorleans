@@ -38,9 +38,9 @@ class ResidencesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $flats = $em->getRepository(Flat::class)->findByResidence($residence);
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
-        $prixMin = $calculateur->calculPrix($residence);
-        $flatsDispo = $calculateur->calculFlatDispo($residence);
-        $typeMinMax = $calculateur->calculSizes($residence);
+        $prixMin = $calculator->calculPrix($residence);
+        $flatsDispo = $calculator->calculFlatDispo($residence);
+        $typeMinMax = $calculator->calculSizes($residence);
 
         $medias = $residence->getMedias();
         $mediaDefine = [];
