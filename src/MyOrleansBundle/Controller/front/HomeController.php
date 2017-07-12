@@ -12,8 +12,6 @@ use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Collaborateur;
 use MyOrleansBundle\Entity\Evenement;
-
-
 use MyOrleansBundle\Entity\Pack;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\Temoignage;
@@ -107,6 +105,8 @@ class HomeController extends Controller
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
             null,
             ['action' => $this->generateUrl('nosbiens')]);
+
+                
 
         return $this->render('MyOrleansBundle::index.html.twig', [
             'parcours' => $parcours,

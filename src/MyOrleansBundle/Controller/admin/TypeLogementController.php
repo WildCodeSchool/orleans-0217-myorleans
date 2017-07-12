@@ -88,7 +88,7 @@ class TypeLogementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_typelogement_edit', array('id' => $typeLogement->getId()));
+            return $this->redirectToRoute('admin_typelogement_index', array('id' => $typeLogement->getId()));
         }
 
         return $this->render('typelogement/edit.html.twig', array(

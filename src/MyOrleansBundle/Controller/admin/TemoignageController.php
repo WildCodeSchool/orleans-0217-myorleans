@@ -98,7 +98,7 @@ class TemoignageController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_temoignage_edit', array('id' => $temoignage->getId()));
+            return $this->redirectToRoute('admin_temoignage_index', array('id' => $temoignage->getId()));
         }
 
         return $this->render('temoignage/edit.html.twig', array(

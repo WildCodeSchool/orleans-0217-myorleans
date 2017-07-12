@@ -96,7 +96,7 @@ class CollaborateurController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_collaborateur_show', array('id' => $collaborateur->getId()));
+            return $this->redirectToRoute('admin_collaborateur_index', array('id' => $collaborateur->getId()));
         }
 
         return $this->render('collaborateur/edit.html.twig', array(

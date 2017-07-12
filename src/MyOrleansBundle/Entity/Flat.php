@@ -80,6 +80,11 @@ class Flat
     private $statut;
 
     /**
+     * @ORM\ManyToOne(targetEntity="TypeBien", inversedBy="flats")
+     */
+    private $typeBien;
+
+    /**
      * @ORM\ManyToOne(targetEntity="TypeLogement", inversedBy="flats")
      */
     private $typeLogement;
@@ -100,14 +105,6 @@ class Flat
      * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="flat")
      */
     private $categoriePrestas;
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string")
-     */
-    private $slug;
 
 
     /**
@@ -299,6 +296,22 @@ class Flat
     }
 
     /**
+     * @return mixed
+     */
+    public function getTypeBien()
+    {
+        return $this->typeBien;
+    }
+
+    /**
+     * @param mixed $typeBien
+     */
+    public function setTypeBien($typeBien)
+    {
+        $this->typeBien = $typeBien;
+    }
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -428,27 +441,5 @@ class Flat
         $this->categoriePrestas->removeElement($categoriePresta);
     }
 
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Flat
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
 
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
 }

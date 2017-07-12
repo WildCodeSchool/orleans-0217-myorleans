@@ -92,7 +92,7 @@ class ServiceController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_service_edit', array('id' => $service->getId()));
+            return $this->redirectToRoute('admin_service_index', array('id' => $service->getId()));
         }
 
         return $this->render('service/edit.html.twig', array(
