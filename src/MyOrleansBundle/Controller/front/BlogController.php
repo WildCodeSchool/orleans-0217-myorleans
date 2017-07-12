@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use MyOrleansBundle\Repository\ArticleRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class BlogController extends Controller
 {
@@ -37,12 +38,12 @@ class BlogController extends Controller
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/blog/{id}/{slug}", name="blog-article")
+     * @Route("/blog/{slug}", name="blog-article")
+     * @ParamConverter("article", class="MyOrleansBundle:Article", options={"slug" = "slug"})
      */
-    public function afficherArticleAction(Article $article, $slug)
+    public function afficherArticleAction(Article $article)
     {
         $residence = $article->getResidence();
-
 
         //Recuperation des tags de l'article et selection du premier tag
         $tags = $article->getTags();
