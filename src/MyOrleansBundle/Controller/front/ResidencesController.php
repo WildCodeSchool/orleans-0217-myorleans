@@ -55,10 +55,6 @@ class ResidencesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $flats = $em->getRepository(Flat::class)->findByResidence($residence);
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
-        $type_t1 = $this->getParameter('typeLogementT1');
-        $type_t2 = $this->getParameter('typeLogementT2');
-        $type_t3 = $this->getParameter('typeLogementT3');
-        $type_t4 = $this->getParameter('typeLogementT4');
         $prixMin = $calculateur->calculPrix($residence);
         $flatsDispo = $calculateur->calculFlatDispo($residence);
         $typeMinMax = $calculateur->calculSizes($residence);
@@ -115,10 +111,6 @@ class ResidencesController extends Controller
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
             'type_logement'=>$typelogment,
-            'typeLogementT1' => $type_t1,
-            'typeLogementT2' => $type_t2,
-            'typeLogementT3' => $type_t3,
-            'typeLogementT4' => $type_t4,
             'form' => $formulaire->createView()
         ]);
 

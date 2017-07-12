@@ -41,10 +41,6 @@ class PdfController extends Controller
 
         $residence = $flat->getResidence();
         $typelogement = $em->getRepository(TypeLogement::class)->findAll();
-        $type_t1 = $this->getParameter('typeLogementT1');
-        $type_t2 = $this->getParameter('typeLogementT2');
-        $type_t3 = $this->getParameter('typeLogementT3');
-        $type_t4 = $this->getParameter('typeLogementT4');
         $typebien = $em->getRepository(TypeBien::class)->findAll();
         $prixMin = $calculateur->calculPrix($residence);
         $flatsDispo = $calculateur->calculFlatDispo($residence);
@@ -69,11 +65,6 @@ class PdfController extends Controller
             'residence'=>$residence,
             'media' => $mediaDefine,
             'telephone_number' => $telephoneNumber,
-            'type_logement' => $typelogement,
-            'typeLogementT1' => $type_t1,
-            'typeLogementT2' => $type_t2,
-            'typeLogementT3' => $type_t3,
-            'typeLogementT4' => $type_t4,
             'type_bien'=>$typebien,
             'prixMin' => $prixMin,
             'flatsDispo' => $flatsDispo,
@@ -110,10 +101,6 @@ class PdfController extends Controller
         $flats = $em->getRepository(Flat::class)->findByResidence($residence);
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
         $typebien = $em->getRepository(TypeBien::class)->findAll();
-        $type_t1 = $this->getParameter('typeLogementT1');
-        $type_t2 = $this->getParameter('typeLogementT2');
-        $type_t3 = $this->getParameter('typeLogementT3');
-        $type_t4 = $this->getParameter('typeLogementT4');
         $prixMin = $calculateur->calculPrix($residence);
         $flatsDispo = $calculateur->calculFlatDispo($residence);
         $typeMinMax = $calculateur->calculSizes($residence);
@@ -143,10 +130,6 @@ class PdfController extends Controller
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
             'type_logement'=>$typelogment,
-            'typeLogementT1' => $type_t1,
-            'typeLogementT2' => $type_t2,
-            'typeLogementT3' => $type_t3,
-            'typeLogementT4' => $type_t4,
             'type_bien'=>$typebien,
             'mail_agence'=>$mailagence,
             'googlemap_static_map_key'=>$googlemapstatickey,
