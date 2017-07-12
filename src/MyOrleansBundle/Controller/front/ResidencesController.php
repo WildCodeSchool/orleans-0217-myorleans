@@ -9,12 +9,9 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Client;
+use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypeLogement;
-use MyOrleansBundle\Entity\TypeMedia;
-use MyOrleansBundle\Entity\TypePresta;
-use MyOrleansBundle\Entity\Ville;
-use MyOrleansBundle\Form\SimpleSearchType;
 use MyOrleansBundle\Service\CalculateurCaracteristiquesResidence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +25,7 @@ class ResidencesController extends Controller
      * @Route("/residences/{slug}", name="residences")
      * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"slug" = "slug"})
      */
-    public function residence(Residence $residence, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
+    public function residenceAction(Residence $residence, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
     {
         $parcours = null;
         if ($session->has('parcours')) {
