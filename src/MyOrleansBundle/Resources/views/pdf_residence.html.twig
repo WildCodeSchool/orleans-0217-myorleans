@@ -30,11 +30,11 @@
                 <h2><span>{{ residence.nom }}</span></h2>
                 <h2 class="lieu-residence">à {{ residence.ville.nom }}</h2>
             </div>
-            {% for media in residence.medias %}
-                {% if media.typeMedia.nom == 'image' %}
-                    <img src="{{ asset('uploads/'~media.lien) }}" alt="photo_residence"/>
-                {% endif %}
-            {% endfor %}
+            {% if media['image'] is defined and  media['image'] != null %}
+                <img src="{{ asset('uploads/'~media['image'].lien) }}" alt="photo_residence"/>
+            {% else %}
+                <img src="{{ asset('img/Pas-dimage.jpg') }}" alt="photo_residence"/>
+            {% endif %}
             <div class="col s12">
                 <table class="offre-residence">
                     <tr>

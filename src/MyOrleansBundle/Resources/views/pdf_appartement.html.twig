@@ -28,9 +28,7 @@
         <div class="row center">
             <div class="col s12">
                 <h2>
-                    {% for flat in flats %}
-                    <span>{{ residence.nom }} - {{ flat.typeBien.nom }} Ref {{ flat.reference }} - {{ flat.typeLogement.nom }}</span>
-                    {% endfor %}
+                    <span>{{ residence.nom }} - {{ typeBien.nom }} Ref {{ reference }} - {{ typeLogement.nom }}</span>
                 </h2>
             </div>
         </div>
@@ -39,13 +37,20 @@
 
 <div class="photoinfo-apt">
     <div class="photo-apt">
-        <img src="{{ absolute_url(asset('img/apt-neuf.jpg')) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
+        {% if media['image'] is defined and  media['image'] != null %}
+            <img src="{{ asset('uploads/'~media['image'].lien) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
+        {% else %}
+            <img src="{{ asset('img/Pas-dimage.jpg') }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
+        {% endif %}
     </div>
     <div class="info-apt">
-        <h3>St Pryvé St Mesmin</h3>
-        <h3>Appartement Neuf</h3>
-        <h3>37 m2</h3>
-        <h3>137 200 €</h3>
+        <h3>{{ residence.ville.nom }}</h3>
+        <h3>{{ flat.typeBien.nom }}</h3>
+        <h3>{{ flat.surface }} m2</h3>
+        <h3>{{ flat.prix }} €</h3>
+        {% if residence.eligibilitePinel == 1 %}
+            <h3>Eligible Loi Pinel</h3>
+        {% endif %}
     </div>
 </div>
 <h3>Les Détails de l'appartement</h3>
@@ -128,8 +133,12 @@
 
 <div class="plan-apt center">
 
-    <h3 class="titre-plan">Plans de l'appartement</h3>
-    <img class="plan" src="{{ absolute_url(asset('img/plan.jpg')) }}" alt="plan"/>
+    <h3 class="titre-plan">Plans</h3>
+    {% if media['image'] is defined and  media['image'] != null %}
+        <img src="{{ asset('uploads/'~media['plans'].lien) }}" alt="plans"/>
+    {% else %}
+        <img src="{{ asset('img/Pas-dimage.jpg') }}" alt="plans"/>
+    {% endif %}
 </div>
 
 <div id="content" class="content-appartement">
@@ -137,7 +146,7 @@
         <div class="row center">
             <div class="col s12">
                 <h2>
-                    <span>La Résidence : Le Pryvé </span>
+                    <span>La Résidence : {{ residence.nom }} </span>
                 </h2>
             </div>
         </div>
@@ -145,7 +154,11 @@
 </div>
 
 <div class="photo-residence center">
-    <img src="{{ absolute_url(asset('img/leflores.jpeg')) }}" alt="photo-residence"/>
+    {% if residence.media['image'] is defined and  residence.media['image'] != null %}
+        <img src="{{ asset('uploads/'~residence.media['image'].lien) }}" alt="photo_residence"/>
+    {% else %}
+        <img src="{{ asset('img/Pas-dimage.jpg') }}" alt="photo_residence"/>
+    {% endif %}
 </div>
 
 
@@ -153,50 +166,50 @@
     <div class="row">
         <div class="box-notesite">
             <div class="row">
-                <ul>
-                    <li class="design col s3">
-                        <div class="notesite" id="note_0" data-note="9.30"></div>
-                        <br/>
-                        <div class="list-legend">
-                            <div class="row center-align">
-                                <ul>
-                                    <li class="design col m12">transports</li>
-                                </ul>
-                            </div>
+                <li>
+                <li class="design col s3">
+                    <div class="notesite" id="note_0" data-note="{{ residence.noteTransports }}"></div>
+                    <br/>
+                    <div class="list-legend">
+                        <div class="row center-align">
+                            <ul>
+                                <li class="design col m12">transports</li>
+                            </ul>
                         </div>
-                    </li>
-                    <li class="content col s3">
-                        <div class="notesite" id="note_3" data-note="8.70"></div>
-                        <br/>
-                        <div class="list-legend">
-                            <div class="row">
-                                <ul>
-                                    <li class="design col m12">commerces</li>
-                                </ul>
-                            </div>
+                    </div>
+                </li>
+                <li class="content col s3">
+                    <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces }}"></div>
+                    <br/>
+                    <div class="list-legend">
+                        <div class="row">
+                            <ul>
+                                <li class="design col m12">commerces</li>
+                            </ul>
                         </div>
-                    </li>
-                    <li class="creativity col s3">
-                        <div class="notesite" id="note_1" data-note="9.80"></div>
-                        <div class="list-legend">
-                            <div class="row">
-                                <ul>
-                                    <li class="design col m12">services</li>
-                                </ul>
-                            </div>
+                    </div>
+                </li>
+                <li class="creativity col s3">
+                    <div class="notesite" id="note_1" data-note="{{ residence.noteServices }}"></div>
+                    <div class="list-legend">
+                        <div class="row">
+                            <ul>
+                                <li class="design col m12">services</li>
+                            </ul>
                         </div>
-                    </li>
-                    <li class="usability col s3">
-                        <div class="notesite" id="note_2" data-note="9.20"></div>
-                        <div class="list-legend">
-                            <div class="row">
-                                <ul>
-                                    <li class="design col m12">esthétisme</li>
-                                </ul>
-                            </div>
+                    </div>
+                </li>
+                <li class="usability col s3">
+                    <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme }}"></div>
+                    <div class="list-legend">
+                        <div class="row">
+                            <ul>
+                                <li class="design col m12">esthétisme</li>
+                            </ul>
                         </div>
-                    </li>
-                    <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
+                    </div>
+                </li>
+                <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
                 </ul>
             </div>
 
@@ -206,65 +219,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col s6">
+        <div class="col s12">
             <div class="rapel-residence text-justify">
                 <h3>La Residence</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    {{ residence.description }}
                 </p>
-            </div>
-        </div>
-        <div class="col s6">
-            <div class="prestations-residence">
-                <h3>Les Prestations</h3>
-                <div class="row">
-                    <div class="col s6">
-                        <div class="row">
-                            <div class="col s2 icon-prestation">
-                                <img class="icon-residence"
-                                     src="{{ absolute_url(asset('img/icons/Wheelchair_Accessible.png')) }}"
-                                     alt="acces handicape"/>
-                            </div>
-                            <div class="col s10 prestation">
-                                <p>Accessibiité</p>
-                            </div>
-
-                            <div class="col s2 icon-prestation">
-                                <img class="icon-residence"
-                                     src="{{ absolute_url(asset('img/icons/shopping-cart.png')) }}"
-                                     alt="commerces"/>
-                            </div>
-                            <div class="col s10 prestation">
-                                <p>Commerces</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6">
-                        <div class="row">
-                            <div class="col s2 icon-prestation">
-                                <img class="icon-residence"
-                                     src="{{ absolute_url(asset('img/icons/smoking_not_allowed.png')) }}"
-                                     alt="non fumeur"/>
-                            </div>
-                            <div class="col s10 prestation">
-                                <p>Non Fumeur</p>
-                            </div>
-                            <div class="col s2 icon-prestation">
-                                <img class="icon-residence"
-                                     src="{{ absolute_url(asset('img/icons/finance.png')) }}"
-                                     alt="éligibilité loi pinel"/>
-                            </div>
-                            <div class="col s10 prestation">
-                                <p>Eligible Loi Pinel</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -295,27 +295,27 @@ class Flat
     }
 
     /**
+     * @return mixed
+     */
+    public function getTypeBien()
+    {
+        return $this->typeBien;
+    }
+
+    /**
+     * @param mixed $typeBien
+     */
+    public function setTypeBien($typeBien)
+    {
+        $this->typeBien = $typeBien;
+    }
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTypeBien()
-    {
-        return $this->typebien;
-    }
-
-    /**
-     * @param mixed $typebien
-     */
-    public function setTypeBien($typebien)
-    {
-        $this->typebien = $typebien;
     }
 
     /**

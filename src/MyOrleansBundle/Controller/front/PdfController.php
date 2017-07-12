@@ -38,33 +38,48 @@ class PdfController extends Controller
             $parcours = $session->get('parcours');
         }
         $em = $this->getDoctrine()->getManager();
+
         $residence = $flat->getResidence();
-        $typelogment = $em->getRepository(TypeLogement::class)->findAll();
+        $typelogement = $em->getRepository(TypeLogement::class)->findAll();
         $type_t1 = $this->getParameter('typeLogementT1');
         $type_t2 = $this->getParameter('typeLogementT2');
         $type_t3 = $this->getParameter('typeLogementT3');
         $type_t4 = $this->getParameter('typeLogementT4');
+        $typebien = $em->getRepository(TypeBien::class)->findAll();
         $prixMin = $calculateur->calculPrix($residence);
         $flatsDispo = $calculateur->calculFlatDispo($residence);
         $typeMinMax = $calculateur->calculSizes($residence);
         $mailagence = $this->getParameter('mail_agence');
         $telephoneNumber = $this->getParameter('telephone_number');
         $mappy = $this->get("knp_snappy.pdf");
+
+        $medias = $flat->getMedias();
+        $mediaDefine = [];
+        foreach ($medias as $media) {
+            if ($media->getTypeMedia()->getNom() == 'image') {
+                $mediaDefine['image'] = $media;
+            }elseif ($media->getTypeMedia()->getNom() == 'plans') {
+                $mediaDefine['plans'] = $media;
+            }
+        }
+
         $html = $this->renderView('MyOrleansBundle::pdf_appartement.html.twig', array(
-            'residence' => $residence,
-            'prixMin' => $prixMin,
-            'flatsDispo' => $flatsDispo,
-            'typeMin' => $typeMinMax[0],
-            'typeMax' => $typeMinMax[1],
-            'type_logement'=>$typelogment,
+            'flat'=>$flat,
+            'parcours'=>$parcours,
+            'residence'=>$residence,
+            'media' => $mediaDefine,
+            'telephone_number' => $telephoneNumber,
+            'type_logement' => $typelogement,
             'typeLogementT1' => $type_t1,
             'typeLogementT2' => $type_t2,
             'typeLogementT3' => $type_t3,
             'typeLogementT4' => $type_t4,
-            'parcours' => $parcours,
-            'telephone_number' => $telephoneNumber,
+            'type_bien'=>$typebien,
+            'prixMin' => $prixMin,
+            'flatsDispo' => $flatsDispo,
+            'typeMin' => $typeMinMax[0],
+            'typeMax' => $typeMinMax[1],
             'mail_agence'=>$mailagence,
-
 
         ));
 
@@ -106,20 +121,33 @@ class PdfController extends Controller
         $googlemapstatickey = $this->getParameter('googlemap_static_map_key');
         $telephoneNumber = $this->getParameter('telephone_number');
         $mappy = $this->get("knp_snappy.pdf");
+
+        $medias = $residence->getMedias();
+        $mediaDefine = [];
+        foreach ($medias as $media) {
+            if ($media->getTypeMedia()->getNom() == 'video') {
+                $mediaDefine['video'] = $media;
+            } elseif ($media->getTypeMedia()->getNom() == 'image') {
+                $mediaDefine['image'] = $media;
+            }
+        }
+
         $html = $this->renderView('MyOrleansBundle::pdf_residence.html.twig', array(
+            'residence' => $residence,
             'flats' => $flats,
+            'parcours' => $parcours,
+            'media' => $mediaDefine,
+            'telephone_number' => $telephoneNumber,
             'prixMin' => $prixMin,
             'flatsDispo' => $flatsDispo,
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
             'type_logement'=>$typelogment,
-            'type_bien'=>$typebien,
             'typeLogementT1' => $type_t1,
             'typeLogementT2' => $type_t2,
             'typeLogementT3' => $type_t3,
             'typeLogementT4' => $type_t4,
-            'parcours'=>$parcours,
-            'telephone_number' => $telephoneNumber,
+            'type_bien'=>$typebien,
             'mail_agence'=>$mailagence,
             'googlemap_static_map_key'=>$googlemapstatickey,
 

@@ -42,7 +42,7 @@ class FlatController extends Controller
     /**
      * @Route("/appartement/{id}", name="appartement")
      */
-    public function flat($id, SessionInterface $session, Request $request)
+    public function flat(Flat $flat, SessionInterface $session, Request $request)
     {
         $client = new  Client();
         $parcours = null;
@@ -51,14 +51,22 @@ class FlatController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $flat = $em->getRepository(Flat::class)->find($id);
-        $residence = $em->getRepository(Residence::class)->find($id);
+        $residence = $flat->getResidence();
         $typelogement = $em->getRepository(TypeLogement::class)->findAll();
         $type_t1 = $this->getParameter('typeLogementT1');
         $type_t2 = $this->getParameter('typeLogementT2');
         $type_t3 = $this->getParameter('typeLogementT3');
         $type_t4 = $this->getParameter('typeLogementT4');
 
+        $medias = $flat->getMedias();
+        $mediaDefine = [];
+        foreach ($medias as $media) {
+            if ($media->getTypeMedia()->getNom() == 'image') {
+                $mediaDefine['image'] = $media;
+            }elseif ($media->getTypeMedia()->getNom() == 'plans') {
+                $mediaDefine['plans'] = $media;
+            }
+        }
         // Formulaire de contact
 
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
@@ -94,6 +102,7 @@ class FlatController extends Controller
                 'flat'=>$flat,
                 'parcours'=>$parcours,
                 'residence'=>$residence,
+                'media' => $mediaDefine,
                 'telephone_number' => $telephoneNumber,
                 'type_logement' => $typelogement,
                 'typeLogementT1' => $type_t1,
