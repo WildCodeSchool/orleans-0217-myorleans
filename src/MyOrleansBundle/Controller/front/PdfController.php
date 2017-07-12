@@ -129,7 +129,7 @@ class PdfController extends Controller
             'flatsDispo' => $flatsDispo,
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
-            'type_logement'=>$typelogment,
+            'typeLogement'=>$typelogment,
             'type_bien'=>$typebien,
             'mail_agence'=>$mailagence,
             'googlemap_static_map_key'=>$googlemapstatickey,

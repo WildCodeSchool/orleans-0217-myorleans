@@ -209,7 +209,7 @@
                     <div class="accordeon-residence">
                         <ul class="collapsible popout" data-collapsible="accordion">
                             <li>
-                                <div class="collapsible-header">{{ typeLogement[0] }}</div>
+                                <div class="collapsible-header">{{ typeLogement[0].nom }}</div>
                                 <div class="collapsible-body">
                                     <table class="stripped">
                                         <thead>
@@ -224,7 +224,7 @@
 
                                         <tbody>
                                         {% for flat in flats %}
-                                            {% if flat.typeLogement.nom == typeLogement[0] %}
+                                            {% if flat.typeLogement.nom == typeLogement[0].nom %}
                                                 <tr>
                                                     <td>{{ flat.reference }}</td>
                                                     <td>{{ flat.typeLogement.nom }}</td>
@@ -247,7 +247,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="collapsible-header">{{ typeLogement[1] }}</div>
+                                <div class="collapsible-header">{{ typeLogement[1].nom }}</div>
                                 <div class="collapsible-body">
                                     <table class="stripped">
                                         <thead>
@@ -262,7 +262,7 @@
 
                                         <tbody>
                                         {% for flat in flats %}
-                                            {% if flat.typeLogement.nom == typeLogement[1] %}
+                                            {% if flat.typeLogement.nom == typeLogement[1].nom %}
                                                 <tr>
                                                     <td>{{ flat.reference }}</td>
                                                     <td>{{ flat.typeLogement.nom }}</td>
@@ -285,7 +285,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="collapsible-header">{{ typeLogement[2] }}</div>
+                                <div class="collapsible-header">{{ typeLogement[2].nom }}</div>
                                 <div class="collapsible-body">
                                     <table class="stripped">
                                         <thead>
@@ -300,7 +300,7 @@
 
                                         <tbody>
                                         {% for flat in flats %}
-                                            {% if flat.typeLogement.nom == typeLogement[2] %}
+                                            {% if flat.typeLogement.nom == typeLogement[2].nom %}
                                                 <tr>
                                                     <td>{{ flat.reference }}</td>
                                                     <td>{{ flat.typeLogement.nom }}</td>
@@ -323,7 +323,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="collapsible-header">{{ typeLogement[3] }}</div>
+                                <div class="collapsible-header">{{ typeLogement[3].nom }}</div>
                                 <div class="collapsible-body">
                                     <table class="stripped">
                                         <thead>
@@ -338,7 +338,7 @@
 
                                         <tbody>
                                         {% for flat in flats %}
-                                            {% if flat.typeLogement.nom == typeLogement[3] %}
+                                            {% if flat.typeLogement.nom == typeLogement[3].nom %}
                                                 <tr>
                                                     <td>{{ flat.reference }}</td>
                                                     <td>{{ flat.typeLogement.nom }}</td>

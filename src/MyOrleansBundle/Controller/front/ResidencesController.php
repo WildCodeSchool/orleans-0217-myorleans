@@ -110,7 +110,7 @@ class ResidencesController extends Controller
             'flatsDispo' => $flatsDispo,
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
-            'type_logement'=>$typelogment,
+            'typeLogement'=>$typelogment,
             'form' => $formulaire->createView()
         ]);
 

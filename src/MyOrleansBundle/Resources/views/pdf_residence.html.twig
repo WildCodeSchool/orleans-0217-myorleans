@@ -164,7 +164,7 @@
         <div class="col s12">
             <ul>
                 <li>
-                    <h3>{{ typeLogement[0] }}</h3>
+                    <h3>{{ typeLogement[0].nom }}</h3>
 
                     <table class="stripped">
                         <thead>
@@ -179,7 +179,7 @@
 
                         <tbody>
                         {% for flat in flats %}
-                            {% if flat.typeLogement.nom == typeLogement[0] %}
+                            {% if flat.typeLogement.nom == typeLogement[0].nom %}
                                 <tr>
                                     <td>{{ flat.reference }}</td>
                                     <td>{{ flat.typeLogement.nom }}</td>
@@ -202,7 +202,7 @@
 
                 </li>
                 <li>
-                    <h3>{{ typeLogement[1] }}</h3>
+                    <h3>{{ typeLogement[1].nom }}</h3>
 
                     <table class="stripped">
                         <thead>
@@ -217,7 +217,7 @@
 
                         <tbody>
                         {% for flat in flats %}
-                            {% if flat.typeLogement.nom == typeLogement[1] %}
+                            {% if flat.typeLogement.nom == typeLogement[1].nom %}
                                 <tr>
                                     <td>{{ flat.reference }}</td>
                                     <td>{{ flat.typeLogement.nom }}</td>
@@ -240,7 +240,7 @@
 
                 </li>
                 <li>
-                    <h3>{{ typeLogement[2] }}</h3>
+                    <h3>{{ typeLogement[2].nom }}</h3>
 
                     <table class="stripped">
                         <thead>
@@ -255,7 +255,7 @@
 
                         <tbody>
                         {% for flat in flats %}
-                            {% if flat.typeLogement.nom == typeLogement[2] %}
+                            {% if flat.typeLogement.nom == typeLogement[2].nom %}
                                 <tr>
                                     <td>{{ flat.reference }}</td>
                                     <td>{{ flat.typeLogement.nom }}</td>
@@ -278,7 +278,7 @@
 
                 </li>
                 <li>
-                    <h3>{{ typeLogement[3] }}</h3>
+                    <h3>{{ typeLogement[3].nom }}</h3>
 
                     <table class="stripped">
                         <thead>
@@ -293,7 +293,7 @@
 
                         <tbody>
                         {% for flat in flats %}
-                            {% if flat.typeLogement.nom == typeLogement[3] %}
+                            {% if flat.typeLogement.nom == typeLogement[3].nom %}
                                 <tr>
                                     <td>{{ flat.reference }}</td>
                                     <td>{{ flat.typeLogement.nom }}</td>

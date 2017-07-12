@@ -20,7 +20,8 @@ parameters:
     mailer_sender_name: MyOrléans
     parcours_investisseur: investisseur
     parcours_residence: residence
-
+    mail_agence: ~
+    googlemap_static_map_key: ~
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
