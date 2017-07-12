@@ -74,6 +74,12 @@ class Article
      */
     private $typeArticle;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fichier", type="string")
+     */
+    private $fichierAssocie;
 
     /**
      * @var string
@@ -298,6 +304,23 @@ class Article
     }
 
     /**
+     * @return string
+     */
+    public function getFichierAssocie()
+    {
+        return $this->fichierAssocie;
+    }
+
+    /**
+     * @param string $fichierAssocie
+     */
+    public function setFichierAssocie(string $fichierAssocie)
+    {
+        $this->fichierAssocie = $fichierAssocie;
+    }
+
+
+
      * Set slug
      *
      * @param string $slug

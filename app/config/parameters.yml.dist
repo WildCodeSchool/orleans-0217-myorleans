@@ -21,7 +21,6 @@ parameters:
     parcours_investisseur: investisseur
     parcours_residence: residence
 
-
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
 

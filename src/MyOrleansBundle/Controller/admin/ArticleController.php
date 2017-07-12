@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\FileArticle;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Tag;
 use MyOrleansBundle\Form\ArticleType;
@@ -67,7 +68,19 @@ class ArticleController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            $file = $form['fichierAssocie']->getData();
+
             $em->persist($article);
+            $em->flush();
+
+            $fileArticle = new FileArticle();
+            $fileArticle->setFile($file);
+            $fileArticle->setArticle($article);
+            $fileArticle->setName($file);
+            $fileArticle->setPath($fileArticle->getWebPath().$fileArticle->getName());
+            $fileArticle->upload();
+
+            $em->persist($fileArticle);
             $em->flush();
 
             return $this->redirectToRoute('admin_article_show', array('id' => $article->getId()));
