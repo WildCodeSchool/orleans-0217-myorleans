@@ -100,7 +100,7 @@ class PrestationController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_prestation_edit', array('id' => $prestation->getId()));
+            return $this->redirectToRoute('admin_prestation_index', array('id' => $prestation->getId()));
         }
 
         return $this->render('prestation/edit.html.twig', array(

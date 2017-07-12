@@ -50,6 +50,8 @@ class FlatController extends Controller
             $parcours = $session->get('parcours');
         }
 
+
+
         $em = $this->getDoctrine()->getManager();
         $residence = $flat->getResidence();
 
@@ -93,6 +95,9 @@ class FlatController extends Controller
             $em->flush();
             return $this->redirectToRoute('appartement');
         }
+
+
+
             return $this->render('MyOrleansBundle::appartement.html.twig',[
                 'flat'=>$flat,
                 'parcours'=>$parcours,

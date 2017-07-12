@@ -90,7 +90,7 @@ class TypePrestaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_typepresta_edit', array('id' => $typePresta->getId()));
+            return $this->redirectToRoute('admin_typepresta_index', array('id' => $typePresta->getId()));
         }
 
         return $this->render('typepresta/edit.html.twig', array(
