@@ -29,7 +29,9 @@
                                 {{ form_label(edit_form.statut, 'Statut du bien: ') }}
                                 {{ form_widget(edit_form.statut) }}
                                 {{ form_label(edit_form.typeLogement, 'Type du Logement: ') }}
-
+                                {{ form_widget(edit_form.typeLogement) }}
+                                {{ form_label(edit_form.typeBien, 'Type du bien: ') }}
+                                {{ form_widget(edit_form.typeBien) }}
                             </div>
                             {% for media in flat.medias %}
                                 {% if media.id != null %}
