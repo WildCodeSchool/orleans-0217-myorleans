@@ -10,5 +10,16 @@ namespace MyOrleansBundle\Repository;
  */
 class FlatRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function flatsByResidenceAndStatus($residence)
+    {
+        $qb = $this->createQueryBuilder('f');
+
+        $qb->where('f.residence = :residence')
+            ->setParameter('residence', $residence)
+            ->addOrderBy('f.statut','ASC')
+            ->addOrderBy('f.surface', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
 
 }
