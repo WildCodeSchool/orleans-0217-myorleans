@@ -28,13 +28,16 @@ use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 class NosBiensController extends Controller
 {
     /**
-     * @Route("/nos-biens", name="nosbiens")
+     * @Route("/nos_biens", name="nosbiens")
      */
     public function nosBiensAction(Request $request, SessionInterface $session)
     {
         // Definition des contenus associes par defaut
         $message = "Découvrez les biens suggérés";
         $objectif = "investir";
+        $suggestionActive = 0;
+        $residencesSuggerees = '';
+        $noResult = 0;
 
         // Definition du parcours du visiteur
         $parcours = null;
@@ -56,8 +59,10 @@ class NosBiensController extends Controller
         $quartiers = $em->getRepository(Quartier::class)->findAll();
 
         // Generation du dernier article avec le tag 'Investissement'
-        $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
-        $article = $article[0];
+        $articles = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
+        if (!empty($articles)) {
+            $article = $articles[0];
+        }
 
         // Generation du moteur de recherche simplifie
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType', null, ['action' => $this->generateUrl('nosbiens')]);
@@ -66,12 +71,13 @@ class NosBiensController extends Controller
         // initialisation des variables ville et type a 0 si le formulaire simpleSearch n'est pas soumis
         $selectedVille = $selectedType = '';
 
-              // affectation des valeurs ville et type si le form simpleSearch est valide
+        // affectation des valeurs ville et type si le form simpleSearch est valide
         if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
 
             // Envoi de contenu different en fonction du bouton clique : investisseur ou residence principale
             $objectif = 'investir';
             $tag = 'Investissement';
+            $suggestionActive = 1;
 
             $session->set('parcours', $this->getParameter('parcours_investisseur'));
 
@@ -81,9 +87,12 @@ class NosBiensController extends Controller
                 $session->set('parcours', $this->getParameter('parcours_residence'));
 
             }
+
+
             // Generation du dernier article avec le tag 'Residence Principale'
             $article = $em->getRepository(Article::class)->articleByTag($tag, 1);
             $article = $article[0];
+
 
             // Prise en compte des filtres du moteur de recherche
             $data = $simpleSearch->getData();
@@ -91,12 +100,18 @@ class NosBiensController extends Controller
             $selectedType = $data['type'];
             $residences = $em -> getRepository(Residence::class)->simpleSearch($selectedVille, $selectedType);
 
-            $message = count($residences)." résidence(s) correspondent à votre recherche";
+
+            // recherche des biens suggeres
+            if ($selectedVille != null || $selectedType != null) {
+                $residencesSuggerees = $em -> getRepository(Residence::class)
+                    ->simpleSuggestedSearch($selectedVille, $selectedType);
+            }
+
 
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
                 $residences = $em -> getRepository(Residence::class)->findAll();
-                $message = "Aucune résidence ne correspond à votre recherche. Découvrez les biens suggérés.";
+                $noResult = 1;
             }
 
             // Parametrage du parcours visiteur
@@ -115,13 +130,15 @@ class NosBiensController extends Controller
 
         return $this->render('MyOrleansBundle::nosbiens.html.twig', [
             'parcours' => $parcours,
+            'suggestionActive' => $suggestionActive,
+            'residencesSuggerees' => $residencesSuggerees,
             'residences' => $residences,
             'completeSearch' => $completeSearch->createView(),
             'villes' => $villes,
             'quartiers' => $quartiers,
-            'message' => $message,
             'objectif' => $objectif,
-            'article' => $article,
+            'article' => $article ?? null,
+            'noResult' => $noResult
         ]);
 
     }
@@ -142,65 +159,60 @@ class NosBiensController extends Controller
         // Traitement de la requete
         if ($completeSearch->isSubmitted()) {
 
+            $suggestionActive = 1;
+            $noResult = 0;
+            $objectif = "investir";
+
             $data = $completeSearch->getData();
-            $ville = $data['ville'];
-            $quartier = $data['quartier'];
-            $type = $data['type'];
-            $surfaceMin = $data['surfaceMin'];
-            $surfaceMax = $data['surfaceMax'];
-            $nbChambres = $data['nbChambres'];
-            $objectif = $data['objectif'];
-            $budgetMin = $data['budgetMin'];
-            $budgetMax = $data['budgetMax'];
-            $objectif = $data['objectif'];
 
-            $residences = $em->getRepository(Residence::class)->completeSearch($ville, $quartier, $type, $surfaceMin,
-                                                                                $surfaceMax, $nbChambres, $budgetMin,
-                                                                                $budgetMax);
+            $residences = $em->getRepository(Residence::class)->completeSearch($data);
 
-            $message = count($residences)." résidence(s) correspondent à votre recherche";
+            // Generation du derier article avec le tag 'Investissement'
+            $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
+            $article = $article[0];
+            // Fin contenu associe
+
+            // recherche des biens suggeres
+            if ($data != null ) {
+                $residencesSuggerees = $em -> getRepository(Residence::class)
+                    ->completeSuggestedSearch($data);
+            }
+
 
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
                 $residences = $em->getRepository(Residence::class)->findAll();
-                $message = "Aucune résidence ne correspond à votre recherche. Découvrez les biens suggérés.";
+                $noResult = 1;
             }
 
             // Generation des contenus associes en fonction de l'objectif
-            if (isset($objectif) && $objectif == 'Residence Principale') {
+            if (isset($data['objectif']) && $objectif == 'Residence Principale') {
                 // Generation du dernier article avec le tag 'Residence Principale'
                 $article = $em->getRepository(Article::class)->articleByTag('Residence Principale', 1);
                 $article = $article[0];
 
                 $objectif = "Residence Principale";
-
                 $session->set('parcours', $this->getParameter('parcours_residence'));
-
             }
 
-            if (isset($objectif) && $objectif == 'investir') {
+            if (isset($data['objectif']) && $objectif == 'investir') {
                 $session->set('parcours', $this->getParameter('parcours_investisseur'));
-
             }
 
             // Parametrage du parcours visiteur
             $parcours = $session->get('parcours');
 
-            // Generation du derier article avec le tag 'Investissement'
-            $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
-            $article = $article[0];
-
-            // Fin contenu associe
-
             return $this->render('MyOrleansBundle::nosbiens.html.twig',[
                 'parcours' => $parcours,
                 'completeSearch' => $completeSearch->createView(),
+                'suggestionActive' => $suggestionActive,
+                'residencesSuggerees' => $residencesSuggerees,
                 'residences' => $residences,
                 'villes' => $villes,
                 'quartiers' => $quartiers,
-                'message' => $message,
                 'objectif' => $objectif,
-                'article' => $article
+                'article' => $article,
+                'noResult' => $noResult
             ]);
 
         } else {

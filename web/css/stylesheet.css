@@ -111,7 +111,9 @@ nav .dropdown-button {
 }
 
 .logo {
+
     height: 50px;
+
     margin-top: 7px;
 }
 
@@ -211,6 +213,9 @@ body {
 
 /* ------------------------ Page Nos Biens ----------------------------*/
 
+.page-nosbiens h1 {
+    font-size: 36px;
+}
 
 .page-nosbiens h2 {
     font-size:20px;
@@ -443,7 +448,7 @@ body {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
     margin-top: -10px;
-    padding: 0 10px 10px 10px;
+    padding: 10px 10px 25px 10px;
     background-color: white;
 }
 
@@ -535,10 +540,20 @@ body {
 /* ------------------------ PAGE RESIDENCE --------------------------*/
 /* --------------------------------------------------------------------*/
 
-.offre-residence td {
-    border: 1px solid black;
-}
 
+.offre-residence td {
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 50px;
+    padding: 10px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    color: #808080;
+}
+.offre{
+    color: #EF562D;
+}
 .lieu-residence{
     color: rgb(192,192,192);
 }
@@ -557,12 +572,21 @@ body {
 }
 
 .citation-residence{
-    background-color: rgb(68,68,68);
+    background-color: #808080;
     color: white;
     text-align: center;
     font-style: italic;
     font-size: 2em;
     padding: 20px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.dispo{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .pinel-residence{
@@ -573,8 +597,21 @@ body {
     color: rgb(192,192,192);
 }
 
+.consulter-residence > a{
+    color: #C0C0C0;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+.consulter-residence > a:hover{
+    color: #808080;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+
 .content-residence{
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 .accordeon-residence{
@@ -583,6 +620,20 @@ body {
 
 .btn-residence{
     background-color: rgb(189,217,90);
+}
+
+.btn-vendu{
+    background-color: #FFFFF1 !important;
+    color : #EF562D;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .collapsible-header{
@@ -599,7 +650,9 @@ td{
 
 #map-residences {
     width:100%;
-    height: 300px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .notation{
@@ -645,6 +698,15 @@ td{
     }
 }
 
+.partage{
+    font-size: 20px;
+}
+
+#map-residences {
+    height: 500px;
+    width: 1000px;
+}
+
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE RESIDENCE --------------------------*/
 /* --------------------------------------------------------------------*/
@@ -656,16 +718,21 @@ td{
     padding-top: 20px;
 }
 
+.photoinfo-apt{
+    margin: 60px;
+}
 .info-apt {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
-    background-color: white;
-    margin-top: -10px;
-    padding: 0 10px 10px 10px;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+/*    width: 400px;*/
 }
 .icon-apt{
     width: 2.5em;
     height: 2.5em;
+    margin-top: 10px;
 }
 
 .print{
@@ -676,10 +743,48 @@ td{
 .icon-left{
     text-align: left;
 }
-/*.photo-apt{
-    width: ;
-}*/
 
+.rapel-residence{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.descriptif-residence{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.prestations-residence{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.rang-presta{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin: auto;
+    padding: 10px;
+/*    width: 600px;*/
+    height: 350px;
+}
+.icon-prestation{
+    margin: auto;
+}
+
+.prestation{
+    margin:auto;
+}
+@media screen and (max-width: 767px ){
+
+
+}
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE APPARTEMENT --------------------------*/

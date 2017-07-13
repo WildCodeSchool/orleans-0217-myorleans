@@ -105,7 +105,7 @@ class EvenementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_evenement_show', array('id' => $evenement->getId()));
+            return $this->redirectToRoute('admin_evenement_index', array('id' => $evenement->getId()));
         }
         return $this->render('evenement/edit.html.twig', array(
             'evenement' => $evenement,

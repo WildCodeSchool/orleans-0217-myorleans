@@ -5,6 +5,7 @@ namespace MyOrleansBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinTable;
 
+
 /**
  * Flat
  *
@@ -79,6 +80,11 @@ class Flat
     private $statut;
 
     /**
+     * @ORM\ManyToOne(targetEntity="TypeBien", inversedBy="flats")
+     */
+    private $typeBien;
+
+    /**
      * @ORM\ManyToOne(targetEntity="TypeLogement", inversedBy="flats")
      */
     private $typeLogement;
@@ -99,9 +105,6 @@ class Flat
      * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="flat")
      */
     private $categoriePrestas;
-
-
-
 
 
     /**
@@ -293,6 +296,22 @@ class Flat
     }
 
     /**
+     * @return mixed
+     */
+    public function getTypeBien()
+    {
+        return $this->typeBien;
+    }
+
+    /**
+     * @param mixed $typeBien
+     */
+    public function setTypeBien($typeBien)
+    {
+        $this->typeBien = $typeBien;
+    }
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -421,4 +440,6 @@ class Flat
     {
         $this->categoriePrestas->removeElement($categoriePresta);
     }
+
+
 }
