@@ -5,6 +5,7 @@ namespace MyOrleansBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
 /**
@@ -119,9 +120,16 @@ class Residence
     private $noteEsthetisme;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="offre", type="string", nullable=true)
+     */
+    private $offre;
+
+    /**
      * @var int
      *
-     * @ORM\Column(name="favoris", type="integer", nullable=true)
+     * @ORM\Column(name="favoris", type="boolean", nullable=true)
      */
     private $favoris;
 
@@ -133,11 +141,19 @@ class Residence
     private $accroche;
 
     /**
+     * @var bool
      *
-     * @ENUM ({"Eligible", "Non-éligible"})
+     * @ORM\Column(name="eligibilite_pinel", type="boolean", nullable=true)
      *
      */
     private $eligibilitePinel;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="affichage_prix", type="boolean", nullable=false)
+     */
+    private $affichagePrix;
 
     /**
      * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
@@ -157,7 +173,12 @@ class Residence
     private $categoriePrestas;
 
 
-
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"nom"})
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
 
 
     /**
@@ -479,28 +500,21 @@ class Residence
     }
 
     /**
-     * Set favoris
-     *
-     * @param integer $favoris
-     *
-     * @return Residence
+     * @return mixed
      */
-    public function setFavoris($favoris)
+    public function getOffre()
     {
-        $this->favoris = $favoris;
-
-        return $this;
+        return $this->offre;
     }
 
     /**
-     * Get favoris
-     *
-     * @return int
+     * @param mixed $offre
      */
-    public function getFavoris()
+    public function setOffre($offre)
     {
-        return $this->favoris;
+        $this->offre = $offre;
     }
+
 
     /**
      * @return mixed
@@ -516,22 +530,6 @@ class Residence
     public function setAccroche($accroche)
     {
         $this->accroche = $accroche;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEligibilitePinel()
-    {
-        return $this->eligibilitePinel;
-    }
-
-    /**
-     * @param mixed $eligibilitePinel
-     */
-    public function setEligibilitePinel($eligibilitePinel)
-    {
-        $this->eligibilitePinel = $eligibilitePinel;
     }
 
 
@@ -670,6 +668,54 @@ class Residence
     }
 
     /**
+     * Set citation
+     *
+     * @param string $citation
+     *
+     * @return Residence
+     */
+    public function setCitation($citation)
+    {
+        $this->citation = $citation;
+
+        return $this;
+    }
+
+    /**
+     * Get citation
+     *
+     * @return string
+     */
+    public function getCitation()
+    {
+        return $this->citation;
+    }
+
+    /**
+     * Set pinel
+     *
+     * @param string $pinel
+     *
+     * @return Residence
+     */
+    public function setPinel($pinel)
+    {
+        $this->pinel = $pinel;
+
+        return $this;
+    }
+
+    /**
+     * Get pinel
+     *
+     * @return string
+     */
+    public function getPinel()
+    {
+        return $this->pinel;
+    }
+
+    /**
      * Get ville
      *
      * @return \MyOrleansBundle\Entity\Ville
@@ -679,6 +725,94 @@ class Residence
         return $this->ville;
     }
 
+    /**
+     * @param bool $favoris
+     * @return Residence
+     */
+    public function setFavoris(bool $favoris): Residence
+    {
+        $this->favoris = $favoris;
+        return $this;
+    }
 
+    /**
+     * @param bool $eligibilitePinel
+     * @return Residence
+     */
+    public function setEligibilitePinel(bool $eligibilitePinel): Residence
+    {
+        $this->eligibilitePinel = $eligibilitePinel;
+        return $this;
+    }
+
+    /**
+     * @param bool $affichagePrix
+     * @return Residence
+     */
+    public function setAffichagePrix(bool $affichagePrix): Residence
+    {
+        $this->affichagePrix = $affichagePrix;
+        return $this;
+    }
+
+
+
+
+    /**
+     * Get favoris
+     *
+     * @return boolean
+     */
+    public function getFavoris()
+    {
+        return $this->favoris;
+    }
+
+    /**
+     * Get eligibilitePinel
+     *
+     * @return boolean
+     */
+    public function getEligibilitePinel()
+    {
+        return $this->eligibilitePinel;
+    }
+
+    /**
+     * Get affichagePrix
+     *
+     * @return boolean
+     */
+    public function getAffichagePrix()
+    {
+        return $this->affichagePrix;
+
+    }
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Residence
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+
+    }
 
 }

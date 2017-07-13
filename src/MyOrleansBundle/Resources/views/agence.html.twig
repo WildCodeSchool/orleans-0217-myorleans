@@ -16,6 +16,7 @@
                 {% endfor %}
             </div>
         </div>
+
         <div class="container">
             <div class="row center countRow">
                 <h2 class="fancy"><span>Nos chiffres</span></h2>
@@ -67,41 +68,98 @@
             <div class="row center">
                 <h2 class="fancy"><span>Nos événements</span></h2>
             </div>
-            <section class="timeline">
-                <ol>
-                    {% for evenement in evenements %}
-                        <li>
-                            <div>
-                                <time>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('j-m-Y') }}{% endif %}</time>
-                                {{ evenement.nom }}<br>
-                                {{ evenement.description }}
-                                {% for media in evenement.medias if media.typeMedia == 'image-cover' %}
-                                    <img class="responsive-img" src="{{ asset('uploads/'~media.lien) }}">
-                                {% endfor %}
+        </div>
 
-                            </div>
-                        </li>
-                    {% endfor %}
-                    <li></li>
-                </ol>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <section class="timeline">
 
-                <div class="arrows">
-                    <button class="arrow arrow__prev disabled btn-floating btn-large waves-effect waves-light light-green"
-                            disabled>
-                        <i class="medium material-icons">keyboard_arrow_left</i>
-                    </button>
-                    <button class="arrow arrow__next  btn-floating btn-large waves-effect waves-light light-green">
-                        <i class="medium material-icons">keyboard_arrow_right</i>
-                    </button>
+                        <ol>
+                            {% for evenement in evenements %}
+
+                                {% if evenement.dateDebut|date("Ymd") < "now"|date("Ymd") %}
+
+                                    <li>
+                                        <div class="event past-event center">
+                                            <h4>{{ evenement.nom }}</h4>
+                                            <h5>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
+                                                {{ evenement.dateDebut|date('Y') }}</h5>
+                                            <p></p>{{ evenement.description }}
+                                            {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
+                                                <img class="responsive-img" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_timeline') }}">
+                                            {% endfor %}
+                                            <a class="waves-effect waves-light btn white" data-toggle="modal" data-id="{{ evenement.id }}"
+                                               href="#modal-{{ evenement.id }}">VOIR LES PHOTOS</a>
+                                        </div>
+                                    </li>
+
+                                {% else %}
+                                    <li>
+                                        <div class="event future-event center">
+                                            <h4>{{ evenement.nom }}</h4>
+                                            <time>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
+                                                {{ evenement.dateDebut|date('Y') }} |
+                                                <span>
+                                        {{ evenement.heureDebut|date('H:m') }} - {{ evenement.heureFin|date('H:m') }}
+                                        </span>
+                                            </time>
+                                            <p></p>{{ evenement.description }}
+                                            {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
+                                                <img class="responsive-img" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_timeline')  }}">
+                                            {% endfor %}
+                                            <a class="button-collapse waves-effect waves-light btn" data-activates="slide-out">JE M'INSCRIS</a>
+                                        </div>
+                                    </li>
+
+                                {% endif %}
+
+                            {% endfor %}
+                            <li></li>
+                        </ol>
+
+                        {# On place les modals dans une boucle a part, sinon cela compromet le css de la timeline  #}
+                        {% for evenement in evenements %}
+
+                            {% if evenement.dateDebut|date("Ymd") < "now"|date("Ymd") %}
+                                <!-- Modal Structure -->
+                                <div id="modal-{{ evenement.id }}" class="modal">
+                                    <div class="modal-content center">
+                                        <h3>Photos de l'événement {{ evenement.nom }}</h3>
+                                        {{ render(controller('MyOrleansBundle:Carrousel:affichageCarrousel',
+                                        {'id': evenement.id })) }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class="modal-action modal-close waves-effect waves-light grey lighten-2 btn-flat">Fermer</a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+
+
+                        <div class="arrows">
+                            <button class="arrow arrow__prev disabled btn-floating btn-large light-green"
+                                    disabled>
+                                <i class="medium material-icons">keyboard_arrow_left</i>
+                            </button>
+                            <button class="arrow arrow__next btn-floating btn-large light-green">
+                                <i class="medium material-icons">keyboard_arrow_right</i>
+                            </button>
+                        </div>
+                    </section>
                 </div>
-            </section>
+            </div>
 
+        </div>
+
+        <div class="container">
             <div class="row  partenaires">
                 <h2 class="fancy"><span>Nos partenaires</span></h2>
                 <div class="col s12 l10 offset-l1">
                     <div class="row center">
                         {% for partenaire in partenaires %}
-                            <div class="col s3 l1">
+                            <div class="col s3 l2">
                                 {% if partenaire.media.lien is defined  %}
                                 <a href="{{ partenaire.url }}" target="_blank">
                                     <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.lien) }}"
@@ -114,6 +172,7 @@
                 </div>
             </div>
         </div>
+
 
         <!-- début formulaire de contact -->
         <form method="post" action="">
@@ -174,10 +233,14 @@
                         </div>
 
                         <div class="input-field col l12 m12 s12">
+                            <p class="newsletter">Quel est l'objet de votre message?</p>
                             <i class="material-icons prefix">info_outline</i>
+
 
                             {{ form_widget(form.sujet) }}
                             {{ form_errors(form.sujet) }}
+
+
                         </div>
 
                         <div class="input-field col l12 m12 s12">
@@ -209,19 +272,27 @@
         <!--fin formulaire de contact-->
 
 
+
         {% block javascripts %}
-            {{ parent() }}
             <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
+            {{ parent() }}
+
             <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
             <script>
 
-                //formulaire de contact
                 $('.button-collapse').sideNav({
                         edge: 'right', // Choose the horizontal origin
                         draggable: false, // Choose whether you can drag to open on touch screens
                         closeOnClick: true
                     }
                 );
+
+                $(function(){
+                    $('.slider').slider();
+                });
+
             </script>
+
+
         {% endblock %}
     {% endblock %}

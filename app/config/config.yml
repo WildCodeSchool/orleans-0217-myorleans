@@ -90,11 +90,7 @@ services:
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     %kernel.project_dir/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
-        options:    []
-    image:
-        enabled:    true
-        binary:     %kernel.project_dir/bin/wkhtmltoimage #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" for Windows users
+        binary:     %kernel.root_dir%/../bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
         options:    []
 
 liip_imagine:
@@ -159,6 +155,26 @@ liip_imagine:
                     size: [ 1920, 450 ]
                     start: [ 000, 300 ]
 
+
+        thumb_pdf_photo_residence:
+            filters:
+                thumbail:
+                    size: [620, 400]
+                    mode: outband
+
+
+        thumb_images_carrousel:
+            filters:
+                thumbnail:
+                    size: [600, 400]
+                    mode: outbound
+
+        thumb_timeline:
+            filters:
+                thumbnail:
+                    size: [300, 150]
+                    mode: outbound
+
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
     default_options:
@@ -169,3 +185,10 @@ knp_paginator:
     template:
         pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig'     # sliding pagination controls template
         sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig' # sort link template
+
+stof_doctrine_extensions:
+    default_locale: fr_FR
+    orm:
+        default:
+            sluggable:   true
+            timestampable: true

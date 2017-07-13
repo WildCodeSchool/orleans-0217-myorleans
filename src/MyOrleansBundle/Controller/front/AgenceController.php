@@ -32,28 +32,43 @@ class AgenceController extends Controller
             $parcours = $session->get('parcours');
         }
 
+        $mois = [
+            '01' => 'janvier',
+            '02' => 'février',
+            '03' => 'mars',
+            '04' => 'avril',
+            '05' => 'mai',
+            '06' => 'juin',
+            '07' => 'juillet',
+            '08' => 'août',
+            '09' => 'septembre',
+            '10' => 'octobre',
+            '11' => 'novembre',
+            '12' => 'décembre',
+        ];
 
-        $telephoneNumber = $this->getParameter('telephone_number');
         $em = $this->getDoctrine()->getManager();
+      
+        $telephone_number = $this->getParameter('telephone_number');
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+
+        $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
+
+        $formulaire->handleRequest($request);
 
         $partenaires = $em->getRepository(Partenaire::class)->findAll();
         $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
         $evenements =$em->getRepository(Evenement::class)->findAll();
         $cover = $em->getRepository(Media::class)->findAll();
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-
-        $formulaire->handleRequest($request);
-
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
             $mailer = $this->get('mailer');
 
             $message = new \Swift_Message('Nouveau message de my-orleans.com');
             $message
                 ->setTo($this->getParameter('mailer_user'))
                 ->setFrom($this->getParameter('mailer_user'))
-
                 ->setBody(
                     $this->renderView(
 
@@ -68,16 +83,19 @@ class AgenceController extends Controller
             $em->persist($client);
             $em->flush();
 
+            $this->addFlash('success', 'votre message a bien été envoyé');
+
             return $this->redirectToRoute('agence');
         }
 
         return $this->render('MyOrleansBundle::agence.html.twig',
             [
+                'telephone_number' => $telephone_number,
+                'mois' => $mois,
                 'parcours' => $parcours,
                 'partenaires' => $partenaires,
                 'collaborateurs'=>$collaborateurs,
                 'evenements'=>$evenements,
-                'telephone_number' => $telephoneNumber,
                 'cover'=>$cover,
                 'form' => $formulaire->createView()
             ]

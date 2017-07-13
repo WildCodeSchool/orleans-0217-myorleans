@@ -132,7 +132,6 @@ class Temoignage
         return $this->date;
     }
 
-
     /**
      * Set message
      *
@@ -156,5 +155,6 @@ class Temoignage
     {
         return $this->message;
     }
+
 
 }

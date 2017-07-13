@@ -64,9 +64,8 @@
                         <div class="card message">
                             <div class="row message center-align">
                                 <div class="col s12 m10">
-                                    <div class="card-content white-text">
                                         {{ message }}
-                                    </div>
+
                                 </div>
                                 <div class="col s12 m2">
                                     <i class="fa fa-times icon_style" id="alert_close" aria-hidden="true"></i>
@@ -165,40 +164,5 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-    <script>
-
-
-        $(document).ready(function(){
-
-            // hide #back-top first
-            $("#back-top").hide();
-
-            // fade in #back-top
-            $(function () {
-                $(window).scroll(function () {
-                    if ($(this).scrollTop() > 100) {
-                        $('#back-top').fadeIn();
-                    } else {
-                        $('#back-top').fadeOut();
-                    }
-                });
-
-                // scroll body to 0px on click
-                $('#back-top a').click(function () {
-                    $('body,html').animate({
-                        scrollTop: 0
-                    }, 800);
-                    return false;
-                });
-            });
-
-            $('#alert_close').click(function(){
-                $( "#alert_box" ).fadeOut( "slow", function() {
-                });
-            });
-
-
-
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
 {% endblock %}

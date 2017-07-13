@@ -1,0 +1,9 @@
+<div class="slider">
+        <ul class="slides">
+            {% for media in evenement.medias if media.typeMedia.nom == "image" %}
+                <li>
+                        <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_images_carrousel') }}" alt="photo-événement">
+                </li>
+            {% endfor %}
+        </ul>
+</div>

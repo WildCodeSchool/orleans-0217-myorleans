@@ -89,7 +89,7 @@ class TypeMediaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_typemedia_edit', array('id' => $typeMedia->getId()));
+            return $this->redirectToRoute('admin_typemedia_index', array('id' => $typeMedia->getId()));
         }
 
         return $this->render('typemedia/edit.html.twig', array(

@@ -44,11 +44,30 @@
         </div>
 
         <div class="row">
-            {{ article.texte }}
+            {{ article.texte | raw }}
         </div>
 
         <hr class="separe">
+        <!--Partage reseaux sociaux-->
+        <div class="container">
+            <div class="row center">
+                <p class="partage">Vous avez aimé cet article? N'hésitez pas à le partager à vos amis: </p>
+                <div class="col l4 m4 s12">
+                    <a class="twitter-share-button"
+                       href="https://twitter.com/intent/tweet?text=Hello%20world"
+                       data-size="large">
+                        Tweet</a>
+                </div>
 
+
+
+                <div class="col l4 m4 s12">
+                    <a class="waves-effect waves-light btn" href="mailto:?to= &subject=blog%20my%20Orleans">Envoyez à un ami par mail </a>
+
+                </div>
+            </div>
+        </div>
+        <!--fin partage reseaux sociaux-->
     </div>
 
     <div class="container-fluid">
@@ -77,7 +96,7 @@
                             </div>
                             <div class="infoArticle">
                                 <h4 class="white-text">{{ article.titre }}</h4>
-                                <p>{{ article.texte | truncate(20, true, '...') }}</p>
+                                <p>{{ article.texte | truncate(20, true, '...') | raw }}</p>
 
                                 {% for tag in article.tags %}
                                 <div class="chip">
@@ -86,7 +105,7 @@
                                 {% endfor %}
 
                                 <div class="row lien-article">
-                                    <a href="{{ path('blog-article', { 'id': article.id }) }}">LIRE L'ARTICLE</a>
+                                    <a href="{{ path('blog-article', { 'slug': article.slug }) }}">LIRE L'ARTICLE</a>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +118,11 @@
 
     </div>
 
-</div>
+
+
 
 
 {% endblock content %}
+
+
+

@@ -37,10 +37,6 @@ class FlatType extends AbstractType
                 'class' => 'MyOrleansBundle:TypeLogement',
                 'choice_label' => 'nom'
             ])
-            ->add('residence', EntityType::class, [
-                'class' => 'MyOrleansBundle:Residence',
-                'choice_label' => 'nom'
-            ])
             ->add('medias', CollectionType::class,
                 [
                     'entry_type' => MediaType::class,

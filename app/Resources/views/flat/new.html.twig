@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title"> Créer un nouveau bien</h4>
+                            <h4 class="title"> Créer un nouveau bien pour la résidence {{ residence.nom }}</h4>
                         </div>
 
                         <div class="card-content table-responsive">
@@ -95,9 +95,10 @@
 
                             <ul>
                                 <li>
-                                    <a href="{{ path('admin_flat_index') }}"><i
-                                                class="material-icons">keyboard_return</i>Retour
-                                        à la liste des biens</a>
+
+                                    <a href="{{ path('admin_flat_index' ,{'id':residence.id }) }}"><i
+                                                class="material-icons">keyboard_return</i>Retour à la liste des
+                                        biens</a>
                                 </li>
                             </ul>
                         </div>

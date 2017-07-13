@@ -10,6 +10,11 @@
 {% endblock %}
 
 {% block body %}
+    <div class="breadcrumb">
+        <a href="#Inscription-newsletter" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
+    </div>
+    <!--fin logo dde de documentation-->
+
 
     <div id="GrandeIntro">
         <div class="row center logoIntro">
@@ -44,6 +49,7 @@
             {% endif %}
         </div>
     </div>
+    <!--logo dde de documentation-->
 
     <div class="container-fluid" id="siteWrapper">
     <header>
@@ -93,8 +99,30 @@
                 </div>
             </nav>
         </div>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="row" id="alert_box">
+                    <div class="col s12 m6 l4 offset-l4">
+                        <div class="card message">
+                            <div class="row message center-align">
+                                <div class="col s12 m10">
+                                    <div class="card-content white-text">
+                                        {{ message }}
+                                    </div>
+                                </div>
+                                <div class="col s12 m2">
+                                    <i class="fa fa-times icon_style" id="alert_close" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
     </header>
 
+    <!--logo dde de documentation-->
 
     {% block content %}
 
@@ -127,12 +155,14 @@
                             <div class="formButton col s12 m12 l4 offset-l4">
                                 {{ form_widget(simpleSearch.investBtn) }}
                                 {{ form_widget(simpleSearch._token) }}
+
                                 </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
                             </div>
                         {% elseif parcours == 'residence' %}
                             <div class="formButton col s12 m12 l4 offset-l4">
                                 {{ form_widget(simpleSearch.resPrincipaleBtn) }}
                                 {{ form_widget(simpleSearch._token) }}
+
                                 </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
                             </div>
                         {% else %}
@@ -172,19 +202,21 @@
                             </div>
 
                             <div class="col s12 l6">
-                                {% for resTwoFav in residenceTwoFav %}
-                                    <div class="col s12 l12">
-                                        <div class="card">
-                                            <div class="card-image">
-                                                {% for media in resTwoFav.medias if media.typeMedia.nom == 'image-cover' %}
-                                                    <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
-                                                         alt="{{ resTwoFav.nom }}">
-                                                {% endfor %}
-                                                <span class="card-title">{{ resTwoFav.nom }}</span>
+                                {% if residenceTwoFav is not empty %}
+                                    {% for resTwoFav in residenceTwoFav %}
+                                        <div class="col s12 l12">
+                                            <div class="card">
+                                                <div class="card-image">
+                                                    {% for media in resTwoFav.medias if media.typeMedia.nom == 'image-cover' %}
+                                                        <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
+                                                             alt="{{ resTwoFav.nom }}">
+                                                    {% endfor %}
+                                                    <span class="card-title">{{ resTwoFav.nom }}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -256,8 +288,10 @@
                 <!-- Modal Trigger -->
                 <div class="row">
                     <div class="col s12 center">
-                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter"
-                           href="#modal1">
+                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter button-collapse"
+
+                           href="#" data-activates="slide-out">
+
                             <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
                         </a>
                     </div>
@@ -269,10 +303,12 @@
 
 
         <div class="row">
+            {% if actu is not empty %}
             <div class="col s12 l6">
                 <h3>L'actualité</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
+
                         {% for media in actu[0].medias if media.typeMedia.nom == 'image-cover' %}
                             <img class="activator"
                                  src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
@@ -283,21 +319,25 @@
                         <span class="card-title activator grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">add</i></span>
                         <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
-                        <p class="truncate">{{ actu[0].texte }}</p>
+                        <p class="truncate">{{ actu[0].texte | truncate(10, true, '...') | raw }}</p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ actu[0].titre }}<i
                                     class="material-icons right">close</i></span>
-                        <p>{{ actu[0].texte }}</p>
+                        <p>{{ actu[0].texte | truncate(10, true, '...') | raw }}</p>
+                        <div class="center">
+                            <a class="waves-effect waves-light btn-large light-green" href="{{ path('blog-article', { 'slug': actu[0].slug }) }}">Lire l'article</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
 
+            {% if event is not empty %}
             <div class="col s12 l6">
                 <h3>L'événement</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-
                         {% for media in event[0].medias if media.typeMedia.nom == 'image-cover' %}
                             <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
                         {% endfor %}
@@ -312,9 +352,14 @@
                         <span class="card-title grey-text text-darken-4">{{ event[0].nom }}<i
                                     class="material-icons right">close</i></span>
                         <p>{{ event[0].description }}</p>
+                        <div class="center">
+                            <a class="waves-effect waves-light btn-large light-green" href="{{ path('agence') }}">Découvrir l'événement</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
+
         </div>
 
     {% endblock %}
@@ -397,8 +442,6 @@
             <div class="userView">
                 <h3 align="center">Contactez nous !</h3>
                 <h4 align="center">{{ telephone_number }}</h4>
-
-
                 {{ form_start(form) }}
                 <div class="row">
 
@@ -452,6 +495,7 @@
                     </div>
 
                     <div class="input-field col l12 m12 s12">
+                        <p class="newsletter">Quel est l'objet de votre message?</p>
                         <i class="material-icons prefix">info_outline</i>
 
                         {{ form_widget(form.sujet) }}
@@ -485,7 +529,6 @@
     </form>
 
     <!--fin formulaire de contact-->
-
 {% endblock %}
 
                     {% block javascripts %}

@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Client
@@ -12,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Client
 {
+    const SUJET_INFO_RESID_PRINC = 1;
+    const SUJET_INFO_APPART = 2;
+    const SUJET_INSCRIPT_EVENT = 3;
+    const SUJET_INSCR_NEWSLETTER = 4;
+    const SUJET_SERVICES = 5;
+    const SUJET_AUTRES = 6;
+
     /**
      * @var int
      *
