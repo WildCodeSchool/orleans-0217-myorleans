@@ -1,4 +1,3 @@
-
 {% extends '::layout_admin.html.twig' %}
 
 {% block content %}
@@ -14,58 +13,107 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_label(edit_form.nom, "Nom de la résidence:") }}
-                            {{ form_widget(edit_form.nom) }}
-                            {{ form_label(edit_form.adresse, 'Adresse: ') }}
-                            {{ form_widget(edit_form.adresse) }}
-                            {{ form_label(edit_form.ville, 'Ville: ') }}
-                            {{ form_widget(edit_form.ville) }}
-                            <div class="padding-top">
-                                {{ form_label(edit_form.quartier, 'Quartier: ') }}
-                                {{ form_widget(edit_form.quartier) }}
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.nom, "Nom de la résidence:") }}
+                                    {{ form_widget(edit_form.nom) }}
+                                </div>
+                                <div class="col s6">  {{ form_label(edit_form.favoris, 'Favoris: ') }}
+                                    {{ form_widget(edit_form.favoris) }}
+                                </div>
                             </div>
-                            {{ form_label(edit_form.codePostal, 'Code Postal: ') }}
-                            {{ form_widget(edit_form.codePostal) }}
-                            {{ form_label(edit_form.dateLivraison, 'Date de livraison: ') }}
-                            {{ form_widget(edit_form.dateLivraison) }}
-                            {{ form_label(edit_form.description, 'Description: ') }}
-                            {{ form_widget(edit_form.description) }}
-                            {{ form_label(edit_form.nbTotalLogements, 'Nombre total de logements: ') }}
-                            {{ form_widget(edit_form.nbTotalLogements) }}
-                            {{ form_label(edit_form.noteTransports, 'Note transport: ') }}
-                            {{ form_widget(edit_form.noteTransports) }}
-                            {{ form_label(edit_form.noteServices, 'Note service: ') }}
-                            {{ form_widget(edit_form.noteServices) }}
-                            {{ form_label(edit_form.noteEsthetisme, 'Note esthétisme: ') }}
-                            {{ form_widget(edit_form.noteEsthetisme) }}
-                            {{ form_label(edit_form.favoris, 'Favoris: ') }}
-                            {{ form_widget(edit_form.favoris) }}
-                            <div class="padding-top">
-                                {{ form_label(edit_form.affichagePrix, 'Affichage du Prix: ') }}
-                                {{ form_widget(edit_form.affichagePrix) }}
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.adresse, 'Adresse: ') }}
+                                    {{ form_widget(edit_form.adresse) }}
+                                </div>
+                                <div class="col s6 padding-top">
+                                    {{ form_label(edit_form.quartier, 'Quartier: ') }}
+                                    {{ form_widget(edit_form.quartier) }}
+                                </div>
                             </div>
-                            <div class="padding-top">
-                                {{ form_label(edit_form.eligibilitePinel, 'Eligibilité Loi Pinel: ') }}
-                                {{ form_widget(edit_form.eligibilitePinel) }}
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.ville, 'Ville: ') }}
+                                    {{ form_widget(edit_form.ville) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.codePostal, 'Code Postal: ') }}
+                                    {{ form_widget(edit_form.codePostal) }}
+                                </div>
                             </div>
-                            {{ form_label(edit_form.accroche, 'Accroche: ') }}
-                            {{ form_widget(edit_form.accroche) }}
-                            {{ form_label(edit_form.medias, 'Media: ') }}
-                            {% for media in residence.medias %}
-                                {% if media.id != null %}
-                                    <p class="imgUploader"><img class="responsive-img"
-                                                                src="{{ asset('uploads/'~media.lien) }}"/>
-                                        <a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
-                                    </p>
-                                {% else %}
-                                    <h3>Veuillez charger une nouvelle image.</h3>
-                                    <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du
-                                        media.</p>
-                                    {{ form_widget(edit_form.medias) }}
-                                {% endif %}
-                            {% endfor %}
-                            <a href="#" id="add-another-media">Ajouter un média</a>
-                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
+
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.description, 'Description: ') }}
+                                    {{ form_widget(edit_form.description) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.dateLivraison, 'Date de livraison: ') }}
+                                    {{ form_widget(edit_form.dateLivraison) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.nbTotalLogements, 'Nombre total de logements: ') }}
+                                    {{ form_widget(edit_form.nbTotalLogements) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(edit_form.noteTransports, 'Note transport: ') }}
+                                    {{ form_widget(edit_form.noteTransports) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.noteServices, 'Note service: ') }}
+                                    {{ form_widget(edit_form.noteServices) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.noteEsthetisme, 'Note esthétisme: ') }}
+                                    {{ form_widget(edit_form.noteEsthetisme) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 padding-top">
+                                    {{ form_label(edit_form.affichagePrix, 'Affichage du Prix: ') }}
+                                    {{ form_widget(edit_form.affichagePrix) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6 padding-top">
+                                    {{ form_label(edit_form.eligibilitePinel, 'Eligibilité Loi Pinel: ') }}
+                                    {{ form_widget(edit_form.eligibilitePinel) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.accroche, 'Accroche: ') }}
+                                    {{ form_widget(edit_form.accroche) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.medias, 'Media: ') }}
+                                    {% for media in residence.medias %}
+                                        {% if media.id != null %}
+                                            <p class="imgUploader"><img class="responsive-img"
+                                                                        src="{{ asset('uploads/'~media.lien) }}"/>
+                                                <a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
+                                            </p>
+                                        {% else %}
+                                            <h3>Veuillez charger une nouvelle image.</h3>
+                                            <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le
+                                                type
+                                                du
+                                                media.</p>
+                                            {{ form_widget(edit_form.medias) }}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
+                                       id="add-another-media"><i
+                                                class="material-icons">file_upload</i></a>
+                                </div>
+                            </div>
+                            <input class="waves-effect waves-light btn-large light-green" type="submit"
+                                   value="Modifier"/>
                             {{ form_widget(edit_form._token) }}
                             </form>
                             <ul>
@@ -92,27 +140,27 @@
 {% endblock %}
 
 
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript">
-        // keep track of how many email fields have been rendered
-        var mediaCount = '{{ edit_form.medias|length }}';
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript">
+            // keep track of how many email fields have been rendered
+            var mediaCount = '{{ edit_form.medias|length }}';
 
-        jQuery(document).ready(function () {
-            jQuery('#add-another-media').click(function (e) { // appbundle_products_add-product
-                e.preventDefault();
-                var mediaList = jQuery('#{{ edit_form.medias.vars.id }}');
+            jQuery(document).ready(function () {
+                jQuery('#add-another-media').click(function (e) { // appbundle_products_add-product
+                    e.preventDefault();
+                    var mediaList = jQuery('#{{ edit_form.medias.vars.id }}');
 
-                var newWidget = mediaList.attr('data-prototype');
-                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
-                newWidget = newWidget.replace(/__name__/g, mediaCount);
-                mediaCount++;
-                // create a new list element and add it to the list
-                var newLi = jQuery('<li></li>').html(newWidget);
-                newLi.appendTo(mediaList);
+                    var newWidget = mediaList.attr('data-prototype');
+                    newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
+                    newWidget = newWidget.replace(/__name__/g, mediaCount);
+                    mediaCount++;
+                    // create a new list element and add it to the list
+                    var newLi = jQuery('<li></li>').html(newWidget);
+                    newLi.appendTo(mediaList);
 
-            });
-        })
-    </script>
+                });
+            })
+        </script>
 
-{% endblock %}
+    {% endblock %}
