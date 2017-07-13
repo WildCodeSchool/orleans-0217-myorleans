@@ -80,6 +80,11 @@ class Flat
     private $statut;
 
     /**
+     * @ORM\ManyToOne(targetEntity="TypeBien", inversedBy="flats")
+     */
+    private $typeBien;
+
+    /**
      * @ORM\ManyToOne(targetEntity="TypeLogement", inversedBy="flats")
      */
     private $typeLogement;
@@ -100,9 +105,6 @@ class Flat
      * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="flat")
      */
     private $categoriePrestas;
-
-
-
 
 
     /**
@@ -291,6 +293,22 @@ class Flat
     public function setStatut($statut)
     {
         $this->statut = $statut;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeBien()
+    {
+        return $this->typeBien;
+    }
+
+    /**
+     * @param mixed $typeBien
+     */
+    public function setTypeBien($typeBien)
+    {
+        $this->typeBien = $typeBien;
     }
 
     /**
