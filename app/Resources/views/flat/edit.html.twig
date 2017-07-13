@@ -10,64 +10,82 @@
                         <div class="card-header light-green">
                             <h4 class="title">Modifier ce bien de la résidence {{ flat.residence.nom }} </h4>
                         </div>
+
                         <div class="card-content table-responsive">
                             {{ form_start(edit_form) }}
                             <div class="row">
-
-                                {{ form_label(edit_form.reference, "Référence du bien:") }}
-                                {{ form_widget(edit_form.reference) }}
-                                {{ form_label(edit_form.prix, 'Prix: ') }}
-                                {{ form_widget(edit_form.prix) }}
-                                {{ form_label(edit_form.surface, 'Surface: ') }}
-                                {{ form_widget(edit_form.surface) }}
-                                {{ form_label(edit_form.nbPiece, 'Nombre de pièce(s): ') }}
-                                {{ form_widget(edit_form.nbPiece) }}
-                                {{ form_label(edit_form.description, 'Description: ') }}
-                                {{ form_widget(edit_form.description) }}
-                                {{ form_label(edit_form.prestationComplementaire, 'Lister les prestations complémentaires: ') }}
-                                {{ form_widget(edit_form.prestationComplementaire) }}
-                                {{ form_label(edit_form.statut, 'Statut du bien: ') }}
-                                {{ form_widget(edit_form.statut) }}
-                                {{ form_label(edit_form.typeLogement, 'Type du Logement: ') }}
-
+                                <div class="col s6">
+                                    {{ form_label(edit_form.reference, "Référence du bien:") }}
+                                    {{ form_widget(edit_form.reference) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.prix, 'Prix: ') }}
+                                    {{ form_widget(edit_form.prix) }}
+                                </div>
                             </div>
-                            {% for media in flat.medias %}
-                                {% if media.id != null %}
-                                    <p class="imgUploader"><img class="responsive-img"
-                                                                src="{{ asset('uploads/'~media.lien) }}"/>
-                                        <a href="{{ path('flat_media_delete', {"id" : flat.id, "media_id" : media.id}) }}">Supprimer</a>
-                                    </p>
-                                {% else %}
-                                    <h3>Veuillez charger une nouvelle image.</h3>
-                                    <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du
-                                        media.</p>
-                                    {{ form_widget(edit_form.medias) }}
-                                {% endif %}
-                            {% endfor %}
-                            <p><a href="#" id="add-another-media">Ajouter un média</a></p>
-                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit" />
-                            {{ form_widget(edit_form._token) }}
-                            </form>
-
-                            <ul>
-                                <li>
-                                    <a href="{{ path('admin_flat_index', {'id':flat.residence.id}) }}"><i
-                                                class="material-icons">keyboard_return</i>Retour à la liste des
-                                        biens</a>
-                                </li>
-                                <li>
-                                    {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete"
-                                           class="waves-effect waves-light btn-large red pull-right">
-                                    {{ form_end(delete_form) }}
-                                </li>
-                            </ul>
-
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.surface, 'Surface: ') }}
+                                    {{ form_widget(edit_form.surface) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.nbPiece, 'Nombre de pièce(s): ') }}
+                                    {{ form_widget(edit_form.nbPiece) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.description, 'Description: ') }}
+                                    {{ form_widget(edit_form.description) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.prestationComplementaire, 'Lister les prestations complémentaires: ') }}
+                                    {{ form_widget(edit_form.prestationComplementaire) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.statut, 'Statut du bien: ') }}
+                                    {{ form_widget(edit_form.statut) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.typeLogement, 'Type du Logement: ') }}
+                                </div>
+                            </div>
                         </div>
+                        {% for media in flat.medias %}
+                            {% if media.id != null %}
+                                <p class="imgUploader"><img class="responsive-img"
+                                                            src="{{ asset('uploads/'~media.lien) }}"/>
+                                    <a href="{{ path('flat_media_delete', {"id" : flat.id, "media_id" : media.id}) }}">Supprimer</a>
+                                </p>
+                            {% else %}
+                                <h3>Veuillez charger une nouvelle image.</h3>
+                                <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du
+                                    media.</p>
+                                {{ form_widget(edit_form.medias) }}
+                            {% endif %}
+                        {% endfor %}
+                        <p><a href="#" id="add-another-media">Ajouter un média</a></p>
+                        <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
+                        {{ form_widget(edit_form._token) }}
+                        </form>
+
+                        <ul>
+                            <li>
+                                <a href="{{ path('admin_flat_index', {'id':flat.residence.id}) }}"><i
+                                            class="material-icons">keyboard_return</i>Retour à la liste des
+                                    biens</a>
+                            </li>
+                        </ul>
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 {% endblock %}
