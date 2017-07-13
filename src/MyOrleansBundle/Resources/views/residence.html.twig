@@ -230,14 +230,14 @@
                                                     <td>{{ flat.typeLogement.nom }}</td>
                                                     <td>{{ flat.surface }}m2</td>
                                                     <td>{{ flat.prix }} €</td>
-                                                    {% if flat.statut == 1 %}
-                                                        <td class="waves-effect waves-light btn btn-vendu">
-                                                            <strong>Vendu</strong></td>
-                                                    {% else %}
+                                                    {% if flat.statut %}
                                                         <td>
                                                             <a href="{{ path('appartement', { 'id': flat.id }) }}"
                                                                class="waves-effect waves-light btn btn-residence">Voir</a>
                                                         </td>
+                                                    {% else %}
+                                                        <td class="waves-effect waves-light btn btn-vendu">
+                                                            <strong>Vendu</strong></td>
                                                     {% endif %}
                                                 </tr>
                                             {% endif %}
@@ -268,14 +268,14 @@
                                                     <td>{{ flat.typeLogement.nom }}</td>
                                                     <td>{{ flat.surface }}m2</td>
                                                     <td>{{ flat.prix }} €</td>
-                                                    {% if flat.statut == 1 %}
-                                                        <td class="waves-effect waves-light btn btn-vendu">
-                                                            <strong>Vendu</strong></td>
-                                                    {% else %}
+                                                    {% if flat.statut %}
                                                         <td>
                                                             <a href="{{ path('appartement', { 'id': flat.id }) }}"
                                                                class="waves-effect waves-light btn btn-residence">Voir</a>
                                                         </td>
+                                                    {% else %}
+                                                        <td class="waves-effect waves-light btn btn-vendu">
+                                                            <strong>Vendu</strong></td>
                                                     {% endif %}
                                                 </tr>
                                             {% endif %}
@@ -306,14 +306,14 @@
                                                     <td>{{ flat.typeLogement.nom }}</td>
                                                     <td>{{ flat.surface }}m2</td>
                                                     <td>{{ flat.prix }} €</td>
-                                                    {% if flat.statut == 1 %}
-                                                        <td class="waves-effect waves-light btn btn-vendu">
-                                                            <strong>Vendu</strong></td>
-                                                    {% else %}
+                                                    {% if flat.statut %}
                                                         <td>
                                                             <a href="{{ path('appartement', { 'id': flat.id }) }}"
                                                                class="waves-effect waves-light btn btn-residence">Voir</a>
                                                         </td>
+                                                    {% else %}
+                                                        <td class="waves-effect waves-light btn btn-vendu">
+                                                            <strong>Vendu</strong></td>
                                                     {% endif %}
                                                 </tr>
                                             {% endif %}
@@ -344,14 +344,14 @@
                                                     <td>{{ flat.typeLogement.nom }}</td>
                                                     <td>{{ flat.surface }}m2</td>
                                                     <td>{{ flat.prix }} €</td>
-                                                    {% if flat.statut == 1 %}
-                                                        <td class="waves-effect waves-light btn btn-vendu">
-                                                            <strong>Vendu</strong></td>
-                                                    {% else %}
+                                                    {% if flat.statut %}
                                                         <td>
                                                             <a href="{{ path('appartement', { 'id': flat.id }) }}"
                                                                class="waves-effect waves-light btn btn-residence">Voir</a>
                                                         </td>
+                                                    {% else %}
+                                                        <td class="waves-effect waves-light btn btn-vendu">
+                                                            <strong>Vendu</strong></td>
                                                     {% endif %}
                                                 </tr>
                                             {% endif %}

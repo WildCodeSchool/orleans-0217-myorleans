@@ -282,7 +282,7 @@ class Flat
     /**
      * @return bool
      */
-    public function isStatut(): bool
+    public function getStatut()
     {
         return $this->statut;
     }
