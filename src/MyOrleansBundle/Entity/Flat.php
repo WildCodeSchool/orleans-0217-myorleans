@@ -73,9 +73,9 @@ class Flat
     private $prestationComplementaire;
 
     /**
-     * @var string
+     * @var bool
      *
-     * @ORM\Column(name="statut", type="string", length=10, nullable=true)
+     * @ORM\Column(name="statut", type="boolean", length=10, nullable=true)
      */
     private $statut;
 
@@ -280,20 +280,21 @@ class Flat
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getStatut()
+    public function isStatut(): bool
     {
         return $this->statut;
     }
 
     /**
-     * @param string $statut
+     * @param bool $statut
      */
-    public function setStatut($statut)
+    public function setStatut(bool $statut)
     {
         $this->statut = $statut;
     }
+
 
     /**
      * @return mixed
