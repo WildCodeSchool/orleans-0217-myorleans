@@ -40,7 +40,11 @@
                                             <td>{{ flat.nbPiece }}</td>
                                             <td>{{ flat.description }}</td>
                                             <td>{{ flat.prestationComplementaire }}</td>
-                                            <td>{{ flat.statut }}</td>
+                                            {% if flat.statut %}
+                                            <td>Disponible</td>
+                                            {% else %}
+                                            <td>Vendu</td>
+                                            {% endif %}
                                             <td>
                                                 <a href="{{ path('admin_flat_show', { 'id': flat.id }) }}"><i
                                                             class="material-icons">remove_red_eye</i></a>
