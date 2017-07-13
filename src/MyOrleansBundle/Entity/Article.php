@@ -320,6 +320,7 @@ class Article
     }
 
 
+
     /**
      * Set slug
      *

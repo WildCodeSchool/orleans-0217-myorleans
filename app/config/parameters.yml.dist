@@ -20,6 +20,7 @@ parameters:
     mailer_sender_name: MyOrléans
     parcours_investisseur: investisseur
     parcours_residence: residence
+    GoogleApiKey: ~
     mail_agence: ~
     googlemap_static_map_key: ~
 

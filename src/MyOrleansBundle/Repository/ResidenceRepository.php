@@ -27,7 +27,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->join('f.typeLogement', 't');
         }
 
-        $qb->andWhere('flts.statut = 1')
+        $qb->andWhere('flts.statut = true')
             ->join('r.flats', 'flts');
 
         return $qb->getQuery()->getResult();
@@ -50,7 +50,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->join('f.typeLogement', 't');
         }
 
-        $qb->andWhere('flts.statut = 1')
+        $qb->andWhere('flts.statut = true')
             ->join('r.flats', 'flts')
             ->setMaxResults(2);
 
@@ -111,7 +111,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->join('r.flats', 'fts');
         }
 
-        $qb->andWhere('flts.statut = 1')
+        $qb->andWhere('flts.statut = true')
             ->join('r.flats', 'flts');
 
         return $qb->getQuery()->getResult();
@@ -167,7 +167,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->join('r.flats', 'fts');
         }
 
-        $qb->andWhere('flts.statut = 1')
+        $qb->andWhere('flts.statut = true')
             ->join('r.flats', 'flts')
             ->setMaxResults(2);
 

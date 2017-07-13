@@ -30,7 +30,8 @@ class FlatType extends AbstractType
             ])
             ->add('statut', ChoiceType::class, [
                 'choices' => [
-                    'Disponible' => '1', 'Vendu' => '0'
+                    'Disponible' => true,
+                    'Vendu' => false
                 ]
             ])
             ->add('typeLogement', EntityType::class, [

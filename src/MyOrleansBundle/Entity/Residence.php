@@ -668,54 +668,6 @@ class Residence
     }
 
     /**
-     * Set citation
-     *
-     * @param string $citation
-     *
-     * @return Residence
-     */
-    public function setCitation($citation)
-    {
-        $this->citation = $citation;
-
-        return $this;
-    }
-
-    /**
-     * Get citation
-     *
-     * @return string
-     */
-    public function getCitation()
-    {
-        return $this->citation;
-    }
-
-    /**
-     * Set pinel
-     *
-     * @param string $pinel
-     *
-     * @return Residence
-     */
-    public function setPinel($pinel)
-    {
-        $this->pinel = $pinel;
-
-        return $this;
-    }
-
-    /**
-     * Get pinel
-     *
-     * @return string
-     */
-    public function getPinel()
-    {
-        return $this->pinel;
-    }
-
-    /**
      * Get ville
      *
      * @return \MyOrleansBundle\Entity\Ville
@@ -754,9 +706,6 @@ class Residence
         $this->affichagePrix = $affichagePrix;
         return $this;
     }
-
-
-
 
     /**
      * Get favoris
