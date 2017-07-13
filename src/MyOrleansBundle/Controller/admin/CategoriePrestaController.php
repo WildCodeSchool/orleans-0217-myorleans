@@ -69,7 +69,7 @@ class CategoriePrestaController extends Controller
         $deleteForm = $this->createDeleteForm($categoriepresta);
 
         return $this->render('categoriepresta/show.html.twig', array(
-            'categoriepresta' => $categoriepresta,
+            'categoriePrestum' => $categoriepresta,
             'delete_form' => $deleteForm->createView(),
         ));
     }
