@@ -98,7 +98,6 @@ class AgenceController extends Controller
                 'evenements' => $evenements,
                 'cover' => $cover,
                 'form' => $formulaire->createView()
-
             ]
         );
     }
