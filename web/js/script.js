@@ -1,6 +1,7 @@
 // initialisation des select de Materialize
 
 $(document).ready(function () {
+    $('select').material_select();
     $('.parallax').parallax();
 
     $('.carousel').carousel({
@@ -10,7 +11,7 @@ $(document).ready(function () {
         duration: 100
     });
 
-    $('select').material_select();
+
 
     $('.modal').modal();
     // Script JS pour l'autocomplétion

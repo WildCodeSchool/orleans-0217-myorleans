@@ -55,7 +55,7 @@ class ResidenceController extends Controller
      * @Route("/new", name="admin_residence_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader, Geoloc $geoloc)
+    public function newAction(Request $request, Geoloc $geoloc)
     {
 
         $residence = new Residence();
@@ -123,7 +123,7 @@ class ResidenceController extends Controller
      * @Route("/{id}/edit", name="admin_residence_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Residence $residence, FileUploader $fileUploader, Geoloc $geoloc)
+    public function editAction(Request $request, Residence $residence, Geoloc $geoloc)
     {
         $deleteForm = $this->createDeleteForm($residence);
         if ($residence->getMedias()->isEmpty()) {
