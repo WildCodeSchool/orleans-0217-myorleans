@@ -5,6 +5,7 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\FlatType;
 use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -68,6 +69,15 @@ class FlatController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $flat->setResidence($residence);
+
+            // Si l'administrateur n'upload pas de photo pour le bien, une photo est chargée par défaut
+            $media = $flat->getMedias()->first();
+            if (is_null($media->getId())) {
+                /* @var $media Media */
+                $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+                $media->setTypeMedia($typeMediaImgCover);
+                $media->setLien('default.jpg');
+            }
             $em->persist($flat);
             $em->flush();
 
@@ -150,6 +160,10 @@ class FlatController extends Controller
     public function editAction(Request $request, Flat $flat)
     {
         $deleteForm = $this->createDeleteForm($flat);
+        if ($flat->getMedias()->isEmpty()) {
+            $media = new Media();
+            $flat->getMedias()->add($media);
+        }
         $editForm = $this->createForm('MyOrleansBundle\Form\FlatType', $flat);
         $editForm->handleRequest($request);
 
