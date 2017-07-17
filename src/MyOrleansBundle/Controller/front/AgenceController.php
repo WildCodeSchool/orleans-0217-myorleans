@@ -48,7 +48,7 @@ class AgenceController extends Controller
         ];
 
         $em = $this->getDoctrine()->getManager();
-      
+
         $telephone_number = $this->getParameter('telephone_number');
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
 
@@ -58,7 +58,7 @@ class AgenceController extends Controller
 
         $partenaires = $em->getRepository(Partenaire::class)->findAll();
         $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
-        $evenements =$em->getRepository(Evenement::class)->findAll();
+        $evenements = $em->getRepository(Evenement::class)->findAll();
         $cover = $em->getRepository(Media::class)->findAll();
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -94,13 +94,11 @@ class AgenceController extends Controller
                 'mois' => $mois,
                 'parcours' => $parcours,
                 'partenaires' => $partenaires,
-                'collaborateurs'=>$collaborateurs,
-                'evenements'=>$evenements,
-                'cover'=>$cover,
+                'collaborateurs' => $collaborateurs,
+                'evenements' => $evenements,
+                'cover' => $cover,
                 'form' => $formulaire->createView()
             ]
         );
     }
-
-
 }
