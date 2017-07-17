@@ -1,39 +1,59 @@
-{% extends 'base.html.twig' %}
+{% extends '::layout_admin.html.twig' %}
 
-{% block body %}
-    <h1>Villes list</h1>
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ville in villes %}
-            <tr>
-                <td><a href="{{ path('admin_ville_show', { 'id': ville.id }) }}">{{ ville.id }}</a></td>
-                <td>{{ ville.nom }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_ville_show', { 'id': ville.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_ville_edit', { 'id': ville.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Liste des villes dans lesquelles se trouvent les résidences</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <thead class="text">
+                                <th>Id</th>
+                                <th>Nom</th>
+                                </thead>
+                                <tbody>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_ville_new') }}">Create a new ville</a>
-        </li>
-    </ul>
+                                {% for ville in villes %}
+
+                                    <tr>
+                                        <td><a href="{{ path('admin_ville_show', { 'id': ville.id }) }}">{{ ville.id }}</a></td>
+                                        <td>{{ ville.nom }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_ville_show', { 'id': ville.id }) }}"><i
+                                                        class="material-icons">remove_red_eye</i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_ville_edit', { 'id': ville.id }) }}"><i
+                                                        class="material-icons">build</i></a>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <hr>
+                            <div class="navigation center">
+                                {{ knp_pagination_render(villes, 'MyOrleansBundle::pagination.html.twig') }}
+                            </div>
+                            <ul>
+                                <li>
+
+                                    <a href="{{ path('admin_ville_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">add</i>Ajouter une
+                                        ville</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
