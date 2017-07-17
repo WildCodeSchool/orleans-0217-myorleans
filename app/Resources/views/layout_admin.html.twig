@@ -18,7 +18,7 @@
             <div class="sidebar" data-color="green" data-image="{{ asset('img/unnamed3.jpg') }}">
 
                 <div class="logo">
-                    <a href="#" class="simple-text">
+                    <a href="{{ path('home') }}" class="simple-text">
                         <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"
                              height="80px"/><br>
                     </a>
@@ -40,6 +40,8 @@
                                 <a href="{{ path("admin_residence_index") }}">
                                     <p>Résidences</p>
                                 </a>
+                                <a href="{{ path("admin_quartier_index") }}">
+                                    <p>Quartiers</p>
                                 <a href="{{ path("admin_ville_index") }}">
                                     <p>Villes</p>
                                 </a>
@@ -52,7 +54,6 @@
                                 <a href="{{ path("admin_typepresta_index") }}">
                                     <p>Types de prestation</p>
                                 </a>
-
                             </div>
                         </li>
                         <li>
