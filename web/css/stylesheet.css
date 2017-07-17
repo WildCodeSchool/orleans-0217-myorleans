@@ -719,7 +719,7 @@ td{
 }
 
 .photoinfo-apt{
-    margin: 60px;
+    margin: 90px;
 }
 .info-apt {
     border-radius: 2px;
@@ -727,7 +727,7 @@ td{
     background-color: rgb(255,255,255);
     margin-top: 10px;
     padding: 10px;
-/*    width: 400px;*/
+
 }
 .icon-apt{
     width: 2.5em;
@@ -771,20 +771,22 @@ td{
     background-color: rgb(255,255,255);
     margin: auto;
     padding: 10px;
-/*    width: 600px;*/
+
     height: 350px;
 }
 .icon-prestation{
     margin: auto;
 }
 
+.content-appartement > .btn-return-res{
+    background-color: white;
+    color: rgb(189,217,90);
+}
+
 .prestation{
     margin:auto;
 }
-@media screen and (max-width: 767px ){
 
-
-}
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE APPARTEMENT --------------------------*/
