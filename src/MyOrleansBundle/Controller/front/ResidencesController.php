@@ -38,9 +38,9 @@ class ResidencesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $flats = $em->getRepository(Flat::class)->flatsByResidenceAndStatus($residence);
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
-        $categoriepresta = $em->getRespository(CategoriePresta::class)->findAll();
+/*        $categoriepresta = $em->getRespository(CategoriePresta::class)->findAll();
         $typepresta = $em->getRepository(TypePresta::class)->findAll();
-        $prestation = $em->getRepository(Prestation::class)->findAll();
+        $prestation = $em->getRepository(Prestation::class)->findAll();*/
         $prixMin = $calculator->calculPrix($residence);
         $flatsDispo = $calculator->calculFlatDispo($residence);
         $typeMinMax = $calculator->calculSizes($residence);
@@ -97,9 +97,9 @@ class ResidencesController extends Controller
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
             'typeLogement'=>$typelogment,
-            'categoriePresta' => $categoriepresta,
+/*            'categoriePresta' => $categoriepresta,
             'typePresta' => $typepresta,
-            'prestation' => $prestation,
+            'prestation' => $prestation,*/
             'form' => $formulaire->createView()
         ]);
 
