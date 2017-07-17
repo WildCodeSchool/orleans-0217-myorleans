@@ -111,6 +111,7 @@
         var mediaCount = '{{ edit_form.medias|length }}';
 
         jQuery(document).ready(function () {
+
             jQuery('#add-another-media').click(function (e) {
                 e.preventDefault();
                 var mediaList = jQuery('#{{ edit_form.medias.vars.id }}');
@@ -122,7 +123,7 @@
                 // create a new list element and add it to the list
                 var newLi = jQuery('<li></li>').html(newWidget);
                 newLi.appendTo(mediaList);
-
+                $('select').material_select();
             });
         })
     </script>
