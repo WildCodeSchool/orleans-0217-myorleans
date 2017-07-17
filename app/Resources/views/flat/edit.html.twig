@@ -55,24 +55,25 @@
                                 </div>
 
                             </div>
+                            {% for media in flat.medias %}
+                                {% if media.id != null %}
+                                    <p class="imgUploader"><img class="responsive-img"
+                                                                src="{{ asset('uploads/'~media.lien) }}"/>
+                                        <a href="{{ path('flat_media_delete', {"id" : flat.id, "media_id" : media.id}) }}">Supprimer</a>
+                                    </p>
+                                {% else %}
+                                    <h3>Veuillez charger une nouvelle image.</h3>
+                                    <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du
+                                        media.</p>
+                                    {{ form_widget(edit_form.medias) }}
+                                {% endif %}
+                            {% endfor %}
+                            <p><a href="#" id="add-another-media">Ajouter un média</a></p>
+                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Modifier"/>
+                            {{ form_widget(edit_form._token) }}
+                            </form>
                         </div>
-                        {% for media in flat.medias %}
-                            {% if media.id != null %}
-                                <p class="imgUploader"><img class="responsive-img"
-                                                            src="{{ asset('uploads/'~media.lien) }}"/>
-                                    <a href="{{ path('flat_media_delete', {"id" : flat.id, "media_id" : media.id}) }}">Supprimer</a>
-                                </p>
-                            {% else %}
-                                <h3>Veuillez charger une nouvelle image.</h3>
-                                <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du
-                                    media.</p>
-                                {{ form_widget(edit_form.medias) }}
-                            {% endif %}
-                        {% endfor %}
-                        <p><a href="#" id="add-another-media">Ajouter un média</a></p>
-                        <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
-                        {{ form_widget(edit_form._token) }}
-                        </form>
+
 
                         <ul>
                             <li>
