@@ -22,9 +22,9 @@
                 </div>
                 <div class="row">
                     <div class="col offset-l1 l5 s10">
-                        <a href="#" data-activates="slide-out"
-                           class="button-collapse waves-effect waves-light btn"><i class="material-icons">message</i>
-                            Demander la documentation</a>
+                        <a href="{{ path('residences', { 'slug': residence.slug }) }}"
+                           class="waves-effect waves-light btn btn-return-res"><i class="material-icons">replay</i>
+                            Retour sur la Résidence {{ residence.nom }}</a>
                     </div>
 
                     <div id="editor" class="col offset-l1 l5 s10">
@@ -308,7 +308,7 @@
                     </div>
                 </div>
 
-                <div class="input-field col l12">
+                <div class="input-field col l12 envoyer">
                     {{ form_row(form.envoyer) }}
                 </div>
 

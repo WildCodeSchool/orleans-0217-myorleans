@@ -507,15 +507,15 @@ body {
     background-color: #b7d64a;
     overflow: hidden;
     border-radius: 5px;
-    margin-top: 25px;
+    margin-top: 75px;
     position: fixed;
     right: 20px;
     padding: 10px;
-    z-index: 100;
-    -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-    -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    z-index: 200;
+    -webkit-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
+    -moz-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
 
-    animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
 
 }
 
@@ -533,6 +533,9 @@ body {
     cursor:pointer;
 }
 
+.envoyer{
+    margin-bottom: 100px;
+}
 
 
 
@@ -719,7 +722,7 @@ td{
 }
 
 .photoinfo-apt{
-    margin: 60px;
+    margin: 90px;
 }
 .info-apt {
     border-radius: 2px;
@@ -727,7 +730,7 @@ td{
     background-color: rgb(255,255,255);
     margin-top: 10px;
     padding: 10px;
-/*    width: 400px;*/
+
 }
 .icon-apt{
     width: 2.5em;
@@ -771,20 +774,22 @@ td{
     background-color: rgb(255,255,255);
     margin: auto;
     padding: 10px;
-/*    width: 600px;*/
+
     height: 350px;
 }
 .icon-prestation{
     margin: auto;
 }
 
+.content-appartement > .btn-return-res{
+    background-color: white;
+    color: rgb(189,217,90);
+}
+
 .prestation{
     margin:auto;
 }
-@media screen and (max-width: 767px ){
 
-
-}
 
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE APPARTEMENT --------------------------*/
