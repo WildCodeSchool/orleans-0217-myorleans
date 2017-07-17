@@ -52,6 +52,7 @@
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(form.typeLogement, 'Type du Logement: ') }}
+                                    {{ form_widget(form.typeLogement) }}
                                 </div>
                             </div>
                             {% for media in flat.medias %}

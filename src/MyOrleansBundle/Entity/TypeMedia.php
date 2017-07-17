@@ -17,6 +17,7 @@ class TypeMedia
     const IMAGE_HEADER = 3;
     const VIDEO = 4;
     const ICONE = 5;
+    const PLAN = 6;
 
     /**
      * @var int
