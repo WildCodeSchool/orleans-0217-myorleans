@@ -46,13 +46,17 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s6">
+                                <div class="col s4">
                                     {{ form_label(form.statut, 'Statut du bien: ') }}
                                     {{ form_widget(form.statut) }}
                                 </div>
-                                <div class="col s6">
+                                <div class="col s4">
                                     {{ form_label(form.typeLogement, 'Type du Logement: ') }}
                                     {{ form_widget(form.typeLogement) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.typeBien, 'Type du bien: ') }}
+                                    {{ form_widget(form.typeBien) }}
                                 </div>
                             </div>
                             {% for media in flat.medias %}

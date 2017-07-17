@@ -8,9 +8,6 @@
 
     <!--  Material Dashboard CSS    -->
     <link href="{{ asset('assets-admin/css/material-dashboard.css') }}" rel="stylesheet"/>
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{ asset('assets-admin/css/demo.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 
@@ -134,28 +131,19 @@
 
         {% block javascripts %}
             {{ parent() }}
-
-            <!--  Charts Plugin -->
-            <script src="{{ asset('assets-admin/js/chartist.min.js') }}"></script>
-
-            <!--  Notifications Plugin    -->
-            <script src="{{ asset('assets-admin/js/bootstrap-notify.js') }}"></script>
-
             <script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
 
-            <script>CKEDITOR.replace( textarea )</script>
+            <script>CKEDITOR.replace(textarea)</script>
 
             <script type="text/javascript">
                 $(document).ready(function () {
 
-                    // Javascript method's body can be found in assets/js/demos.js
-                    demo.initDashboardPageCharts();
                     $('select').material_select();
 
                     $('.collapsible').collapsible();
 
-                    $('#alert_close').click(function(){
-                        $( "#alert_box" ).fadeOut( "slow", function() {
+                    $('#alert_close').click(function () {
+                        $("#alert_box").fadeOut("slow", function () {
                         });
                     });
                 });
