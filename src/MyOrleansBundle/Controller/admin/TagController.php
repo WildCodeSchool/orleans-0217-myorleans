@@ -48,7 +48,8 @@ class TagController extends Controller
             $em->persist($tag);
             $em->flush();
 
-            return $this->redirectToRoute('admin_tag_show', array('id' => $tag->getId()));
+            $this->addFlash('success', 'Votre tag a bien été ajouté');
+            return $this->redirectToRoute('admin_tag_index', array('id' => $tag->getId()));
         }
 
         return $this->render('tag/new.html.twig', array(
@@ -88,6 +89,7 @@ class TagController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Votre tag a bien été mis à jour');
             return $this->redirectToRoute('admin_tag_index', array('id' => $tag->getId()));
         }
 
@@ -114,7 +116,7 @@ class TagController extends Controller
             $em->remove($tag);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Votre tag a bien été supprimé');
         return $this->redirectToRoute('admin_tag_index');
     }
 
