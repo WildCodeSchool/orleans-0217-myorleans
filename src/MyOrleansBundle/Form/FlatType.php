@@ -25,11 +25,26 @@ class FlatType extends AbstractType
             ->add('reference', TextType::class)
             ->add('prix', NumberType::class)
             ->add('surface', NumberType::class)
+            ->add('surfaceSejour', NumberType::class)
+            ->add('expositionSejour', ChoiceType::class, [
+                'choices' =>[
+                     'Nord' => 'Nord',
+                    'Nord Est' => 'Nord Est',
+                    'Nord Ouest' => 'Nord Ouest',
+                    'Sud' => 'Sud',
+                    'Sud Est' => 'Sud Est',
+                    'Sud Ouest' => 'Sud Ouest',
+                    'Est' => 'Est',
+                    'Ouest' => 'Ouest'],
+                'expanded' => false,
+                'multiple' => false
+          ])
             ->add('nbPiece', NumberType::class)
             ->add('description', TextareaType::class)
             ->add('prestationComplementaire', TextareaType::class, [
                 'required' => false
             ])
+            ->add('stationnement', TextareaType::class)
             ->add('statut', ChoiceType::class, [
                 'choices' => [
                     'Disponible' => true,

@@ -45,6 +45,27 @@ class Flat
     private $surface;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="surface_sejour", type="float", nullable=true)
+     */
+    private $surfaceSejour;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="exposition_sejour", type="text", nullable=true)
+     */
+    private $expositionSejour;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="stationnement", type="text", nullable=true)
+     */
+    private $stationnement;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="nb_piece", type="integer", nullable=true)
@@ -443,4 +464,76 @@ class Flat
     }
 
 
+
+    /**
+     * Set surfaceSejour
+     *
+     * @param float $surfaceSejour
+     *
+     * @return Flat
+     */
+    public function setSurfaceSejour($surfaceSejour)
+    {
+        $this->surfaceSejour = $surfaceSejour;
+
+        return $this;
+    }
+
+    /**
+     * Get surfaceSejour
+     *
+     * @return float
+     */
+    public function getSurfaceSejour()
+    {
+        return $this->surfaceSejour;
+    }
+
+    /**
+     * Set expositionSejour
+     *
+     * @param string $expositionSejour
+     *
+     * @return Flat
+     */
+    public function setExpositionSejour($expositionSejour)
+    {
+        $this->expositionSejour = $expositionSejour;
+
+        return $this;
+    }
+
+    /**
+     * Get expositionSejour
+     *
+     * @return string
+     */
+    public function getExpositionSejour()
+    {
+        return $this->expositionSejour;
+    }
+
+    /**
+     * Set stationnement
+     *
+     * @param string $stationnement
+     *
+     * @return Flat
+     */
+    public function setStationnement($stationnement)
+    {
+        $this->stationnement = $stationnement;
+
+        return $this;
+    }
+
+    /**
+     * Get stationnement
+     *
+     * @return string
+     */
+    public function getStationnement()
+    {
+        return $this->stationnement;
+    }
 }
