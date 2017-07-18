@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
     $('select').material_select();
+
     $('.parallax').parallax();
 
     $('.carousel').carousel({
@@ -10,9 +11,7 @@ $(document).ready(function () {
         shift: 20,
         duration: 100
     });
-
-
-
+  
     $('.modal').modal();
     // Script JS pour l'autocomplétion
 

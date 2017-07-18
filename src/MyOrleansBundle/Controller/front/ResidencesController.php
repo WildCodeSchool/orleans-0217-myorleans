@@ -33,7 +33,7 @@ class ResidencesController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $flats = $em->getRepository(Flat::class)->flatsByResidenceAndStatus($residence);
+        $flats = $em->getRepository(Flat::class)->findBy(['residence' => $residence], ['prix' => 'ASC']);
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
         $prixMin = $calculator->calculPrix($residence);
         $flatsDispo = $calculator->calculFlatDispo($residence);

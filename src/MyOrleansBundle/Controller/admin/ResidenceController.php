@@ -92,8 +92,12 @@ class ResidenceController extends Controller
             $em->persist($residence);
             $em->flush();
 
+            $this->addFlash('success', 'Votre résidence a bien été ajoutée');
             return $this->redirectToRoute('admin_residence_index');
+
         }
+
+
 
         return $this->render('residence/new.html.twig', array(
             'residence' => $residence,
@@ -144,8 +148,10 @@ class ResidenceController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Votre résidence a bien été mis à jour');
             return $this->redirectToRoute('admin_residence_index', array('id' => $residence->getId()));
         }
+
 
         return $this->render('residence/edit.html.twig', array(
             'residence' => $residence,
@@ -170,7 +176,7 @@ class ResidenceController extends Controller
             $em->remove($residence);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Votre résidence a bien été supprimée');
         return $this->redirectToRoute('admin_residence_index');
     }
 
