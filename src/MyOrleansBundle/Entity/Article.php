@@ -33,6 +33,16 @@ class Article
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Le titre saisi est court.",
+     *      maxMessage = "Le titre saisi est long."
+     * )
      * @ORM\Column(name="titre", type="string", length=45)
      */
     private $titre;
@@ -40,13 +50,17 @@ class Article
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="texte", type="text")
      */
     private $texte;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\DateTime()
      * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
