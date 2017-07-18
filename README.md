@@ -1,4 +1,4 @@
-# MyOrleans Version 1.0 au 21/04/2017
+# MyOrleans Version 1.0 au 20/07/2017
 
 
 
@@ -50,7 +50,7 @@ Pour une mise en production du site via le terminal du serveur :
 * Donner les autorisation au dossier app/cache et app/logs : chmod -R 777 app/cache app/logs
 * créer un dossier "uploads" dans la dossier web
 * renseigner la GoogleApiKey:  AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU
-* renseigner le mail_agence: contact@my-orleans.fr
+* renseigner le mail_agence: agence@my-orleans.fr
 * renseigner la googlemap_static_map_key: AIzaSyDNHzX2Zxp7CP_hD9spH-cOHI-ZqwS3aoI
 * renseigner le mailer_user: agence@my-orleans.com
 
