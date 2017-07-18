@@ -4,6 +4,8 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinTable;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Collaborateur
@@ -27,16 +29,17 @@ class Collaborateur
      * @ORM\Column(name="nom", type="string", length=45, nullable=true)
      */
     private $nom;
+
     /**
      * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="prenom", type="string", length=45)
      */
     private $prenom;
     /**
      * @var string
-     *
-     * @ORM\Column(name="fonction", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="fonction", type="string", length=45)
      */
     private $fonction;
     /**

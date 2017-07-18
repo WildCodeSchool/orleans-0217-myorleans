@@ -21,12 +21,15 @@ class CollaborateurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class)
+            ->add('nom', TextType::class, [
+                'required'=>false])
             ->add('prenom', TextType::class)
             ->add('fonction', TextType::class)
             ->add('bio', TextareaType::class)
-            ->add('lienTwiter', UrlType::class)
-            ->add('lienLinkedin', UrlType::class)
+            ->add('lienTwiter', UrlType::class, [
+                'required'=>false])
+            ->add('lienLinkedin', UrlType::class, [
+                'required'=>false])
             ->add('email', EmailType::class)
             ->add('media', MediaType::class);
     }
