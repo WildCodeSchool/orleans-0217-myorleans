@@ -17,25 +17,30 @@
                                 <div class="col s6">
                                     {{ form_label(edit_form.titre, "Titre de l'article:") }}
                                     {{ form_widget(edit_form.titre) }}
+                                    {{ form_errors(edit_form.titre) }}
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(edit_form.residence, 'Résidence lié: ') }}
                                     {{ form_widget(edit_form.residence) }}
+                                    {{ form_errors(edit_form.residence) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
                                     {{ form_label(edit_form.typeArticle, 'Type de l\'article: ') }}
                                     {{ form_widget(edit_form.typeArticle) }}
+                                    {{ form_errors(edit_form.typeArticle) }}
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(edit_form.date, 'Date: ') }}
                                     {{ form_widget(edit_form.date) }}
+                                    {{ form_errors(edit_form.date) }}
                                 </div>
                             </div>
                             <div class="row">
                                 {{ form_label(edit_form.texte, 'Texte de l\'article: ') }}
                                 {{ form_widget(edit_form.texte) }}
+                                {{ form_errors(edit_form.texte) }}
                             </div>
                             <div class="row">
                                 <div class="col s6">

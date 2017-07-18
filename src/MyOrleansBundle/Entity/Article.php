@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -31,14 +32,14 @@ class Article
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="titre", type="string", length=45)
      */
     private $titre;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="texte", type="text")
      */
     private $texte;
@@ -46,7 +47,7 @@ class Article
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
 
@@ -58,25 +59,32 @@ class Article
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Residence")
+     * @ORM\ManyToOne(targetEntity="Residence",cascade={"persist"})
      * @JoinTable(name="article_media")
+     * @Assert\NotNull()
      */
     private $residence;
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag",cascade={"persist"})
      * @JoinTable(name="article_tag")
+     * @Assert\NotNull()
      */
     private $tags;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypeArticle", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="TypeArticle", inversedBy="articles", cascade={"persist"})
+     * @Assert\NotNull()
      */
     private $typeArticle;
 
     /**
      * @var string
-     *
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Veuillez télécharger un fichier PDF valide"
+     * )
      * @ORM\Column(name="fichier", type="string")
      */
     private $fichierAssocie;
