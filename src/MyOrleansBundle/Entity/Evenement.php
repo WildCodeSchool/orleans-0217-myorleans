@@ -26,6 +26,10 @@ class Evenement
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @Assert\Length(
      *      min = 2,
      *      max = 45,
@@ -39,6 +43,10 @@ class Evenement
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @Assert\Length(
      *      min = 2,
      *      max = 45,

@@ -27,34 +27,50 @@ class Flat
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La référence saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="reference", type="string", length=45)
      */
     private $reference;
 
     /**
      * @var int
-     *
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Le prix saisi n'est pas correcte."
+     * )
      * @ORM\Column(name="prix", type="integer", nullable=true)
      */
     private $prix;
 
     /**
      * @var float
-     *
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="surface", type="float", nullable=true)
      */
     private $surface;
 
     /**
      * @var int
-     *
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Le nombre de pièce saisi n'est pas correcte."
+     * )
      * @ORM\Column(name="nb_piece", type="integer", nullable=true)
      */
     private $nbPiece;
 
     /**
      * @var int
-     *
+     *  @Assert\Type(
+     *     type="integer",
+     *     message="Le nombre de chambre saisi n'est pas correcte."
+     * )
      * @ORM\Column(name="nb_chambre", type="integer", nullable=true)
      */
     private $nbChambre;
@@ -62,6 +78,10 @@ class Flat
     /**
      * @var string
      * @Assert\NotBlank()
+     *  @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="description", type="text")
      */
     private $description;
