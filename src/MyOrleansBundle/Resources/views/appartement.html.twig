@@ -49,7 +49,7 @@
             <div class="info-apt">
                 <h3>{{ residence.ville.nom }}</h3>
                 <h3>{{ flat.typeBien.nom }}</h3>
-                <h3>{{ flat.surface }} m2</h3>
+                <h3>{{ flat.surface }} m<sup>2</sup></h3>
                 <h3>{{ flat.prix }} €</h3>
                 {% if residence.eligibilitePinel == 1 %}
                     <h3>Eligible Loi Pinel</h3>
@@ -97,8 +97,8 @@
                             <img class="icon-apt" src="{{ asset('img/icons/surface.png') }}" alt="surfaces">
                         </div>
                         <div class="col s11 prestation">
-                            <p>Surface Habitable : {{ flat.surface }} m2</p>
-                            <p>Surface Séjour : {{ flat.surfaceSejour }} m2</p>
+                            <p>Surface Habitable : {{ flat.surface }} m<sup>2</sup></p>
+                            <p>Surface Séjour : {{ flat.surfaceSejour }} m<sup>2</sup></p>
                         </div>
                     </div>
                 </div>
