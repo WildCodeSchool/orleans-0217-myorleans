@@ -11,7 +11,7 @@ $(document).ready(function () {
         shift: 20,
         duration: 100
     });
-
+  
     $('.modal').modal();
     // Script JS pour l'autocomplétion
 
