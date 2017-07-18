@@ -54,7 +54,8 @@ class CollaborateurController extends Controller
             $em->persist($collaborateur);
             $em->flush();
 
-            return $this->redirectToRoute('admin_collaborateur_show', array('id' => $collaborateur->getId()));
+            $this->addFlash('success', 'Un nouveau collaborateur a bien été ajouté');
+            return $this->redirectToRoute('admin_collaborateur_index', array('id' => $collaborateur->getId()));
         }
 
         return $this->render('collaborateur/new.html.twig', array(
@@ -96,6 +97,7 @@ class CollaborateurController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Ce collaborateur a bien été mis à jour');
             return $this->redirectToRoute('admin_collaborateur_index', array('id' => $collaborateur->getId()));
         }
 
@@ -122,7 +124,7 @@ class CollaborateurController extends Controller
             $em->remove($collaborateur);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Ce collaborateur a bien été supprimé');
         return $this->redirectToRoute('admin_collaborateur_index');
     }
 
