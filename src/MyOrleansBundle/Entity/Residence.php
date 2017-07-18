@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
 use Gedmo\Mapping\Annotation as Gedmo;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Residence
@@ -27,22 +27,22 @@ class Residence
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="nom", type="string", length=45)
      */
     private $nom;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="adresse", type="string", length=45)
      */
     private $adresse;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="code_postal", type="integer", nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="code_postal", type="integer")
      */
     private $codePostal;
 
