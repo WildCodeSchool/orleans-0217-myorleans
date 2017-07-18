@@ -28,6 +28,7 @@ class CompleteSearchType extends AbstractType
                 'required'=>false,
                 'attr'=> [
                     'id'=>'villes',
+                    'placeholder'=>'Chercher une ville...',
                     'class'=>'autocomplete',
                     'autocomplete' => 'off'
                 ]
@@ -37,6 +38,7 @@ class CompleteSearchType extends AbstractType
                 'required'=>false,
                 'attr'=> [
                     'id'=>'quartiers',
+                    'placeholder'=>'Chercher un quartier...',
                     'class'=>'autocomplete',
                     'autocomplete' => 'off'
                 ]
@@ -44,7 +46,7 @@ class CompleteSearchType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'required'=>false,
-                'placeholder'=>'Sélectionnez le type du bien',
+                'placeholder'=>'Type du bien',
                 'choices' => array(
                     'T1' => 'T1',
                     'T2' => 'T2',
@@ -70,17 +72,6 @@ class CompleteSearchType extends AbstractType
                     '4 chambres et plus' => '4',
                 )
             ])
-// En attente validation client de la suppression de ce critere
-/*            ->add('nbPieces', ChoiceType::class, [
-                'required'=>false,
-                'placeholder'=>'Nb. Pièce(s)',
-                'choices' => array(
-                    '1 pièce' => '1',
-                    '2 pièces' => '2',
-                    '3 pièces' => '3',
-                    '4 pièces et plus' => '4',
-                )
-            ])*/
             ->add('objectif', ChoiceType::class, [
                 'required'=>false,
                 'placeholder'=>'Objectif',
@@ -89,12 +80,12 @@ class CompleteSearchType extends AbstractType
                     'acheter en résidence principale' => 'Residence Principale',
                 )
             ])
-            ->add('budgetMin', MoneyType::class, [
+            ->add('budgetMin', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
                 'attr' => ['placeholder'=>'Budget min'],
             ])
-            ->add('budgetMax', MoneyType::class, [
+            ->add('budgetMax', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
                 'attr' => ['placeholder'=>'Budget max'],

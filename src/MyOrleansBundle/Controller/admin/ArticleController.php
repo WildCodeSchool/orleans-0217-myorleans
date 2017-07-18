@@ -83,7 +83,9 @@ class ArticleController extends Controller
             $em->persist($fileArticle);
             $em->flush();
 
+
             $this->addFlash('success', 'Votre article a bien été ajoutée');
+
             return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
         }
 

@@ -374,6 +374,19 @@ body {
     background-color: #b7d64a;
 }
 
+@media screen and (max-width : 991px) {
+    .moteur-recherche {
+        display: none;
+    }
+}
+
+@media screen and (min-width : 991px) {
+    .moteur-recherche-small-screen {
+        display: none;
+    }
+}
+
+
 @media (max-width : 767px) {
     .side-nav li > .userView{
         width: 100%;
@@ -381,7 +394,6 @@ body {
     .side-nav{
     width: 300px;
     }
-
 }
 
 
