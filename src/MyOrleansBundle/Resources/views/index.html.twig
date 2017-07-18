@@ -33,7 +33,7 @@
 
         <div class="row center">
             {% if parcours == 'investisseur' %}
-                <div class="col s6 l2 offset-l4 center">
+                <div class="col s12 m6 center">
                     <div class="pictoParcours">
                         <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
                            class="profil-investisseur">
@@ -42,7 +42,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col s6 l2 center">
+                <div class="col s12 m6 center">
                     <div class="pictoParcours-small">
                         <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
                            class="profil-residence">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             {% elseif parcours == 'residence' %}
-                <div class="col s6 l2 offset-l4 center">
+                <div class="col s12 m6 l2 offset-l4 center">
                     <div class="pictoParcours-small center">
                         <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
                            class="profil-investisseur">
@@ -61,7 +61,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col s6 l2 center">
+                <div class="col s12 m6 center">
                     <div class="pictoParcours center">
                         <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
                            class="profil-residence">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             {% else %}
-                <div class="col s6 l2 offset-l4 center">
+                <div class="col s12 m6 l2 center">
                     <div class="pictoParcours">
                         <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
                            class="profil-investisseur">
@@ -80,7 +80,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col s6 l2 center">
+                <div class="col s12 m6 l2 center">
                     <div class="pictoParcours">
                         <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
                            class="profil-residence">
@@ -108,7 +108,7 @@
                     <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i
                                 class="material-icons">menu</i></a>
 
-                    <ul class="center">
+                    <ul class="center hide-on-med-and-down">
                         {% if parcours == 'investisseur' %}
                             <li>
                                 <div class="icone-profil icone-investisseur">
@@ -140,6 +140,22 @@
                         <li><a href="{{ path("agence") }}">Notre agence</a></li>
                         <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
                         <li><a href="{{ path("homeblog") }}">Blog</a></li>
+                        {% if parcours == 'investisseur' %}
+                            <li>
+                                <div class="icone-profil icone-investisseur">
+                                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}">
+                                        Votre parcours : <i class="fa fa-calculator" aria-hidden="true"></i><p> Changer de parcours</p></a>
+                                </div>
+                            </li>
+                        {% elseif parcours == 'residence' %}
+                            <li>
+                                <div class="icone-profil icone-residence">
+                                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}">
+                                        Votre parcours : <i class="fa fa-home" aria-hidden="true"></i></a>
+                                </div>
+                            </li>
+                        {% elseif parcours == null %}
+                        {% endif %}
                     </ul>
                 </div>
             </nav>
