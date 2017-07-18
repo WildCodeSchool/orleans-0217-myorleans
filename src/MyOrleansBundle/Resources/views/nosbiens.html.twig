@@ -20,146 +20,19 @@
 
         <div class="form">
 
-            {{ form_start(completeSearch) }}
-
                 <div class="moteur-recherche">
-                    <div class="row no-margin-bottom">
-                        <div class="col l3">
-                            <h2 class="titre-recherche">Localisation</h2>
-                            <div class="row no-margin-bottom">
-                                <div class="col s6">
-                                    {{ form_widget(completeSearch.ville) }}
-                                    {{ form_errors(completeSearch.ville) }}
-                                </div>
-                                <div class="col s6">
-                                    {{ form_widget(completeSearch.quartier) }}
-                                    {{ form_errors(completeSearch.quartier) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l3">
-                            <div class="row no-margin-bottom">
-                                <h2 class="titre-recherche">Votre bien</h2>
-                                <div class="row no-margin-bottom">
-                                    <div class="col s6">
-                                        {{ form_widget(completeSearch.type) }}
-                                        {{ form_errors(completeSearch.type) }}
-                                    </div>
-                                    <div class="col s6">
-                                        {{ form_widget(completeSearch.nbChambres) }}
-                                        {{ form_errors(completeSearch.nbChambres) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l3">
-                            <div class="row no-margin-bottom">
-                                <h2 class="white-text titre-recherche">Votre bien</h2>
-                                <div class="col s3">
-                                    {{ form_widget(completeSearch.surfaceMin) }}
-                                    {{ form_errors(completeSearch.surfaceMin) }}
-                                </div>
-                                <div class="col s3">
-                                    {{ form_widget(completeSearch.surfaceMax) }}
-                                    {{ form_errors(completeSearch.surfaceMax) }}
-                                </div>
-                                <div class="col s3">
-                                    {{ form_widget(completeSearch.budgetMin) }}
-                                    {{ form_errors(completeSearch.budgetMin) }}
-                                </div>
-                                <div class="col s3">
-                                    {{ form_widget(completeSearch.budgetMax) }}
-                                    {{ form_errors(completeSearch.budgetMax) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l3">
-                            <div class="row no-margin-bottom">
-                                <h2 class="titre-recherche">Votre objectif</h2>
-                                <div class="row no-margin-bottom">
-                                    <div class="col s6">
-                                        {{ form_widget(completeSearch.objectif) }}
-                                        {{ form_errors(completeSearch.objectif) }}
-                                    </div>
-                                    <div class="col s6 center">
-                                        {{ form_widget(completeSearch.submit) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    {% include 'MyOrleansBundle::completeSearch_desktop.html.twig' %}
+
                 </div>
 
                 {#------------ Remplacement de la barre de recherche par un accordéon sur ecran a partir de 992px -------------#}
 
                 <div class="moteur-recherche-small-screen">
-                    <ul class="collapsible" data-collapsible="expandable">
-                        <li>
-                            <div class="collapsible-header active"><i class="material-icons">person_pin</i>Votre recherche</div>
-                            <div class="collapsible-body">
-                                <span>
-                                    <div class="row no-margin-top no-margin-bottom">
-                                        <div class="input-field col s12 m6">
-                                            {{ form_label(completeSearch.ville) }}
-                                            {{ form_widget(completeSearch.ville) }}
-                                            {{ form_errors(completeSearch.ville) }}
-                                        </div>
-                                        <div class="input-field col s12 m6">
-                                            {{ form_widget(completeSearch.type) }}
-                                            {{ form_errors(completeSearch.type) }}
-                                        </div>
-                                    </div>
-                                    <div class="row no-margin-top no-margin-bottom">
-                                        <div class="input-field col s12 m6 no-padding-left">
-                                            {{ form_widget(completeSearch.surfaceMin) }}
-                                            {{ form_errors(completeSearch.surfaceMin) }}
-                                        </div>
-                                        <div class="input-field col s12 m6 no-padding-right">
-                                            {{ form_widget(completeSearch.surfaceMax) }}
-                                            {{ form_errors(completeSearch.surfaceMax) }}
-                                        </div>
-                                    </div>
-                                    <div class="row no-margin-top no-margin-bottom">
-                                        <div class="col s12 m6">
-                                            {{ form_widget(completeSearch.objectif) }}
-                                            {{ form_errors(completeSearch.objectif) }}
-                                        </div>
-                                        <div class="col s6 m3 no-padding-left">
-                                            {{ form_widget(completeSearch.budgetMin) }}
-                                            {{ form_errors(completeSearch.budgetMin) }}
-                                        </div>
-                                        <div class="col s6 m3 no-padding-right">
-                                            {{ form_widget(completeSearch.budgetMax) }}
-                                            {{ form_errors(completeSearch.budgetMax) }}
-                                        </div>
-                                    </div>
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">place</i>+ de critères</div>
-                            <div class="collapsible-body">
-                                <span>
-                                    <div class="row no-margin-top">
-                                        <div class="col s12 m6">
-                                            {{ form_widget(completeSearch.nbChambres) }}
-                                            {{ form_errors(completeSearch.nbChambres) }}
-                                        </div>
-                                        <div class="col s12 m6">
-                                            {{ form_label(completeSearch.quartier) }}
-                                            {{ form_widget(completeSearch.quartier) }}
-                                            {{ form_errors(completeSearch.quartier) }}
-                                        </div>
-                                    </div>
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="row center no-margin-top btn-recherche-nosbiens">
-                        {{ form_widget(completeSearch.submit) }}
-                    </div>
+
+                    {% include 'MyOrleansBundle::completeSearch_small_screen.html.twig' %}
+
                 </div>
-            {{ form_end(completeSearch) }}
         </div>
 
         <div class="row carte-liste-articles">
@@ -198,6 +71,7 @@
                     {% set nb_res_suggerees = residencesSuggerees|length %}
 
                         {% transchoice nb_res_suggerees %}
+                        {0} |
                         {1} <h3>D'autres biens pourraient vous intéresser dans cette résidence</h3>|
                         ]1,Inf[ <h3>D'autres biens pourraient vous intéresser dans ces résidences</h3>
                         {% endtranschoice %}
