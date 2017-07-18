@@ -67,12 +67,12 @@ class ResidenceType extends AbstractType
             ])
             ->add('accroche', TextareaType::class)
             ->add('medias', CollectionType::class,
-                array(
+                [
                     'entry_type' => MediaType::class,
                     'allow_add' => true,
                     'prototype' => true,
                     'by_reference' => false
-                ));
+                ]);
     }
 
     /**

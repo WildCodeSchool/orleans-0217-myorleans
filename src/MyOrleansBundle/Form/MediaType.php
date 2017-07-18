@@ -28,7 +28,7 @@ class MediaType extends AbstractType
         $builder
             ->add('lien', FileType::class, [
                 'data_class' => null,
-                'required'=>false
+                'required'=> false
             ])
             ->add('typemedia', EntityType::class, [
                 'class' => TypeMedia::class,
