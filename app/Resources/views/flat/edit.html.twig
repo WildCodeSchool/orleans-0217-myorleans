@@ -109,7 +109,13 @@
                                             class="material-icons">keyboard_return</i>Retour à la liste des
                                     biens</a>
                             </li>
+                           <li>{{ form_start(delete_form) }}
+                            <input type="submit" value="Supprimer"
+                                   class="waves-effect waves-light btn-large red pull-right">
+                            {{ form_end(delete_form) }}
+                           </li>
                         </ul>
+
                     </div>
 
                 </div>
