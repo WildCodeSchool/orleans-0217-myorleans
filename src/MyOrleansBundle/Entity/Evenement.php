@@ -3,6 +3,8 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Evenement
@@ -23,8 +25,8 @@ class Evenement
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="nom", type="string", length=45)
      */
     private $nom;
 
