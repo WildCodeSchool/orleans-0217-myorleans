@@ -23,12 +23,6 @@ class Media
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="page", type="string", length=45, nullable=true)
-     */
-    private $page;
 
     /**
      * @var string
@@ -99,30 +93,6 @@ class Media
         return $this->id;
     }
 
-
-    /**
-     * Set page
-     *
-     * @param string $page
-     *
-     * @return Media
-     */
-    public function setPage($page)
-    {
-        $this->page = $page;
-
-        return $this;
-    }
-
-    /**
-     * Get page
-     *
-     * @return string
-     */
-    public function getPage()
-    {
-        return $this->page;
-    }
 
     /**
      * Set lien

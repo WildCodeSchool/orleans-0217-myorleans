@@ -46,30 +46,33 @@ class ResidenceType extends AbstractType
             ->add('noteEsthetisme', NumberType::class, ['required' => false])
             ->add('favoris', ChoiceType::class, [
                 'choices' => [
+                    'Définir en résidence favorite' => null,
                     'Oui' => true,
                     'Non' => false
                 ]
             ])
             ->add('affichagePrix',ChoiceType::class, [
                 'choices' => [
+                    'Choisir...' => null,
                     'Oui' => true,
                     'Non' => false
                 ]
             ])
             ->add('eligibilitePinel',ChoiceType::class, [
                 'choices' => [
+                    'Choisir...' => null,
                     'Oui' => true,
                     'Non' => false
                 ]
             ])
             ->add('accroche', TextareaType::class)
             ->add('medias', CollectionType::class,
-                array(
+                [
                     'entry_type' => MediaType::class,
                     'allow_add' => true,
                     'prototype' => true,
                     'by_reference' => false
-                ));
+                ]);
     }
 
     /**

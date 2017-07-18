@@ -8,9 +8,6 @@
 
     <!--  Material Dashboard CSS    -->
     <link href="{{ asset('assets-admin/css/material-dashboard.css') }}" rel="stylesheet"/>
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{ asset('assets-admin/css/demo.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 
@@ -21,7 +18,7 @@
             <div class="sidebar" data-color="green" data-image="{{ asset('img/unnamed3.jpg') }}">
 
                 <div class="logo">
-                    <a href="#" class="simple-text">
+                    <a href="{{ path('home') }}" class="simple-text">
                         <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"
                              height="80px"/><br>
                     </a>
@@ -43,6 +40,11 @@
                                 <a href="{{ path("admin_residence_index") }}">
                                     <p>Résidences</p>
                                 </a>
+                                <a href="{{ path("admin_quartier_index") }}">
+                                    <p>Quartiers</p>
+                                <a href="{{ path("admin_ville_index") }}">
+                                    <p>Villes</p>
+                                </a>
                                 <a href="{{ path("admin_prestation_index") }}">
                                     <p>Prestations</p>
                                 </a>
@@ -50,9 +52,8 @@
                                     <p>Catégorie prestation</p>
                                 </a>
                                 <a href="{{ path("admin_typepresta_index") }}">
-                                    <p>Type prestation</p>
+                                    <p>Types de prestation</p>
                                 </a>
-
                             </div>
                         </li>
                         <li>
@@ -131,36 +132,17 @@
 
         {% block javascripts %}
             {{ parent() }}
-            <!--   Core JS Files   -->
-            <script src="{{ asset('assets-admin/js/material.min.js') }}" type="text/javascript"></script>
-
-            <!--  Charts Plugin -->
-            <script src="{{ asset('assets-admin/js/chartist.min.js') }}"></script>
-
-            <!--  Notifications Plugin    -->
-            <script src="{{ asset('assets-admin/js/bootstrap-notify.js') }}"></script>
-
-            <!-- Material Dashboard javascript methods -->
-            <script src="{{ asset('assets-admin/js/material-dashboard.js') }}"></script>
-
-            <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-            <script src="{{ asset('assets-admin/js/demo.js') }}"></script>
-
             <script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
 
-            <script>CKEDITOR.replace( textarea )</script>
+            <script>CKEDITOR.replace(textarea)</script>
 
             <script type="text/javascript">
                 $(document).ready(function () {
-
-                    // Javascript method's body can be found in assets/js/demos.js
-                    demo.initDashboardPageCharts();
                     $('select').material_select();
-
                     $('.collapsible').collapsible();
 
-                    $('#alert_close').click(function(){
-                        $( "#alert_box" ).fadeOut( "slow", function() {
+                    $('#alert_close').click(function () {
+                        $("#alert_box").fadeOut("slow", function () {
                         });
                     });
                 });

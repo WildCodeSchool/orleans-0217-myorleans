@@ -61,17 +61,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s4">
+                                <div class="col s3">
                                     {{ form_label(form.noteTransports, 'Note transport: ') }}
                                     {{ form_widget(form.noteTransports) }}
                                 </div>
-                                <div class="col s4">
+                                <div class="col s3">
                                     {{ form_label(form.noteServices, 'Note service: ') }}
                                     {{ form_widget(form.noteServices) }}
                                 </div>
-                                <div class="col s4">
+                                <div class="col s3">
                                     {{ form_label(form.noteEsthetisme, 'Note esthétisme: ') }}
                                     {{ form_widget(form.noteEsthetisme) }}
+                                </div>
+                                <div class="col s3">
+                                    {{ form_label(form.noteCommerces, 'Note commerce: ') }}
+                                    {{ form_widget(form.noteCommerces) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -148,12 +152,13 @@
                 var mediaList = jQuery('#{{ form.medias.vars.id }}');
 
                 var newWidget = mediaList.attr('data-prototype');
-                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
-                newWidget = newWidget.replace(/__name__/g, mediaCount);
-                mediaCount++;
-                // create a new list element and add it to the list
-                var newLi = jQuery('<li></li>').html(newWidget);
-                newLi.appendTo(mediaList);
+
+                    newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
+                    newWidget = newWidget.replace(/__name__/g, mediaCount);
+                    mediaCount++;
+                    // create a new list element and add it to the list
+                    var newLi = jQuery('<li></li>').html(newWidget);
+                    newLi.appendTo(mediaList);
 
             });
         })
