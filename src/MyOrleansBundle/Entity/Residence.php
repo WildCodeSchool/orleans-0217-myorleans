@@ -28,6 +28,10 @@ class Residence
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="nom", type="string", length=45)
      */
     private $nom;
@@ -35,13 +39,20 @@ class Residence
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="adresse", type="string", length=45)
      */
     private $adresse;
 
     /**
      * @var int
-     * @Assert\NotBlank()
+     * @Assert\NotBlank()@Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="code_postal", type="integer")
      */
     private $codePostal;
@@ -72,49 +83,70 @@ class Residence
 
     /**
      * @var string
-     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="date_livraison", type="string", nullable=true)
      */
     private $dateLivraison;
 
     /**
      * @var string
-     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var int
-     *
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="nb_total_logements", type="integer", nullable=true)
      */
     private $nbTotalLogements;
 
     /**
      * @var float
-     *
+     * @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_transports", type="float", nullable=true)
      */
     private $noteTransports;
 
     /**
      * @var float
-     *
+     *  @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_commerces", type="float", nullable=true)
      */
     private $noteCommerces;
 
     /**
      * @var float
-     *
+     *  @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_services", type="float", nullable=true)
      */
     private $noteServices;
 
     /**
      * @var float
-     *
+     *  @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_esthetisme", type="float", nullable=true)
      */
     private $noteEsthetisme;
@@ -135,7 +167,10 @@ class Residence
 
     /**
      * @var string
-     *
+     *  @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="accroche", type="string", nullable=true)
      */
     private $accroche;

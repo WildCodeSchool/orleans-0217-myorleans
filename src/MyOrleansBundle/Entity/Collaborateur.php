@@ -29,6 +29,12 @@ class Collaborateur
      *     type="string",
      *     message="La saisie n'est pas correcte."
      * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Le nom saisi est court.",
+     *      maxMessage = "Le nom saisi est long."
+     * )
      * @ORM\Column(name="nom", type="string", length=45, nullable=true)
      */
     private $nom;
@@ -39,6 +45,12 @@ class Collaborateur
      * @Assert\Type(
      *     type="string",
      *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Le prénom saisi est court.",
+     *      maxMessage = "Le prénom saisi est long."
      * )
      * @ORM\Column(name="prenom", type="string", length=45)
      */
@@ -57,13 +69,23 @@ class Collaborateur
 
     /**
      * @var string
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      max = 45000,
+     *      maxMessage = "Le prénom saisi est long."
+     * )
      * @ORM\Column(name="bio", type="text", nullable=true)
      */
     private $bio;
+
     /**
      * @var string
      * @Assert\Url(
-     *    message = "L'URL saisie n'est pas correcte",
+     *     message = "L'URL saisie n'est pas correcte",
+     *     protocols = {"http", "https", "ftp"}
      * )
      * @ORM\Column(name="lien_twiter", type="string", length=45, nullable=true)
      */
@@ -71,12 +93,13 @@ class Collaborateur
     /**
      * @var string
      * @Assert\Url(
-     *    message = "L'URL saisie n'est pas correcte",
+     *     message = "L'URL saisie n'est pas correcte",
+     *     protocols = {"http", "https", "ftp"}
      * )
      * @ORM\Column(name="lien_linkedin", type="string", length=45, nullable=true)
      */
     private $lienLinkedin;
-    
+
     /**
      * @var string
      * @Assert\Email(
