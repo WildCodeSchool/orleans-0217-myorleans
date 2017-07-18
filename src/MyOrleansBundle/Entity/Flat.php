@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinTable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -25,8 +26,8 @@ class Flat
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="reference", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="reference", type="string", length=45)
      */
     private $reference;
 
@@ -60,8 +61,8 @@ class Flat
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
