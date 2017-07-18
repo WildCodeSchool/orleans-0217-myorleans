@@ -52,7 +52,7 @@
                     </div>
                 </div>
             {% elseif parcours == 'residence' %}
-                <div class="col s12 m6 l2 offset-l4 center">
+                <div class="col s12 m6 center">
                     <div class="pictoParcours-small center">
                         <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
                            class="profil-investisseur">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             {% else %}
-                <div class="col s12 m6 l2 center">
+                <div class="col s12 m6 center">
                     <div class="pictoParcours">
                         <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
                            class="profil-investisseur">
@@ -80,7 +80,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col s12 m6 l2 center">
+                <div class="col s12 m6 center">
                     <div class="pictoParcours">
                         <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
                            class="profil-residence">
@@ -123,7 +123,6 @@
                                                 class="fa fa-home" aria-hidden="true"></i><p> Changer de parcours</p></a>
                                 </div>
                             </li>
-                        {% elseif parcours == null %}
                         {% endif %}
                     </ul>
 
