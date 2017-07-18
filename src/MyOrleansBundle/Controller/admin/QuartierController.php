@@ -49,7 +49,7 @@ class QuartierController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Votre quartier a bien été ajouté');
-            return $this->redirectToRoute('admin_quartier_show', array('id' => $quartier->getId()));
+            return $this->redirectToRoute('admin_quartier_index', array('id' => $quartier->getId()));
         }
 
         return $this->render('quartier/new.html.twig', array(
@@ -90,7 +90,7 @@ class QuartierController extends Controller
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'Votre quartier a bien été mis à jour');
-            return $this->redirectToRoute('admin_quartier_edit', array('id' => $quartier->getId()));
+            return $this->redirectToRoute('admin_quartier_index', array('id' => $quartier->getId()));
         }
 
         return $this->render('quartier/edit.html.twig', array(

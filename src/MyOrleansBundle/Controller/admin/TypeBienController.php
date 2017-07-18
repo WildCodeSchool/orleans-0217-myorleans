@@ -49,7 +49,7 @@ class TypeBienController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Un nouveau type de bien a été ajouté');
-            return $this->redirectToRoute('typebien_show', array('id' => $typeBien->getId()));
+            return $this->redirectToRoute('typebien_index', array('id' => $typeBien->getId()));
         }
 
         return $this->render('typebien/new.html.twig', array(
@@ -90,7 +90,7 @@ class TypeBienController extends Controller
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'Le type de bien a été mis à jour');
-            return $this->redirectToRoute('typebien_edit', array('id' => $typeBien->getId()));
+            return $this->redirectToRoute('typebien_index', array('id' => $typeBien->getId()));
         }
 
         return $this->render('typebien/edit.html.twig', array(

@@ -55,7 +55,7 @@ class CollaborateurController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Un nouveau collaborateur a bien été ajouté');
-            return $this->redirectToRoute('admin_collaborateur_show', array('id' => $collaborateur->getId()));
+            return $this->redirectToRoute('admin_collaborateur_index', array('id' => $collaborateur->getId()));
         }
 
         return $this->render('collaborateur/new.html.twig', array(

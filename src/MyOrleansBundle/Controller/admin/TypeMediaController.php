@@ -50,7 +50,7 @@ class TypeMediaController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Un nouveau type de media a été ajoutée');
-            return $this->redirectToRoute('admin_typemedia_show', array('id' => $typeMedia->getId()));
+            return $this->redirectToRoute('admin_typemedia_index', array('id' => $typeMedia->getId()));
         }
 
         return $this->render('typemedia/new.html.twig', array(

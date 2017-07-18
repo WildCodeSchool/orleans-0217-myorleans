@@ -50,7 +50,7 @@ class ServiceController extends Controller
             $em->persist($service);
             $em->flush();
             $this->addFlash('success', 'Votre service a bien été ajouté');
-            return $this->redirectToRoute('admin_service_show', array('id' => $service->getId()));
+            return $this->redirectToRoute('admin_service_index', array('id' => $service->getId()));
         }
 
 

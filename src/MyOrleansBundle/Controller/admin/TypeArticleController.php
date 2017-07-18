@@ -49,7 +49,7 @@ class TypeArticleController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Un nouveau type article a bien été ajouté');
-            return $this->redirectToRoute('admin_typearticle_show', array('id' => $typeArticle->getId()));
+            return $this->redirectToRoute('admin_typearticle_index', array('id' => $typeArticle->getId()));
         }
 
         return $this->render('typearticle/new.html.twig', array(

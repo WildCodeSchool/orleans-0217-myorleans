@@ -49,7 +49,7 @@ class TagController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Votre tag a bien été ajouté');
-            return $this->redirectToRoute('admin_tag_show', array('id' => $tag->getId()));
+            return $this->redirectToRoute('admin_tag_index', array('id' => $tag->getId()));
         }
 
         return $this->render('tag/new.html.twig', array(

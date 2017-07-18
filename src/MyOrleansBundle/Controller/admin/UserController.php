@@ -49,7 +49,7 @@ class UserController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Un nouvel utilisateur a été créé');
-            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
+            return $this->redirectToRoute('user_index', array('id' => $user->getId()));
         }
 
         return $this->render('user/new.html.twig', array(

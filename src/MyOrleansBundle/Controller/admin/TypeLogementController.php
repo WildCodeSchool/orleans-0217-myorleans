@@ -49,7 +49,7 @@ class TypeLogementController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Un nouveau type de logement a été ajouté');
-            return $this->redirectToRoute('admin_typelogement_show', array('id' => $typeLogement->getId()));
+            return $this->redirectToRoute('admin_typelogement_index', array('id' => $typeLogement->getId()));
         }
 
         return $this->render('typelogement/new.html.twig', array(

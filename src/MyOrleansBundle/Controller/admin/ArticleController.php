@@ -84,7 +84,7 @@ class ArticleController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Votre article a bien été ajoutée');
-            return $this->redirectToRoute('admin_article_show', array('id' => $article->getId()));
+            return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
         }
 
         return $this->render('article/new.html.twig', array(

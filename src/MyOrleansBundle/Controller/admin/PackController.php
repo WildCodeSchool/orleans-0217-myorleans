@@ -52,7 +52,7 @@ class PackController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Votre pack a bien été ajouté');
-            return $this->redirectToRoute('admin_pack_show', array('id' => $pack->getId()));
+            return $this->redirectToRoute('admin_pack_index', array('id' => $pack->getId()));
         }
 
         return $this->render('pack/new.html.twig', array(

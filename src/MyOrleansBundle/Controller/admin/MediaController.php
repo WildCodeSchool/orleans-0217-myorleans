@@ -51,7 +51,7 @@ class MediaController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Votre média a bien été ajouté');
-            return $this->redirectToRoute('admin_media_show', array('id' => $media->getId()));
+            return $this->redirectToRoute('admin_media_index', array('id' => $media->getId()));
         }
 
         return $this->render('media/new.html.twig', array(

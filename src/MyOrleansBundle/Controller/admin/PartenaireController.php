@@ -62,7 +62,7 @@ class PartenaireController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Ce partenaire a bien été ajouté');
-            return $this->redirectToRoute('admin_partenaire_show', array('id' => $partenaire->getId()));
+            return $this->redirectToRoute('admin_partenaire_index', array('id' => $partenaire->getId()));
         }
 
         return $this->render('partenaire/new.html.twig', array(

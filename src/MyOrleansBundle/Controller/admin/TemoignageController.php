@@ -59,7 +59,7 @@ class TemoignageController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Votre témoignage a bien été ajouté');
-            return $this->redirectToRoute('admin_temoignage_show', array('id' => $temoignage->getId()));
+            return $this->redirectToRoute('admin_temoignage_index', array('id' => $temoignage->getId()));
         }
 
         return $this->render('temoignage/new.html.twig', array(

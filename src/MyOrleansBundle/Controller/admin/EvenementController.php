@@ -66,7 +66,7 @@ class EvenementController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Votre événement a bien été ajouté');
-            return $this->redirectToRoute('admin_evenement_show', array('id' => $evenement->getId()));
+            return $this->redirectToRoute('admin_evenement_index', array('id' => $evenement->getId()));
         }
 
         return $this->render('evenement/new.html.twig', array(

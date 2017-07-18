@@ -59,7 +59,7 @@ class VilleController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Une nouvelle ville a été ajoutée');
-            return $this->redirectToRoute('admin_ville_show', array('id' => $ville->getId()));
+            return $this->redirectToRoute('admin_ville_index', array('id' => $ville->getId()));
         }
 
         return $this->render('ville/new.html.twig', array(

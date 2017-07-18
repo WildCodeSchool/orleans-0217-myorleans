@@ -12,13 +12,14 @@
 
 
     {% block body %}
+        <title>{% block title %}ADMIN | My-Orléans.com{% endblock %}</title>
         <div class="wrapper">
 
             {% block navbar %}
             <div class="sidebar" data-color="green" data-image="{{ asset('img/unnamed3.jpg') }}">
 
                 <div class="logo">
-                    <a href="{{ path('home') }}" class="simple-text">
+                    <a href="{{ path('home') }}" target="_blank" class="simple-text">
                         <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"
                              height="80px"/><br>
                     </a>
