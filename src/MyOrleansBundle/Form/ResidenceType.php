@@ -44,6 +44,7 @@ class ResidenceType extends AbstractType
             ->add('noteCommerces', NumberType::class, ['required' => false])
             ->add('noteServices', NumberType::class, ['required' => false])
             ->add('noteEsthetisme', NumberType::class, ['required' => false])
+            ->add('offre', TextType::class)
             ->add('favoris', ChoiceType::class, [
                 'choices' => [
                     'Définir en résidence favorite' => null,

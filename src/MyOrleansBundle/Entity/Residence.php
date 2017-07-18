@@ -102,6 +102,16 @@ class Residence
     private $description;
 
     /**
+     * @var string
+     *      * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="offre", type="text", nullable=true)
+     */
+    private $offre;
+
+    /**
      * @var int
      * @Assert\Type(
      *     type="integer",
@@ -156,12 +166,6 @@ class Residence
      */
     private $noteEsthetisme;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="offre", type="string", nullable=true)
-     */
-    private $offre;
 
     /**
      * @var int
@@ -539,22 +543,6 @@ class Residence
         return $this->noteEsthetisme;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOffre()
-    {
-        return $this->offre;
-    }
-
-    /**
-     * @param mixed $offre
-     */
-    public function setOffre($offre)
-    {
-        $this->offre = $offre;
-    }
-
 
     /**
      * @return mixed
@@ -804,4 +792,28 @@ class Residence
 
     }
 
+
+    /**
+     * Set offre
+     *
+     * @param string $offre
+     *
+     * @return Residence
+     */
+    public function setOffre($offre)
+    {
+        $this->offre = $offre;
+
+        return $this;
+    }
+
+    /**
+     * Get offre
+     *
+     * @return string
+     */
+    public function getOffre()
+    {
+        return $this->offre;
+    }
 }
