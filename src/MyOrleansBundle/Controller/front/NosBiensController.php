@@ -134,6 +134,7 @@ class NosBiensController extends Controller
             'residencesSuggerees' => $residencesSuggerees,
             'residences' => $residences,
             'completeSearch' => $completeSearch->createView(),
+            'completeSearchSmallScreen' => $completeSearch->createView(),
             'villes' => $villes,
             'quartiers' => $quartiers,
             'objectif' => $objectif,
@@ -149,6 +150,7 @@ class NosBiensController extends Controller
     public function completeSearchAction(Request $request, SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
+
         $completeSearch = $this->createForm('MyOrleansBundle\Form\CompleteSearchType');
         $completeSearch->handleRequest($request);
 
@@ -164,6 +166,7 @@ class NosBiensController extends Controller
             $objectif = "investir";
 
             $data = $completeSearch->getData();
+
 
             $residences = $em->getRepository(Residence::class)->completeSearch($data);
 
@@ -205,6 +208,7 @@ class NosBiensController extends Controller
             return $this->render('MyOrleansBundle::nosbiens.html.twig',[
                 'parcours' => $parcours,
                 'completeSearch' => $completeSearch->createView(),
+                'completeSearchSmallScreen' => $completeSearch->createView(),
                 'suggestionActive' => $suggestionActive,
                 'residencesSuggerees' => $residencesSuggerees,
                 'residences' => $residences,
