@@ -14,8 +14,7 @@
 
 ## Introduction<a id ="introduction"></a>
 	
-Le site [www.my-orleans.com](http://www.my-orleans.com) est une application web réalisé pour l'agence immobilière My Orleans
-Cette application à pour but de présenter les différentes activités de commercialisation de biens immobiliers de l'agence, de location et de gestion administravive.
+Le site [www.my-orleans.com](http://www.my-orleans.com) est une application web réalisé pour l'agence immobilière My Orleans. Cette application à pour but de présenter les différentes activités de commercialisation de biens immobiliers de l'agence, de location et de gestion administravive.
 
 ## Navigateurs recommandés <a id ="navigateurs"></a>
 
@@ -47,7 +46,7 @@ Pour une mise en production du site via le terminal du serveur :
 * git clone https://github.com/WildCodeSchool/orleans-0217-myorleans
 * composer install
 * rentrer les informations de la base de données et du mail
-* Donner les autorisations au dossier app/cache et app/logs : chmod -R 777 app/cache app/logs
+* donner les autorisations au dossier app/cache et app/logs : chmod -R 777 app/cache app/logs
 * créer un dossier "uploads" dans la dossier web
 * renseigner la GoogleApiKey:  AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU
 * renseigner le mail_agence: agence@my-orleans.fr
