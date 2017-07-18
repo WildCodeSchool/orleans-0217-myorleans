@@ -43,11 +43,11 @@ l'identifiant (Utilisateur)
 le mot de passe (password)
 
 Pour une mise en production du site via le terminal du serveur :
-* Se mettre dans le dossier choisit
+* se mettre dans le dossier choisit
 * git clone https://github.com/WildCodeSchool/orleans-0217-myorleans
 * composer install
 * rentrer les informations de la base de données et du mail
-* Donner les autorisation au dossier app/cache et app/logs : chmod -R 777 app/cache app/logs
+* Donner les autorisations au dossier app/cache et app/logs : chmod -R 777 app/cache app/logs
 * créer un dossier "uploads" dans la dossier web
 * renseigner la GoogleApiKey:  AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU
 * renseigner le mail_agence: agence@my-orleans.fr
