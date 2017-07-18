@@ -178,8 +178,41 @@ body {
     line-height: 1;
 }
 
-.icone-profil a {
-    color: transparent;
+.icone-profil a i {
+    font-size: 25px;
+    color: #ffffff ;
+    background-color: #a5ca2a;
+    padding: 8px;
+    height: 40px;
+    width: 45px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-left: 220px;
+    line-height: 1;
+}
+
+.icone-profil a p {
+    display: none;
+    line-height: 2;
+    padding-left: 5px;
+}
+
+.icone-profil a:hover p {
+    display: inline-block;
+    color: #a5ca2a;
+}
+
+@media screen and (max-width: 991px) {
+    .icone-profil a i {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1100px) {
+    .icone-profil a:hover p {
+        display: none;
+    }
 }
 
 .icone-profil a:hover i {
@@ -374,6 +407,19 @@ body {
     background-color: #b7d64a;
 }
 
+@media screen and (max-width : 991px) {
+    .moteur-recherche {
+        display: none;
+    }
+}
+
+@media screen and (min-width : 991px) {
+    .moteur-recherche-small-screen {
+        display: none;
+    }
+}
+
+
 @media (max-width : 767px) {
     .side-nav li > .userView{
         width: 100%;
@@ -381,7 +427,6 @@ body {
     .side-nav{
     width: 300px;
     }
-
 }
 
 
@@ -722,15 +767,16 @@ td{
 }
 
 .photoinfo-apt{
-    margin: 90px;
+    margin: 60px;
 }
 .info-apt {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
     background-color: rgb(255,255,255);
-    margin-top: 10px;
-    padding: 10px;
-
+    margin-top: 150px;
+    padding: 50px;
+    width: 450px;
+    margin-left: 300px;
 }
 .icon-apt{
     width: 2.5em;

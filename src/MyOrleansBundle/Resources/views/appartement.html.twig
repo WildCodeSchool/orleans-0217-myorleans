@@ -49,7 +49,7 @@
             <div class="info-apt">
                 <h3>{{ residence.ville.nom }}</h3>
                 <h3>{{ flat.typeBien.nom }}</h3>
-                <h3>{{ flat.surface }} m2</h3>
+                <h3>{{ flat.surface }} m<sup>2</sup></h3>
                 <h3>{{ flat.prix }} €</h3>
                 {% if residence.eligibilitePinel == 1 %}
                     <h3>Eligible Loi Pinel</h3>
@@ -62,10 +62,10 @@
     <div class="row center">
         <h3>Plans</h3>
         <div class="col s12">
-            {% if media['image'] is defined and  media['image'] != null %}
-                <img src="{{ asset('uploads/'~media['plans'].lien) }}" class="plan responsive-img" alt="plans"/>
+            {% if media['plan'] is defined and  media['plan'] != null %}
+                <img src="{{ asset('uploads/'~media['plan'].lien) | imagine_filter('thumb_plan_appartement') }}" class="plan responsive-img" alt="plans"/>
             {% else %}
-                <img src="{{ asset('img/Pas-dimage.jpg') }}" class="plan responsive-img" alt="plans"/>
+                <img src="{{ asset('img/Pas-dimage.jpg') | imagine_filter('thumb_plan_appartement') }}" class="plan responsive-img" alt="plans"/>
             {% endif %}
         </div>
     </div>
@@ -75,11 +75,11 @@
                 <h3>Les Détails</h3>
             </div>
 
-            <div class="col offset-l1 l4 offset-l1 m12 center">
+            <div class="col offset-l1 l4 offset-l1 m12">
                 <div class="rang-presta">
                     <div class="row">
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/floor.png') }}" alt="revetement">
+                            <img class="icon-apt" src="{{ asset('uploads/floor.png') }}" alt="revetement">
                         </div>
                         <div class="col s11 prestation">
                             {% for categoriePresta in residence.categoriePrestas %}
@@ -95,20 +95,20 @@
                                 : {% if 'revetement sol séjour' == typePresta.type %} {{ prestation.nomPrestation }}{% endif %}</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/Parking.png') }}"
+
+                            <img class="icon-apt" src="{{ asset('uploads/Parking.png') }}"
                                  alt="stationnement voiture">
                         </div>
                         <div class="col s11 prestation">
-                            <p>{% if 'parking' == typePresta.type %} {{ prestation.nomPrestation }}{% endif %}</p>
+                            <p>Stationnement : {{ flat.stationnement }}</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/surface.png') }}" alt="surfaces">
+                            <img class="icon-apt" src="{{ asset('uploads/surface.png') }}" alt="surfaces">
                         </div>
                         <div class="col s11 prestation">
-                            <p>Surface Habitable : {{ flat.surface }} m2</p>
-                            <p>Séuface Séjour
-                                :{% if 'surface séjour' == typePresta.type %} {{ prestation.nomPrestation }}{% endif %}
-                                m2</p>
+                            <p>Surface Habitable : {{ flat.surface }} m<sup>2</sup></p>
+                            <p>Surface Séjour : {{ flat.surfaceSejour }} m<sup>2</sup></p>
+
                         </div>
                     </div>
                 </div>
@@ -117,26 +117,26 @@
                 <div class="rang-presta">
                     <div class="row">
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/agenda.png') }}" alt="date de livraison">
+                            <img class="icon-apt" src="{{ asset('uploads/agenda.png') }}" alt="date de livraison">
                         </div>
                         <div class="col s11 prestation">
                             <p>{{ residence.dateLivraison }}</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/boussole.png') }}" alt="exposition séjour">
+                            <img class="icon-apt" src="{{ asset('uploads/boussole.png') }}" alt="exposition séjour">
                         </div>
                         <div class="col s11 prestation">
-                            <p>Exposition du séjour
-                                : {% if 'exposition' == typePresta.type %} {{ prestation.nomPrestation }}{% endif %}</p>
+                            <p>Exposition du séjour : {{ flat.expositionSejour }}</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/chauffage.png') }}" alt="type de chauffage">
+                            <img class="icon-apt" src="{{ asset('uploads/chauffage.png') }}" alt="type de chauffage">
                         </div>
                         <div class="col s11 prestation">
                             <p>{% if 'chauffage' == typePresta.type %} {{ prestation.nomPrestation }}{% endif %}</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/menuiserie.png') }}"
+                            <img class="icon-apt" src="{{ asset('uploads/menuiserie.png') }}"
+
                                  alt="type de menuiseries">
                         </div>
                         <div class="col s11 prestation">
@@ -144,10 +144,10 @@
                                 : {% if 'menuiserie' == typePresta.type %} {{ prestation.nomPrestation }}{% endif %}</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/room.png') }}" alt="nombre de pièces">
+                            <img class="icon-apt" src="{{ asset('uploads/room.png') }}" alt="nombre de pièces">
                         </div>
                         <div class="col s11 prestation">
-                            <p>Nombre de Pièces : {{ flat.nbPiece }}</p>
+                            <p>Nombre de Pièces : {{ flat.nbpiece }}</p>
                         </div>
                         {% endfor %}
                         {% endfor %}
@@ -325,20 +325,15 @@
     <div class="container">
         <div class="row center">
             <p class="partage">Vous avez aimé cet appartement? N'hésitez pas à le partager à vos amis: </p>
-            <div class="col l4 m4 s12">
-                <a class="twitter-share-button"
-                   href="https://twitter.com/intent/tweet?text=Hello%20world"
-                   data-size="large">
-                    Tweet</a>
-            </div>
 
             <div class="col l4 m4 s12">
-
+                <div id="fb-root"></div>
+                <div class="fb-share-button" data-href="{{ path('appartement', { 'id': flat.id }) }}" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="{{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}">Partager</a></div>
             </div>
+
             <div class="col l4 m4 s12">
                 <a class="waves-effect waves-light btn" href="mailto:?to= &subject=Appartement%20my%20Orleans">Envoyez à
                     un ami par mail </a>
-
             </div>
         </div>
     </div>

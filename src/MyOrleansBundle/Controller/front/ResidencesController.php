@@ -36,7 +36,7 @@ class ResidencesController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $flats = $em->getRepository(Flat::class)->flatsByResidenceAndStatus($residence);
+        $flats = $em->getRepository(Flat::class)->findBy(['residence' => $residence], ['prix' => 'ASC']);
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
 /*        $categoriepresta = $em->getRespository(CategoriePresta::class)->findAll();
         $typepresta = $em->getRepository(TypePresta::class)->findAll();
@@ -50,8 +50,8 @@ class ResidencesController extends Controller
         foreach ($medias as $media) {
             if ($media->getTypeMedia()->getNom() == 'video') {
                 $mediaDefine['video'] = $media;
-            } elseif ($media->getTypeMedia()->getNom() == 'image') {
-                $mediaDefine['image'] = $media;
+            } elseif ($media->getTypeMedia()->getNom() == 'image-cover') {
+                $mediaDefine['image-cover'] = $media;
             }
         }
 

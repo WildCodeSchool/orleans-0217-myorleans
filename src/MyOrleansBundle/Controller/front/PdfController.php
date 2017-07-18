@@ -65,7 +65,8 @@ class PdfController extends Controller
             'residence'=>$residence,
             'media' => $mediaDefine,
             'telephone_number' => $telephoneNumber,
-            'type_bien'=>$typebien,
+            'typeBien'=>$typebien,
+            'typeLogement' => $typelogement,
             'prixMin' => $prixMin,
             'flatsDispo' => $flatsDispo,
             'typeMin' => $typeMinMax[0],
@@ -112,10 +113,8 @@ class PdfController extends Controller
         $medias = $residence->getMedias();
         $mediaDefine = [];
         foreach ($medias as $media) {
-            if ($media->getTypeMedia()->getNom() == 'video') {
-                $mediaDefine['video'] = $media;
-            } elseif ($media->getTypeMedia()->getNom() == 'image') {
-                $mediaDefine['image'] = $media;
+            if ($media->getTypeMedia()->getNom() == 'image-cover') {
+                $mediaDefine['image-cover'] = $media;
             }
         }
 
@@ -130,7 +129,7 @@ class PdfController extends Controller
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
             'typeLogement'=>$typelogment,
-            'type_bien'=>$typebien,
+            'typeBien'=>$typebien,
             'mail_agence'=>$mailagence,
             'googlemap_static_map_key'=>$googlemapstatickey,
 

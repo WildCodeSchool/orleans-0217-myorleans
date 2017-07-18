@@ -175,48 +175,94 @@ body {
 }
 
 .logoIntro img{
-    margin-top: 70px;
-    width: 350px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    width: 500px;
     height: auto;
     padding-bottom: 50px;
     border-bottom: 5px solid #a5ca2a;
-
 }
+
+/*----------------------- PictoParcours big --------------------------*/
 
 .pictoParcours {
-    padding-bottom: 20px;
-    position: relative;
-}
-
-.pictoParcours a i {
-    color: #C8CACC ;
-    -webkit-transition:color 250ms ease-out;
-    -moz-transition:color 250ms ease-out;
-    transition:color 250ms ease-out;
+    display: inline-block;
     background-color: rgba(255,255,255, .95);
-    padding: 5px;
     height: 290px;
     width: 290px;
     border-radius: 50%;
+    padding: 20px 5px 5px 10px;
+}
+
+.pictoParcours a i {
+    font-size: 170px;
+    margin-top: 40px;
+    color: #a5ca2a;
 }
 
 .pictoParcours:hover a i {
-    color: #a5ca2a ;
+    display: none ;
 }
 
-.pictoInvest {
-    font-size: 170px;
-    margin-top: 70px
+.pictoParcours a p {
+    display: none;
 }
 
-.pictoInvest a i {
-    padding-top: 60px;
-    padding-left: 15px;
+.pictoParcours:hover a p {
+    display: inline-block;
+    color: #C8CACC ;
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 30px;
 }
 
-.pictoResidence {
-    font-size: 250px;
-    margin-top: 20px
+/*----------------------- PictoParcours small --------------------------*/
+
+.pictoParcours-small {
+    display: inline-block;
+    margin-top: 90px;
+    background-color: rgba(255,255,255, .95);
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    padding: 10px 5px 5px 10px;
+}
+
+.pictoParcours-small a i {
+    margin-top: 20px;
+    font-size: 90px;
+    color: #a5ca2a;
+}
+
+.pictoParcours-small:hover a i {
+    display: none;
+}
+
+.pictoParcours-small a p {
+    display: none;
+}
+
+.pictoParcours-small:hover a p {
+    display: inline-block;
+    color: #C8CACC ;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+
+/*----------------------- fin PictoParcours ----------------------------*/
+
+.explication-parcours {
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #C8CACC;
+    padding: 5px 30px;
+    border: solid 1px rgb(165, 202, 42);
+}
+
+.explication-parcours p {
+    font-size: 18px;
 }
 
 #siteWrapper {
@@ -248,8 +294,28 @@ body {
     line-height: 1;
 }
 
-.icone-profil a {
-    color: transparent;
+.icone-profil a p {
+    display: none;
+    line-height: 2;
+    padding-left: 5px;
+}
+
+.icone-profil a:hover p {
+    display: inline-block;
+    color: #a5ca2a;
+}
+
+@media screen and (max-width: 991px) {
+    .icone-profil a i {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1100px) {
+    .icone-profil a:hover p {
+        display: none;
+    }
 }
 
 .icone-profil a:hover i {
@@ -713,17 +779,10 @@ FIN ACCUEIL - BLOC AGENCE
 
     .logoIntro img{
         margin-top: 60px;
-        width: 150px;
+        width: 250px;
         height: auto;
         padding-bottom: 30px;
         border-bottom: 5px solid #a5ca2a;
-    }
-
-    .pictoParcours a i {
-        font-size: 100px;
-        height: 110px;
-        width: 110px;
-        border-radius: 50%;
     }
 
     .formButton input{
@@ -792,6 +851,28 @@ FIN ACCUEIL - BLOC AGENCE
         font-size: 12px;
     }
 }
+
+@media (max-width: 550px){
+    .pictoParcours {
+        height: 220px;
+        width: 220px;
+        border-radius: 50%;
+        padding: 10px 5px 5px 10px;
+    }
+
+    .pictoParcours a i {
+        font-size: 130px;
+    }
+
+    .pictoParcours a p {
+        font-size: 24px;
+    }
+
+    .pictoParcours-small {
+        margin-top: 40px;
+    }
+}
+
 
 /* --------------------------------------------------------------------*/
 /* ------------------------------ FORMULAIRE DE CONTACT ---------------------*/
