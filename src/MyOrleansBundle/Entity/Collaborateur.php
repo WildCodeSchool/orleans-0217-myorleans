@@ -25,7 +25,10 @@ class Collaborateur
     private $id;
     /**
      * @var string
-     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="nom", type="string", length=45, nullable=true)
      */
     private $nom;
@@ -33,36 +36,53 @@ class Collaborateur
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="prenom", type="string", length=45)
      */
     private $prenom;
+
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="fonction", type="string", length=45)
      */
     private $fonction;
+
     /**
      * @var string
-     *
      * @ORM\Column(name="bio", type="text", nullable=true)
      */
     private $bio;
     /**
      * @var string
-     *
+     * @Assert\Url(
+     *    message = "L'URL saisie n'est pas correcte",
+     * )
      * @ORM\Column(name="lien_twiter", type="string", length=45, nullable=true)
      */
     private $lienTwiter;
     /**
      * @var string
-     *
+     * @Assert\Url(
+     *    message = "L'URL saisie n'est pas correcte",
+     * )
      * @ORM\Column(name="lien_linkedin", type="string", length=45, nullable=true)
      */
     private $lienLinkedin;
+    
     /**
      * @var string
-     *
+     * @Assert\Email(
+     *     message = "L'adresse mail que vous avez renseigné n'est pas valide",
+     *     checkMX = true
+     * )
      * @ORM\Column(name="email", type="string", length=45, nullable=true)
      */
     private $email;
