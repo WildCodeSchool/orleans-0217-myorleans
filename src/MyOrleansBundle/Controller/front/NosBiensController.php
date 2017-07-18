@@ -101,13 +101,6 @@ class NosBiensController extends Controller
             $residences = $em -> getRepository(Residence::class)->simpleSearch($selectedVille, $selectedType);
 
 
-            // recherche des biens suggeres
-            if ($selectedVille != null || $selectedType != null) {
-                $residencesSuggerees = $em -> getRepository(Residence::class)
-                    ->simpleSuggestedSearch($selectedVille, $selectedType);
-            }
-
-
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
                 $residences = $em -> getRepository(Residence::class)->findAll();
@@ -116,6 +109,21 @@ class NosBiensController extends Controller
 
             // Parametrage du parcours visiteur
             $parcours = $session->get('parcours');
+
+
+            // recherche des biens à exclure de la liste des biens à suggerer
+            if (!empty($residences)) {
+                foreach ($residences as $residence) {
+                    $idResidences[] = $residence->getId();
+                }
+            }
+
+            if ($selectedVille != null || $selectedType != null) {
+                $residencesSuggerees = $em->getRepository(Residence::class)->simpleSuggestedSearch($idResidences, $selectedVille, $selectedType);
+            }
+
+            var_dump($residencesSuggerees);
+            die();
 
         }
 

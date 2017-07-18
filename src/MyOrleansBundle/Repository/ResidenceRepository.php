@@ -33,7 +33,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function simpleSuggestedSearch($ville, $type)
+    public function simpleSuggestedSearch($ids, $ville, $type)
     {
         $qb = $this->createQueryBuilder('r');
 
@@ -48,6 +48,13 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('type', $type)
                 ->join('r.flats', 'f')
                 ->join('f.typeLogement', 't');
+        }
+
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
+                $qb->andwhere('r.id != :id')
+                    ->setParameter('id', $id);
+            }
         }
 
         $qb->andWhere('flts.statut = true')
