@@ -49,7 +49,7 @@
             <div class="info-apt">
                 <h3>{{ residence.ville.nom }}</h3>
                 <h3>{{ flat.typeBien.nom }}</h3>
-                <h3>{{ flat.surface }} m2</h3>
+                <h3>{{ flat.surface }} m<sup>2</sup></h3>
                 <h3>{{ flat.prix }} €</h3>
                 {% if residence.eligibilitePinel == 1 %}
                     <h3>Eligible Loi Pinel</h3>
@@ -91,15 +91,14 @@
                                  alt="stationnement voiture">
                         </div>
                         <div class="col s11 prestation">
-                            <p>1 Parking en sous-sol et</p>
-                            <p>1 Parking exterieur</p>
+                            <p>Stationnement : {{ flat.stationnement }}</p>
                         </div>
                         <div class="col s1 icon-prestation">
                             <img class="icon-apt" src="{{ asset('uploads/surface.png') }}" alt="surfaces">
                         </div>
                         <div class="col s11 prestation">
-                            <p>Surface Habitable : 38 m2</p>
-                            <p>Surface Séjour : 19 m2</p>
+                            <p>Surface Habitable : {{ flat.surface }} m<sup>2</sup></p>
+                            <p>Surface Séjour : {{ flat.surfaceSejour }} m<sup>2</sup></p>
                         </div>
                     </div>
                 </div>
@@ -111,13 +110,13 @@
                             <img class="icon-apt" src="{{ asset('uploads/agenda.png') }}" alt="date de livraison">
                         </div>
                         <div class="col s11 prestation">
-                            <p>livraison 2ème semestre 2017</p>
+                            <p>{{ residence.dateLivraison }}</p>
                         </div>
                         <div class="col s1 icon-prestation">
                             <img class="icon-apt" src="{{ asset('uploads/boussole.png') }}" alt="exposition séjour">
                         </div>
                         <div class="col s11 prestation">
-                            <p>Exposition du séjour : Nord Ouest</p>
+                            <p>Exposition du séjour : {{ flat.expositionSejour }}</p>
                         </div>
                         <div class="col s1 icon-prestation">
                             <img class="icon-apt" src="{{ asset('uploads/chauffage.png') }}" alt="type de chauffage">
@@ -136,7 +135,7 @@
                             <img class="icon-apt" src="{{ asset('uploads/room.png') }}" alt="nombre de pièces">
                         </div>
                         <div class="col s11 prestation">
-                            <p>Nombre de Pièces : 2</p>
+                            <p>Nombre de Pièces : {{ flat.nbpiece }}</p>
                         </div>
                     </div>
                 </div>
