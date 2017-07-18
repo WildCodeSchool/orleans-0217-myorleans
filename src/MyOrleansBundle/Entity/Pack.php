@@ -25,6 +25,16 @@ class Pack
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Le nom saisi est court.",
+     *      maxMessage = "Le nom saisi est long."
+     * )
      * @ORM\Column(name="nom", type="string", length=45)
      */
     private $nom;
@@ -32,13 +42,27 @@ class Pack
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45000,
+     *      minMessage = "Le nom saisi est court.",
+     *      maxMessage = "Le nom saisi est long."
+     * )
      * @ORM\Column(name="description", type="string", length=45)
      */
     private $description;
 
     /**
      * @var int
-     *
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Le prix saisie n'est pas correcte."
+     * )
+     * @Assert\GreaterThanOrEqual(0)
      * @ORM\Column(name="prix", type="integer", nullable = true)
      */
     private $prix;

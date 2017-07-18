@@ -25,13 +25,27 @@ class Partenaire
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Le nom saisi est court.",
+     *      maxMessage = "Le nom saisi est long."
+     * )
      * @ORM\Column(name="nom", type="string", length=45)
      */
     private $nom;
 
     /**
      * @var string
-     *
+     * @Assert\Url(
+     *     message = "L'URL saisie n'est pas correcte",
+     *     protocols = {"http", "https", "ftp"}
+     * )
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
     private $url;
