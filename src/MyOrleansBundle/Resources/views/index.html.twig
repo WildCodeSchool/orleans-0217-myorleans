@@ -18,54 +18,80 @@
 
     <div id="GrandeIntro">
         <div class="row center logoIntro">
-            <div class="col s12 ">
+            <div class="col s12">
                 <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
             </div>
         </div>
+
         <div class="row center">
-            {% if parcours == 'investisseur' %}
-                <div class="col s6 l5 pictoParcours pictoInvest">
-                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
-                       class="profil-investisseur">
-                        <i class="fa fa-calculator" aria-hidden="true"></i></a>
-                </div>
-                <div class="col s6 l5 offset-l1 pictoParcours-small pictoResidence-small">
-                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
-                       class="profil-residence">
-                        <i class="fa fa-home" aria-hidden="true"></i></a>
-                </div>
-            {% elseif parcours == 'residence' %}
-                <div class="col s6 l5 pictoParcours-small pictoInvest-small">
-                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
-                       class="profil-investisseur">
-                        <i class="fa fa-calculator" aria-hidden="true"></i></a>
-                </div>
-                <div class="col s6 l5 offset-l1 pictoParcours pictoResidence">
-                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
-                       class="profil-residence">
-                        <i class="fa fa-home" aria-hidden="true"></i></a>
-                </div>
-            {% else %}
-                <div class="col s6 l5 pictoParcours pictoInvest">
-                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
-                       class="profil-investisseur">
-                        <i class="fa fa-calculator" aria-hidden="true"></i></a>
-                </div>
-                <div class="col s6 l5 offset-l1 pictoParcours pictoResidence">
-                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
-                       class="profil-residence">
-                        <i class="fa fa-home" aria-hidden="true"></i></a>
-                </div>
-            {% endif %}
-        </div>
-        <div class="row center">
-            <div class="col s10 offset-s1">
+            <div class="col s10 offset-s1 m8 offset-m2 l4 offset-l4">
                 <div class="explication-parcours">
-                    <p>Investir ? Acheter une résidence principale ? Choisissez le parcours qui vous ressemble. Cliquez sur un pictogramme et découvrez les
-                        offres et contenus qui vous intéressent.</p>
+                    <p>Envie d'investir ou d'acheter une résidence principale ? Choisissez le parcours qui vous ressemble en cliquant sur l'un des deux pictogrammes.</p>
                 </div>
             </div>
         </div>
+
+        <div class="row center">
+            {% if parcours == 'investisseur' %}
+                <div class="col s6 l2 offset-l4 center">
+                    <div class="pictoParcours">
+                        <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
+                           class="profil-investisseur">
+                            <i class="fa fa-calculator" aria-hidden="true"></i>
+                            <p>INVESTIR DANS UN BIEN IMMOBILIER</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col s6 l2 center">
+                    <div class="pictoParcours-small">
+                        <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
+                           class="profil-residence">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <p>CHANGER DE PARCOURS</p>
+                        </a>
+                    </div>
+                </div>
+            {% elseif parcours == 'residence' %}
+                <div class="col s6 l2 offset-l4 center">
+                    <div class="pictoParcours-small center">
+                        <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
+                           class="profil-investisseur">
+                            <i class="fa fa-calculator" aria-hidden="true"></i>
+                            <p>CHANGER DE PARCOURS</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col s6 l2 center">
+                    <div class="pictoParcours center">
+                        <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
+                           class="profil-residence">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <p>ACHETER UNE RESIDENCE PRINCIPALE</p>
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col s6 l2 offset-l4 center">
+                    <div class="pictoParcours">
+                        <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
+                           class="profil-investisseur">
+                            <i class="fa fa-calculator" aria-hidden="true"></i>
+                            <p>INVESTIR DANS UN BIEN IMMOBILIER</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col s6 l2 center">
+                    <div class="pictoParcours">
+                        <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
+                           class="profil-residence">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <p>ACHETER UNE RESIDENCE PRINCIPALE</p>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
     </div>
     <!--logo dde de documentation-->
 

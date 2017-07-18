@@ -175,86 +175,80 @@ body {
 }
 
 .logoIntro img{
-    margin-top: 70px;
-    width: 350px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    width: 500px;
     height: auto;
     padding-bottom: 50px;
     border-bottom: 5px solid #a5ca2a;
-
 }
 
 /*----------------------- PictoParcours big --------------------------*/
 
 .pictoParcours {
-    padding-bottom: 20px;
-}
-
-.pictoParcours a i {
-    color: #C8CACC ;
-    -webkit-transition:color 250ms ease-out;
-    -moz-transition:color 250ms ease-out;
-    transition:color 250ms ease-out;
+    display: inline-block;
     background-color: rgba(255,255,255, .95);
-    padding: 5px;
     height: 290px;
     width: 290px;
     border-radius: 50%;
+    padding: 20px 5px 5px 10px;
+}
+
+.pictoParcours a i {
+    font-size: 170px;
+    margin-top: 40px;
+    color: #a5ca2a;
 }
 
 .pictoParcours:hover a i {
-    color: #a5ca2a ;
+    display: none ;
 }
 
-.pictoInvest {
-    font-size: 170px;
-    margin-top: 70px
+.pictoParcours a p {
+    display: none;
 }
 
-.pictoInvest a i {
-    padding-top: 60px;
-    padding-left: 15px;
-}
-
-.pictoResidence {
-    font-size: 250px;
-    margin-top: 20px
+.pictoParcours:hover a p {
+    display: inline-block;
+    color: #C8CACC ;
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 30px;
 }
 
 /*----------------------- PictoParcours small --------------------------*/
 
-.pictoParcours-small a i {
-    color: #C8CACC ;
-    -webkit-transition:color 250ms ease-out;
-    -moz-transition:color 250ms ease-out;
-    transition:color 250ms ease-out;
+.pictoParcours-small {
+    display: inline-block;
+    margin-top: 90px;
     background-color: rgba(255,255,255, .95);
-    padding: 15px 5px 0 5px;
     height: 150px;
     width: 150px;
     border-radius: 50%;
+    padding: 10px 5px 5px 10px;
+}
+
+.pictoParcours-small a i {
+    margin-top: 20px;
+    font-size: 90px;
+    color: #a5ca2a;
 }
 
 .pictoParcours-small:hover a i {
-    color: #a5ca2a ;
+    display: none;
 }
 
-.pictoParcours-small {
-    margin-top: 125px;
+.pictoParcours-small a p {
+    display: none;
 }
 
-.pictoInvest-small {
-    font-size: 90px;
+.pictoParcours-small:hover a p {
+    display: inline-block;
+    color: #C8CACC ;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 20px;
 }
-
-.pictoResidence-small {
-    font-size: 110px;
-}
-
-.pictoInvest-small a i {
-    padding-top: 30px;
-    padding-left: 10px;
-}
-
 
 
 /*----------------------- fin PictoParcours ----------------------------*/
@@ -263,7 +257,8 @@ body {
     border-radius: 6px;
     background-color: rgba(255, 255, 255, 0.9);
     color: #C8CACC;
-    padding: 10px;
+    padding: 5px 30px;
+    border: solid 1px rgb(165, 202, 42);
 }
 
 .explication-parcours p {
