@@ -10,10 +10,18 @@
         <!--fin logo dde de documentation-->
         <div class="row agencyVideo">
             <div class="col s12">
-                {% for cover in cover if cover.page == 'agence_cover' %}
-                    <iframe id="myIframe" src="{{ cover.lien }}" frameborder="0"
-                            allowfullscreen></iframe>
-                {% endfor %}
+                {% if media['video'] is defined and  media['video'] != null %}
+                    {% set video = true %}
+                    <div class="video-residence">
+                        <video width="90%" controls>
+                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/mp4">
+                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/ogg">
+                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/webm">
+                        </video>
+                    </div>
+                {% elseif media['image'] is defined and  media['image'] != null and  video is not defined %}
+                    <img src="{{ asset('uploads/'~media['image'].lien) }}" alt="photo_agence"/>
+                {% endif %}
             </div>
         </div>
 
@@ -258,7 +266,7 @@
                         </div>
                     </div>
 
-                    <div class="input-field col l12">
+                    <div class="input-field col l12 envoyer">
                         {{ form_row(form.envoyer) }}
                     </div>
 

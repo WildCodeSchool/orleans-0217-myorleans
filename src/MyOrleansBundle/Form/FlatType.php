@@ -2,6 +2,8 @@
 
 namespace MyOrleansBundle\Form;
 
+use MyOrleansBundle\Entity\TypeBien;
+use MyOrleansBundle\Entity\TypeLogement;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -35,7 +37,11 @@ class FlatType extends AbstractType
                 ]
             ])
             ->add('typeLogement', EntityType::class, [
-                'class' => 'MyOrleansBundle:TypeLogement',
+                'class' => TypeLogement::class,
+                'choice_label' => 'nom'
+            ])
+            ->add('typeBien', EntityType::class, [
+                'class' => TypeBien::class,
                 'choice_label' => 'nom'
             ])
             ->add('medias', CollectionType::class,
@@ -43,6 +49,7 @@ class FlatType extends AbstractType
                     'entry_type' => MediaType::class,
                     'allow_add' => true,
                     'prototype' => true,
+                    'by_reference' => false
                 ]);
     }
 

@@ -686,6 +686,10 @@ FIN ACCUEIL - BLOC AGENCE
    color: white;
 }
 
+.newsletter{
+    text-align: center;
+}
+
 /* --------------------------------------------------------------------*/
 /* ------------------------ MENTIONS LEGALES --------------------------*/
 /* --------------------------------------------------------------------*/
@@ -905,19 +909,23 @@ FIN ACCUEIL - BLOC AGENCE
     background-color: #b7d64a;
     overflow: hidden;
     border-radius: 5px;
-    margin-top: 25px;
+    margin-top: 100px;
     position: fixed;
     right: 20px;
     padding: 10px;
     z-index: 200;
-    -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-    -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -webkit-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
+    -moz-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
 
-    animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
 
 }
 
 .breadcrumb a {
     text-decoration: none;
     color:white;
+}
+
+.envoyer{
+    margin-bottom: 100px;
 }
