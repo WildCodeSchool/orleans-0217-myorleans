@@ -31,8 +31,8 @@
                             <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/webm">
                         </video>
                     </div>
-                {% elseif media['image'] is defined and  media['image'] != null and  video is not defined %}
-                    <img src="{{ asset('uploads/'~media['image'].lien) }}" alt="photo_residence"/>
+                {% elseif media['image-cover'] is defined and  media['image-cover'] != null and  video is not defined %}
+                    <img src="{{ asset('uploads/'~media['image-cover'].lien) | imagine_filter('thumb_photo_residence') }}" alt="photo_residence"/>
                 {% endif %}
             </div>
         </div>

@@ -62,10 +62,10 @@
     <div class="row center">
         <h3>Plans</h3>
         <div class="col s12">
-            {% if media['image'] is defined and  media['image'] != null %}
-                <img src="{{ asset('uploads/'~media['plans'].lien) }}" class="plan responsive-img" alt="plans"/>
+            {% if media['plan'] is defined and  media['plan'] != null %}
+                <img src="{{ asset('uploads/'~media['plan'].lien) | imagine_filter('thumb_plan_appartement') }}" class="plan responsive-img" alt="plans"/>
             {% else %}
-                <img src="{{ asset('img/Pas-dimage.jpg') }}" class="plan responsive-img" alt="plans"/>
+                <img src="{{ asset('img/Pas-dimage.jpg') | imagine_filter('thumb_plan_appartement') }}" class="plan responsive-img" alt="plans"/>
             {% endif %}
         </div>
     </div>
@@ -75,11 +75,11 @@
                 <h3>Les Détails</h3>
             </div>
 
-            <div class="col offset-l1 l4 offset-l1 m12 center">
+            <div class="col offset-l1 l4 offset-l1 m12">
                 <div class="rang-presta">
                     <div class="row">
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/icons/floor.png') }}" alt="revetement">
+                            <img class="icon-apt" src="{{ asset('uploads/floor.png') }}" alt="revetement">
                         </div>
                         <div class="col s11 prestation">
                             <p>Revetment Sol Salle de bains : Carrelage</p>
@@ -87,7 +87,7 @@
                             <p>Revetment Séjour : Carrelage</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/icons/Parking.png') }}"
+                            <img class="icon-apt" src="{{ asset('uploads/Parking.png') }}"
                                  alt="stationnement voiture">
                         </div>
                         <div class="col s11 prestation">
@@ -95,7 +95,7 @@
                             <p>1 Parking exterieur</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/icons/surface.png') }}" alt="surfaces">
+                            <img class="icon-apt" src="{{ asset('uploads/surface.png') }}" alt="surfaces">
                         </div>
                         <div class="col s11 prestation">
                             <p>Surface Habitable : 38 m2</p>
@@ -108,32 +108,32 @@
                 <div class="rang-presta">
                     <div class="row">
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/icons/agenda.png') }}" alt="date de livraison">
+                            <img class="icon-apt" src="{{ asset('uploads/agenda.png') }}" alt="date de livraison">
                         </div>
                         <div class="col s11 prestation">
                             <p>livraison 2ème semestre 2017</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/icons/boussole.png') }}" alt="exposition séjour">
+                            <img class="icon-apt" src="{{ asset('uploads/boussole.png') }}" alt="exposition séjour">
                         </div>
                         <div class="col s11 prestation">
                             <p>Exposition du séjour : Nord Ouest</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/icons/chauffage.png') }}" alt="type de chauffage">
+                            <img class="icon-apt" src="{{ asset('uploads/chauffage.png') }}" alt="type de chauffage">
                         </div>
                         <div class="col s11 prestation">
                             <p>Chauffage gaz collectif</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/icons/menuiserie.png') }}"
+                            <img class="icon-apt" src="{{ asset('uploads/menuiserie.png') }}"
                                  alt="type de menuiseries">
                         </div>
                         <div class="col s11 prestation">
                             <p>Menuiseries : PVC</p>
                         </div>
                         <div class="col s1 icon-prestation">
-                            <img class="icon-apt" src="{{ asset('img/icons/room.png') }}" alt="nombre de pièces">
+                            <img class="icon-apt" src="{{ asset('uploads/room.png') }}" alt="nombre de pièces">
                         </div>
                         <div class="col s11 prestation">
                             <p>Nombre de Pièces : 2</p>

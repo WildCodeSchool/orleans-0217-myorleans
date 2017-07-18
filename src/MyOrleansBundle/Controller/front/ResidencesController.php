@@ -44,8 +44,8 @@ class ResidencesController extends Controller
         foreach ($medias as $media) {
             if ($media->getTypeMedia()->getNom() == 'video') {
                 $mediaDefine['video'] = $media;
-            } elseif ($media->getTypeMedia()->getNom() == 'image') {
-                $mediaDefine['image'] = $media;
+            } elseif ($media->getTypeMedia()->getNom() == 'image-cover') {
+                $mediaDefine['image-cover'] = $media;
             }
         }
 

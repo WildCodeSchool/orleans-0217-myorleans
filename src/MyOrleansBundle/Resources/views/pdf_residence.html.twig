@@ -26,21 +26,23 @@
 <div class="container">
     <div class="row">
         <div class="undervideo-residence">
-            <div class="co s12">
-                <h2><span>{{ residence.nom }}</span></h2>
-                <h2 class="lieu-residence">à {{ residence.ville.nom }}</h2>
+            <div class="col s12">
+                <h2><span>{{ residence.nom }} à {{ residence.ville.nom }}</span></h2>
             </div>
-            {% if media['image'] is defined and  media['image'] != null %}
-                <img src="{{ asset('uploads/'~media['image'].lien) }}" alt="photo_residence"/>
-            {% else %}
-                <img src="{{ asset('img/Pas-dimage.jpg') }}" alt="photo_residence"/>
+            <div class="col s12">
+            {% if media['image-cover'] is defined and  media['image-cover'] != null %}
+                {% set cover = true %}
+                <img src="{{ absolute_url(asset('uploads/'~media['image-cover'].lien)) }}" alt="photo_residence"/>
+            {% elseif cover is not defined %}
+                <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" alt="photo_residence"/>
             {% endif %}
+            </div>
             <div class="col s12">
                 <table class="offre-residence">
                     <tr>
                         <td><strong>Offre du moment</strong><br/><span class="subtab-residence"><strong
                                         class="offre">{{ residence.offre }}</strong></span></td>
-                        <td><strong>Prix</strong><br/><span class="subtab-residence"><strong>à partir {{ prixMin }}
+                        <td><strong>Prix</strong><br/><span class="subtab-residence"><strong>à partir de {{ prixMin }}
                                     €</strong></span>
                         </td>
                     </tr>
@@ -185,14 +187,14 @@
                                     <td>{{ flat.typeLogement.nom }}</td>
                                     <td>{{ flat.surface }}m2</td>
                                     <td>{{ flat.prix }} €</td>
-                                    {% if flat.statut == 1 %}
-                                        <td class="waves-effect waves-light btn btn-vendu">
-                                            <strong>Vendu</strong></td>
-                                    {% else %}
+                                    {% if flat.statut %}
                                         <td>
                                             <a href="{{ path('appartement', { 'id': flat.id }) }}"
                                                class="waves-effect waves-light btn btn-residence">Disponible</a>
                                         </td>
+                                    {% else %}
+                                        <td class="waves-effect waves-light btn btn-vendu">
+                                            <strong>Vendu</strong></td>
                                     {% endif %}
                                 </tr>
                             {% endif %}
@@ -223,14 +225,14 @@
                                     <td>{{ flat.typeLogement.nom }}</td>
                                     <td>{{ flat.surface }}m2</td>
                                     <td>{{ flat.prix }} €</td>
-                                    {% if flat.statut == 1 %}
-                                        <td class="waves-effect waves-light btn btn-vendu">
-                                            <strong>Vendu</strong></td>
-                                    {% else %}
+                                    {% if flat.statut %}
                                         <td>
                                             <a href="{{ path('appartement', { 'id': flat.id }) }}"
                                                class="waves-effect waves-light btn btn-residence">Disponible</a>
                                         </td>
+                                    {% else %}
+                                        <td class="waves-effect waves-light btn btn-vendu">
+                                            <strong>Vendu</strong></td>
                                     {% endif %}
                                 </tr>
                             {% endif %}
@@ -261,14 +263,14 @@
                                     <td>{{ flat.typeLogement.nom }}</td>
                                     <td>{{ flat.surface }}m2</td>
                                     <td>{{ flat.prix }} €</td>
-                                    {% if flat.statut == 1 %}
-                                        <td class="waves-effect waves-light btn btn-vendu">
-                                            <strong>Vendu</strong></td>
-                                    {% else %}
+                                    {% if flat.statut %}
                                         <td>
                                             <a href="{{ path('appartement', { 'id': flat.id }) }}"
                                                class="waves-effect waves-light btn btn-residence">Disponible</a>
                                         </td>
+                                    {% else %}
+                                        <td class="waves-effect waves-light btn btn-vendu">
+                                            <strong>Vendu</strong></td>
                                     {% endif %}
                                 </tr>
                             {% endif %}
@@ -299,14 +301,14 @@
                                     <td>{{ flat.typeLogement.nom }}</td>
                                     <td>{{ flat.surface }}m2</td>
                                     <td>{{ flat.prix }} €</td>
-                                    {% if flat.statut == 1 %}
-                                        <td class="waves-effect waves-light btn btn-vendu">
-                                            <strong>Vendu</strong></td>
-                                    {% else %}
+                                    {% if flat.statut %}
                                         <td>
                                             <a href="{{ path('appartement', { 'id': flat.id }) }}"
                                                class="waves-effect waves-light btn btn-residence">Disponible</a>
                                         </td>
+                                    {% else %}
+                                        <td class="waves-effect waves-light btn btn-vendu">
+                                            <strong>Vendu</strong></td>
                                     {% endif %}
                                 </tr>
                             {% endif %}
