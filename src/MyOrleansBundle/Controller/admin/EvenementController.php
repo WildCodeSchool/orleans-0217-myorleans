@@ -65,6 +65,7 @@ class EvenementController extends Controller
             $em->persist($evenement);
             $em->flush();
 
+            $this->addFlash('success', 'Votre événement a bien été ajouté');
             return $this->redirectToRoute('admin_evenement_show', array('id' => $evenement->getId()));
         }
 
@@ -105,6 +106,7 @@ class EvenementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Votre événement a bien été mis à jour');
             return $this->redirectToRoute('admin_evenement_index', array('id' => $evenement->getId()));
         }
         return $this->render('evenement/edit.html.twig', array(
@@ -131,7 +133,7 @@ class EvenementController extends Controller
             $em->remove($evenement);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Votre événement a bien été supprimé');
         return $this->redirectToRoute('admin_evenement_index');
     }
 

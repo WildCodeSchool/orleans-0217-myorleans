@@ -81,6 +81,7 @@ class FlatController extends Controller
             $em->persist($flat);
             $em->flush();
 
+            $this->addFlash('success', 'Votre appartement a bien été ajoutée');
             return $this->redirectToRoute('admin_flat_index', array('id' => $flat->getResidence()->getId()));
         }
 
@@ -171,6 +172,7 @@ class FlatController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Votre appartement a bien été mis à jour');
             return $this->redirectToRoute('admin_flat_index', array('id' => $flat->getResidence()->getId()));
         }
 
@@ -198,7 +200,7 @@ class FlatController extends Controller
             $em->remove($flat);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Votre appartement a bien été supprimée');
         return $this->redirectToRoute('admin_flat_index', ['id' => $residence_id]);
     }
 

@@ -83,6 +83,7 @@ class ArticleController extends Controller
             $em->persist($fileArticle);
             $em->flush();
 
+            $this->addFlash('success', 'Votre article a bien été ajoutée');
             return $this->redirectToRoute('admin_article_show', array('id' => $article->getId()));
         }
 
@@ -133,6 +134,7 @@ class ArticleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Votre résidence a bien été mis à jour');
             return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
         }
 
@@ -159,6 +161,7 @@ class ArticleController extends Controller
             $em->remove($article);
             $em->flush();
         }
+        $this->addFlash('danger', 'Votre article a bien été supprimée');
 
         return $this->redirectToRoute('admin_article_index');
     }

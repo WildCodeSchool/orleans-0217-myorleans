@@ -58,6 +58,7 @@ class TemoignageController extends Controller
             $em->persist($temoignage);
             $em->flush();
 
+            $this->addFlash('success', 'Votre témoignage a bien été ajouté');
             return $this->redirectToRoute('admin_temoignage_show', array('id' => $temoignage->getId()));
         }
 
@@ -98,6 +99,7 @@ class TemoignageController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Votre témoignage a bien été mis à jour');
             return $this->redirectToRoute('admin_temoignage_index', array('id' => $temoignage->getId()));
         }
 
@@ -125,6 +127,7 @@ class TemoignageController extends Controller
             $em->flush();
         }
 
+        $this->addFlash('danger', 'Votre témoignage a bien été supprimé');
         return $this->redirectToRoute('admin_temoignage_index');
     }
 

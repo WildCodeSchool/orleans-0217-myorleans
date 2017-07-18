@@ -48,6 +48,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
+            $this->addFlash('success', 'Un nouvel utilisateur a été créé');
             return $this->redirectToRoute('user_show', array('id' => $user->getId()));
         }
 
@@ -88,6 +89,7 @@ class UserController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Cet utilisateur a bien été mis à jour');
             return $this->redirectToRoute('user_index', array('id' => $user->getId()));
         }
 
@@ -114,7 +116,7 @@ class UserController extends Controller
             $em->remove($user);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Cet utilisateur a été supprimé');
         return $this->redirectToRoute('user_index');
     }
 

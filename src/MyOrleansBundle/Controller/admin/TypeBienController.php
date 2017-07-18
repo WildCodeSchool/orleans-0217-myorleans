@@ -48,6 +48,7 @@ class TypeBienController extends Controller
             $em->persist($typeBien);
             $em->flush();
 
+            $this->addFlash('success', 'Un nouveau type de bien a été ajouté');
             return $this->redirectToRoute('typebien_show', array('id' => $typeBien->getId()));
         }
 
@@ -88,6 +89,7 @@ class TypeBienController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Le type de bien a été mis à jour');
             return $this->redirectToRoute('typebien_edit', array('id' => $typeBien->getId()));
         }
 
@@ -114,7 +116,7 @@ class TypeBienController extends Controller
             $em->remove($typeBien);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Le type de bien résidence a bien été supprimé');
         return $this->redirectToRoute('typebien_index');
     }
 

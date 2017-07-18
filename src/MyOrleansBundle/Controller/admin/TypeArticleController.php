@@ -48,6 +48,7 @@ class TypeArticleController extends Controller
             $em->persist($typeArticle);
             $em->flush();
 
+            $this->addFlash('success', 'Un nouveau type article a bien été ajouté');
             return $this->redirectToRoute('admin_typearticle_show', array('id' => $typeArticle->getId()));
         }
 
@@ -88,6 +89,7 @@ class TypeArticleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Le type article a bien été mis à jour');
             return $this->redirectToRoute('admin_typearticle_index', array('id' => $typeArticle->getId()));
         }
 
@@ -114,7 +116,7 @@ class TypeArticleController extends Controller
             $em->remove($typeArticle);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Le type article a bien été supprimé');
         return $this->redirectToRoute('admin_typearticle_index');
     }
 

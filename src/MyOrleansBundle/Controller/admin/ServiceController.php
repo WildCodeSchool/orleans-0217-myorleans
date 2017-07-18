@@ -49,9 +49,11 @@ class ServiceController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($service);
             $em->flush();
-
+            $this->addFlash('success', 'Votre service a bien été ajouté');
             return $this->redirectToRoute('admin_service_show', array('id' => $service->getId()));
         }
+
+
 
         return $this->render('service/new.html.twig', array(
             'service' => $service,
@@ -92,8 +94,10 @@ class ServiceController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Votre service a bien été mis à jour');
             return $this->redirectToRoute('admin_service_index', array('id' => $service->getId()));
         }
+
 
         return $this->render('service/edit.html.twig', array(
             'service' => $service,
@@ -118,7 +122,7 @@ class ServiceController extends Controller
             $em->remove($service);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Votre article a bien été supprimé');
         return $this->redirectToRoute('admin_service_index');
     }
 

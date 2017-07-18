@@ -58,6 +58,7 @@ class VilleController extends Controller
             $em->persist($ville);
             $em->flush();
 
+            $this->addFlash('success', 'Une nouvelle ville a été ajoutée');
             return $this->redirectToRoute('admin_ville_show', array('id' => $ville->getId()));
         }
 
@@ -98,6 +99,7 @@ class VilleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Cette ville a bien été mis à jour');
             return $this->redirectToRoute('admin_ville_index', array('id' => $ville->getId()));
         }
 
@@ -125,6 +127,7 @@ class VilleController extends Controller
             $em->flush();
         }
 
+        $this->addFlash('danger', 'Cette ville a été supprimée');
         return $this->redirectToRoute('admin_ville_index');
     }
 

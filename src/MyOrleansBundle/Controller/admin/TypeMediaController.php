@@ -49,6 +49,7 @@ class TypeMediaController extends Controller
             $em->persist($typeMedia);
             $em->flush();
 
+            $this->addFlash('success', 'Un nouveau type de media a été ajoutée');
             return $this->redirectToRoute('admin_typemedia_show', array('id' => $typeMedia->getId()));
         }
 
@@ -89,6 +90,7 @@ class TypeMediaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Ce type de media a été mis à jour');
             return $this->redirectToRoute('admin_typemedia_index', array('id' => $typeMedia->getId()));
         }
 
@@ -116,6 +118,7 @@ class TypeMediaController extends Controller
             $em->flush();
         }
 
+        $this->addFlash('danger', 'Ce type de media a été supprimé');
         return $this->redirectToRoute('admin_typemedia_index');
     }
 
