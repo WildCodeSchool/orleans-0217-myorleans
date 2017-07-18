@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Pack
@@ -23,14 +24,14 @@ class Pack
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="nom", type="string", length=45)
      */
     private $nom;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="description", type="string", length=45)
      */
     private $description;
@@ -38,7 +39,7 @@ class Pack
     /**
      * @var int
      *
-     * @ORM\Column(name="prix", type="integer")
+     * @ORM\Column(name="prix", type="integer", nullable = true)
      */
     private $prix;
 
