@@ -31,19 +31,14 @@
 
                     <div class="col s12 m6 l6">
                         <div data-aos="fade-up-left">
-                            {% for media in service.medias %}
-                                {% if media.typeMedia.nom == 'image-cover' %}
-
-                                    <img src="{{ asset('uploads/'~media.lien) }}" class="img-service responsive-img">
-
-                                {% elseif media.typeMedia.nom == 'video' %}
-
+                                {% if service.media.typeMedia.nom == 'image-cover' %}
+                                    <img src="{{ asset('uploads/'~service.media.lien) }}" class="img-service responsive-img">
+                                {% elseif service.media.typeMedia.nom == 'video' %}
                                     <div class="video-container">
-                                        <iframe width="560" height="315" src="{{ media.lien }}" frameborder="0"
+                                        <iframe width="560" height="315" src="{{ service.media.lien }}" frameborder="0"
                                                 allowfullscreen></iframe>
                                     </div>
                                 {% endif %}
-                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -54,16 +49,16 @@
                     <div class="col s12 m6 l6">
 
                         <div data-aos="fade-up-right">
-                            {% for media in service.medias %}
-                                {% if media.typeMedia.nom == 'image-cover' %}
-                                    <img src="{{ asset('uploads/'~media.lien) }}" class="img-service responsive-img">
-                                {% elseif media.typeMedia.nom == 'video' %}
+
+                                {% if service.media.typeMedia.nom == 'image-cover' %}
+                                    <img src="{{ asset('uploads/'~service.media.lien) }}" class="img-service responsive-img">
+                                {% elseif service.media.typeMedia.nom == 'video' %}
                                     <div class="video-container">
-                                        <iframe width="560" height="315" src="{{ media.lien }}" frameborder="0"
+                                        <iframe width="560" height="315" src="{{ service.media.lien }}" frameborder="0"
                                                 allowfullscreen></iframe>
                                     </div>
                                 {% endif %}
-                            {% endfor %}
+
                         </div>
                     </div>
 
