@@ -70,17 +70,7 @@ class CompleteSearchType extends AbstractType
                     '4 chambres et plus' => '4',
                 )
             ])
-// En attente validation client de la suppression de ce critere
-/*            ->add('nbPieces', ChoiceType::class, [
-                'required'=>false,
-                'placeholder'=>'Nb. Pièce(s)',
-                'choices' => array(
-                    '1 pièce' => '1',
-                    '2 pièces' => '2',
-                    '3 pièces' => '3',
-                    '4 pièces et plus' => '4',
-                )
-            ])*/
+
             ->add('objectif', ChoiceType::class, [
                 'required'=>false,
                 'placeholder'=>'Objectif',
