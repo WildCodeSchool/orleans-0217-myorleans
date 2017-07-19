@@ -10,18 +10,13 @@
         <!--fin logo dde de documentation-->
         <div class="row agencyVideo">
             <div class="col s12">
-                {% if media['video'] is defined and  media['video'] != null %}
-                    {% set video = true %}
-                    <div class="video-residence">
-                        <video width="90%" controls>
-                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/mp4">
-                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/ogg">
-                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/webm">
-                        </video>
-                    </div>
-                {% elseif media['image'] is defined and  media['image'] != null and  video is not defined %}
-                    <img src="{{ asset('uploads/'~media['image'].lien) }}" alt="photo_agence"/>
-                {% endif %}
+                <div class="video-residence center">
+                    <video width="100%" controls>
+                        <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/mp4">
+                        <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/ogg">
+                        <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/webm">
+                    </video>
+                </div>
             </div>
         </div>
 
