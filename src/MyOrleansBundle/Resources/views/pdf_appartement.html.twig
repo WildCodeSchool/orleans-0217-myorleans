@@ -28,7 +28,8 @@
         <div class="row center">
             <div class="col s12">
                 <h2>
-                    <span>{{ residence.nom }} - {{ flat.typeBien.nom }} Ref {{ flat.reference }} - {{ flat.typeLogement.nom }}</span>
+                    <span>{{ residence.nom }} - {{ flat.typeBien.nom }} Ref {{ flat.reference }}
+                        - {{ flat.typeLogement.nom }}</span>
                 </h2>
             </div>
         </div>
@@ -38,7 +39,8 @@
 <div class="photoinfo-apt">
     <div class="photo-apt">
         {% if media['image'] is defined and  media['image'] != null %}
-            <img src="{{ absolute_url(asset('uploads/'~media['image'].lien)) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
+            <img src="{{ absolute_url(asset('uploads/'~media['image'].lien)) }}" class="thumb_pdf_photo_apt"
+                 alt="photo-appart"/>
         {% else %}
             <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
         {% endif %}
@@ -133,111 +135,112 @@
 <div class="plan-apt center">
 
     <h3 class="titre-plan">Plans</h3>
-        <img src="{{ absolute_url(asset('uploads/'~media['plan'].lien)) }}" alt="plans"/>
+
+    <div class="col s12">
+        {% if media['plan'] is defined and  media['plan'] != null %}
+            {% set plan = true %}
+            <img src="{{ absolute_url(asset('uploads/'~media['plan'].lien)) }}" class="plan responsive-img"
+                 alt="plans"/>
+        {% elseif plan is not defined %}
+            <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" class="plan responsive-img" alt="plans"/>
+        {% endif %}
+    </div>
 </div>
-<div class="col s12">
-    {% if media['plan'] is defined and  media['plan'] != null %}
-        {% set plan = true %}
-        <img src="{{ absolute_url(asset('uploads/'~media['plan'].lien)) }}" class="plan responsive-img" alt="plans"/>
-    {% elseif plan is not defined %}
-        <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" class="plan responsive-img" alt="plans"/>
-    {% endif %}
-</div>
-<div id="content" class="content-appartement">
-    <div class="container-fluid">
-        <div class="row center">
+    <div id="content" class="content-appartement">
+        <div class="container-fluid">
+            <div class="row center">
+                <div class="col s12">
+                    <h2>
+                        <span>La Résidence : {{ residence.nom }} </span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="photo-residence center">
+        {% if residence.media['image-cover'] is defined and  residence.media['image-cover'] != null %}
+            <img src="{{ absolute_url(asset('uploads/'~residence.media['image-cover'].lien)) }}" alt="photo_residence"/>
+        {% else %}
+            <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" alt="photo_residence"/>
+        {% endif %}
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="box-notesite">
+                <div class="row">
+                    <li>
+                    <li class="design col s3">
+                        <div class="notesite" id="note_0" data-note="{{ residence.noteTransports }}"></div>
+                        <br/>
+                        <div class="list-legend">
+                            <div class="row center-align">
+                                <ul>
+                                    <li class="design col m12">transports</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="content col s3">
+                        <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces }}"></div>
+                        <br/>
+                        <div class="list-legend">
+                            <div class="row">
+                                <ul>
+                                    <li class="design col m12">commerces</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="creativity col s3">
+                        <div class="notesite" id="note_1" data-note="{{ residence.noteServices }}"></div>
+                        <div class="list-legend">
+                            <div class="row">
+                                <ul>
+                                    <li class="design col m12">services</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="usability col s3">
+                        <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme }}"></div>
+                        <div class="list-legend">
+                            <div class="row">
+                                <ul>
+                                    <li class="design col m12">esthétisme</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
             <div class="col s12">
-                <h2>
-                    <span>La Résidence : {{ residence.nom }} </span>
-                </h2>
+                <div class="rapel-residence text-justify">
+                    <h3>La Residence</h3>
+                    <p>
+                        {{ residence.description }}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="photo-residence center">
-    {% if residence.media['image'] is defined and  residence.media['image'] != null %}
-        <img src="{{ absolute_url(asset('uploads/'~residence.media['image'].lien)) }}" alt="photo_residence"/>
-    {% else %}
-        <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" alt="photo_residence"/>
-    {% endif %}
-</div>
 
 
-<div class="container">
-    <div class="row">
-        <div class="box-notesite">
-            <div class="row">
-                <li>
-                <li class="design col s3">
-                    <div class="notesite" id="note_0" data-note="{{ residence.noteTransports }}"></div>
-                    <br/>
-                    <div class="list-legend">
-                        <div class="row center-align">
-                            <ul>
-                                <li class="design col m12">transports</li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="content col s3">
-                    <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces }}"></div>
-                    <br/>
-                    <div class="list-legend">
-                        <div class="row">
-                            <ul>
-                                <li class="design col m12">commerces</li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="creativity col s3">
-                    <div class="notesite" id="note_1" data-note="{{ residence.noteServices }}"></div>
-                    <div class="list-legend">
-                        <div class="row">
-                            <ul>
-                                <li class="design col m12">services</li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="usability col s3">
-                    <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme }}"></div>
-                    <div class="list-legend">
-                        <div class="row">
-                            <ul>
-                                <li class="design col m12">esthétisme</li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col s12">
-            <div class="rapel-residence text-justify">
-                <h3>La Residence</h3>
-                <p>
-                    {{ residence.description }}
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="{{ absolute_url(asset('js/jquery-3.1.1.min.js')) }}"></script>
-<script type="text/javascript" src="{{ absolute_url(asset('js/materialize.min.js')) }}"></script>
-<script src="{{ absolute_url(asset('js/testcompteurpdf.js')) }}"></script>
-<script src="{{ absolute_url(asset('js/jquery.circliful.min.js')) }}"></script>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="{{ absolute_url(asset('js/jquery-3.1.1.min.js')) }}"></script>
+    <script type="text/javascript" src="{{ absolute_url(asset('js/materialize.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('js/testcompteurpdf.js')) }}"></script>
+    <script src="{{ absolute_url(asset('js/jquery.circliful.min.js')) }}"></script>
 
 
 </body>
