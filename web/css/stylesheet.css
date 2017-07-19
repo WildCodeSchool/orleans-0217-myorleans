@@ -1155,6 +1155,10 @@ FIN ACCUEIL - BLOC AGENCE
     opacity: 0;
 }
 
+.right{
+    text-align: right;
+}
+
 .blockStaff:hover .infoStaff {
     opacity: 1;
     transition: all 0.15s ease 0s;

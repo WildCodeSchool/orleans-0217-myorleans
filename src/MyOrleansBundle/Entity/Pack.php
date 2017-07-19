@@ -58,11 +58,7 @@ class Pack
 
     /**
      * @var int
-     * @Assert\Type(
-     *     type="integer",
-     *     message="Le prix saisie n'est pas correcte."
-     * )
-     * @Assert\GreaterThanOrEqual(0)
+     *
      * @ORM\Column(name="prix", type="integer", nullable = true)
      */
     private $prix;
