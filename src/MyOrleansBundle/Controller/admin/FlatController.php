@@ -72,7 +72,7 @@ class FlatController extends Controller
 
             // Si l'administrateur n'upload pas de photo pour le bien, une photo est chargée par défaut
             $media = $flat->getMedias()->first();
-            if (is_null($media->getId())) {
+            if (is_null($media->getLien())) {
                 /* @var $media Media */
                 $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
                 $media->setTypeMedia($typeMediaImgCover);
