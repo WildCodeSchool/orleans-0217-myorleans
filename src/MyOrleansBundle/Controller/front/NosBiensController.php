@@ -37,7 +37,7 @@ class NosBiensController extends Controller
         $objectif = "investir";
         $suggestionActive = 0;
         $residencesSuggerees = '';
-        $noResult = 0;
+        $rechercheSansResultat = 0;
 
         // Definition du parcours du visiteur
         $parcours = null;
@@ -104,7 +104,7 @@ class NosBiensController extends Controller
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
                 $residences = $em -> getRepository(Residence::class)->findAll();
-                $noResult = 1;
+                $rechercheSansResultat = 1;
             }
 
             // Parametrage du parcours visiteur
@@ -142,7 +142,7 @@ class NosBiensController extends Controller
             'quartiers' => $quartiers,
             'objectif' => $objectif,
             'article' => $article ?? null,
-            'noResult' => $noResult
+            'rechercheSansResultat' => $rechercheSansResultat
         ]);
 
     }
@@ -164,7 +164,7 @@ class NosBiensController extends Controller
         if ($completeSearch->isSubmitted()) {
 
             $suggestionActive = 1;
-            $noResult = 0;
+            $rechercheSansResultat = 0;
             $objectif = "";
 
             $data = $completeSearch->getData();
@@ -174,7 +174,7 @@ class NosBiensController extends Controller
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
                 $residences = $em->getRepository(Residence::class)->findAll();
-                $noResult = 1;
+                $rechercheSansResultat = 1;
             }
 
             // Generation du derier article avec le tag 'Investissement'
@@ -213,7 +213,7 @@ class NosBiensController extends Controller
             // Parametrage du parcours visiteur
             $parcours = $session->get('parcours');
 
-            if (!isset($objectif)) {
+            if (empty($objectif)) {
                 $objectif = "investir";
             }
 
@@ -227,7 +227,7 @@ class NosBiensController extends Controller
                 'quartiers' => $quartiers,
                 'objectif' => $objectif,
                 'article' => $article,
-                'noResult' => $noResult
+                'rechercheSansResultat' => $rechercheSansResultat
             ]);
 
         } else {
