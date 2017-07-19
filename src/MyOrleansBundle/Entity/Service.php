@@ -53,9 +53,9 @@ class Service
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="service", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Media", mappedBy="service", cascade={"persist"})
      */
-    private $medias;
+    private $media;
 
     /**
      * Get id
@@ -168,29 +168,5 @@ class Service
     public function removeMedia(\MyOrleansBundle\Entity\Media $media)
     {
         $this->medias->removeElement($media);
-    }
-
-    /**
-     * Get medias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedias()
-    {
-        return $this->medias;
-    }
-
-    /**
-     * Set medias
-     *
-     * @param \MyOrleansBundle\Entity\Media $medias
-     *
-     * @return Service
-     */
-    public function setMedias(\MyOrleansBundle\Entity\Media $medias = null)
-    {
-        $this->medias = $medias;
-
-        return $this;
     }
 }
