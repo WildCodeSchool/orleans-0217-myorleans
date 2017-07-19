@@ -103,15 +103,6 @@ class Residence
 
     /**
      * @var int
-     * @Assert\Type(
-     *     type="integer",
-     *     message="La saisie n'est pas correcte. Un nombre est attendu."
-     * )
-     * @Assert\Length(
-     *      min = 1,
-     *      minMessage = "Veuillez saisir un nombre de logement plus important",
-     *
-     * )
      * @ORM\Column(name="nb_total_logements", type="integer", nullable=true)
      */
     private $nbTotalLogements;
