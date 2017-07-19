@@ -54,8 +54,8 @@ class PdfController extends Controller
         foreach ($medias as $media) {
             if ($media->getTypeMedia()->getNom() == 'image') {
                 $mediaDefine['image'] = $media;
-            }elseif ($media->getTypeMedia()->getNom() == 'plans') {
-                $mediaDefine['plans'] = $media;
+            }elseif ($media->getTypeMedia()->getNom() == 'plan') {
+                $mediaDefine['plan'] = $media;
             }
         }
 

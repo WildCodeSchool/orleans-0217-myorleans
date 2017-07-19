@@ -28,7 +28,7 @@
         <div class="row center">
             <div class="col s12">
                 <h2>
-                    <span>{{ residence.nom }} - {{ typeBien.nom }} Ref {{ reference }} - {{ typeLogement.nom }}</span>
+                    <span>{{ residence.nom }} - {{ flat.typeBien.nom }} Ref {{ flat.reference }} - {{ flat.typeLogement.nom }}</span>
                 </h2>
             </div>
         </div>
@@ -38,9 +38,9 @@
 <div class="photoinfo-apt">
     <div class="photo-apt">
         {% if media['image'] is defined and  media['image'] != null %}
-            <img src="{{ asset('uploads/'~media['image'].lien) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
+            <img src="{{ absolute_url(asset('uploads/'~media['image'].lien)) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
         {% else %}
-            <img src="{{ asset('img/Pas-dimage.jpg') }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
+            <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
         {% endif %}
     </div>
     <div class="info-apt">
@@ -60,7 +60,7 @@
             <div class="rang-presta">
                 <div class="row">
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/floor.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('uploads/floor.png')) }}"
                              alt="revetement">
                     </div>
                     <div class="col s10 prestation">
@@ -69,14 +69,14 @@
                         <p>Revetment Séjour : Carrelage</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/Parking.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('uploads/Parking.png')) }}"
                              alt="stationnement voiture">
                     </div>
                     <div class="col s10 prestation">
                         <p>Stationnement : {{ flat.stationnement }}</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/surface.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('uploads/surface.png')) }}"
                              alt="surfaces">
                     </div>
                     <div class="col s10 prestation">
@@ -90,35 +90,35 @@
             <div class="rang-presta">
                 <div class="row">
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/agenda.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('uploads/agenda.png')) }}"
                              alt="date de livraison">
                     </div>
                     <div class="col s10 prestation">
                         <p>livraison {{ residence.dateLivraison }}</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/boussole.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('uploads/boussole.png')) }}"
                              alt="exposition séjour">
                     </div>
                     <div class="col s10 prestation">
                         <p>Exposition du séjour : {{ flat.expositionSejour }}</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/chauffage.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('uploads/chauffage.png')) }}"
                              alt="type de chauffage">
                     </div>
                     <div class="col s10 prestation">
                         <p>Chauffage gaz collectif</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/menuiserie.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('uploads/menuiserie.png')) }}"
                              alt="type de menuiseries">
                     </div>
                     <div class="col s10 prestation">
                         <p>Menuiseries : PVC</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/room.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('uploads/room.png')) }}"
                              alt="nombre de pièces">
                     </div>
                     <div class="col s10 prestation">
@@ -133,13 +133,16 @@
 <div class="plan-apt center">
 
     <h3 class="titre-plan">Plans</h3>
-    {% if media['image'] is defined and  media['image'] != null %}
-        <img src="{{ asset('uploads/'~media['plans'].lien) }}" alt="plans"/>
-    {% else %}
-        <img src="{{ asset('img/Pas-dimage.jpg') }}" alt="plans"/>
+        <img src="{{ absolute_url(asset('uploads/'~media['plan'].lien)) }}" alt="plans"/>
+</div>
+<div class="col s12">
+    {% if media['plan'] is defined and  media['plan'] != null %}
+        {% set plan = true %}
+        <img src="{{ absolute_url(asset('uploads/'~media['plan'].lien)) }}" class="plan responsive-img" alt="plans"/>
+    {% elseif plan is not defined %}
+        <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" class="plan responsive-img" alt="plans"/>
     {% endif %}
 </div>
-
 <div id="content" class="content-appartement">
     <div class="container-fluid">
         <div class="row center">
@@ -154,9 +157,9 @@
 
 <div class="photo-residence center">
     {% if residence.media['image'] is defined and  residence.media['image'] != null %}
-        <img src="{{ asset('uploads/'~residence.media['image'].lien) }}" alt="photo_residence"/>
+        <img src="{{ absolute_url(asset('uploads/'~residence.media['image'].lien)) }}" alt="photo_residence"/>
     {% else %}
-        <img src="{{ asset('img/Pas-dimage.jpg') }}" alt="photo_residence"/>
+        <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" alt="photo_residence"/>
     {% endif %}
 </div>
 
