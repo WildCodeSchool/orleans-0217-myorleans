@@ -47,7 +47,7 @@ Pour une mise en production du site via le terminal du serveur :
 * composer install
 * rentrer les informations de la base de données et du mail
 * donner les autorisations au dossier app/cache et app/logs : chmod -R 777 app/cache app/logs
-* créer un dossier "uploads" dans la dossier web
+* vérifier qu'il y a bien un dossier "uploads" dans web sinon le créer
 * renseigner la GoogleApiKey:  AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU
 * renseigner le mail_agence: agence@my-orleans.fr
 * renseigner la googlemap_static_map_key: AIzaSyDNHzX2Zxp7CP_hD9spH-cOHI-ZqwS3aoI
