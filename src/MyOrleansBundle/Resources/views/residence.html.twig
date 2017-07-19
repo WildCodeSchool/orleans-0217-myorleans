@@ -250,7 +250,7 @@
                                                     <tr>
                                                         <td>{{ flat.reference }}</td>
                                                         <td>{{ flat.typeLogement.nom }}</td>
-                                                        <td>{{ flat.surface }} m<sup>2</sup>></td>
+                                                        <td>{{ flat.surface }} m<sup>2</sup></td>
                                                         <td>{{ flat.prix }} €</td>
                                                         {% if flat.statut %}
                                                             <td>
@@ -258,8 +258,10 @@
                                                                    class="waves-effect waves-light btn btn-residence">Voir</a>
                                                             </td>
                                                         {% else %}
-                                                            <td class="waves-effect waves-light btn btn-vendu">
-                                                                <strong>Vendu</strong></td>
+                                                            <td>
+                                                                <a class="waves-effect waves-light btn btn-vendu">
+                                                                    <strong>Vendu</strong></a>
+                                                            </td>
                                                         {% endif %}
                                                     </tr>
                                                 {% endif %}
@@ -296,8 +298,10 @@
                                                                    class="waves-effect waves-light btn btn-residence">Voir</a>
                                                             </td>
                                                         {% else %}
-                                                            <td class="waves-effect waves-light btn btn-vendu">
-                                                                <strong>Vendu</strong></td>
+                                                            <td>
+                                                                <a class="waves-effect waves-light btn btn-vendu">
+                                                                    <strong>Vendu</strong></a>
+                                                            </td>
                                                         {% endif %}
                                                     </tr>
                                                 {% endif %}
@@ -334,8 +338,10 @@
                                                                    class="waves-effect waves-light btn btn-residence">Voir</a>
                                                             </td>
                                                         {% else %}
-                                                            <td class="waves-effect waves-light btn btn-vendu">
-                                                                <strong>Vendu</strong></td>
+                                                            <td>
+                                                                <a class="waves-effect waves-light btn btn-vendu">
+                                                                    <strong>Vendu</strong></a>
+                                                            </td>
                                                         {% endif %}
                                                     </tr>
                                                 {% endif %}
@@ -372,8 +378,10 @@
                                                                    class="waves-effect waves-light btn btn-residence">Voir</a>
                                                             </td>
                                                         {% else %}
-                                                            <td class="waves-effect waves-light btn btn-vendu">
-                                                                <strong>Vendu</strong></td>
+                                                            <td>
+                                                                <a class="waves-effect waves-light btn btn-vendu">
+                                                                    <strong>Vendu</strong></a>
+                                                            </td>
                                                         {% endif %}
                                                     </tr>
                                                 {% endif %}
