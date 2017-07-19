@@ -59,7 +59,7 @@ class Media
     private $categorie_presta;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Service", inversedBy="medias")
+     * @ORM\OneToOne(targetEntity="Service", inversedBy="media")
      */
     private $service;
 
