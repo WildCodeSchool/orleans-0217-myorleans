@@ -58,6 +58,13 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(form.offre, 'Offre du moment: ') }}
+                                    {{ form_widget(form.offre) }}
+                                    {{ form_errors(form.offre) }}
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s6">
                                     {{ form_label(form.dateLivraison, 'Date de livraison: ') }}
                                     {{ form_widget(form.dateLivraison) }}
