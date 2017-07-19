@@ -116,7 +116,7 @@
                                 <h4>{{ article.titre }}</h4>
                                 <p>{{ article.texte | raw }}</p>
                                 <div class="center lien-article">
-                                    <a href="#">LIRE LE DOSSIER</a>
+                                    <a href="{{ path('blog-article', {id: article.id,  'slug': article.slug }) }}">Lire le dossier</a>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                                 <h4>{{ article.titre }}</h4>
                                 <p>{{ article.texte | raw }}</p>
                                 <div class="center lien-article">
-                                    <a href="#">LIRE LE DOSSIER</a>
+                                    <a href="{{ path('blog-article', {id: article.id,  'slug': article.slug }) }}">Lire le dossier</a>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
                                     <h4>{{ article.titre }}</h4>
                                     <p>{{ article.texte | raw }}</p>
                                     <div class="center lien-article">
-                                        <a href="#">LIRE L'ARTICLE</a>
+                                        <a href="{{ path('blog-article', {id: article.id,  'slug': article.slug }) }}">Lire l'article</a>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@
                                     <h4>{{ article.titre }}</h4>
                                     <p>{{ article.texte | raw }}</p>
                                     <div class="center lien-article">
-                                        <a href="#">LIRE L'ARTICLE</a>
+                                        <a href="{{ path('blog-article', {id: article.id,  'slug': article.slug }) }}">Lire l'article</a>
                                     </div>
                                 </div>
                             </div>

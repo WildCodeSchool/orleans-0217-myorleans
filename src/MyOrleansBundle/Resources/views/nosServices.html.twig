@@ -31,7 +31,7 @@
 
                     <div class="col s12 m6 l6">
                         <div data-aos="fade-up-left">
-                            {% for media in service.medias %}
+                            {% for media in service.media %}
                                 {% if media.typeMedia.nom == 'image-cover' %}
 
                                     <img src="{{ asset('uploads/'~media.lien) }}" class="img-service responsive-img">
@@ -54,7 +54,7 @@
                     <div class="col s12 m6 l6">
 
                         <div data-aos="fade-up-right">
-                            {% for media in service.medias %}
+                            {% for media in service.media %}
                                 {% if media.typeMedia.nom == 'image-cover' %}
                                     <img src="{{ asset('uploads/'~media.lien) }}" class="img-service responsive-img">
                                 {% elseif media.typeMedia.nom == 'video' %}
