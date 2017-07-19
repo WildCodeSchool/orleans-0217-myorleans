@@ -51,7 +51,7 @@
                         <div data-aos="fade-up-right">
                             <div class="boxi">
                                 <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte | raw }}</p>
+                                <p>{{ article.texte | truncate(10, true, '...') | raw }}</p>
                                 <div class="center">
                                     <a href="{{ path('download', {'id': article.id}) }}" class="waves-effect waves-light btn"><i class="material-icons left">print</i>
                                         Télécharger la fiche</a>
@@ -62,7 +62,7 @@
 
                     <div class="col s12 m6 l6">
                         <div data-aos="fade-up-left">
-                            {% for media in article.medias %}
+                            {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
                                 <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
                                  alt="image fiche conseil"/>
                             {% endfor %}
@@ -76,7 +76,7 @@
                 <div class="row">
                     <div class="col s12 m6 l6">
                         <div data-aos="fade-up-right">
-                            {% for media in article.medias %}
+                            {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
                                 <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
                                  alt="image fiche conseil"/>
                             {% endfor %}
@@ -87,7 +87,7 @@
                         <div data-aos="fade-up-left">
                             <div class="boxi">
                                 <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte | raw }}</p>
+                                <p>{{ article.texte | truncate(10, true, '...') | raw }}</p>
                                 <div class="center">
                                     <a href="{{ path('download', {'id': article.id}) }}" class="waves-effect waves-light btn"><i class="material-icons left">print</i>
                                         Télécharger la fiche</a>
@@ -114,7 +114,7 @@
                         <div data-aos="fade-up-right">
                             <div class="boxi">
                                 <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte | raw }}</p>
+                                <p>{{ article.texte | truncate(10, true, '...') | raw }}</p>
                                 <div class="center lien-article">
                                     <a href="{{ path('blog-article', {id: article.id,  'slug': article.slug }) }}">Lire le dossier</a>
                                 </div>
@@ -124,7 +124,7 @@
 
                     <div class="col s12 m6 l6">
                         <div data-aos="fade-up-left">
-                            {% for media in article.medias %}
+                            {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
                                 <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
                                  alt="image fiche conseil"/>
                             {% endfor %}
@@ -137,7 +137,7 @@
                 <div class="row">
                     <div class="col s12 m6 l6">
                         <div data-aos="fade-up-right">
-                            {% for media in article.medias %}
+                            {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
                                 <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
                                      alt="image fiche conseil"/>
                             {% endfor %}
@@ -148,7 +148,7 @@
                         <div data-aos="fade-up-left">
                             <div class="boxi">
                                 <h4>{{ article.titre }}</h4>
-                                <p>{{ article.texte | raw }}</p>
+                                <p>{{ article.texte | truncate(10, true, '...') | raw }}</p>
                                 <div class="center lien-article">
                                     <a href="{{ path('blog-article', {id: article.id,  'slug': article.slug }) }}">Lire le dossier</a>
                                 </div>
@@ -172,7 +172,7 @@
                             <div data-aos="fade-up-right">
                                 <div class="boxi">
                                     <h4>{{ article.titre }}</h4>
-                                    <p>{{ article.texte | raw }}</p>
+                                    <p>{{ article.texte| truncate(10, true, '...') | raw  }}</p>
                                     <div class="center lien-article">
                                         <a href="{{ path('blog-article', {id: article.id,  'slug': article.slug }) }}">Lire l'article</a>
                                     </div>
@@ -209,7 +209,7 @@
                             <div data-aos="fade-up-left">
                                 <div class="boxi">
                                     <h4>{{ article.titre }}</h4>
-                                    <p>{{ article.texte | raw }}</p>
+                                    <p>{{ article.texte | truncate(10, true, '...') | raw }}</p>
                                     <div class="center lien-article">
                                         <a href="{{ path('blog-article', {id: article.id,  'slug': article.slug }) }}">Lire l'article</a>
                                     </div>

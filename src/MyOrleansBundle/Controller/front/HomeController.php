@@ -122,7 +122,6 @@ class HomeController extends Controller
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
 
-
         ]);
     }
 

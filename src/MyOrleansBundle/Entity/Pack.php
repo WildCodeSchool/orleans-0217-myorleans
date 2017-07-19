@@ -46,13 +46,7 @@ class Pack
      *     type="string",
      *     message="La saisie n'est pas correcte."
      * )
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 45000,
-     *      minMessage = "Le nom saisi est court.",
-     *      maxMessage = "Le nom saisi est long."
-     * )
-     * @ORM\Column(name="description", type="string", length=45)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
