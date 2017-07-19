@@ -6,6 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Article
@@ -29,22 +32,36 @@ class Article
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Le titre saisi est court.",
+     *      maxMessage = "Le titre saisi est long."
+     * )
      * @ORM\Column(name="titre", type="string", length=45)
      */
     private $titre;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="texte", type="text")
      */
     private $texte;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime")
+     * @Assert\DateTime()
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
 
@@ -56,23 +73,42 @@ class Article
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Residence")
+     * @ORM\ManyToOne(targetEntity="Residence",cascade={"persist"})
      * @JoinTable(name="article_media")
+     * @Assert\NotNull()
      */
     private $residence;
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag",cascade={"persist"})
      * @JoinTable(name="article_tag")
+     * @Assert\NotNull()
      */
     private $tags;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypeArticle", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="TypeArticle", inversedBy="articles", cascade={"persist"})
+     * @Assert\NotNull()
      */
     private $typeArticle;
 
+    /**
+     * @var string
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Veuillez télécharger un fichier PDF valide"
+     * )
+     * @ORM\Column(name="fichier", type="string", nullable=true)
+     */
+    private $fichierAssocie;
 
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"titre"})
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
 
     /**
      * Get id
@@ -287,5 +323,47 @@ class Article
     public function removeTag(\MyOrleansBundle\Entity\Tag $tag)
     {
         $this->tags->removeElement($tag);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFichierAssocie()
+    {
+        return $this->fichierAssocie;
+    }
+
+    /**
+     * @param string $fichierAssocie
+     */
+    public function setFichierAssocie(string $fichierAssocie)
+    {
+        $this->fichierAssocie = $fichierAssocie;
+    }
+
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Article
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

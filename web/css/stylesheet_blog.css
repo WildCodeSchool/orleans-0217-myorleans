@@ -76,6 +76,28 @@ a {
     height: 410px;
 }
 
+.side-nav{
+    width: 600px;
+
+}
+
+.newsletter{
+    text-align: center;
+}
+
+.envoyer{
+    margin-bottom: 100px;
+}
+
+@media (max-width : 767px) {
+    .side-nav li > .userView{
+        width: 100%;
+    }
+    .side-nav{
+        width: 300px;
+    }
+}
+
 /*----------------------------------------------------*/
 
 

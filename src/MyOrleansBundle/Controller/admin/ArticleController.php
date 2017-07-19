@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Article;
+use MyOrleansBundle\Entity\FileArticle;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Tag;
 use MyOrleansBundle\Form\ArticleType;
@@ -67,10 +68,25 @@ class ArticleController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            $file = $form['fichierAssocie']->getData();
+
             $em->persist($article);
             $em->flush();
 
-            return $this->redirectToRoute('admin_article_show', array('id' => $article->getId()));
+            $fileArticle = new FileArticle();
+            $fileArticle->setFile($file);
+            $fileArticle->setArticle($article);
+            $fileArticle->setName($file);
+            $fileArticle->setPath($fileArticle->getWebPath().$fileArticle->getName());
+            $fileArticle->upload();
+
+            $em->persist($fileArticle);
+            $em->flush();
+
+
+            $this->addFlash('success', 'Votre article a bien été ajoutée');
+
+            return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
         }
 
         return $this->render('article/new.html.twig', array(
@@ -120,7 +136,8 @@ class ArticleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('admin_article_edit', array('id' => $article->getId()));
+            $this->addFlash('success', 'Votre résidence a bien été mis à jour');
+            return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
         }
 
         return $this->render('article/edit.html.twig', array(
@@ -146,6 +163,7 @@ class ArticleController extends Controller
             $em->remove($article);
             $em->flush();
         }
+        $this->addFlash('danger', 'Votre article a bien été supprimée');
 
         return $this->redirectToRoute('admin_article_index');
     }

@@ -12,12 +12,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class TypeMedia
 {
+    const IMAGE_COVER = 1;
+    const IMAGE = 2;
+    const IMAGE_HEADER = 3;
+    const VIDEO = 4;
+    const ICONE = 5;
+
     /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -33,6 +38,13 @@ class TypeMedia
      */
     private $medias;
 
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * Get id

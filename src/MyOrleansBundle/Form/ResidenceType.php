@@ -37,28 +37,43 @@ class ResidenceType extends AbstractType
                 'class' => Quartier::class,
                 'choice_label' => 'nom'
             ])
-            ->add('latitude', NumberType::class)
-            ->add('longitude', NumberType::class)
-            ->add('dateLivraison', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('nbTotalLogements', NumberType::class)
-            ->add('noteTransports', NumberType::class)
-            ->add('noteCommerces', NumberType::class)
-            ->add('noteServices', NumberType::class)
-            ->add('noteEsthetisme', NumberType::class)
+            ->add('dateLivraison', TextType::class, ['required' => false])
+            ->add('description', TextareaType::class, ['required' => false])
+            ->add('nbTotalLogements', NumberType::class, ['required' => false])
+            ->add('noteTransports', NumberType::class, ['required' => false])
+            ->add('noteCommerces', NumberType::class, ['required' => false])
+            ->add('noteServices', NumberType::class, ['required' => false])
+            ->add('noteEsthetisme', NumberType::class, ['required' => false])
+            ->add('offre', TextType::class)
             ->add('favoris', ChoiceType::class, [
                 'choices' => [
-                    'Oui' => '1',
-                    'Non' => '0'
+                    'Définir en résidence favorite' => null,
+                    'Oui' => true,
+                    'Non' => false
+                ]
+            ])
+            ->add('affichagePrix',ChoiceType::class, [
+                'choices' => [
+                    'Choisir...' => null,
+                    'Oui' => true,
+                    'Non' => false
+                ]
+            ])
+            ->add('eligibilitePinel',ChoiceType::class, [
+                'choices' => [
+                    'Choisir...' => null,
+                    'Oui' => true,
+                    'Non' => false
                 ]
             ])
             ->add('accroche', TextareaType::class)
             ->add('medias', CollectionType::class,
-                array(
+                [
                     'entry_type' => MediaType::class,
                     'allow_add' => true,
                     'prototype' => true,
-                ));
+                    'by_reference' => false
+                ]);
     }
 
     /**

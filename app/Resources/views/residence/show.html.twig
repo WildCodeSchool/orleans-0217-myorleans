@@ -1,4 +1,3 @@
-
 {% extends '::layout_admin.html.twig' %}
 
 {% block content %}
@@ -52,6 +51,10 @@
                                     <td>{{ residence.description }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Offre</th>
+                                    <td>{{ residence.offre }}</td>
+                                </tr>
+                                <tr>
                                     <th>Nbtotallogements</th>
                                     <td>{{ residence.nbTotalLogements }}</td>
                                 </tr>
@@ -74,6 +77,14 @@
                                 <tr>
                                     <th>Favoris</th>
                                     <td>{{ residence.favoris }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Affichage des prix (recommandation du partenaire)</th>
+                                    <td>{{ residence.affichagePrix }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Eligibilité du logement à la Loi Pinel</th>
+                                    <td>{{ residence.eligibilitePinel }}</td>
                                 </tr>
                                 <tr>
                                     <th>Accroche</th>
@@ -104,6 +115,5 @@
             </div>
         </div>
     </div>
-
 
 {% endblock %}

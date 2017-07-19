@@ -50,7 +50,8 @@ class MediaController extends Controller
             $em->persist($media);
             $em->flush();
 
-            return $this->redirectToRoute('admin_media_show', array('id' => $media->getId()));
+            $this->addFlash('success', 'Votre média a bien été ajouté');
+            return $this->redirectToRoute('admin_media_index', array('id' => $media->getId()));
         }
 
         return $this->render('media/new.html.twig', array(
@@ -90,7 +91,8 @@ class MediaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_media_edit', array('id' => $media->getId()));
+            $this->addFlash('success', 'Votre média a bien été mis à jour');
+            return $this->redirectToRoute('admin_media_index', array('id' => $media->getId()));
         }
 
         return $this->render('media/edit.html.twig', array(
@@ -116,7 +118,7 @@ class MediaController extends Controller
             $em->remove($media);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Votre média a bien été supprimé');
         return $this->redirectToRoute('admin_media_index');
     }
 

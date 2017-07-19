@@ -51,7 +51,8 @@ class PackController extends Controller
             $em->persist($pack);
             $em->flush();
 
-            return $this->redirectToRoute('admin_pack_show', array('id' => $pack->getId()));
+            $this->addFlash('success', 'Votre pack a bien été ajouté');
+            return $this->redirectToRoute('admin_pack_index', array('id' => $pack->getId()));
         }
 
         return $this->render('pack/new.html.twig', array(
@@ -92,7 +93,8 @@ class PackController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_pack_edit', array('id' => $pack->getId()));
+            $this->addFlash('success', 'Votre pack a bien été mis à jour');
+            return $this->redirectToRoute('admin_pack_index', array('id' => $pack->getId()));
         }
 
         return $this->render('pack/edit.html.twig', array(
@@ -118,7 +120,7 @@ class PackController extends Controller
             $em->remove($pack);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Votre pack a bien été supprimé');
         return $this->redirectToRoute('admin_pack_index');
     }
 

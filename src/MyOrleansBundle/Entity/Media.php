@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Doctrine\ORM\Mapping\JoinTable;
 /**
  * Media
  *
@@ -23,12 +24,6 @@ class Media
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="page", type="string", length=45, nullable=true)
-     */
-    private $page;
 
     /**
      * @var string
@@ -44,6 +39,7 @@ class Media
 
     /**
      * @ORM\ManyToMany(targetEntity="Residence", cascade={"persist"})
+     *
      */
     private $residences;
 
@@ -65,7 +61,7 @@ class Media
     private $categorie_presta;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Service", inversedBy="medias")
+     * @ORM\OneToOne(targetEntity="Service", inversedBy="media")
      */
     private $service;
 
@@ -99,30 +95,6 @@ class Media
         return $this->id;
     }
 
-
-    /**
-     * Set page
-     *
-     * @param string $page
-     *
-     * @return Media
-     */
-    public function setPage($page)
-    {
-        $this->page = $page;
-
-        return $this;
-    }
-
-    /**
-     * Get page
-     *
-     * @return string
-     */
-    public function getPage()
-    {
-        return $this->page;
-    }
 
     /**
      * Set lien

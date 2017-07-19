@@ -61,7 +61,8 @@ class PartenaireController extends Controller
             $em->persist($partenaire);
             $em->flush();
 
-            return $this->redirectToRoute('admin_partenaire_show', array('id' => $partenaire->getId()));
+            $this->addFlash('success', 'Ce partenaire a bien été ajouté');
+            return $this->redirectToRoute('admin_partenaire_index', array('id' => $partenaire->getId()));
         }
 
         return $this->render('partenaire/new.html.twig', array(
@@ -102,7 +103,8 @@ class PartenaireController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_partenaire_edit', array('id' => $partenaire->getId()));
+            $this->addFlash('success', 'Ce partenaire a bien été mis à jour');
+            return $this->redirectToRoute('admin_partenaire_index', array('id' => $partenaire->getId()));
         }
 
         return $this->render('partenaire/edit.html.twig', array(
@@ -128,7 +130,7 @@ class PartenaireController extends Controller
             $em->remove($partenaire);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Ce partenaire résidence a bien été supprimé');
         return $this->redirectToRoute('admin_partenaire_index');
     }
 

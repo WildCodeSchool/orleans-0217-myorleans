@@ -4,6 +4,8 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinTable;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Flat
@@ -24,43 +26,84 @@ class Flat
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="reference", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La référence saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="reference", type="string", length=45)
      */
     private $reference;
 
     /**
      * @var int
-     *
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Le prix saisi n'est pas correcte."
+     * )
      * @ORM\Column(name="prix", type="integer", nullable=true)
      */
     private $prix;
 
     /**
      * @var float
-     *
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="surface", type="float", nullable=true)
      */
     private $surface;
 
     /**
-     * @var int
+     * @var float
      *
+     * @ORM\Column(name="surface_sejour", type="float", nullable=true)
+     */
+    private $surfaceSejour;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="exposition_sejour", type="text", nullable=true)
+     */
+    private $expositionSejour;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="stationnement", type="text", nullable=true)
+     */
+    private $stationnement;
+
+    /**
+     * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Le nombre de pièce saisi n'est pas correcte."
+     * )
      * @ORM\Column(name="nb_piece", type="integer", nullable=true)
      */
     private $nbPiece;
 
     /**
      * @var int
-     *
+     *  @Assert\Type(
+     *     type="integer",
+     *     message="Le nombre de chambre saisi n'est pas correcte."
+     * )
      * @ORM\Column(name="nb_chambre", type="integer", nullable=true)
      */
     private $nbChambre;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @Assert\NotBlank()
+     *  @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
@@ -72,11 +115,16 @@ class Flat
     private $prestationComplementaire;
 
     /**
-     * @var string
+     * @var bool
      *
-     * @ORM\Column(name="statut", type="string", length=10, nullable=true)
+     * @ORM\Column(name="statut", type="boolean", length=10, nullable=true)
      */
     private $statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TypeBien", inversedBy="flats")
+     */
+    private $typeBien;
 
     /**
      * @ORM\ManyToOne(targetEntity="TypeLogement", inversedBy="flats")
@@ -99,9 +147,6 @@ class Flat
      * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="flat")
      */
     private $categoriePrestas;
-
-
-
 
 
     /**
@@ -277,7 +322,7 @@ class Flat
     }
 
     /**
-     * @return string
+     * @return bool
      */
     public function getStatut()
     {
@@ -285,11 +330,28 @@ class Flat
     }
 
     /**
-     * @param string $statut
+     * @param bool $statut
      */
-    public function setStatut($statut)
+    public function setStatut(bool $statut)
     {
         $this->statut = $statut;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getTypeBien()
+    {
+        return $this->typeBien;
+    }
+
+    /**
+     * @param mixed $typeBien
+     */
+    public function setTypeBien($typeBien)
+    {
+        $this->typeBien = $typeBien;
     }
 
     /**
@@ -420,5 +482,79 @@ class Flat
     public function removeCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
     {
         $this->categoriePrestas->removeElement($categoriePresta);
+    }
+
+
+
+    /**
+     * Set surfaceSejour
+     *
+     * @param float $surfaceSejour
+     *
+     * @return Flat
+     */
+    public function setSurfaceSejour($surfaceSejour)
+    {
+        $this->surfaceSejour = $surfaceSejour;
+
+        return $this;
+    }
+
+    /**
+     * Get surfaceSejour
+     *
+     * @return float
+     */
+    public function getSurfaceSejour()
+    {
+        return $this->surfaceSejour;
+    }
+
+    /**
+     * Set expositionSejour
+     *
+     * @param string $expositionSejour
+     *
+     * @return Flat
+     */
+    public function setExpositionSejour($expositionSejour)
+    {
+        $this->expositionSejour = $expositionSejour;
+
+        return $this;
+    }
+
+    /**
+     * Get expositionSejour
+     *
+     * @return string
+     */
+    public function getExpositionSejour()
+    {
+        return $this->expositionSejour;
+    }
+
+    /**
+     * Set stationnement
+     *
+     * @param string $stationnement
+     *
+     * @return Flat
+     */
+    public function setStationnement($stationnement)
+    {
+        $this->stationnement = $stationnement;
+
+        return $this;
+    }
+
+    /**
+     * Get stationnement
+     *
+     * @return string
+     */
+    public function getStationnement()
+    {
+        return $this->stationnement;
     }
 }

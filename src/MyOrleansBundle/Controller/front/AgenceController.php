@@ -48,17 +48,20 @@ class AgenceController extends Controller
         ];
 
         $em = $this->getDoctrine()->getManager();
-      
+
         $telephone_number = $this->getParameter('telephone_number');
-        $contactForm = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $contactForm->handleRequest($request);
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+
+        $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
+
+        $formulaire->handleRequest($request);
 
         $partenaires = $em->getRepository(Partenaire::class)->findAll();
         $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
-        $evenements =$em->getRepository(Evenement::class)->findAll();
+        $evenements = $em->getRepository(Evenement::class)->findAll();
         $cover = $em->getRepository(Media::class)->findAll();
 
-        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
             $mailer = $this->get('mailer');
 
@@ -80,6 +83,8 @@ class AgenceController extends Controller
             $em->persist($client);
             $em->flush();
 
+            $this->addFlash('success', 'votre message a bien été envoyé');
+
             return $this->redirectToRoute('agence');
         }
 
@@ -89,14 +94,12 @@ class AgenceController extends Controller
                 'mois' => $mois,
                 'parcours' => $parcours,
                 'partenaires' => $partenaires,
-                'collaborateurs'=>$collaborateurs,
-                'evenements'=>$evenements,
-                'contactForm' => $contactForm->createView()
-                'cover'=>$cover,
+                'collaborateurs' => $collaborateurs,
+                'evenements' => $evenements,
+                'cover' => $cover,
+                'form' => $formulaire->createView()
 
             ]
         );
     }
-
-
 }

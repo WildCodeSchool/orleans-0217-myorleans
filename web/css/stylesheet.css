@@ -111,7 +111,9 @@ nav .dropdown-button {
 }
 
 .logo {
+
     height: 50px;
+
     margin-top: 7px;
 }
 
@@ -176,8 +178,41 @@ body {
     line-height: 1;
 }
 
-.icone-profil a {
-    color: transparent;
+.icone-profil a i {
+    font-size: 25px;
+    color: #ffffff ;
+    background-color: #a5ca2a;
+    padding: 8px;
+    height: 40px;
+    width: 45px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-left: 220px;
+    line-height: 1;
+}
+
+.icone-profil a p {
+    display: none;
+    line-height: 2;
+    padding-left: 5px;
+}
+
+.icone-profil a:hover p {
+    display: inline-block;
+    color: #a5ca2a;
+}
+
+@media screen and (max-width: 991px) {
+    .icone-profil a i {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1100px) {
+    .icone-profil a:hover p {
+        display: none;
+    }
 }
 
 .icone-profil a:hover i {
@@ -211,6 +246,9 @@ body {
 
 /* ------------------------ Page Nos Biens ----------------------------*/
 
+.page-nosbiens h1 {
+    font-size: 36px;
+}
 
 .page-nosbiens h2 {
     font-size:20px;
@@ -369,6 +407,19 @@ body {
     background-color: #b7d64a;
 }
 
+@media screen and (max-width : 991px) {
+    .moteur-recherche {
+        display: none;
+    }
+}
+
+@media screen and (min-width : 991px) {
+    .moteur-recherche-small-screen {
+        display: none;
+    }
+}
+
+
 @media (max-width : 767px) {
     .side-nav li > .userView{
         width: 100%;
@@ -376,7 +427,6 @@ body {
     .side-nav{
     width: 300px;
     }
-
 }
 
 
@@ -443,7 +493,7 @@ body {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
     margin-top: -10px;
-    padding: 0 10px 10px 10px;
+    padding: 10px 10px 25px 10px;
     background-color: white;
 }
 
@@ -502,15 +552,15 @@ body {
     background-color: #b7d64a;
     overflow: hidden;
     border-radius: 5px;
-    margin-top: 25px;
+    margin-top: 75px;
     position: fixed;
     right: 20px;
     padding: 10px;
-    z-index: 100;
-    -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-    -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    z-index: 200;
+    -webkit-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
+    -moz-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
 
-    animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
 
 }
 
@@ -528,6 +578,9 @@ body {
     cursor:pointer;
 }
 
+.envoyer{
+    margin-bottom: 100px;
+}
 
 
 
@@ -535,10 +588,20 @@ body {
 /* ------------------------ PAGE RESIDENCE --------------------------*/
 /* --------------------------------------------------------------------*/
 
-.offre-residence td {
-    border: 1px solid black;
-}
 
+.offre-residence td {
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 50px;
+    padding: 10px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    color: #808080;
+}
+.offre{
+    color: #EF562D;
+}
 .lieu-residence{
     color: rgb(192,192,192);
 }
@@ -557,12 +620,21 @@ body {
 }
 
 .citation-residence{
-    background-color: rgb(68,68,68);
+    background-color: #808080;
     color: white;
     text-align: center;
     font-style: italic;
     font-size: 2em;
     padding: 20px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.dispo{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .pinel-residence{
@@ -573,8 +645,21 @@ body {
     color: rgb(192,192,192);
 }
 
+.consulter-residence > a{
+    color: #C0C0C0;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+.consulter-residence > a:hover{
+    color: #808080;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+
 .content-residence{
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 .accordeon-residence{
@@ -583,6 +668,20 @@ body {
 
 .btn-residence{
     background-color: rgb(189,217,90);
+}
+
+.btn-vendu{
+    background-color: #FFFFF1 !important;
+    color : #EF562D;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .collapsible-header{
@@ -599,7 +698,9 @@ td{
 
 #map-residences {
     width:100%;
-    height: 300px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .notation{
@@ -645,6 +746,15 @@ td{
     }
 }
 
+.partage{
+    font-size: 20px;
+}
+
+#map-residences {
+    height: 500px;
+    width: 1000px;
+}
+
 /* --------------------------------------------------------------------*/
 /* ------------------------ FIN PAGE RESIDENCE --------------------------*/
 /* --------------------------------------------------------------------*/
@@ -656,16 +766,22 @@ td{
     padding-top: 20px;
 }
 
+.photoinfo-apt{
+    margin: 60px;
+}
 .info-apt {
     border-radius: 2px;
     box-shadow: 1px 1px 10px #c2c2c2;
-    background-color: white;
-    margin-top: -10px;
-    padding: 0 10px 10px 10px;
+    background-color: rgb(255,255,255);
+    margin-top: 150px;
+    padding: 50px;
+    width: 450px;
+    margin-left: 300px;
 }
 .icon-apt{
     width: 2.5em;
     height: 2.5em;
+    margin-top: 10px;
 }
 
 .print{
@@ -676,9 +792,49 @@ td{
 .icon-left{
     text-align: left;
 }
-/*.photo-apt{
-    width: ;
-}*/
+
+.rapel-residence{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.descriptif-residence{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.prestations-residence{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.rang-presta{
+    box-shadow: 1px 1px 10px #c2c2c2;
+    background-color: rgb(255,255,255);
+    margin: auto;
+    padding: 10px;
+
+    height: 350px;
+}
+.icon-prestation{
+    margin: auto;
+}
+
+.content-appartement > .btn-return-res{
+    background-color: white;
+    color: rgb(189,217,90);
+}
+
+.prestation{
+    margin:auto;
+}
 
 
 /* --------------------------------------------------------------------*/
@@ -997,6 +1153,10 @@ FIN ACCUEIL - BLOC AGENCE
     background: rgba(0, 0, 0, .75);
     color: #fff;
     opacity: 0;
+}
+
+.right{
+    text-align: right;
 }
 
 .blockStaff:hover .infoStaff {

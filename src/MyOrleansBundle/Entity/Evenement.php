@@ -3,6 +3,8 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Evenement
@@ -23,20 +25,41 @@ class Evenement
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Le nom de l'événément saisi est court.",
+     *      maxMessage = "Le nom de l'événément saisi est long."
+     * )
+     * @ORM\Column(name="nom", type="string", length=45)
      */
     private $nom;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Le nom de l'événément saisi est court.",
+     *      maxMessage = "Le nom de l'événément saisi est long."
+     * )
      * @ORM\Column(name="adresse", type="string", length=45, nullable=true)
      */
     private $adresse;
 
     /**
      * @var int
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="code_postal", type="integer", nullable=true)
      */
@@ -79,7 +102,10 @@ class Evenement
 
     /**
      * @var string
-     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;

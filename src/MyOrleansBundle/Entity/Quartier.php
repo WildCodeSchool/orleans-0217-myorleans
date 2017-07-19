@@ -3,7 +3,7 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Quartier
  *
@@ -23,7 +23,17 @@ class Quartier
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Le nom saisi est court.",
+     *      maxMessage = "Le nom saisi est long."
+     * )
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;

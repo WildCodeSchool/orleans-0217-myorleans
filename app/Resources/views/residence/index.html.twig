@@ -24,8 +24,10 @@
                                 <th>Datelivraison</th>
                                 <th>Favoris</th>
                                 <th>Accroche</th>
+                                <th>Offre</th>
                                 <th>Aperçu</th>
                                 <th>Éditer</th>
+                                <th>Biens</th>
                                 </thead>
                                 <tbody>
 
@@ -51,6 +53,7 @@
                                         <td>{{ residence.dateLivraison }}</td>
                                         <td>{{ residence.favoris }}</td>
                                         <td>{{ residence.accroche }}</td>
+                                        <td>{{ residence.offre }}</td>
                                         <td>
                                             <a href="{{ path('admin_residence_show', { 'id': residence.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
@@ -58,6 +61,12 @@
                                         <td>
                                             <a href="{{ path('admin_residence_edit', { 'id': residence.id }) }}"><i
                                                         class="material-icons">build</i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_flat_index', {'id':residence.id}) }}">
+                                                <i class="material-icons">business</i>
+                                                <span data-badge-caption="" class="new badge">{{ residence.flats|length }}</span>
+                                            </a>
                                         </td>
                                     </tr>
 

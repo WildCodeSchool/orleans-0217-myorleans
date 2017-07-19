@@ -1,12 +1,13 @@
 <div class="col s12 xl6">
     <div class="card large">
         <div class="card-image">
+            {% if residence.medias is not empty %}
+                {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
 
-            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                    <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_residence') }}">
 
-                <img src="{{ asset('uploads/'~media.lien) }}">
-
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
 
         </div>
         <div class="card-content">
@@ -29,7 +30,11 @@
                 </div>
                 <div class="col s5">
                     <h4>Prix</h4>
+                    {% if residence.affichagePrix %}
                     <p>A partir de {{ prixMin }}€</p>
+                    {% else %}
+                    <p>Nous contacter</p>
+                    {% endif %}
                     <br/>
                     <h4>Disponibilité</h4>
                     <p>{{ flatsDispo }} logements</p>
@@ -37,7 +42,7 @@
             </div>
         </div>
         <div class="card-action center">
-            <a href="{{ path('residences', { 'id': residence.id }) }}">Découvrir la résidence</a>
+            <a href="{{ path('residences', { 'slug': residence.slug }) }}">Découvrir la résidence</a>
         </div>
     </div>
 </div>

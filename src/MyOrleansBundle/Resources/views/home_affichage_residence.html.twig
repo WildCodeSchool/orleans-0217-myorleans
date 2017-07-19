@@ -1,8 +1,10 @@
 <div class="card mosaic-container">
     <div class="card-image">
-        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-            <img src="{{ asset('uploads/'~media.lien) }}">
-        {% endfor %}
+        {% if residence.medias is not empty %}
+            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_residence') }}">
+            {% endfor %}
+        {% endif %}
     </div>
     <div class="card-content">
         <div class="row grille-infos">
@@ -24,7 +26,11 @@
             </div>
             <div class="col s4">
                 <h4>Prix</h4>
-                <p>A partir de {{ prixMin }}€</p>
+                {% if residence.affichagePrix %}
+                    <p>A partir de {{ prixMin }}€</p>
+                {% else %}
+                    <p>Nous contacter</p>
+                {% endif %}
                 <br/>
                 <h4>Disponibilité</h4>
                 <p>{{ flatsDispo }} logement(s)</p>
@@ -32,6 +38,6 @@
         </div>
     </div>
     <div class="card-action center">
-        <a href="{{ path('residences', { 'id': residence.id }) }}">Découvrir la résidence</a>
+        <a href="{{ path('residences', { 'slug': residence.slug }) }}">Découvrir la résidence</a>
     </div>
 </div>

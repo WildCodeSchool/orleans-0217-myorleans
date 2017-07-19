@@ -20,14 +20,24 @@ class VilleController extends Controller
      * @Route("/", name="admin_ville_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $villes = $em->getRepository('MyOrleansBundle:Ville')->findAll();
 
+        /**
+         * @var $pagination "Knp\Component\Pager\Paginator"
+         * */
+        $pagination = $this->get('knp_paginator');
+        $results = $pagination->paginate(
+            $villes,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
+
         return $this->render('ville/index.html.twig', array(
-            'villes' => $villes,
+            'villes' => $results,
         ));
     }
 
@@ -48,7 +58,8 @@ class VilleController extends Controller
             $em->persist($ville);
             $em->flush();
 
-            return $this->redirectToRoute('admin_ville_show', array('id' => $ville->getId()));
+            $this->addFlash('success', 'Une nouvelle ville a été ajoutée');
+            return $this->redirectToRoute('admin_ville_index', array('id' => $ville->getId()));
         }
 
         return $this->render('ville/new.html.twig', array(
@@ -88,7 +99,8 @@ class VilleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_ville_edit', array('id' => $ville->getId()));
+            $this->addFlash('success', 'Cette ville a bien été mis à jour');
+            return $this->redirectToRoute('admin_ville_index', array('id' => $ville->getId()));
         }
 
         return $this->render('ville/edit.html.twig', array(
@@ -115,6 +127,7 @@ class VilleController extends Controller
             $em->flush();
         }
 
+        $this->addFlash('danger', 'Cette ville a été supprimée');
         return $this->redirectToRoute('admin_ville_index');
     }
 

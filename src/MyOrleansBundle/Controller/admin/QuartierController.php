@@ -48,7 +48,8 @@ class QuartierController extends Controller
             $em->persist($quartier);
             $em->flush();
 
-            return $this->redirectToRoute('admin_quartier_show', array('id' => $quartier->getId()));
+            $this->addFlash('success', 'Votre quartier a bien été ajouté');
+            return $this->redirectToRoute('admin_quartier_index', array('id' => $quartier->getId()));
         }
 
         return $this->render('quartier/new.html.twig', array(
@@ -88,7 +89,8 @@ class QuartierController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_quartier_edit', array('id' => $quartier->getId()));
+            $this->addFlash('success', 'Votre quartier a bien été mis à jour');
+            return $this->redirectToRoute('admin_quartier_index', array('id' => $quartier->getId()));
         }
 
         return $this->render('quartier/edit.html.twig', array(
@@ -115,6 +117,7 @@ class QuartierController extends Controller
             $em->flush();
         }
 
+        $this->addFlash('danger', 'Votre quartier a bien été mis à jour');
         return $this->redirectToRoute('admin_quartier_index');
     }
 

@@ -48,7 +48,8 @@ class TypeLogementController extends Controller
             $em->persist($typeLogement);
             $em->flush();
 
-            return $this->redirectToRoute('admin_typelogement_show', array('id' => $typeLogement->getId()));
+            $this->addFlash('success', 'Un nouveau type de logement a été ajouté');
+            return $this->redirectToRoute('admin_typelogement_index', array('id' => $typeLogement->getId()));
         }
 
         return $this->render('typelogement/new.html.twig', array(
@@ -88,7 +89,8 @@ class TypeLogementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_typelogement_edit', array('id' => $typeLogement->getId()));
+            $this->addFlash('success', 'Ce type de logement a été mis à jour');
+            return $this->redirectToRoute('admin_typelogement_index', array('id' => $typeLogement->getId()));
         }
 
         return $this->render('typelogement/edit.html.twig', array(
@@ -114,7 +116,7 @@ class TypeLogementController extends Controller
             $em->remove($typeLogement);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Ce type de logement a été supprimé');
         return $this->redirectToRoute('admin_typelogement_index');
     }
 

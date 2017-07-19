@@ -2,6 +2,8 @@
 
 namespace MyOrleansBundle\Form;
 
+use MyOrleansBundle\Entity\TypeBien;
+use MyOrleansBundle\Entity\TypeLogement;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -23,22 +25,38 @@ class FlatType extends AbstractType
             ->add('reference', TextType::class)
             ->add('prix', NumberType::class)
             ->add('surface', NumberType::class)
+            ->add('surfaceSejour', NumberType::class)
+            ->add('expositionSejour', ChoiceType::class, [
+                'choices' =>[
+                     'Nord' => 'Nord',
+                    'Nord Est' => 'Nord Est',
+                    'Nord Ouest' => 'Nord Ouest',
+                    'Sud' => 'Sud',
+                    'Sud Est' => 'Sud Est',
+                    'Sud Ouest' => 'Sud Ouest',
+                    'Est' => 'Est',
+                    'Ouest' => 'Ouest'],
+                'expanded' => false,
+                'multiple' => false
+          ])
             ->add('nbPiece', NumberType::class)
             ->add('description', TextareaType::class)
             ->add('prestationComplementaire', TextareaType::class, [
                 'required' => false
             ])
+            ->add('stationnement', TextareaType::class)
             ->add('statut', ChoiceType::class, [
                 'choices' => [
-                    'Disponible' => '1', 'Vendu' => '0'
+                    'Disponible' => true,
+                    'Vendu' => false
                 ]
             ])
             ->add('typeLogement', EntityType::class, [
-                'class' => 'MyOrleansBundle:TypeLogement',
+                'class' => TypeLogement::class,
                 'choice_label' => 'nom'
             ])
-            ->add('residence', EntityType::class, [
-                'class' => 'MyOrleansBundle:Residence',
+            ->add('typeBien', EntityType::class, [
+                'class' => TypeBien::class,
                 'choice_label' => 'nom'
             ])
             ->add('medias', CollectionType::class,
@@ -46,6 +64,7 @@ class FlatType extends AbstractType
                     'entry_type' => MediaType::class,
                     'allow_add' => true,
                     'prototype' => true,
+                    'by_reference' => false
                 ]);
     }
 

@@ -36,7 +36,6 @@ class CalculateurCaracteristiquesResidence
         $freeFlats = 0;
 
         $flats = $residence->getFlats();
-
         foreach ($flats as $flat) {
             if ($flat->getStatut() == 1) {
                 $freeFlats++;

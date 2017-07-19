@@ -5,7 +5,8 @@ namespace MyOrleansBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
-
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Residence
@@ -26,22 +27,33 @@ class Residence
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="nom", type="string", length=45)
      */
     private $nom;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="adresse", type="string", length=45)
      */
     private $adresse;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="code_postal", type="integer", nullable=true)
+     * @Assert\NotBlank()@Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="code_postal", type="integer")
      */
     private $codePostal;
 
@@ -71,73 +83,112 @@ class Residence
 
     /**
      * @var string
-     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="date_livraison", type="string", nullable=true)
      */
     private $dateLivraison;
 
     /**
      * @var string
-     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
+     * @var string
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="offre", type="text", nullable=true)
+     */
+    private $offre;
+
+    /**
      * @var int
-     *
      * @ORM\Column(name="nb_total_logements", type="integer", nullable=true)
      */
     private $nbTotalLogements;
 
     /**
      * @var float
-     *
+     * @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_transports", type="float", nullable=true)
      */
     private $noteTransports;
 
     /**
      * @var float
-     *
+     *  @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_commerces", type="float", nullable=true)
      */
     private $noteCommerces;
 
     /**
      * @var float
-     *
+     *  @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_services", type="float", nullable=true)
      */
     private $noteServices;
 
     /**
      * @var float
-     *
+     *  @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_esthetisme", type="float", nullable=true)
      */
     private $noteEsthetisme;
 
+
     /**
      * @var int
      *
-     * @ORM\Column(name="favoris", type="integer", nullable=true)
+     * @ORM\Column(name="favoris", type="boolean", nullable=true)
      */
     private $favoris;
 
     /**
      * @var string
-     *
+     *  @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="accroche", type="string", nullable=true)
      */
     private $accroche;
 
     /**
+     * @var bool
      *
-     * @ENUM ({"Eligible", "Non-éligible"})
+     * @ORM\Column(name="eligibilite_pinel", type="boolean", nullable=true)
      *
      */
     private $eligibilitePinel;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="affichage_prix", type="boolean", nullable=false)
+     */
+    private $affichagePrix;
 
     /**
      * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
@@ -157,7 +208,12 @@ class Residence
     private $categoriePrestas;
 
 
-
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"nom"})
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
 
 
     /**
@@ -478,29 +534,6 @@ class Residence
         return $this->noteEsthetisme;
     }
 
-    /**
-     * Set favoris
-     *
-     * @param integer $favoris
-     *
-     * @return Residence
-     */
-    public function setFavoris($favoris)
-    {
-        $this->favoris = $favoris;
-
-        return $this;
-    }
-
-    /**
-     * Get favoris
-     *
-     * @return int
-     */
-    public function getFavoris()
-    {
-        return $this->favoris;
-    }
 
     /**
      * @return mixed
@@ -516,22 +549,6 @@ class Residence
     public function setAccroche($accroche)
     {
         $this->accroche = $accroche;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEligibilitePinel()
-    {
-        return $this->eligibilitePinel;
-    }
-
-    /**
-     * @param mixed $eligibilitePinel
-     */
-    public function setEligibilitePinel($eligibilitePinel)
-    {
-        $this->eligibilitePinel = $eligibilitePinel;
     }
 
 
@@ -679,6 +696,115 @@ class Residence
         return $this->ville;
     }
 
+    /**
+     * @param bool $favoris
+     * @return Residence
+     */
+    public function setFavoris(bool $favoris): Residence
+    {
+        $this->favoris = $favoris;
+        return $this;
+    }
+
+    /**
+     * @param bool $eligibilitePinel
+     * @return Residence
+     */
+    public function setEligibilitePinel(bool $eligibilitePinel): Residence
+    {
+        $this->eligibilitePinel = $eligibilitePinel;
+        return $this;
+    }
+
+    /**
+     * @param bool $affichagePrix
+     * @return Residence
+     */
+    public function setAffichagePrix(bool $affichagePrix): Residence
+    {
+        $this->affichagePrix = $affichagePrix;
+        return $this;
+    }
+
+    /**
+     * Get favoris
+     *
+     * @return boolean
+     */
+    public function getFavoris()
+    {
+        return $this->favoris;
+    }
+
+    /**
+     * Get eligibilitePinel
+     *
+     * @return boolean
+     */
+    public function getEligibilitePinel()
+    {
+        return $this->eligibilitePinel;
+    }
+
+    /**
+     * Get affichagePrix
+     *
+     * @return boolean
+     */
+    public function getAffichagePrix()
+    {
+        return $this->affichagePrix;
+
+    }
 
 
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Residence
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+
+    }
+
+
+    /**
+     * Set offre
+     *
+     * @param string $offre
+     *
+     * @return Residence
+     */
+    public function setOffre($offre)
+    {
+        $this->offre = $offre;
+
+        return $this;
+    }
+
+    /**
+     * Get offre
+     *
+     * @return string
+     */
+    public function getOffre()
+    {
+        return $this->offre;
+    }
 }

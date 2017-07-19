@@ -45,9 +45,10 @@ class NosServicesController extends Controller
         $services = $em->getRepository(Service::class)->findAll();
         $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->get('sujet')->setData(Client::SUJET_SERVICES);
         $packs = $em->getRepository(Pack::class)->findAll();
 
-        $temoignages = $em->getRepository(Temoignage::class)->findAll();
+        $temoignages = $em->getRepository(Temoignage::class)->findBy([], ['id'=>'DESC'], 4);
         $formulaire->handleRequest($request);
 
 
@@ -83,7 +84,9 @@ class NosServicesController extends Controller
             return $this->redirectToRoute('nos_services');
         }
 
-        return $this->render('MyOrleansBundle::nosServices.html.twig', [
+
+
+        return $this->render('MyOrleansBundle::nosServices.html.twig',  [
             'services' => $services,
             'packs' => $packs,
             'temoignages' => $temoignages,

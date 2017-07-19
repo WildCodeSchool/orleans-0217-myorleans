@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Service
@@ -23,6 +24,17 @@ class Service
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="Le type saisi n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Le type saisi est court.",
+     *      maxMessage = "Le type saisi est long."
+     * )
      *
      * @ORM\Column(name="type", type="string", length=45)
      */
@@ -30,16 +42,20 @@ class Service
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="description", type="text")
      */
     private $description;
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Media",inversedBy="service", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Media", inversedBy="service", cascade={"persist"})
      */
-    private $medias;
+    private $media;
 
     /**
      * Get id
@@ -152,29 +168,5 @@ class Service
     public function removeMedia(\MyOrleansBundle\Entity\Media $media)
     {
         $this->medias->removeElement($media);
-    }
-
-    /**
-     * Get medias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedias()
-    {
-        return $this->medias;
-    }
-
-    /**
-     * Set medias
-     *
-     * @param \MyOrleansBundle\Entity\Media $medias
-     *
-     * @return Service
-     */
-    public function setMedias(\MyOrleansBundle\Entity\Media $medias = null)
-    {
-        $this->medias = $medias;
-
-        return $this;
     }
 }
