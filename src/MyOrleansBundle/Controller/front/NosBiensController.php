@@ -37,7 +37,7 @@ class NosBiensController extends Controller
         $objectif = "investir";
         $suggestionActive = 0;
         $residencesSuggerees = '';
-        $noResult = 0;
+        $rechercheSansResultat = 0;
 
         // Definition du parcours du visiteur
         $parcours = null;
@@ -101,21 +101,25 @@ class NosBiensController extends Controller
             $residences = $em -> getRepository(Residence::class)->simpleSearch($selectedVille, $selectedType);
 
 
-            // recherche des biens suggeres
-            if ($selectedVille != null || $selectedType != null) {
-                $residencesSuggerees = $em -> getRepository(Residence::class)
-                    ->simpleSuggestedSearch($selectedVille, $selectedType);
-            }
-
-
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
                 $residences = $em -> getRepository(Residence::class)->findAll();
-                $noResult = 1;
+                $rechercheSansResultat = 1;
             }
 
             // Parametrage du parcours visiteur
             $parcours = $session->get('parcours');
+
+            // recherche des biens à exclure de la liste des biens à suggerer
+            if (!empty($residences)) {
+                foreach ($residences as $residence) {
+                    $idResidences[] = $residence->getId();
+                }
+            }
+
+            if ($selectedVille != null || $selectedType != null) {
+                $residencesSuggerees = $em->getRepository(Residence::class)->simpleSuggestedSearch($idResidences, $selectedVille, $selectedType);
+            }
 
         }
 
@@ -139,7 +143,7 @@ class NosBiensController extends Controller
             'quartiers' => $quartiers,
             'objectif' => $objectif,
             'article' => $article ?? null,
-            'noResult' => $noResult
+            'rechercheSansResultat' => $rechercheSansResultat
         ]);
 
     }
@@ -162,34 +166,40 @@ class NosBiensController extends Controller
         if ($completeSearch->isSubmitted()) {
 
             $suggestionActive = 1;
-            $noResult = 0;
-            $objectif = "investir";
+            $rechercheSansResultat = 0;
+            $objectif = "";
 
             $data = $completeSearch->getData();
 
 
             $residences = $em->getRepository(Residence::class)->completeSearch($data);
 
+            // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
+            if(empty($residences)) {
+                $residences = $em->getRepository(Residence::class)->findAll();
+                $rechercheSansResultat = 1;
+            }
+
             // Generation du derier article avec le tag 'Investissement'
             $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
             $article = $article[0];
             // Fin contenu associe
 
+            // recherche des biens à exclure de la liste des biens à suggerer
+            if (!empty($residences)) {
+                foreach ($residences as $residence) {
+                    $idResidences[] = $residence->getId();
+                }
+            }
+
             // recherche des biens suggeres
             if ($data != null ) {
                 $residencesSuggerees = $em -> getRepository(Residence::class)
-                    ->completeSuggestedSearch($data);
-            }
-
-
-            // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
-            if(empty($residences)) {
-                $residences = $em->getRepository(Residence::class)->findAll();
-                $noResult = 1;
+                    ->completeSuggestedSearch($idResidences, $data);
             }
 
             // Generation des contenus associes en fonction de l'objectif
-            if (isset($data['objectif']) && $objectif == 'Residence Principale') {
+            if (isset($data['objectif']) && $data['objectif'] == 'Residence Principale') {
                 // Generation du dernier article avec le tag 'Residence Principale'
                 $article = $em->getRepository(Article::class)->articleByTag('Residence Principale', 1);
                 $article = $article[0];
@@ -198,12 +208,17 @@ class NosBiensController extends Controller
                 $session->set('parcours', $this->getParameter('parcours_residence'));
             }
 
-            if (isset($data['objectif']) && $objectif == 'investir') {
+            if (isset($data['objectif']) && $data['objectif'] == 'investir') {
+                $objectif = "investir";
                 $session->set('parcours', $this->getParameter('parcours_investisseur'));
             }
 
             // Parametrage du parcours visiteur
             $parcours = $session->get('parcours');
+
+            if (empty($objectif)) {
+                $objectif = "investir";
+            }
 
             return $this->render('MyOrleansBundle::nosbiens.html.twig',[
                 'parcours' => $parcours,
@@ -216,7 +231,7 @@ class NosBiensController extends Controller
                 'quartiers' => $quartiers,
                 'objectif' => $objectif,
                 'article' => $article,
-                'noResult' => $noResult
+                'rechercheSansResultat' => $rechercheSansResultat
             ]);
 
         } else {

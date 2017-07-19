@@ -42,7 +42,7 @@
                 <div class="row center no-margin-bottom">
                     {% set nb_res = residences|length %}
 
-                    {% if noResult == 1 %}
+                    {% if rechercheSansResultat == 1 %}
                     <h1 class="section-title">
                         Aucune résidence ne correspond à votre recherche.<br/>Découvrez les biens suggérés.
                     </h1>
@@ -66,7 +66,7 @@
 
                 </div>
 
-                {% if suggestionActive == 1 and noResult == 0 %}
+                {% if suggestionActive == 1 and rechercheSansResultat == 0 %}
                 <div class="row suggestion-biens">
                     {% set nb_res_suggerees = residencesSuggerees|length %}
 

@@ -4,7 +4,7 @@
             {% if residence.medias is not empty %}
                 {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
 
-                    <img src="{{ asset('uploads/'~media.lien) }}">
+                    <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_residence') }}">
 
                 {% endfor %}
             {% endif %}

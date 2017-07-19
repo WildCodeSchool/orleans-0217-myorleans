@@ -72,6 +72,7 @@ class CompleteSearchType extends AbstractType
                     '4 chambres et plus' => '4',
                 )
             ])
+
             ->add('objectif', ChoiceType::class, [
                 'required'=>false,
                 'placeholder'=>'Objectif',

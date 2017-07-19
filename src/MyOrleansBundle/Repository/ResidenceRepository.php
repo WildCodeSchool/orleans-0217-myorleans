@@ -33,7 +33,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function simpleSuggestedSearch($ville, $type)
+    public function simpleSuggestedSearch($ids, $ville, $type)
     {
         $qb = $this->createQueryBuilder('r');
 
@@ -48,6 +48,14 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('type', $type)
                 ->join('r.flats', 'f')
                 ->join('f.typeLogement', 't');
+        }
+
+        if (!empty($ids)) {
+            foreach ($ids as $key => $id) {
+                $idParam = 'id'.$key;
+                $qb->andwhere('r.id != :'.$idParam)
+                    ->setParameter($idParam, $id);
+            }
         }
 
         $qb->andWhere('flts.statut = true')
@@ -117,7 +125,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function completeSuggestedSearch($data)
+    public function completeSuggestedSearch($ids, $data)
     {
         $qb = $this->createQueryBuilder('r');
 
@@ -165,6 +173,14 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
             $qb->andWhere('fts.prix != :budgetMax ')
                 ->setParameter('budgetMax', $data['budgetMax'])
                 ->join('r.flats', 'fts');
+        }
+
+        if (!empty($ids)) {
+            foreach ($ids as $key => $id) {
+                $idParam = 'id' . $key;
+                $qb->andwhere('r.id != :' . $idParam)
+                    ->setParameter($idParam, $id);
+            }
         }
 
         $qb->andWhere('flts.statut = true')

@@ -29,8 +29,8 @@
                         {% elseif parcours == 'residence' %}
                             <li>
                                 <div class="icone-profil icone-residence">
-                                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"><i
-                                                class="fa fa-home" aria-hidden="true"></i><p> Changer de parcours</p></a>
+                                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}">
+                                        <i class="fa fa-users" aria-hidden="true"></i>  Changer de parcours</a>
                                 </div>
                             </li>
                         {% endif %}
