@@ -60,32 +60,14 @@ class Evenement
     /**
      * @var int
      * @Assert\NotBlank()
-     *  @Assert\Type(
-     *     type="integer",
-     *     message="La saisie n'est pas correcte."
-     * )
-     * @Assert\Length(
-     *      min = 5,
-     *      max = 5,
-     *      minMessage = "Le code postal saisi est court.",
-     *      maxMessage = "Le code postal de l'événément saisi est long."
-     * )
+     *
      * @ORM\Column(name="code_postal", type="integer", nullable=true)
      */
     private $codePostal;
 
     /**
      * @var string
-     * @Assert\Type(
-     *     type="string",
-     *     message="La saisie n'est pas correcte."
-     * )
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 45,
-     *      minMessage = "Le nom de la  ville saisi est court.",
-     *      maxMessage = "Le nom de la ville saisi est long."
-     * )
+     *
      * @ORM\Column(name="ville", type="string", length=45, nullable=true)
      */
     private $ville;

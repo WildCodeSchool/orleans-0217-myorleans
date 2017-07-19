@@ -99,7 +99,7 @@ class Article
      *     mimeTypes = {"application/pdf", "application/x-pdf"},
      *     mimeTypesMessage = "Veuillez télécharger un fichier PDF valide"
      * )
-     * @ORM\Column(name="fichier", type="string")
+     * @ORM\Column(name="fichier", type="string", nullable=true)
      */
     private $fichierAssocie;
 

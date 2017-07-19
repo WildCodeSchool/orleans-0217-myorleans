@@ -48,7 +48,7 @@ class NosServicesController extends Controller
         $formulaire->get('sujet')->setData(Client::SUJET_SERVICES);
         $packs = $em->getRepository(Pack::class)->findAll();
 
-        $temoignages = $em->getRepository(Temoignage::class)->findAll();
+        $temoignages = $em->getRepository(Temoignage::class)->findBy([], ['id'=>'DESC'], 4);
         $formulaire->handleRequest($request);
 
 
