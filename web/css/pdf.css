@@ -149,7 +149,7 @@ body {
 }
 
 .undervideo-residence{
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 .icon-residence{
@@ -278,9 +278,9 @@ td{
 .plan-apt > img{
     width: 600px;
 }
-.photo-residence > img{
+/*.photo-residence > img{
     width: 750px;
-}
+}*/
 .prestation > p{
     font-size: 10px;
 }

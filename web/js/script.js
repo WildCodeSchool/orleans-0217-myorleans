@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
     $('select').material_select();
+
     $('.parallax').parallax();
 
     $('.carousel').carousel({
@@ -10,9 +11,7 @@ $(document).ready(function () {
         shift: 20,
         duration: 100
     });
-
-
-
+  
     $('.modal').modal();
     // Script JS pour l'autocomplétion
 
@@ -43,3 +42,9 @@ $(document).ready(function () {
         });
     });
 });
+
+$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+});
+

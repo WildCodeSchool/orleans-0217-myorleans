@@ -81,6 +81,7 @@ class FlatController extends Controller
             $em->persist($flat);
             $em->flush();
 
+            $this->addFlash('success', 'Votre appartement a bien été ajoutée');
             return $this->redirectToRoute('admin_flat_index', array('id' => $flat->getResidence()->getId()));
         }
 
@@ -89,33 +90,6 @@ class FlatController extends Controller
             'residence' => $residence,
             'form'      => $form->createView(),
         ));
-    }
-
-    /**
-     * Retrun a pdf file from à flat.
-     * @return Response
-     * @Route("/pdf/{id}", name="flat_pdf")
-     * @Method("GET")
-     */
-    /*    public function pdfAction(Flat $flat)
-        {
-
-            $pageUrl = $this->generateUrl('admin_flat_show', ['id' => $flat->getId()], UrlGeneratorInterface::ABSOLUTE_URL); // use absolute path!
-
-            return new Response(
-                $this->get('knp_snappy.pdf')->getOutput($pageUrl),
-                200,
-                array(
-                    'Content-Type'          => 'application/pdf',
-                    'Content-Disposition'   => 'attachment; filename="file.pdf"'
-                )
-            );
-
-        }*/
-
-    public function pdfReturnAction($id)
-    {
-
     }
 
 
@@ -171,6 +145,7 @@ class FlatController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Votre appartement a bien été mis à jour');
             return $this->redirectToRoute('admin_flat_index', array('id' => $flat->getResidence()->getId()));
         }
 
@@ -198,7 +173,7 @@ class FlatController extends Controller
             $em->remove($flat);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Votre appartement a bien été supprimée');
         return $this->redirectToRoute('admin_flat_index', ['id' => $residence_id]);
     }
 

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
 use Gedmo\Mapping\Annotation as Gedmo;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Residence
@@ -27,22 +27,33 @@ class Residence
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="nom", type="string", length=45)
      */
     private $nom;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="adresse", type="string", length=45)
      */
     private $adresse;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="code_postal", type="integer", nullable=true)
+     * @Assert\NotBlank()@Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="code_postal", type="integer")
      */
     private $codePostal;
 
@@ -72,59 +83,89 @@ class Residence
 
     /**
      * @var string
-     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="date_livraison", type="string", nullable=true)
      */
     private $dateLivraison;
 
     /**
      * @var string
-     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
+     * @var string
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="offre", type="text", nullable=true)
+     */
+    private $offre;
+
+    /**
      * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
+     * @Assert\Length(
+     *      min = 1,
+     *      minMessage = "Veuillez saisir un nombre de logement plus important",
      *
+     * )
      * @ORM\Column(name="nb_total_logements", type="integer", nullable=true)
      */
     private $nbTotalLogements;
 
     /**
      * @var float
-     *
+     * @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_transports", type="float", nullable=true)
      */
     private $noteTransports;
 
     /**
      * @var float
-     *
+     *  @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_commerces", type="float", nullable=true)
      */
     private $noteCommerces;
 
     /**
      * @var float
-     *
+     *  @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_services", type="float", nullable=true)
      */
     private $noteServices;
 
     /**
      * @var float
-     *
+     *  @Assert\Type(
+     *     type="float",
+     *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
      * @ORM\Column(name="note_esthetisme", type="float", nullable=true)
      */
     private $noteEsthetisme;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="offre", type="string", nullable=true)
-     */
-    private $offre;
 
     /**
      * @var int
@@ -135,7 +176,10 @@ class Residence
 
     /**
      * @var string
-     *
+     *  @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="accroche", type="string", nullable=true)
      */
     private $accroche;
@@ -499,22 +543,6 @@ class Residence
         return $this->noteEsthetisme;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOffre()
-    {
-        return $this->offre;
-    }
-
-    /**
-     * @param mixed $offre
-     */
-    public function setOffre($offre)
-    {
-        $this->offre = $offre;
-    }
-
 
     /**
      * @return mixed
@@ -764,4 +792,28 @@ class Residence
 
     }
 
+
+    /**
+     * Set offre
+     *
+     * @param string $offre
+     *
+     * @return Residence
+     */
+    public function setOffre($offre)
+    {
+        $this->offre = $offre;
+
+        return $this;
+    }
+
+    /**
+     * Get offre
+     *
+     * @return string
+     */
+    public function getOffre()
+    {
+        return $this->offre;
+    }
 }

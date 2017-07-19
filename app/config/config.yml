@@ -156,12 +156,23 @@ liip_imagine:
                     start: [ 000, 300 ]
 
 
-        thumb_pdf_photo_residence:
+        thumb_photo_residence:
             filters:
-                thumbail:
-                    size: [620, 400]
+                thumbnail:
+                    size: [1200, 800]
                     mode: outband
 
+        thumb_photo_appartement:
+            filters:
+                thumbnail:
+                    size: [1500, 900]
+                    mode: outband
+
+        thumb_plan_appartement:
+            filters:
+                thumbnail:
+                    size: [1500, 1060]
+                    mode: outband
 
         thumb_images_carrousel:
             filters:

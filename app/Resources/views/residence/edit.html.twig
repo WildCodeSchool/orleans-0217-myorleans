@@ -50,6 +50,12 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.offre, 'Offre du moment: ') }}
+                                    {{ form_widget(edit_form.offre) }}
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s6">
                                     {{ form_label(edit_form.dateLivraison, 'Date de livraison: ') }}
                                     {{ form_widget(edit_form.dateLivraison) }}
