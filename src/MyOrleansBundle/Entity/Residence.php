@@ -103,7 +103,7 @@ class Residence
 
     /**
      * @var string
-     *      * @Assert\Type(
+     * @Assert\Type(
      *     type="string",
      *     message="La saisie n'est pas correcte."
      * )
