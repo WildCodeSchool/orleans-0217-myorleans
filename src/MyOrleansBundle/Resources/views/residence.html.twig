@@ -37,28 +37,6 @@
                 {% endif %}
             </div>
         </div>
-
-
-    <div class="content-residence">
-        <div class="container-fluid center">
-            <div class="row">
-                <div class="col s12">
-
-                    {% if media['video'] is defined and  media['video'] != null %}
-                        {% set video = true %}
-                        <div class="video-residence">
-                            <video width="90%" controls>
-                                <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/mp4">
-                                <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/ogg">
-                                <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/webm">
-                            </video>
-                        </div>
-                    {% elseif media['image'] is defined and  media['image'] != null and  video is not defined %}
-                        <img src="{{ asset('uploads/'~media['image'].lien) }}" alt="photo_residence"/>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
         <div class="container">
             <div class="row">
                 <div class="buttondocprint">
